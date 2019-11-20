@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!-- Manager -->
+    <bean id="document.documentEventListernersManager" class="fr.paris.lutece.plugins.document.service.DocumentEventListernersManager" >
+        <property name="listeners" >
+            <list>
+                <ref bean="document.ruleEngine" />
+                <ref bean="document.documentHistoryService" />
+                <ref bean="document.portletInvalider" />
+                <ref bean="document.documentResourceServlet" />
+                <ref bean="budgetparticipatif.DocumentBodyService" />
+            </list>
+        </property>
+    </bean>
+</beans>

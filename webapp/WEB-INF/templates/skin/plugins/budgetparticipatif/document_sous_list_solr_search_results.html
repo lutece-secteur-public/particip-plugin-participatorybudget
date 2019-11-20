@@ -1,0 +1,130 @@
+              	<#if result.dynamicFields?? && result.dynamicFields.thematique_text??>
+        		<#if result.dynamicFields.thematique_text = "Cadre de vie"><#assign theme_class = "cadre_vie">
+          		<#elseif result.dynamicFields.thematique_text = "Culture" || result.dynamicFields.thematique_text = "Culture et patrimoine"><#assign theme_class = "culture">
+          		<#elseif result.dynamicFields.thematique_text = "Economie et emploi"><#assign theme_class = "economie_emploi">
+          		<#elseif result.dynamicFields.thematique_text = "Education et jeunesse"><#assign theme_class = "education">
+          		<#elseif result.dynamicFields.thematique_text = "Environnement" || result.dynamicFields.thematique_text = "Nature en ville"><#assign theme_class = "environnement">
+          		<#elseif result.dynamicFields.thematique_text = "Logement et habitat"><#assign theme_class = "logement">
+          		<#elseif result.dynamicFields.thematique_text = "Participation citoyenne"><#assign theme_class = "participation_citoyenne">
+          		<#elseif result.dynamicFields.thematique_text = "Prévention et sécurité"><#assign theme_class = "prevention_securite">
+          		<#elseif result.dynamicFields.thematique_text = "Propreté"><#assign theme_class = "proprete">
+          		<#elseif result.dynamicFields.thematique_text = "Solidarité" || result.dynamicFields.thematique_text = "Vivre ensemble"><#assign theme_class = "solidarite">
+          		<#elseif result.dynamicFields.thematique_text = "Sport"><#assign theme_class = "sport">
+          		<#elseif result.dynamicFields.thematique_text = "Transport et mobilité"><#assign theme_class = "transport">
+          		<#elseif result.dynamicFields.thematique_text = "Ville intelligente et numérique"><#assign theme_class = "ville_numerique">
+          	  </#if>
+      		</#if>
+          <div class="col-xs-12 col-sm-4 col-md-4"> 
+            <div class="panel panel-projects">
+              <div class="panel-heading">
+      						<div class="category project_${theme_class}">
+                    <img class="logo-theme" src="images/local/skin/i_${theme_class}.png" alt="${result.dynamicFields.thematique_text!'' }" title="${result.dynamicFields.thematique_text!''}"> ${result.dynamicFields.thematique_text!''}
+                    <!--
+                    <#if result.dynamicFields?? && result.dynamicFields.nombre_de_votes_long??>
+        							${result.dynamicFields.nombre_de_votes_long} votes
+        						<#else>
+                      PROJET A CORRIGER
+        						</#if>
+                    -->
+                  </div>
+                  <div class="infos-projects">
+                    <div class="project-location">
+          						<img src="images/local/skin/marker.png" width="25px" height="25px" alt="Localisation" title="Localisation">
+                      <#if result.dynamicFields?? && result.dynamicFields.localisation_text??>
+          							<#if result.dynamicFields.localisation_text = "Tout Paris">
+          								${result.dynamicFields.localisation_text}
+          							<#elseif result.dynamicFields.localisation_text?length &gt; 3>${result.dynamicFields.localisation_text?substring(0,3)}<#else>${result.dynamicFields.localisation_text}</#if>
+          						</#if>
+          					</div>
+          					<div class="project-budget">
+                      <img src="images/local/skin/money.png" width="25px" height="25px" alt="Budget" title="Budget">
+                      <#if result.dynamicFields?? && result.dynamicFields.budget_long?? && result.dynamicFields.budget_long &gt; 0>
+  							        <#setting locale="fr_FR">
+  							          ${result.dynamicFields.budget_long?string("#,###")} &#8364;
+  							        <#else>-
+  							      </#if>
+          					</div>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <#if result.dynamicFields?? && result.dynamicFields.campagne_text??>
+                  <p class="campagne">
+                    ${result.dynamicFields.campagne_text}
+                  </p>
+                  </#if>
+                  <h3>
+                    <a href="${result.url}" alt="${result.title}" title="${result.title}" >
+                      <#if result.title?length &gt; 69>${result.title?substring(0,70)}...<#else>${result.title}</#if>
+                    </a>
+                  </h3>
+
+                  <!--
+      					  <#if result.summary?has_content>
+      					  	<#if result.summary?length &gt; 200>${result.summary?substring(0,200)}...<#else>${result.summary}</#if>
+                  </#if>
+                  <div id="" class="vote">
+                    <div class="bg-gagnant">
+      					     <a class="budget-cancel-vote-button"  >
+      						    <span class="budget-label-jai-vote"><i class="fa fa-check-circle"></i> Projet gagnant</span>
+                      </a>
+      						   </div>
+      					    </div>
+                  </div>
+                -->
+                </div>
+                <div class="panel-footer">
+			      <#assign dNow = .now?long>
+                  <#if result.dynamicFields?? && result.dynamicFields.phase1_date_deb_text?? && result.dynamicFields.phase1_date_deb_text !=''>
+					<#assign step1 = result.dynamicFields.phase1_date_deb_text?date?long>
+                    <#if result.dynamicFields.phase2_date_deb_text !=''>
+                      <#assign step2 = result.dynamicFields.phase2_date_deb_text?date?long>
+                    <#else>
+                      <#assign step2 = dNow>
+                    </#if>
+                    <#if result.dynamicFields.phase3_date_deb_text !=''>
+                        <#assign step3 = result.dynamicFields.phase3_date_deb_text?date?long>
+                      <#else>
+                        <#assign step3 = dNow>
+                    </#if>
+                    <#if result.dynamicFields.phase4_date_deb_text !=''>
+                      <#assign step4 = result.dynamicFields.phase4_date_deb_text?date?long>
+                    <#else>
+                        <#assign step4 = dNow>
+                    </#if>
+                    <#if result.dynamicFields.phase4_date_fin_text !=''>
+                      <#assign step5 = result.dynamicFields.phase4_date_fin_text?date?long>
+                    <#else>
+                      <#assign step5 = dNow>
+                    </#if>
+                    <#if dNow &gt; step5>
+                      <p><strong>Projet réalisé</strong></p>
+                      <img class="img-responsive" src="images/local/skin/step4.png" title="Projet réalisé" alt="Projet réalisé">
+                    <#elseif dNow &gt; step4>
+                      <p>Phase 4 : Livraison et inauguration</p>
+                      <img class="img-responsive" src="images/local/skin/step4.png" title="Phase 4 : Finalisation" alt="Phase 4 : Finalisation">
+                    <#elseif dNow &gt; step3>
+                      <p>Phase 3 : Réalisation des travaux</p>
+                      <img class="img-responsive" src="images/local/skin/step3.png" title="Phase 3 : Travaux en cours" alt="Phase 3 : Travaux en cours">
+                    <#elseif dNow &gt; step2>
+                      <p>Phase 2 : Lancement des procédures</p>
+                      <img class="img-responsive" src="images/local/skin/step2.png" title="Phase 2 : Lancement" alt="Phase 2 : Lancement">
+                    <#elseif dNow &gt; step1>
+                      <p>Phase 1 : Etudes et conception</p>
+                      <img class="img-responsive" src="images/local/skin/step1.png" title="Phase 1 : En etude" alt="Phase 1 : En etude">
+                    </#if>
+                  <#else>
+                    <#if result.dynamicFields?? && result.dynamicFields.phase4_date_fin_text?? && result.dynamicFields.phase4_date_fin_text !=''>
+                      <#assign step5 = result.dynamicFields.phase4_date_fin_text?date?long>
+                      <#if dNow &gt; step5>
+                        <p><strong>Projet r&eacute;alis&eacute;</strong></p>
+                        <img class="img-responsive" src="images/local/skin/step4.png" title="Projet réalisé" alt="Projet réalisé">
+                      <#else>
+                        <p>Phase 1 : En &eacute;tude</p>
+                        <img class="img-responsive" src="images/local/skin/step1.png" title="Phase 1 : En etude" alt="Phase 1 : En etude">
+                      </#if>
+                    </#if>
+                  </#if>
+			          </div>
+              </div>
+            </div>
+   

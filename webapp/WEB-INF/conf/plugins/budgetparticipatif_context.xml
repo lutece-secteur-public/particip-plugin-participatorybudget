@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" >
+
+    <!-- DAO -->
+    <bean id="budgetparticipatif.voteDAO"             class="fr.paris.lutece.plugins.budgetparticipatif.business.VoteDAO" />
+	<bean id="budgetparticipatif.voteHistoryDAO"      class="fr.paris.lutece.plugins.budgetparticipatif.business.VoteHistoryDAO" />
+	<bean id="budgetparticipatif.votePerLocationDAO"  class="fr.paris.lutece.plugins.budgetparticipatif.business.VotePerLocationDAO" />
+	<bean id="budgetparticipatif.userAccessVoteDAO"   class="fr.paris.lutece.plugins.budgetparticipatif.business.UserAccessVoteDAO" />
+	<bean id="budgetparticipatif.bizStatFileDAO"      class="fr.paris.lutece.plugins.budgetparticipatif.business.bizstat.BizStatFileDAO" />
+	<bean id="budgetparticipatif.rgpdTreatmentLogDAO" class="fr.paris.lutece.plugins.budgetparticipatif.business.rgpd.RGPDTreatmentLogDAO" />
+
+    <!-- Services -->
+    <bean id="budgetparticipatif.ratingValidationService"               class="fr.paris.lutece.plugins.budgetparticipatif.service.rating.RatingValidationService" />
+    <bean id="budgetparticipatif.myVoteService"                         class="fr.paris.lutece.plugins.budgetparticipatif.service.MyVoteService" />
+    <bean id="budgetparticipatif.budgetparticipatifSitePropertiesGroup" class="fr.paris.lutece.plugins.budgetparticipatif.service.BudgetparticipatifSitePropertiesGroup" />
+    <bean id="budgetparticipatif.budgetAddOnService"                    class="fr.paris.lutece.plugins.budgetparticipatif.service.BudgetAddOnService" />
+    <bean id="budgetparticipatif.voteParArrandService"                  class="fr.paris.lutece.plugins.budgetparticipatif.service.VoteParArrandissementService" />
+    <bean id="budgetparticipatif.projectService"                        class="fr.paris.lutece.plugins.budgetparticipatif.service.ProjectService" />
+    <bean id="budgetparticipatif.bizStatService"                        class="fr.paris.lutece.plugins.budgetparticipatif.service.bizstat.BizStatService" />
+	
+
+                
+    <!-- Resource extender -->
+    <bean id="budgetparticipatif.voteResourceExtender" class="fr.paris.lutece.plugins.budgetparticipatif.service.rating.VoteResourceExtender"
+        p:key="vote"
+        p:i18nTitleKey="budgetparticipatif.extend.vote.extender.label" 
+        p:configRequired="false" 
+        p:historyEnable="false"
+        p:stateEnable="true"
+        p:resourceExtenderComponent-ref="budgetparticipatif.voteResourceExtenderComponent" />
+    <bean id="budgetparticipatif.voteResourceExtenderComponent" class="fr.paris.lutece.plugins.budgetparticipatif.service.rating.VoteResourceExtenderComponent" 
+        p:resourceExtender-ref="budgetparticipatif.voteResourceExtender"/>
+
+        
+    <bean id="budgetparticipatif.BudgetSolrAddon" class="fr.paris.lutece.plugins.budgetparticipatif.service.BudgetSolrAddon" />
+    <bean id="budgetparticipatif.BudgetSolrListAddon" class="fr.paris.lutece.plugins.budgetparticipatif.service.BudgetSolrListAddon" />
+    <bean id="budgetparticipatif.ProjectLaureatAddOn" class="fr.paris.lutece.plugins.budgetparticipatif.service.ProjectLaureatAddOn" />
+    <bean id="budgetparticipatif.ProjectOPSolrAddon" class="fr.paris.lutece.plugins.budgetparticipatif.service.ProjectOPSolrAddon" />
+    
+
+	<bean id="budgetparticipatif.VotesSolrAddon" class="fr.paris.lutece.plugins.budgetparticipatif.service.VotesSolrAddon" />
+	<bean id="budgetparticipatif.DocumentBodyService" class="fr.paris.lutece.plugins.budgetparticipatif.service.DocumentBodyService" />
+	<bean id="budgetparticipatif.myFavouritesProjects" class="fr.paris.lutece.plugins.budgetparticipatif.service.MyFavouritesProjects" />
+	
+	<bean id="budgetparticipatif.documentAddon" class="fr.paris.lutece.plugins.budgetparticipatif.service.DocumentPageService" />
+	<bean id="budgetparticipatif.documentProjectsOPAddon" class="fr.paris.lutece.plugins.budgetparticipatif.service.DocumentPageProjectOPService" />
+
+</beans>

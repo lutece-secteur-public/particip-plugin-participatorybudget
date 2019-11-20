@@ -1,0 +1,166 @@
+<section class="bg-color6"> 
+ <#include "document_search_solr_search_results.html"> 
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <div class="container">
+        <div id="paginator"><strong>${paginator.itemsCount} projet(s) trouv&eacute;(s) </strong><@paginationSolr paginator=paginator /></div>
+
+        
+        <div id="resultItems" class="row">
+          <#assign theme_class = "autre">
+             
+          <#list results_list as result>
+
+                <#include "document_sous_list_solr_search_results.html">          
+       
+          </#list>
+        </div>
+      
+      <div class="solr-paginator">
+        <@paginationSolr paginator=paginator />
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<#-- Freemarker macros -->
+<#-- Number of items per page selector - Combo Box implementation -->
+<#macro NbItemsPerPageSelectorCombo nb_items_per_page>
+    <select name="items_per_page">
+        <#list [ "10" , "20" , "50" , "100" ] as nb>
+            <#if nb_items_per_page = nb >
+                <option selected="selected" value="${nb}">${nb}</option>
+            <#else>
+                <option value="${nb}">${nb}</option>
+            </#if>
+        </#list>
+    </select>
+</#macro>
+
+<#-- Number of items per page selector - Radio List implementation -->
+<#macro NbItemsPerPageSelectorRadioList nb_items_per_page>
+    <#list [ 5 , 10 , 20 , 50 ] as nb>
+    <#if nb = nb_items_per_page >
+    <input value="${nb}" id="items_per_page${nb}" name="items_per_page" class="radio" type="radio" checked /><label for="items_per_page${nb}">${nb}</label>
+    <#else>
+    <input value="${nb}" id="items_per_page${nb}" name="items_per_page" class="radio" type="radio" /><label for="items_per_page${nb}">${nb}</label>
+    </#if>
+    </#list>
+</#macro>
+
+<#macro paginationSolr paginator >
+  <#assign nbLinkPages = 3 />
+  <#assign offsetPrev = nbLinkPages/2 />
+  <#assign offsetNext = nbLinkPages/2 />
+  <#if paginator.pageCurrent &lt; nbLinkPages-offsetPrev>
+    <#assign offsetPrev = nbLinkPages - paginator.pageCurrent />
+    <#assign offsetNext = nbLinkPages - offsetPrev />
+  <#elseif paginator.pageCurrent &gt; paginator.pagesCount - (nbLinkPages - offsetNext) >
+    <#assign offsetNext = nbLinkPages - (paginator.pagesCount - paginator.pageCurrent) />
+    <#assign offsetPrev = nbLinkPages - offsetNext />
+  </#if>
+  <br>
+  <#if (paginator.pagesCount > 1) >
+    <#if paginator.pageCurrent &gt; nbLinkPages-offsetPrev >
+      <a class="paginator-navi-page" href="${paginator.firstPageLink?xhtml}${monTri}" alt="Premi&egrave;re page" title="Premi&egrave;re page">
+        <span class="show-xs"></span><i class="fa fa-angle-double-left"></i>
+      </a>
+    </#if>
+    <#if (paginator.pageCurrent > 1) >
+     <a class="paginator-navi-page"  href="${paginator.previousPageLink?xhtml}${monTri}" alt="Page pr&eacute;c&eacute;dente" title="Page pr&eacute;c&eacute;dente">
+       <span class="show-xs"></span><i class="fa fa-angle-left"></i>
+     </a>
+    </#if>
+    <#if paginator.pageCurrent &gt; nbLinkPages-offsetPrev >
+     <span class="paginator-sep-page">...</span>
+    </#if>
+    <#list paginator.pagesLinks as link>
+      <#if ( link.index == paginator.pageCurrent )>
+        <span class="paginator-current-page">${link.name}</span> <span class="paginator-sep-page">|</span>
+      <#else>
+        <a class="paginator-num-page" href="${link.url?xhtml}${monTri}">${link.name}</a> <span class="paginator-sep-page">|</span>
+      </#if>
+    </#list>
+    <#if paginator.pageCurrent &lt; paginator.pagesCount - (nbLinkPages-offsetNext) >
+      <span class="paginator-sep-page">...</span>
+    </#if>
+    <#if (paginator.pageCurrent < paginator.pagesCount) >
+      <a class="paginator-navi-page"  href="${paginator.nextPageLink?xhtml}${monTri}" alt="Page suivante" title="Page suivante">
+        <span class="show-xs"></span><i class="fa fa-angle-right"></i>
+      </a>
+      <#if paginator.pageCurrent &lt; paginator.pagesCount - (nbLinkPages-offsetNext) >
+        <a class="paginator-navi-page" href="${paginator.lastPageLink?xhtml}${monTri}" alt="Derni&egrave;re page" title="Derni&egrave;re page">
+          <span class="show-xs"></span><i class="fa fa-angle-double-right"></i>
+        </a>
+      </#if>
+    </#if>
+  </#if>
+</#macro>
+
+<script type="text/javascript">
+
+function searchTri(){
+  if($("#sort_name option:selected").val() == "titreDsc"){
+    $("#sort_order").val("desc");
+    $("#sort_name option").val("titre");
+  }
+  if($("#sort_name option:selected").val() == 'titreAsc'){
+    $("#sort_order").val("asc");
+    $("#sort_name option").val("titre");
+  }
+  $("#searchForm").submit();
+}
+
+function validateForm(form) {
+    var all_ok=true;
+    //From xss filter + lucene special characters
+    var forbidden_chars = "<>#&|():~[]\\\"?*{}^+!";
+    $(form).find("input[type=text]").each(function(idx, elem) {
+            var error = false;
+            for (var i = 0; i < forbidden_chars.length; i++) {
+                if (!error && elem.value.indexOf(forbidden_chars.charAt(i)) != -1) {
+                    error = true;
+                    all_ok = false;
+                    var parent = $(elem).parents(".form-group");
+                    parent.addClass("has-error has-feedback");
+                    var helpblock = $(parent).find(".help-txt");
+                    helpblock.after("<p class=\"help-block\"><i class=\"fa fa-warning\"></i> Les caract&egravesres '" + forbidden_chars + "' sont interdits.</p>");
+                    helpblock.remove();
+                }
+            }
+            if (!error) {
+                var str = elem.value;
+                var prev_char = " ";
+                for(var i=0; i<str.length;i++) {
+                    if (str[i] === "-" && prev_char === " ") {
+                        error = true;
+                        all_ok = false;
+                        var parent = $(elem).parents(".form-group");
+                        parent.addClass("has-error has-feedback");
+                        var helpblock = $(parent).find(".help-txt");
+                        helpblock.after("<p class=\"help-block\"><i class=\"fa fa-warning\"></i> Les caract&egravesres '" + forbidden_chars + "' sont interdits.</p>");
+                        helpblock.remove();
+                        break;
+                    }
+                    prev_char=str[i];
+                }
+            }
+    });
+    if (!all_ok) {
+$(form).find("button").removeAttr("disabled");
+}
+return all_ok;
+}
+
+    $(function(){
+      $("#searchForm").submit( function(){
+          return validateForm( $(this) );
+      })
+
+      $("select").change( function(){
+        searchTri();
+      })
+
+    });
+
+</script>

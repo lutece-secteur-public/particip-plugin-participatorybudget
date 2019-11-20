@@ -1,0 +1,53 @@
+<div id="banner" class="${header_color} hidden-xs">
+    <div class="row row-banner">
+        <div class="col-xs-9 col-sm-9 col-md-9 col-main">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <a href="http://www.paris.fr" title="http://www.paris.fr">
+                    <img id="logo-header" src="images/local/skin/logo_mdp.jpg" title="Paris.fr" alt="Paris.fr" class="mdp_banner_logo"/>
+                </a>
+            </div>
+            <div id="banner-main" class="col-xs-12 col-sm-12 col-md-12">
+                <p class="votez" style="border-top: none; border-bottom: none;" >Budget Participatif</p>
+            </div>
+        </div>
+        <div id="banner-main-arrow" class="col-xs-1 col-sm-1 col-md-1">
+
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <div id="banner-inscription" class="col-xs-2 col-sm-2 col-md-2">
+			<!-- VOTE DESACTIVE -->
+		<a class="btn btn-my-votes" href="jsp/site/Portal.jsp?page=mesInfos&view=myVotes" title="">                                                       
+                   <#if user_votes_paris?has_content || user_votes_arrdt?has_content>                                                      
+                   	 	<div> MES VOTES </div>
+				<div>Paris: <span class="nb-user-votes">${user_votes_paris}</span>/10</div>
+				<div>Arrdt: <span class="nb-user-votes">${user_votes_arrdt}</span>/10</div>
+				
+				<button  class=" btn-modal-valid glyphicon glyphicon-ok-circle" > Je valide mes votes</button>	
+                   	<#else>
+                   		MES VOTES 	
+                   	</#if> 
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Responsive include -->
+<div class="row visible-xs hidden-print ${header_color}" id="banner-xs">
+	<div id="banner-xs-content" class="col-xs-12 col-main">
+        <p class="votez" style="border-top: none; border-bottom: none;" >Budget participatif</p>
+	</div>
+    <div id="banner-main-arrow-xs" class="col-xs-12">
+		<img src="images/local/skin/arrow-${header_color}.jpg" title="" alt="" >
+	</div>
+	<div id="banner-mesvotes-xs" class="col-xs-12">
+	<!-- VOTE DESACTIVE -->
+		<a class="btn btn-my-votes hidden" href="jsp/site/Portal.jsp?page=mesInfos&view=myVotes" title="">                                                       
+			<#if user_votes?has_content>                                                      
+            	MES VOTES : <span class="nb-user-votes">${user_votes}</span>/5
+            <#else>
+				MES VOTES 	
+            </#if> 
+		</a>
+	</div>
+</div>

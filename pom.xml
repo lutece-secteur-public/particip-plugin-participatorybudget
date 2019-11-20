@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <artifactId>lutece-global-pom</artifactId>
+        <groupId>fr.paris.lutece.tools</groupId>
+        <version>4.0.3</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>fr.paris.lutece.plugins</groupId>
+    <artifactId>plugin-budgetparticipatif-idee</artifactId>
+    <packaging>lutece-plugin</packaging>
+    <version>2.0.27-SNAPSHOT</version>
+    <name>Lutece budgetparticipatif plugin</name>
+
+    <repositories>
+        <repository>
+            <id>lutece</id>
+            <name>luteceRepository</name>
+            <url>http://dev.lutece.paris.fr/maven_repository</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>fr.paris.lutece</groupId>
+            <artifactId>lutece-core</artifactId>
+            <version>[6.1.0,)</version> 
+            <type>lutece-core</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>plugin-mylutece</artifactId>
+            <version>[3.3.4,)</version>
+            <type>lutece-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>module-extend-rating</artifactId>
+            <version>[1.1.5,)</version>
+            <type>lutece-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>plugin-document</artifactId>
+            <version>[4.0.8,)</version>
+            <type>lutece-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>plugin-ideation</artifactId>
+            <version>[2.0.0-SNAPSHOT,)</version>
+            <type>lutece-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>plugin-subscribe</artifactId>
+            <version>[1.0.1,)</version>
+            <type>lutece-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>plugin-campagnebp</artifactId>
+            <version>[2.0.0-SNAPSHOT,)</version>
+            <type>lutece-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>plugin-solr</artifactId>
+            <version>[3.0.4-SNAPSHOT]</version>
+            <type>lutece-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>module-extend-follow</artifactId>
+            <version>[1.0.2,)</version>
+            <type>lutece-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.paris.lutece.plugins</groupId>
+            <artifactId>module-extend-favorite</artifactId>
+            <version>[1.0.1,)</version>
+            <type>lutece-plugin</type>
+        </dependency>
+      </dependencies>
+
+
+    <properties>
+        <componentName>BudgetParticipatifIdee</componentName>
+        <jiraProjectName>BPIDEE</jiraProjectName>
+        <jiraComponentId>12904</jiraComponentId>
+    </properties>
+    
+    <scm>
+        <connection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/applications/ideation/trunk/plugin-budget-participatif-idee</connection>
+        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/applications/ideation/trunk/plugin-budget-participatif-idee</developerConnection>
+        <url>https://dev.lutece.paris.fr/svn/lutece/applications/ideation/trunk/plugin-budget-participatif-idee</url>
+    </scm>
+
+</project>

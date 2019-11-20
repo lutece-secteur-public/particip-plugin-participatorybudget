@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><plug-in>
+    <name>budgetparticipatif</name>
+    <class>fr.paris.lutece.plugins.budgetparticipatif.service.BudgetParticipatifPlugin</class>
+    <version>2.0.27-SNAPSHOT</version>
+    <documentation/>
+    <installation/>
+    <changes/>
+    <user-guide/>
+    <description>budgetparticipatif.plugin.description</description>
+    <provider>budgetparticipatif.plugin.provider</provider>
+    <provider-url>http://dev.lutece.paris.fr</provider-url>
+    <icon-url>images/admin/skin/plugins/budgetparticipatif/budgetparticipatif.png</icon-url>
+    <copyright>Copyright (c) 2014 Mairie de Paris</copyright>
+    <db-pool-required>1</db-pool-required>
+    
+    <core-version-dependency>
+        <min-core-version>5.0.0</min-core-version>
+        <max-core-version/>	
+    </core-version-dependency>
+
+    <!-- Admin features parameters -->
+    <admin-features>
+     <admin-feature>
+            <feature-id>VOTE_PAR_ARRANDISSEMENT</feature-id>
+            <feature-title>budgetparticipatif.adminFeature.VoteParArrand.name</feature-title>
+            <feature-description>budgetparticipatif.adminFeature.VoteParArrand.description</feature-description>
+            <feature-level>0</feature-level>
+            <feature-url>jsp/admin/plugins/budgetparticipatif/VoteParArrandissement.jsp</feature-url>
+            <feature-icon-url/>
+        </admin-feature>
+    </admin-features>    
+
+
+	<!-- Daemons -->
+    <daemons>
+        <daemon>
+            <daemon-id>bizStatExportDaemon</daemon-id>
+            <daemon-name>budgetparticipatif.daemon.bizStatExportDaemon.name</daemon-name>
+            <daemon-description>budgetparticipatif.daemon.bizStatExportDaemon.description</daemon-description>
+            <daemon-class>fr.paris.lutece.plugins.budgetparticipatif.deamon.BizStatExportDaemon</daemon-class>
+        </daemon>
+    </daemons>
+
+    <daemons>
+        <daemon>
+            <daemon-id>notifyUserDaemon</daemon-id>
+            <daemon-name>budgetparticipatif.daemon.notifyUserDaemon.name</daemon-name>
+            <daemon-description>budgetparticipatif.daemon.notifyUserDaemon.description</daemon-description>
+            <daemon-class>fr.paris.lutece.plugins.budgetparticipatif.deamon.NotifyUserDaemon</daemon-class>
+        </daemon>
+    </daemons>
+
+    <!-- XPages parameters -->
+    <applications>
+        <application>
+            <application-id>mesVotes</application-id>
+            <application-class>fr.paris.lutece.plugins.budgetparticipatif.web.MyVoteXPage</application-class>
+        </application>
+        <application>
+            <application-id>myFavourites</application-id>
+            <application-class>fr.paris.lutece.plugins.budgetparticipatif.web.FavouritesProjectsXPage</application-class>
+        </application>
+         <application>
+        	<application-id>solrProjectSearch</application-id>
+            <application-class>fr.paris.lutece.plugins.budgetparticipatif.web.ProjectsXpage</application-class>
+          </application>
+    </applications>
+    <javascript-files>
+        <javascript-files-scope>portal</javascript-files-scope>
+        <javascript-file>budgetparticipatif/budgetparticipatif.js</javascript-file>
+    </javascript-files>
+    <css-stylesheets>
+        <css-stylesheets-scope>portal</css-stylesheets-scope>
+        <css-stylesheet>budgetparticipatif/budgetparticipatif.css</css-stylesheet>
+    </css-stylesheets>
+    
+    <!-- Page Includes -->
+    <page-include-services>
+           
+        	<page-include-service>
+            	<page-include-service-id>header</page-include-service-id>
+            	<page-include-service-class>fr.paris.lutece.plugins.budgetparticipatif.web.includes.HeaderInclude</page-include-service-class>
+        </page-include-service> 
+    </page-include-services>
+	<servlets>
+		<servlet>
+			<servlet-name>ProjectSolrSearch</servlet-name>
+			<servlet-class>fr.paris.lutece.plugins.budgetparticipatif.web.ProjectSolrSearch
+			</servlet-class>
+			<url-pattern>/servlet/plugins/ProjectSolrSearch</url-pattern>
+		</servlet>
+		<servlet>
+			<servlet-name>SolrSuggest</servlet-name>
+			<servlet-class>fr.paris.lutece.plugins.search.solr.web.SolrSuggestServlet
+			</servlet-class>
+			<url-pattern>/servlet/plugins/solrSuggest</url-pattern>
+		</servlet>
+	</servlets>
+	<servlet-mapping>
+         <servlet-name>SolrServlet</servlet-name>
+        <url-pattern>/solrSuggest</url-pattern>
+    </servlet-mapping>
+    
+</plug-in>

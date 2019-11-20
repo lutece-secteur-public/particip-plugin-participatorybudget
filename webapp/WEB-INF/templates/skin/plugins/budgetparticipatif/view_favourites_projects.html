@@ -1,0 +1,237 @@
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="bg-color4">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10">
+					<a class="btn btn-link btn-retour" title="Retour" href="javascript:history.go(-1);">
+					<i class="fa fa-arrow-left"></i>
+						Retour aux projets
+					</a>
+						<center>
+							<h2 class="title1">MES PROJETS FAVORIS</h2>
+						</center>
+							<div class="description">
+							       
+								<div  class="project-list-freetext content-type1"></div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<@messages errors=errors />
+						<@messages infos=infos />
+					</div>
+				</div>
+				
+
+				<div id="" class="row">
+					<div class="" style="margin:50px;">
+							
+						<h2>Projets "Tout Paris" </h2>
+								
+					</div>
+					<@favourites favouriteProjects=favouriteProjects localisation="Tout Paris" isAutre=false />
+				</div> 
+				<div id="" class="row">
+					<div class="" style="margin:50px;">
+							
+						<h2>Projets de mon arrondissement </h2>
+								
+					</div>
+					<@favourites favouriteProjects=favouriteProjects localisation=userArrondissement isAutre=false />
+				</div> 
+				<div id="" class="row">
+					<div class="" style="margin:50px;">
+							
+						<h2>Projets d'autres arrondissements </h2>
+								
+					</div>
+					<@favourites favouriteProjects=favouriteProjects localisation=userArrondissement isAutre=true />
+				</div> 
+	
+				</br>
+				
+				<center>
+					<a id="href_Button" class=" btn-modal-valid glyphicon glyphicon-ok-circle" href="jsp/site/Portal.jsp?page=mesInfos"> Je modifie mon compte </a>	
+				</center>
+			</div>
+			
+		</div>
+	</div>
+</div>&#160;
+
+
+<#macro favourites favouriteProjects localisation isAutre>
+	<#list favouriteProjects as document>
+		<#list document.attributes as attribute>
+		
+				<#if attribute.code = 'localisation'>
+					<#assign  localisation_projet= attribute.textValue>
+				</#if>
+
+			</#list>
+			<#assign image_projet = "autre">
+			<#if thematique_projet??>
+				<#if thematique_projet = "Cadre de vie"><#assign image_projet = "cadre_vie">
+				<#elseif thematique_projet = "Culture" || thematique_projet = "Culture et patrimoine"><#assign image_projet = "culture">
+				<#elseif thematique_projet = "Economie et emploi"><#assign image_projet = "economie_emploi">
+				<#elseif thematique_projet = "Education et jeunesse"><#assign image_projet = "education">
+				<#elseif thematique_projet = "Environnement" || thematique_projet = "Nature en ville"><#assign image_projet = "environnement">
+				<#elseif thematique_projet = "Logement et habitat"><#assign image_projet = "logement">
+				<#elseif thematique_projet = "Participation citoyenne"><#assign image_projet = "participation_citoyenne">
+				<#elseif thematique_projet = "Prévention et sécurité"><#assign image_projet = "prevention_securite">
+				<#elseif thematique_projet = "Propreté"><#assign image_projet = "proprete">
+				<#elseif thematique_projet = "Solidarité" || thematique_projet = "Vivre ensemble"><#assign image_projet = "solidarite">
+				<#elseif thematique_projet = "Sport"><#assign theme_class = "sport">
+				<#elseif thematique_projet = "Transport et mobilité"><#assign image_projet = "transport">
+				<#elseif thematique_projet = "Ville intelligente et numérique"><#assign image_projet = "ville_numerique">
+				</#if>
+			</#if>
+	
+		<#list document.attributes as attribute>
+			<#if attribute.code = 'budget'>
+				<#assign  budget_projet= attribute.textValue>
+
+			<#elseif attribute.code = 'thematique'>
+				<#assign  thematique_projet= attribute.textValue>
+	
+			<#elseif attribute.code = 'localisation'>
+				<#assign  localisation_projet= attribute.textValue>
+		
+			<#elseif attribute.code = 'identifiant'>
+				<#assign  numero_projet= attribute.textValue>
+			<#elseif attribute.code = 'url'>
+				<#assign  url_projet= attribute.textValue>
+			</#if>
+		</#list>
+			
+
+		<#if  (isAutre=false && localisation_projet==localisation) || (isAutre=true && localisation_projet!=localisation && localisation_projet!= "Tout Paris") >	
+	    	
+	    <div class="item" style="margin:50px;" > 
+		    <div id="right-item" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 " style="padding:7px;">
+				<div class="row projectlist_project bg-color0">
+						<div class="project_ref project_${image_projet}"> 
+							PROJET N°${numero_projet}
+						</div>
+						
+		        	        	<div class="project_category col-xs-12 hidden-sm hidden-md hidden-lg
+							<#if thematique_projet??> ${image_projet}"><img src="images/local/skin/i_${image_projet}.png" alt="${thematique_projet}" title="${thematique_projet}">
+					
+							${thematique_projet}
+							<#else>
+								<#assign image_projet = "notheme">
+								${image_projet}">
+								<img src="images/local/skin/i_notheme.png">
+								PAS DE THEMATIQUE
+							</#if>
+						
+						</div>
+			
+						<div class="project_category hidden-xs col-sm-12 hidden-md hidden-lg 
+							<#if thematique_projet??>
+								${image_projet}"><img src="images/local/skin/i_${image_projet}.png" alt="${thematique_projet}" title="${thematique_projet}">
+					
+							<#if thematique_projet?length &gt; 32>${thematique_projet?substring(0,32)}...<#else>${thematique_projet}</#if>
+							<#else>
+								<#assign image_projet = "notheme">
+								${image_projet}">
+								<img src="images/local/skin/i_notheme.png">
+								PAS DE THEMATIQUE
+							</#if>
+							
+						</div>
+
+						<div>	
+							 <#assign id_document = document.id >
+				      			 @Extender[${id_document},document,follow,{show:"favoris"}]@
+				      			 <input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${localisation_projet}" />
+			                     <input type="hidden" name="title_${id_document}" id="title_${id_document}" value="${document.title}" />
+			                     <input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${thematique_projet}" />
+						</div>
+						<div class="project_category hidden-xs hidden-sm col-md-12 hidden-lg 
+							<#if thematique_projet??>
+								${image_projet}"><img src="images/local/skin/i_${image_projet}.png" alt="${thematique_projet}" title="${thematique_projet}">
+					
+							<#if thematique_projet?length &gt; 16>${thematique_projet?substring(0,16)}...<#else>${thematique_projet}</#if>
+							<#else>
+								<#assign image_projet = "notheme">
+								${image_projet}">
+								<img src="images/local/skin/i_notheme.png">
+								PAS DE THEMATIQUE
+							</#if>
+						</div>
+						<div class="project_category hidden-xs hidden-sm hidden-md col-lg-12 
+							<#if thematique_projet??>
+								${image_projet}"><img src="images/local/skin/i_${image_projet}.png" alt="${thematique_projet}" title="${thematique_projet}">
+					
+							<#if thematique_projet?length &gt; 25>${thematique_projet?substring(0,25)}...<#else>${thematique_projet}</#if>
+							<#else>
+								<#assign image_projet = "notheme">
+								${image_projet}">
+								<img src="images/local/skin/i_notheme.png">
+								PAS DE THEMATIQUE
+							</#if>
+						</div>
+
+	 					<div class="project_title col-xs-12 hidden-sm hidden-md hidden-lg">
+							<a href="jsp/site/Portal.jsp?document_id=${document.id}&portlet_id=158" alt="${url_projet}" title="${url_projet}">
+								${document.title}
+							</a>
+						</div>
+						<div class="project_title hidden-xs col-sm-12 hidden-md hidden-lg">
+							<a href=jsp/site/Portal.jsp?document_id=${document.id}&portlet_id=158" alt="${document.title}" title="${document.title}">
+								<#if document.title?length &gt; 45>${document.title?substring(0,45)}...<#else>${document.title}</#if>
+							</a>
+						</div>
+						<div class="project_title hidden-xs hidden-sm col-md-12 hidden-lg">
+							<a href="jsp/site/Portal.jsp?document_id=${document.id}&portlet_id=158" alt="${document.title}" title="${document.title}">
+								<#if document.title?length &gt; 40>${document.title?substring(0,40)}...<#else>${document.title}</#if>
+							</a>
+						</div>
+						<div class="project_title hidden-xs hidden-sm hidden-md col-lg-12">
+							<a href="jsp/site/Portal.jsp?document_id=${document.id}&portlet_id=158" alt="${document.title}" title="${document.title}">
+								<#if document.title?length &gt; 65>${document.title?substring(0,65)}...<#else>${document.title}</#if>
+							</a>
+						</div>
+						<div>
+							<span class="project_location">
+							<img src="images/local/skin/projet_localisation.png" width="25px" height="25px" alt="Localisation" title="Localisation">
+							<#if localisation_projet??>
+								<#if localisation_projet = "Tout Paris">
+									${localisation_projet}
+								<#elseif localisation_projet?length &gt; 3>${localisation_projet?substring(0,3)}<#else>${localisation_projet}</#if>
+							</#if>
+							</span>
+							<span class="project_budget">
+								<#if budget_projet??>
+								<#setting locale="fr_FR">
+								${budget_projet} &#8364;
+								<#else>-
+								</#if>
+							</span>
+						</div>
+						 <div class="project_description col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						    <#if document.summary?has_content>
+										<#if document.summary?length &gt; 200>${document.summary?substring(0,200)}...<#else>${document.summary}</#if>
+						    </#if>  
+						</div>
+		           		
+		        </div> 
+		        <div>
+		        <#if campagneService.isDuring("VOTE") && voteValidated= false  && (userArrondissement == localisation_projet || localisation_projet= "Tout Paris")>
+			 		@Extender[${id_document},document,vote,{show:"all"}]@ 
+			 		 <input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${localisation_projet}" />
+			         <input type="hidden" name="title_${id_document}" id="title_${id_document}" value="${document.title}" />
+			         <input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${thematique_projet}" />
+			         <input type="hidden" name="arrondUser" id="arrondUser" value="${userArrondissement!}" />
+				</#if>
+		        </div>
+		    </div> 
+		</div>
+
+	</#if>	
+	</#list>
+</#macro>
