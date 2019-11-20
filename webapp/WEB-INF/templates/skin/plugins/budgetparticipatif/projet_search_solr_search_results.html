@@ -1,332 +1,1 @@
-<#if conf_user_query??>
-  <#assign conf_query = "&amp;conf=${conf_user_query}">
-<#else>
-  <#assign conf_query = "">
-</#if>
-
-<#if !(sort_name??)>
-	<#assign sort_name="${.now?long?string}"?number+'_random'>
-</#if>
-<#if !(sort_order??)>
-	<#assign sort_order="random">
-</#if>
-<#if conf??>
-	<#assign conf_query= "conf="+conf.code>
-</#if>
-
-<#assign facet_theme = "tout_theme">
-
-<#setting url_escaping_charset=encoding>
-<#-- Encode facet queries -->
-<#assign allParisCity = "-localisation_text:Tout Paris">
-<#assign allArrParisCity = "localisation_text:">
-<#macro EncodeFQ list_fq  optionalParam1="" optionalParam2="">
-	<#assign bCheck = false>
-    <#assign encoded_facets_queries = "">
-		<#list list_fq as facet>
-		<#if optionalParam1?has_content && optionalParam2?has_content && facet?starts_with(optionalParam2) >
-			<#assign encoded_facets_queries = encoded_facets_queries+"&fq="+optionalParam1>
-			<#assign bCheck = true>
-		<#else>
-			<#assign encoded_facets_queries = encoded_facets_queries+"&fq="+facet?url>
-			<#if facet?starts_with(optionalParam1)>
-				<#assign bCheck = true>
-			</#if>
-		</#if>
-		</#list>
-		<#if optionalParam1?has_content && optionalParam2?has_content && !bCheck>
-				<#assign encoded_facets_queries = encoded_facets_queries+"&fq="+optionalParam1>
-		</#if>
-${encoded_facets_queries}</#macro>
-
-<#assign sQuery = "">
-
-<#macro EncodeFQArrondissement list_fq >
-    <#assign encoded_facets_queries = "">
-
-    <#list list_fq as facet>
-	<#if facet?starts_with("localisation_text") || facet?starts_with("type") || facet?starts_with("-localisation_text")>
-        	<#assign encoded_facets_queries = encoded_facets_queries+"&fq="+facet?url>
-	</#if>
-    </#list>
-${encoded_facets_queries}
-</#macro>
-
-<#if query?has_content>
-    <#if !query?starts_with("categorie")>
-        <#if !query?starts_with("(")>
-            <#assign sQuery = "${query}">
-        <#else>
-            <#assign sQuery = "${query?split(' AND')?first?substring(1, query?split(' AND')?first?length)}">
-        </#if>
-    </#if>
-
-</#if>
- <#assign sQueryUrlSave = sQuery>
- <#assign sQuery = sQuery?split(":")?last>
- <#assign arr= "">
- <#assign monTri ="&amp;sort_order=${sort_order!}&amp;sort_name=${sort_name!}">
- <#assign ordre_aleatoire= "true">
- <#assign sQueryUrl= sQuery>
-<#assign cadre_de_vie= 'false'>
-<#assign education_et_jeunesse= 'false'>
-<#assign logement_et_habitat= 'false'>
-<#assign environnement= 'false'>
-<#assign sport= 'false'>
-<#if sQuery?has_content && sQuery?starts_with("(") && sQuery?ends_with(")") >
-	<#assign sQuery = sQuery?remove_beginning("(")>
-	<#assign sQuery = sQuery?remove_ending(")")>
-</#if>
-<#-- facets -->
-
- <#assign number_random="${.now?long?string}"?number />
-
- <section id="search-projet">
-   <form id="searchForm" name="search" method="get" action="jsp/site/Portal.jsp" class="form-inline">
-	 <input type="hidden" name="page" value="search-solr">
-	 <input id="form_conf_hidden" type="hidden" name="conf" value="${conf_user_query}">
-   <div class="row">
-     <div class="col-xs-12 col-sm-12">
-       <h2 class="content-type1">
-         Projets 2016 MDP
-       </h2>
-			 <#if facets_list??>
-					<#list facets_list as facet>
-							<!-- <input type="hidden" name="fq" value="${facet}" /> -->
-							<#if facet?starts_with("localisation_text:")>
-									<#assign arr = facet?split(":")?last>
-							<#elseif facet?starts_with("-localisation_text:Tout Paris")>
-									<#assign arr = "all_arr">
-							<#elseif facet?starts_with("localisation_text:Tout Paris")>
-									<#assign arr = "Tout_Paris">
-				<#elseif facet?starts_with("thematique_text:")>
-						<#assign facet_theme = facet?split(":")?last>
-							</#if>
-					</#list>
-			</#if>
-			 <div class="row">
-				 <div class="col-xs-12 col-sm-12">
-				 <div class="form-group">
-					 <label class="sr-only" for="query"><!-- #dskey{sitelabels.site_property.recherche.help.textblock}--> Rechercher par mots cl&eacute;</label>
-					 <div class="input-group">
-						 <input class="form-control" type="text" name="query" value="${sQuery!}" placeholder="Rechercher par mots cl&eacute;" id="solr">
-						 <span class="input-group-btn">
-							 <button id="btn-search" class="btn btn-search" type="submit" title="Rechercher" onclick="this.disabled=true; searchTri(); return false;">
-								 <i class="fa fa-search"></i>
-							 </button>
-						 </span>
-					 </div>
-					 <span class="help-txt"></span>
-				 </div>
-				 <div class="form-group">
-					 <label class="select" for="arrondissement">
-						 <SELECT name="fq" id="arrondissement" onChange="searchArrond()" class="form-control">
-					    <#if arr=="">
-						<OPTION value="type:Projet 2015" selected="selected" >Tous les projets </option>
-						<OPTION value="localisation_text:Tout Paris">Projets Tout Paris</option>
-						<OPTION value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>
-					    <#elseif arr=="Tout Paris">
-						<OPTION value="type:Projet 2015">Tous les projets </option>
-						<OPTION value="localisation_text:Tout Paris" selected="selected" >Projets Tout Paris</option>
-						<OPTION value="-localisation_text:paris">Projets Tous Arrondissements</option>
-					    <#elseif arr=="all_arr">
-						<OPTION value="type:Projet 2015">Tous les projets </option>
-						<OPTION value="localisation_text:Tout Paris">Projets Tout Paris</option>
-						<OPTION value="-localisation_text:Tout Paris" selected="selected">Projets Tous Arrondissements</option>
-					    <#else>
-						<OPTION value="type:Projet 2015">Tous les projets </option>
-						<OPTION value="localisation_text:Tout Paris">Projets Tout Paris</option>
-						<OPTION value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>
-					    </#if>
-
-
-					    <#assign nbArr=20>
-					    <#list 1..nbArr as i>
-						<#if arr==i+"e arrondissement">
-							<OPTION value="localisation_text:${i!}e arrondissement" selected="selected" >Projets du ${i!}e arrdt.
-						<#else>
-							<OPTION value="localisation_text:${i!}e arrondissement">Projets du ${i!}e arrdt.</option>
-						</#if>
-       					    </#list>
-
-					</SELECT>
-					 </label>
-				 </div>
-				 <div class="form-group">
-					 <label class="select" for="theme">
-						 <select name="fq" id="theme" onChange="searchArrond()" class="form-control">
-						 <#if facets??><#-- empty or null when no connection to server -->
-					      <#list facets as facet>
-			 						<#if facet.values??>
-				 						<#if solr_fields[facet.name].label?? && solr_fields[facet.name].label= "Thematique">
-		 							    <option value="type:Projet 2015" <#if facet_theme='tout_theme'>selected="selected"</#if> >Rechercher par th&egrave;me</option>
-				 							<#list facet.values?sort as count>
-		 								    <option value="thematique_text:${count.name}" <#if facet_theme=count.name>selected="selected"</#if> >${count.name}</option>
-		 									</#list>
-		 								</#if>
-		 							</#if>
-		 					  </#list>
-		 					</#if>
-						 	</select>
-					 	</label>
-				 	</div>
-			 	</div>
-		 	</div>
-			<div class="row" >
-				<div class="col-xs-12 col-sm-12">
-				  <a class="btn pull-right" href="${fullUrl}?page=search-solr&amp;${conf_query}" title="Enlever les filtres">
-					 &gt; Enlever les filtres
-				 	</a>
-			 	</div>
-		 
-                      <#if conf_user_query = "projects_mdp">
-			</div>
-				<div id="sort">
-				<#if true>
-					<#if !(sort_name??)>
-						<#assign sort_name="">
-					</#if>
-					<#if !(sort_order??)>
-						<#assign sort_order="">
-					</#if>
-				<#if sort_list??>
-		            <div class="form-group">
-		              <label class="select" for="sort_name">
-		                <select name="sort_name" id="sort_name" class="form-control" onChange="searchTri()" >
-		                  <#list sort_list as field>
-		                    <#if field.enableSort && (field.solrName="budget_long" || field.solrName="titre") >
-		                      <#assign monTri = sort_name+"&sort_order="+sort_order>
-		                      <#if sort_name?ends_with("random") && ordre_aleatoire == "true" >
-		                        <option value="${number_random}_random" selected="selected" >Ordre al&eacute;atoire</option>
-		                        <#assign ordre_aleatoire= "false">
-		                      <#elseif ordre_aleatoire == "true" >
-		                        <option value="${number_random}_random">Ordre al&eacute;atoire</option> >
-		                        <#assign ordre_aleatoire= "false">
-		                      </#if>
-		                      <#if monTri==field.solrName+"&sort_order=asc" || monTri==field.solrName+"&sort_order=desc" >
-		                        <option value="${field.solrName}" selected="selected">${field.label} </option>
-		                      <#else>
-		                        <option value="${field.solrName}">${field.label} </option>
-		                      </#if>
-		                    </#if>
-		                  </#list>
-		                  <#assign monTri="&sort_name="+monTri />
-		                </select>
-		              </label>
-		            </div>
-		            <div class="form-group">
-		              <label class="select" for="sort_order">
-		                <select name="sort_order" id="sort_order" class="form-control" onChange="searchTri()" >
-		                  <option value="asc" <#if sort_order?? && sort_order="asc">selected="selected"</#if> >Ascendant</option>
-		                  <option value="desc" <#if sort_order?? && sort_order="desc">selected="selected"</#if>>Descendant</option>
-		                </select>
-		              </label>
-		            </div>
-		          </#if>
-				</#if>
-				</div>
-				 <div class="form-group pull-right" >
-          				<p class="form-control-static" id="button_map_list">
-						<button class="btn btn-idee btn-map" type="submit"><span class="hidden-xs">VOIR LA CARTE</span></button>
-					</p>
-
-				</div>
-			 </div>
-			<#else>
-				<div class="form-group pull-right" >
-          				<p class="form-control-static" id="button_list">
-						<button class="btn btn-idee btn-list" type="submit"><span class="hidden-xs">VOIR LA LISTE</span></button>
-					</p>
-
-				</div>
-			</#if>
-
-  </div>
-
-			</form>
-		</section>
-
-<script type="text/javascript">
- function displayInMap() {
-      $("#form_conf_hidden").attr('value',"map_projets");
-  }
-$("#button_map_list button").click( function(){
-      displayInMap();
-    });
-$("#button_list button").click( function(){
-	$("#form_conf_hidden").attr('value',"projects_mdp");	
-    });
-
-function searchTri(){
-	if($("#sort_name option:selected").val() == "titreDsc"){
-		$("#sort_order").val("desc");
-		$("#sort_name option").val("titre");
-	}
-	if($("#sort_name option:selected").val() == 'titreAsc'){
-		$("#sort_order").val("asc");
-		$("#sort_name option").val("titre");
-	}
-	if($("#sort_name option:selected").val() == "coutDsc"){
-		$("#sort_order").val("desc");
-		$("#sort_name option").val("budget_long");
-	}
-	if($("#sort_name option:selected").val() == 'coutAsc'){
-		$("#sort_order").val("asc");
-		$("#sort_name option").val("budget_long");
-	}
-	$("#searchForm").submit();
-}
-
-function validateForm(form) {
-    var all_ok=true;
-    //From xss filter + lucene special characters
-    var forbidden_chars = "<>#&|():~[]\\\"?*{}^+!";
-    $(form).find("input[type=text]").each(function(idx, elem) {
-            var error = false;
-            for (var i = 0; i < forbidden_chars.length; i++) {
-                if (!error && elem.value.indexOf(forbidden_chars.charAt(i)) != -1) {
-                    error = true;
-                    all_ok = false;
-                    var parent = $(elem).parents(".form-group");
-                    parent.addClass("has-error has-feedback");
-                    var helpblock = $(parent).find(".help-txt");
-                    helpblock.after("<p class=\"help-block\"><i class=\"fa fa-warning\"></i> Les caract&egravesres '" + forbidden_chars + "' sont interdits.</p>");
-                    helpblock.remove();
-                }
-            }
-            if (!error) {
-                var str = elem.value;
-                var prev_char = " ";
-                for(var i=0; i<str.length;i++) {
-                    if (str[i] === "-" && prev_char === " ") {
-                        error = true;
-                        all_ok = false;
-                        var parent = $(elem).parents(".form-group");
-                        parent.addClass("has-error has-feedback");
-                        var helpblock = $(parent).find(".help-txt");
-                        helpblock.after("<p class=\"help-block\"><i class=\"fa fa-warning\"></i> Les caract&egravesres '" + forbidden_chars + "' sont interdits.</p>");
-                        helpblock.remove();
-                        break;
-                    }
-                    prev_char=str[i];
-                }
-            }
-    });
-    if (!all_ok) {
-$(form).find("button").removeAttr("disabled");
-}
-return all_ok;
-}
-
-    $(function(){
-      $("#searchForm").submit( function(){
-          return validateForm( $(this) );
-      })
-
-      $("select").change( function(){
-        searchTri();
-      })
-
-    });
-</script>
-
+<#if conf_user_query??>  <#assign conf_query = "&amp;conf=${conf_user_query}"><#else>  <#assign conf_query = ""></#if><#if !(sort_name??)>	<#assign sort_name="${.now?long?string}"?number+'_random'></#if><#if !(sort_order??)>	<#assign sort_order="random"></#if><#if conf??>	<#assign conf_query= "conf="+conf.code></#if><#assign facet_theme = "tout_theme"><#assign facet_qpop= ""><#assign facet_handicap= ""><#setting url_escaping_charset=encoding><#-- Encode facet queries --><#assign allParisCity = "-localisation_text:Tout Paris"><#assign allArrParisCity = "localisation_text:"><#macro EncodeFQ list_fq  optionalParam1="" optionalParam2="">	<#assign bCheck = false>    <#assign encoded_facets_queries = "">		<#list list_fq as facet>		<#if optionalParam1?has_content && optionalParam2?has_content && facet?starts_with(optionalParam2) >			<#assign encoded_facets_queries = encoded_facets_queries+"&fq="+optionalParam1>			<#assign bCheck = true>		<#else>			<#assign encoded_facets_queries = encoded_facets_queries+"&fq="+facet?url>			<#if facet?starts_with(optionalParam1)>				<#assign bCheck = true>			</#if>		</#if>		</#list>		<#if optionalParam1?has_content && optionalParam2?has_content && !bCheck>				<#assign encoded_facets_queries = encoded_facets_queries+"&fq="+optionalParam1>		</#if>${encoded_facets_queries}</#macro><#assign sQuery = ""><#macro EncodeFQArrondissement list_fq >    <#assign encoded_facets_queries = "">    <#list list_fq as facet>	<#if facet?starts_with("localisation_text") || facet?starts_with("type") || facet?starts_with("-localisation_text")>        	<#assign encoded_facets_queries = encoded_facets_queries+"&fq="+facet?url>	</#if>    </#list>${encoded_facets_queries}</#macro><#if query?has_content>    <#if !query?starts_with("categorie")>        <#if !query?starts_with("(")>            <#assign sQuery = "${query}">        <#else>            <#assign sQuery = "${query?split(' AND')?first?substring(1, query?split(' AND')?first?length)}">        </#if>    </#if></#if> <#assign sQueryUrlSave = sQuery> <#assign sQuery = sQuery?split(":")?last> <#assign arr= ""> <#assign monTri ="&amp;sort_order=${sort_order!}&amp;sort_name=${sort_name!}"> <#assign ordre_aleatoire= "true"> <#assign sQueryUrl= sQuery><#assign cadre_de_vie= 'false'><#assign education_et_jeunesse= 'false'><#assign logement_et_habitat= 'false'><#assign environnement= 'false'><#assign sport= 'false'><#if sQuery?has_content && sQuery?starts_with("(") && sQuery?ends_with(")") >	<#assign sQuery = sQuery?remove_beginning("(")>	<#assign sQuery = sQuery?remove_ending(")")></#if><#-- facets --><#assign number_random="${.now?long?string}"?number /><section id="search-prj">	<#if facets_list??>		<#list facets_list as facet>			<!-- <input type="hidden" name="fq" value="${facet}" /> -->			<#if facet?starts_with("localisation_text:")>					<#assign arr = facet?split(":")?last>			<#elseif facet?starts_with("-localisation_text:Tout Paris")>	<#assign arr = "all_arr">			<#elseif facet?starts_with("localisation_text:Tout Paris")>		<#assign arr = "Tout_Paris">			<#elseif facet?starts_with("thematique_text:")>					<#assign facet_theme = facet?split(":")?last>			<#elseif facet?starts_with("-pop_district_text:")>				<#assign facet_qpop = "yes">			<#elseif facet?starts_with("handicap_text:")>		     		<#assign facet_handicap = facet?split(":")?last>			</#if>		</#list>	</#if>	<form id="search-prj-form" name="solrProjectSearch" method="post" action="jsp/site/Portal.jsp?page=solrProjectSearch">			<input type="hidden" name="page" value="search-solr">		<input id="form_conf_hidden" type="hidden" name="conf" value="${conf_user_query}">				<div id="search-form">			<h1>Projets soumis au vote</h1>						<#if campagneService.isAfterBeginning("PRE_VOTE") >				<div id="search-form-links">					<a href="${fullUrl}?page_id=7">Consulter les catalogues PDF</a>					<div class="hidden-xs">&nbsp;</div> 					<a href="https://capgeo.maps.arcgis.com/apps/Styler/index.html?appid=70355711696d4e5fabcfeb5558962c26" target="_blank">Consulter la carte des urnes</a>				</div>			</#if>						<#-- Barre de recherche, avec fond bleu moyen -->			<div id="search-prj-fields" class="container form">				<div class="row">									<div class="col-md-12">						<#-- recherche par mot clé -->						<div class="form-group">							<label class="sr-only" for="query">Rechercher par mots cl&eacute;</label>							<div class="input-group">								<input class="form-control" type="text" name="query" value="${sQuery!}" placeholder="Rechercher par mots cl&eacute;" id="solr-t"/>								<span class="input-group-btn">									<button id="btn-search" class="btn btn-search form-control" type="submit" title="Rechercher" onclick="this.disabled=true; searchTri(); return false;">										<i class="fa fa-search"></i>									</button>								</span>							</div>							<span class="help-txt"></span>						</div>					</div>									</div>				<a class="searchParametersButton visible-xs" href="#searchParameters" data-toggle="collapse">Recherche avancée</a>							<div id="searchParameters" class="collapse dont-collapse-sm">								<div class="row">							<div class="col-md-3 col-xs-12">							<#-- Recherche par localisation -->							<label class="select" for="arrondissement">								<select name="fq" id="arrondissement" onChange="searchArrond()" class="form-control">									<#if arr=="">										<option value="type:Projet 2015" selected="selected" >Rechercher par localisation </option>										<option value="localisation_text:Tout Paris">Projets Tout Paris</option>										<option value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>									<#elseif arr=="Tout Paris">										<option value="type:Projet 2015">Rechercher par localisation </option>										<option value="localisation_text:Tout Paris" selected="selected" >Projets Tout Paris</option>										<option value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>									<#elseif arr=="all_arr">										<option value="type:Projet 2015">Rechercher par localisation </option>										<option value="localisation_text:Tout Paris">Projets Tout Paris</option>										<option value="-localisation_text:Tout Paris" selected="selected">Projets Tous Arrondissements</option>									<#else>										<option value="type:Projet 2015">Rechercher par localisation </option>										<option value="localisation_text:Tout Paris">Projets Tout Paris</option>										<option value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>									</#if>									<#assign nbArr=20>									<#list 1..nbArr as i>										<#if arr==i+"e arrondissement">											<option value="localisation_text:${i!}e arrondissement" selected="selected" >Projets du ${i!}e arrdt.</option>										<#else>											<option value="localisation_text:${i!}e arrondissement">Projets du ${i!}e arrdt.</option>										</#if>									</#list>								</select>							</label>						</div>							<div class="col-md-3 col-xs-12">							<#-- Recherche par thème -->							<label class="select" for="theme">								<select name="fq" id="theme" onChange="searchArrond()" class="form-control">									<#if facets??><#-- empty or null when no connection to server -->										<#list facets as facet>											<#if facet.values??>												<#if solr_fields[facet.name].label?? && solr_fields[facet.name].label= "Thematique">													<option value="type:Projet 2015" <#if facet_theme='tout_theme'>selected="selected"</#if> >Rechercher par th&egrave;me</option>													<#list facet.values?sort as count>														<option value="thematique_text:${count.name}" <#if facet_theme=count.name>selected="selected"</#if> >${count.name}</option>													</#list>												</#if>											</#if>										</#list>									</#if>								</select>							</label>						</div>												<div class="col-md-3 col-xs-12">							<#-- Filtre Q-Pop -->							<div class="checkbox form-control">								<label for="qpop">									<input type="checkbox" name="fq" id="qpop" value="-pop_district_text:""" onChange="this.form.submit()" <#if facet_qpop="yes">checked</#if> />		       						Quartier populaire		       					</label>		       				</div>						</div>												<div class="col-md-3 col-xs-12">							<#-- Filtre Handicap -->							<div class="checkbox form-control">								<label for="handicap">									<input type="checkbox" name="fq" id="handicap" value="handicap_text:oui" onChange="this.form.submit()" <#if facet_handicap="oui">checked</#if> />		       						Volet handicap/accessibilité		       					</label>		       				</div>						</div>											</div>				</div>				<#if campagneService.isAfterBeginning("SUBMIT") && campagneService.isBeforeEnd("VOTE") >					<#if arrondissementVote?? && arrondissementVote!='notConnected'>						<div id="map-filter-msg">							<div class="row arrdt-vote-filter">								<div class="col-xs-12">									#i18n{budgetparticipatif.xpage.voteProjects.userArrFilterMsg}									<div class="form-group">										<div class="checkbox">											<input id="id_remove_arr" type="checkbox" name="remove_arr" class="budget-projet-filtre-arr-checkbox" <#if remove_arr??> checked="checked"</#if>></input>											<label for="id_remove_arr" class="budget-projet-filtre-arr-label">#i18n{budgetparticipatif.xpage.voteProjects.userArrFilter}</label>										</div>									</div>								</div>							</div>						</div>					</#if>				</#if>			</div>		</div>		<#-- Barre de tri et navigation -->		<div id="sub-search" class="container">			<div class="row">											<#-- Champs de tri -->				<div id="sub-search-left-panel" class="col-xs-6 col-sm-6 col-md-6">					<#if conf_user_query = "projects_mdp">						<div id="sub-search-sorts">							<#if !(sort_name??) ><#assign sort_name="" ></#if>							<#if !(sort_order??)><#assign sort_order=""></#if>							<#-- if sort_list?? -->								<div class="form-group">									Trier par :									<label class="select" for="sort_name">										<select name="sort_name" id="sort_name" class="form-control" onChange="searchTri()" >											<#list sort_list as field>												<#if field.enableSort && (field.solrName="budget_long" || field.solrName="titre" || field.solrName="code_projet_long") >													<#assign monTri = sort_name+"&sort_order="+sort_order>																										<#if sort_name?ends_with("random") && ordre_aleatoire == "true" >														<option value="${number_random}_random" selected="selected" >Ordre al&eacute;atoire</option>														<#assign ordre_aleatoire= "false">													<#elseif ordre_aleatoire == "true" >														<option value="${number_random}_random">Ordre al&eacute;atoire</option> >														<#assign ordre_aleatoire= "false">													</#if>																										<#if monTri==field.solrName+"&sort_order=asc" || monTri==field.solrName+"&sort_order=desc" >														<option value="${field.solrName}" selected="selected">${field.label} </option>													<#else>														<option value="${field.solrName}">${field.label} </option>													</#if>												</#if>											</#list>											<#assign monTri="&sort_name="+monTri />										</select>									</label>									<label class="select" for="sort_order">										<select name="sort_order" id="sort_order" class="form-control" onChange="searchTri()" >											<option value="asc" <#if sort_order?? && sort_order="asc">selected="selected"</#if> >Ascendant</option>											<option value="desc" <#if sort_order?? && sort_order="desc">selected="selected"</#if>>Descendant</option>										</select>									</label>								</div>							<#-- /#if -->						</div>					</#if>				</div>								<#--Nombre d'items et icônes liste/carto -->				<div id="sub-search-right-panel" class="col-xs-6 col-sm-6 col-md-6">					<#if conf_user_query = "projects_mdp">						<div id="sub-search-nbitems" class="">							${paginator.itemsCount} projet(s) trouv&eacute;(s)						</div>						<div id="sub-search-switch">								<div class="form-group" >									<button id="button_map_list" class="btn  btn-map-active" type="submit" alt="Voir la cartographie des projets"><p>carte</p></button>									<button class="btn btn-list-unactive " disabled/>								</div>						</div>					<#else>						<div id="sub-search-nbitems" class="">							${paginator.itemsCount} projet(s) trouv&eacute;(s)						</div>						<div id="sub-search-switch">								<div class="form-group" >									<button class="btn btn-map-unactive " disabled/>									<button id="button_list" class="btn  btn-list-active" type="submit" alt="Voir la liste des vignettes des projets"><p>liste</p></button>								</div>						</div>					</#if>				</div>			</div>		</div>	</form>	</section><script type="text/javascript">	$("#id_remove_arr").click( function(){		$("#search-prj-form").submit();	});		$("#button_map_list").click( function(){		$("#form_conf_hidden").attr('value',"map_projets");	});		$("#button_list").click( function(){		$("#form_conf_hidden").attr('value',"projects_mdp");	});	function searchTri(){		if ($("#sort_name option:selected").val() == "titreDsc") {			$("#sort_order").val("desc");			$("#sort_name option").val("titre");		}		if ($("#sort_name option:selected").val() == 'titreAsc') {			$("#sort_order").val("asc");			$("#sort_name option").val("titre");		}		$("#search-prj-form").submit();	}		function validateForm(form) {		var all_ok=true;		//From xss filter + lucene special characters		var forbidden_chars = "<>#&|():~[]\\\"?*{}^+!";		$(form).find("input[type=text]").each(function(idx, elem) {            var error = false;            for (var i = 0; i < forbidden_chars.length; i++) {                if (!error && elem.value.indexOf(forbidden_chars.charAt(i)) != -1) {                    error = true;                    all_ok = false;                    var parent = $(elem).parents(".form-group");                    parent.addClass("has-error has-feedback");                    var helpblock = $(parent).find(".help-txt");                    helpblock.after("<p class=\"help-block\"><i class=\"fa fa-warning\"></i> Les caract&egrave;res " + forbidden_chars + " sont interdits.</p>");                    helpblock.remove();                }            }            if (!error) {                var str = elem.value;                var prev_char = " ";                for(var i=0; i<str.length;i++) {                    if (str[i] === "-" && prev_char === " ") {                        error = true;                        all_ok = false;                        var parent = $(elem).parents(".form-group");                        parent.addClass("has-error has-feedback");                        var helpblock = $(parent).find(".help-txt");                        helpblock.after("<p class=\"help-block\"><i class=\"fa fa-warning\"></i> Les caract&egrave;res " + forbidden_chars + " sont interdits.</p>");                        helpblock.remove();                        break;                    }                    prev_char=str[i];                }            }		});				if (!all_ok) {			$(form).find("button").removeAttr("disabled");		}		return all_ok;	}		$(function(){		$("#search-prj-form").submit( function(){			return validateForm( $(this) );		})		$("select").change( function(){			searchTri();		})	});	</script>

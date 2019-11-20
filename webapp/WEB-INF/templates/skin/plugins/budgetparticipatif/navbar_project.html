@@ -1,38 +1,60 @@
-<span class="typeVote_title">${type_vote}</span>
-<#assign emptyRows_size = 5>
+<#if type_vote?has_content>
+	<div class="typeVote_title">Projets ${type_vote}</div>
+<#else>
+	<div class="typeVote_title">Arrondissement</div>
+</#if>
+
+<#assign emptyRows_size = 4>
 <#if userVotes??>
 	<#list userVotes as vote>
-		 <#assign id_document = vote.document.id >
+		<#assign id_document = vote.document.id >
 		
 		<div class="row">
-			<div id="right-item" class="col-xs-10 col-md-10 col-lg-10 vote_project" style="padding:7px;">
-				<div class="bg-color0" style="display:flex;height:45px;">
-					<a href="jsp/site/Portal.jsp?document_id=${vote.document.id}&portlet_id=158" style="margin:auto;" alt="${vote.document.title}" title="${vote.document.title}">
-						<#if vote.document.title?length &gt; 65>${vote.document.title?substring(0,65)}...<#else>${vote.document.title}</#if>
-					</a>
+			<div id="right_item" class="col-xs-12 vote_project">
+				<div class="withPrj linePrj" >
+					<div class="name">
+						<a href="jsp/site/Portal.jsp?document_id=${vote.document.id}&portlet_id=158" style="margin:auto;" alt="${vote.document.title}" title="${vote.document.title}">
+							${vote.document.title}
+						</a>
+					</div>
+					<#if voteValidated?? && ! voteValidated>
+						<span class="trash" onclick="doCancelVote('${vote.document.id}','document');"><i class="glyphicon glyphicon-trash"></i></span>
+					</#if>
 				</div>
 			</div>
-			<#if voteValidated?? && !voteValidated>
-			<div class="col-xs-2 col-md-2 col-lg-2" style="margin-top: 13px;">
-				<a  href="#" onclick="doCancelVote('${vote.document.id}','document');"  style="font-size: 30px;">
-					<i class="glyphicon glyphicon-trash"></i>
-				</a>
-		   	</div>
-		   	</#if>
 		</div>
 	</#list>
-	<#assign emptyRows_size = (5 - userVotes?size)>
+	<#assign emptyRows_size = (4 - userVotes?size)>
 </#if>
-<#if emptyRows_size != 0 && voteValidated?? && !voteValidated>
-<#list 1..emptyRows_size as x>
+
+<#if emptyRows_size == 4 && voteValidated?? && voteValidated >
 	<div class="row">
-		<div id="right-item" class="col-xs-10 col-md-10 col-lg-10" style="padding:7px;">
-			<div style="display:flex;height:45px;background-color: #2F8355;color:#FFFFFF;font-size:15px;">
-				<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_order=asc&fq=localisation_text:Tout Paris%22OR%22${user_arrondissement}" style="margin:auto;">
-					+ Ajouter un projet
-				</a>
+		<div id="right_item" class="col-xs-12" >
+			<div class="withoutPrj linePrj" >
+				Pas de vote effectué.
 			</div>
 		</div>
 	</div>
-</#list>
+</#if>
+
+<#if emptyRows_size != 0 && voteValidated?? && ! voteValidated >
+
+	<#assign fq="localisation_text:Tout Paris" />
+	
+	<#if type_vote?has_content && type_vote != 'TOUT PARIS' && user_arrondissement?has_content>
+		<#assign fq="localisation_text:${user_arrondissement}" />
+	</#if>
+
+	<#list 1..emptyRows_size as x>
+		<div class="row">
+			<div id="right_item" class="col-xs-12" >
+				<div class="withoutPrj linePrj" >
+					<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_order=asc&fq=${fq}">
+						<span class="hidden-xs">+ Ajouter un projet</span>
+						<span class="visible-xs">+ Ajouter</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</#list>
 </#if>

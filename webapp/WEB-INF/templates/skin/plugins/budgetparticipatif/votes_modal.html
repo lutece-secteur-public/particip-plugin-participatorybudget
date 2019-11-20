@@ -3,36 +3,45 @@
 	<div class="modal-dialog modal-lg" role="document"> 
 		<div class="modal-content"> 
 			<div class="modal-body">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">�</span></button> 
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button> 
 				<div class="title">
-					<p>C'est l'heure de voter !</p>
+					<p>C'est&nbsp;l'heure de&nbsp;voter&nbsp;!</p>
 				</div>
-				<br/>
-				<br/>
 				<div class="subtitle">
-					C'est le moment de choisir 10 projets qui vous tiennent &agrave; c&oelig;ur.
+					C'est&nbsp;le&nbsp;moment de&nbsp;choisir&nbsp;<span style="border-bottom: 1px solid #ffffff;"><strong style="color:yellow">vos 8 projets pr&eacute;f&eacute;r&eacute;s</strong></span>.
 				</div>
-				<div id="vote_description" class="row">
-					<div class="col-xs-12 col-md-3 col-lg-3">
-						<span class="subtitle">1. Je choisis</span>
+				<div id="vote_description" >
+					<div class="step">
+						<span class="stepTitle">1. Je choisis</span>
 						<img class="logo" src="images/local/skin/i_vote_arr.png"/>
-						<p>mon arrondissement de vote</p>
+						<p>mon&nbsp;arrondissement de&nbsp;vote<br>(si&nbsp;ce&nbsp;n'est d&eacute;j&agrave;&nbsp;fait)</p>
 					</div>
-					<div class="col-xs-12 col-md-6 col-lg-6" style="border-right:1px solid #FFFFFF;border-left:1px solid #FFFFFF;">
-						<div class="subtitle">2. Je s&eacute;lectionne</div>
-						<div>Jusqu'&agrave; 5 projets :<img class="logo" src="images/local/skin/i_vote_paris.png"/></div>
-						<div>Jusqu'&agrave; 5 projets :<img class="logo" src="images/local/skin/i_vote_arr.png"/></div>
+					<div class="step" >
+						<div class="stepTitle">2. Je s&eacute;lectionne</div>
+						<div class="subSteps">
+							<div class="stepNbPrj">Jusqu'&agrave; 4 projets tout Paris</div>
+							<div class="stepNbPrj">Jusqu'&agrave; 4 projets d'arrondissement</div>
+						</div>
 					</div>
-					<div class="col-xs-12 col-md-3 col-lg-3">
-						<div class="subtitle">3. Je vote</div>
+					<div class="step">
+						<div class="stepTitle">3. Je valide mon vote</div>
 						<img class="logo" src="images/local/skin/i_vote_submit.png"/>
 					</div>
 				</div>
 				<div class="row">
-					<div id="connect">
-				 	    <a href="#" class="btn-connect">
-					     	<i class="fa fa-user hidden-xs"></i> <span class="hidden-sm" style="margin:0;padding:0">Se connecter</span>
-					    </a>
+					<div class="col-xs-12">
+						<a class="focus-link btn btn-14rem btn-black-on-white" href="#" data-dismiss="modal">
+							J'AI COMPRIS
+						</a>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-xs-12">
+				 	    <input type="checkbox" id="modalVoteNoDisplay" name="modalVoteNoDisplay">
+						<label for="modalVoteNoDisplay" style="color:#FFFFFF;">
+							Ne plus afficher ce message
+						</label>
 					</div>
 				</div>
 			</div> 
@@ -45,62 +54,51 @@
 	<div class="modal-dialog modal-lg" role="document"> 
 		<div class="modal-content"> 
 			<div class="modal-body">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">�</span></button> 
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button> 
 				<div class="title">
-					Confirmation de vote
+					<img class="logo" src="images/local/skin/icone_urne_BP.svg"/>
+					<div>mes votes</div>
 				</div>
-				<br/>
-				<br/>
 				<div class="subtitle">
-					<div class="row">
-						<img class="logo" src="images/local/skin/i_vote_submit.png"/>
+					<div class="row" id="modalConfirmVoteContent">
 					</div>
-					<div class="row">
-						<input type="checkbox" id="vote_follow" name="vote_follow" />
-						Je souhaite mettre ces projets en favoris
+					<div class="row" id="modalConfirmVoteButtonAdd">
 					</div>
-					<div class="row">
-						<div id="valid_vote" class="btn-group btn-valide ">
-							
+					<form id="vote_follow_form">
+						<div class="row followLink">
+							<!-- input type="checkbox" id="vote_follow" name="vote_follow"/ -->
+							<label for="vote_follow">Souhaitez-vous aller plus loin et suivre par courriel<br/><strong>l'&eacute;volution des projets</strong> pour lesquels vous avez vot&eacute; ?</label>
+							<div id="vote_follow_container">
+								<input type="radio" name="vote_follow" value="true">Oui *</input>
+								<input type="radio" name="vote_follow" value="false">Non</input>
+							</div>
+							<div id="vote_follow_container_asterisque">
+								* En cliquant sur 'Oui', vous serez destinataire d’informations sur les projets pour lesquels vous avez voté et auxquels vous êtes associé.<br>Si vous ne souhaitez plus les recevoir, il vous suffit de désactiver la notification « Nouveautés concernant un projet en cours de réalisation » dans le menu « Mon Espace - Mes notifications »
+							</div>
+							<p id="vote_follow_msg">Merci de préciser votre choix.</p>
 						</div>
+					</form>
+					<div class="row" id="modalConfirmVoteButtonValid">
 					</div>
+
 				</div>
+
+				<#-- div style="padding-top:20px;color:white;">
+					<p><strong>Donnez de la voix &agrave; vos projets !</strong> Faites voter votre entourage, parlez-en autour de vous et sur les r&eacute;seaux sociaux !</p>
+					<p>
+						<a title="Partager sur Facebook" class="share" data-action="facebook-vote" href="http://www.facebook.com">
+							<img title="Partager sur Facebook" alt="Partager sur Facebook" src="images/local/skin/pastille-fb.png" width="45px" height="45px" >
+						</a>
+						&nbsp;
+						<a target="_blank" title="Partager sur Twitter" class="share" data-action="twitter-vote" href="https://twitter.com">
+							<img title="Partager sur Twitter" alt="Partager sur Twitter" src="images/local/skin/pastille-tw.png" width="45px" height="45px" >
+						</a>
+					</p>
+				</div -->
+				
 			</div> 
 		</div> 
 	</div> 
 </div>
 
-<!-- Static Bootstrap modal about 'Projets soumis au vote' -->
-<div id="modalChooseArr" class="modal fade modalVote" role="dialog" tabindex="-1" style="display: none;"> 
-	<div class="modal-dialog modal-lg" role="document"> 
-		<div class="modal-content"> 
-			<div class="modal-body">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">�</span></button> 
-				<div class="title">
-					Pour quel arrondissement voulez-vous voter ?
-				</div>
-				<br/>
-				<br/>
-				<div class="subtitle">
-					Vous allez voter des projets situ&eacute;s dans cet arrondissement, en plus des projets " Tout-Paris ".
-				</div>
-				<form id="arrondissement_choice" class="form" role="form" method="post" action="jsp/site/plugins/budgetparticipatif/DoSaveArr.jsp" enctype="multipart/form-data">
-					<select id="arrondissement" name="arrondissement">
-						<#list 1..20 as x>
-							<#if x=1>
-								<option value="${75000 + x}" >${x}er arrondissement</option>
-						   	<#else>
-						   		<option value="${75000 + x}" >${x}&egrave;me arrondissement</option>
-						   	</#if>
-						</#list>
-					</select>
-					<div class="btn-group btn-valide">
-						<button class="btn btn-idee-navbar btn-lg" onclick="saveArr();">
-							Choisir cet arrondissement
-						</button>
-					</div>
-				</form>
-			</div> 
-		</div> 
-	</div> 
-</div>
+<!-- Static Bootstrap modal about 'Choix arrondissement' not used-->

@@ -1,55 +1,78 @@
+<section  id="map-result">
+		
+	<#if campagneService?? > <#-- Class not instanciated when this page is indexed by SOLR. This test avoid a lot of message into logs. -->
+		<#attempt>
+			
+			<#if campagneService.isBeforeBeginning( "SUBMIT" ) >
+				<div id="prop-card">
+					<div class="row">
+						<div class="col-xs-12 col-sm-offset-2 col-sm-8">
+							<br>
+							<div class="alert alert-warning">
+								<h3 class="text-center text-warning"> <i class="fa fa-warning"></i> Attention !</h3>
+								<p class="text-center">La page des projets soumis au vote n'est pas ouverte.</p>
+							</div>
+						</div>
+					</div>			
+				</div>			
+			<#else>
 
-<div class="containter bg-color6">
-  <#include "projet_search_solr_search_results.html">
-  <section id="map-result">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div id="map" class="clearfix" ></div>
-      </div>
-    </div>
-    <div class="row">
-		&nbsp;
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row" style="margin:15px;padding:20px;background-color:#fff">
-            #dskey{sitelabels.site_property.cartographie.textblock}
-          </div>
-      </div>
-    </div>
-  </section>
-</div>
+				<#include "projet_search_solr_search_results.html">
+					
+				<div class="container">
+					<div class="map-msg">
+						Seuls les projets localisés à une adresse précise sont affichés sur cette carte. Pour consulter la liste complète des projets, cliquez sur le bouton "Liste" situé en haut à droite de ce message.
+					</div>
+			
+					<div id="map" class="clearfix" ></div>
+				</div>
+
+			</#if>
+		<#recover>
+		</#attempt>
+	</#if>
+
+</section>
+	
+<#-- *********************************************************************************** -->
+<#-- * Javascript Javascript Javascript Javascript Javascript Javascript Javascript Ja * -->
+<#-- * Javascript Javascript Javascript Javascript Javascript Javascript Javascript Ja * -->
+<#-- *********************************************************************************** -->
+	
 <script type='text/javascript'>
-          var loadresource = document.createElement('link');
-          loadresource.setAttribute("rel", "stylesheet");
-          loadresource.setAttribute("type", "text/css");
-          loadresource.setAttribute("href", "js/plugins/leaflet/leaflet/leaflet.css");
-          document.getElementsByTagName("head")[0].appendChild(loadresource);
+var loadresource = document.createElement('link');
+loadresource.setAttribute("rel", "stylesheet");
+loadresource.setAttribute("type", "text/css");
+loadresource.setAttribute("href", "js/plugins/leaflet/leaflet/leaflet.css");
+document.getElementsByTagName("head")[0].appendChild(loadresource);
 
-          loadresource = document.createElement('link');
-          loadresource.setAttribute("rel", "stylesheet");
-          loadresource.setAttribute("type", "text/css");
-          loadresource.setAttribute("href", "js/plugins/leaflet/leaflet/MarkerCluster.css");
-          document.getElementsByTagName("head")[0].appendChild(loadresource);
+loadresource = document.createElement('link');
+loadresource.setAttribute("rel", "stylesheet");
+loadresource.setAttribute("type", "text/css");
+loadresource.setAttribute("href", "js/plugins/leaflet/leaflet/MarkerCluster.css");
+document.getElementsByTagName("head")[0].appendChild(loadresource);
 
-           loadresource = document.createElement('link');
-          loadresource.setAttribute("rel", "stylesheet");
-          loadresource.setAttribute("type", "text/css");
-          loadresource.setAttribute("href", "js/plugins/leaflet/leaflet/MarkerCluster.Default.css");
-          document.getElementsByTagName("head")[0].appendChild(loadresource);
-  </script>
-  <script type="text/javascript" src="js/plugins/leaflet/leaflet/leaflet.js"></script>
-  <script type="text/javascript" src="js/plugins/leaflet/esri/esri-leaflet.js"></script>
-  <script type="text/javascript" src="js/plugins/leaflet/leaflet/leaflet.markercluster.js"></script>
-  <script type="text/javascript" src="js/plugins/leaflet/esri/esri-leaflet-clustered-feature-layer.js"></script>
+loadresource = document.createElement('link');
+loadresource.setAttribute("rel", "stylesheet");
+loadresource.setAttribute("type", "text/css");
+loadresource.setAttribute("href", "js/plugins/leaflet/leaflet/MarkerCluster.Default.css");
+document.getElementsByTagName("head")[0].appendChild(loadresource);
+</script>
+<script type="text/javascript" src="js/plugins/leaflet/leaflet/leaflet.js"></script>
+<script type="text/javascript" src="js/plugins/leaflet/esri/esri-leaflet.js"></script>
+<script type="text/javascript" src="js/plugins/leaflet/leaflet/leaflet.markercluster.js"></script>
+<script type="text/javascript" src="js/plugins/leaflet/esri/esri-leaflet-clustered-feature-layer.js"></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+
   <script type="text/javascript">
-      var arrondissements = {
-          "0": {"pos": [48.859085, 2.347403], "cnt": 0, "geoloc_cnt": 0},
-          "1": {"pos": [48.862422, 2.337595], "cnt": 0, "geoloc_cnt": 0},
-          "2": {"pos": [48.868222, 2.343667], "cnt": 0, "geoloc_cnt": 0},
-          "3": {"pos": [48.863219, 2.360162], "cnt": 0, "geoloc_cnt": 0},
-          "4": {"pos": [48.854448, 2.357675], "cnt": 0, "geoloc_cnt": 0},
-          "5": {"pos": [48.844653, 2.351109], "cnt": 0, "geoloc_cnt": 0},
+  var arrondissements = {
+    "0": {"pos": [48.859085, 2.347403], "cnt": 0, "geoloc_cnt": 0},
+    "1": {"pos": [48.862422, 2.337595], "cnt": 0, "geoloc_cnt": 0},
+    "2": {"pos": [48.868222, 2.343667], "cnt": 0, "geoloc_cnt": 0},
+    "3": {"pos": [48.863219, 2.360162], "cnt": 0, "geoloc_cnt": 0},
+    "4": {"pos": [48.854448, 2.357675], "cnt": 0, "geoloc_cnt": 0},
+        "5": {"pos": [48.844653, 2.351109], "cnt": 0, "geoloc_cnt": 0},
           "6": {"pos": [48.849865, 2.334951], "cnt": 0, "geoloc_cnt": 0},
           "7": {"pos": [48.856129, 2.312587], "cnt": 0, "geoloc_cnt": 0},
           "8": {"pos": [48.873376, 2.312882], "cnt": 0, "geoloc_cnt": 0},
@@ -68,7 +91,7 @@
       };
 
 
-    var map = L.map('map');
+    var map = L.map('map', {fullscreenControl:true} );
 
     var defaultIcon = L.Icon.extend({
         options: {
@@ -92,8 +115,8 @@
         return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', className: 'marker-cluster marker-cluster-project', iconSize: new L.Point(40, 40) });
     };
 
-    var arr = "${arr!""}";
-    if ((arr == "") || (arr == "Tout Paris") || (arr == "all_arr")) {
+    var arr = "${(arr?js_string)!""}";
+    if ((arr == "") || (arr.indexOf("Tout Paris") !== -1) || (arr == "all_arr")) {
         map.setView([48.85632, 2.33272], 12);
     } else {
 	var arrondissemnt= arr.split("e arrond");
@@ -312,13 +335,13 @@
   var baseMaps = {
       "Fond de plan standard": esri_streets,
       "Fond de plan grisé": positron,
-      "Vue Satellite" : esri_imagery
+      "Vue satellite" : esri_imagery
   };
 
   var overlayMaps = {
-      "projets 2016" : layergroup_currentcampagne,
-      "Quartiers Populaires" : layergroup_qpvqva,
-      "Précédentes Campagnes" : markers_oldprojects
+      "Campagne actuelle" : layergroup_currentcampagne,
+      "Quartiers populaires" : layergroup_qpvqva,
+      "Précédentes campagnes" : markers_oldprojects
   };
   // paramétrage et ajout du L.control.layers à la carte
   var control =  L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(map);

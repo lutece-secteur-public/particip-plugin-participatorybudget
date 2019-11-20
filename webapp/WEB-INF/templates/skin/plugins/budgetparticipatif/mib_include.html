@@ -7,11 +7,11 @@
 	<input type="hidden" name="token" value="${token}" id="token-form-mib">
 	  <div class="form-group">
 		<div class="col-md-12">
-			<label for="message" class="content-type1">Vous avez une question sur le budget participatif ? Ecrivez-nous d&#232;s maintenant et une &#233;quipe de la Ville de Paris vous r&eacute;pondra.</label>
+			<label for="message" class="content-type1">Vous avez une question sur le budget participatif ? Si vous n'avez pas trouv&#233; la r&#233;ponse &#224; votre question dans la <a href="jsp/site/Portal.jsp?page=helpdesk&faq_id=1">FAQ</a>, &#233;crivez-nous d&#232;s maintenant et une &#233;quipe de la Ville de Paris vous r&eacute;pondra.</label>
 		</div>	
 		<div class="col-md-12">
-			<textarea class="form-control" rows="3" class="form-control" data-validation="required"  required="required"  name="message" id="message-mib"></textarea>
-			 <span class="messages_errors_div_text messages_errors_message" > </span>
+			<textarea class="form-control" rows="3" class="form-control" data-validation="required"  required="required" name="message" id="message-mib"></textarea>
+			 <span class="messages_errors_div_text messages_errors_message"> </span>
 		</div>
 	  </div>
 	  <div class="form-group">
@@ -20,7 +20,7 @@
 		</div>	
 		<div class="col-md-12">
 			<input class="form-control" type="email"  data-validation="custom" placeholder="Votre adresse email" value="${user_email!}" name="email-mib" id="email-mib">
-			<span class="messages_errors_div_text messages_errors_mail" > </span>
+			<span class="messages_errors_div_text messages_errors_mail"> </span>
 		</div>
 	</div>
 	  <div class="form-group">
@@ -30,5 +30,5 @@
 		</div>
 	  </div>
 	</form>
-	<p>Gr&acirc;ce &agrave; votre messagerie <strong>Paris Connect</strong>, gardez un historique de vos contacts avec la ville.</p>
+	<p>Gr&acirc;ce &agrave; votre messagerie <strong>Paris Connect</strong>, gardez un historique de vos contacts avec la Ville.</p>
 </div>
