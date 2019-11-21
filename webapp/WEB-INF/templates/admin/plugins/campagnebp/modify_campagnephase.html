@@ -1,0 +1,17 @@
+<#setting datetime_format="yyyy-MM-dd HH:mm:ss">
+<#include "managecampagnebp_tabs.html" />
+<@tabs tab="campagnephase" />
+
+<@rowBoxHeader i18nTitleKey="campagnebp.modify_campagnephase.pageTitle">
+    <form class="form-horizontal" method="post" name="modify_campagnephase" action="jsp/admin/plugins/campagnebp/ManageCampagnePhases.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id" value="${campagnephase.id}"/>
+        
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagnephase.labelCodePhaseType" inputName="code_phase_type" mandatory=true value="${campagnephase.codePhaseType}" i18nHelpBlockKey="campagnebp.modify_campagnephase.labelCodePhaseType.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagnephase.labelCodeCampagne" inputName="code_campagne" mandatory=true value="${campagnephase.codeCampagne}" i18nHelpBlockKey="campagnebp.modify_campagnephase.labelCodeCampagne.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagnephase.labelStart" inputName="start" mandatory=true value="${campagnephase.start}" i18nHelpBlockKey="campagnebp.modify_campagnephase.labelStart.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagnephase.labelEnd" inputName="end" mandatory=true value="${campagnephase.end}" i18nHelpBlockKey="campagnebp.modify_campagnephase.labelEnd.help" />
+        <@actionButtons button1Name="action_modifyCampagnePhase" button2Name="view_manageCampagnePhases"/>
+    </form>
+</@rowBoxHeader>
+

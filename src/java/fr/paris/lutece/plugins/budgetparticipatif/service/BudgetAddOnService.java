@@ -41,10 +41,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.paris.lutece.plugins.campagnebp.service.CampagneIncludeService;
 import fr.paris.lutece.plugins.campagnebp.web.includes.MyInfosPageInclude;
-import fr.paris.lutece.plugins.parisconnect.service.ParisConnectIncludeService;
-import fr.paris.lutece.plugins.parisconnect.web.AlerteInclude;
-import fr.paris.lutece.plugins.parisconnect.web.AvisInclude;
-import fr.paris.lutece.plugins.parisconnect.web.MIBInclude;
 import fr.paris.lutece.portal.business.resourceenhancer.IResourceDisplayManager;
 import fr.paris.lutece.portal.service.security.SecurityService;
 
@@ -77,9 +73,6 @@ public class BudgetAddOnService implements IResourceDisplayManager
         String strPortletId, HttpServletRequest request )
     {
     	 model.put(MARK_USER, SecurityService.isAuthenticationEnable()?SecurityService.getInstance().getRegisteredUser(request) : null);
-         model.put(AlerteInclude.MARK_ALERTE_INCLUDE, ParisConnectIncludeService.getAlerteTemplate(request));
-         model.put(AvisInclude.MARK_AVIS_INCLUDE, ParisConnectIncludeService.getAvisTemplate(request));
-         model.put(MIBInclude.MARK_MIB_INCLUDE, ParisConnectIncludeService.getMIBTemplate(request));
          model.put(MyInfosPageInclude.MARK_MES_INFOS_INCLUDE, CampagneIncludeService.getMyInfos(request));
     }
     

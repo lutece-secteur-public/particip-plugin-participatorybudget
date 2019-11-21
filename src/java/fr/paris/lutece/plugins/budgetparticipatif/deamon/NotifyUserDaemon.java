@@ -223,7 +223,7 @@ public class NotifyUserDaemon extends Daemon
 		if(strUserEmail != null && !StringUtils.isEmpty(strUserEmail)){
 			
 	        Map<String, Object> model = new HashMap<String, Object>(  );
-	        model.put( MARK_PROD_URL, AppPathService.getProdUrl(  ) );
+	        model.put( MARK_PROD_URL, AppPathService.getBaseUrl( ) );
 	        model.put( MARK_NBR_VOTE_TOTAL, myVote.getNbTotVotes( ) );
 	        model.put( MARK_NBR_VOTE_PARIS, myVote.getTotVotesToutParis( ) );
 	        model.put( MARK_NBR_VOTE_ARRDT, myVote.getTotVotesArrondissement( ) );
