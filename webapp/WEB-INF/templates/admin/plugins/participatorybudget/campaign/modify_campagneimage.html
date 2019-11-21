@@ -1,0 +1,14 @@
+<#include "managecampagnebp_tabs.html" />
+<@tabs tab="campagneimage" />
+
+<@rowBoxHeader i18nTitleKey="campagnebp.modify_campagneimage.pageTitle">
+    <form class="form-horizontal" method="post" name="modify_campagneimage" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampagneImages.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id" value="${campagneimage.id}"/>
+        
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagneimage.labelCodeCampagne" inputName="code_campagne" mandatory=true value="${campagneimage.codeCampagne}" i18nHelpBlockKey="campagnebp.modify_campagneimage.labelCodeCampagne.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagneimage.labelFile" inputName="file" mandatory=true value="${campagneimage.file}" i18nHelpBlockKey="campagnebp.modify_campagneimage.labelFile.help" />
+        <@actionButtons button1Name="action_modifyCampagneImage" button2Name="view_manageCampagneImages"/>
+    </form>
+</@rowBoxHeader>
+

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><plug-in>
     <name>participatorybudget</name>
-    <class>fr.paris.lutece.plugins.budgetparticipatif.service.BudgetParticipatifPlugin</class>
+    <class>fr.paris.lutece.plugins.participatorybudget.service.BudgetParticipatifPlugin</class>
     <version>1.0.0-SNAPSHOT</version>
     <documentation/>
     <installation/>
@@ -9,7 +9,7 @@
     <description>participatorybudget.plugin.description</description>
     <provider>participatorybudget.plugin.provider</provider>
     <provider-url>http://dev.lutece.paris.fr</provider-url>
-    <icon-url>images/admin/skin/plugins/budgetparticipatif/budgetparticipatif.png</icon-url>
+    <icon-url>images/admin/skin/plugins/participatorybudget/budgetparticipatif.png</icon-url>
     <copyright>Copyright (c) 2014 Mairie de Paris</copyright>
     <db-pool-required>1</db-pool-required>
     
@@ -25,7 +25,7 @@
             <feature-title>budgetparticipatif.adminFeature.VoteParArrand.name</feature-title>
             <feature-description>budgetparticipatif.adminFeature.VoteParArrand.description</feature-description>
             <feature-level>0</feature-level>
-            <feature-url>jsp/admin/plugins/budgetparticipatif/VoteParArrandissement.jsp</feature-url>
+            <feature-url>jsp/admin/plugins/participatorybudget/VoteParArrandissement.jsp</feature-url>
             <feature-icon-url/>
         </admin-feature>
     </admin-features>    
@@ -37,7 +37,7 @@
             <daemon-id>bizStatExportDaemon</daemon-id>
             <daemon-name>budgetparticipatif.daemon.bizStatExportDaemon.name</daemon-name>
             <daemon-description>budgetparticipatif.daemon.bizStatExportDaemon.description</daemon-description>
-            <daemon-class>fr.paris.lutece.plugins.budgetparticipatif.deamon.BizStatExportDaemon</daemon-class>
+            <daemon-class>fr.paris.lutece.plugins.participatorybudget.deamon.BizStatExportDaemon</daemon-class>
         </daemon>
     </daemons>
 
@@ -46,7 +46,7 @@
             <daemon-id>notifyUserDaemon</daemon-id>
             <daemon-name>budgetparticipatif.daemon.notifyUserDaemon.name</daemon-name>
             <daemon-description>budgetparticipatif.daemon.notifyUserDaemon.description</daemon-description>
-            <daemon-class>fr.paris.lutece.plugins.budgetparticipatif.deamon.NotifyUserDaemon</daemon-class>
+            <daemon-class>fr.paris.lutece.plugins.participatorybudget.deamon.NotifyUserDaemon</daemon-class>
         </daemon>
     </daemons>
 
@@ -55,7 +55,7 @@
         	<daemon-id>workflowNotifyDocumentbpDaemon</daemon-id>
             <daemon-name>module.workflow.notifydocumentbp.daemon.workflowNotifyDocumentbpDaemon.name</daemon-name>
             <daemon-description>module.workflow.notifydocumentbp.daemon.workflowNotifyDocumentbpDaemon.description</daemon-description>
-            <daemon-class>fr.paris.lutece.plugins.workflow.modules.notifydocumentbp.service.WorkflowNotifyDocumentbpDaemon</daemon-class>
+            <daemon-class>fr.paris.lutece.plugins.participatorybudget.service.notify.WorkflowNotifyDocumentbpDaemon</daemon-class>
         </daemon>
    </daemons>
 
@@ -63,24 +63,24 @@
     <applications>
         <application>
             <application-id>mesVotes</application-id>
-            <application-class>fr.paris.lutece.plugins.budgetparticipatif.web.MyVoteXPage</application-class>
+            <application-class>fr.paris.lutece.plugins.participatorybudget.web.MyVoteXPage</application-class>
         </application>
         <application>
             <application-id>myFavourites</application-id>
-            <application-class>fr.paris.lutece.plugins.budgetparticipatif.web.FavouritesProjectsXPage</application-class>
+            <application-class>fr.paris.lutece.plugins.participatorybudget.web.FavouritesProjectsXPage</application-class>
         </application>
          <application>
         	<application-id>solrProjectSearch</application-id>
-            <application-class>fr.paris.lutece.plugins.budgetparticipatif.web.ProjectsXpage</application-class>
+            <application-class>fr.paris.lutece.plugins.participatorybudget.web.ProjectsXpage</application-class>
           </application>
     </applications>
     <javascript-files>
         <javascript-files-scope>portal</javascript-files-scope>
-        <javascript-file>budgetparticipatif/budgetparticipatif.js</javascript-file>
+        <javascript-file>participatorybudget/participatorybudget.js</javascript-file>
     </javascript-files>
     <css-stylesheets>
         <css-stylesheets-scope>portal</css-stylesheets-scope>
-        <css-stylesheet>budgetparticipatif/budgetparticipatif.css</css-stylesheet>
+        <css-stylesheet>participatorybudget/participatorybudget.css</css-stylesheet>
     </css-stylesheets>
     
     <!-- Page Includes -->
@@ -88,13 +88,13 @@
            
         	<page-include-service>
             	<page-include-service-id>header</page-include-service-id>
-            	<page-include-service-class>fr.paris.lutece.plugins.budgetparticipatif.web.includes.HeaderInclude</page-include-service-class>
+            	<page-include-service-class>fr.paris.lutece.plugins.participatorybudget.web.includes.HeaderInclude</page-include-service-class>
         </page-include-service> 
     </page-include-services>
 	<servlets>
 		<servlet>
 			<servlet-name>ProjectSolrSearch</servlet-name>
-			<servlet-class>fr.paris.lutece.plugins.budgetparticipatif.web.ProjectSolrSearch
+			<servlet-class>fr.paris.lutece.plugins.participatorybudget.web.ProjectSolrSearch
 			</servlet-class>
 			<url-pattern>/servlet/plugins/ProjectSolrSearch</url-pattern>
 		</servlet>
@@ -116,7 +116,7 @@
             <feature-title>campagnebp.adminFeature.ManageCampagnebp.name</feature-title>
             <feature-description>campagnebp.adminFeature.ManageCampagnebp.description</feature-description>
             <feature-level>0</feature-level>
-            <feature-url>jsp/admin/plugins/campagnebp/ManageCampagnebp.jsp</feature-url>
+            <feature-url>jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp</feature-url>
             <feature-icon-url/>
       </admin-feature>
     </admin-features>    
@@ -125,14 +125,14 @@
     <applications>
         <application>
             <application-id>mesInfos</application-id>
-            <application-class>fr.paris.lutece.plugins.campagnebp.web.MyInfosXPage</application-class>
+            <application-class>fr.paris.lutece.plugins.participatorybudget.web.MyInfosXPage</application-class>
         </application>
     </applications>
 	<!-- Page Includes -->
     <page-include-services>
             <page-include-service>
           	  	<page-include-service-id>myInfos</page-include-service-id>
-           	 	<page-include-service-class>fr.paris.lutece.plugins.campagnebp.web.includes.MyInfosPageInclude</page-include-service-class>
+           	 	<page-include-service-class>fr.paris.lutece.plugins.participatorybudget.web.includes.MyInfosPageInclude</page-include-service-class>
         	</page-include-service>
         	
     </page-include-services>

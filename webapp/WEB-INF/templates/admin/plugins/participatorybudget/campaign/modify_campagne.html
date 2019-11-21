@@ -1,0 +1,18 @@
+<#include "managecampagnebp_tabs.html" />
+<@tabs tab="campagne" />
+
+<@rowBoxHeader i18nTitleKey="campagnebp.modify_campagne.pageTitle">
+    <form class="form-horizontal" method="post" name="modify_campagne" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id" value="${campagne.id}"/>
+        
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagne.labelCode" inputName="code" mandatory=true value="${campagne.code}" i18nHelpBlockKey="campagnebp.modify_campagne.labelCode.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagne.labelTitle" inputName="title" mandatory=true value="${campagne.title}" i18nHelpBlockKey="campagnebp.modify_campagne.labelTitle.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagne.labelDescription" inputName="description" mandatory=true value="${campagne.description}" i18nHelpBlockKey="campagnebp.modify_campagne.labelDescription.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagne.labelActive" inputName="active" mandatory=true value="${campagne.active?c}" i18nHelpBlockKey="ideation.modify_campagne.labelActive.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagne.labelCodeModerationType" inputName="code_moderation_type" mandatory=true value="${campagne.codeModerationType}" i18nHelpBlockKey="campagnebp.modify_campagne.labelCodeModerationType.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.modify_campagne.labelModerationDuration" inputName="moderation_duration"  value="${campagne.moderationDuration}" i18nHelpBlockKey="campagnebp.modify_campagne.labelModerationDuration.help" />
+        <@actionButtons button1Name="action_modifyCampagne" button2Name="view_manageCampagnes"/>
+    </form>
+</@rowBoxHeader>
+
