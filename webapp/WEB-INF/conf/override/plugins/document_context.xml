@@ -10,7 +10,7 @@
                 <ref bean="document.documentHistoryService" />
                 <ref bean="document.portletInvalider" />
                 <ref bean="document.documentResourceServlet" />
-                <ref bean="budgetparticipatif.DocumentBodyService" />
+                <ref bean="participatorybudget.DocumentBodyService" />
             </list>
         </property>
     </bean>

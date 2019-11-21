@@ -23,7 +23,7 @@ INSERT INTO core_datastore VALUES ('budgetparticipatif.notifyUserDaemon.timeToWa
 
 DELETE FROM core_admin_right WHERE id_right = 'VOTE_PAR_ARRANDISSEMENT';
 INSERT INTO core_admin_right (id_right,name,level_right,admin_url,description,is_updatable,plugin_name,id_feature_group,icon_url,documentation_url, id_order ) VALUES 
-('VOTE_PAR_ARRANDISSEMENT','budgetparticipatif.adminFeature.VoteParArrand.name',1,'jsp/admin/plugins/budgetparticipatif/VoteParArrandissement.jsp','budgetparticipatif.adminFeature.VoteParArrand.description',0,'budgetparticipatif','SYSTEM',NULL,NULL,21);
+('VOTE_PAR_ARRANDISSEMENT','budgetparticipatif.adminFeature.VoteParArrand.name',1,'jsp/admin/plugins/participatorybudget/VoteParArrandissement.jsp','budgetparticipatif.adminFeature.VoteParArrand.description',0,'budgetparticipatif','SYSTEM',NULL,NULL,21);
 
 
 --
@@ -31,7 +31,7 @@ INSERT INTO core_admin_right (id_right,name,level_right,admin_url,description,is
 --
 DELETE FROM core_admin_right WHERE id_right = 'CAMPAGNEBP_MANAGEMENT';
 INSERT INTO core_admin_right (id_right,name,level_right,admin_url,description,is_updatable,plugin_name,id_feature_group,icon_url,documentation_url, id_order ) VALUES 
-('CAMPAGNEBP_MANAGEMENT','campagnebp.adminFeature.ManageCampagnebp.name',1,'jsp/admin/plugins/campagnebp/ManageCampagnebp.jsp','campagnebp.adminFeature.ManageCampagnebp.description',0,'campagnebp',NULL,NULL,NULL,4);
+('CAMPAGNEBP_MANAGEMENT','participatorybudget.adminFeature.ManageCampagnebp.name',1,'jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp','participatorybudget.adminFeature.ManageCampagnebp.description',0,'campagnebp',NULL,NULL,NULL,4);
 
 
 --

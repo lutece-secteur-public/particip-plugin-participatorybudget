@@ -1,0 +1,18 @@
+<#include "managecampagnebp_tabs.html" />
+<@tabs tab="campagnetheme" />
+
+<@rowBoxHeader i18nTitleKey="campagnebp.create_campagnetheme.pageTitle">
+    <form class="form-horizontal" method="post" name="create_campagnetheme" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampagneThemes.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id"/>
+        
+        <@fieldInputText i18nLabelKey="campagnebp.create_campagnetheme.labelCodeCampagne" inputName="code_campagne" mandatory=true value="${campagnetheme.codeCampagne!''}" i18nHelpBlockKey="campagnebp.create_campagnetheme.labelCodeCampagne.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.create_campagnetheme.labelCode" inputName="code" mandatory=true value="${campagnetheme.code!''}" i18nHelpBlockKey="campagnebp.create_campagnetheme.labelCode.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.create_campagnetheme.labelTitle" inputName="title" mandatory=true value="${campagnetheme.title!''}" i18nHelpBlockKey="campagnebp.create_campagnetheme.labelTitle.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.create_campagnetheme.labelDescription" inputName="description" mandatory=true value="${campagnetheme.description!''}" i18nHelpBlockKey="campagnebp.create_campagnetheme.labelDescription.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.create_campagnetheme.labelActive" inputName="active" mandatory=true value="${campagnetheme.active?c!''}" i18nHelpBlockKey="campagnebp.create_campagnetheme.labelActive.help" />
+        <@fieldInputText i18nLabelKey="campagnebp.create_campagnetheme.labelImage" inputName="imageId"  value="${(campagnetheme.image.idImage)!''}" i18nHelpBlockKey="campagnebp.create_campagnetheme.labelImage.help" />
+        <@actionButtons button1Name="action_createCampagneTheme" button2Name="view_manageCampagneThemes"/>
+    </form>
+</@rowBoxHeader>
+
