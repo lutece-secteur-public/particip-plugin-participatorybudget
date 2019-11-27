@@ -36,7 +36,6 @@ package fr.paris.lutece.plugins.participatorybudget.web;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,42 +44,27 @@ import org.apache.commons.lang.StringUtils;
 
 import fr.paris.lutece.plugins.avatar.service.AvatarService;
 import fr.paris.lutece.plugins.identitystore.web.rs.dto.AttributeDto;
-import fr.paris.lutece.plugins.identitystore.web.rs.dto.AuthorDto;
-import fr.paris.lutece.plugins.identitystore.web.rs.dto.IdentityChangeDto;
 import fr.paris.lutece.plugins.identitystore.web.rs.dto.IdentityDto;
-import fr.paris.lutece.plugins.identitystore.web.service.AuthorType;
 import fr.paris.lutece.plugins.identitystore.web.service.IdentityService;
-import fr.paris.lutece.plugins.mylutece.modules.openam.authentication.OpenamUser;
-import fr.paris.lutece.plugins.openamidentityclient.business.CreateAccountResult;
-import fr.paris.lutece.plugins.openamidentityclient.service.OpenamIdentityException;
-import fr.paris.lutece.plugins.openamidentityclient.service.OpenamIdentityService;
-import fr.paris.lutece.plugins.participatorybudget.business.Civility;
 import fr.paris.lutece.plugins.participatorybudget.business.MyAccount;
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
-import fr.paris.lutece.plugins.participatorybudget.service.AccountService;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosListenerService;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.plugins.participatorybudget.service.avatar.CampagneAvatarService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneUploadHandler;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
-import fr.paris.lutece.plugins.participatorybudget.util.CampagneErrorJsonResponse;
-import fr.paris.lutece.plugins.participatorybudget.util.CampagneResponse;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.plugins.participatorybudget.util.ModelUtils;
-import fr.paris.lutece.portal.service.captcha.CaptchaSecurityService;
-import fr.paris.lutece.portal.service.datastore.DatastoreService;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.message.SiteMessage;
 import fr.paris.lutece.portal.service.message.SiteMessageException;
 import fr.paris.lutece.portal.service.message.SiteMessageService;
-import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.portal.ThemesService;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.security.SecurityTokenService;
 import fr.paris.lutece.portal.service.security.UserNotSignedException;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
-import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
@@ -247,15 +231,13 @@ public class MyInfosXPage extends MVCApplication {
 	// BudgetRatingService.BEAN_NAME );
 	
     private static final String BEAN_IDENTITYSTORE_SERVICE = "participatorybudget.identitystore.service";
-    private IdentityService _identityService;
-
+   
     /**
      * Constructor
      */
     public MyInfosXPage( )
     {
         super( );
-        _identityService = SpringContextService.getBean( BEAN_IDENTITYSTORE_SERVICE );
         _patternAddress = Pattern.compile( REGEX_ADDRESS );
     }
 	
@@ -336,12 +318,18 @@ public class MyInfosXPage extends MVCApplication {
 	@Action(ACTION_DO_CREATE_INFOS)
 	public XPage doCreateMyInfos(HttpServletRequest request)
 			throws UserNotSignedException {
-		boolean bError = false;
+		
+		LuteceUser user =  SecurityService
+				.getInstance().getRemoteUser(request);
 
+		
+		
+		boolean bError = false;
+		
 		boolean bCapchaVerified = true;
 		MyInfosForm form = new MyInfosForm();
 		MyAccount formMyAccount = new MyAccount();
-
+		
 		populate(formMyAccount, request);
 		populate(form, request);
 
@@ -377,50 +365,24 @@ public class MyInfosXPage extends MVCApplication {
 			bError = true;
 			addError(MESSAGE_ERROR_CONFIRMATION_PASSWORD, getLocale(request));
 		}
-		CreateAccountResult createAccountResult=null;
-		String strEmail=null;
-		if (!bError) {
-			
-			
-			try {
-			createAccountResult=AccountService.createAccountAndIdentity(form, formMyAccount);
-			strEmail = OpenamIdentityService.getService() .getAccount(createAccountResult.getUid()).getLogin();
-			
-			
-				
-			} catch (OpenamIdentityException e) {
-				addError(OpenamIdentityService.getService().getApiErrorMessage(
-						e.getErrorCode(),getLocale(request)));
-				bError=true;
-				
-			}
-		}
 
-			
-		
-
-		if (bError || createAccountResult==null || strEmail==null ) {
-			_form = form;
-			_accountForm = formMyAccount;
-			return redirectView(request, VIEW_CREATE_MY_INFOS);
-		}
 
 		
-		MyInfosService.saveUserInfos(createAccountResult.getUid(),createAccountResult.getTokenId(), form);
-		MyInfosService.saveUserEmail(createAccountResult.getUid(),strEmail);
+		MyInfosService.saveUserInfos(user.getName(), form);
+		MyInfosService.saveUserEmail(user.getName(),user.getEmail());
 		//Save avatar
-		CampagneAvatarService.createAvatar(request, createAccountResult.getUid());
+		CampagneAvatarService.createAvatar(request, user.getName());
 		
 		
 		// Add message
 		
-		
-		MyInfosService.sendAccountValidationMail(request, getLocale(request), createAccountResult.getUid());
-		
-		
-
-		addInfo(INFO_VALIDATION_MAIL_SEND,
-				getLocale(request));
+//		
+//		MyInfosService.sendAccountValidationMail(request, getLocale(request), createAccountResult.getUid());
+//		
+//		
+//
+//		addInfo(INFO_VALIDATION_MAIL_SEND,
+//				getLocale(request));
 		//reint form
 		_form=null;
 		_accountForm=null;
@@ -543,62 +505,7 @@ public class MyInfosXPage extends MVCApplication {
 						myInfos.getGeojson());
 				model.put(MARK_POSTAL_CODE, myInfos.getPostalCode());
 				
-				IdentityDto idsIdentity = _identityService.getIdentityByConnectionId( user.getName(  ), CAMPAGNE_BP_APP_CODE);
-		        Map<String, AttributeDto> idsAttributes = idsIdentity.getAttributes( );
-		        Map<String, AttributeDto> idsAttributeMap = new HashMap<String, AttributeDto>();
-		        
-		        for (Entry<String, String> attribute : MAP_IDS_ATTRIBUTES.entrySet( ) )
-		        {
-		    	    AttributeDto attr = idsAttributes.get( attribute.getValue( ) );
-		    	    if( attr == null )
-		    	    {
-		    	    	attr = new AttributeDto( );
-		    	    	attr.setCertified( false );
-		    	    	attr.setKey( attribute.getValue( ) );
-		    	    	attr.setValue( StringUtils.EMPTY );
-		    	    }
-		    	    else if ( IDS_KEY_USER_GENDER.equals( attr.getKey( ) ) )
-		    	    {
-		    	    	attr.setValue( I18nService.getLocalizedString( MAP_CIVILITY.get( attr.getValue( ) ), request.getLocale(  ) ) );
-		    	    }
-		    	    
-		    	    idsAttributeMap.put( attribute.getKey( ), attr );
-		        }
-		        
-		        AttributeDto attrAddr = idsAttributes.get( IDS_KEY_USER_ADDRESS );
-		        AttributeDto attrCity = idsAttributes.get( IDS_KEY_USER_ADDRESS_CITY );
-		        AttributeDto attrCp = idsAttributes.get( IDS_KEY_USER_ADDRESS_POSTAL_CODE );
-		        
-		        if (attrAddr == null)
-	    	    {
-		        	attrAddr = new AttributeDto( );
-		        	attrAddr.setCertified( false );
-		        	attrAddr.setKey( IDS_KEY_USER_ADDRESS );
-		        	attrAddr.setValue( StringUtils.EMPTY );
-	    	    }
-		        
-		        if ( attrCp != null )
-		        {
-		        	attrAddr.setValue( attrAddr.getValue( ) + COMMA + attrCp.getValue( ) );
-		        	if( attrCp.isCertified( ) )
-		        	{
-		        		attrAddr.setCertified( true );
-		        	}
-		        }
-		        
-		        if ( attrCity != null )
-		        {
-		        	attrAddr.setValue( attrAddr.getValue( ) + COMMA + attrCity.getValue( ) );
-		        	if( attrCity.isCertified( ) )
-		        	{
-		        		attrAddr.setCertified( true );
-		        	}
-		        }
-		        
-		        idsAttributeMap.put( MARK_LABEL_IDS_ADDRESS, attrAddr );
-	    	    
-		        model.put( MARK_IDS_ATTRIBUTES , idsAttributeMap );
-		       
+						       
 				model.put(
 						SecurityTokenService.MARK_TOKEN,
 						SecurityTokenService.getInstance().getToken(request,
@@ -635,8 +542,8 @@ public class MyInfosXPage extends MVCApplication {
 		if (SecurityService.isAuthenticationEnable()) {
 			
 			boolean bError = false;
-			OpenamUser user =  (OpenamUser)SecurityService
-					.getInstance().getRegisteredUser(request);
+			LuteceUser user =  SecurityService
+					.getInstance().getRemoteUser(request);
 
 			
 			// ParisConnectUser user = getTestUser( );
@@ -683,26 +590,8 @@ public class MyInfosXPage extends MVCApplication {
 					addError(MESSAGE_ERROR_NICKNAME_ALREADY_EXIST, getLocale(request));
 				}
 				
-				if (!bError) {
-					
-					if (MyInfosService
-							.mustSendAccountValidationMail(user.getName(), form)) {
-						// Add message if a mail have been send to the user
-						if (MyInfosService
-								.sendAccountValidationMail(request, getLocale(request), user.getName())) {
-							addInfo(INFO_VALIDATION_MAIL_SEND,
-									getLocale(request));
 
-						} else {
-							bError = true;
-							addError(ERROR_DURING_VALIDATION_MAIL_SEND,
-									getLocale(request));
-
-						}
-
-					}
-
-				}
+				
 				
 				if(!bError)
 				{
@@ -724,38 +613,12 @@ public class MyInfosXPage extends MVCApplication {
 						else
 						{
 						
-							if(!StringUtils.isEmpty(myAccountForm.getLogin()))
-						    {
-								if(!myAccountForm.getLogin().equals(user.getEmail()))
-								{
-									// Add message if a mail have been send to the user
-									if (MyInfosService
-											.sendAccountValidationMail(request, getLocale(request), user.getName())) {
-										addInfo(INFO_VALIDATION_MAIL_SEND,
-												getLocale(request));
-
-									} else {
-										bError = true;
-										addError(ERROR_DURING_VALIDATION_MAIL_SEND,
-												getLocale(request));
-
-									}
-									//update user info
-									user.setUserInfo(LuteceUser.HOME_INFO_ONLINE_EMAIL,myAccountForm.getLogin());
-									user.setUserInfo(MyInfosService.LUTECE_USER_KEY_VERIFIED, "false");
-								}
-						     }
-							//reint account form
+														//reint account form
 							myAccountForm=null;
 						}					       
 					}
 				}
 				
-				if(!bError && MARK_TRUE.equals( request.getParameter( MARK_SAVE_PERSONAL ) ) )
-				{
-					//if no error and user say yes, save data
-					savePersonalData( user, form );
-				}
 				
 				if (bError) {
 					_form = form;
@@ -829,9 +692,9 @@ public class MyInfosXPage extends MVCApplication {
 		throw new UserNotSignedException();
 	}
 
-	private void updateMyinfos( OpenamUser user, MyInfosForm form, HttpServletRequest request  )
+	private void updateMyinfos( LuteceUser user, MyInfosForm form, HttpServletRequest request  )
 	{
-		MyInfosService.saveUserInfos(user.getName(),user.getSubjectId(), form);
+		MyInfosService.saveUserInfos(user.getName(),form);
 		MyInfosService.saveUserEmail(user.getName(),user.getEmail());
 
         //update user info into luteceuser
@@ -905,27 +768,7 @@ public class MyInfosXPage extends MVCApplication {
 		AbstractJsonResponse jsonResponse = null;
 
 
-		
-		LuteceUser user = null;
-
-		if (SecurityService.isAuthenticationEnable()) {
-			user = SecurityService.getInstance().getRegisteredUser(request);
-
-			if (user != null) {
-				{
-					boolean bSend=MyInfosService.sendAccountValidationMail(request, getLocale(request), user.getName());
-
-					jsonResponse = new JsonResponse(bSend);
-				}
-			}
-		}
-
-		if (user == null) {
-			jsonResponse = new ErrorJsonResponse(
-					JSON_ERROR_CODE_USER_NOT_SIGNED);
-		}
-
-		return JsonUtil.buildJsonResponse(jsonResponse);
+				return JsonUtil.buildJsonResponse(jsonResponse);
 	}
 
 	/**
@@ -1015,7 +858,7 @@ public class MyInfosXPage extends MVCApplication {
 		boolean bCapchaVerified = true;
 		boolean bError = false;
 		if (SecurityService.isAuthenticationEnable()) {
-			OpenamUser user =  (OpenamUser)SecurityService
+			LuteceUser user =  (LuteceUser)SecurityService
 					.getInstance().getRegisteredUser(request);
 
 			if (user != null) {
@@ -1045,22 +888,6 @@ public class MyInfosXPage extends MVCApplication {
 				}
 
 				if (!bError) {
-					if (MyInfosService
-							.mustSendAccountValidationMail(user.getName(), form)) {
-						// Add message if a mail have been send to the user
-						if (MyInfosService
-								.sendAccountValidationMail(request, getLocale(request), user.getName())) {
-							addInfo(INFO_VALIDATION_MAIL_SEND,
-									getLocale(request));
-
-						} else {
-							bError = true;
-							addError(ERROR_DURING_VALIDATION_MAIL_SEND,
-									getLocale(request));
-
-						}
-
-					}
 					//update avatar
 					CampagneAvatarService.updateAvatar(request, user.getName());
 				}
@@ -1078,7 +905,7 @@ public class MyInfosXPage extends MVCApplication {
 					
 				
 				
-				MyInfosService.saveUserInfos(user.getName(),user.getSubjectId(), form);
+				MyInfosService.saveUserInfos(user.getName(), form);
 				MyInfosService.saveUserEmail(user.getName(),user.getEmail());
 				
 		     
@@ -1089,11 +916,6 @@ public class MyInfosXPage extends MVCApplication {
 		        user.setUserInfo( LuteceUser.BDATE , form.getBirthdate());
 		        user.setUserInfo( LuteceUser.HOME_INFO_POSTAL_POSTALCODE, form.getPostalCode(  ) );		        
 
-		        //if no error and user say yes, save data
-				if( MARK_TRUE.equals( request.getParameter( MARK_SAVE_PERSONAL ) ) )
-				{
-					savePersonalData( user, form );
-				}
 		        
 		        
 			}
@@ -1132,119 +954,5 @@ public class MyInfosXPage extends MVCApplication {
         }
 	}
 
-	/**
-	 * save personal data to identitystore
-	 * @param user 
-	 */
-	private void savePersonalData( OpenamUser user, MyInfosForm infoForm )
-	{
-		IdentityDto identityDto = new IdentityDto(  );
-        identityDto.setConnectionId( user.getName(  ) );
-        Map<String, AttributeDto> mapAttributes = new HashMap<String, AttributeDto>( );
-        AttributeDto attribute;
-        
-        IdentityDto idsIdentity = _identityService.getIdentityByConnectionId( user.getName(  ), CAMPAGNE_BP_APP_CODE);
-        Map<String, AttributeDto> idsAttributes = idsIdentity.getAttributes( );
-        
-        if ( StringUtils.isNotBlank( infoForm.getCivility(  ) ) && ( idsAttributes.get( IDS_KEY_USER_GENDER ) == null || !idsAttributes.get( IDS_KEY_USER_GENDER ).isCertified( ) ) )
-        {
-        	attribute = new AttributeDto(  );
-	        attribute.setKey( IDS_KEY_USER_GENDER );
-	        attribute.setValue( Civility.fromLabelCode( infoForm.getCivility(  ).trim(  ) ).getNumericCode(  ) );
-	        mapAttributes.put( attribute.getKey(  ), attribute );
-        }
-        
-        if ( StringUtils.isNotBlank( infoForm.getFirstname(  ) ) && ( idsAttributes.get( IDS_KEY_USER_FIRST_NAME ) == null || !idsAttributes.get( IDS_KEY_USER_FIRST_NAME ).isCertified( ) ) )
-        {
-        	attribute = new AttributeDto(  );
-	        attribute.setKey( IDS_KEY_USER_FIRST_NAME );
-	        attribute.setValue( infoForm.getFirstname(  ).trim(  ) );
-	        mapAttributes.put( attribute.getKey(  ), attribute );
-        }
-        
-        if ( StringUtils.isNotBlank( infoForm.getLastname(  ) ) && ( idsAttributes.get( IDS_KEY_USER_LAST_NAME ) == null || !idsAttributes.get( IDS_KEY_USER_LAST_NAME ).isCertified( ) ) )
-        {
-        	attribute = new AttributeDto(  );
-	        attribute.setKey( IDS_KEY_USER_LAST_NAME );
-	        attribute.setValue( infoForm.getLastname(  ).trim(  ) );
-	        mapAttributes.put( attribute.getKey(  ), attribute );
-        }
-        
-        if ( StringUtils.isNotBlank( infoForm.getBirthdate(  ) ) && ( idsAttributes.get( IDS_KEY_USER_BIRTHDAY ) == null || !idsAttributes.get( IDS_KEY_USER_BIRTHDAY ).isCertified( ) ) )
-        {
-        	attribute = new AttributeDto(  );
-	        attribute.setKey( IDS_KEY_USER_BIRTHDAY );
-	        attribute.setValue( infoForm.getBirthdate(  ).trim(  ) );
-	        mapAttributes.put( attribute.getKey(  ), attribute );
-        }
-        
-        if ( StringUtils.isNotBlank( infoForm.getAddress(  ) ) && ( idsAttributes.get( IDS_KEY_USER_ADDRESS ) == null || !idsAttributes.get( IDS_KEY_USER_ADDRESS ).isCertified( ) ) 
-        														&& ( idsAttributes.get( IDS_KEY_USER_ADDRESS_POSTAL_CODE ) == null || !idsAttributes.get( IDS_KEY_USER_ADDRESS_POSTAL_CODE ).isCertified( ) ) 
-        														&& ( idsAttributes.get( IDS_KEY_USER_ADDRESS_CITY ) == null || !idsAttributes.get( IDS_KEY_USER_ADDRESS_CITY ).isCertified( ) ))
-        {
-        	Matcher matcher = _patternAddress.matcher( infoForm.getAddress(  ).trim(  ) );
-        	if ( !matcher.find(  ) )
-        	{
-        		AppLogService.error( "'" + infoForm.getAddress().trim() + "' doesn't match address pattern '" + REGEX_ADDRESS + "'", null);	
-				return;
-        	}        	
-        	if ( matcher.groupCount ( ) != 3)
-        	{
-        		AppLogService.error( "'" + infoForm.getAddress().trim() + "' doesn't return 3 groups with address pattern '" + REGEX_ADDRESS + "'", null);	
-				return;
-        	}        	
-        	
-        	attribute = new AttributeDto(  );
-	        attribute.setKey( IDS_KEY_USER_ADDRESS );
-	        attribute.setValue( matcher.group( 1 ).trim() );
-	        mapAttributes.put( attribute.getKey(  ), attribute );
-        	
-	        if ( idsAttributes.get( IDS_KEY_USER_ADDRESS_DETAIL ) == null || !idsAttributes.get( IDS_KEY_USER_ADDRESS_DETAIL ).isCertified( ) )
-	    	{
-	        	attribute = new AttributeDto(  );
-		        attribute.setKey( IDS_KEY_USER_ADDRESS_DETAIL );
-		        attribute.setValue( StringUtils.EMPTY );
-		        mapAttributes.put( attribute.getKey(  ), attribute );
-	    	}
-	        
-	        if ( idsAttributes.get( IDS_KEY_USER_ADDRESS_POSTAL_CODE ) == null || !idsAttributes.get( IDS_KEY_USER_ADDRESS_POSTAL_CODE ).isCertified( ) )
-	    	{
-		        attribute = new AttributeDto(  );
-		        attribute.setKey( IDS_KEY_USER_ADDRESS_POSTAL_CODE );
-		        attribute.setValue( matcher.group( 2 ).trim() );
-		        mapAttributes.put( attribute.getKey(  ), attribute );
-	    	}
-	        
-	        if ( idsAttributes.get( IDS_KEY_USER_ADDRESS_CITY ) == null || !idsAttributes.get( IDS_KEY_USER_ADDRESS_CITY ).isCertified( ) )
-	    	{
-		        attribute = new AttributeDto(  );
-		        attribute.setKey( IDS_KEY_USER_ADDRESS_CITY );
-		        attribute.setValue( matcher.group( 3 ).trim() );
-		        mapAttributes.put( attribute.getKey(  ), attribute );
-	    	}
-        }
-        
-        if( mapAttributes.size(  )>0 )
-        {
-            identityDto.setAttributes( mapAttributes );
-	        
-	        AuthorDto author = new AuthorDto( );
-	        author.setApplicationCode( CAMPAGNE_BP_APP_CODE );
-	        author.setType( AuthorType.TYPE_USER_OWNER.getTypeValue( ) );
-	
-			IdentityChangeDto identityChangeDto = new IdentityChangeDto( );
-	        identityChangeDto.setIdentity( identityDto );
-	        identityChangeDto.setAuthor( author );
-	        
-	        try
-	        {
-	        	_identityService.updateIdentity( identityChangeDto, null );
-	        }
-	        catch ( Exception e )
-	        {
-	        	//do nothing, just log
-	        	AppLogService.error( "Error occur while save data to identityStore", e );
-	        }
-        }
-	}
+
 }

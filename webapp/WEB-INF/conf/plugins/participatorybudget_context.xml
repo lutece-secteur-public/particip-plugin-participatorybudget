@@ -16,16 +16,7 @@
       <!-- AsynchronousUpload -->
 	<bean id="participatorybudget.campagnebpUploadHandler" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneUploadHandler" />
     
-    <!-- IDENTITYSTORE BEAN -->
-    <bean id="participatorybudget.identitystore.restTransport" class="fr.paris.lutece.plugins.identitystore.web.rs.service.IdentityTransportRest">
-      <property name="identityStoreEndPoint">
-        <value>http://127.0.0.1:9092/lutece/rest/identitystore/v1</value>
-      </property>
-    </bean>
-    <bean id="participatorybudget.identitystore.service" class="fr.paris.lutece.plugins.identitystore.web.service.IdentityService">
-      <constructor-arg ref="participatorybudget.identitystore.restTransport"/>
-    </bean>  
-
+    
     <!-- CAMPAGNE_SERVICE BEAN -->
     <bean id="participatorybudget.campagneService" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService"/>
 
