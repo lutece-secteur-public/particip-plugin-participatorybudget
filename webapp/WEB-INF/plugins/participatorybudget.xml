@@ -42,15 +42,6 @@
     </daemons>
 
     <daemons>
-        <daemon>
-            <daemon-id>notifyUserDaemon</daemon-id>
-            <daemon-name>budgetparticipatif.daemon.notifyUserDaemon.name</daemon-name>
-            <daemon-description>budgetparticipatif.daemon.notifyUserDaemon.description</daemon-description>
-            <daemon-class>fr.paris.lutece.plugins.participatorybudget.deamon.NotifyUserDaemon</daemon-class>
-        </daemon>
-    </daemons>
-
-    <daemons>
     	<daemon>
         	<daemon-id>workflowNotifyDocumentbpDaemon</daemon-id>
             <daemon-name>module.workflow.notifydocumentbp.daemon.workflowNotifyDocumentbpDaemon.name</daemon-name>

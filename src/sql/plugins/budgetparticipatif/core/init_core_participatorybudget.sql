@@ -16,9 +16,6 @@ INSERT INTO core_datastore VALUES ('budgetparticipatif.site_property.error_alrea
 INSERT INTO core_datastore VALUES ('budgetparticipatif.site_property.error_checked_arrondissement',"");
 INSERT INTO core_datastore VALUES ('budgetparticipatif.site_property.error_code_user_not_signed',"");
 
-INSERT INTO core_datastore VALUES ('budgetparticipatif.notifyUserDaemon.nbNotificationInPool', "10");
-INSERT INTO core_datastore VALUES ('budgetparticipatif.notifyUserDaemon.timeToWaitBeforeSendPoolNotification', "1000");
-
 
 
 DELETE FROM core_admin_right WHERE id_right = 'VOTE_PAR_ARRANDISSEMENT';
