@@ -6,10 +6,10 @@ import fr.paris.lutece.util.sql.DAOUtil;
 public class UserAccessVoteDAO implements IUserAccessVoteDAO
 {
 	// Constants
-    private static final String SQL_QUERY_INSERT = "INSERT INTO budgetparticipatif_user_access_vote ( id_user, has_acces_vote ) VALUES ( ?, ? ) ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE budgetparticipatif_user_access_vote SET has_acces_vote = ? WHERE id_user = ? ";
-    private static final String SQL_QUERY_DELETE = "DELETE FROM budgetparticipatif_user_access_vote WHERE id_user = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_user, has_acces_vote FROM budgetparticipatif_user_access_vote";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_user_access_vote ( id_user, has_acces_vote ) VALUES ( ?, ? ) ";
+    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_user_access_vote SET has_acces_vote = ? WHERE id_user = ? ";
+    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_user_access_vote WHERE id_user = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_user, has_acces_vote FROM participatorybudget_user_access_vote";
     private static final String SQl_QUERY_SELECT = SQL_QUERY_SELECTALL + " where id_user= ?";
     
 	@Override

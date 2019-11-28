@@ -52,22 +52,22 @@ import java.util.List;
 public final class CampagneDAO implements ICampagneDAO
 {
     // Constants
-    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne ) FROM ideation_campagnes";
-    private static final String SQL_QUERY_SELECT = "SELECT id_campagne, code_campagne, title, description, active, code_moderation_type, moderation_duration FROM ideation_campagnes WHERE id_campagne = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO ideation_campagnes ( id_campagne, code_campagne, title, description, active, code_moderation_type, moderation_duration ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
-    private static final String SQL_QUERY_DELETE = "DELETE FROM ideation_campagnes WHERE id_campagne = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE ideation_campagnes SET id_campagne = ?, code_campagne = ?, title = ?, description = ?, active = ?, code_moderation_type = ?, moderation_duration = ? WHERE id_campagne = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne, code_campagne, title, description, active, code_moderation_type, moderation_duration FROM ideation_campagnes";
-    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne FROM ideation_campagnes";
+    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne ) FROM participatorybudget_campaign";
+    private static final String SQL_QUERY_SELECT = "SELECT id_campagne, code_campagne, title, description, active, code_moderation_type, moderation_duration FROM participatorybudget_campaign WHERE id_campagne = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign ( id_campagne, code_campagne, title, description, active, code_moderation_type, moderation_duration ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign WHERE id_campagne = ? ";
+    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign SET id_campagne = ?, code_campagne = ?, title = ?, description = ?, active = ?, code_moderation_type = ?, moderation_duration = ? WHERE id_campagne = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne, code_campagne, title, description, active, code_moderation_type, moderation_duration FROM participatorybudget_campaign";
+    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne FROM participatorybudget_campaign";
     private static final String SQL_QUERY_SELECT_LAST_CAMPAGNE = "SELECT id_campagne, code_campagne, title, description, active, code_moderation_type, moderation_duration "
-            + "FROM ideation_campagnes WHERE code_campagne = ( SELECT MAX( code_campagne ) FROM ideation_campagnes );";
+            + "FROM participatorybudget_campaign WHERE code_campagne = ( SELECT MAX( code_campagne ) FROM participatorybudget_campaign );";
 
     //Queries for image list
-    private static final String SQL_QUERY_NEW_PK_IMAGE = "SELECT max( id_campagne_image ) FROM ideation_campagnes_images";
-    private static final String SQL_QUERY_INSERT_IMAGE = "INSERT INTO ideation_campagnes_images (id_campagne_image, code_campagne, id_file ) values ( ?,  ? , ? )";
-    private static final String SQL_QUERY_SELECT_IMAGES = "SELECT id_campagne_image, code_campagne, id_file from ideation_campagnes_images WHERE code_campagne = ?";
-    private static final String SQL_QUERY_DELETE_IMAGES = "DELETE FROM ideation_campagnes_images WHERE code_campagne = ?" ;
-    private static final String SQL_QUERY_SELECTALL_IMAGES = "SELECT id_campagne_image, code_campagne, id_file type FROM ideation_campagnes_images";
+    private static final String SQL_QUERY_NEW_PK_IMAGE = "SELECT max( id_campagne_image ) FROM participatorybudget_campaign_image";
+    private static final String SQL_QUERY_INSERT_IMAGE = "INSERT INTO participatorybudget_campaign_image (id_campagne_image, code_campagne, id_file ) values ( ?,  ? , ? )";
+    private static final String SQL_QUERY_SELECT_IMAGES = "SELECT id_campagne_image, code_campagne, id_file from participatorybudget_campaign_image WHERE code_campagne = ?";
+    private static final String SQL_QUERY_DELETE_IMAGES = "DELETE FROM participatorybudget_campaign_image WHERE code_campagne = ?" ;
+    private static final String SQL_QUERY_SELECTALL_IMAGES = "SELECT id_campagne_image, code_campagne, id_file type FROM participatorybudget_campaign_image";
 
     /**
      * Generates a new primary key

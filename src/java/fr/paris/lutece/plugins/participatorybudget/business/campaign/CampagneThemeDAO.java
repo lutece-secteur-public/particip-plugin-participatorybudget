@@ -53,15 +53,15 @@ import java.util.Collection;
 public final class CampagneThemeDAO implements ICampagneThemeDAO
 {
     // Constants
-    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne_theme ) FROM ideation_campagnes_themes";
-    private static final String SQL_QUERY_SELECT = "SELECT id_campagne_theme, code_campagne, code_theme, title, description, active, image_file FROM ideation_campagnes_themes WHERE id_campagne_theme = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO ideation_campagnes_themes ( id_campagne_theme, code_campagne, code_theme, title, description, active, image_file ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
-    private static final String SQL_QUERY_DELETE = "DELETE FROM ideation_campagnes_themes WHERE id_campagne_theme = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE ideation_campagnes_themes SET id_campagne_theme = ?, code_campagne = ?, code_theme = ?, title = ?, description = ?, active = ?, image_file = ? WHERE id_campagne_theme = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_theme, code_campagne, code_theme, title, description, active, image_file FROM ideation_campagnes_themes";
+    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne_theme ) FROM participatorybudget_campaign_theme";
+    private static final String SQL_QUERY_SELECT = "SELECT id_campagne_theme, code_campagne, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme WHERE id_campagne_theme = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_theme ( id_campagne_theme, code_campagne, code_theme, title, description, active, image_file ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_theme WHERE id_campagne_theme = ? ";
+    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_theme SET id_campagne_theme = ?, code_campagne = ?, code_theme = ?, title = ?, description = ?, active = ?, image_file = ? WHERE id_campagne_theme = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_theme, code_campagne, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme";
     private static final String SQL_QUERY_SELECTALL_BY_CAMPAGNE = SQL_QUERY_SELECTALL + " WHERE code_campagne = ?";
-    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_theme FROM ideation_campagnes_themes";
-    private static final String SQL_QUERY_SELECT_BY_TITLETHEME = "SELECT id_campagne_theme, code_campagne, code_theme, title, description, active, image_file FROM ideation_campagnes_themes WHERE code_theme = ?";
+    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_theme FROM participatorybudget_campaign_theme";
+    private static final String SQL_QUERY_SELECT_BY_TITLETHEME = "SELECT id_campagne_theme, code_campagne, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme WHERE code_theme = ?";
 
     /**
      * Generates a new primary key

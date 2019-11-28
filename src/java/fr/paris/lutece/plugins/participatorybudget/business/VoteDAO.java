@@ -46,17 +46,17 @@ import java.util.List;
 public final class VoteDAO implements IVoteDAO
 {
     // Constants
-    private static final String SQL_QUERY_INSERT = "INSERT INTO budgetparticipatif_votes ( id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
-    private static final String SQL_QUERY_DELETE = "DELETE FROM budgetparticipatif_votes WHERE id_user = ? AND id_projet = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status FROM budgetparticipatif_votes";
-    private static final String SQL_QUERY_DELETE_ALL= "DELETE FROM budgetparticipatif_votes WHERE id_user = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_votes ( id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_votes WHERE id_user = ? AND id_projet = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status FROM participatorybudget_votes";
+    private static final String SQL_QUERY_DELETE_ALL= "DELETE FROM participatorybudget_votes WHERE id_user = ?";
     private static final String SQl_QUERY_SELECT = SQL_QUERY_SELECTALL + " where id_user= ?";
     private static final String SQL_QUERY_SELECT_VOTE = SQl_QUERY_SELECT + " and id_projet= ?";
-    private static final String SQl_QUERY_COUNT_VOTE_ARR= "SELECT COUNT(*) FROM budgetparticipatif_votes where id_user= ? and localisation = ?";
-    private static final String SQl_QUERY_COUNT_VOTE= "SELECT COUNT(*) FROM budgetparticipatif_votes where id_user= ? and localisation <> ?";
-    private static final String SQL_QUERY_SELECT_USER= "SELECT DISTINCT id_user FROM budgetparticipatif_votes";
-    private static final String SQL_QUERY_VALIDATE_VOTE= "UPDATE budgetparticipatif_votes SET status= ? where id_user=?";
-    private static final String SQL_QUERY_SELECT_VOTE_STATUS = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status FROM budgetparticipatif_votes where id_user= ? and status = ?";
+    private static final String SQl_QUERY_COUNT_VOTE_ARR= "SELECT COUNT(*) FROM participatorybudget_votes where id_user= ? and localisation = ?";
+    private static final String SQl_QUERY_COUNT_VOTE= "SELECT COUNT(*) FROM participatorybudget_votes where id_user= ? and localisation <> ?";
+    private static final String SQL_QUERY_SELECT_USER= "SELECT DISTINCT id_user FROM participatorybudget_votes";
+    private static final String SQL_QUERY_VALIDATE_VOTE= "UPDATE participatorybudget_votes SET status= ? where id_user=?";
+    private static final String SQL_QUERY_SELECT_VOTE_STATUS = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status FROM participatorybudget_votes where id_user= ? and status = ?";
 
 
     /**

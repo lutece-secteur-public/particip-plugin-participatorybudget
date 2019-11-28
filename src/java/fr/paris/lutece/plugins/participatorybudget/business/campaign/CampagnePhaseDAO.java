@@ -48,13 +48,13 @@ import java.util.Collection;
 public final class CampagnePhaseDAO implements ICampagnePhaseDAO
 {
     // Constants
-    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne_phase ) FROM ideation_campagnes_phases";
-    private static final String SQL_QUERY_SELECT = "SELECT id_campagne_phase, code_phase_type, code_campagne, start, end FROM ideation_campagnes_phases WHERE id_campagne_phase = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO ideation_campagnes_phases ( id_campagne_phase, code_phase_type, code_campagne, start, end ) VALUES ( ?, ?, ?, ?, ? ) ";
-    private static final String SQL_QUERY_DELETE = "DELETE FROM ideation_campagnes_phases WHERE id_campagne_phase = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE ideation_campagnes_phases SET id_campagne_phase = ?, code_phase_type = ?, code_campagne = ?, start = ?, end = ? WHERE id_campagne_phase = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_phase, code_phase_type, code_campagne, start, end FROM ideation_campagnes_phases";
-    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_phase FROM ideation_campagnes_phases";
+    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne_phase ) FROM participatorybudget_campaign_phase";
+    private static final String SQL_QUERY_SELECT = "SELECT id_campagne_phase, code_phase_type, code_campagne, start, end FROM participatorybudget_campaign_phase WHERE id_campagne_phase = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_phase ( id_campagne_phase, code_phase_type, code_campagne, start, end ) VALUES ( ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_phase WHERE id_campagne_phase = ? ";
+    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_phase SET id_campagne_phase = ?, code_phase_type = ?, code_campagne = ?, start = ?, end = ? WHERE id_campagne_phase = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_phase, code_phase_type, code_campagne, start, end FROM participatorybudget_campaign_phase";
+    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_phase FROM participatorybudget_campaign_phase";
     private static final String SQL_QUERY_SELECTALL_BY_CAMPAGNE = SQL_QUERY_SELECTALL + " WHERE code_campagne = ?";
 
     /**

@@ -47,13 +47,13 @@ import java.util.Collection;
 public final class CampagneImageDAO implements ICampagneImageDAO
 {
     // Constants
-    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne_image ) FROM ideation_campagnes_images";
-    private static final String SQL_QUERY_SELECT = "SELECT id_campagne_image, code_campagne, id_file FROM ideation_campagnes_images WHERE id_campagne_image = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO ideation_campagnes_images ( id_campagne_image, code_campagne, id_file ) VALUES ( ?, ?, ? ) ";
-    private static final String SQL_QUERY_DELETE = "DELETE FROM ideation_campagnes_images WHERE id_campagne_image = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE ideation_campagnes_images SET id_campagne_image = ?, code_campagne = ?, id_file = ? WHERE id_campagne_image = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_image, code_campagne, id_file FROM ideation_campagnes_images";
-    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_image FROM ideation_campagnes_images";
+    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne_image ) FROM participatorybudget_campaign_image";
+    private static final String SQL_QUERY_SELECT = "SELECT id_campagne_image, code_campagne, id_file FROM participatorybudget_campaign_image WHERE id_campagne_image = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_image ( id_campagne_image, code_campagne, id_file ) VALUES ( ?, ?, ? ) ";
+    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_image WHERE id_campagne_image = ? ";
+    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_image SET id_campagne_image = ?, code_campagne = ?, id_file = ? WHERE id_campagne_image = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_image, code_campagne, id_file FROM participatorybudget_campaign_image";
+    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_image FROM participatorybudget_campaign_image";
 
     /**
      * Generates a new primary key

@@ -7,7 +7,7 @@ import fr.paris.lutece.util.sql.DAOUtil;
 public class RGPDTreatmentLogDAO implements IRGPDTreatmentLogDAO
 {
 	// Constants
-    private static final String SQL_QUERY_INSERT = "INSERT INTO budgetparticipatif_rgpd_treatment_log ( id_admin_user, admin_user_access_code, admin_user_email, treatment_type, treatment_object_name, treatment_object_fields ) VALUES ( ?, ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_rgpd_treatment_log ( id_admin_user, admin_user_access_code, admin_user_email, treatment_type, treatment_object_name, treatment_object_fields ) VALUES ( ?, ?, ?, ?, ?, ? ) ";
     
 	@Override
 	public void insert( AdminUser user, String strTreatmentTypeStr, String strTreatmentObjectName, String strTreatmentObjectFields, Plugin plugin ) 

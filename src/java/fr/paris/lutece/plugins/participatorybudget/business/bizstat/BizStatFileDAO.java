@@ -45,13 +45,13 @@ import fr.paris.lutece.util.sql.DAOUtil;
 public final class BizStatFileDAO implements IBizStatFileDAO
 {
     // Constants
-    private static final String SQL_QUERY_ALL            = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date            , OCTET_LENGTH(file_value) FROM budgetparticipatif_bizstat_file";
-    private static final String SQL_QUERY_FIND_BY_ID     = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date, file_value, OCTET_LENGTH(file_value) FROM budgetparticipatif_bizstat_file WHERE id_bizstat_file = ?";
-    private static final String SQL_QUERY_FIND_BY_STATUS = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date,             OCTET_LENGTH(file_value) FROM budgetparticipatif_bizstat_file WHERE status          = ?";
+    private static final String SQL_QUERY_ALL            = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date            , OCTET_LENGTH(file_value) FROM participatorybudget_bizstat_file";
+    private static final String SQL_QUERY_FIND_BY_ID     = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date, file_value, OCTET_LENGTH(file_value) FROM participatorybudget_bizstat_file WHERE id_bizstat_file = ?";
+    private static final String SQL_QUERY_FIND_BY_STATUS = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date,             OCTET_LENGTH(file_value) FROM participatorybudget_bizstat_file WHERE status          = ?";
 
-    private static final String SQL_INSERT = "INSERT INTO budgetparticipatif_bizstat_file (status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, file_value)" + " VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
-    private static final String SQL_UPDATE = "UPDATE budgetparticipatif_bizstat_file SET status = ?, file_name = ?, id_admin_user = ?, admin_user_access_code = ?, admin_user_email = ?, reason = ?, description = ?, error = ?, file_value = ?  where id_bizstat_file = ? ";
-    private static final String SQL_DELETE = "DELETE FROM budgetparticipatif_bizstat_file WHERE id_bizstat_file = ? ";
+    private static final String SQL_INSERT = "INSERT INTO participatorybudget_bizstat_file (status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, file_value)" + " VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+    private static final String SQL_UPDATE = "UPDATE participatorybudget_bizstat_file SET status = ?, file_name = ?, id_admin_user = ?, admin_user_access_code = ?, admin_user_email = ?, reason = ?, description = ?, error = ?, file_value = ?  where id_bizstat_file = ? ";
+    private static final String SQL_DELETE = "DELETE FROM participatorybudget_bizstat_file WHERE id_bizstat_file = ? ";
 
     /**
      * {@inheritDoc}

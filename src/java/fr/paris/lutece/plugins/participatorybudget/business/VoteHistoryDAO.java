@@ -46,16 +46,16 @@ import java.util.List;
 public final class VoteHistoryDAO implements IVoteHistoryDAO
 {
     // Constants
-	private static final String SQL_QUERY_NEW_PK = "SELECT max( id ) FROM budgetparticipatif_votes_history";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO budgetparticipatif_votes_history ( id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status, id, status_export_stats) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
-    private static final String SQL_QUERY_DELETE = "DELETE FROM budgetparticipatif_votes_history WHERE id_user = ? AND id_projet = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status, id, status_export_stats FROM budgetparticipatif_votes_history";
-    private static final String SQL_QUERY_DELETE_ALL= "DELETE FROM budgetparticipatif_votes_history WHERE id_user = ?";
-    private static final String SQL_QUERY_UPDATE_TAG= "UPDATE budgetparticipatif_votes_history SET status_export_stats= ?, date_vote= ? where id = ?";
+	private static final String SQL_QUERY_NEW_PK = "SELECT max( id ) FROM participatorybudget_votes_history";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_votes_history ( id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status, id, status_export_stats) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_votes_history WHERE id_user = ? AND id_projet = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status, id, status_export_stats FROM participatorybudget_votes_history";
+    private static final String SQL_QUERY_DELETE_ALL= "DELETE FROM participatorybudget_votes_history WHERE id_user = ?";
+    private static final String SQL_QUERY_UPDATE_TAG= "UPDATE participatorybudget_votes_history SET status_export_stats= ?, date_vote= ? where id = ?";
     private static final String SQl_QUERY_SELECT = SQL_QUERY_SELECTALL + " where id_user= ?";
-    private static final String SQl_QUERY_SELECT_By_PORJECT = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status, status_export_stats FROM budgetparticipatif_votes_history where id_user = ?  and id_projet= ?";
-    private static final String SQl_QUERY_COUNT_VOTE_ARR= "SELECT COUNT(*) FROM budgetparticipatif_votes_history where id_user= ? and localisation = ?";
-    private static final String SQl_QUERY_COUNT_VOTE= "SELECT COUNT(*) FROM budgetparticipatif_votes_history where id_user= ? and localisation <> ?";
+    private static final String SQl_QUERY_SELECT_By_PORJECT = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status, status_export_stats FROM participatorybudget_votes_history where id_user = ?  and id_projet= ?";
+    private static final String SQl_QUERY_COUNT_VOTE_ARR= "SELECT COUNT(*) FROM participatorybudget_votes_history where id_user= ? and localisation = ?";
+    private static final String SQl_QUERY_COUNT_VOTE= "SELECT COUNT(*) FROM participatorybudget_votes_history where id_user= ? and localisation <> ?";
     private static final String SQl_BY_EXPORTED_STATUS= " WHERE status_export_stats = ?";
     
     
