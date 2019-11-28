@@ -47,8 +47,6 @@ import org.apache.commons.lang.StringUtils;
 
 import fr.paris.lutece.plugins.document.business.spaces.DocumentSpace;
 import fr.paris.lutece.plugins.document.business.spaces.DocumentSpaceHome;
-import fr.paris.lutece.plugins.openamidentityclient.service.OpenamIdentityException;
-import fr.paris.lutece.plugins.openamidentityclient.service.OpenamIdentityService;
 import fr.paris.lutece.plugins.participatorybudget.business.MyVote;
 import fr.paris.lutece.plugins.participatorybudget.business.NotifyUser;
 import fr.paris.lutece.plugins.participatorybudget.business.VoteHome;
@@ -207,18 +205,8 @@ public class NotifyUserDaemon extends Daemon
     private void notifyUser( String idUser, String strSubject, String strSenderName, String strSenderEmail, MyVote myVote, int nbreDocumentSpace, String numberDay)
     {
     	
-         String strUserEmail= null;
+         String strUserEmail= idUser;
          int numberDocument= (nbreDocumentSpace < 10) ? nbreDocumentSpace : 10 ;
-         
-		try {
-			
-			strUserEmail = OpenamIdentityService.getService().getAccount(idUser).getLogin(	);
-		
-		} catch (OpenamIdentityException e) {
-		
-			strUserEmail= "";
-		
-		}
     	
 		if(strUserEmail != null && !StringUtils.isEmpty(strUserEmail)){
 			

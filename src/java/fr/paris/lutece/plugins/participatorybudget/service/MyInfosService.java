@@ -42,8 +42,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -52,15 +50,8 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import fr.paris.lutece.plugins.leaflet.business.GeolocItem;
-import fr.paris.lutece.plugins.openamidentityclient.business.Account;
-import fr.paris.lutece.plugins.openamidentityclient.service.NotificationService;
-import fr.paris.lutece.plugins.openamidentityclient.service.OpenamIdentityException;
-import fr.paris.lutece.plugins.openamidentityclient.service.OpenamIdentityService;
-import fr.paris.lutece.plugins.openamidentityclient.web.ManageAccountXPage;
 import fr.paris.lutece.plugins.participatorybudget.business.Civility;
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.portal.service.datastore.DatastoreService;
@@ -226,7 +217,7 @@ public final class MyInfosService {
 	 * @param myInfos
 	 *            The infos
 	 */
-	public static void saveUserInfos(String strLuteceUserName, String strToken,
+	public static void saveUserInfos(String strLuteceUserName, 
 			MyInfosForm myInfos) {
 		IPortalUserPreferencesService instance = UserPreferencesService
 				.instance();
@@ -330,28 +321,6 @@ public final class MyInfosService {
 	 * @param user
 	 *            the user
 	 */
-	public static boolean sendAccountValidationMail(HttpServletRequest request,
-			Locale locale, String strUid) {
-
-		String strBackUrl = DatastoreService.getDataValue(
-				KEY_SEND_ACCOUNT_VALIDATION_BACK_URL,
-				"https://budgetparticipatif.paris.fr/bp/je-vote.html");
-
-		try {
-			Account account = OpenamIdentityService.getService().getAccount(
-					strUid);
-			NotificationService.getService().doNotifyUser(request, locale,
-					account, TYPE_VALIDATE_ACCOUNT, TYPE_VALIDATE_ACCOUNT,
-					ManageAccountXPage.getActivateAccountUrl(request),
-					strBackUrl);
-
-		} catch (OpenamIdentityException e) {
-			AppLogService.error(e);
-			return false;
-		}
-
-		return true;
-	}
 
 	/**
 	 * Provides the list of arrondissements
