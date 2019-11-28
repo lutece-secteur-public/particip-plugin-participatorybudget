@@ -35,7 +35,6 @@ package fr.paris.lutece.plugins.participatorybudget.web;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,9 +42,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 import fr.paris.lutece.plugins.avatar.service.AvatarService;
-import fr.paris.lutece.plugins.identitystore.web.rs.dto.AttributeDto;
-import fr.paris.lutece.plugins.identitystore.web.rs.dto.IdentityDto;
-import fr.paris.lutece.plugins.identitystore.web.service.IdentityService;
 import fr.paris.lutece.plugins.participatorybudget.business.MyAccount;
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosListenerService;
@@ -55,7 +51,6 @@ import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneUplo
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.plugins.participatorybudget.util.ModelUtils;
-import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.message.SiteMessage;
 import fr.paris.lutece.portal.service.message.SiteMessageException;
 import fr.paris.lutece.portal.service.message.SiteMessageService;
