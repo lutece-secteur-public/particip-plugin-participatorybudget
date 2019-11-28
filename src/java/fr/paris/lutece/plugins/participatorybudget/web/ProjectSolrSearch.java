@@ -45,10 +45,10 @@ public class ProjectSolrSearch extends HttpServlet {
 	    private static final Logger LOGGER = Logger.getLogger( ProjectSolrSearch.class );
 	    
 	    
-	    public static final String PROJECT = AppPropertiesService.getProperty( "budgetparticipatif.type.project" );
-	    public static final String THEMATIQUE = AppPropertiesService.getProperty( "budgetparticipatif.name.thematique" );
-	    public static final String LOCALISATION = AppPropertiesService.getProperty( "budgetparticipatif.name.localisation_text" );
-	    public static final String BUDGET = AppPropertiesService.getProperty( "budgetparticipatif.name.budget" );
+	    public static final String PROJECT = AppPropertiesService.getProperty( "participatorybudget.type.project" );
+	    public static final String THEMATIQUE = AppPropertiesService.getProperty( "participatorybudget.name.thematique" );
+	    public static final String LOCALISATION = AppPropertiesService.getProperty( "participatorybudget.name.localisation_text" );
+	    public static final String BUDGET = AppPropertiesService.getProperty( "participatorybudget.name.budget" );
 	    /**
 	     * Get Project specific parameters and call Solr Module.
 	     *

@@ -10,11 +10,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class MyAccount {
 
 
-	@NotEmpty( message = "budgetparticipatif.validation.login.notEmpty" )
+	@NotEmpty( message = "participatorybudget.validation.login.notEmpty" )
     private String _strLogin;
-	@NotEmpty( message = "budgetparticipatif.validation.password.notEmpty" )
+	@NotEmpty( message = "participatorybudget.validation.password.notEmpty" )
     private String _strPassword;
-	@NotEmpty( message = "budgetparticipatif.validation.confirmationPassword.notEmpty" )
+	@NotEmpty( message = "participatorybudget.validation.confirmationPassword.notEmpty" )
     private String _strConfirmationPassword;
 	
 	public String getLogin() {

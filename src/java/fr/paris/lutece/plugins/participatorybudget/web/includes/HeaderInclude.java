@@ -77,7 +77,7 @@ public class HeaderInclude implements PageInclude
 	public static final String MARK_USER_ARRONDISSEMENT_VOTE = "user_arr_vote";
 
     // Properties
-    private static final String PROPERTY_URL_MONCOMPTE = "budgetparticipatif.include.url.moncompte";
+    private static final String PROPERTY_URL_MONCOMPTE = "participatorybudget.include.url.moncompte";
 	
 	//Services
     private MyVoteService _myVoteService = SpringContextService.getBean( MyVoteService.BEAN_NAME );

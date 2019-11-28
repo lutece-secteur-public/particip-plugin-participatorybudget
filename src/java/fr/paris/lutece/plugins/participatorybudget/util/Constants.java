@@ -40,7 +40,7 @@ package fr.paris.lutece.plugins.participatorybudget.util;
 public final class Constants
 {
     // Properties
-    public static final String PROPERTY_AUTHORIZED_CITIES = "campagnebp.authorized.cities";
+    public static final String PROPERTY_AUTHORIZED_CITIES = "participatorybudget.authorized.cities";
     
     // Other constants
     public static final String AUTHORIZED_CITIES_SEPARATOR = ",";

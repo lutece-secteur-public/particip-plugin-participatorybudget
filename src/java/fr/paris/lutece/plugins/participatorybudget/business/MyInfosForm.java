@@ -56,31 +56,31 @@ public class MyInfosForm implements Serializable, Cloneable
     private static final long serialVersionUID = 3729142258589861636L;
     private String _strNickname;
 
-    @NotEmpty( message = "budgetparticipatif.validation.civility.notEmpty" )
+    @NotEmpty( message = "participatorybudget.validation.civility.notEmpty" )
     private String _strCivility;
-	//@NotEmpty( message = "budgetparticipatif.validation.firstname.notEmpty" )
+	//@NotEmpty( message = "participatorybudget.validation.firstname.notEmpty" )
     private String _strFirstname;
-    //@NotEmpty( message = "budgetparticipatif.validation.lastname.notEmpty" )
+    //@NotEmpty( message = "participatorybudget.validation.lastname.notEmpty" )
     private String _strLastname;
     private String _strPostalCode;
-    @NotEmpty( message = "budgetparticipatif.validation.address.notEmpty" )
+    @NotEmpty( message = "participatorybudget.validation.address.notEmpty" )
     private String _strAddress;
 	private Double _dLongitude;
 	private Double _dLatitude;
-	@NotEmpty( message = "budgetparticipatif.validation.birthdate.notEmpty" )
-    @Pattern( regexp = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)" , message = "budgetparticipatif.validation.birthdate.pattern")
+	@NotEmpty( message = "participatorybudget.validation.birthdate.notEmpty" )
+    @Pattern( regexp = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)" , message = "participatorybudget.validation.birthdate.pattern")
     private String _strBirthdate;
-	//@NotEmpty( message = "budgetparticipatif.validation.arrondissement.notEmpty" )
-    //@Pattern( regexp = "(7500[1-9])|(7501[0-9])|(75020)", message = "budgetparticipatif.validation.arrondissement.pattern" )
+	//@NotEmpty( message = "participatorybudget.validation.arrondissement.notEmpty" )
+    //@Pattern( regexp = "(7500[1-9])|(7501[0-9])|(75020)", message = "participatorybudget.validation.arrondissement.pattern" )
     private String _strArrondissement;
-    @NotEmpty( message = "budgetparticipatif.validation.iliveinparis.notEmpty" )
+    @NotEmpty( message = "participatorybudget.validation.iliveinparis.notEmpty" )
     private String _strIliveinparis;
     private boolean _bIsValid;
-    //@Min( value = 15 , message = "budgetparticipatif.validation.age.min" )
+    //@Min( value = 15 , message = "participatorybudget.validation.age.min" )
     private int _nAge;
     private String _strSendaccountvalidation;
     private boolean _bAccountVerified;
-    @NotEmpty( message = "budgetparticipatif.validation.geojson.notEmpty" )
+    @NotEmpty( message = "participatorybudget.validation.geojson.notEmpty" )
     private String _strGeojson;
     
     

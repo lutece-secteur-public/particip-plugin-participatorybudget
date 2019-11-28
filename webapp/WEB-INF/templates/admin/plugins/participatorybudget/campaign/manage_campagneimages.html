@@ -2,13 +2,13 @@
 <@tabs tab="campagneimage" />
 
 <@rowBox>
-    <@boxHeader i18nTitleKey="campagnebp.manage_campagneimages.tableLabel">
+    <@boxHeader i18nTitleKey="participatorybudget.manage_campagneimages.tableLabel">
         <@headerButtons>
 
         
         <form class="form-inline pull-right" method="post" name="manage_campagneimages" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampagneImages.jsp">
             <!-- Add pull-right to class1 -->
-            <@actionButtons button1Name="view_createCampagneImage" icon1="icon-plus icon-white" i18nValue1Key="campagnebp.manage_campagneimages.buttonAdd" />
+            <@actionButtons button1Name="view_createCampagneImage" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campagneimages.buttonAdd" />
         </form>
         
     </@headerButtons>
@@ -20,8 +20,8 @@
     <@table>
         <tr>
             <input type="hidden" id="id" name="id"/>
-            <th>#i18n{campagnebp.manage_campagneimages.columnCodeCampagne}</th>
-            <th>#i18n{campagnebp.manage_campagneimages.columnFile}</th>
+            <th>#i18n{participatorybudget.manage_campagneimages.columnCodeCampagne}</th>
+            <th>#i18n{participatorybudget.manage_campagneimages.columnFile}</th>
             <th>#i18n{portal.util.labelActions}</th>
         </tr>
         <@tableHeadBodySeparator />

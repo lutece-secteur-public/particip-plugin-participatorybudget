@@ -248,7 +248,7 @@ public final class DocumentBodyService extends AbstractCacheableService implemen
         }
         catch ( NumberFormatException nfe )
         {
-            AppLogService.error("budgetparticipatif, VotesSolrSaddon, Error parsing DocPortletId ", nfe);
+            AppLogService.error("participatorybudget, VotesSolrSaddon, Error parsing DocPortletId ", nfe);
             return "";
         }
 
@@ -256,7 +256,7 @@ public final class DocumentBodyService extends AbstractCacheableService implemen
 
         if ( ( document == null ) || ( !document.isValid(  ) ) )
         {
-            AppLogService.error("budgetparticipatif, VotesSolrAddon, doc is not valid or null: " + document + ", id=" + nDocumentId);
+            AppLogService.error("participatorybudget, VotesSolrAddon, doc is not valid or null: " + document + ", id=" + nDocumentId);
             return "";
         }
 

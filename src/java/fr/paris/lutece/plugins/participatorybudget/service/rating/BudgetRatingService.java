@@ -60,7 +60,7 @@ import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
 public class BudgetRatingService extends RatingService
 {
-	public static final int VOTE_VALUE = AppPropertiesService.getPropertyInt( "budgetparticipatif.defaultVoteValue", 0 );
+	public static final int VOTE_VALUE = AppPropertiesService.getPropertyInt( "participatorybudget.defaultVoteValue", 0 );
 	
     /**
      * {@inheritDoc}

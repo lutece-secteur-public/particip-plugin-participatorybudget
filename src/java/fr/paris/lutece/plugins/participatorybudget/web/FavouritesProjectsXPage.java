@@ -61,7 +61,7 @@ import fr.paris.lutece.portal.web.xpages.XPage;
  * This class provides the user interface to view Idee xpages
  */
  
-@Controller( xpageName = "myFavourites" , pageTitleI18nKey = "budgetparticipatif.xpage.projectsFavourite.pageTitle" , pagePathI18nKey = "budgetparticipatif.xpage.projectsFavourite.pagePathLabel" )
+@Controller( xpageName = "myFavourites" , pageTitleI18nKey = "participatorybudget.xpage.projectsFavourite.pageTitle" , pagePathI18nKey = "participatorybudget.xpage.projectsFavourite.pagePathLabel" )
 public class FavouritesProjectsXPage extends MVCApplication
 {
     /**

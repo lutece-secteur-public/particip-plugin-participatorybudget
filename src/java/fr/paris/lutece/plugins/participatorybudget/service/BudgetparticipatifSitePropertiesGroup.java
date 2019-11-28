@@ -41,9 +41,9 @@ import fr.paris.lutece.portal.service.site.properties.ILocalizedSitePropertiesGr
  */
 public class BudgetparticipatifSitePropertiesGroup implements ILocalizedSitePropertiesGroup
 {
-    private static final String KEY_NAME = "budgetparticipatif.site_properties_group.name";
-    private static final String KEY_DESCRIPTION = "budgetparticipatif.site_properties_group.description";
-    private static final String PREFIX = "budgetparticipatif.site_property.";
+    private static final String KEY_NAME = "participatorybudget.site_properties_group.name";
+    private static final String KEY_DESCRIPTION = "participatorybudget.site_properties_group.description";
+    private static final String PREFIX = "participatorybudget.site_property.";
 
 
     /**

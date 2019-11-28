@@ -78,7 +78,7 @@ public class TaskNotifyDocumentbp extends SimpleTask
     public static final String CONFIG_SERVICE_BEAN_NAME = "workflow-notifydocumentbp.taskNotifyDocumentbpConfigService";
 
     // PARAMETERS
-    private static final String PARAM_BP_EMAIL = "budgetparticipatif.email";
+    private static final String PARAM_BP_EMAIL = "participatorybudget.email";
 
     private static final String PROPERTY_LUTECE_PLF_NAME       = "lutece.plf.name";
     

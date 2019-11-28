@@ -9,7 +9,7 @@
     <description>participatorybudget.plugin.description</description>
     <provider>participatorybudget.plugin.provider</provider>
     <provider-url>http://dev.lutece.paris.fr</provider-url>
-    <icon-url>images/admin/skin/plugins/participatorybudget/budgetparticipatif.png</icon-url>
+    <icon-url>images/admin/skin/plugins/participatorybudget/participatorybudget.png</icon-url>
     <copyright>Copyright (c) 2014 Mairie de Paris</copyright>
     <db-pool-required>1</db-pool-required>
     
@@ -22,8 +22,8 @@
     <admin-features>
      <admin-feature>
             <feature-id>VOTE_PAR_ARRANDISSEMENT</feature-id>
-            <feature-title>budgetparticipatif.adminFeature.VoteParArrand.name</feature-title>
-            <feature-description>budgetparticipatif.adminFeature.VoteParArrand.description</feature-description>
+            <feature-title>participatorybudget.adminFeature.VoteParArrand.name</feature-title>
+            <feature-description>participatorybudget.adminFeature.VoteParArrand.description</feature-description>
             <feature-level>0</feature-level>
             <feature-url>jsp/admin/plugins/participatorybudget/VoteParArrandissement.jsp</feature-url>
             <feature-icon-url/>
@@ -35,8 +35,8 @@
     <daemons>
         <daemon>
             <daemon-id>bizStatExportDaemon</daemon-id>
-            <daemon-name>budgetparticipatif.daemon.bizStatExportDaemon.name</daemon-name>
-            <daemon-description>budgetparticipatif.daemon.bizStatExportDaemon.description</daemon-description>
+            <daemon-name>participatorybudget.daemon.bizStatExportDaemon.name</daemon-name>
+            <daemon-description>participatorybudget.daemon.bizStatExportDaemon.description</daemon-description>
             <daemon-class>fr.paris.lutece.plugins.participatorybudget.deamon.BizStatExportDaemon</daemon-class>
         </daemon>
     </daemons>
@@ -104,8 +104,8 @@
     <admin-features>
         <admin-feature>
             <feature-id>CAMPAGNEBP_MANAGEMENT</feature-id>
-            <feature-title>campagnebp.adminFeature.ManageCampagnebp.name</feature-title>
-            <feature-description>campagnebp.adminFeature.ManageCampagnebp.description</feature-description>
+            <feature-title>participatorybudget.adminFeature.ManageCampagnebp.name</feature-title>
+            <feature-description>participatorybudget.adminFeature.ManageCampagnebp.description</feature-description>
             <feature-level>0</feature-level>
             <feature-url>jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp</feature-url>
             <feature-icon-url/>

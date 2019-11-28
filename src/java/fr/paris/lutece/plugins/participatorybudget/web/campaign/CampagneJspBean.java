@@ -71,9 +71,9 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     private static final String PARAMETER_ID_CAMPAGNE = "id";
 
     // Properties for page titles
-    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNES = "campagnebp.manage_campagnes.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNE = "campagnebp.modify_campagne.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAGNE = "campagnebp.create_campagne.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNES = "participatorybudget.manage_campagnes.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNE = "participatorybudget.modify_campagne.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAGNE = "participatorybudget.create_campagne.pageTitle";
 
     // Markers
     private static final String MARK_CAMPAGNE_LIST = "campagne_list";
@@ -82,10 +82,10 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     private static final String JSP_MANAGE_CAMPAGNES = "jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp";
 
     // Properties
-    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNE = "campagnebp.message.confirmRemoveCampagne";
-    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNE_PER_PAGE = "campagnebp.listCampagnes.itemsPerPage";
+    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNE = "participatorybudget.message.confirmRemoveCampagne";
+    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNE_PER_PAGE = "participatorybudget.listCampagnes.itemsPerPage";
  
-    private static final String VALIDATION_ATTRIBUTES_PREFIX = "campagnebp.model.entity.campagne.attribute.";
+    private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagne.attribute.";
 
     // Views
     private static final String VIEW_MANAGE_CAMPAGNES = "manageCampagnes";
@@ -99,9 +99,9 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     private static final String ACTION_CONFIRM_REMOVE_CAMPAGNE = "confirmRemoveCampagne";
 
     // Infos
-    private static final String INFO_CAMPAGNE_CREATED = "campagnebp.info.campagne.created";
-    private static final String INFO_CAMPAGNE_UPDATED = "campagnebp.info.campagne.updated";
-    private static final String INFO_CAMPAGNE_REMOVED = "campagnebp.info.campagne.removed";
+    private static final String INFO_CAMPAGNE_CREATED = "participatorybudget.info.campagne.created";
+    private static final String INFO_CAMPAGNE_UPDATED = "participatorybudget.info.campagne.updated";
+    private static final String INFO_CAMPAGNE_REMOVED = "participatorybudget.info.campagne.removed";
     
     // Session variable to store working values
     private Campagne _campagne;

@@ -70,9 +70,9 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     private static final String PARAMETER_ID_CAMPAGNETHEME = "id";
 
     // Properties for page titles
-    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNETHEMES = "campagnebp.manage_campagnethemes.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNETHEME = "campagnebp.modify_campagnetheme.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAGNETHEME = "campagnebp.create_campagnetheme.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNETHEMES = "participatorybudget.manage_campagnethemes.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNETHEME = "participatorybudget.modify_campagnetheme.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAGNETHEME = "participatorybudget.create_campagnetheme.pageTitle";
 
     // Markers
     private static final String MARK_CAMPAGNETHEME_LIST = "campagnetheme_list";
@@ -81,10 +81,10 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     private static final String JSP_MANAGE_CAMPAGNETHEMES = "jsp/admin/plugins/participatorybudget/campaign/ManageCampagneThemes.jsp";
 
     // Properties
-    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNETHEME = "campagnebp.message.confirmRemoveCampagneTheme";
-    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNETHEME_PER_PAGE = "campagnebp.listCampagneThemes.itemsPerPage";
+    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNETHEME = "participatorybudget.message.confirmRemoveCampagneTheme";
+    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNETHEME_PER_PAGE = "participatorybudget.listCampagneThemes.itemsPerPage";
  
-    private static final String VALIDATION_ATTRIBUTES_PREFIX = "campagnebp.model.entity.campagnetheme.attribute.";
+    private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagnetheme.attribute.";
 
     // Views
     private static final String VIEW_MANAGE_CAMPAGNETHEMES = "manageCampagneThemes";
@@ -98,9 +98,9 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     private static final String ACTION_CONFIRM_REMOVE_CAMPAGNETHEME = "confirmRemoveCampagneTheme";
 
     // Infos
-    private static final String INFO_CAMPAGNETHEME_CREATED = "campagnebp.info.campagnetheme.created";
-    private static final String INFO_CAMPAGNETHEME_UPDATED = "campagnebp.info.campagnetheme.updated";
-    private static final String INFO_CAMPAGNETHEME_REMOVED = "campagnebp.info.campagnetheme.removed";
+    private static final String INFO_CAMPAGNETHEME_CREATED = "participatorybudget.info.campagnetheme.created";
+    private static final String INFO_CAMPAGNETHEME_UPDATED = "participatorybudget.info.campagnetheme.updated";
+    private static final String INFO_CAMPAGNETHEME_REMOVED = "participatorybudget.info.campagnetheme.removed";
     
     // Session variable to store working values
     private CampagneTheme _campagnetheme;

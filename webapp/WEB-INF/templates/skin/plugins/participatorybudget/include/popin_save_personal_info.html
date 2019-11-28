@@ -36,12 +36,12 @@ $(document).on("click", "#${prefix}popin-save-personal-info-no", function(event)
     <div class="modal-dialog" id="popin-save-personal-info-content">
        <div class="modal-content">
 		  <div class="modal-header">
-			<h3 class="modal-title" id="myModalLabel">#i18n{campagnebp.savepersonaldata.popin.title}</h3>
+			<h3 class="modal-title" id="myModalLabel">#i18n{participatorybudget.savepersonaldata.popin.title}</h3>
 		  </div>
 		  <div class="modal-body">
 			<div class="row">
 				<div style="font-size:1.8rem" class="col-xs-12">
-					#i18n{campagnebp.savepersonaldata.popin.text}
+					#i18n{participatorybudget.savepersonaldata.popin.text}
 
 					<#if ids_attributes?exists>
 						<br/>
@@ -50,22 +50,22 @@ $(document).on("click", "#${prefix}popin-save-personal-info-no", function(event)
 							<table>
 								<thead>
 									<tr>
-										<th>#i18n{campagnebp.savepersonaldata.popin.labelField}</th>
-										<th>#i18n{campagnebp.savepersonaldata.popin.labelBefore}</th>
-										<th>#i18n{campagnebp.savepersonaldata.popin.labelAfter}</th>
+										<th>#i18n{participatorybudget.savepersonaldata.popin.labelField}</th>
+										<th>#i18n{participatorybudget.savepersonaldata.popin.labelBefore}</th>
+										<th>#i18n{participatorybudget.savepersonaldata.popin.labelAfter}</th>
 									</tr>
 								</thead>
 								<tbody>
 										<#list ids_attributes?keys as label>
 											<#assign attr=ids_attributes[label]>
 											<tr>
-												<td data-title="#i18n{campagnebp.savepersonaldata.popin.labelField}">${label!'?'}&nbsp;:</td>
-												<td data-title="#i18n{campagnebp.savepersonaldata.popin.labelBefore}">${attr.value!'?'}&nbsp;</td>
+												<td data-title="#i18n{participatorybudget.savepersonaldata.popin.labelField}">${label!'?'}&nbsp;:</td>
+												<td data-title="#i18n{participatorybudget.savepersonaldata.popin.labelBefore}">${attr.value!'?'}&nbsp;</td>
 
 												<#if attr.certified>
-													<td data-title="#i18n{campagnebp.savepersonaldata.popin.labelAfter}">#i18n{campagnebp.mes_infos.certified}&nbsp;</td>
+													<td data-title="#i18n{participatorybudget.savepersonaldata.popin.labelAfter}">#i18n{participatorybudget.mes_infos.certified}&nbsp;</td>
 												<#else>
-													<td id="${attr.key}" data-title="#i18n{campagnebp.savepersonaldata.popin.labelAfter}"></td>
+													<td id="${attr.key}" data-title="#i18n{participatorybudget.savepersonaldata.popin.labelAfter}"></td>
 												</#if>
 												
 											</tr>
@@ -80,10 +80,10 @@ $(document).on("click", "#${prefix}popin-save-personal-info-no", function(event)
 			<p>&nbsp;</p>
 			<div class="row">
 				<div class="col-xs-6">
-					<span id="${prefix}popin-save-personal-info-yes" class="btn btn-18rem btn-black-on-white" style="width:100%">#i18n{campagnebp.savepersonaldata.popin.yes}</span>
+					<span id="${prefix}popin-save-personal-info-yes" class="btn btn-18rem btn-black-on-white" style="width:100%">#i18n{participatorybudget.savepersonaldata.popin.yes}</span>
 				</div>
 				<div class="col-xs-6">
-					<span id="${prefix}popin-save-personal-info-no"  class="btn btn-18rem btn-black-on-white" style="width:100%">#i18n{campagnebp.savepersonaldata.popin.no}</span>
+					<span id="${prefix}popin-save-personal-info-no"  class="btn btn-18rem btn-black-on-white" style="width:100%">#i18n{participatorybudget.savepersonaldata.popin.no}</span>
 				</div>
 			</div>
 		  </div>

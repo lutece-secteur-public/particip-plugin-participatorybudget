@@ -32,8 +32,8 @@ public class ProjectOPSolrAddon implements ISolrSearchAppAddOn {
 
     private static final String PARAMETER_CONF_MAP_PROJETS  = "map_projects";  // Vue du suivi des realisations
 
-    private static final String PROPERTY_PROJECTS_OP_FQ_NOT_CANCELLED_WITH_ID = "budgetparticipatif.projects_op.fq.notCancelledWithId";
-    private static final String PROPERTY_PROJECTS_OP_FQ_NOT_CANCELLED         = "budgetparticipatif.projects_op.fq.notCancelled";
+    private static final String PROPERTY_PROJECTS_OP_FQ_NOT_CANCELLED_WITH_ID = "participatorybudget.projects_op.fq.notCancelledWithId";
+    private static final String PROPERTY_PROJECTS_OP_FQ_NOT_CANCELLED         = "participatorybudget.projects_op.fq.notCancelled";
 
     private static final String SOLR_QUERY_ALL                            = "*:*";
     private static final String SOLR_FQ_PROJECTS_OP_NOT_CANCELLED         = AppPropertiesService.getProperty(PROPERTY_PROJECTS_OP_FQ_NOT_CANCELLED        , "type:Projet 2015 OP\" AND -statut_text:\"Abandonné");

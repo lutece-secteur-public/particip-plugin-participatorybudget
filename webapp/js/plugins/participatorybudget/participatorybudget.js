@@ -35,12 +35,12 @@ function displayModalPopup(callBackFunction)
         	}
         	else
         	{
-        		/*$("#budgetparticipatifmodelpopup").html(data);*/
+        		/*$("#participatorybudgetmodelpopup").html(data);*/
         		$("#mesinfos-modal .modal-body").html(data);
-        		$('#forpopup_budgetparticipatif-profile-button').on( "click", function( event ) {
+        		$('#forpopup_participatorybudget-profile-button').on( "click", function( event ) {
         			event.preventDefault( );
 					var hasEmpty = false;
-					$("#forpopup_budgetparticipatif-profile-form input.check-nonempty").each( function() {
+					$("#forpopup_participatorybudget-profile-form input.check-nonempty").each( function() {
 						if(!hasEmpty && ($(this).val()=="" || ($(this).attr("type")=="checkbox" && !$(this).prop("checked")) )) {
 							hasEmpty = true;
 							$("#forpopup_message_error_js").show();
@@ -94,7 +94,7 @@ function displayModalPopup(callBackFunction)
 
 function doSaveUserInfos(callBackFunction)
 {
-	$("#budgetparticipatif-image-loading").toggle();
+	$("#participatorybudget-image-loading").toggle();
 		var userInfos = {
 		lastname: $("#budget-lastname").val(),
 		firstname: $("#budget-firstname").val(),
@@ -340,7 +340,7 @@ function doNotExitPage( event )
 
 $(function() {
 	baseUrl = document.getElementsByTagName('base')[0].href;
-	dialog = $( "#budgetparticipatifmodelpopup" ).dialog({
+	dialog = $( "#participatorybudgetmodelpopup" ).dialog({
 		 autoOpen: false,
 		/* height: 770, width: 600, resizable:true,	*/
 		 modal: true,
@@ -393,7 +393,7 @@ $.ajax({
 		$(".nb-user-votes_arrdt").text(nbVotes);
 		$('#myModal').modal('hide');
   	$("#mesinfos-modal .modal-body").html(data);
-  	$('#budgetparticipatif-profile-button').on( "click", function( event ) {
+  	$('#participatorybudget-profile-button').on( "click", function( event ) {
   		event.preventDefault( );
   		doSaveUserInfos($('#mesinfos-modal').modal('hide') );
   	});

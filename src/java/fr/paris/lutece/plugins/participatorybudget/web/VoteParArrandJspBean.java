@@ -73,7 +73,7 @@ public class VoteParArrandJspBean extends  MVCAdminJspBean
     private static final String TEMPLATE_MANAGE_VOTES_PAR_ARRAND = "admin/plugins/participatorybudget/vote_par_arrandissement.html";
     
     // Properties for page titles
-    private static final String PROPERTY_PAGE_TITLE_VOTE_PAR_ARRAND = "budgetparticipatif.vote_par_arrd.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_VOTE_PAR_ARRAND = "participatorybudget.vote_par_arrd.pageTitle";
     
     //Parameters
     private static final String PARAMETER_NB = "nb_";

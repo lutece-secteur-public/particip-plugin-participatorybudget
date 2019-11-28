@@ -30,7 +30,7 @@ import fr.paris.lutece.portal.web.xpages.XPage;
  * This class provides the user interface to manage ParisConnectUser xpages (
  * manage, create, modify, remove )
  */
-@Controller( xpageName = ProjectsXpage.PAGE_SOLR_PROJECT_SEARCH, pageTitleI18nKey = "budgetparticipatif.xpage.solrProjectSearch.pageTitle", pagePathI18nKey = "budgetparticipatif.xpage.solrProjectSearch.pagePathLabel" )
+@Controller( xpageName = ProjectsXpage.PAGE_SOLR_PROJECT_SEARCH, pageTitleI18nKey = "participatorybudget.xpage.solrProjectSearch.pageTitle", pagePathI18nKey = "participatorybudget.xpage.solrProjectSearch.pagePathLabel" )
 public class ProjectsXpage extends MVCApplication
 {
 
@@ -38,8 +38,8 @@ public class ProjectsXpage extends MVCApplication
 	private static final Logger LOGGER = Logger.getLogger( ProjectsXpage.class );
 	
 	// Properties
-	public static final String PROJECT = AppPropertiesService.getProperty( "budgetparticipatif.type.project" );
-    public static final String LOCALISATION = AppPropertiesService.getProperty( "budgetparticipatif.name.localisation_text" );
+	public static final String PROJECT = AppPropertiesService.getProperty( "participatorybudget.type.project" );
+    public static final String LOCALISATION = AppPropertiesService.getProperty( "participatorybudget.name.localisation_text" );
     
     // Views
     public static final String PAGE_SOLR_PROJECT_SEARCH = "solrProjectSearch";

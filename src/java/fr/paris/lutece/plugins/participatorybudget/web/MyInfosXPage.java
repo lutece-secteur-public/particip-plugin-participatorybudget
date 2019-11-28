@@ -79,7 +79,7 @@ import fr.paris.lutece.util.url.UrlItem;
  * This class provides the user interface to manage ParisConnectUser xpages (
  * manage, create, modify, remove )
  */
-@Controller(xpageName = MyInfosXPage.PAGE_MY_INFOS, pageTitleI18nKey = "budgetparticipatif.xpage.myinfos.pageTitle", pagePathI18nKey = "budgetparticipatif.xpage.myInfos.pagePathLabel")
+@Controller(xpageName = MyInfosXPage.PAGE_MY_INFOS, pageTitleI18nKey = "participatorybudget.xpage.myinfos.pageTitle", pagePathI18nKey = "participatorybudget.xpage.myInfos.pagePathLabel")
 public class MyInfosXPage extends MVCApplication {
 	
 	
@@ -109,9 +109,9 @@ public class MyInfosXPage extends MVCApplication {
 	private static final String ACTION_DO_CREATE_INFOS = "doCreateInfos";
 
 	// Infos
-	private static final String INFO_SAVED = "budgetparticipatif.info.saved";
-	private static final String INFO_VALIDATION_MAIL_SEND = "budgetparticipatif.info.validationMailSend";
-	private static final String ERROR_DURING_VALIDATION_MAIL_SEND = "budgetparticipatif.error.duringValidationMailSend";
+	private static final String INFO_SAVED = "participatorybudget.info.saved";
+	private static final String INFO_VALIDATION_MAIL_SEND = "participatorybudget.info.validationMailSend";
+	private static final String ERROR_DURING_VALIDATION_MAIL_SEND = "participatorybudget.error.duringValidationMailSend";
 
 	// Markers
 
@@ -156,16 +156,16 @@ public class MyInfosXPage extends MVCApplication {
 
 
 	// Messages
-	private static final String MESSAGE_INFO_USER_MUST_COMPLETE_PROFILE = "budgetparticipatif.labelUserMustCompleteProfile";
-	private static final String MESSAGE_ERROR_CONFIRMATION_PASSWORD = "budgetparticipatif.messageErrorConfirmationPassword";
-	private static final String MESSAGE_ERROR_NICKNAME_ALREADY_EXIST = "budgetparticipatif.messageErrorNicknameAlreadyExist";
-	private static final String MESSAGE_ERROR_ADRESS_GEOLOC_FORMAT = "budgetparticipatif.messageErrorAdressGeolocFormat";
-	private static final String MESSAGE_ERROR_NICKNAME_MISSING = "budgetparticipatif.validation.nickname.notEmpty";
-	private static final String PROPERTY_CONFIRM_MODIFY_ARRAND                     = "budgetparticipatif.property_confirm_modify_arrand";
-	private static final String PROPERTY_CONFIRM_MODIFY_ARRAND_WITH_VOTES_DELETING = "budgetparticipatif.property_confirm_modify_arrand_with_votes_deleting";
-	private static final String PROPERTY_ERROR_MODIFY_ARRAND = "budgetparticipatif.property_error_changement_arrond";
-	private static final String PROPERTY_ERROR_END_PHASE = "budgetparticipatif.property_error_end_phase";
-    private static final String CAMPAGNE_BP_APP_CODE = AppPropertiesService.getProperty( "campagnebp.identity.application.code" );
+	private static final String MESSAGE_INFO_USER_MUST_COMPLETE_PROFILE = "participatorybudget.labelUserMustCompleteProfile";
+	private static final String MESSAGE_ERROR_CONFIRMATION_PASSWORD = "participatorybudget.messageErrorConfirmationPassword";
+	private static final String MESSAGE_ERROR_NICKNAME_ALREADY_EXIST = "participatorybudget.messageErrorNicknameAlreadyExist";
+	private static final String MESSAGE_ERROR_ADRESS_GEOLOC_FORMAT = "participatorybudget.messageErrorAdressGeolocFormat";
+	private static final String MESSAGE_ERROR_NICKNAME_MISSING = "participatorybudget.validation.nickname.notEmpty";
+	private static final String PROPERTY_CONFIRM_MODIFY_ARRAND                     = "participatorybudget.property_confirm_modify_arrand";
+	private static final String PROPERTY_CONFIRM_MODIFY_ARRAND_WITH_VOTES_DELETING = "participatorybudget.property_confirm_modify_arrand_with_votes_deleting";
+	private static final String PROPERTY_ERROR_MODIFY_ARRAND = "participatorybudget.property_error_changement_arrond";
+	private static final String PROPERTY_ERROR_END_PHASE = "participatorybudget.property_error_end_phase";
+    private static final String CAMPAGNE_BP_APP_CODE = AppPropertiesService.getProperty( "participatorybudget.identity.application.code" );
 	// Parameters
 	private static final String PARAMETER_COMPLETE_INFOS = "completeInfos";
 	private static final String PARAMETER_REFERER = "referer";
@@ -177,17 +177,17 @@ public class MyInfosXPage extends MVCApplication {
     private static final String JSON_ERROR_CODE_ACCOUNT_NOT_VERIFIED = "ACCOUNT_NOT_VERIFIED";
 
     // Properties
-    private static final String PROPERTY_URL_MONCOMPTE = "campagnebp.url.moncompte";
+    private static final String PROPERTY_URL_MONCOMPTE = "participatorybudget.url.moncompte";
 
 	// Key
-	private static final String IDS_KEY_USER_GENDER = AppPropertiesService.getProperty( "campagnebp.identity.user.gender" );
-	private static final String IDS_KEY_USER_FIRST_NAME = AppPropertiesService.getProperty( "campagnebp.identity.user.first_name" );
-	private static final String IDS_KEY_USER_LAST_NAME = AppPropertiesService.getProperty( "campagnebp.identity.user.last_name" );
-	private static final String IDS_KEY_USER_BIRTHDAY = AppPropertiesService.getProperty( "campagnebp.identity.user.birthday" );
-	private static final String IDS_KEY_USER_ADDRESS = AppPropertiesService.getProperty( "campagnebp.identity.user.address" );
-	private static final String IDS_KEY_USER_ADDRESS_POSTAL_CODE = AppPropertiesService.getProperty( "campagnebp.identity.user.postal_code" );
-	private static final String IDS_KEY_USER_ADDRESS_CITY = AppPropertiesService.getProperty( "campagnebp.identity.user.city" );
-	private static final String IDS_KEY_USER_ADDRESS_DETAIL = AppPropertiesService.getProperty( "campagnebp.identity.user.address_detail" );
+	private static final String IDS_KEY_USER_GENDER = AppPropertiesService.getProperty( "participatorybudget.identity.user.gender" );
+	private static final String IDS_KEY_USER_FIRST_NAME = AppPropertiesService.getProperty( "participatorybudget.identity.user.first_name" );
+	private static final String IDS_KEY_USER_LAST_NAME = AppPropertiesService.getProperty( "participatorybudget.identity.user.last_name" );
+	private static final String IDS_KEY_USER_BIRTHDAY = AppPropertiesService.getProperty( "participatorybudget.identity.user.birthday" );
+	private static final String IDS_KEY_USER_ADDRESS = AppPropertiesService.getProperty( "participatorybudget.identity.user.address" );
+	private static final String IDS_KEY_USER_ADDRESS_POSTAL_CODE = AppPropertiesService.getProperty( "participatorybudget.identity.user.postal_code" );
+	private static final String IDS_KEY_USER_ADDRESS_CITY = AppPropertiesService.getProperty( "participatorybudget.identity.user.city" );
+	private static final String IDS_KEY_USER_ADDRESS_DETAIL = AppPropertiesService.getProperty( "participatorybudget.identity.user.address_detail" );
 	
 	private static final String MARK_IDS_ATTRIBUTES = "ids_attributes";
 	private static final String MARK_LABEL_IDS_GENDER = "Civilit&eacute;";
@@ -208,14 +208,14 @@ public class MyInfosXPage extends MVCApplication {
 					
 	private static final Map<String, String> MAP_CIVILITY = new HashMap<String, String>() 
 					{{ 
-						put("0", "campagnebp.mes_infos.civilityNPR");
-						put("1", "campagnebp.mes_infos.civilityMme");
-						put("2", "campagnebp.mes_infos.civilityM");
+						put("0", "participatorybudget.mes_infos.civilityNPR");
+						put("1", "participatorybudget.mes_infos.civilityMme");
+						put("2", "participatorybudget.mes_infos.civilityM");
 					}};
 					
 	
 	// regex for address split
-	private static final String REGEX_ADDRESS = AppPropertiesService.getProperty( "campagnebp.address.suggestpoi.regex" );
+	private static final String REGEX_ADDRESS = AppPropertiesService.getProperty( "participatorybudget.address.suggestpoi.regex" );
 	private Pattern _patternAddress;
 
 	// Local session variables

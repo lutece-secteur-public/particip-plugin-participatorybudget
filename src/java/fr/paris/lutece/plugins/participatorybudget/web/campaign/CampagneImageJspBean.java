@@ -71,9 +71,9 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     private static final String PARAMETER_ID_CAMPAGNEIMAGE = "id";
 
     // Properties for page titles
-    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNEIMAGES = "campagnebp.manage_campagneimages.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNEIMAGE = "campagnebp.modify_campagneimage.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAGNEIMAGE = "campagnebp.create_campagneimage.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNEIMAGES = "participatorybudget.manage_campagneimages.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNEIMAGE = "participatorybudget.modify_campagneimage.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAGNEIMAGE = "participatorybudget.create_campagneimage.pageTitle";
 
     // Markers
     private static final String MARK_CAMPAGNEIMAGE_LIST = "campagneimage_list";
@@ -82,10 +82,10 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     private static final String JSP_MANAGE_CAMPAGNEIMAGES = "jsp/admin/plugins/participatorybudget/campaign/ManageCampagneImages.jsp";
 
     // Properties
-    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNEIMAGE = "campagnebp.message.confirmRemoveCampagneImage";
-    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNEIMAGE_PER_PAGE = "campagnebp.listCampagneImages.itemsPerPage";
+    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNEIMAGE = "participatorybudget.message.confirmRemoveCampagneImage";
+    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNEIMAGE_PER_PAGE = "participatorybudget.listCampagneImages.itemsPerPage";
  
-    private static final String VALIDATION_ATTRIBUTES_PREFIX = "campagnebp.model.entity.campagneimage.attribute.";
+    private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagneimage.attribute.";
 
     // Views
     private static final String VIEW_MANAGE_CAMPAGNEIMAGES = "manageCampagneImages";
@@ -99,9 +99,9 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     private static final String ACTION_CONFIRM_REMOVE_CAMPAGNEIMAGE = "confirmRemoveCampagneImage";
 
     // Infos
-    private static final String INFO_CAMPAGNEIMAGE_CREATED = "campagnebp.info.campagneimage.created";
-    private static final String INFO_CAMPAGNEIMAGE_UPDATED = "campagnebp.info.campagneimage.updated";
-    private static final String INFO_CAMPAGNEIMAGE_REMOVED = "campagnebp.info.campagneimage.removed";
+    private static final String INFO_CAMPAGNEIMAGE_CREATED = "participatorybudget.info.campagneimage.created";
+    private static final String INFO_CAMPAGNEIMAGE_UPDATED = "participatorybudget.info.campagneimage.updated";
+    private static final String INFO_CAMPAGNEIMAGE_REMOVED = "participatorybudget.info.campagneimage.removed";
     
     // Session variable to store working values
     private CampagneImage _campagneimage;

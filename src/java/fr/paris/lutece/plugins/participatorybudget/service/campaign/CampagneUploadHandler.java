@@ -26,13 +26,13 @@ public class CampagneUploadHandler extends AbstractAsynchronousUploadHandler
     private static final String HANDLER_NAME = "campagnebpUploadHandler";
 
     // Error messages
-    private static final String ERROR_MESSAGE_MULTIPLE_UPLOAD= "campagnebp.upload.message.multipleUpload";
-    private static final String ERROR_MESSAGE_AVATAR_MAX_SIZE= "campagnebp.upload.message.avatarMaxSize";
-    private static final String ERROR_MESSAGE_AVATAR_MIME_TYPE_AUTORIZED= "campagnebp.upload.message.avatarMimeTypeAutorized";
+    private static final String ERROR_MESSAGE_MULTIPLE_UPLOAD= "participatorybudget.upload.message.multipleUpload";
+    private static final String ERROR_MESSAGE_AVATAR_MAX_SIZE= "participatorybudget.upload.message.avatarMaxSize";
+    private static final String ERROR_MESSAGE_AVATAR_MIME_TYPE_AUTORIZED= "participatorybudget.upload.message.avatarMimeTypeAutorized";
     
     //PROPERTY
-    private static final String PROPERTY_AVATAR_MAX_SIZE= "campagnebp.avatarMaxFileSize";
-    private static final String PROPERTY_AVATAR_EXTENSION_AUTORIZED= "campagnebp.avatarExtensionAutorized";
+    private static final String PROPERTY_AVATAR_MAX_SIZE= "participatorybudget.avatarMaxFileSize";
+    private static final String PROPERTY_AVATAR_EXTENSION_AUTORIZED= "participatorybudget.avatarExtensionAutorized";
      
     
     //Could be just "images" and "docs"

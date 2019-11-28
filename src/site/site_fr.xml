@@ -5,13 +5,13 @@
             <item name="EN" href="../index.html" />
         </links>
         
-        <menu name="Plugin budgetparticipatif">
+        <menu name="Plugin participatorybudget">
             <item name="Accueil" href="index.html"/>
         </menu>
         
         <menu name="Téléchargements" inherit="bottom" >
-            <item name="Versions stables" href="../../../stable_builds/plugins/plugin-budgetparticipatif/"/>
-            <item name="Nightly builds" href="../../../nightly_builds/plugins/plugin-budgetparticipatif/" />
+            <item name="Versions stables" href="../../../stable_builds/plugins/plugin-participatorybudget/"/>
+            <item name="Nightly builds" href="../../../nightly_builds/plugins/plugin-participatorybudget/" />
         </menu>
 
     <!--

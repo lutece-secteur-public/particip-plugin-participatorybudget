@@ -39,7 +39,7 @@ public class BudgetSolrAddon implements ISolrSearchAppAddOn {
     private static final String PARAMETER_CONF_MAP_PROJETS  = "map_projets";  // Vue des projets soumis au vote
 
     private static final String SOLR_QUERY_ALL = "*:*";
-    private static final String PROPERTY_OLDPROJECTS_FQ = "budgetparticipatif.oldprojects.fq";
+    private static final String PROPERTY_OLDPROJECTS_FQ = "participatorybudget.oldprojects.fq";
     private static final String[] SOLR_FQ_OLDPROJECTS = { AppPropertiesService.getProperty(
             PROPERTY_OLDPROJECTS_FQ, "(statut_project_text:GAGNANT' OR statut_project_text:'gagnant') AND type:'Projet 2015") };
     private static final String MARK_OLDPROJECTS_POINTS = "oldprojects_points";

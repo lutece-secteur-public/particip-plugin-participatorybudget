@@ -116,7 +116,7 @@ import fr.paris.lutece.util.url.UrlItem;
  * This class provides the user interface to manage ParisConnectUser xpages (
  * manage, create, modify, remove )
  */
-@Controller(xpageName = MyVoteXPage.VIEW_MY_VOTES, pageTitleI18nKey = "budgetparticipatif.xpage.mesVotes.pageTitle", pagePathI18nKey = "budgetparticipatif.xpage.mesVotes.pagePathLabel")
+@Controller(xpageName = MyVoteXPage.VIEW_MY_VOTES, pageTitleI18nKey = "participatorybudget.xpage.mesVotes.pageTitle", pagePathI18nKey = "participatorybudget.xpage.mesVotes.pagePathLabel")
 public class MyVoteXPage extends MVCApplication {
 
 	/**
@@ -158,14 +158,14 @@ public class MyVoteXPage extends MVCApplication {
 	private static final String MARK_DATE_VALIDATION = "validate_vote_date";
 	private static final String MARK_USER_PSEUDO = "user_pseudo";
 	private static final String MARK_LIST_VALIDATE_PROJECTS = "vote_projects_list";
-	private static final String PROPERTY_MY_VOTES_PAGE_TITLE = "budgetparticipatif.xpage.myVotes.pageTitle";
-	private static final String PROPERTY_MY_VOTES_PAGE_PATH_LABEL = "budgetparticipatif.xpage.myVotes.pagePathLabel";
+	private static final String PROPERTY_MY_VOTES_PAGE_TITLE = "participatorybudget.xpage.myVotes.pageTitle";
+	private static final String PROPERTY_MY_VOTES_PAGE_PATH_LABEL = "participatorybudget.xpage.myVotes.pagePathLabel";
 
 	// Messages
 
-	private static final String MESSAGE_INFO_USER_VOTE_VALIDE = "budgetparticipatif.messageSuccesSaveVote";
-	private static final String MESSAGE_INFO_VOTE = "budgetparticipatif.message.info.vote";
-	private static final String MESSAGE_PAGE_NOT_ACCESSIBLE = "budgetparticipatif.page_not_accessible";
+	private static final String MESSAGE_INFO_USER_VOTE_VALIDE = "participatorybudget.messageSuccesSaveVote";
+	private static final String MESSAGE_INFO_VOTE = "participatorybudget.message.info.vote";
+	private static final String MESSAGE_PAGE_NOT_ACCESSIBLE = "participatorybudget.page_not_accessible";
 
 	// Parameters
 	private static final String PARAMETER_ARRONDISSEMENT = "arrondissement";
@@ -190,19 +190,19 @@ public class MyVoteXPage extends MVCApplication {
 	private static final String VOTE_TITLE_SEPARATOR = "; ";
 
 	// Key
-	private static final String KEY_ENABLE_CAPTCHA_USER_INFORMATIONS = "budgetparticipatif.site_property.enable_captcha_user_informations";
-	private static final String KEY_ERROR_CODE_USER_ALREADY_VOTED = "budgetparticipatif.site_property.error_code_user_already_voted";
-	private static final String KEY_ERROR_CODE_USER_CAN_NOT_VOTE = "budgetparticipatif.site_property.error_code_user_can_not_vote";
-	private static final String KEY_ERROR_CODE_USER__VOTED_MAX = "budgetparticipatif.site_property.error_code_user__voted_max";
-	private static final String KEY_ERROR_VOTE_USER_ARROND = "budgetparticipatif.site_property.error_vote_user_arrond";
-	private static final String KEY_ERROR_ALREADY_VOTED_TOUT_PARIS = "budgetparticipatif.site_property.error_already_voted_tout_paris";
-	private static final String KEY_ERROR_ALREADY_VOTED_ARRONDISSEMENT = "budgetparticipatif.site_property.error_already_voted_arrondissement";
-	private static final String KEY_ERROR_CHECKED_ARRONDISSEMENT = "budgetparticipatif.site_property.error_checked_arrondissement";
-	private static final String KEY_ERROR_CODE_USER_NOT_SIGNED = "budgetparticipatif.site_property.error_code_user_not_signed";
-	private static final String KEY_VALIDATION_VOTE_EMAIL_SENDER = "budgetparticipatif.site_property.vote_confirmation.sender";
-	private static final String KEY_VALIDATION_VOTE_EMAIL_CC = "budgetparticipatif.site_property.vote_confirmation.cc";
-	private static final String KEY_VALIDATION_VOTE_EMAIL_SUBJECT = "budgetparticipatif.site_property.vote_confirmation.subject";
-	private static final String KEY_VALIDATION_VOTE_EMAIL_TEMPLATE ="budgetparticipatif.site_property.vote_confirmation.template.htmlblock";
+	private static final String KEY_ENABLE_CAPTCHA_USER_INFORMATIONS = "participatorybudget.site_property.enable_captcha_user_informations";
+	private static final String KEY_ERROR_CODE_USER_ALREADY_VOTED = "participatorybudget.site_property.error_code_user_already_voted";
+	private static final String KEY_ERROR_CODE_USER_CAN_NOT_VOTE = "participatorybudget.site_property.error_code_user_can_not_vote";
+	private static final String KEY_ERROR_CODE_USER__VOTED_MAX = "participatorybudget.site_property.error_code_user__voted_max";
+	private static final String KEY_ERROR_VOTE_USER_ARROND = "participatorybudget.site_property.error_vote_user_arrond";
+	private static final String KEY_ERROR_ALREADY_VOTED_TOUT_PARIS = "participatorybudget.site_property.error_already_voted_tout_paris";
+	private static final String KEY_ERROR_ALREADY_VOTED_ARRONDISSEMENT = "participatorybudget.site_property.error_already_voted_arrondissement";
+	private static final String KEY_ERROR_CHECKED_ARRONDISSEMENT = "participatorybudget.site_property.error_checked_arrondissement";
+	private static final String KEY_ERROR_CODE_USER_NOT_SIGNED = "participatorybudget.site_property.error_code_user_not_signed";
+	private static final String KEY_VALIDATION_VOTE_EMAIL_SENDER = "participatorybudget.site_property.vote_confirmation.sender";
+	private static final String KEY_VALIDATION_VOTE_EMAIL_CC = "participatorybudget.site_property.vote_confirmation.cc";
+	private static final String KEY_VALIDATION_VOTE_EMAIL_SUBJECT = "participatorybudget.site_property.vote_confirmation.subject";
+	private static final String KEY_VALIDATION_VOTE_EMAIL_TEMPLATE ="participatorybudget.site_property.vote_confirmation.template.htmlblock";
 
 	// Constant
 	private static final String LOCALISATION_LABEL = "localisation";
@@ -217,7 +217,7 @@ public class MyVoteXPage extends MVCApplication {
 	private IVoteParArrandissementService _nbrVoteService = VoteParArrandissementService.getInstance();
 
 	// Messages
-	private static final String MESSAGE_INFO_USER_MUST_COMPLETE_PROFILE = "campagnebp.labelUserMustCompleteProfile";
+	private static final String MESSAGE_INFO_USER_MUST_COMPLETE_PROFILE = "participatorybudget.labelUserMustCompleteProfile";
 
 	private CaptchaSecurityService _captchaService = new CaptchaSecurityService();
 	
@@ -469,7 +469,7 @@ public class MyVoteXPage extends MVCApplication {
 		// nice JSON error messages
 		// instead of url redirects. If a user manually uses
 		// extend/modules/rating/doVote.jsp instead of
-		// budgetparticipatif/doVote.jsp, he will get redirects but that's not a
+		// participatorybudget/doVote.jsp, he will get redirects but that's not a
 		// problem for a manually crafted url
 		String strErrorUrl = RatingValidationManagementService.validateRating(request,
 				SecurityService.getInstance().getRegisteredUser(request), strIdExtendableResource,

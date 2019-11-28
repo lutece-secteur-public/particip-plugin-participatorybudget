@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_votes_history` (
   `id` int(11) NOT NULL,
   `status_export_stats` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `budgetparticipatif_votes_history_index_id_user` (`id_user`)
+  KEY `participatorybudget_votes_history_index_id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- L'exportation de données n'était pas sélectionnée.
@@ -209,6 +209,20 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_votes_per_location` (
   `localisation_ardt` varchar(50) NOT NULL,
   `nb_votes` int(10) NOT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- Export de la structure de table pb. task_notify_documentbp_cf
+DROP TABLE IF EXISTS `task_notify_documentbp_cf`;
+CREATE TABLE IF NOT EXISTS `task_notify_documentbp_cf` (
+  `id_task` int(11) NOT NULL,
+  `sender_name` varchar(255) DEFAULT NULL,
+  `sender_email` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `message` mediumtext,
+  `recipients_cc` varchar(255) NOT NULL DEFAULT '',
+  `recipients_bcc` varchar(255) NOT NULL DEFAULT '',
+  `is_abonnes` smallint(6) NOT NULL,
+  PRIMARY KEY (`id_task`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- L'exportation de données n'était pas sélectionnée.

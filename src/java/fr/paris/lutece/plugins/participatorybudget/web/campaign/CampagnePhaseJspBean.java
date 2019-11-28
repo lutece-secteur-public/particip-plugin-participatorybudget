@@ -72,9 +72,9 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     private static final String PARAMETER_ID_CAMPAGNEPHASE = "id";
 
     // Properties for page titles
-    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNEPHASES = "campagnebp.manage_campagnephases.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNEPHASE = "campagnebp.modify_campagnephase.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAGNEPHASE = "campagnebp.create_campagnephase.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNEPHASES = "participatorybudget.manage_campagnephases.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNEPHASE = "participatorybudget.modify_campagnephase.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAGNEPHASE = "participatorybudget.create_campagnephase.pageTitle";
 
     // Markers
     private static final String MARK_CAMPAGNEPHASE_LIST = "campagnephase_list";
@@ -83,10 +83,10 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     private static final String JSP_MANAGE_CAMPAGNEPHASES = "jsp/admin/plugins/participatorybudget/campaign/ManageCampagnePhases.jsp";
 
     // Properties
-    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNEPHASE = "campagnebp.message.confirmRemoveCampagnePhase";
-    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNEPHASE_PER_PAGE = "campagnebp.listCampagnePhases.itemsPerPage";
+    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNEPHASE = "participatorybudget.message.confirmRemoveCampagnePhase";
+    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNEPHASE_PER_PAGE = "participatorybudget.listCampagnePhases.itemsPerPage";
  
-    private static final String VALIDATION_ATTRIBUTES_PREFIX = "campagnebp.model.entity.campagnephase.attribute.";
+    private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagnephase.attribute.";
 
     // Views
     private static final String VIEW_MANAGE_CAMPAGNEPHASES = "manageCampagnePhases";
@@ -100,9 +100,9 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     private static final String ACTION_CONFIRM_REMOVE_CAMPAGNEPHASE = "confirmRemoveCampagnePhase";
 
     // Infos
-    private static final String INFO_CAMPAGNEPHASE_CREATED = "campagnebp.info.campagnephase.created";
-    private static final String INFO_CAMPAGNEPHASE_UPDATED = "campagnebp.info.campagnephase.updated";
-    private static final String INFO_CAMPAGNEPHASE_REMOVED = "campagnebp.info.campagnephase.removed";
+    private static final String INFO_CAMPAGNEPHASE_CREATED = "participatorybudget.info.campagnephase.created";
+    private static final String INFO_CAMPAGNEPHASE_UPDATED = "participatorybudget.info.campagnephase.updated";
+    private static final String INFO_CAMPAGNEPHASE_REMOVED = "participatorybudget.info.campagnephase.removed";
     
     // Session variable to store working values
     private CampagnePhase _campagnephase;

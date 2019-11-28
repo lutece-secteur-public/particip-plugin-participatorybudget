@@ -51,7 +51,7 @@ public abstract class ManageCampagnebpJspBean extends MVCAdminJspBean
     // Right
     public static final String RIGHT_MANAGECAMPAGNEBP = "CAMPAGNEBP_MANAGEMENT";
     
-    private static final String PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE = "campagnebp.listItems.itemsPerPage";
+    private static final String PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE = "participatorybudget.listItems.itemsPerPage";
     private static final String PARAMETER_PAGE_INDEX = "page_index";
     private static final String MARK_PAGINATOR = "paginator";
     private static final String MARK_NB_ITEMS_PER_PAGE = "nb_items_per_page";

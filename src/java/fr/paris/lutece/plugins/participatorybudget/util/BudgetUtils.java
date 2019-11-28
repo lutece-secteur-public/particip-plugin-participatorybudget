@@ -11,7 +11,7 @@ import fr.paris.lutece.portal.service.security.LuteceUser;
 
 public class BudgetUtils {
 
-	private static final String PREF_KEY_ARRONDISSEMENT_VOTE = "budgetparticipatif.arrondissement";
+	private static final String PREF_KEY_ARRONDISSEMENT_VOTE = "participatorybudget.arrondissement";
 	
 	public  static final String ARRONDISSEMENT_USER = "arrondUser";
 

@@ -31,7 +31,7 @@ public class VotesSolrAddon implements ISolrSearchAppAddOn {
         for (SolrSearchResult solrSearchResult: listResults) {
             String solrDocPortletId = solrSearchResult.getDocPortletId();
             String parsedSolrDocPortletId[] = solrDocPortletId.split("&");
-            AppLogService.debug("budgetparticipatif, fetching " +  solrDocPortletId);
+            AppLogService.debug("participatorybudget, fetching " +  solrDocPortletId);
             if (parsedSolrDocPortletId.length == 2) {
                 try {
                     mapAdditionalInfos.put(solrSearchResult.getId(),
@@ -40,12 +40,12 @@ public class VotesSolrAddon implements ISolrSearchAppAddOn {
                                     parsedSolrDocPortletId[1],
                                     PortalMenuService.MODE_NORMAL));
                 } catch (UserNotSignedException e) {
-                    AppLogService.error("budgetparticipatif, SolrVoteAddon, got exception " +e, e);
+                    AppLogService.error("participatorybudget, SolrVoteAddon, got exception " +e, e);
                 } catch (SiteMessageException e) {
-                    AppLogService.error("budgetparticipatif, SolrVoteAddon, got exception " +e, e);
+                    AppLogService.error("participatorybudget, SolrVoteAddon, got exception " +e, e);
                 }
             } else {
-                AppLogService.error("budgetparticipatif, VotesSolrSaddon, Error parsing DocPortletId " + solrDocPortletId);
+                AppLogService.error("participatorybudget, VotesSolrSaddon, Error parsing DocPortletId " + solrDocPortletId);
             }
         }
         model.put(MARK_RESULTS_IDEES_MAP, mapAdditionalInfos);

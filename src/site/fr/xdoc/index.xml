@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
     <properties>
-        <title>Plugin budgetparticipatif</title>
+        <title>Plugin participatorybudget</title>
     </properties>
     <body>
-        <section name="Plugin budgetparticipatif">
+        <section name="Plugin participatorybudget">
             <!--
             <p>
-                <img src="images/budgetparticipatif.png" />
+                <img src="images/participatorybudget.png" />
             </p>
             -->
             <subsection name="Introduction">

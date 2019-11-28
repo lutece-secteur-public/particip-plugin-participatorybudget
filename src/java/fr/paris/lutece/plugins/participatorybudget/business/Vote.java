@@ -63,8 +63,8 @@ public class Vote
      */
      public enum Status {
     	
-    	STATUS_VALIDATED (1, 	"budgetparticipatif.message.labelStatusValidated"),
-    	STATUS_NOT_VALIDATED (0, 	"budgetparticipatif.message.labelStatusNotValidated" );
+    	STATUS_VALIDATED (1, 	"participatorybudget.message.labelStatusValidated"),
+    	STATUS_NOT_VALIDATED (0, 	"participatorybudget.message.labelStatusNotValidated" );
     	
     	private final int nValue;
         private final String strLibelle;

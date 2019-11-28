@@ -78,7 +78,7 @@ public class BizStatJspBean extends  MVCAdminJspBean
     private static final String TEMPLATE_MANAGE_BIZ_STAT = "admin/plugins/participatorybudget/bizstat/biz_stat.html";
     
     // PROPERTIES
-    private static final String PROPERTY_PAGE_TITLE_BIZ_STAT = "budgetparticipatif.bizStat.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_BIZ_STAT = "participatorybudget.bizStat.pageTitle";
     
     // PARAMETERS
 	private static final String PARAMETER_METHOD_NAME = "method_name";

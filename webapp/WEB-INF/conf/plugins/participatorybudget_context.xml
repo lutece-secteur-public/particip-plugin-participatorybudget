@@ -44,7 +44,7 @@
     <!-- Resource extender -->
     <bean id="participatorybudget.voteResourceExtender" class="fr.paris.lutece.plugins.participatorybudget.service.rating.VoteResourceExtender"
         p:key="vote"
-        p:i18nTitleKey="budgetparticipatif.extend.vote.extender.label" 
+        p:i18nTitleKey="participatorybudget.extend.vote.extender.label" 
         p:configRequired="false" 
         p:historyEnable="false"
         p:stateEnable="true"

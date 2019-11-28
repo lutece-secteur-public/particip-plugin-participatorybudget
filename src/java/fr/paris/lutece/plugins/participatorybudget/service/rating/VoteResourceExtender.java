@@ -51,11 +51,11 @@ import org.apache.commons.lang.StringUtils;
  */
 public class VoteResourceExtender extends AbstractResourceExtender
 {
-    private static final String DSKEY_USER_CAN_VOTE = "budgetparticipatif.site_property.extend.template.userCanVote.textblock";
-    private static final String DSKEY_USER_CAN_VOTE_DEFAULT = "budgetparticipatif.extend.template.userCanVote not defined in datastore";
-    private static final String DSKEY_USER_CANNOT_VOTE = "budgetparticipatif.site_property.extend.template.userCannotVote.textblock";
-    private static final String DSKEY_VOTE_CLOSED = "budgetparticipatif.site_property.extend.template.voteClosed.textblock";
-    private static final String DSKEY_USER_CANNOT_VOTE_DEFAULT = "budgetparticipatif.extend.template.userCannotVote not defined in datastore";
+    private static final String DSKEY_USER_CAN_VOTE = "participatorybudget.site_property.extend.template.userCanVote.textblock";
+    private static final String DSKEY_USER_CAN_VOTE_DEFAULT = "participatorybudget.extend.template.userCanVote not defined in datastore";
+    private static final String DSKEY_USER_CANNOT_VOTE = "participatorybudget.site_property.extend.template.userCannotVote.textblock";
+    private static final String DSKEY_VOTE_CLOSED = "participatorybudget.site_property.extend.template.voteClosed.textblock";
+    private static final String DSKEY_USER_CANNOT_VOTE_DEFAULT = "participatorybudget.extend.template.userCannotVote not defined in datastore";
     private static final String BOOKMARK_ID = "@id@";
     @Inject
 	private MyVoteService _myVoteService;
