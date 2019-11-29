@@ -26,8 +26,8 @@ public class BizStatService
 {
 	
     private static final String SOLR_QUERY_ALL             = "*:*";
-    private static final String SOLR_FACET_ALL_PROJECTS    = "type:\"Projet 2015\"";
-    private static final String SOLR_FACET_WINNER_PROJECTS = "statut_project_text:\"SUIVI\" AND type:\"Projet 2015\"";
+    private static final String SOLR_FACET_ALL_PROJECTS    = "type:\"PB Project\"";
+    private static final String SOLR_FACET_WINNER_PROJECTS = "statut_project_text:\"SUIVI\" AND type:\"PB Project\"";
 
     // *********************************************************************************************
     // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
@@ -69,7 +69,7 @@ public class BizStatService
 		// Getting only once subscriptions
 		
 		SubscriptionFilter filterSubUpdate = new SubscriptionFilter();
-		filterSubUpdate.setSubscriptionProvider( "ideation.subscriptionProviderName" );
+		filterSubUpdate.setSubscriptionProvider( "participatoryideation.subscriptionProviderName" );
 		filterSubUpdate.setSubscriptionKey     ( "updateOnRealization"               );
 		List<Subscription> listSubUpdate = SubscriptionService.getInstance().findByFilter( filterSubUpdate );
 		

@@ -56,7 +56,6 @@
     <bean id="participatorybudget.BudgetSolrAddon" class="fr.paris.lutece.plugins.participatorybudget.service.BudgetSolrAddon" />
     <bean id="participatorybudget.BudgetSolrListAddon" class="fr.paris.lutece.plugins.participatorybudget.service.BudgetSolrListAddon" />
     <bean id="participatorybudget.ProjectLaureatAddOn" class="fr.paris.lutece.plugins.participatorybudget.service.ProjectLaureatAddOn" />
-    <bean id="participatorybudget.ProjectOPSolrAddon" class="fr.paris.lutece.plugins.participatorybudget.service.ProjectOPSolrAddon" />
     
 
 	<bean id="participatorybudget.VotesSolrAddon" class="fr.paris.lutece.plugins.participatorybudget.service.VotesSolrAddon" />

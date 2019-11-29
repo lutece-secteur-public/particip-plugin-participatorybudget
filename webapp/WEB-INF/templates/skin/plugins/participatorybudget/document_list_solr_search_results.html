@@ -67,7 +67,7 @@
 
 				<div class="col-xs-12 col-sm-6 col-md-4 psoum-panel <#if abandonne>psoum-abandonne</#if>">
 					
-					<a id="title-${id_document}" href="${result.url}" alt="${result.title}" title="${result.title}" onclick="_paq.push(['trackEvent', 'PROD - Pgagn List', 'Click vignette', 'Voir fiche']);">
+					<a id="title-${id_document}" href="${result.url}" alt="${result.title}" title="${result.title}">
 					
 						<#-- Image -->
 						<#assign img_url = "images/local/skin/i_${theme_class}_1x2.png">
@@ -163,12 +163,6 @@
 			
 							<#-- Pastilles et coût -->
 							<div class="psoum-card-footer">
-								<#if result.dynamicFields.pop_district_text != "">
-									<img src="images/local/skin/quartier-populaire.png" class="img-qp" alt="Projet en quartier populaire" title="Projet en quartier populaire">
-								</#if>
-								<#--
-								<img src="images/local/skin/ratp_color.png" class="img-ratp" alt="Projet RATP" title="Projet RATP"/>
-								-->
 								<div class="budget pull-right">
 									<img src="images/local/skin/money-${theme_class}.png" width="25px" height="25px" alt="" title="">
 									<#if result.dynamicFields??>

@@ -136,19 +136,19 @@ ${encoded_facets_queries}
 							<label class="select" for="arrondissement">
 								<select name="fq" id="arrondissement" onChange="searchArrond()" class="form-control">
 									<#if arr=="">
-										<option value="type:Projet 2015" selected="selected" >Rechercher par localisation </option>
+										<option value="type:PB Project" selected="selected" >Rechercher par localisation </option>
 										<option value="localisation_text:Tout Paris">Projets Tout Paris</option>
 										<option value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>
 									<#elseif arr=="Tout Paris">
-										<option value="type:Projet 2015">Rechercher par localisation </option>
+										<option value="type:PB Project">Rechercher par localisation </option>
 										<option value="localisation_text:Tout Paris" selected="selected" >Projets Tout Paris</option>
 										<option value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>
 									<#elseif arr=="all_arr">
-										<option value="type:Projet 2015">Rechercher par localisation </option>
+										<option value="type:PB Project">Rechercher par localisation </option>
 										<option value="localisation_text:Tout Paris">Projets Tout Paris</option>
 										<option value="-localisation_text:Tout Paris" selected="selected">Projets Tous Arrondissements</option>
 									<#else>
-										<option value="type:Projet 2015">Rechercher par localisation </option>
+										<option value="type:PB Project">Rechercher par localisation </option>
 										<option value="localisation_text:Tout Paris">Projets Tout Paris</option>
 										<option value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>
 									</#if>
@@ -172,7 +172,7 @@ ${encoded_facets_queries}
 										<#list facets as facet>
 											<#if facet.values??>
 												<#if solr_fields[facet.name].label?? && solr_fields[facet.name].label= "Thematique">
-													<option value="type:Projet 2015" <#if facet_theme='tout_theme'>selected="selected"</#if> >Rechercher par th&egrave;me</option>
+													<option value="type:PB Project" <#if facet_theme='tout_theme'>selected="selected"</#if> >Rechercher par th&egrave;me</option>
 													<#list facet.values?sort as count>
 														<option value="thematique_text:${count.name}" <#if facet_theme=count.name>selected="selected"</#if> >${count.name}</option>
 													</#list>
@@ -192,7 +192,7 @@ ${encoded_facets_queries}
 										<#list facets as facet>
 											<#if facet.values??>
 												<#if solr_fields[facet.name].label?? && solr_fields[facet.name].label= "Campagne">
-													<option value="type:Projet 2015" <#if facet_campagne='toute_campagne'>selected="selected"</#if> >Rechercher par ann&eacute;e</option>
+													<option value="type:PB Project" <#if facet_campagne='toute_campagne'>selected="selected"</#if> >Rechercher par ann&eacute;e</option>
 													<#list facet.values?sort as count>
 														<#if count.name?starts_with("Budget")>
 															<option value="campagne_text:${count.name}" <#if facet_campagne=count.name>selected="selected"</#if> >${count.name}</option>
@@ -218,7 +218,7 @@ ${encoded_facets_queries}
 							
 							<label class="select" for="phase">
 								<select name="fq" id="phase" onChange="searchArrond()" class="form-control">
-									<option value="type:Projet 2015">✅ Rechercher par phase</option>
+									<option value="type:PB Project">✅ Rechercher par phase</option>
 									<option disabled="disabled">----</option>
 									<option value="${fq_ph1}" <#if step=fq_ph1>selected="selected"</#if>>En cours de démarrage</option>
 									<option value="${fq_ph2}" <#if step=fq_ph2>selected="selected"</#if>>Etudes et conception</option>

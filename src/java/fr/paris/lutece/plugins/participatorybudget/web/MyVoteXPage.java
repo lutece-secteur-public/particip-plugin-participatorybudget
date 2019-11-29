@@ -637,7 +637,7 @@ public class MyVoteXPage extends MVCApplication {
 			         subscription.setIdSubscribedResource( "*" );
 			         subscription.setUserId( strLuteceUserName );
 			         subscription.setSubscriptionKey( SUBSCRIPTION_UPDATE_ON_REALIZATION );
-			         subscription.setSubscriptionProvider( "ideation.subscriptionProviderName" );
+			         subscription.setSubscriptionProvider( "participatoryideation.subscriptionProviderName" );
 			         SubscriptionService.getInstance(  ).createSubscription( subscription );
 			    }
 			}
@@ -652,7 +652,7 @@ public class MyVoteXPage extends MVCApplication {
 	
 	private boolean hasUserSubscribedToResource( String strLuteceUserName, String strSubscriptionKey )
 	{
-	    SubscriptionFilter filter = new SubscriptionFilter( strLuteceUserName, "ideation.subscriptionProviderName", strSubscriptionKey, "*" );
+	    SubscriptionFilter filter = new SubscriptionFilter( strLuteceUserName, "participatoryideation.subscriptionProviderName", strSubscriptionKey, "*" );
 	    List<Subscription> listSubscription = SubscriptionService.getInstance(  ).findByFilter( filter );	
 	    if ( ( listSubscription != null ) && ( listSubscription.size(  ) > 0 ) )
 	    {
