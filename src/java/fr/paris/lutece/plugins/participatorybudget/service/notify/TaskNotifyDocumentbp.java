@@ -180,7 +180,7 @@ public class TaskNotifyDocumentbp extends SimpleTask
 	    Set<String> activeSubscriberGuids = new HashSet<String>();
 	    
 		SubscriptionFilter filterSubUpdate = new SubscriptionFilter();
-		filterSubUpdate.setSubscriptionProvider( "ideation.subscriptionProviderName" );
+		filterSubUpdate.setSubscriptionProvider( "participatoryideation.subscriptionProviderName" );
 		filterSubUpdate.setSubscriptionKey     ( "updateOnRealization" );
 		List<Subscription> listSubUpdate = SubscriptionService.getInstance().findByFilter( filterSubUpdate );
 		

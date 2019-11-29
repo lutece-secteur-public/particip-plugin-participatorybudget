@@ -83,7 +83,7 @@ public class DocumentPageProjectOPService implements IResourceDisplayManager
     public void buildPageAddOn( Map<String, Object> model, String strResourceType, int nIdResource,
         String strPortletId, HttpServletRequest request )
     {
-    	// Getting "Projet 2015 OP" child documents from root "Projet 2015" document
+    	// Getting "PB Project OP" child documents from root "PB Project" document
     	List<HashMap<String, Object>> points = null;
 
     	// Only for voted project !

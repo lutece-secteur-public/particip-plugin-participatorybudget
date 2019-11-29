@@ -98,14 +98,6 @@ ${encoded_facets_queries}
 
 			<h1>Projets soumis au vote</h1>
 			
-			<#if campagneService.isAfterBeginning("PRE_VOTE") >
-				<div id="search-form-links">
-					<a href="${fullUrl}?page_id=7">Consulter les catalogues PDF</a>
-					<div class="hidden-xs">&nbsp;</div> 
-					<a href="https://capgeo.maps.arcgis.com/apps/Styler/index.html?appid=70355711696d4e5fabcfeb5558962c26" target="_blank">Consulter la carte des urnes</a>
-				</div>
-			</#if>
-			
 			<#-- Barre de recherche, avec fond bleu moyen -->
 			<div id="search-prj-fields" class="container form">
 				<div class="row">
@@ -139,19 +131,19 @@ ${encoded_facets_queries}
 							<label class="select" for="arrondissement">
 								<select name="fq" id="arrondissement" onChange="searchArrond()" class="form-control">
 									<#if arr=="">
-										<option value="type:Projet 2015" selected="selected" >Rechercher par localisation </option>
+										<option value="type:PB Project" selected="selected" >Rechercher par localisation </option>
 										<option value="localisation_text:Tout Paris">Projets Tout Paris</option>
 										<option value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>
 									<#elseif arr=="Tout Paris">
-										<option value="type:Projet 2015">Rechercher par localisation </option>
+										<option value="type:PB Project">Rechercher par localisation </option>
 										<option value="localisation_text:Tout Paris" selected="selected" >Projets Tout Paris</option>
 										<option value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>
 									<#elseif arr=="all_arr">
-										<option value="type:Projet 2015">Rechercher par localisation </option>
+										<option value="type:PB Project">Rechercher par localisation </option>
 										<option value="localisation_text:Tout Paris">Projets Tout Paris</option>
 										<option value="-localisation_text:Tout Paris" selected="selected">Projets Tous Arrondissements</option>
 									<#else>
-										<option value="type:Projet 2015">Rechercher par localisation </option>
+										<option value="type:PB Project">Rechercher par localisation </option>
 										<option value="localisation_text:Tout Paris">Projets Tout Paris</option>
 										<option value="-localisation_text:Tout Paris">Projets Tous Arrondissements</option>
 									</#if>
@@ -175,7 +167,7 @@ ${encoded_facets_queries}
 										<#list facets as facet>
 											<#if facet.values??>
 												<#if solr_fields[facet.name].label?? && solr_fields[facet.name].label= "Thematique">
-													<option value="type:Projet 2015" <#if facet_theme='tout_theme'>selected="selected"</#if> >Rechercher par th&egrave;me</option>
+													<option value="type:PB Project" <#if facet_theme='tout_theme'>selected="selected"</#if> >Rechercher par th&egrave;me</option>
 													<#list facet.values?sort as count>
 														<option value="thematique_text:${count.name}" <#if facet_theme=count.name>selected="selected"</#if> >${count.name}</option>
 													</#list>

@@ -19,7 +19,7 @@
 
 	<div class="pgagn-card bordered-4px-theme-${theme_class}">
 
-		<a href="${result.url}" alt="${result.title}" title="${result.title}" onclick="_paq.push(['trackEvent', 'PROD - Pgagn List', 'Click vignette', 'Voir fiche']);">
+		<a href="${result.url}" alt="${result.title}" title="${result.title}">
 							
 			<#-- Image et éventuel résultat du vote -->
 			<#assign img_url = "images/local/skin/i_${theme_class}_1x2.png">
@@ -70,14 +70,6 @@
 
 		<#-- Pastilles et coût -->
 		<div class="pgagn-card-footer">
-			<#if result.dynamicFields.pop_district_text?has_content>
-				<img src="images/local/skin/quartier-populaire.png" class="img-qp" alt="Projet en quartier populaire" title="Projet en quartier populaire" onclick="_paq.push(['trackEvent', 'PROD - Pgagn List', 'Click vignette', 'Voir popover Q-Pop', 0]);">
-			</#if>
-			
-			<#if result.dynamicFields.direction_text?? && result.dynamicFields.direction_text = "RATP">
-				<img src="images/local/skin/ratp_color.png" class="img-ratp" alt="Projet RATP" title="Projet RATP" onclick="_paq.push(['trackEvent', 'PROD - Pgagn List', 'Click vignette', 'Voir popover RATP', 0]);">
-			</#if>
-			
 			<div class="budget pull-right">
 				<img src="images/local/skin/money-${theme_class}.png" width="25px" height="25px" alt="" title="">
 				<#if result.dynamicFields??>

@@ -181,7 +181,7 @@
 				<#if campagneService.isDuring("VOTE") && !voteValidated >
 					<div class="valid">
 						<p>N'oubliez pas de valider votre vote !</p>
-						<button class="btn btn-18rem btn-black-on-white" onclick="_paq.push(['trackEvent', 'PROD - VOTE', 'Barre VOTE', 'Affichage confirmation vote', 0]); valideVotes('1e arrondissement', 4, 4, false);">je valide mon vote</button>
+						<button class="btn btn-18rem btn-black-on-white" onclick="valideVotes('1e arrondissement', 4, 4, false);">je valide mon vote</button>
 					</div>
 				<#else>
 				
