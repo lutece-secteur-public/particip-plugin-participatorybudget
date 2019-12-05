@@ -1,9 +1,13 @@
 package fr.paris.lutece.plugins.participatorybudget.service.campaign;
 
 
+import java.util.Locale;
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 
 import fr.paris.lutece.portal.service.template.AppTemplateService;
+import fr.paris.lutece.portal.web.l10n.LocaleService;
 import fr.paris.lutece.util.html.HtmlTemplate;
 
 
@@ -29,7 +33,9 @@ public class CampagneIncludeService {
      */
     public static String getMyInfos(  HttpServletRequest request )
     {
-        HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_MES_INFOS_INCLUDE );        
+    	Locale locale = Optional.ofNullable( request ).map( HttpServletRequest::getLocale ).orElse( LocaleService.getDefault( ) );
+    	
+    	HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_MES_INFOS_INCLUDE, locale );        
         return template.getHtml(  );
     } 
     
