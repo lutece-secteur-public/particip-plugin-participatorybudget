@@ -15,11 +15,28 @@
     
       <!-- AsynchronousUpload -->
 	<bean id="participatorybudget.campagnebpUploadHandler" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneUploadHandler" />
+    
+
     <!-- CAMPAGNE_SERVICE BEAN -->
     <bean id="participatorybudget.campagneService" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService"/>
 
-
-
+    <!-- CAMPAIGN WS REST -->
+    <bean id="participatorybudget.CampaignRest" class="fr.paris.lutece.plugins.participatorybudget.web.rs.CampaignRest" />
+    <bean id='participatorybudget.hashService' class='fr.paris.lutece.util.signrequest.security.Sha1HashService' />
+    <bean id='participatorybudget.requestAuthentication' class='fr.paris.lutece.util.signrequest.HeaderHashAuthenticator' >
+          <property name='hashService' ref='participatorybudget.hashService' />
+          <property name='signatureElements' > 
+               <list>
+                    <!-- <value>campaign_data</value>  -->
+               </list>
+          </property>
+          <property name='privateKey'>
+               <value>change me</value>
+          </property>
+          <property name='validityTimePeriod'>
+               <value>0</value>
+          </property>
+     </bean>
 
 
     <!-- DAO -->
@@ -38,9 +55,6 @@
     <bean id="participatorybudget.voteParArrandService"                  class="fr.paris.lutece.plugins.participatorybudget.service.VoteParArrandissementService" />
     <bean id="participatorybudget.projectService"                        class="fr.paris.lutece.plugins.participatorybudget.service.ProjectService" />
     <bean id="participatorybudget.bizStatService"                        class="fr.paris.lutece.plugins.participatorybudget.service.bizstat.BizStatService" />
-	
-
-                
     <!-- Resource extender -->
     <bean id="participatorybudget.voteResourceExtender" class="fr.paris.lutece.plugins.participatorybudget.service.rating.VoteResourceExtender"
         p:key="vote"

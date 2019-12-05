@@ -23,8 +23,7 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_bizstat_file` (
   `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `error` varchar(4000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `file_value` longblob
-  ,
+  `file_value` longblob,
   PRIMARY KEY (`id_bizstat_file`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -210,6 +209,9 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_votes_per_location` (
   `nb_votes` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- L'exportation de données n'était pas sélectionnée.
+
 
 -- Export de la structure de table pb. task_notify_documentbp_cf
 DROP TABLE IF EXISTS `task_notify_documentbp_cf`;
