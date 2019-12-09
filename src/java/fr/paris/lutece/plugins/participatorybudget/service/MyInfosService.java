@@ -327,6 +327,7 @@ public final class MyInfosService {
 	 * 
 	 * @return The list
 	 */
+	// TODO Area concept should be generalized and configurable in back-office
 	public static ReferenceList getArrondissements() {
 		if (_listArrondissements == null) {
 			synchronized (MyInfosService.class) {
@@ -342,6 +343,10 @@ public final class MyInfosService {
 								.getLocalizedString(PROPERTY_ARRONDISSEMENT
 										+ strCode, Locale.FRENCH));
 					}
+
+					_listArrondissements.addItem("area_1", "Area 1");
+					_listArrondissements.addItem("area_2", "Area 2");
+					_listArrondissements.addItem("area_3", "Area 3");
 				}
 			}
 		}

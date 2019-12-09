@@ -111,7 +111,7 @@
 		<img src="images/local/skin/i_vote_arr_green.png" class="logo" style="margin-right:5px; float:left;">
     	<p>Vous pouvez voter pour 8 projets : 4 projets dans tout Paris et 4 projets dans votre arrondissement de choix (votre lieu de r&eacute;sidence, de travail, de c&oelig;ur, etc.)</p>
       <label  for="arrondissement" class="sr-only" >#i18n{participatorybudget.mes_infos.arrondissement} *</label>
-      <@comboWithParams name="arrondissement" items=arrondissements_list default_value="${arrondissement!''}" additionalParameters="class='form-control'" />
+      <@comboWithParams name="arrondissement" items=area_list default_value="${arrondissement!''}" additionalParameters="class='form-control'" />
     </div>
   </div>
   <br>

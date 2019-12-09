@@ -127,7 +127,7 @@ public class MyInfosXPage extends MVCApplication {
 	private static final String MARK_BIRTHDATE = "birthdate";
 	private static final String MARK_ARRONDISSEMENT= "arrondissement";
 	private static final String MARK_ILIVEINPARIS = "iliveinparis";
-	private static final String MARK_ARRONDISSEMENTS_LIST = "arrondissements_list";
+	private static final String MARK_AREA_LIST = "area_list";
 	private static final String MARK_POSTAL_CODE_LIST = "postal_code_list";
 	private static final String MARK_COMPLETE_INFO = "completeInfos";
 	private static final String MARK_GEO_JSON = "geoJson";
@@ -288,7 +288,7 @@ public class MyInfosXPage extends MVCApplication {
 				SecurityTokenService.MARK_TOKEN,
 				SecurityTokenService.getInstance().getToken(request,
 						MyInfosXPage.TOKEN_DO_CREATE_MY_INFOS));
-		model.put(MARK_ARRONDISSEMENTS_LIST,
+		model.put(MARK_AREA_LIST,
 				MyInfosService.getArrondissements());
 		model.put(MARK_POSTAL_CODE_LIST,
 				MyInfosService.getPostalCodes());
@@ -482,7 +482,7 @@ public class MyInfosXPage extends MVCApplication {
 
 				model.put(MARK_ACCOUNT_VERIFIED,
 						MyInfosService.isAccountVerified(user));
-				model.put(MARK_ARRONDISSEMENTS_LIST,
+				model.put(MARK_AREA_LIST,
 						MyInfosService.getArrondissements());
 				model.put(MARK_POSTAL_CODE_LIST,
 						MyInfosService.getPostalCodes());
