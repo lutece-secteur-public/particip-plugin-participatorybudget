@@ -332,21 +332,22 @@ public final class MyInfosService {
 		if (_listArrondissements == null) {
 			synchronized (MyInfosService.class) {
 				if (_listArrondissements == null) {
-					_listArrondissements = new ReferenceList();
+					_listArrondissements = new ReferenceList();	
 					_listArrondissements.addItem(UNDEFINED_POSTALCODE_KEY, I18nService
 							.getLocalizedString(PROPERTY_SELECT_ARRONDISSEMENT,
 									Locale.FRENCH));
 
-					for (int i = 0; i < 20; i++) {
-						String strCode = "" + (75001 + i);
-						_listArrondissements.addItem(strCode, I18nService
-								.getLocalizedString(PROPERTY_ARRONDISSEMENT
-										+ strCode, Locale.FRENCH));
-					}
-
 					_listArrondissements.addItem("area_1", "Area 1");
 					_listArrondissements.addItem("area_2", "Area 2");
 					_listArrondissements.addItem("area_3", "Area 3");
+					_listArrondissements.addItem("whole_city", "Whole city");
+
+//					for (int i = 0; i < 20; i++) {
+//						String strCode = "" + (75001 + i);
+//						_listArrondissements.addItem(strCode, I18nService
+//								.getLocalizedString(PROPERTY_ARRONDISSEMENT
+//										+ strCode, Locale.FRENCH));
+//					}
 				}
 			}
 		}
@@ -566,7 +567,8 @@ public final class MyInfosService {
 	    
 	    if ( strAddress == null )
 	    {
-	        myInfos.setIsValid( false );
+	    	// TODO [JPO, 2019-10-12] Desactivated code to make OpenPB working without SuggestPOI
+//	        myInfos.setIsValid( false );
 	        
 	        String strCity = user.getUserInfo( LuteceUser.HOME_INFO_POSTAL_CITY );
 	        
@@ -593,7 +595,8 @@ public final class MyInfosService {
         
         if ( StringUtils.isBlank( strPostalCode ) )
         {
-            myInfos.setIsValid( false );
+	    	// TODO [JPO, 2019-10-12] Desactivated code to make OpenPB working without SuggestPOI
+//            myInfos.setIsValid( false );
         }
         
         myInfos.setPostalCode( strPostalCode );
@@ -632,7 +635,8 @@ public final class MyInfosService {
         
         if ( StringUtils.isBlank( strGeoJson ) )
         {
-            myInfos.setIsValid( false );
+	    	// TODO [JPO, 2019-10-12] Desactivated code to make OpenPB working without SuggestPOI
+//            myInfos.setIsValid( false );
         }
         
         myInfos.setGeojson(strGeoJson);

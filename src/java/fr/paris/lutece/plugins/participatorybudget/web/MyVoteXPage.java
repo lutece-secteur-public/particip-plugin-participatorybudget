@@ -149,7 +149,7 @@ public class MyVoteXPage extends MVCApplication {
 
 	private static final String MARK_USER_VOTES = "userVotes";
 	private static final String MARK_USER_TYPE_VOTE = "type_vote";
-	private static final String MARK_USER_VOTES_PARIS = "TOUT PARIS";
+	private static final String MARK_USER_VOTES_PARIS = "WHOLE CITY";
 	private static final String MARK_USER_VOTES_OTHER = "Paris ";
 	private static final String MARK_USER_ARRONDISSEMENT = "user_arrondissement";
 	private static final String MARK_ARRONDISSEMENT = "arrondissement";
@@ -206,7 +206,7 @@ public class MyVoteXPage extends MVCApplication {
 
 	// Constant
 	private static final String LOCALISATION_LABEL = "localisation";
-	private static final String LOCALISATION_VALUE = "Tout Paris";
+	private static final String LOCALISATION_VALUE = "whole_city";
 	private static final String SEPARATOR = "||";
 
 	private MyVoteService _myVoteService = SpringContextService.getBean(MyVoteService.BEAN_NAME);
@@ -257,7 +257,7 @@ public class MyVoteXPage extends MVCApplication {
 		if (_nbrVoteService.selectVotePerLocation(myInfo.getArrondissement()) != null) {
 			maxDcmtArrondissement = _nbrVoteService.selectVotePerLocation(myInfo.getArrondissement()).getNbVotes();
 		}
-		int maxDcmtToutParis = _nbrVoteService.selectVotePerLocation("Tout-Paris").getNbVotes();
+		int maxDcmtToutParis = _nbrVoteService.selectVotePerLocation("whole_city").getNbVotes();
 
 		Map<String, Object> model = getModel();
 
@@ -386,7 +386,7 @@ public class MyVoteXPage extends MVCApplication {
 		{
 			maxDcmtArrondissement = voteLoc.getNbVotes( );
 		}
-		voteLoc = _nbrVoteService.selectVotePerLocation("Tout-Paris");
+		voteLoc = _nbrVoteService.selectVotePerLocation("whole_city");
 		if( voteLoc!=null )
 		{
 			maxDcmtToutParis = voteLoc.getNbVotes( );

@@ -116,7 +116,7 @@ document.getElementsByTagName("head")[0].appendChild(loadresource);
     };
 
     var arr = "${(arr?js_string)!""}";
-    if ((arr == "") || (arr.indexOf("Tout Paris") !== -1) || (arr == "all_arr")) {
+    if ((arr == "") || (arr.indexOf("whole_city") !== -1) || (arr == "all_arr")) {
         map.setView([48.85632, 2.33272], 12);
     } else {
 	var arrondissemnt= arr.split("e arrond");
@@ -277,7 +277,7 @@ document.getElementsByTagName("head")[0].appendChild(loadresource);
         layergroup_arrondissements.addLayer(circleLabel);
 
         var strProjet = "projet" + ((arrondissements[i]["geoloc_cnt"] + arrondissements[i]["cnt"]) != 1 ? "s" : "");
-        var strArdtTitle = (i==0) ? "Tout Paris" : (i+ "e arrondissement");
+        var strArdtTitle = (i==0) ? "whole_city" : (i+ "e arrondissement");
         var strArdtDescription = (i==0) ? "pour Paris" : "dans cet arrondissement";
         var strPopup = "<p><strong>" + strArdtTitle + " :</strong></p><p>Il y a " +(arrondissements[i]["cnt"] + arrondissements[i]["geoloc_cnt"]) + " " + strProjet + " " + strArdtDescription + ", dont " + arrondissements[i]["cnt"] + " sans adresse précise.</p><p><button type=\"button\" class=\"btn btn-default\" onclick=\"onClickArdtPopup("+i+");\">Voir ces projets</button></p>";
         circleLabel.bindPopup(strPopup);

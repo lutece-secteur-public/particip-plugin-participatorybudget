@@ -11,7 +11,7 @@
 <#assign facet_campagne = "toute_campagne">
 <#setting url_escaping_charset=encoding>
 <#-- Encode facet queries -->
-<#assign allParisCity = "-localisation_text:Tout Paris">
+<#assign allParisCity = "-localisation_text:whole_city">
 <#assign allArrParisCity = "localisation_text:">
 <#macro EncodeFQ list_fq  optionalParam1="" optionalParam2="">
   <#assign bCheck = false>
@@ -102,10 +102,10 @@ ${encoded_facets_queries}
 				<#list facets_list as facet>
 					<#if facet?starts_with("localisation_text:")>
 						<#assign arr = facet?split(":")?last>
-					<#elseif facet?starts_with("-localisation_text:Tout Paris")>
+					<#elseif facet?starts_with("-localisation_text:whole_city")>
 						<#assign arr = "all_arr">
-					<#elseif facet?starts_with("localisation_text:Tout Paris")>
-						<#assign arr = "Tout_Paris">
+					<#elseif facet?starts_with("localisation_text:whole_city")>
+						<#assign arr = "whole_city">
 					<#elseif facet?starts_with("thematique_text:")>
 						<#assign facet_theme = facet?split(":")?last>
 					<#elseif facet?starts_with("campagne_text:")>
@@ -137,9 +137,9 @@ ${encoded_facets_queries}
 						<label class="select" for="arrondissement">
 							<select name="fq" id="arrondissement" class="form-control">
 								<#if arr=="Tout arrd">
-									<option id="toutArrdt" value='-localisation_text:Tout Paris' selected="selected">Tous les arrondissements</option>
+									<option id="toutArrdt" value='-localisation_text:whole_city' selected="selected">Tous les arrondissements</option>
 								<#else>
-									<option id="toutArrdt" value='-localisation_text:Tout Paris'>Tous les arrondissements</option>
+									<option id="toutArrdt" value='-localisation_text:whole_city'>Tous les arrondissements</option>
 								</#if>
 								<#if arr=="1e arrondissement">
 									<option id="1erArrond" value="localisation_text:1e arrondissement" selected="selected">1er arrondissement</option>
@@ -161,7 +161,7 @@ ${encoded_facets_queries}
 					<#assign theme_class = "autre">
 					<div class="row">
 						<#list results_list as result>
-							<#if result.dynamicFields?? && result.dynamicFields.localisation_text?? && result.dynamicFields.localisation_text != "Tout Paris" >
+							<#if result.dynamicFields?? && result.dynamicFields.localisation_text?? && result.dynamicFields.localisation_text != "whole_city" >
 								<#include "document_laureats_sous_list_solr_search_results.html">
 							</#if>
 						</#list>

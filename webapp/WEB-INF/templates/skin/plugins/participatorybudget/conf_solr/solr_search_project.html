@@ -85,9 +85,9 @@ PROJETS :
 			<div class="form-group">
 				<SELECT name="arrondissement" id="arrondissement" onChange="searchArrond()" class="form-control">
 					<#if arr=="">
-						<OPTION value="" selected="selected" >Tout Paris</option>
+						<OPTION value="" selected="selected" >Whole city</option>
 					<#else>
-						<OPTION value="">Tout Paris</option>
+						<OPTION value="">Whole city</option>
 					</#if>
 					<#assign nbArr=20>
 					<#list 1..nbArr as i>
@@ -278,7 +278,7 @@ PROJETS :
 						<span class="project_location">
 						<img src="images/local/skin/i_localisation.png" alt="Localisation" title="Localisation">
 						<#if result.dynamicFields?? && result.dynamicFields.localisation_text??>
-							<#if result.dynamicFields.localisation_text = "Tout Paris">
+							<#if result.dynamicFields.localisation_text = "whole_city">
 								${result.dynamicFields.localisation_text}
 							<#elseif result.dynamicFields.localisation_text?length &gt; 3>${result.dynamicFields.localisation_text?substring(0,3)}<#else>${result.dynamicFields.localisation_text}</#if>
 						</#if>

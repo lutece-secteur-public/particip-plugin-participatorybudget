@@ -43,5 +43,5 @@ public final class Constants
     public static final String PROJECT_TITLE = "title";
     public static final String PROJECT_LOCALISATION = "localisation";
     public static final String PROJECT_THEMATIQUE = "thematique";
-    public static final String LOCALISATION_PARIS = "Tout Paris";
+    public static final String LOCALISATION_PARIS = "whole_city";
 }

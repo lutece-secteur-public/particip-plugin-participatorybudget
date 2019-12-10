@@ -38,7 +38,7 @@ public class BudgetIncludeService {
      private static final String MARK_INFOS_USER = "infos_user";
      private static final String MARK_MAX_VOTES_ARROND = "maxVotesArrond";
      private static final String MARK_MAX_VOTES_TOUT_PARIS = "maxVotesToutParis";
-     private static final String MARK_TOUT_PARIS = "Tout-Paris";
+     private static final String MARK_TOUT_PARIS = "whole_city";
      
      private static final String CLASS_CSS_OUT = "logged-out";
      private static final String CLASS_CSS_IN = "logged-in";

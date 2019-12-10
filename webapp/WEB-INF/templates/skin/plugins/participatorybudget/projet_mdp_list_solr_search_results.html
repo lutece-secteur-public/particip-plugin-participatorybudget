@@ -130,7 +130,7 @@
 											<div class="psoum-card-vote">
 													@Extender[${id_document},document,vote,{show:"all"}]@
 											</div>
-										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.localisation_text || result.dynamicFields.localisation_text= "Tout Paris")>
+										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.localisation_text || result.dynamicFields.localisation_text= "whole_city")>
 											<div class="psoum-card-vote">
 													@Extender[${id_document},document,vote,{show:"all"}]@
 											</div>

@@ -63,7 +63,7 @@ public class MyInfosForm implements Serializable, Cloneable
     //@NotEmpty( message = "participatorybudget.validation.lastname.notEmpty" )
     private String _strLastname;
     private String _strPostalCode;
-    @NotEmpty( message = "participatorybudget.validation.address.notEmpty" )
+//    @NotEmpty( message = "participatorybudget.validation.address.notEmpty" )
     private String _strAddress;
 	private Double _dLongitude;
 	private Double _dLatitude;
@@ -80,7 +80,7 @@ public class MyInfosForm implements Serializable, Cloneable
     private int _nAge;
     private String _strSendaccountvalidation;
     private boolean _bAccountVerified;
-    @NotEmpty( message = "participatorybudget.validation.geojson.notEmpty" )
+//    @NotEmpty( message = "participatorybudget.validation.geojson.notEmpty" )
     private String _strGeojson;
     
     

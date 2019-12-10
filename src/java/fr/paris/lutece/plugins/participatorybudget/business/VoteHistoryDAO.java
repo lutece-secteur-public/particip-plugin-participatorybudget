@@ -103,7 +103,7 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
         daoUtil.setString(6, vote.getBirthDate());
         daoUtil.setString(7, vote.getIpAddress());
         daoUtil.setString(8, vote.getTitle());
-        daoUtil.setInt(9, vote.getLocalisation());
+        daoUtil.setString(9, vote.getLocalisation());
         daoUtil.setString(10, vote.getThematique());
         daoUtil.setInt(11, vote.geStatus());
         daoUtil.setInt(12, vote.getId( ));
@@ -168,7 +168,7 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
             vote.setBirthDate( daoUtil.getString( 6 ) );
             vote.setIpAddress(daoUtil.getString( 7 ));
             vote.setTitle(daoUtil.getString( 8 ));
-            vote.setLocalisation(daoUtil.getInt( 9 ));
+            vote.setLocalisation(daoUtil.getString( 9 ));
             vote.setThematique(daoUtil.getString( 10 ));
             vote.setStatus(daoUtil.getInt( 11 ));
             vote.setId(daoUtil.getInt( 12 ));
@@ -206,7 +206,7 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
     		vote.setBirthDate( daoUtil.getString( 6 ) );
     		vote.setIpAddress(daoUtil.getString( 7 ));
     		vote.setTitle(daoUtil.getString( 8 ));
-    		vote.setLocalisation(daoUtil.getInt( 9 ));
+    		vote.setLocalisation(daoUtil.getString( 9 ));
     		vote.setThematique(daoUtil.getString( 10 ));
     		vote.setStatus(daoUtil.getInt( 11 ));
     		vote.setId(daoUtil.getInt( 12 ));
@@ -257,7 +257,7 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
 	            vote.setBirthDate( daoUtil.getString( 6 ) );
 	            vote.setIpAddress(daoUtil.getString( 7 ));
 	            vote.setTitle(daoUtil.getString( 8 ));
-	            vote.setLocalisation(daoUtil.getInt( 9 ));
+	            vote.setLocalisation(daoUtil.getString( 9 ));
 	            vote.setThematique(daoUtil.getString( 10 ));
 	            vote.setStatus(daoUtil.getInt( 11 ));
 	            vote.setStatusExportStats(daoUtil.getInt( 12 ));
@@ -339,7 +339,7 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
 	            vote.setBirthDate( daoUtil.getString( 6 ) );
 	            vote.setIpAddress(daoUtil.getString( 7 ));
 	            vote.setTitle(daoUtil.getString( 8 ));
-	            vote.setLocalisation(daoUtil.getInt( 9 ));
+	            vote.setLocalisation(daoUtil.getString( 9 ));
 	            vote.setThematique(daoUtil.getString( 10 ));
 	            vote.setStatus(daoUtil.getInt( 11 ));
 	            vote.setStatusExportStats(daoUtil.getInt( 12 ));

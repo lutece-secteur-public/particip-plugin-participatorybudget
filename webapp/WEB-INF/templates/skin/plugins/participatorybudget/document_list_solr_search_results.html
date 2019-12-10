@@ -97,7 +97,7 @@
 									${result.dynamicFields.localisation_text!''}
 									
 									<div class="psoum-card-loc-prec">
-										<#if result.dynamicFields?? && result.dynamicFields.localisation_precise_address_text?? && (result.dynamicFields.localisation_text != 'Tout Paris') >
+										<#if result.dynamicFields?? && result.dynamicFields.localisation_precise_address_text?? && (result.dynamicFields.localisation_text != 'whole_city') >
 											${result.dynamicFields.localisation_precise_address_text}
 										<#else>
 											&nbsp;

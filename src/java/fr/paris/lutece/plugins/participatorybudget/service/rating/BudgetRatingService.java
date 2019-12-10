@@ -131,7 +131,7 @@ public class BudgetRatingService extends RatingService
         {
         	strLocalisation = ( String ) request.getAttribute( Constants.PROJECT_LOCALISATION );
         }
-        vote.setLocalisation( getCodeLocalisation( strLocalisation ) );
+        vote.setLocalisation( strLocalisation );
 
         MyInfosForm myInfos = MyInfosService.loadUserInfos(user);
         String strBirthDate = null;
@@ -195,32 +195,6 @@ public class BudgetRatingService extends RatingService
     }
     
     /**
-     * Return postal code
-     * @param localisation
-     * @return
-     */
-    private int getCodeLocalisation(String localisation){
-    	
-    	if (localisation.equals(Constants.LOCALISATION_PARIS)){
-    		
-    		return 75000;
-    	}else{
-    		
-    			String codePostale= localisation.split("e")[0];
-    			if(codePostale.length()==1){
-    				
-    				codePostale= "7500"+codePostale;
-    		    
-    			}else{
-    				
-    				codePostale= "750"+codePostale;
-    		    }
-    		return Integer.parseInt(codePostale);
-    	}
-    }
-    
-    
-    /**
      * Save the vote
      * @param user The User
      * @param strProjectId  The project Id
@@ -254,7 +228,7 @@ public class BudgetRatingService extends RatingService
             {
             	strLocalisation = ( String ) request.getAttribute( Constants.PROJECT_LOCALISATION );
             }
-            vote.setLocalisation( getCodeLocalisation( strLocalisation ) );
+            vote.setLocalisation( strLocalisation );
             
             vote.setStatus(status);
             

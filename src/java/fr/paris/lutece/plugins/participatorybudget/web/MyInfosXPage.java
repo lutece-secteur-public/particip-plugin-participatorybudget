@@ -572,10 +572,11 @@ public class MyInfosXPage extends MVCApplication {
                     addError( MESSAGE_ERROR_NICKNAME_MISSING, getLocale( request ) );				    
 				}
 				
-				if (!bError && !MyInfosService.setAdressValid(form) ){
-					bError = true;
-					addError(MESSAGE_ERROR_ADRESS_GEOLOC_FORMAT, getLocale(request));
-				}
+		    	// TODO [JPO, 2019-10-12] Desactivated code to make OpenPB working without SuggestPOI
+//				if (!bError && !MyInfosService.setAdressValid(form) ){
+//					bError = true;
+//					addError(MESSAGE_ERROR_ADRESS_GEOLOC_FORMAT, getLocale(request));
+//				}
 				
 				if (!bError && (form.getNickname()!=null && (MyInfosService.loadUserNickname(user.getName())!=null && !form.getNickname().equals(MyInfosService.loadUserNickname(user.getName()))
 						||MyInfosService.loadUserNickname(user.getName())==null) && MyInfosService.isNicknameAlreadyExist(form.getNickname()))){
@@ -868,10 +869,10 @@ public class MyInfosXPage extends MVCApplication {
                     addError( MESSAGE_ERROR_NICKNAME_MISSING, getLocale( request ) );                   
                 }
 				
-				if (!bError && !MyInfosService.setAdressValid(form) ){
-					bError = true;
-					addError(MESSAGE_ERROR_ADRESS_GEOLOC_FORMAT, getLocale(request));
-				}
+//				if (!bError && !MyInfosService.setAdressValid(form) ){
+//					bError = true;
+//					addError(MESSAGE_ERROR_ADRESS_GEOLOC_FORMAT, getLocale(request));
+//				}
 				
 				
 				if (!bError && (form.getNickname()!=null && (MyInfosService.loadUserNickname(user.getName())!=null && !form.getNickname().equals(MyInfosService.loadUserNickname(user.getName()))

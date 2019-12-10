@@ -26,14 +26,8 @@ public class BudgetUtils {
 	 */
 	public static String getArrondissementDisplay( LuteceUser user ) 
 	{
-		String strArrondissement = "";
-		
 		MyInfosForm myInfo = MyInfosService.loadUserInfos(user);
-		Pattern p = Pattern.compile("75(020|00[1-9]|116|01[0-9])$");
-		Matcher m = p.matcher(myInfo.getArrondissement());
-		if ( m.matches() )
-			strArrondissement = Integer.valueOf(myInfo.getArrondissement().substring(2)) + "e arrondissement";
-		return strArrondissement;
+		return myInfo.getArrondissement();
 	}
 	
 	/**

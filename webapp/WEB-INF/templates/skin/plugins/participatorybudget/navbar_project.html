@@ -39,9 +39,9 @@
 
 <#if emptyRows_size != 0 && voteValidated?? && ! voteValidated >
 
-	<#assign fq="localisation_text:Tout Paris" />
+	<#assign fq="localisation_text:whole_city" />
 	
-	<#if type_vote?has_content && type_vote != 'TOUT PARIS' && user_arrondissement?has_content>
+	<#if type_vote?has_content && type_vote != 'whole_city' && user_arrondissement?has_content>
 		<#assign fq="localisation_text:${user_arrondissement}" />
 	</#if>
 

@@ -113,7 +113,7 @@ public class RatingValidationService implements IRatingValidationService
 		{
 			maxDcmtArrondissement = voteLoc.getNbVotes( );
 		}
-		voteLoc = _nbrVoteService.selectVotePerLocation("Tout-Paris");
+		voteLoc = _nbrVoteService.selectVotePerLocation("whole_city");
 		if( voteLoc!=null )
 		{
 			maxDcmtToutParis = voteLoc.getNbVotes( );

@@ -52,7 +52,7 @@ public class Vote
     private int _nProjetId;
     private String _strIpAddress;
     private String _strTitle;
-    private int _nLocalisation;
+    private String _strLocalisation;
     private String _strThematique;
     private int _nStatus;
     private int _nStatusExportStats;
@@ -229,18 +229,18 @@ public class Vote
      * Returns the project localisation 
      * @return The project localisation
      */
-    public int getLocalisation(  )
+    public String getLocalisation(  )
     {
-        return _nLocalisation;
+        return _strLocalisation;
     }
 
     /**
      * Sets the nLocalisation
      * @param nLocalisation The project localisation
      */
-    public void setLocalisation( int nLocalisation )
+    public void setLocalisation( String nLocalisation )
     {
-        _nLocalisation = nLocalisation;
+        _strLocalisation = nLocalisation;
     }
     
     /**

@@ -285,7 +285,7 @@ public class MyVoteService
 			_ratingService.doCancelVote(user,
 					String.valueOf(vote.getProjetId()),
 					strExtendableResourceType);
-			if (vote.getLocalisation() == 75000)
+			if (vote.getLocalisation() == "whole_city")
 			{
 				request.setAttribute( Constants.PROJECT_THEMATIQUE, vote.getThematique( ) );
 				request.setAttribute( Constants.PROJECT_TITLE, vote.getTitle( ));

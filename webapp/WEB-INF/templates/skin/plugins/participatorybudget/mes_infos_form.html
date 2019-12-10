@@ -90,20 +90,28 @@
 		<label class="sr-only" for="budget-birthdate">#i18n{participatorybudget.mes_infos.field.myinfos.birthdate}</label>
 		<input class="form-control check-nonempty" type="text" name="birthdate" id="budget-birthdate" value="${birthdate!''}" placeholder="#i18n{participatorybudget.mes_infos.field.myinfos.birthdate} *">
     </div>
+    
     <div class="form-group">
+    	<br>
+    	<div style="opacity:0.5 ; font-style: italic;">
+	    	<p>Next field is for auto-completed and geolocalized address : it is desactivated because it uses Paris specific library.</p>
+	    	<input type="text" class="form-control" name="" id="" value="" placeholder="desactivated geolocalized address" readonly>
+    	</div>
+    	
       <label class="sr-only" for="budget-address">#i18n{participatorybudget.mes_infos.field.myinfos.address} *</label>
-      <div class="input-group">
+      <!-- div class="input-group">
         <input type="text" class="form-control check-nonempty" name="address" id="budget-address" value="${address!''}" placeholder="#i18n{participatorybudget.mes_infos.field.myinfos.address} *">
         <span class="input-group-btn">
           <button class="btn" type="button" title="effacer" id="button_delete_adress"><i class="fa fa-times"></i></button>
         </span>
-      </div>
-      <#if !authorized_address>
+      </div -->
+      <#-- if !authorized_address>
         <p class="alert alert-danger">#i18n{participatorybudget.mes_infos.field.myinfos.unauthorizedAddress}</p>
-      </#if>
+      </#if -->
     </div>
-    <input id="geojson" type="hidden" name="geojson" value="${(geoJson?html)!''}">
-    <input id="geojson_state" type="hidden">
+    <!-- input id="geojson" type="hidden" name="geojson" value="${(geoJson?html)!''}">
+    <input id="geojson_state" type="hidden"  -->
+    
   </div>
   <div id="arrondissement-form-group" class="form-group" <#if campagneService.isBeforeBeginning("SUBMIT") || campagneService.isAfterEnd("VOTE") >style="display: none;"</#if>>
     <h3>Vos informations de vote</h3>

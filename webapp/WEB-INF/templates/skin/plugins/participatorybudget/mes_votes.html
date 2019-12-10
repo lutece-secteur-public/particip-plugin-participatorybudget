@@ -17,7 +17,7 @@
 		</#if>
 	</#list>
 
-	<#if localisation_projet?? && localisation_projet!='Tout Paris'>
+	<#if localisation_projet?? && localisation_projet!='whole_city'>
 		<#assign nbVotesArrond = nbVotesArrond + 1>
 		<#list vote.document.attributes as attribute>
 			<#if attribute.code = 'budget'>
@@ -26,7 +26,7 @@
 			</#if>
 		</#list>
 		
-	<#elseif localisation_projet?? && localisation_projet=='Tout Paris'>
+	<#elseif localisation_projet?? && localisation_projet=='whole_city'>
 		<#assign nbVotesParis = nbVotesParis + 1>
 		<#list vote.document.attributes as attribute>
 			<#if attribute.code = 'budget'>
@@ -137,7 +137,7 @@
 								</#if>
 							</#list>
 							
-							<#if localisation_projet != 'Tout Paris'>
+							<#if localisation_projet != 'whole_city'>
 								<div class="vote">
 									<div class="vote-body">
 										<p>
