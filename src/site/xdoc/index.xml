@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
     <properties>
-        <title>Plugin participatorybudget</title>
+        <title>Plugin participatory budget</title>
     </properties>
     <body>
-        <section name="Plugin participatorybudget">
+        <section name="Plugin participatory budget">
             <!--
             <p>
                 <img src="images/participatorybudget.png" />
             </p>
             -->
             <subsection name="Introduction">
-                <p></p>
+                <p>This plugin offers a way to create, search and display projects, and to vote for in a citizen participation process. Projects are handle by <a href="https://github.com/lutece-platform/lutece-cms-plugin-document">Document</a> Lutece plugin.</p>
+                <p>This plugin is used by <a href="https://github.com/lutece-secteur-public/particip-site-participatorybudget">OpenPB</a> site.</p>
             </subsection>
             <subsection name="Configuration">
                 <p></p>
