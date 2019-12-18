@@ -34,6 +34,8 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.web.rs;
 
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
@@ -65,6 +67,25 @@ public class CampaignRest {
     	
     	return message;
 	}
+
+    private String formatJson(String status, String result) {
+		String message;
+        JSONObject json = new JSONObject();
+        json.put("status", status);
+        json.put("result", result);
+        message = json.toString();
+
+        return message;
+	}
+
+    private String formatJson(String status, List<String> result) {
+        String message;
+        JSONObject json = new JSONObject();
+        json.put("status", status);
+        json.put("result", result);
+        message = json.toString();
+        return message;
+	}
 	
 	/**
      * get isBeforeBeginning of a phase of a campaign
@@ -83,10 +104,10 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-        	return formatJson( "OK", new CampagnesService( ).isBeforeBeginning( campaign, phase ) );
+            return formatJson( "OK", CampagnesService.getInstance().isBeforeBeginning( campaign, phase ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
-	        return formatJson( "KO", false );
+            return formatJson( "KO", false );
     	}
     }
     
@@ -107,7 +128,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-        	return formatJson( "OK", new CampagnesService( ).isAfterBeginning( campaign, phase ) );
+            return formatJson( "OK", CampagnesService.getInstance().isAfterBeginning( campaign, phase ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -132,7 +153,7 @@ public class CampaignRest {
     	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
     	    }
     	try {
-        	return formatJson( "OK", new CampagnesService( ).isDuring( campaign, phase ) );
+            return formatJson( "OK", CampagnesService.getInstance().isDuring( campaign, phase ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -156,11 +177,11 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-        	return formatJson( "OK", new CampagnesService( ).isBeforeEnd( campaign, phase ) );
-    	} catch (NoSuchPhaseException e) {
+            return formatJson( "OK", CampagnesService.getInstance().isBeforeEnd( campaign, phase ) );
+        } catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
-    	}
+        }
     }
 
     /**
@@ -172,21 +193,121 @@ public class CampaignRest {
     @GET
     @Path("{campaign}/{phase}/after-end")
     @Produces(MediaType.APPLICATION_JSON)
-    public String isAfterEnd(@Context
-    	    HttpServletRequest request, @PathParam("campaign") String campaign, @PathParam("phase") String phase) throws ServletException {
+    public String isAfterEnd(@Context HttpServletRequest request, @PathParam("campaign") String campaign, @PathParam("phase") String phase) throws ServletException
+    {
+        if ( !isRequestAuthenticated( request ) )
+	    {
+	        AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+	    }
+        try {
+            return formatJson( "OK", CampagnesService.getInstance().isAfterEnd( campaign, phase ) );
+        } catch (NoSuchPhaseException e) {
+			AppLogService.error(e);
+	        return formatJson( "KO", false );
+        }
+    }
+
+    /**
+     * get areas of a campaign
+     *
+     * @return the response of the request getAreas for a campaign
+     * @throws ServletException
+     */
+    @GET
+    @Path("{campaign}/areas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCampaignAreas(@Context HttpServletRequest request, @PathParam("campaign") String campaign) throws ServletException
+    {
+        if ( !isRequestAuthenticated( request ) )
+	    {
+	        AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+	    }
+        try {
+            return formatJson( "OK", CampagnesService.getInstance().getAreas( campaign ) );
+        } catch (NoSuchPhaseException e) {
+			AppLogService.error(e);
+	        return formatJson( "KO", false );
+        }
+    }
+
+    /**
+     * get areas of last campaign
+     *
+     * @return the response of the request getAreas for the last campaign
+     * @throws ServletException
+     */
+    @GET
+    @Path("areas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getLastCampaignAreas(@Context HttpServletRequest request) throws ServletException
+    {
     	if ( !isRequestAuthenticated( request ) )
 	    {
 	        AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-        	return formatJson( "OK", new CampagnesService( ).isAfterEnd( campaign, phase ) );
+            return formatJson( "OK", CampagnesService.getInstance().getAreas( ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
     	}
     }
     
+    /**
+     * get area whole of a campaign
+     *
+     * @return the response of the request getAreas for a campaign
+     * @throws ServletException
+     */
+    @GET
+    @Path("{campaign}/whole")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCampaignWhole(@Context HttpServletRequest request, @PathParam("campaign") String campaign) throws ServletException
+    {
+        if ( !isRequestAuthenticated( request ) )
+	    {
+	        AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+	    }
+        try {
+            return formatJson( "OK", CampagnesService.getInstance().getWholeArea( campaign ) );
+        } catch (NoSuchPhaseException e) {
+			AppLogService.error(e);
+	        return formatJson( "KO", false );
+        }
+    }
+
+    /**
+     * get areas of last campaign
+     *
+     * @return the response of the request getAreas for the last campaign
+     * @throws ServletException
+     */
+    @GET
+    @Path("whole")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getLastCampaignWhole(@Context HttpServletRequest request) throws ServletException
+    {
+        if ( !isRequestAuthenticated( request ) )
+	    {
+	        AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+	    }
+        try {
+            String result = CampagnesService.getInstance().getWholeArea( );
+            if (result.equals("")) {
+                return formatJson( "KO", result );
+            }
+            return formatJson( "OK", result );
+        } catch (NoSuchPhaseException e) {
+		    AppLogService.error(e);
+	        return formatJson( "KO", false );
+        }
+    }
+
     /**
      * Checks if the request is authenticated or not
      *

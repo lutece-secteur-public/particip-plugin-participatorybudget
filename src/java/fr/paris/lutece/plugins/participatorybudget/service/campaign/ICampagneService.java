@@ -1,6 +1,7 @@
 package fr.paris.lutece.plugins.participatorybudget.service.campaign;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
 
@@ -20,6 +21,11 @@ public interface ICampagneService {
 	public String    startStr         ( String campagne, String phase, String format, boolean withAccents ); 
 	public String    endStr           ( String campagne, String phase, String format, boolean withAccents ); 
 
+	public List<String> getAreas	  ( String codeCampaign );
+	public boolean  hasWholeArea	  ( String codeCampaign );
+	public boolean  hasWholeArea      ( String codeCampaign, int idCampaign );
+	public String   getWholeArea      ( String codeCampaign );
+
     // Same as precedent, for last campagne
     public boolean   isBeforeBeginning( String phase ); 
     public boolean   isBeforeEnd      ( String phase );
@@ -31,7 +37,12 @@ public interface ICampagneService {
 	public Timestamp end              ( String phase ); 
 	public String    startStr         ( String phase, String format, boolean withAccents ); 
 	public String    endStr           ( String phase, String format, boolean withAccents ); 
-    
+
+	public List<String> getAreas	( );
+	public boolean  hasWholeArea	( );
+	public boolean  hasWholeArea	( int id );
+	public String   getWholeArea	( );
+
     // Resets the internal cache of phases
 	public void reset( ); 
     

@@ -52,21 +52,21 @@ public class Campagne implements Serializable
     // Variables declarations 
     private int _nId;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagne.Code.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{ideation.validation.campagne.Code.size}" ) 
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.Code.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagne.Code.size}" )
     private String _strCode;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagne.Title.notEmpty}" )
-    @Size( max = 255 , message = "#i18n{ideation.validation.campagne.Title.size}" ) 
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.Title.notEmpty}" )
+    @Size( max = 255 , message = "#i18n{participatorybudget.validation.campagne.Title.size}" )
     private String _strTitle;
     
     private boolean _bActive;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagne.CodeModerationType.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{ideation.validation.campagne.CodeModerationType.size}" ) 
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.CodeModerationType.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagne.CodeModerationType.size}" )
     private String _strCodeModerationType;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagne.Description.notEmpty}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.Description.notEmpty}" )
     private String _strDescription;
     
     private int _nModerationDuration;

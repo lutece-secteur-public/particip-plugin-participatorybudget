@@ -9,6 +9,7 @@
     <bean id="participatorybudget.campagnePhaseDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseDAO" />  
     <bean id="participatorybudget.campagneImageDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneImageDAO" />  
     <bean id="participatorybudget.campagneThemeDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeDAO" />  
+    <bean id="participatorybudget.campagneAreaDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaDAO" />
    
     <!-- Site properties -->
     
@@ -27,7 +28,7 @@
           <property name='hashService' ref='participatorybudget.hashService' />
           <property name='signatureElements' > 
                <list>
-                    <!-- <value>campaign_data</value>  -->
+                    <!-- <value>change me</value>  -->
                </list>
           </property>
           <property name='privateKey'>

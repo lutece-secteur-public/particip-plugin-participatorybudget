@@ -37,39 +37,35 @@ import javax.validation.constraints.*;
 
 import org.hibernate.validator.constraints.*;
 
-import fr.paris.lutece.portal.business.file.File;
-
 import java.io.Serializable;
 
-
 /**
- * This is the business class for the object CampagneTheme
+ * This is the business class for the object CampagneArea
  */ 
-public class CampagneTheme implements Serializable
+public class CampagneArea implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     // Variables declarations 
     private int _nId;
     
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.CodeCampagne.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnetheme.CodeCampagne.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnearea.CodeCampagne.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnearea.CodeCampagne.size}" ) 
     private String _strCodeCampagne;
-
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Code.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnetheme.Code.size}" )
-    private String _strCode;
     
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Title.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnetheme.Title.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnearea.Title.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnearea.Title.size}" ) 
     private String _strTitle;
-    
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Description.notEmpty}" )
-    private String _strDescription;
-    
+
+    @Pattern( regexp = "(whole|localized)", message = "#i18n{participatorybudget.validation.campagnearea.Type.pattern}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnearea.Type.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnearea.Type.size}" ) 
+    private String _strType;
+
+    @Min( value = 0, message = "#i18n{participatorybudget.validation.campagnearea.NumberVotes.min}" )
+    private int _nNumberVotes;
+
     private boolean _bActive;
-    
-    private File _fileImage;
 
     /**
      * Returns the Id
@@ -87,6 +83,24 @@ public class CampagneTheme implements Serializable
     public void setId( int nId )
     {
         _nId = nId;
+    }
+
+    /**
+     * Returns the Id
+     * @return The Id
+     */
+    public int getNumberVotes( )
+    {
+        return _nNumberVotes;
+    }
+
+    /**
+     * Sets the Id
+     * @param nId The Id
+     */ 
+    public void setNumberVotes( int numberVotes )
+    {
+        _nNumberVotes = numberVotes;
     }
 
     /**
@@ -123,27 +137,7 @@ public class CampagneTheme implements Serializable
     {
         _strTitle = strTitle;
     }
-    /**
-     * Returns the Description
-     * @return The Description
-     */
-    public String getDescription( )
-    {
-        return _strDescription;
-    }
-
-    /**
-     * Sets the Description
-     * @param strDescription The Description
-     */ 
-    public void setDescription( String strDescription )
-    {
-        _strDescription = strDescription;
-    }
-    /**
-     * Returns the Active
-     * @return The Active
-     */
+    
     public boolean getActive( )
     {
         return _bActive;
@@ -157,32 +151,18 @@ public class CampagneTheme implements Serializable
     {
         _bActive = bActive;
     }
-
-    /**
-     * @return the Code
-     */
-    public String getCode() {
-        return _strCode;
+    
+    public String getType( )
+    {
+        return _strType;
     }
 
     /**
-     * @param Code the Code to set
-     */
-    public void setCode(String strCode) {
-        this._strCode = strCode;
-	}
-
-	/**
-	 * @return the Image
-	 */
-	public File getImage() {
-		return _fileImage;
-	}
-
-	/**
-	 * @param _fileImage the Image to set
-	 */
-	public void setImage(File _fileImage) {
-		this._fileImage = _fileImage;
-	}
+     * Sets the Type
+     * @param strType The Type
+     */ 
+    public void setType( String strType )
+    {
+        _strType = strType;
+    }
 }

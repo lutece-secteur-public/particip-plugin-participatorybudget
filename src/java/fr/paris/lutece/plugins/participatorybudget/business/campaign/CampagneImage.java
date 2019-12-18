@@ -49,8 +49,8 @@ public class CampagneImage implements Serializable
     // Variables declarations 
     private int _nId;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagneimage.CodeCampagne.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{ideation.validation.campagneimage.CodeCampagne.size}" ) 
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagneimage.CodeCampagne.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagneimage.CodeCampagne.size}" )
     private String _strCodeCampagne;
     
     private int _nFile;
