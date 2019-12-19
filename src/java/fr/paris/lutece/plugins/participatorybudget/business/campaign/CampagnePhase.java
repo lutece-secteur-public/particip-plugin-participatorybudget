@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2019, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * License 1.0
- */ 
+ */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
 import javax.validation.constraints.*;
@@ -50,12 +50,12 @@ public class CampagnePhase implements Serializable
     // Variables declarations 
     private int _nId;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagnephase.CodePhaseType.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{ideation.validation.campagnephase.CodePhaseType.size}" ) 
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnephase.CodePhaseType.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnephase.CodePhaseType.size}" )
     private String _strCodePhaseType;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagnephase.CodeCampagne.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{ideation.validation.campagnephase.CodeCampagne.size}" ) 
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnephase.CodeCampagne.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnephase.CodeCampagne.size}" )
     private String _strCodeCampagne;
     
     private Timestamp _dateStart;

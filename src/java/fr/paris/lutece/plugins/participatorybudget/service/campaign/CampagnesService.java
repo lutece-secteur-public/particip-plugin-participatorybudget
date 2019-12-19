@@ -1,17 +1,54 @@
+/*
+ * Copyright (c) 2002-2019, Mairie de Paris
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Mairie de Paris' nor 'Lutece' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package fr.paris.lutece.plugins.participatorybudget.service.campaign;
 
 import java.sql.Timestamp;
 import java.text.Normalizer;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhase;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneArea;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaHome;
 import fr.paris.lutece.plugins.participatorybudget.service.NoSuchPhaseException;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
@@ -180,6 +217,47 @@ public class CampagnesService implements ICampagneService {
 		return toSoLovelyString (formattedDate, withAccents); 
 	}
 
+	public List<String> getAreas( String codeCampaign ) {
+		Collection<CampagneArea> result = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+		List<String> areas = new ArrayList<>();
+        for (CampagneArea c : result) {
+            if (c.getActive() && c.getType().equals("localized")) {
+                areas.add(c.getTitle());
+            }
+        }
+        return areas;
+    }
+
+	public boolean hasWholeArea( String codeCampaign ) {
+		Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+		for (CampagneArea a : areas) {
+			if (a.getType().equals("whole")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean hasWholeArea( String codeCampaign, int idCampaign ) {
+		Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+		for ( CampagneArea a : areas ) {
+			if ( a.getType().equals("whole") && a.getId() != idCampaign ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String getWholeArea( String codeCampaign ) {
+		Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+		for (CampagneArea a : areas) {
+			if (a.getType().equals("whole") && a.getActive()) {
+				return a.getTitle();
+			}
+		}
+		return "";
+	}
+
 	// Same methods than preceding, for last campagne
     
     public boolean isBeforeBeginning ( String phase ) { return isBeforeBeginning ( getLastCampagne().getCode(), phase); }
@@ -192,6 +270,11 @@ public class CampagnesService implements ICampagneService {
     public Timestamp end      ( String phase )                                     { return end      ( getLastCampagne().getCode(), phase); }
 	public String    startStr ( String phase, String format, boolean withAccents ) { return startStr ( getLastCampagne().getCode(), phase, format, withAccents ); }
 	public String      endStr ( String phase, String format, boolean withAccents ) { return   endStr ( getLastCampagne().getCode(), phase, format, withAccents ); }
+
+	public List<String> getAreas( ) { return getAreas( getLastCampagne().getCode() ); }
+	public boolean  hasWholeArea  ( ) { return hasWholeArea( getLastCampagne().getCode()); }
+	public boolean  hasWholeArea  ( int id ) { return hasWholeArea( getLastCampagne().getCode(), id); }
+	public String   getWholeArea  ( ) { return getWholeArea( getLastCampagne().getCode()); }
 
     // ***********************************************************************************
 	// * UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS U *
@@ -225,5 +308,4 @@ public class CampagnesService implements ICampagneService {
 		
 		return soLovelyStr;
 	}
-	
 }

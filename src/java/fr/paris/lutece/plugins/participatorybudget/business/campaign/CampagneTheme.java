@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2019, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * License 1.0
- */ 
+ */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
 import javax.validation.constraints.*;
@@ -52,19 +52,19 @@ public class CampagneTheme implements Serializable
     // Variables declarations 
     private int _nId;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagnetheme.CodeCampagne.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{ideation.validation.campagnetheme.CodeCampagne.size}" ) 
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.CodeCampagne.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnetheme.CodeCampagne.size}" )
     private String _strCodeCampagne;
 
-    @NotEmpty( message = "#i18n{ideation.validation.campagnetheme.Code.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{ideation.validation.campagnetheme.Code.size}" ) 
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Code.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnetheme.Code.size}" )
     private String _strCode;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagnetheme.Title.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{ideation.validation.campagnetheme.Title.size}" ) 
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Title.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnetheme.Title.size}" )
     private String _strTitle;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagnetheme.Description.notEmpty}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Description.notEmpty}" )
     private String _strDescription;
     
     private boolean _bActive;

@@ -1,0 +1,18 @@
+<#include "managecampagnebp_tabs.html" />
+<@tabs tab="campagnearea" />
+
+<@rowBoxHeader i18nTitleKey="participatorybudget.create_campagnearea.pageTitle">
+    <form class="form-horizontal" method="post" name="create_campagnearea" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampagneAreas.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id"/>
+        
+        <@fieldInputText i18nLabelKey="participatorybudget.create_campagnearea.labelCodeCampagne" inputName="code_campagne" mandatory=true value="${campagnearea.codeCampagne!''}" i18nHelpBlockKey="participatorybudget.create_campagnearea.labelCodeCampagne.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.create_campagnearea.labelTitle" inputName="title" mandatory=true value="${campagnearea.title!''}" i18nHelpBlockKey="participatorybudget.create_campagnearea.labelTitle.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.create_campagnearea.labelActive" inputName="active" mandatory=true value="${campagnearea.active?c!''}" i18nHelpBlockKey="participatorybudget.create_campagnearea.labelActive.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.create_campagnearea.labelType" inputName="type" mandatory=true value="${campagnearea.type!''}" i18nHelpBlockKey="participatorybudget.create_campagnearea.labelType.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.create_campagnearea.labelNumberVotes" inputName="numberVotes" mandatory=true value="${campagnearea.numberVotes!''}" i18nHelpBlockKey="participatorybudget.create_campagnearea.labelNumberVotes.help" />
+        
+        <@actionButtons button1Name="action_createCampagneArea" button2Name="view_manageCampagneAreas"/>
+    </form>
+</@rowBoxHeader>
+

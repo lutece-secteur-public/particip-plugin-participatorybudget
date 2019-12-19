@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2019, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * License 1.0
- */ 
+ */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
 import javax.validation.constraints.*;
@@ -49,8 +49,8 @@ public class CampagneImage implements Serializable
     // Variables declarations 
     private int _nId;
     
-    @NotEmpty( message = "#i18n{ideation.validation.campagneimage.CodeCampagne.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{ideation.validation.campagneimage.CodeCampagne.size}" ) 
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campagneimage.CodeCampagne.notEmpty}" )
+    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagneimage.CodeCampagne.size}" )
     private String _strCodeCampagne;
     
     private int _nFile;
