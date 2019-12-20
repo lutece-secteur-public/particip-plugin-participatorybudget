@@ -37,9 +37,12 @@ function displayModalPopup(callBackFunction)
         	{
         		/*$("#participatorybudgetmodelpopup").html(data);*/
         		$("#mesinfos-modal .modal-body").html(data);
+        		
         		$('#forpopup_participatorybudget-profile-button').on( "click", function( event ) {
         			event.preventDefault( );
-					var hasEmpty = false;
+				
+        			// Verify all mandatory fields in infos form are filled
+        			var hasEmpty = false;
 					$("#forpopup_participatorybudget-profile-form input.check-nonempty").each( function() {
 						if(!hasEmpty && ($(this).val()=="" || ($(this).attr("type")=="checkbox" && !$(this).prop("checked")) )) {
 							hasEmpty = true;
@@ -50,17 +53,10 @@ function displayModalPopup(callBackFunction)
 						$('#mesinfos-modal').animate({ scrollTop: 0 }, 'slow');
 						return false;
 					}
-					$('#mesinfos-modal').modal('hide');
-					forpopup_openPopinSavePersonalInfo( function(result) {
-						$("#savePersonalData").val(result);
-						$('#mesinfos-modal').modal('show');
-						doSaveUserInfos( callBackFunction );
-					}, function() {
-						if( ! $('#mesinfos-modal').hasClass('in') ) {
-							$('#mesinfos-modal').modal('show');
-						}
-						$(document.body).addClass('modal-open');
-					});
+
+					// Update personal data
+					doSaveUserInfos( callBackFunction );
+					
         		});
         		  $("#send_validation_mail").click(function () {
         		    	sendValidationMail( function(){$('#mesinfos-modal').modal('hide'); },function(){displayModalPopup(function(){checkValidAccountAfterAuthentication(); })}, function() { });
@@ -110,7 +106,6 @@ function doSaveUserInfos(callBackFunction)
     sendaccountvalidation:$("#budget-sendaccountvalidation").is(":checked")?$("#budget-sendaccountvalidation").val():'',
     j_captcha_response:$("#j_captcha_response").length > 0?$("#j_captcha_response").val():'',
     token: $("#token").val(),
-	savePersonalData: $("#savePersonalData").val(),
   };
 	var urlDoSave = baseUrl + "jsp/site/plugins/participatorybudget/DoSaveMyInfosForAjax.jsp";
 	$.ajax({

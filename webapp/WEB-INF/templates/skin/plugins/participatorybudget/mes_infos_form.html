@@ -1,5 +1,4 @@
 <#include "/skin/plugins/asynchronousupload/upload_commons.html" />
-<#include "/skin/plugins/participatorybudget/include/popin_save_personal_info.html" />
 
 <#assign form_profile="participatorybudget-profile-form" />
 <#assign form_js_error="message_error_js">
@@ -10,7 +9,6 @@
 <form id="${form_profile}" class="form" role="form" method="post" action="jsp/site/Portal.jsp" enctype="multipart/form-data">
   <input type="hidden" name="page" value="mesInfos">
   <input type="hidden" name="action" value="save">
-  <input type="hidden" id="savePersonalData" name="savePersonalData" value="false">
   <input type="hidden" name="completeInfos" value="<#if completeInfos?? && completeInfos>true<#else>false</#if>">
   <input type="hidden" name="token" value="${token}" id="token">
   <#if voteValue??>
@@ -216,15 +214,10 @@
 			window.scrollTo(0, 0);
 			return false;
 		}
-		openPopinSavePersonalInfo( function(result) {
-			$("#savePersonalData").val(result);
-			$('#participatorybudget-profile-form').submit();
-		});
+		
+		$('#participatorybudget-profile-form').submit();
 		
 	});
   </#if>
 	
 </script>
-<#if !is_for_popup>
-	<@addPopinSavePersonalInfo />
-</#if>

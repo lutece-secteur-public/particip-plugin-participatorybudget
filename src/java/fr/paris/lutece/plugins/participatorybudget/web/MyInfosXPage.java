@@ -135,7 +135,6 @@ public class MyInfosXPage extends MVCApplication {
 	private static final String MARK_EXTENDABLERESOURCETYPE = "extendableResourceType";
 	private static final String MARK_PAGE = "page";
 	private static final String MARK_VOTEVALID = "voteValid";
-	private static final String MARK_SAVE_PERSONAL = "savePersonalData";
 	private static final String MARK_FORM = "form";
 	private static final String MARK_TRUE = "true";
 	private static final String MARK_URL_MONCOMPTE = "url_moncompte";
