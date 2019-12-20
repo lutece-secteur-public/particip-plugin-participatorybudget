@@ -93,7 +93,8 @@ INSERT INTO `participatorybudget_campaign_theme` (`id_campagne_theme`, `code_cam
 INSERT INTO `participatorybudget_votes_per_location` (`id`, `localisation_ardt`, `nb_votes`) VALUES
 	(1, 'area_1', 3),
 	(2, 'area_2', 0),
-	(3, 'area_3', 1);
+	(3, 'area_3', 1),
+	(4, 'whole_city', 2);
 /*!40000 ALTER TABLE `participatorybudget_votes_per_location` ENABLE KEYS */;
 
 -- Export de données de la table pb.task_notify_documentbp_cf : 1 rows
