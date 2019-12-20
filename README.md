@@ -19,6 +19,10 @@ This plugin is used by [OpenPB](https://github.com/lutece-secteur-public/partici
 
 
 
+# Project Information
+
+ [Issue Tracking](http://dev.lutece.paris.fr/jira/browse/PARTBUDG) : this is a link to the issue management system for this project. Issues (bugs, features, change requests) can be created and queried using this link.
+
 
 [Maven documentation and reports](https://dev.lutece.paris.fr/plugins/plugin-participatorybudget/)
 
