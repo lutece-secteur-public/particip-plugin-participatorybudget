@@ -57,11 +57,7 @@ public class MyInfosFormTest extends LuteceTestCase
     public void testSetBirthdate()
     {
         MyInfosForm instance = getValidBean();
-        
-        System.out.println("setBirthdate - Age minimum");
-        instance.setBirthdate( "10/10/2010" );
-        validate( instance , 1 );
-        
+
         System.out.println("setBirthdate - Date format");
         instance.setBirthdate("01/01/1960");
         validate( instance , 0 );  // Valid format
@@ -70,8 +66,7 @@ public class MyInfosFormTest extends LuteceTestCase
         instance.setBirthdate("10/21/2010");
         validate( instance , 1 );  // Wrong format : month > 12
         instance.setBirthdate("10-10-2010");
-        validate( instance , 1 );  // Wrong format : bad separator 
-        
+        validate( instance , 1 );  // Wrong format : bad separator
     }
 
     private void validate(MyInfosForm instance , int nViolationCount )
@@ -79,7 +74,7 @@ public class MyInfosFormTest extends LuteceTestCase
         Set<ConstraintViolation<MyInfosForm>> listErrors = BeanValidationUtil.validate( instance );
         for( ConstraintViolation<MyInfosForm> cv : listErrors )
         {
-            System.out.println( "- violation de contrainte : " + I18nService.getLocalizedString( cv.getMessage() , Locale.FRENCH) );
+            System.out.println( "- constraint violation : " + I18nService.getLocalizedString( cv.getMessage() , Locale.FRENCH) );
         }
         assertEquals( listErrors.size() , nViolationCount );
     }
@@ -89,7 +84,9 @@ public class MyInfosFormTest extends LuteceTestCase
          MyInfosForm bean = new MyInfosForm();
          bean.setAddress( "Address");
          bean.setFirstname( "John");
+         bean.setFirstname( "John");
          bean.setLastname( "Doe");
+         bean.setCivility( "MME" );
          bean.setArrondissement( "75001");
          bean.setBirthdate( "10/10/1960" );
          bean.setIliveinparis( "on" );
@@ -97,5 +94,4 @@ public class MyInfosFormTest extends LuteceTestCase
 
     }
 
-    
 }

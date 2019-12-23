@@ -54,6 +54,10 @@ public class VoteBusinessTest extends LuteceTestCase
     private final static int ARRONDISSEMENT2 = 2;
     private final static int AGE1 = 1;
     private final static int AGE2 = 2;
+    private final static String IPADDRESS = "127.0.0.1";
+    private final static String TITLE = "Title";
+    private final static String LOCATION = "0";
+    private final static String THEME = "Theme";
 
     public void testBusiness(  )
     {
@@ -64,6 +68,10 @@ public class VoteBusinessTest extends LuteceTestCase
         vote.setDateVote( DATEVOTE1 );
         vote.setArrondissement( ARRONDISSEMENT1 );
         vote.setAge( AGE1 );
+        vote.setIpAddress( IPADDRESS );
+        vote.setTitle( TITLE );
+        vote.setLocalisation( LOCATION );
+        vote.setThematique( THEME );
 
         // Create test
         VoteHome.create( vote );
