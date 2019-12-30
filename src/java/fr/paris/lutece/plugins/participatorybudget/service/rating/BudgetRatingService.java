@@ -133,6 +133,9 @@ public class BudgetRatingService extends RatingService
         }
         vote.setLocalisation( strLocalisation );
 
+        // TODO [JPO 2019-12-23] This method shoud get the area id from vote http request
+        vote.setLocalisation( "75000" );
+        
         MyInfosForm myInfos = MyInfosService.loadUserInfos(user);
         String strBirthDate = null;
         String strArrondissement = null;
@@ -230,6 +233,9 @@ public class BudgetRatingService extends RatingService
             }
             vote.setLocalisation( strLocalisation );
             
+            // TODO [JPO 2019-12-23] This method shoud get the area id from vote http request
+            vote.setLocalisation( "75000" );
+
             vote.setStatus(status);
             
             MyInfosForm myInfos = MyInfosService.loadUserInfos(user);
