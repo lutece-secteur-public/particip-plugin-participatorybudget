@@ -1,12 +1,19 @@
 <#macro tabs tab >
 <div>
     <ul class="nav nav-tabs">
+
         <li <#if tab="campagne">class="active"</#if>>
             <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp">
                 #i18n{participatorybudget.manage_campagnes.pageTitle}
             </a>
         </li>
        
+        <li <#if tab="campagnechrono">class="active"</#if>>
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp">
+                #i18n{participatorybudget.manage_campaignchrono.pageTitle}
+            </a>
+        </li>
+
         <li <#if tab="campagneimage">class="active"</#if>>
             <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagneImages.jsp">
                 #i18n{participatorybudget.manage_campagneimages.pageTitle}

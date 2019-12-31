@@ -19,8 +19,9 @@
     
 
     <!-- CAMPAGNE_SERVICE BEAN -->
-    <bean id="participatorybudget.campagneService" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService"/>
-
+    <bean id="participatorybudget.campagneService"       class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService"/>
+	<bean id="participatorybudget.campaignChronoService" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignChronoService" />  
+	
     <!-- CAMPAIGN WS REST -->
     <bean id="participatorybudget.CampaignRest" class="fr.paris.lutece.plugins.participatorybudget.web.rs.CampaignRest" />
     <bean id='participatorybudget.hashService' class='fr.paris.lutece.util.signrequest.security.Sha1HashService' />

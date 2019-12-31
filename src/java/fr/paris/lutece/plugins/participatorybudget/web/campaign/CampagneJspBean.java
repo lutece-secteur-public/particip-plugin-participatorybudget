@@ -53,7 +53,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * This class provides the user interface to manage Campagne features ( manage, create, modify, remove )
  */
-@Controller( controllerJsp = "ManageCampagnes.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAGNEBP_MANAGEMENT" )
+@Controller( controllerJsp = "ManageCampagnebp.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAGNEBP_MANAGEMENT" )
 public class CampagneJspBean extends ManageCampagnebpJspBean
 {
 
