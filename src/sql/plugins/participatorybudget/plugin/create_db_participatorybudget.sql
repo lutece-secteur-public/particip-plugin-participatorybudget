@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_bizstat_file` (
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `file_value` longblob,
   PRIMARY KEY (`id_bizstat_file`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
 CREATE TABLE IF NOT EXISTS `participatorybudget_campaign_moderation_type` (
   `id_moderation_type` int(6) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_campaign_moderation_type` (
   `libelle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_moderation_type`),
   UNIQUE KEY `code_moderation_type` (`code_moderation_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
 CREATE TABLE IF NOT EXISTS `participatorybudget_campaign` (
   `id_campagne` int(6) NOT NULL,
@@ -48,8 +48,10 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_campaign` (
   UNIQUE KEY `code_campagne` (`code_campagne`),
   KEY `fk_participatorybudget_campaign_moderation` (`code_moderation_type`),
   CONSTRAINT `fk_participatorybudget_campaign_moderation` FOREIGN KEY (`code_moderation_type`) REFERENCES `participatorybudget_campaign_moderation_type` (`code_moderation_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
+/* This line to avoid error on constraint with core_file 
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 CREATE TABLE IF NOT EXISTS `participatorybudget_campaign_image` (
   `id_campagne_image` int(6) NOT NULL,
   `code_campagne` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -59,7 +61,8 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_campaign_image` (
   KEY `id_file` (`id_file`),
   CONSTRAINT `fk_participatorybudget_campaign_images_campagne` FOREIGN KEY (`code_campagne`) REFERENCES `participatorybudget_campaign` (`code_campagne`),
   CONSTRAINT `fk_participatorybudget_campaign_images_file` FOREIGN KEY (`id_file`) REFERENCES `core_file` (`id_file`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 
 CREATE TABLE IF NOT EXISTS `participatorybudget_campaign_phase_type` (
   `id_phase_type` int(6) NOT NULL,
@@ -67,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_campaign_phase_type` (
   `libelle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_phase_type`),
   UNIQUE KEY `code_phase_type` (`code_phase_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
 CREATE TABLE IF NOT EXISTS `participatorybudget_campaign_phase` (
   `id_campagne_phase` int(6) NOT NULL,
@@ -80,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_campaign_phase` (
   KEY `fk_participatorybudget_campaign_phases_phase` (`code_phase_type`),
   CONSTRAINT `fk_participatorybudget_campaign_phases_campagne` FOREIGN KEY (`code_campagne`) REFERENCES `participatorybudget_campaign` (`code_campagne`),
   CONSTRAINT `fk_participatorybudget_campaign_phases_phase` FOREIGN KEY (`code_phase_type`) REFERENCES `participatorybudget_campaign_phase_type` (`code_phase_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
 CREATE TABLE IF NOT EXISTS `participatorybudget_campaign_theme` (
   `id_campagne_theme` int(6) NOT NULL,
@@ -93,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_campaign_theme` (
   PRIMARY KEY (`id_campagne_theme`),
   UNIQUE KEY `code_campagne` (`code_campagne`,`code_theme`),
   CONSTRAINT `participatorybudget_campaign_themes_campagne` FOREIGN KEY (`code_campagne`) REFERENCES `participatorybudget_campaign` (`code_campagne`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
 CREATE TABLE IF NOT EXISTS `participatorybudget_rgpd_treatment_log` (
   `id_treatment_log` int(11) NOT NULL AUTO_INCREMENT,
@@ -106,13 +109,13 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_rgpd_treatment_log` (
   `treatment_object_fields` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_treatment_log`),
   KEY `id_treatment_log_index` (`id_treatment_log`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
 CREATE TABLE IF NOT EXISTS `participatorybudget_user_access_vote` (
   `id_user` varchar(255) NOT NULL,
   `has_acces_vote` int(11) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+);
 
 CREATE TABLE IF NOT EXISTS `participatorybudget_votes` (
   `id_user` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -129,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_votes` (
   `mobile_phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_user`,`id_projet`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
 CREATE TABLE IF NOT EXISTS `participatorybudget_votes_history` (
   `id_user` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -147,14 +150,14 @@ CREATE TABLE IF NOT EXISTS `participatorybudget_votes_history` (
   `status_export_stats` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `participatorybudget_votes_history_index_id_user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
 CREATE TABLE IF NOT EXISTS `participatorybudget_votes_per_location` (
   `id` int(11) NOT NULL,
   `localisation_ardt` varchar(50) NOT NULL,
   `nb_votes` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+);
 
 CREATE TABLE `participatorybudget_campaign_area` (
   `id_campagne_area` int(6) NOT NULL,
@@ -166,7 +169,7 @@ CREATE TABLE `participatorybudget_campaign_area` (
   PRIMARY KEY (`id_campagne_area`),
   KEY `fk_participatorybudget_campaign_areas_campagne_idx` (`code_campagne`),
   CONSTRAINT `fk_participatorybudget_campaign_areas_campagne` FOREIGN KEY (`code_campagne`) REFERENCES `participatorybudget_campaign` (`code_campagne`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
 CREATE TABLE IF NOT EXISTS `task_notify_documentbp_cf` (
   `id_task` int(11) NOT NULL,
@@ -178,4 +181,4 @@ CREATE TABLE IF NOT EXISTS `task_notify_documentbp_cf` (
   `recipients_bcc` varchar(255) NOT NULL DEFAULT '',
   `is_abonnes` smallint(6) NOT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+);
