@@ -36,3 +36,5 @@ INSERT INTO core_admin_right (id_right,name,level_right,admin_url,description,is
 DELETE FROM core_user_right WHERE id_right = 'CAMPAGNEBP_MANAGEMENT';
 INSERT INTO core_user_right (id_right,id_user) VALUES ('CAMPAGNEBP_MANAGEMENT',1);
 
+DELETE FROM core_user_right WHERE id_right = 'VOTE_PAR_ARRANDISSEMENT';
+INSERT INTO core_user_right (id_right,id_user) VALUES ('VOTE_PAR_ARRANDISSEMENT',1);
