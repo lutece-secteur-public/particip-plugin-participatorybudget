@@ -54,10 +54,11 @@ public interface ICampagneService {
 	public String    startStr         ( String campagne, String phase, String format, boolean withAccents ); 
 	public String    endStr           ( String campagne, String phase, String format, boolean withAccents ); 
 
-	public List<String> getAreas	  ( String codeCampaign );
-	public boolean  hasWholeArea	  ( String codeCampaign );
-	public boolean  hasWholeArea      ( String codeCampaign, int idCampaign );
-	public String   getWholeArea      ( String codeCampaign );
+	public List<String> getAllAreas	      ( String codeCampaign ); 
+	public List<String> getLocalizedAreas ( String codeCampaign );
+	public boolean  hasWholeArea	      ( String codeCampaign );
+	public boolean  hasWholeArea          ( String codeCampaign, int idCampaign );
+	public String   getWholeArea          ( String codeCampaign );
 
     // Same as precedent, for last campagne
     public boolean   isBeforeBeginning( String phase ); 
@@ -71,10 +72,11 @@ public interface ICampagneService {
 	public String    startStr         ( String phase, String format, boolean withAccents ); 
 	public String    endStr           ( String phase, String format, boolean withAccents ); 
 
-	public List<String> getAreas	( );
-	public boolean  hasWholeArea	( );
-	public boolean  hasWholeArea	( int id );
-	public String   getWholeArea	( );
+	public List<String> getAllAreas	     ( );
+	public List<String> getLocalizedAreas( );
+	public boolean  hasWholeArea         ( );
+	public boolean  hasWholeArea         ( int idCampaign );
+	public String   getWholeArea         ( );
 
     // Resets the internal cache of phases
 	public void reset( ); 

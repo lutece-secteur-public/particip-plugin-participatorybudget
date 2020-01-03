@@ -86,41 +86,17 @@ import fr.paris.lutece.portal.service.util.AppLogService;
 
 import net.sf.json.JSONObject;
 
-@Path(RestConstants.BASE_PATH + "campaign")
+@Path( RestConstants.BASE_PATH + "campaign" )
 public class CampaignRest {
 
     private static final String LOG_UNAUTHENTICATED_REQUEST = "Calling Campaign rest API with unauthenticated request";
 	
-    private String formatJson(String status, boolean result) {
-		String message;
-    	JSONObject json = new JSONObject();
-    	json.put("status", status);
-    	json.put("result", result);
-    	message = json.toString();
-    	
-    	return message;
-	}
+    // *********************************************************************************************
+    // * PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE *
+    // * PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE *
+    // *********************************************************************************************
 
-    private String formatJson(String status, String result) {
-		String message;
-        JSONObject json = new JSONObject();
-        json.put("status", status);
-        json.put("result", result);
-        message = json.toString();
-
-        return message;
-	}
-
-    private String formatJson(String status, List<String> result) {
-        String message;
-        JSONObject json = new JSONObject();
-        json.put("status", status);
-        json.put("result", result);
-        message = json.toString();
-        return message;
-	}
-	
-	/**
+    /**
      * get isBeforeBeginning of a phase of a campaign
      * 
      * @return the response of the request isBeforeBeginning for a phase of a campaign
@@ -362,40 +338,48 @@ public class CampaignRest {
         }
     }
 
+    // *********************************************************************************************
+    // * AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA *
+    // * AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA AREA *
+    // *********************************************************************************************
+
     /**
-     * get areas of a campaign
+     * get all areas of a campaign
      *
-     * @return the response of the request getAreas for a campaign
+     * @return the response of the request getAllAreas for a campaign
      * @throws ServletException
      */
     @GET
-    @Path("{campaign}/areas")
+    @Path("{campaign}/all-areas")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getCampaignAreas(@Context HttpServletRequest request, @PathParam("campaign") String campaign) throws ServletException
+    public String getCampaignAllAreas(@Context HttpServletRequest request, @PathParam("campaign") String campaign) throws ServletException
     {
         if ( !isRequestAuthenticated( request ) )
 	    {
 	        AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
-        try {
-            return formatJson( "OK", CampagnesService.getInstance().getAreas( campaign ) );
-        } catch (NoSuchPhaseException e) {
+        try 
+        {
+            return formatJson( "OK", CampagnesService.getInstance().getAllAreas( campaign ) );
+        } 
+        catch ( NoSuchPhaseException e ) 
+        {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
         }
     }
 
     /**
-     * get areas of last campaign
+     * get localized areas of last campaign
      *
-     * @return the response of the request getAreas for the last campaign
+     * @return the response of the request getAllAreas for the last campaign
      * @throws ServletException
      */
     @GET
-    @Path("areas")
+    @Path("all-areas")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getLastCampaignAreas(@Context HttpServletRequest request) throws ServletException
+    public String getLastCampaignAllAreas(@Context HttpServletRequest request) throws ServletException
     {
     	if ( !isRequestAuthenticated( request ) )
 	    {
@@ -403,7 +387,55 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().getAreas( ) );
+            return formatJson( "OK", CampagnesService.getInstance().getAllAreas( ) );
+    	} catch (NoSuchPhaseException e) {
+			AppLogService.error(e);
+	        return formatJson( "KO", false );
+    	}
+    }
+    
+    /**
+     * get localized areas of a campaign
+     *
+     * @return the response of the request getLocalizedAreas for a campaign
+     * @throws ServletException
+     */
+    @GET
+    @Path("{campaign}/localized-areas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCampaignLocalizedAreas(@Context HttpServletRequest request, @PathParam("campaign") String campaign) throws ServletException
+    {
+        if ( !isRequestAuthenticated( request ) )
+	    {
+	        AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+	    }
+        try {
+            return formatJson( "OK", CampagnesService.getInstance().getLocalizedAreas( campaign ) );
+        } catch (NoSuchPhaseException e) {
+			AppLogService.error(e);
+	        return formatJson( "KO", false );
+        }
+    }
+
+    /**
+     * get localized areas of last campaign
+     *
+     * @return the response of the request getLocalizedAreas for the last campaign
+     * @throws ServletException
+     */
+    @GET
+    @Path("areas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getLastCampaignLocalizedAreas(@Context HttpServletRequest request) throws ServletException
+    {
+    	if ( !isRequestAuthenticated( request ) )
+	    {
+	        AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+	    }
+    	try {
+            return formatJson( "OK", CampagnesService.getInstance().getLocalizedAreas( ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -417,9 +449,9 @@ public class CampaignRest {
      * @throws ServletException
      */
     @GET
-    @Path("{campaign}/whole")
+    @Path("{campaign}/whole-area")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getCampaignWhole(@Context HttpServletRequest request, @PathParam("campaign") String campaign) throws ServletException
+    public String getCampaignWholeArea(@Context HttpServletRequest request, @PathParam("campaign") String campaign) throws ServletException
     {
         if ( !isRequestAuthenticated( request ) )
 	    {
@@ -441,9 +473,9 @@ public class CampaignRest {
      * @throws ServletException
      */
     @GET
-    @Path("whole")
+    @Path("whole-area")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getLastCampaignWhole(@Context HttpServletRequest request) throws ServletException
+    public String getLastCampaignWholeArea(@Context HttpServletRequest request) throws ServletException
     {
         if ( !isRequestAuthenticated( request ) )
 	    {
@@ -462,6 +494,11 @@ public class CampaignRest {
         }
     }
 
+    // *********************************************************************************************
+    // * REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST *
+    // * REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST *
+    // *********************************************************************************************
+
     /**
      * Checks if the request is authenticated or not
      *
@@ -473,4 +510,39 @@ public class CampaignRest {
     {
         return RequestAuthenticationService.getRequestAuthenticator( ).isRequestAuthenticated( request );
     }
+
+    // *********************************************************************************************
+    // * JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON *
+    // * JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON *
+    // *********************************************************************************************
+    
+    private String formatJson(String status, boolean result) {
+		String message;
+    	JSONObject json = new JSONObject();
+    	json.put("status", status);
+    	json.put("result", result);
+    	message = json.toString();
+    	
+    	return message;
+	}
+
+    private String formatJson(String status, String result) {
+		String message;
+        JSONObject json = new JSONObject();
+        json.put("status", status);
+        json.put("result", result);
+        message = json.toString();
+
+        return message;
+	}
+
+    private String formatJson(String status, List<String> result) {
+        String message;
+        JSONObject json = new JSONObject();
+        json.put("status", status);
+        json.put("result", result);
+        message = json.toString();
+        return message;
+	}
+	
 }

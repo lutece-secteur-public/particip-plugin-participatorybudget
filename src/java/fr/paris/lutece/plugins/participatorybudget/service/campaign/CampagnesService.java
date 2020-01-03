@@ -217,47 +217,6 @@ public class CampagnesService implements ICampagneService {
 		return toSoLovelyString (formattedDate, withAccents); 
 	}
 
-	public List<String> getAreas( String codeCampaign ) {
-		Collection<CampagneArea> result = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
-		List<String> areas = new ArrayList<>();
-        for (CampagneArea c : result) {
-            if (c.getActive() && c.getType().equals("localized")) {
-                areas.add(c.getTitle());
-            }
-        }
-        return areas;
-    }
-
-	public boolean hasWholeArea( String codeCampaign ) {
-		Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
-		for (CampagneArea a : areas) {
-			if (a.getType().equals("whole")) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean hasWholeArea( String codeCampaign, int idCampaign ) {
-		Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
-		for ( CampagneArea a : areas ) {
-			if ( a.getType().equals("whole") && a.getId() != idCampaign ) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public String getWholeArea( String codeCampaign ) {
-		Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
-		for (CampagneArea a : areas) {
-			if (a.getType().equals("whole") && a.getActive()) {
-				return a.getTitle();
-			}
-		}
-		return "";
-	}
-
 	// Same methods than preceding, for last campagne
     
     public boolean isBeforeBeginning ( String phase ) { return isBeforeBeginning ( getLastCampagne().getCode(), phase); }
@@ -271,10 +230,104 @@ public class CampagnesService implements ICampagneService {
 	public String    startStr ( String phase, String format, boolean withAccents ) { return startStr ( getLastCampagne().getCode(), phase, format, withAccents ); }
 	public String      endStr ( String phase, String format, boolean withAccents ) { return   endStr ( getLastCampagne().getCode(), phase, format, withAccents ); }
 
-	public List<String> getAreas( ) { return getAreas( getLastCampagne().getCode() ); }
-	public boolean  hasWholeArea  ( ) { return hasWholeArea( getLastCampagne().getCode()); }
-	public boolean  hasWholeArea  ( int id ) { return hasWholeArea( getLastCampagne().getCode(), id); }
-	public String   getWholeArea  ( ) { return getWholeArea( getLastCampagne().getCode()); }
+	// ***********************************************************************************
+	// * AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS A *
+	// * AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS A *
+	// ***********************************************************************************
+
+	public List<String> getAllAreas( String codeCampaign ) 
+	{
+		Collection<CampagneArea> result = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+		List<String> areas = new ArrayList<>();
+        for ( CampagneArea c : result ) 
+        {
+            if ( c.getActive() ) 
+            {
+                areas.add( c.getTitle() );
+            }
+        }
+        return areas;
+    }
+
+	public List<String> getLocalizedAreas( String codeCampaign ) 
+	{
+		Collection<CampagneArea> result = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+		List<String> areas = new ArrayList<>();
+        for ( CampagneArea c : result ) 
+        {
+            if ( c.getActive() && c.getType().equals("localized") ) 
+            {
+                areas.add( c.getTitle() );
+            }
+        }
+        return areas;
+    }
+
+	public boolean hasWholeArea( String codeCampaign ) 
+	{
+		Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+		for ( CampagneArea a : areas ) 
+		{
+			if ( a.getType().equals( "whole" ) ) 
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean hasWholeArea( String codeCampaign, int idCampaign ) 
+	{
+		Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+		for ( CampagneArea a : areas ) 
+		{
+			if ( a.getType().equals( "whole" ) && a.getId() != idCampaign ) 
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String getWholeArea( String codeCampaign ) 
+	{
+		Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+		for ( CampagneArea a : areas ) 
+		{
+			if ( a.getType().equals( "whole" ) && a.getActive() ) 
+			{
+				return a.getTitle();
+			}
+		}
+		return "";
+	}
+
+	// Same methods than preceding, for last campagne
+
+	public List<String> getAllAreas( ) 
+	{ 
+		return getAllAreas( getLastCampagne().getCode() ); 
+	}
+	
+	public List<String> getLocalizedAreas( ) 
+	{ 
+		return getLocalizedAreas( getLastCampagne().getCode() ); 
+	}
+	
+	public boolean hasWholeArea( ) 
+	{ 
+		return hasWholeArea( getLastCampagne().getCode() ); 
+	}
+	
+	public boolean hasWholeArea( int id ) 
+	{ 
+		return hasWholeArea( getLastCampagne().getCode(), id ); 
+	}
+	
+	public String getWholeArea( ) 
+	{ 
+		return getWholeArea( getLastCampagne().getCode() ); 
+	}
 
     // ***********************************************************************************
 	// * UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS U *
