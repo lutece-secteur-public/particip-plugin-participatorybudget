@@ -48,44 +48,48 @@ public class UserAccessVoteDAO implements IUserAccessVoteDAO
 	@Override
 	public void insert( UserAccessVote userVote, Plugin plugin ) 
 	{
-		DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin );
-		daoUtil.setString( 1, userVote.getId( ) );
-	    daoUtil.setBoolean( 2, userVote.isHasAccessVote() );
-	      	        
-	    daoUtil.executeUpdate(  );
-	    daoUtil.free(  );
+		try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )
+		{
+			daoUtil.setString( 1, userVote.getId( ) );
+		    daoUtil.setBoolean( 2, userVote.isHasAccessVote() );
+		      	        
+		    daoUtil.executeUpdate(  );
+		}
 		
 	}
 
 	@Override
 	public void update( UserAccessVote userVote, Plugin plugin  ) 
 	{
-		DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-		
-	    daoUtil.setBoolean( 1, userVote.isHasAccessVote() );
-	    daoUtil.setString( 2, userVote.getId( ) );
-	      	        
-	    daoUtil.executeUpdate(  );
-	    daoUtil.free(  );
+		try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin ) )
+		{
+		    daoUtil.setBoolean( 1, userVote.isHasAccessVote() );
+		    daoUtil.setString( 2, userVote.getId( ) );
+		      	        
+		    daoUtil.executeUpdate(  );
+		}
 	}
 
 	@Override
 	public void delete( String strUserId, Plugin plugin  ) 
 	{
-		DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
-        daoUtil.setString( 1, strUserId );
-        
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+		try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )
+		{
+	        daoUtil.setString( 1, strUserId );
+	        
+	        daoUtil.executeUpdate(  );
+		}
 	}
 
 	@Override
 	public UserAccessVote select( String strUserId, Plugin plugin  ) 
 	{
 		UserAccessVote userAccessVote= null;
-		DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin );
-		daoUtil.setString( 1, strUserId );
-		daoUtil.executeQuery(  );
+		
+		try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )
+		{
+			daoUtil.setString( 1, strUserId );
+			daoUtil.executeQuery(  );
 
 	        if ( daoUtil.next(  ) )
 	        {
@@ -94,8 +98,9 @@ public class UserAccessVoteDAO implements IUserAccessVoteDAO
 	        	userAccessVote.setHasAccessVote( daoUtil.getBoolean( 2 ) );
 	           
 	        }
-	        daoUtil.free(  );
-	        return userAccessVote;
+		}
+
+		return userAccessVote;
 	}
 
 }
