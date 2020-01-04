@@ -65,7 +65,7 @@ import fr.paris.lutece.plugins.participatorybudget.Constants;
 import fr.paris.lutece.plugins.participatorybudget.business.MyVote;
 import fr.paris.lutece.plugins.participatorybudget.business.Vote;
 import fr.paris.lutece.plugins.participatorybudget.business.VoteHome;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.rating.BudgetRatingService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.portal.service.cache.AbstractCacheableService;
@@ -269,7 +269,7 @@ public class MyVoteService
 		LuteceUser user = SecurityService.getInstance().getRegisteredUser(
 				request);
 		
-		if ( !CampagnesService.getInstance().isDuring("VOTE") || isUserVoteValidated(user.getName()))
+		if ( !CampaignService.getInstance().isDuring("VOTE") || isUserVoteValidated(user.getName()))
 		{
         	try {
 				SiteMessageService.setMessage( request, RatingConstants.MESSAGE_CANNOT_VOTE, SiteMessage.TYPE_STOP );

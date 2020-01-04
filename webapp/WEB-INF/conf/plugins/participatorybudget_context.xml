@@ -19,7 +19,7 @@
     
 
     <!-- CAMPAGNE_SERVICE BEAN -->
-    <bean id="participatorybudget.campagneService"       class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService"/>
+    <bean id="participatorybudget.campaignService"       class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService"/>
 	<bean id="participatorybudget.campaignChronoService" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignChronoService" />  
 	
     <!-- CAMPAIGN WS REST -->

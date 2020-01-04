@@ -52,7 +52,7 @@ import org.joda.time.format.DateTimeFormatter;
 import fr.paris.lutece.plugins.leaflet.business.GeolocItem;
 import fr.paris.lutece.plugins.participatorybudget.business.Civility;
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.portal.service.datastore.DatastoreService;
 import fr.paris.lutece.portal.service.i18n.I18nService;
@@ -471,7 +471,7 @@ public final class MyInfosService {
     {
         String strNickname = userPreferenceService.getNickname( user );
         
-        if ( !CampagnesService.getInstance().isDuring(Constants.VOTE) && StringUtils.isBlank( strNickname ) )
+        if ( !CampaignService.getInstance().isDuring(Constants.VOTE) && StringUtils.isBlank( strNickname ) )
         {
             myInfos.setIsValid( false );
         }
@@ -612,8 +612,8 @@ public final class MyInfosService {
     {
         String strArrondissement = userPreferenceService.get( user.getName(  ), PREF_KEY_ARRONDISSEMENT_VOTE, StringUtils.EMPTY );
         
-        if (       CampagnesService.getInstance().isAfterBeginning(Constants.SUBMIT) 
-        		&& CampagnesService.getInstance().isBeforeEnd     (Constants.VOTE  ) 
+        if (       CampaignService.getInstance().isAfterBeginning(Constants.SUBMIT) 
+        		&& CampaignService.getInstance().isBeforeEnd     (Constants.VOTE  ) 
         		&& ( StringUtils.isBlank( strArrondissement ) || UNDEFINED_POSTALCODE_KEY.equals( strArrondissement ) )
         	)
         {

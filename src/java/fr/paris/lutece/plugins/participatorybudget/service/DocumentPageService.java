@@ -36,7 +36,7 @@ package fr.paris.lutece.plugins.participatorybudget.service;
 import fr.paris.lutece.plugins.document.business.Document;
 import fr.paris.lutece.plugins.document.business.DocumentHome;
 import fr.paris.lutece.plugins.document.business.attributes.DocumentAttribute;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.portal.business.resourceenhancer.IResourceDisplayManager;
 import fr.paris.lutece.portal.service.security.LuteceUser;
@@ -140,7 +140,7 @@ public class DocumentPageService implements IResourceDisplayManager
 		model.put(             MARK_TITLE           , strTitleDoc );
 		model.put(             MARK_STATUS          , strStatusDoc );
 		model.put(             MARK_CAMPAGNE        , strCampagneDoc );
-		model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampagnesService.getInstance() );
+		model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
 		model.put( BudgetUtils.MARK_VOTE_VALIDATED  , isValidated);
 	}
 }

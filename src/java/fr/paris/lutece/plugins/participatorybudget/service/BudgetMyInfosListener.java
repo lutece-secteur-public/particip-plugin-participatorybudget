@@ -42,7 +42,7 @@ import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhase;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseHome;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
@@ -76,17 +76,17 @@ public class BudgetMyInfosListener implements IMyInfosListener {
 			isValidated= _myVoteService.isUserVoteValidated( user.getName( ) );
 		}
 
-    	if ( CampagnesService.getInstance().isDuring("VOTE") && isValidated)
+    	if ( CampaignService.getInstance().isDuring("VOTE") && isValidated)
     	{
     		return -1; // Vote opened but vote already validated
     	}
     	
-    	if ( CampagnesService.getInstance().isBeforeBeginning("SUBMIT") || CampagnesService.getInstance().isAfterEnd("VOTE") )
+    	if ( CampaignService.getInstance().isBeforeBeginning("SUBMIT") || CampaignService.getInstance().isAfterEnd("VOTE") )
     	{
     		return 2; // Not in submission or vote phase
     	}
     	
-    	if ( CampagnesService.getInstance().isDuring("VOTE") )
+    	if ( CampaignService.getInstance().isDuring("VOTE") )
     	{
     		return 1; // In vote phase, need confirmatinon of votes suppression 
     	}

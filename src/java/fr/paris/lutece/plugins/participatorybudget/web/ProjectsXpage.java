@@ -49,7 +49,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
@@ -144,7 +144,7 @@ public class ProjectsXpage extends MVCApplication
              && !removeUserArrFilterSelected 
              && !locationFilterActivated
              && "projects_mdp".equals(strConf)
-             && CampagnesService.getInstance().isAfterBeginning("SUBMIT") && CampagnesService.getInstance().isBeforeEnd("VOTE") )
+             && CampaignService.getInstance().isAfterBeginning("SUBMIT") && CampaignService.getInstance().isBeforeEnd("VOTE") )
         {
             String strArrt = getArrondissement( user );
             if ( StringUtils.isNotBlank( strArrt ) )

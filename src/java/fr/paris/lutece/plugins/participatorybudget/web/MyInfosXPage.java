@@ -48,7 +48,7 @@ import fr.paris.lutece.plugins.participatorybudget.service.MyInfosListenerServic
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.plugins.participatorybudget.service.avatar.CampagneAvatarService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneUploadHandler;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.plugins.participatorybudget.util.ModelUtils;
 import fr.paris.lutece.portal.service.message.SiteMessage;
@@ -293,7 +293,7 @@ public class MyInfosXPage extends MVCApplication {
 				MyInfosService.getPostalCodes());
 		
         // Check if the submission/vote phases are open or not
-        model.put( MARK_CAMPAGNE_SERVICE, CampagnesService.getInstance() );
+        model.put( MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
 		
 		return getXPage(TEMPLATE_CREATE_MY_INFOS, request.getLocale(), model);
 
@@ -334,7 +334,7 @@ public class MyInfosXPage extends MVCApplication {
 				|| !validateBean(formMyAccount, getLocale(request))
 				|| !validateBean(form, getLocale(request));
 		
-        if ( !CampagnesService.getInstance().isDuring(Constants.VOTE) && StringUtils.isBlank( form.getNickname( ) ) )
+        if ( !CampaignService.getInstance().isDuring(Constants.VOTE) && StringUtils.isBlank( form.getNickname( ) ) )
         {
             bError = true;
             addError( MESSAGE_ERROR_NICKNAME_MISSING, getLocale( request ) );                   
@@ -506,7 +506,7 @@ public class MyInfosXPage extends MVCApplication {
 			    model.put( MARK_URL_MONCOMPTE, AppPropertiesService.getProperty( PROPERTY_URL_MONCOMPTE ) );
 			    
 		        // Check if the submission/vote phases are open or not
-		        model.put( MARK_CAMPAGNE_SERVICE, CampagnesService.getInstance() );
+		        model.put( MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
 			    
 			    ModelUtils.storeUnauthorizedAddress( model, myInfos.getAddress(  ), user );
 
@@ -565,7 +565,7 @@ public class MyInfosXPage extends MVCApplication {
 				bError = !bCapchaVerified
 						|| !validateBean(form, getLocale(request));
 				
-				if ( !CampagnesService.getInstance().isDuring(Constants.VOTE) && StringUtils.isBlank( form.getNickname( ) ) )
+				if ( !CampaignService.getInstance().isDuring(Constants.VOTE) && StringUtils.isBlank( form.getNickname( ) ) )
 				{
                     bError = true;
                     addError( MESSAGE_ERROR_NICKNAME_MISSING, getLocale( request ) );				    
@@ -862,7 +862,7 @@ public class MyInfosXPage extends MVCApplication {
 				bError = !bCapchaVerified
 						|| !validateBean(form, getLocale(request));
 				
-                if ( !CampagnesService.getInstance().isDuring(Constants.VOTE) && StringUtils.isBlank( form.getNickname( ) ) )
+                if ( !CampaignService.getInstance().isDuring(Constants.VOTE) && StringUtils.isBlank( form.getNickname( ) ) )
                 {
                     bError = true;
                     addError( MESSAGE_ERROR_NICKNAME_MISSING, getLocale( request ) );                   

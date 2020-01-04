@@ -45,7 +45,7 @@ import fr.paris.lutece.plugins.leaflet.business.GeolocItem;
 import fr.paris.lutece.plugins.leaflet.service.IconService;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.plugins.search.solr.business.SolrSearchEngine;
 import fr.paris.lutece.plugins.search.solr.business.SolrSearchResult;
@@ -115,7 +115,7 @@ public class BudgetSolrAddon implements ISolrSearchAppAddOn {
 		model.put( BudgetUtils.MARK_VOTE_VALIDATED, isValidated );
 		model.put( MARK_REMOVE_ARR_FILTER, request.getParameter( PARAMETER_REMOVE_ARR_FILTER ) );
 		
-		model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampagnesService.getInstance() );
+		model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
 	}
 
 

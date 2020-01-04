@@ -80,10 +80,10 @@ import javax.ws.rs.core.MediaType;
 
 import fr.paris.lutece.plugins.participatorybudget.service.NoSuchPhaseException;
 import fr.paris.lutece.plugins.participatorybudget.service.authentication.RequestAuthenticationService;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.rest.service.RestConstants;
 import fr.paris.lutece.portal.service.util.AppLogService;
-
+import fr.paris.lutece.util.ReferenceList;
 import net.sf.json.JSONObject;
 
 @Path( RestConstants.BASE_PATH + "campaign" )
@@ -113,7 +113,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().isBeforeBeginning( campaign, phase ) );
+            return formatJson( "OK", CampaignService.getInstance().isBeforeBeginning( campaign, phase ), CampaignService.getInstance().start( campaign, phase ) + " ==> " + CampaignService.getInstance().end( campaign, phase ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
             return formatJson( "KO", false );
@@ -137,7 +137,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().isBeforeBeginning( phase ) );
+            return formatJson( "OK", CampaignService.getInstance().isBeforeBeginning( phase ), CampaignService.getInstance().start( phase ) + " ==> " + CampaignService.getInstance().end( phase ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
             return formatJson( "KO", false );
@@ -161,7 +161,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().isAfterBeginning( campaign, phase ) );
+            return formatJson( "OK", CampaignService.getInstance().isAfterBeginning( campaign, phase ), CampaignService.getInstance().start( campaign, phase ) + " ==> " + CampaignService.getInstance().end( campaign, phase ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -185,7 +185,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().isAfterBeginning( phase ) );
+            return formatJson( "OK", CampaignService.getInstance().isAfterBeginning( phase ), CampaignService.getInstance().start( phase ) + " ==> " + CampaignService.getInstance().end( phase ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -210,7 +210,7 @@ public class CampaignRest {
     	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
     	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().isDuring( campaign, phase ) );
+            return formatJson( "OK", CampaignService.getInstance().isDuring( campaign, phase ), CampaignService.getInstance().start( campaign, phase ) + " ==> " + CampaignService.getInstance().end( campaign, phase ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -235,7 +235,7 @@ public class CampaignRest {
     	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
     	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().isDuring( phase ) );
+            return formatJson( "OK", CampaignService.getInstance().isDuring( phase ), CampaignService.getInstance().start( phase ) + " ==> " + CampaignService.getInstance().end( phase ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -259,7 +259,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().isBeforeEnd( campaign, phase ) );
+            return formatJson( "OK", CampaignService.getInstance().isBeforeEnd( campaign, phase ), CampaignService.getInstance().start( campaign, phase ) + " ==> " + CampaignService.getInstance().end( campaign, phase ) );
         } catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -283,7 +283,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().isBeforeEnd( phase ) );
+            return formatJson( "OK", CampaignService.getInstance().isBeforeEnd( phase ), CampaignService.getInstance().start( phase ) + " ==> " + CampaignService.getInstance().end( phase ) );
         } catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -307,7 +307,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
         try {
-            return formatJson( "OK", CampagnesService.getInstance().isAfterEnd( campaign, phase ) );
+            return formatJson( "OK", CampaignService.getInstance().isAfterEnd( campaign, phase ), CampaignService.getInstance().start( campaign, phase ) + " ==> " + CampaignService.getInstance().end( campaign, phase ) );
         } catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -331,7 +331,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
         try {
-            return formatJson( "OK", CampagnesService.getInstance().isAfterEnd( phase ) );
+            return formatJson( "OK", CampaignService.getInstance().isAfterEnd( phase ), CampaignService.getInstance().start( phase ) + " ==> " + CampaignService.getInstance().end( phase ) );
         } catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -361,7 +361,7 @@ public class CampaignRest {
 	    }
         try 
         {
-            return formatJson( "OK", CampagnesService.getInstance().getAllAreas( campaign ) );
+            return formatJson( "OK", CampaignService.getInstance().getAllAreas( campaign ) );
         } 
         catch ( NoSuchPhaseException e ) 
         {
@@ -387,7 +387,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().getAllAreas( ) );
+            return formatJson( "OK", CampaignService.getInstance().getAllAreas( ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -411,7 +411,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
         try {
-            return formatJson( "OK", CampagnesService.getInstance().getLocalizedAreas( campaign ) );
+            return formatJson( "OK", CampaignService.getInstance().getLocalizedAreas( campaign ) );
         } catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -425,7 +425,7 @@ public class CampaignRest {
      * @throws ServletException
      */
     @GET
-    @Path("areas")
+    @Path("localized-areas")
     @Produces(MediaType.APPLICATION_JSON)
     public String getLastCampaignLocalizedAreas(@Context HttpServletRequest request) throws ServletException
     {
@@ -435,7 +435,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
     	try {
-            return formatJson( "OK", CampagnesService.getInstance().getLocalizedAreas( ) );
+            return formatJson( "OK", CampaignService.getInstance().getLocalizedAreas( ) );
     	} catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -459,7 +459,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
         try {
-            return formatJson( "OK", CampagnesService.getInstance().getWholeArea( campaign ) );
+            return formatJson( "OK", CampaignService.getInstance().getWholeArea( campaign ) );
         } catch (NoSuchPhaseException e) {
 			AppLogService.error(e);
 	        return formatJson( "KO", false );
@@ -483,7 +483,7 @@ public class CampaignRest {
 	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
 	    }
         try {
-            String result = CampagnesService.getInstance().getWholeArea( );
+            String result = CampaignService.getInstance().getWholeArea( );
             if (result.equals("")) {
                 return formatJson( "KO", result );
             }
@@ -494,6 +494,64 @@ public class CampaignRest {
         }
     }
 
+    // *********************************************************************************************
+    // * THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME *
+    // * THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME THEME *
+    // *********************************************************************************************
+
+    /**
+     * get themes of a campaign
+     *
+     * @return the response of the request getThemes for a campaign
+     * @throws ServletException
+     */
+    @GET
+    @Path( "{campaign}/themes" )
+    @Produces( MediaType.APPLICATION_JSON )
+    public String getCampaignThemes( @Context HttpServletRequest request, @PathParam( "campaign" ) String campaign ) throws ServletException
+    {
+        if ( !isRequestAuthenticated( request ) )
+	    {
+	        AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+	    }
+        try 
+        {
+            return formatJson( "OK", CampaignService.getInstance().getThemes( campaign ) );
+        } 
+        catch ( NoSuchPhaseException e ) 
+        {
+			AppLogService.error( e );
+	        return formatJson( "KO", false );
+        }
+    }
+
+    /**
+     * get themes of last campaign
+     *
+     * @return the response of the request getThemes for the last campaign
+     * @throws ServletException
+     */
+    @GET
+    @Path( "themes" )
+    @Produces( MediaType.APPLICATION_JSON )
+    public String getCampaignThemes( @Context HttpServletRequest request ) throws ServletException
+    {
+    	if ( !isRequestAuthenticated( request ) )
+	    {
+	        AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+	        throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+	    }
+    	try {
+            return formatJson( "OK", CampaignService.getInstance().getThemes( ) );
+    	} 
+    	catch ( NoSuchPhaseException e ) 
+    	{
+			AppLogService.error( e );
+	        return formatJson( "KO", false );
+    	}
+    }
+    
     // *********************************************************************************************
     // * REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST *
     // * REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST *
@@ -516,31 +574,18 @@ public class CampaignRest {
     // * JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON *
     // *********************************************************************************************
     
-    private String formatJson(String status, boolean result) {
-		String message;
-    	JSONObject json = new JSONObject();
-    	json.put("status", status);
-    	json.put("result", result);
-    	message = json.toString();
-    	
-    	return message;
+    private String formatJson( String status, Object result ) 
+    {
+        return formatJson( status, result, "" );
 	}
-
-    private String formatJson(String status, String result) {
-		String message;
-        JSONObject json = new JSONObject();
-        json.put("status", status);
-        json.put("result", result);
-        message = json.toString();
-
-        return message;
-	}
-
-    private String formatJson(String status, List<String> result) {
+    
+    private String formatJson( String status, Object result, Object complement ) 
+    {
         String message;
         JSONObject json = new JSONObject();
-        json.put("status", status);
-        json.put("result", result);
+        json.put( "status"    , status );
+        json.put( "result"    , result );
+        json.put( "complement", complement );
         message = json.toString();
         return message;
 	}

@@ -42,7 +42,7 @@ import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
 import fr.paris.lutece.plugins.participatorybudget.service.BudgetIncludeService;
 import fr.paris.lutece.plugins.participatorybudget.service.MyVoteService;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.plugins.participatorybudget.web.MyInfosXPage;
 import fr.paris.lutece.portal.service.content.PageData;
@@ -118,7 +118,7 @@ public class HeaderInclude implements PageInclude
 			
 			rootModel.put(SecurityTokenService.MARK_TOKEN,SecurityTokenService.getInstance().getToken(request, MyInfosXPage.TOKEN_DO_CREATE_MY_INFOS));
 			
-			rootModel.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampagnesService.getInstance() );
+			rootModel.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
 			
 			HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_CONNEXION, request.getLocale(), rootModel );
 			
@@ -126,7 +126,7 @@ public class HeaderInclude implements PageInclude
 	        rootModel.put( MARK_HEADER_CONNEXION, template.getHtml(  ) );
 	        rootModel.put( MARK_RANDOM, Math.abs( _random.nextLong( ) ) );
 	        rootModel.put( MARK_URL_MONCOMPTE, AppPropertiesService.getProperty( PROPERTY_URL_MONCOMPTE ) );
-	        rootModel.put( MARK_CAMPAGNE_SERVICE, CampagnesService.getInstance() );
+	        rootModel.put( MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
 		}
 	}
 }

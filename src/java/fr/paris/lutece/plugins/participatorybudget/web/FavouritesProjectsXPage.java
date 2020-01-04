@@ -45,7 +45,7 @@ import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
 import fr.paris.lutece.plugins.participatorybudget.service.MyFavouritesProjects;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.plugins.participatorybudget.service.MyVoteService;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
@@ -118,7 +118,7 @@ public class FavouritesProjectsXPage extends MVCApplication
     	model.put( MARK_PROJECTS_FOLLOWERS, listFollowers );
 		model.put(BudgetUtils.MARK_VOTE_VALIDATED, isValidated);
 
-		model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampagnesService.getInstance() );
+		model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
 
     	return getXPage( TEMPLATE_VIEW_FAVOURITE_PROJECT, request.getLocale(  ), model );
     }

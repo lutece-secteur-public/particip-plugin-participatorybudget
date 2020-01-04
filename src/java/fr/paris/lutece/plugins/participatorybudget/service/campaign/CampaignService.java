@@ -44,18 +44,21 @@ import java.util.List;
 import java.util.Map;
 
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneArea;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaHome;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhase;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseHome;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneArea;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneTheme;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeHome;
 import fr.paris.lutece.plugins.participatorybudget.service.NoSuchPhaseException;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppLogService;
+import fr.paris.lutece.util.ReferenceList;
 
 
-public class CampagnesService implements ICampagneService {
+public class CampaignService implements ICampaignService {
 
     // Attributes
     
@@ -66,11 +69,11 @@ public class CampagnesService implements ICampagneService {
 	// * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
 	// ***********************************************************************************
 	
-	private static final String BEAN_CAMPAGNE_SERVICE = "participatorybudget.campagneService";
+	private static final String BEAN_CAMPAGNE_SERVICE = "participatorybudget.campaignService";
 	
-	private static ICampagneService _singleton;
+	private static ICampaignService _singleton;
 	
-	public static ICampagneService getInstance () {
+	public static ICampaignService getInstance () {
         if ( _singleton == null )
         {
             _singleton = SpringContextService.getBean( BEAN_CAMPAGNE_SERVICE );
@@ -330,6 +333,30 @@ public class CampagnesService implements ICampagneService {
 	}
 
     // ***********************************************************************************
+	// * THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES TH *
+	// * THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES TH *
+	// ***********************************************************************************
+
+	@Override
+	public ReferenceList getThemes( String codeCampaign ) 
+	{
+		ReferenceList items = new ReferenceList();
+
+		Collection<CampagneTheme> list = CampagneThemeHome.getCampagneThemesListByCampagne( codeCampaign );
+		for ( CampagneTheme theme : list ) {
+			items.addItem( theme.getCode(), theme.getTitle() );
+		} 
+		
+		return items;
+	}
+
+	@Override
+	public ReferenceList getThemes() 
+	{
+		return getThemes( getLastCampagne().getCode() );
+	}
+	
+	// ***********************************************************************************
 	// * UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS U *
 	// * UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS UTILS U *
 	// ***********************************************************************************
@@ -361,4 +388,5 @@ public class CampagnesService implements ICampagneService {
 		
 		return soLovelyStr;
 	}
+
 }

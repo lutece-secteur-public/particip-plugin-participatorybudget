@@ -46,7 +46,7 @@ import fr.paris.lutece.plugins.participatorybudget.service.IVoteParArrandissemen
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.plugins.participatorybudget.service.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.service.VoteParArrandissementService;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.plugins.participatorybudget.web.MyInfosXPage;
 import fr.paris.lutece.portal.service.security.LuteceUser;
@@ -98,7 +98,7 @@ public class RatingValidationService implements IRatingValidationService
 
         //This is duplicated in MyVoteXPage.java because there it wants to return json
         //instead of redirecting to an url or throwing a SiteMessageException
-        if ( !CampagnesService.getInstance().isDuring("VOTE") || _myVoteService.isUserVoteValidated(strUserId)){
+        if ( !CampaignService.getInstance().isDuring("VOTE") || _myVoteService.isUserVoteValidated(strUserId)){
             return strDefaultErrorUrl;
         }
         

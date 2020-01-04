@@ -36,7 +36,7 @@ package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneArea;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaHome;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
@@ -154,7 +154,7 @@ public class CampagneAreaJspBean extends ManageCampagnebpJspBean
         {
             return redirectView( request, VIEW_CREATE_CAMPAGNEAREA );
         }
-        if ( _campagnearea.getType().equals("whole") && CampagnesService.getInstance( ).hasWholeArea(_campagnearea.getCodeCampagne())) {
+        if ( _campagnearea.getType().equals("whole") && CampaignService.getInstance( ).hasWholeArea(_campagnearea.getCodeCampagne())) {
             addError("#i18n{participatorybudget.validation.campagnearea.Type.alreadyWhole}");
         	return redirectView( request, VIEW_CREATE_CAMPAGNEAREA );
         }
@@ -239,7 +239,7 @@ public class CampagneAreaJspBean extends ManageCampagnebpJspBean
         {
             return redirect( request, VIEW_MODIFY_CAMPAGNEAREA, PARAMETER_ID_CAMPAGNEAREA, _campagnearea.getId( ) );
         }
-        if ( _campagnearea.getType().equals("whole") && CampagnesService.getInstance( ).hasWholeArea(_campagnearea.getCodeCampagne(), _campagnearea.getId())) {
+        if ( _campagnearea.getType().equals("whole") && CampaignService.getInstance( ).hasWholeArea(_campagnearea.getCodeCampagne(), _campagnearea.getId())) {
             addError("#i18n{participatorybudget.validation.campagnearea.Type.alreadyWhole}");
         	return redirectView( request, VIEW_CREATE_CAMPAGNEAREA );
         }

@@ -42,7 +42,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhase;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseHome;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
@@ -159,7 +159,7 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
         CampagnePhaseHome.create( _campagnephase );
         addInfo( INFO_CAMPAGNEPHASE_CREATED, getLocale(  ) );
 
-        CampagnesService.getInstance().reset();
+        CampaignService.getInstance().reset();
         
         return redirectView( request, VIEW_MANAGE_CAMPAGNEPHASES );
     }
@@ -197,7 +197,7 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
         CampagnePhaseHome.remove( nId );
         addInfo( INFO_CAMPAGNEPHASE_REMOVED, getLocale(  ) );
 
-        CampagnesService.getInstance().reset();
+        CampaignService.getInstance().reset();
         
         return redirectView( request, VIEW_MANAGE_CAMPAGNEPHASES );
     }
@@ -244,7 +244,7 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
         CampagnePhaseHome.update( _campagnephase );
         addInfo( INFO_CAMPAGNEPHASE_UPDATED, getLocale(  ) );
 
-        CampagnesService.getInstance().reset();
+        CampaignService.getInstance().reset();
         
         return redirectView( request, VIEW_MANAGE_CAMPAGNEPHASES );
     }

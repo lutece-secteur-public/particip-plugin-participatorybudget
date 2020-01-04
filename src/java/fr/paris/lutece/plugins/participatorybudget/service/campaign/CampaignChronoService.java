@@ -141,7 +141,7 @@ public class CampaignChronoService implements ICampaignChronoService {
         
         // Reseting cache
         
-        CampagnesService.getInstance().reset();
+        CampaignService.getInstance().reset();
         
         return newCampagne.getCode();
     }

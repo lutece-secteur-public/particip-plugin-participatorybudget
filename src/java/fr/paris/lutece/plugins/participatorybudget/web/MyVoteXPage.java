@@ -79,7 +79,7 @@ import fr.paris.lutece.plugins.participatorybudget.service.IVoteParArrandissemen
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.plugins.participatorybudget.service.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.service.VoteParArrandissementService;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagnesService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.rating.BudgetRatingService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.plugins.subscribe.business.Subscription;
@@ -239,7 +239,7 @@ public class MyVoteXPage extends MVCApplication {
 	@View(VIEW_MY_VOTES)
 	public XPage getMyVotes(HttpServletRequest request) throws UserNotSignedException, SiteMessageException {
 
-		if ( !CampagnesService.getInstance().isDuring("VOTE") ) {
+		if ( !CampaignService.getInstance().isDuring("VOTE") ) {
 			SiteMessageService.setMessage(request, MESSAGE_PAGE_NOT_ACCESSIBLE, SiteMessage.TYPE_STOP);
 		}
 
@@ -272,7 +272,7 @@ public class MyVoteXPage extends MVCApplication {
 		
 		model.put(BudgetUtils.MARK_VOTE_VALIDATED, isValidated);
 
-		model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampagnesService.getInstance() );
+		model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
 
 		XPage page = getXPage(TEMPLATE_MY_VOTES, getLocale(request), model);
 		page.setTitle(I18nService.getLocalizedString(PROPERTY_MY_VOTES_PAGE_TITLE, Locale.FRENCH));
@@ -303,7 +303,7 @@ public class MyVoteXPage extends MVCApplication {
 	 * @throws SiteMessageException
 	 */
 	public String loadVotes(HttpServletRequest request) {
-		if ( !CampagnesService.getInstance().isDuring("VOTE") )
+		if ( !CampaignService.getInstance().isDuring("VOTE") )
 		{
 			return JsonUtil.buildJsonResponse(new JsonResponse("closed"));
 		}
@@ -399,7 +399,7 @@ public class MyVoteXPage extends MVCApplication {
 			// we want to return json
 			// instead of redirecting to an url or throwing a
 			// SiteMessageException
-			if ( !CampagnesService.getInstance().isDuring("VOTE") || _myVoteService.isUserVoteValidated(strUserId) ) 
+			if ( !CampaignService.getInstance().isDuring("VOTE") || _myVoteService.isUserVoteValidated(strUserId) ) 
 			{
 				SiteMessageService.setMessage(request, RatingConstants.MESSAGE_CANNOT_VOTE, SiteMessage.TYPE_STOP);
 			}
@@ -512,7 +512,7 @@ public class MyVoteXPage extends MVCApplication {
 		LuteceUser user = SecurityService.getInstance().getRegisteredUser(request);
 
 		String strUserId = user.getName();
-		if ( !CampagnesService.getInstance().isDuring("VOTE") || _myVoteService.isUserVoteValidated(strUserId) ) {
+		if ( !CampaignService.getInstance().isDuring("VOTE") || _myVoteService.isUserVoteValidated(strUserId) ) {
 
 			try {
 				SiteMessageService.setMessage(request, RatingConstants.MESSAGE_CANNOT_VOTE, SiteMessage.TYPE_STOP);
