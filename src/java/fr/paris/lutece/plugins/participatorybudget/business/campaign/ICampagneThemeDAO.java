@@ -39,8 +39,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-
-
 /**
  * ICampagneThemeDAO Interface
  */
@@ -48,70 +46,92 @@ public interface ICampagneThemeDAO
 {
     /**
      * Insert a new record in the table.
-     * @param campagneTheme instance of the CampagneTheme object to insert
-     * @param plugin the Plugin
+     * 
+     * @param campagneTheme
+     *            instance of the CampagneTheme object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( CampagneTheme campagneTheme, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param campagneTheme the reference of the CampagneTheme
-     * @param plugin the Plugin
+     * 
+     * @param campagneTheme
+     *            the reference of the CampagneTheme
+     * @param plugin
+     *            the Plugin
      */
     void store( CampagneTheme campagneTheme, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the CampagneTheme to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the CampagneTheme to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the campagneTheme
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the campagneTheme
+     * @param plugin
+     *            the Plugin
      * @return The instance of the campagneTheme
      */
     CampagneTheme load( int nKey, Plugin plugin );
+
     /**
      * Load the data from the table
-     * @param codeTheme The identifier of the campagneTheme
-     * @param plugin the Plugin
+     * 
+     * @param codeTheme
+     *            The identifier of the campagneTheme
+     * @param plugin
+     *            the Plugin
      * @return The instance of the campagneTheme
      */
     CampagneTheme loadByCodeTheme( String codeTheme, Plugin plugin );
 
-
     /**
      * Load the data of all the campagneTheme objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the campagneTheme objects
      */
     Collection<CampagneTheme> selectCampagneThemesList( Plugin plugin );
-    
+
     /**
      * Load the id of all the campagneTheme objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the campagneTheme objects
      */
     Collection<Integer> selectIdCampagneThemesList( Plugin plugin );
 
     /**
      * Load the data of all the campagneTheme objects for a cmapgne and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the campagneTheme objects
      */
     Collection<CampagneTheme> selectCampagneThemesListByCampagne( String campagneCode, Plugin plugin );
 
     /**
      * Load the data of all the campagneTheme objects mapped from cmapgne and returns them as a map
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the campagneTheme objects
      */
     Map<String, List<CampagneTheme>> selectCampagneThemesMapByCampagne( Plugin plugin );
 }
-

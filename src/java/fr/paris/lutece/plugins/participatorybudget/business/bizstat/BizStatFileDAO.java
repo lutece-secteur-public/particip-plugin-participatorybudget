@@ -45,11 +45,12 @@ import fr.paris.lutece.util.sql.DAOUtil;
 public final class BizStatFileDAO implements IBizStatFileDAO
 {
     // Constants
-    private static final String SQL_QUERY_ALL            = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date            , OCTET_LENGTH(file_value) FROM participatorybudget_bizstat_file";
-    private static final String SQL_QUERY_FIND_BY_ID     = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date, file_value, OCTET_LENGTH(file_value) FROM participatorybudget_bizstat_file WHERE id_bizstat_file = ?";
+    private static final String SQL_QUERY_ALL = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date            , OCTET_LENGTH(file_value) FROM participatorybudget_bizstat_file";
+    private static final String SQL_QUERY_FIND_BY_ID = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date, file_value, OCTET_LENGTH(file_value) FROM participatorybudget_bizstat_file WHERE id_bizstat_file = ?";
     private static final String SQL_QUERY_FIND_BY_STATUS = "SELECT id_bizstat_file, status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, creation_date,             OCTET_LENGTH(file_value) FROM participatorybudget_bizstat_file WHERE status          = ?";
 
-    private static final String SQL_INSERT = "INSERT INTO participatorybudget_bizstat_file (status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, file_value)" + " VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+    private static final String SQL_INSERT = "INSERT INTO participatorybudget_bizstat_file (status, file_name, id_admin_user, admin_user_access_code, admin_user_email, reason, description, error, file_value)"
+            + " VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
     private static final String SQL_UPDATE = "UPDATE participatorybudget_bizstat_file SET status = ?, file_name = ?, id_admin_user = ?, admin_user_access_code = ?, admin_user_email = ?, reason = ?, description = ?, error = ?, file_value = ?  where id_bizstat_file = ? ";
     private static final String SQL_DELETE = "DELETE FROM participatorybudget_bizstat_file WHERE id_bizstat_file = ? ";
 
@@ -60,16 +61,16 @@ public final class BizStatFileDAO implements IBizStatFileDAO
     public void insert( BizStatFile bizStatFile, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_INSERT, plugin );
-        
-        daoUtil.setString ( 1, bizStatFile.getStatus()              );
-        daoUtil.setString ( 2, bizStatFile.getFileName()            );
-        daoUtil.setInt    ( 3, bizStatFile.getIdAdminUser()         );
-        daoUtil.setString ( 4, bizStatFile.getAdminUserAccessCode() );
-        daoUtil.setString ( 5, bizStatFile.getAdminUserEmail()      );
-        daoUtil.setString ( 6, bizStatFile.getReason()              );
-        daoUtil.setString ( 7, bizStatFile.getDescription()         );
-        daoUtil.setString ( 8, bizStatFile.getError()               );
-        daoUtil.setBytes  ( 9, bizStatFile.getValue()               );
+
+        daoUtil.setString( 1, bizStatFile.getStatus( ) );
+        daoUtil.setString( 2, bizStatFile.getFileName( ) );
+        daoUtil.setInt( 3, bizStatFile.getIdAdminUser( ) );
+        daoUtil.setString( 4, bizStatFile.getAdminUserAccessCode( ) );
+        daoUtil.setString( 5, bizStatFile.getAdminUserEmail( ) );
+        daoUtil.setString( 6, bizStatFile.getReason( ) );
+        daoUtil.setString( 7, bizStatFile.getDescription( ) );
+        daoUtil.setString( 8, bizStatFile.getError( ) );
+        daoUtil.setBytes( 9, bizStatFile.getValue( ) );
         // Creation date is set by the DB
 
         daoUtil.executeUpdate( );
@@ -80,20 +81,20 @@ public final class BizStatFileDAO implements IBizStatFileDAO
      * {@inheritDoc}
      */
     @Override
-    public void update( BizStatFile bizStatFile , Plugin plugin )
+    public void update( BizStatFile bizStatFile, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_UPDATE, plugin );
-        
-        daoUtil.setString (  1, bizStatFile.getStatus()              );
-        daoUtil.setString (  2, bizStatFile.getFileName()            );
-        daoUtil.setInt    (  3, bizStatFile.getIdAdminUser()         );
-        daoUtil.setString (  4, bizStatFile.getAdminUserAccessCode() );
-        daoUtil.setString (  5, bizStatFile.getAdminUserEmail()      );
-        daoUtil.setString (  6, bizStatFile.getReason()              );
-        daoUtil.setString (  7, bizStatFile.getDescription()         );
-        daoUtil.setString (  8, bizStatFile.getError()               );
-        daoUtil.setBytes  (  9, bizStatFile.getValue()               );
-        daoUtil.setInt    ( 10, bizStatFile.getIdBizStatFile()       );
+
+        daoUtil.setString( 1, bizStatFile.getStatus( ) );
+        daoUtil.setString( 2, bizStatFile.getFileName( ) );
+        daoUtil.setInt( 3, bizStatFile.getIdAdminUser( ) );
+        daoUtil.setString( 4, bizStatFile.getAdminUserAccessCode( ) );
+        daoUtil.setString( 5, bizStatFile.getAdminUserEmail( ) );
+        daoUtil.setString( 6, bizStatFile.getReason( ) );
+        daoUtil.setString( 7, bizStatFile.getDescription( ) );
+        daoUtil.setString( 8, bizStatFile.getError( ) );
+        daoUtil.setBytes( 9, bizStatFile.getValue( ) );
+        daoUtil.setInt( 10, bizStatFile.getIdBizStatFile( ) );
         // Creation date is not modifed
 
         daoUtil.executeUpdate( );
@@ -113,20 +114,20 @@ public final class BizStatFileDAO implements IBizStatFileDAO
         BizStatFile file = null;
 
         if ( daoUtil.next( ) )
-        { 
-        	file = new BizStatFile( );
-        	file.setIdBizStatFile       ( daoUtil.getInt       (  1 ) );
-        	file.setStatus              ( daoUtil.getString    (  2 ) );
-        	file.setFileName            ( daoUtil.getString    (  3 ) );
-        	file.setIdAdminUser         ( daoUtil.getInt       (  4 ) );
-        	file.setAdminUserAccessCode ( daoUtil.getString    (  5 ) );
-        	file.setAdminUserEmail      ( daoUtil.getString    (  6 ) );
-        	file.setReason              ( daoUtil.getString    (  7 ) );
-        	file.setDescription         ( daoUtil.getString    (  8 ) );
-        	file.setError               ( daoUtil.getString    (  9 ) );
-        	file.setCreationDate        ( daoUtil.getTimestamp ( 10 ) );
-        	file.setValue               ( daoUtil.getBytes     ( 11 ) );
-        	file.setContentSize         ( daoUtil.getInt       ( 12 ) );
+        {
+            file = new BizStatFile( );
+            file.setIdBizStatFile( daoUtil.getInt( 1 ) );
+            file.setStatus( daoUtil.getString( 2 ) );
+            file.setFileName( daoUtil.getString( 3 ) );
+            file.setIdAdminUser( daoUtil.getInt( 4 ) );
+            file.setAdminUserAccessCode( daoUtil.getString( 5 ) );
+            file.setAdminUserEmail( daoUtil.getString( 6 ) );
+            file.setReason( daoUtil.getString( 7 ) );
+            file.setDescription( daoUtil.getString( 8 ) );
+            file.setError( daoUtil.getString( 9 ) );
+            file.setCreationDate( daoUtil.getTimestamp( 10 ) );
+            file.setValue( daoUtil.getBytes( 11 ) );
+            file.setContentSize( daoUtil.getInt( 12 ) );
         }
 
         daoUtil.free( );
@@ -149,30 +150,30 @@ public final class BizStatFileDAO implements IBizStatFileDAO
     @Override
     public List<BizStatFile> selectAllWithoutBytes( Plugin plugin )
     {
-        List<BizStatFile> files = new ArrayList<BizStatFile>(  );
+        List<BizStatFile> files = new ArrayList<BizStatFile>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_ALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-        	BizStatFile file = new BizStatFile(  );
+            BizStatFile file = new BizStatFile( );
 
-        	file.setIdBizStatFile       ( daoUtil.getInt       (  1 ) );
-        	file.setStatus              ( daoUtil.getString    (  2 ) );
-        	file.setFileName            ( daoUtil.getString    (  3 ) );
-        	file.setIdAdminUser         ( daoUtil.getInt       (  4 ) );
-        	file.setAdminUserAccessCode ( daoUtil.getString    (  5 ) );
-        	file.setAdminUserEmail      ( daoUtil.getString    (  6 ) );
-        	file.setReason              ( daoUtil.getString    (  7 ) );
-        	file.setDescription         ( daoUtil.getString    (  8 ) );
-        	file.setError               ( daoUtil.getString    (  9 ) );
-        	file.setCreationDate        ( daoUtil.getTimestamp ( 10 ) );
-        	file.setContentSize         ( daoUtil.getInt       ( 11 ) );
+            file.setIdBizStatFile( daoUtil.getInt( 1 ) );
+            file.setStatus( daoUtil.getString( 2 ) );
+            file.setFileName( daoUtil.getString( 3 ) );
+            file.setIdAdminUser( daoUtil.getInt( 4 ) );
+            file.setAdminUserAccessCode( daoUtil.getString( 5 ) );
+            file.setAdminUserEmail( daoUtil.getString( 6 ) );
+            file.setReason( daoUtil.getString( 7 ) );
+            file.setDescription( daoUtil.getString( 8 ) );
+            file.setError( daoUtil.getString( 9 ) );
+            file.setCreationDate( daoUtil.getTimestamp( 10 ) );
+            file.setContentSize( daoUtil.getInt( 11 ) );
 
-        	files.add( file );
+            files.add( file );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return files;
     }
@@ -180,31 +181,31 @@ public final class BizStatFileDAO implements IBizStatFileDAO
     @Override
     public List<BizStatFile> selectByStatusWithoutBytes( String status, Plugin plugin )
     {
-        List<BizStatFile> files = new ArrayList<BizStatFile> ();
+        List<BizStatFile> files = new ArrayList<BizStatFile>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_FIND_BY_STATUS, plugin );
         daoUtil.setString( 1, status );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-        	BizStatFile file = new BizStatFile(  );
+            BizStatFile file = new BizStatFile( );
 
-        	file.setIdBizStatFile       ( daoUtil.getInt       (  1 ) );
-        	file.setStatus              ( daoUtil.getString    (  2 ) );
-        	file.setFileName            ( daoUtil.getString    (  3 ) );
-        	file.setIdAdminUser         ( daoUtil.getInt       (  4 ) );
-        	file.setAdminUserAccessCode ( daoUtil.getString    (  5 ) );
-        	file.setAdminUserEmail      ( daoUtil.getString    (  6 ) );
-        	file.setReason              ( daoUtil.getString    (  7 ) );
-        	file.setDescription         ( daoUtil.getString    (  8 ) );
-        	file.setError               ( daoUtil.getString    (  9 ) );
-        	file.setCreationDate        ( daoUtil.getTimestamp ( 10 ) );
-        	file.setContentSize         ( daoUtil.getInt       ( 11 ) );
+            file.setIdBizStatFile( daoUtil.getInt( 1 ) );
+            file.setStatus( daoUtil.getString( 2 ) );
+            file.setFileName( daoUtil.getString( 3 ) );
+            file.setIdAdminUser( daoUtil.getInt( 4 ) );
+            file.setAdminUserAccessCode( daoUtil.getString( 5 ) );
+            file.setAdminUserEmail( daoUtil.getString( 6 ) );
+            file.setReason( daoUtil.getString( 7 ) );
+            file.setDescription( daoUtil.getString( 8 ) );
+            file.setError( daoUtil.getString( 9 ) );
+            file.setCreationDate( daoUtil.getTimestamp( 10 ) );
+            file.setContentSize( daoUtil.getInt( 11 ) );
 
-        	files.add( file );
+            files.add( file );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return files;
     }

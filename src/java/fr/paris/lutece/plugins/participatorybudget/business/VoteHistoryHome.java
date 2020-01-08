@@ -40,7 +40,6 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 import java.util.List;
 
-
 /**
  * This class provides instances management methods (create, find, ...) for Vote objects
  */
@@ -53,14 +52,16 @@ public final class VoteHistoryHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private VoteHistoryHome(  )
+    private VoteHistoryHome( )
     {
     }
 
     /**
      * Create an instance of the vote class
-     * @param vote The instance of the Vote which contains the informations to store
-     * @return The  instance of vote which has been created with its primary key.
+     * 
+     * @param vote
+     *            The instance of the Vote which contains the informations to store
+     * @return The instance of vote which has been created with its primary key.
      */
     public static Vote create( Vote vote )
     {
@@ -71,8 +72,11 @@ public final class VoteHistoryHome
 
     /**
      * Remove the vote whose identifier is specified in parameter
-     * @param nVoteId The vote Id
-     * @param plugin the Plugin
+     * 
+     * @param nVoteId
+     *            The vote Id
+     * @param plugin
+     *            the Plugin
      */
     public static void remove( String strUserId, int nProjetId )
     {
@@ -81,12 +85,14 @@ public final class VoteHistoryHome
 
     /**
      * Load the data of all the vote objects and returns them in form of a list
+     * 
      * @return the list which contains the data of all the vote objects
      */
-    public static List<Vote> getVotesList(  )
+    public static List<Vote> getVotesList( )
     {
         return _dao.selectVotesList( _plugin );
     }
+
     /**
      * 
      * @param nUserId
@@ -96,6 +102,7 @@ public final class VoteHistoryHome
     {
         _dao.deleteAll( strUserId, _plugin );
     }
+
     /**
      * 
      * @param nUserId
@@ -103,18 +110,20 @@ public final class VoteHistoryHome
      */
     public static List<Vote> getVoteUser( String strUserId )
     {
-    	return _dao.selectVotesUser(strUserId, _plugin);
+        return _dao.selectVotesUser( strUserId, _plugin );
     }
+
     /**
      * 
      * @param nUserId
      * @param nLocalisation
      * @return
      */
-    public static int getVoteUserArrondissement( String strUserId, int nLocalisation)
+    public static int getVoteUserArrondissement( String strUserId, int nLocalisation )
     {
-    	return _dao.countNbVotesUserArrondissement(strUserId, nLocalisation, _plugin);
+        return _dao.countNbVotesUserArrondissement( strUserId, nLocalisation, _plugin );
     }
+
     /**
      * 
      * @param nUserId
@@ -123,18 +132,20 @@ public final class VoteHistoryHome
      */
     public static int getVoteUserNotLocalisation( String strUserId, int nLocalisation )
     {
-    	return _dao.countNbVotesUser(strUserId, nLocalisation, _plugin);
+        return _dao.countNbVotesUser( strUserId, nLocalisation, _plugin );
     }
+
     /**
      * 
      * @param strUserId
      * @param nIdProject
      * @return
      */
-    public static Vote  getVoteUser ( String strUserId, int nIdProject )
+    public static Vote getVoteUser( String strUserId, int nIdProject )
     {
-    	return _dao.selectVoteUser(strUserId, nIdProject, _plugin);
+        return _dao.selectVoteUser( strUserId, nIdProject, _plugin );
     }
+
     /**
      * 
      * @param nStatus
@@ -142,17 +153,17 @@ public final class VoteHistoryHome
      */
     public static List<Vote> selectVotesListByExportStatus( int nStatus )
     {
-    	return _dao.selectVotesListByExportStatus(_plugin, nStatus);
+        return _dao.selectVotesListByExportStatus( _plugin, nStatus );
     }
-    
+
     /**
      * 
      * @param nIdVote
      * @param nTag
      */
-    public static void updateVoteHistoryTag(Vote vote, int nTag)
+    public static void updateVoteHistoryTag( Vote vote, int nTag )
     {
-    	 _dao.updateTagStats(vote, nTag, _plugin);
+        _dao.updateTagStats( vote, nTag, _plugin );
     }
-  
+
 }

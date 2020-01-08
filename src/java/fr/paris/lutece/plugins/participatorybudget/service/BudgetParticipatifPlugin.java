@@ -38,7 +38,6 @@ import fr.paris.lutece.plugins.extend.modules.favorite.service.FavoriteListenerS
 import fr.paris.lutece.plugins.extend.modules.follow.service.FollowListenerService;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 
-
 /**
  * BudgetParticipatifPlugin
  */
@@ -48,11 +47,11 @@ public class BudgetParticipatifPlugin extends Plugin
      * {@inheritDoc}
      */
     @Override
-    public void init(  )
+    public void init( )
     {
-    	FollowListenerService.registerListener(Document.PROPERTY_RESOURCE_TYPE, new BudgetFollowListener());
-    	MyInfosListenerService.registerListener( Document.PROPERTY_RESOURCE_TYPE ,new BudgetMyInfosListener());
-    	FavoriteListenerService.registerListener(Document.PROPERTY_RESOURCE_TYPE, new BudgetFavoriteListener());
-    	FavoriteListenerService.registerListener("IDEE", new BudgetFavoriteListener());
+        FollowListenerService.registerListener( Document.PROPERTY_RESOURCE_TYPE, new BudgetFollowListener( ) );
+        MyInfosListenerService.registerListener( Document.PROPERTY_RESOURCE_TYPE, new BudgetMyInfosListener( ) );
+        FavoriteListenerService.registerListener( Document.PROPERTY_RESOURCE_TYPE, new BudgetFavoriteListener( ) );
+        FavoriteListenerService.registerListener( "IDEE", new BudgetFavoriteListener( ) );
     }
 }

@@ -36,15 +36,15 @@ package fr.paris.lutece.plugins.participatorybudget.service;
 import fr.paris.lutece.plugins.participatorybudget.business.UserAccessVote;
 import fr.paris.lutece.plugins.participatorybudget.business.VotePerLocation;
 
-public interface IVoteParArrandissementService 
+public interface IVoteParArrandissementService
 {
-	 VotePerLocation selectVotePerLocation( String strArrd ) ;
-	 
-	 boolean isUserAccessVote ( String strIdUser ) ;
+    VotePerLocation selectVotePerLocation( String strArrd );
 
-	 void updateUserAccessVote( UserAccessVote userAccessVote );
+    boolean isUserAccessVote( String strIdUser );
 
-	 void insertUserAccessVote( UserAccessVote userAccessVote );
-	 
-	 void setAccessVote(boolean bool, String userId);
+    void updateUserAccessVote( UserAccessVote userAccessVote );
+
+    void insertUserAccessVote( UserAccessVote userAccessVote );
+
+    void setAccessVote( boolean bool, String userId );
 }

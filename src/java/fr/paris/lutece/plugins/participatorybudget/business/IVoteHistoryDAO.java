@@ -37,46 +37,57 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 
 import java.util.List;
 
-
 /**
-* IVoteDAO Interface
-*/
+ * IVoteDAO Interface
+ */
 public interface IVoteHistoryDAO
 {
     /**
      * Insert a new record in the table.
-     * @param vote instance of the Vote object to inssert
-     * @param plugin the Plugin
+     * 
+     * @param vote
+     *            instance of the Vote object to inssert
+     * @param plugin
+     *            the Plugin
      */
     void insert( Vote vote, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nUserId The User Id
-     * @param nProjetId The User Id
-     * @param plugin The plugin
+     * 
+     * @param nUserId
+     *            The User Id
+     * @param nProjetId
+     *            The User Id
+     * @param plugin
+     *            The plugin
      */
-    public void delete( String strUserId , int nProjetId, Plugin plugin );
+    public void delete( String strUserId, int nProjetId, Plugin plugin );
 
     /**
-    * Load the data of all the vote objects and returns them as a List
-    * @param plugin the Plugin
-    * @return The List which contains the data of all the vote objects
-    */
+     * Load the data of all the vote objects and returns them as a List
+     * 
+     * @param plugin
+     *            the Plugin
+     * @return The List which contains the data of all the vote objects
+     */
     List<Vote> selectVotesList( Plugin plugin );
+
     /**
      * 
      * @param nUserId
      * @param plugin
      */
-    public void deleteAll(String strUserId , Plugin plugin );
+    public void deleteAll( String strUserId, Plugin plugin );
+
     /**
      * 
      * @param nUserId
      * @param plugin
      * @return
      */
-    public List<Vote> selectVotesUser(String strUserId , Plugin plugin );
+    public List<Vote> selectVotesUser( String strUserId, Plugin plugin );
+
     /**
      * 
      * @param nUserId
@@ -84,36 +95,39 @@ public interface IVoteHistoryDAO
      * @param plugin
      * @return
      */
-	public int countNbVotesUserArrondissement (String strUserId , int nLocalisation, Plugin plugin );
-	/**
-	 * 
-	 * @param nUserId
-	 * @param strLocalisation
-	 * @param plugin
-	 * @return
-	 */
-	public int countNbVotesUser(String strUserId , int nLocalisation, Plugin plugin );
-	/**
-	 * 
-	 * @param strUserId
-	 * @param nIdproject
-	 * @param plugin
-	 * @return
-	 */
-	public Vote selectVoteUser(String strUserId, int nIdproject, Plugin plugin);
-	/**
-	 * 
-	 * @param plugin
-	 * @param status
-	 * @return
-	 */
-	List<Vote> selectVotesListByExportStatus(Plugin plugin, int status);
-	
-	/**
-	 * 
-	 * @param vote
-	 * @param nTag
-	 * @param plugin
-	 */
-	void updateTagStats(Vote vote, int nTag, Plugin plugin);
+    public int countNbVotesUserArrondissement( String strUserId, int nLocalisation, Plugin plugin );
+
+    /**
+     * 
+     * @param nUserId
+     * @param strLocalisation
+     * @param plugin
+     * @return
+     */
+    public int countNbVotesUser( String strUserId, int nLocalisation, Plugin plugin );
+
+    /**
+     * 
+     * @param strUserId
+     * @param nIdproject
+     * @param plugin
+     * @return
+     */
+    public Vote selectVoteUser( String strUserId, int nIdproject, Plugin plugin );
+
+    /**
+     * 
+     * @param plugin
+     * @param status
+     * @return
+     */
+    List<Vote> selectVotesListByExportStatus( Plugin plugin, int status );
+
+    /**
+     * 
+     * @param vote
+     * @param nTag
+     * @param plugin
+     */
+    void updateTagStats( Vote vote, int nTag, Plugin plugin );
 }

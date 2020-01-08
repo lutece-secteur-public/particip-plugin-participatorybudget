@@ -38,69 +38,69 @@ import fr.paris.lutece.util.sql.DAOUtil;
 
 public class UserAccessVoteDAO implements IUserAccessVoteDAO
 {
-	// Constants
+    // Constants
     private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_user_access_vote ( id_user, has_acces_vote ) VALUES ( ?, ? ) ";
     private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_user_access_vote SET has_acces_vote = ? WHERE id_user = ? ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_user_access_vote WHERE id_user = ?";
     private static final String SQL_QUERY_SELECTALL = "SELECT id_user, has_acces_vote FROM participatorybudget_user_access_vote";
     private static final String SQl_QUERY_SELECT = SQL_QUERY_SELECTALL + " where id_user= ?";
-    
-	@Override
-	public void insert( UserAccessVote userVote, Plugin plugin ) 
-	{
-		try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )
-		{
-			daoUtil.setString( 1, userVote.getId( ) );
-		    daoUtil.setBoolean( 2, userVote.isHasAccessVote() );
-		      	        
-		    daoUtil.executeUpdate(  );
-		}
-		
-	}
 
-	@Override
-	public void update( UserAccessVote userVote, Plugin plugin  ) 
-	{
-		try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin ) )
-		{
-		    daoUtil.setBoolean( 1, userVote.isHasAccessVote() );
-		    daoUtil.setString( 2, userVote.getId( ) );
-		      	        
-		    daoUtil.executeUpdate(  );
-		}
-	}
+    @Override
+    public void insert( UserAccessVote userVote, Plugin plugin )
+    {
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )
+        {
+            daoUtil.setString( 1, userVote.getId( ) );
+            daoUtil.setBoolean( 2, userVote.isHasAccessVote( ) );
 
-	@Override
-	public void delete( String strUserId, Plugin plugin  ) 
-	{
-		try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )
-		{
-	        daoUtil.setString( 1, strUserId );
-	        
-	        daoUtil.executeUpdate(  );
-		}
-	}
+            daoUtil.executeUpdate( );
+        }
 
-	@Override
-	public UserAccessVote select( String strUserId, Plugin plugin  ) 
-	{
-		UserAccessVote userAccessVote= null;
-		
-		try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )
-		{
-			daoUtil.setString( 1, strUserId );
-			daoUtil.executeQuery(  );
+    }
 
-	        if ( daoUtil.next(  ) )
-	        {
-	        	userAccessVote = new UserAccessVote();
-	        	userAccessVote.setId( daoUtil.getString( 1 ) );
-	        	userAccessVote.setHasAccessVote( daoUtil.getBoolean( 2 ) );
-	           
-	        }
-		}
+    @Override
+    public void update( UserAccessVote userVote, Plugin plugin )
+    {
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin ) )
+        {
+            daoUtil.setBoolean( 1, userVote.isHasAccessVote( ) );
+            daoUtil.setString( 2, userVote.getId( ) );
 
-		return userAccessVote;
-	}
+            daoUtil.executeUpdate( );
+        }
+    }
+
+    @Override
+    public void delete( String strUserId, Plugin plugin )
+    {
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )
+        {
+            daoUtil.setString( 1, strUserId );
+
+            daoUtil.executeUpdate( );
+        }
+    }
+
+    @Override
+    public UserAccessVote select( String strUserId, Plugin plugin )
+    {
+        UserAccessVote userAccessVote = null;
+
+        try( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )
+        {
+            daoUtil.setString( 1, strUserId );
+            daoUtil.executeQuery( );
+
+            if ( daoUtil.next( ) )
+            {
+                userAccessVote = new UserAccessVote( );
+                userAccessVote.setId( daoUtil.getString( 1 ) );
+                userAccessVote.setHasAccessVote( daoUtil.getBoolean( 2 ) );
+
+            }
+        }
+
+        return userAccessVote;
+    }
 
 }

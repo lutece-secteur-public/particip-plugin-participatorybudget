@@ -31,9 +31,8 @@
  *
  * License 1.0
  */
- 
-package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
+package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneImage;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneImageHome;
@@ -49,7 +48,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage CampagneImage features ( manage, create, modify, remove )
  */
@@ -57,14 +55,13 @@ import javax.servlet.http.HttpServletRequest;
 public class CampagneImageJspBean extends ManageCampagnebpJspBean
 {
 
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
     private static final String TEMPLATE_MANAGE_CAMPAGNEIMAGES = "/admin/plugins/participatorybudget/campaign/manage_campagneimages.html";
     private static final String TEMPLATE_CREATE_CAMPAGNEIMAGE = "/admin/plugins/participatorybudget/campaign/create_campagneimage.html";
     private static final String TEMPLATE_MODIFY_CAMPAGNEIMAGE = "/admin/plugins/participatorybudget/campaign/modify_campagneimage.html";
-
 
     // Parameters
     private static final String PARAMETER_ID_CAMPAGNEIMAGE = "id";
@@ -83,7 +80,7 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNEIMAGE = "participatorybudget.message.confirmRemoveCampagneImage";
     private static final String PROPERTY_DEFAULT_LIST_CAMPAGNEIMAGE_PER_PAGE = "participatorybudget.listCampagneImages.itemsPerPage";
- 
+
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagneimage.attribute.";
 
     // Views
@@ -101,21 +98,22 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     private static final String INFO_CAMPAGNEIMAGE_CREATED = "participatorybudget.info.campagneimage.created";
     private static final String INFO_CAMPAGNEIMAGE_UPDATED = "participatorybudget.info.campagneimage.updated";
     private static final String INFO_CAMPAGNEIMAGE_REMOVED = "participatorybudget.info.campagneimage.removed";
-    
+
     // Session variable to store working values
     private CampagneImage _campagneimage;
-    
-    
+
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_CAMPAGNEIMAGES, defaultView = true )
     public String getManageCampagneImages( HttpServletRequest request )
     {
         _campagneimage = null;
-        List<CampagneImage> listCampagneImages = (List<CampagneImage>) CampagneImageHome.getCampagneImagesList(  );
+        List<CampagneImage> listCampagneImages = (List<CampagneImage>) CampagneImageHome.getCampagneImagesList( );
         Map<String, Object> model = getPaginatedListModel( request, MARK_CAMPAGNEIMAGE_LIST, listCampagneImages, JSP_MANAGE_CAMPAGNEIMAGES );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNEIMAGES, TEMPLATE_MANAGE_CAMPAGNEIMAGES, model );
@@ -124,15 +122,16 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     /**
      * Returns the form to create a campagneimage
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the campagneimage form
      */
     @View( VIEW_CREATE_CAMPAGNEIMAGE )
     public String getCreateCampagneImage( HttpServletRequest request )
     {
-        _campagneimage = ( _campagneimage != null ) ? _campagneimage : new CampagneImage(  );
+        _campagneimage = ( _campagneimage != null ) ? _campagneimage : new CampagneImage( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_CAMPAGNEIMAGE, _campagneimage );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_CAMPAGNEIMAGE, TEMPLATE_CREATE_CAMPAGNEIMAGE, model );
@@ -141,7 +140,8 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     /**
      * Process the data capture form of a new campagneimage
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_CAMPAGNEIMAGE )
@@ -156,16 +156,16 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
         }
 
         CampagneImageHome.create( _campagneimage );
-        addInfo( INFO_CAMPAGNEIMAGE_CREATED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNEIMAGE_CREATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_CAMPAGNEIMAGES );
     }
 
     /**
-     * Manages the removal form of a campagneimage whose identifier is in the http
-     * request
+     * Manages the removal form of a campagneimage whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_CAMPAGNEIMAGE )
@@ -175,8 +175,7 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNEIMAGE ) );
         url.addParameter( PARAMETER_ID_CAMPAGNEIMAGE, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEIMAGE,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEIMAGE, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -184,7 +183,8 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     /**
      * Handles the removal form of a campagneimage
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage campagneimages
      */
     @Action( ACTION_REMOVE_CAMPAGNEIMAGE )
@@ -192,7 +192,7 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNEIMAGE ) );
         CampagneImageHome.remove( nId );
-        addInfo( INFO_CAMPAGNEIMAGE_REMOVED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNEIMAGE_REMOVED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_CAMPAGNEIMAGES );
     }
@@ -200,7 +200,8 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     /**
      * Returns the form to update info about a campagneimage
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_CAMPAGNEIMAGE )
@@ -208,12 +209,12 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNEIMAGE ) );
 
-        if ( _campagneimage == null || ( _campagneimage.getId(  ) != nId ))
+        if ( _campagneimage == null || ( _campagneimage.getId( ) != nId ) )
         {
             _campagneimage = CampagneImageHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_CAMPAGNEIMAGE, _campagneimage );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNEIMAGE, TEMPLATE_MODIFY_CAMPAGNEIMAGE, model );
@@ -222,7 +223,8 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
     /**
      * Process the change form of a campagneimage
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_CAMPAGNEIMAGE )
@@ -237,7 +239,7 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
         }
 
         CampagneImageHome.update( _campagneimage );
-        addInfo( INFO_CAMPAGNEIMAGE_UPDATED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNEIMAGE_UPDATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_CAMPAGNEIMAGES );
     }

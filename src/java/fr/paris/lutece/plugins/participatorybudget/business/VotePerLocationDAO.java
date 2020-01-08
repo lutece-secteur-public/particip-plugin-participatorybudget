@@ -39,76 +39,75 @@ import fr.paris.lutece.util.sql.DAOUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * This class provides Data Access methods for Vote objects
  */
 public final class VotePerLocationDAO implements IVotePerLocationDAO
 {
-	
+
     // Constants
     private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_votes_per_location SET nb_votes = ?  where id = ? ";
     private static final String SQL_QUERY_SELECTALL = "SELECT id, localisation_ardt, nb_votes FROM  participatorybudget_votes_per_location";
     private static final String SQL_QUERY_BY_ARR = " WHERE localisation_ardt = ? ";
-    private static final String SQL_QUERY_SELECT_BY_ARR = SQL_QUERY_SELECTALL + SQL_QUERY_BY_ARR ;
-    
+    private static final String SQL_QUERY_SELECT_BY_ARR = SQL_QUERY_SELECTALL + SQL_QUERY_BY_ARR;
 
+    @Override
+    public void update( VotePerLocation vote, Plugin plugin )
+    {
 
-	@Override
-	public void update( VotePerLocation vote , Plugin plugin) 
-	{
-
-    	int nCpt=1;
+        int nCpt = 1;
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-        
-        daoUtil.setInt( nCpt++ , vote.getNbVotes( )  );
-        daoUtil.setInt( nCpt , vote.getId( ) );
+
+        daoUtil.setInt( nCpt++, vote.getNbVotes( ) );
+        daoUtil.setInt( nCpt, vote.getId( ) );
 
         daoUtil.executeUpdate( );
         daoUtil.free( );
-        
-	}
-	@Override
-	public VotePerLocation select( String strArrd , Plugin plugin) 
-	{
-		VotePerLocation vote= null;
-		DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_BY_ARR, plugin );
-		daoUtil.setString( 1, strArrd );
-		daoUtil.executeQuery(  );
 
-        if ( daoUtil.next(  ) )
+    }
+
+    @Override
+    public VotePerLocation select( String strArrd, Plugin plugin )
+    {
+        VotePerLocation vote = null;
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_BY_ARR, plugin );
+        daoUtil.setString( 1, strArrd );
+        daoUtil.executeQuery( );
+
+        if ( daoUtil.next( ) )
         {
-        	vote= new VotePerLocation();
-  		  	vote.setId( daoUtil.getInt( 1 ) );
-  		  	vote.setLocationArd( daoUtil.getString( 2 ) );
-  		  	vote.setNbVotes( daoUtil.getInt( 3 ) );
+            vote = new VotePerLocation( );
+            vote.setId( daoUtil.getInt( 1 ) );
+            vote.setLocationArd( daoUtil.getString( 2 ) );
+            vote.setNbVotes( daoUtil.getInt( 3 ) );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
         return vote;
-	} 
-	@Override
-	public List<VotePerLocation> getListVotes(Plugin plugin) 
-	{
-		 List<VotePerLocation> voteList = new ArrayList<VotePerLocation>(  );
-	        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-	        daoUtil.executeQuery(  );
+    }
 
-	        while ( daoUtil.next(  ) )
-	        {
-	        	VotePerLocation vote = new VotePerLocation(  );
+    @Override
+    public List<VotePerLocation> getListVotes( Plugin plugin )
+    {
+        List<VotePerLocation> voteList = new ArrayList<VotePerLocation>( );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
+        daoUtil.executeQuery( );
 
-	            vote.setId( daoUtil.getInt( 1 ) );
-	            vote.setLocationArd( daoUtil.getString( 2 ) );
-	            vote.setNbVotes( daoUtil.getInt( 3 ) );
-	            
-	            voteList.add( vote );
-	        }
+        while ( daoUtil.next( ) )
+        {
+            VotePerLocation vote = new VotePerLocation( );
 
-	        daoUtil.free(  );
+            vote.setId( daoUtil.getInt( 1 ) );
+            vote.setLocationArd( daoUtil.getString( 2 ) );
+            vote.setNbVotes( daoUtil.getInt( 3 ) );
 
-	        return voteList;
-	
-	}
-		
+            voteList.add( vote );
+        }
+
+        daoUtil.free( );
+
+        return voteList;
+
+    }
+
 }

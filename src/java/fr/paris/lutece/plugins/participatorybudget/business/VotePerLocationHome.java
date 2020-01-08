@@ -52,7 +52,7 @@ public final class VotePerLocationHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private VotePerLocationHome(  )
+    private VotePerLocationHome( )
     {
     }
 
@@ -64,27 +64,30 @@ public final class VotePerLocationHome
      */
     public static void updateVotesPerLocation( VotePerLocation vote )
     {
-    	_dao.update( vote, _plugin) ;
+        _dao.update( vote, _plugin );
     }
-    
+
     /**
      * Get List Votes PerLocation
+     * 
      * @return
      */
     public static List<VotePerLocation> getListVotesPerLocation( )
     {
-    	return _dao.getListVotes( _plugin) ;
+        return _dao.getListVotes( _plugin );
     }
-    
+
     /**
      * Select vote per location
-     * @param strArrd the arrandissement
-     * @param plugin the plugin 
+     * 
+     * @param strArrd
+     *            the arrandissement
+     * @param plugin
+     *            the plugin
      * @return VotePerLocation object
      */
-    public static VotePerLocation selectVotePerLocation( String strArrd ) 
+    public static VotePerLocation selectVotePerLocation( String strArrd )
     {
-    	return _dao.select( strArrd,  _plugin) ;
+        return _dao.select( strArrd, _plugin );
     }
 }
- 

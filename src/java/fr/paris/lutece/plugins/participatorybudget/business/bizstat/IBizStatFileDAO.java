@@ -53,7 +53,7 @@ public interface IBizStatFileDAO
     /**
      * Update a record from the table
      */
-    void update( BizStatFile bizStatFile , Plugin plugin );
+    void update( BizStatFile bizStatFile, Plugin plugin );
 
     /**
      * Load a record, with complete content as bytes
@@ -69,7 +69,7 @@ public interface IBizStatFileDAO
      * Select all files, but does not load bytes
      */
     List<BizStatFile> selectAllWithoutBytes( Plugin plugin );
-    
+
     /**
      * Select files by status, with complete content as bytes
      */

@@ -56,22 +56,24 @@ public final class CampagneImageDAO implements ICampagneImageDAO
 
     /**
      * Generates a new primary key
-     * @param plugin The Plugin
+     * 
+     * @param plugin
+     *            The Plugin
      * @return The new primary key
      */
-    public int newPrimaryKey( Plugin plugin)
+    public int newPrimaryKey( Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK , plugin  );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin );
         daoUtil.executeQuery( );
 
         int nKey = 1;
 
-        if( daoUtil.next( ) )
+        if ( daoUtil.next( ) )
         {
-                nKey = daoUtil.getInt( 1 ) + 1;
+            nKey = daoUtil.getInt( 1 ) + 1;
         }
 
-        daoUtil.free();
+        daoUtil.free( );
 
         return nKey;
     }
@@ -101,14 +103,14 @@ public final class CampagneImageDAO implements ICampagneImageDAO
     public CampagneImage load( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
-        daoUtil.setInt( 1 , nKey );
+        daoUtil.setInt( 1, nKey );
         daoUtil.executeQuery( );
 
         CampagneImage campagneImage = null;
 
         if ( daoUtil.next( ) )
         {
-            campagneImage = new CampagneImage();
+            campagneImage = new CampagneImage( );
             campagneImage.setId( daoUtil.getInt( 1 ) );
             campagneImage.setCodeCampagne( daoUtil.getString( 2 ) );
             campagneImage.setFile( daoUtil.getInt( 3 ) );
@@ -125,7 +127,7 @@ public final class CampagneImageDAO implements ICampagneImageDAO
     public void delete( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
-        daoUtil.setInt( 1 , nKey );
+        daoUtil.setInt( 1, nKey );
         daoUtil.executeUpdate( );
         daoUtil.free( );
     }
@@ -137,7 +139,7 @@ public final class CampagneImageDAO implements ICampagneImageDAO
     public void store( CampagneImage campagneImage, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-        
+
         daoUtil.setInt( 1, campagneImage.getId( ) );
         daoUtil.setString( 2, campagneImage.getCodeCampagne( ) );
         daoUtil.setInt( 3, campagneImage.getFile( ) );
@@ -153,17 +155,17 @@ public final class CampagneImageDAO implements ICampagneImageDAO
     @Override
     public Collection<CampagneImage> selectCampagneImagesList( Plugin plugin )
     {
-        Collection<CampagneImage> campagneImageList = new ArrayList<CampagneImage>(  );
+        Collection<CampagneImage> campagneImageList = new ArrayList<CampagneImage>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-            CampagneImage campagneImage = new CampagneImage(  );
-            
+            CampagneImage campagneImage = new CampagneImage( );
+
             campagneImage.setId( daoUtil.getInt( 1 ) );
-                campagneImage.setCodeCampagne( daoUtil.getString( 2 ) );
-                campagneImage.setFile( daoUtil.getInt( 3 ) );
+            campagneImage.setCodeCampagne( daoUtil.getString( 2 ) );
+            campagneImage.setFile( daoUtil.getInt( 3 ) );
 
             campagneImageList.add( campagneImage );
         }
@@ -171,23 +173,23 @@ public final class CampagneImageDAO implements ICampagneImageDAO
         daoUtil.free( );
         return campagneImageList;
     }
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
     public Collection<Integer> selectIdCampagneImagesList( Plugin plugin )
     {
-            Collection<Integer> campagneImageList = new ArrayList<Integer>( );
-            DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-            daoUtil.executeQuery(  );
+        Collection<Integer> campagneImageList = new ArrayList<Integer>( );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
+        daoUtil.executeQuery( );
 
-            while ( daoUtil.next(  ) )
-            {
-                campagneImageList.add( daoUtil.getInt( 1 ) );
-            }
+        while ( daoUtil.next( ) )
+        {
+            campagneImageList.add( daoUtil.getInt( 1 ) );
+        }
 
-            daoUtil.free( );
-            return campagneImageList;
+        daoUtil.free( );
+        return campagneImageList;
     }
 }

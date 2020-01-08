@@ -38,25 +38,25 @@ import org.hibernate.validator.constraints.*;
 
 import java.io.Serializable;
 
-
 /**
  * This is the business class for the object CampagneImage
- */ 
+ */
 public class CampagneImage implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    // Variables declarations 
+    // Variables declarations
     private int _nId;
-    
+
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagneimage.CodeCampagne.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagneimage.CodeCampagne.size}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagneimage.CodeCampagne.size}" )
     private String _strCodeCampagne;
-    
+
     private int _nFile;
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
     public int getId( )
@@ -66,8 +66,10 @@ public class CampagneImage implements Serializable
 
     /**
      * Sets the Id
-     * @param nId The Id
-     */ 
+     * 
+     * @param nId
+     *            The Id
+     */
     public void setId( int nId )
     {
         _nId = nId;
@@ -75,6 +77,7 @@ public class CampagneImage implements Serializable
 
     /**
      * Returns the CodeCampagne
+     * 
      * @return The CodeCampagne
      */
     public String getCodeCampagne( )
@@ -84,14 +87,18 @@ public class CampagneImage implements Serializable
 
     /**
      * Sets the CodeCampagne
-     * @param strCodeCampagne The CodeCampagne
-     */ 
+     * 
+     * @param strCodeCampagne
+     *            The CodeCampagne
+     */
     public void setCodeCampagne( String strCodeCampagne )
     {
         _strCodeCampagne = strCodeCampagne;
     }
+
     /**
      * Returns the File
+     * 
      * @return The File
      */
     public int getFile( )
@@ -101,8 +108,10 @@ public class CampagneImage implements Serializable
 
     /**
      * Sets the File
-     * @param nFile The File
-     */ 
+     * 
+     * @param nFile
+     *            The File
+     */
     public void setFile( int nFile )
     {
         _nFile = nFile;

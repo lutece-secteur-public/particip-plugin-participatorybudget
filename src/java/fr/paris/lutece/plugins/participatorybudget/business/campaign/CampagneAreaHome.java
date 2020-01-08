@@ -55,14 +55,16 @@ public final class CampagneAreaHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagneAreaHome(  )
+    private CampagneAreaHome( )
     {
     }
 
     /**
      * Create an instance of the campagneArea class
-     * @param campagneArea The instance of the CampagneArea which contains the informations to store
-     * @return The  instance of campagneArea which has been created with its primary key.
+     * 
+     * @param campagneArea
+     *            The instance of the CampagneArea which contains the informations to store
+     * @return The instance of campagneArea which has been created with its primary key.
      */
     public static CampagneArea create( CampagneArea campagneArea )
     {
@@ -73,8 +75,10 @@ public final class CampagneAreaHome
 
     /**
      * Update of the campagneAre which is specified in parameter
-     * @param campagneArea The instance of the CampagneArea which contains the data to store
-     * @return The instance of the  campagneArea which has been updated
+     * 
+     * @param campagneArea
+     *            The instance of the CampagneArea which contains the data to store
+     * @return The instance of the campagneArea which has been updated
      */
     public static CampagneArea update( CampagneArea campagneArea )
     {
@@ -85,37 +89,43 @@ public final class CampagneAreaHome
 
     /**
      * Remove the campagneArea whose identifier is specified in parameter
-     * @param nKey The campagneArea Id
+     * 
+     * @param nKey
+     *            The campagneArea Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a campagneArea whose identifier is specified in parameter
-     * @param nKey The campagneArea primary key
+     * 
+     * @param nKey
+     *            The campagneArea primary key
      * @return an instance of CampagneArea
      */
     public static CampagneArea findByPrimaryKey( int nKey )
     {
-        return _dao.load( nKey, _plugin);
+        return _dao.load( nKey, _plugin );
     }
-    
+
     /**
      * Load the data of all the campagneArea objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the campagneArea objects
      */
     public static Collection<CampagneArea> getCampagneAreasList( )
     {
         return _dao.selectCampagneAreasList( _plugin );
     }
-    
+
     /**
      * Load the id of all the campagneArea objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the campagneArea objects
      */
     public static Collection<Integer> getIdCampagneAreasList( )
@@ -125,6 +135,7 @@ public final class CampagneAreaHome
 
     /**
      * Load the data of all the campagneArea objects for a campagne and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the campagneArea objects
      */
     public static Collection<CampagneArea> getCampagneAreasListByCampagne( String codeCampagne )
@@ -134,6 +145,7 @@ public final class CampagneAreaHome
 
     /**
      * Load the data of all the campagneArea objects mapped from campagne code and returns them in form of a map
+     * 
      * @return the collection which contains the data of all the campagneArea objects
      */
     public static Map<String, List<CampagneArea>> getCampagneAreasMapByCampagne( )
@@ -141,4 +153,3 @@ public final class CampagneAreaHome
         return _dao.selectCampagneAreasMapByCampagne( _plugin );
     }
 }
-

@@ -52,14 +52,16 @@ public final class CampagnePhaseHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagnePhaseHome(  )
+    private CampagnePhaseHome( )
     {
     }
 
     /**
      * Create an instance of the campagnePhase class
-     * @param campagnePhase The instance of the CampagnePhase which contains the informations to store
-     * @return The  instance of campagnePhase which has been created with its primary key.
+     * 
+     * @param campagnePhase
+     *            The instance of the CampagnePhase which contains the informations to store
+     * @return The instance of campagnePhase which has been created with its primary key.
      */
     public static CampagnePhase create( CampagnePhase campagnePhase )
     {
@@ -70,8 +72,10 @@ public final class CampagnePhaseHome
 
     /**
      * Update of the campagnePhase which is specified in parameter
-     * @param campagnePhase The instance of the CampagnePhase which contains the data to store
-     * @return The instance of the  campagnePhase which has been updated
+     * 
+     * @param campagnePhase
+     *            The instance of the CampagnePhase which contains the data to store
+     * @return The instance of the campagnePhase which has been updated
      */
     public static CampagnePhase update( CampagnePhase campagnePhase )
     {
@@ -82,46 +86,55 @@ public final class CampagnePhaseHome
 
     /**
      * Remove the campagnePhase whose identifier is specified in parameter
-     * @param nKey The campagnePhase Id
+     * 
+     * @param nKey
+     *            The campagnePhase Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a campagnePhase whose identifier is specified in parameter
-     * @param nKey The campagnePhase primary key
+     * 
+     * @param nKey
+     *            The campagnePhase primary key
      * @return an instance of CampagnePhase
      */
     public static CampagnePhase findByPrimaryKey( int nKey )
     {
-        return _dao.load( nKey, _plugin);
+        return _dao.load( nKey, _plugin );
     }
 
     /**
      * Load the data of all the campagnePhase objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the campagnePhase objects
      */
     public static Collection<CampagnePhase> getCampagnePhasesList( )
     {
         return _dao.selectCampagnePhasesList( _plugin );
     }
-    
+
     /**
      * Load the id of all the campagnePhase objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the campagnePhase objects
      */
     public static Collection<Integer> getIdCampagnePhasesList( )
     {
         return _dao.selectIdCampagnePhasesList( _plugin );
     }
+
     /**
      * Load the data of all the campagnePhase objects for a campagne and returns them in form of a collection
-     * @param campagneCode the campagne code
+     * 
+     * @param campagneCode
+     *            the campagne code
      * @return the collection which contains the data of all the campagnePhase objects
      */
     public static Collection<CampagnePhase> getCampagnePhasesListByCampagne( String campagneCode )
@@ -129,4 +142,3 @@ public final class CampagnePhaseHome
         return _dao.selectCampagnePhasesListByCampagne( campagneCode, _plugin );
     }
 }
-

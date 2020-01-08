@@ -44,37 +44,38 @@ import fr.paris.lutece.portal.business.file.File;
 
 /**
  * This is the business class for the object Campagne
- */ 
+ */
 public class Campagne implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    // Variables declarations 
+    // Variables declarations
     private int _nId;
-    
+
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.Code.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagne.Code.size}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagne.Code.size}" )
     private String _strCode;
-    
+
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.Title.notEmpty}" )
-    @Size( max = 255 , message = "#i18n{participatorybudget.validation.campagne.Title.size}" )
+    @Size( max = 255, message = "#i18n{participatorybudget.validation.campagne.Title.size}" )
     private String _strTitle;
-    
+
     private boolean _bActive;
-    
+
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.CodeModerationType.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagne.CodeModerationType.size}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagne.CodeModerationType.size}" )
     private String _strCodeModerationType;
-    
+
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.Description.notEmpty}" )
     private String _strDescription;
-    
+
     private int _nModerationDuration;
 
     private List<File> _listImgs;
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
     public int getId( )
@@ -84,8 +85,10 @@ public class Campagne implements Serializable
 
     /**
      * Sets the Id
-     * @param nId The Id
-     */ 
+     * 
+     * @param nId
+     *            The Id
+     */
     public void setId( int nId )
     {
         _nId = nId;
@@ -93,6 +96,7 @@ public class Campagne implements Serializable
 
     /**
      * Returns the Code
+     * 
      * @return The Code
      */
     public String getCode( )
@@ -102,14 +106,18 @@ public class Campagne implements Serializable
 
     /**
      * Sets the Code
-     * @param strCode The Code
-     */ 
+     * 
+     * @param strCode
+     *            The Code
+     */
     public void setCode( String strCode )
     {
         _strCode = strCode;
     }
+
     /**
      * Returns the Title
+     * 
      * @return The Title
      */
     public String getTitle( )
@@ -119,14 +127,18 @@ public class Campagne implements Serializable
 
     /**
      * Sets the Title
-     * @param strTitle The Title
-     */ 
+     * 
+     * @param strTitle
+     *            The Title
+     */
     public void setTitle( String strTitle )
     {
         _strTitle = strTitle;
     }
+
     /**
      * Returns the Active
+     * 
      * @return The Active
      */
     public boolean getActive( )
@@ -136,14 +148,18 @@ public class Campagne implements Serializable
 
     /**
      * Sets the Active
-     * @param bActive The Active
-     */ 
+     * 
+     * @param bActive
+     *            The Active
+     */
     public void setActive( boolean bActive )
     {
         _bActive = bActive;
     }
+
     /**
      * Returns the CodeModerationType
+     * 
      * @return The CodeModerationType
      */
     public String getCodeModerationType( )
@@ -153,14 +169,18 @@ public class Campagne implements Serializable
 
     /**
      * Sets the CodeModerationType
-     * @param strCodeModerationType The CodeModerationType
-     */ 
+     * 
+     * @param strCodeModerationType
+     *            The CodeModerationType
+     */
     public void setCodeModerationType( String strCodeModerationType )
     {
         _strCodeModerationType = strCodeModerationType;
     }
+
     /**
      * Returns the Description
+     * 
      * @return The Description
      */
     public String getDescription( )
@@ -170,14 +190,18 @@ public class Campagne implements Serializable
 
     /**
      * Sets the Description
-     * @param strDescription The Description
-     */ 
+     * 
+     * @param strDescription
+     *            The Description
+     */
     public void setDescription( String strDescription )
     {
         _strDescription = strDescription;
     }
+
     /**
      * Returns the ModerationDuration
+     * 
      * @return The ModerationDuration
      */
     public int getModerationDuration( )
@@ -187,8 +211,10 @@ public class Campagne implements Serializable
 
     /**
      * Sets the ModerationDuration
-     * @param nModerationDuration The ModerationDuration
-     */ 
+     * 
+     * @param nModerationDuration
+     *            The ModerationDuration
+     */
     public void setModerationDuration( int nModerationDuration )
     {
         _nModerationDuration = nModerationDuration;
@@ -197,14 +223,17 @@ public class Campagne implements Serializable
     /**
      * @return the Imgs
      */
-    public List<File> getImgs() {
+    public List<File> getImgs( )
+    {
         return _listImgs;
     }
 
     /**
-     * @param Imgs the Imgs to set
+     * @param Imgs
+     *            the Imgs to set
      */
-    public void setImgs(List<File> Imgs) {
+    public void setImgs( List<File> Imgs )
+    {
         this._listImgs = Imgs;
     }
 }

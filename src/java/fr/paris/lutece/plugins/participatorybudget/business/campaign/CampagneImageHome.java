@@ -52,14 +52,16 @@ public final class CampagneImageHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagneImageHome(  )
+    private CampagneImageHome( )
     {
     }
 
     /**
      * Create an instance of the campagneImage class
-     * @param campagneImage The instance of the CampagneImage which contains the informations to store
-     * @return The  instance of campagneImage which has been created with its primary key.
+     * 
+     * @param campagneImage
+     *            The instance of the CampagneImage which contains the informations to store
+     * @return The instance of campagneImage which has been created with its primary key.
      */
     public static CampagneImage create( CampagneImage campagneImage )
     {
@@ -70,8 +72,10 @@ public final class CampagneImageHome
 
     /**
      * Update of the campagneImage which is specified in parameter
-     * @param campagneImage The instance of the CampagneImage which contains the data to store
-     * @return The instance of the  campagneImage which has been updated
+     * 
+     * @param campagneImage
+     *            The instance of the CampagneImage which contains the data to store
+     * @return The instance of the campagneImage which has been updated
      */
     public static CampagneImage update( CampagneImage campagneImage )
     {
@@ -82,37 +86,43 @@ public final class CampagneImageHome
 
     /**
      * Remove the campagneImage whose identifier is specified in parameter
-     * @param nKey The campagneImage Id
+     * 
+     * @param nKey
+     *            The campagneImage Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a campagneImage whose identifier is specified in parameter
-     * @param nKey The campagneImage primary key
+     * 
+     * @param nKey
+     *            The campagneImage primary key
      * @return an instance of CampagneImage
      */
     public static CampagneImage findByPrimaryKey( int nKey )
     {
-        return _dao.load( nKey, _plugin);
+        return _dao.load( nKey, _plugin );
     }
 
     /**
      * Load the data of all the campagneImage objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the campagneImage objects
      */
     public static Collection<CampagneImage> getCampagneImagesList( )
     {
         return _dao.selectCampagneImagesList( _plugin );
     }
-    
+
     /**
      * Load the id of all the campagneImage objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the campagneImage objects
      */
     public static Collection<Integer> getIdCampagneImagesList( )
@@ -120,4 +130,3 @@ public final class CampagneImageHome
         return _dao.selectIdCampagneImagesList( _plugin );
     }
 }
-

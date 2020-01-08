@@ -44,32 +44,31 @@ public class BudgetparticipatifSitePropertiesGroup implements ILocalizedSiteProp
     private static final String KEY_DESCRIPTION = "participatorybudget.site_properties_group.description";
     private static final String PREFIX = "participatorybudget.site_property.";
 
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public String getNameKey( )
+    {
+        return KEY_NAME;
+    }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public String getNameKey()
-    {
-        return KEY_NAME;
-    }
-    
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public String getDescriptionKey()
+    public String getDescriptionKey( )
     {
         return KEY_DESCRIPTION;
     }
 
-     /**
+    /**
      * {@inheritDoc }
      */
-   @Override
-    public String getDatastoreKeysPrefix()
+    @Override
+    public String getDatastoreKeysPrefix( )
     {
         return PREFIX;
     }
-    
- }
+
+}

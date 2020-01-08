@@ -78,7 +78,6 @@ import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.util.json.ErrorJsonResponse;
 import fr.paris.lutece.util.json.JsonUtil;
 
-
 /**
  * Service to get ratings of users
  */
@@ -97,61 +96,62 @@ public class MyVoteService
     private IResourceExtenderConfigService _configService;
     @Inject
     private IRatingSecurityService _ratingSecurityService;
-    
-    private static AbstractCacheableService _nbProjetcache = new NbProjetArrCacheService(  );
+
+    private static AbstractCacheableService _nbProjetcache = new NbProjetArrCacheService( );
 
     /**
      * Get the list of ratings of a user
-     * @param user The user to get the list of ratings of
+     * 
+     * @param user
+     *            The user to get the list of ratings of
      * @return The list of ratings of the user
      */
     public List<MyVote> getUserVote( LuteceUser user )
     {
-        ResourceExtenderHistoryFilter filter = new ResourceExtenderHistoryFilter(  );
+        ResourceExtenderHistoryFilter filter = new ResourceExtenderHistoryFilter( );
         filter.setExtenderType( RatingResourceExtender.RESOURCE_EXTENDER );
         filter.setExtendableResourceType( RatingAddOnService.PROPERTY_RESOURCE_TYPE );
-        filter.setUserGuid( user.getName(  ) );
+        filter.setUserGuid( user.getName( ) );
 
         List<ResourceExtenderHistory> listResourceHistory = _resourceExtenderHistoryService.findByFilter( filter );
-        List<MyVote> listVotes = new ArrayList<MyVote>( listResourceHistory.size(  ) );
+        List<MyVote> listVotes = new ArrayList<MyVote>( listResourceHistory.size( ) );
 
         for ( ResourceExtenderHistory history : listResourceHistory )
         {
-            if ( StringUtils.isNumeric( history.getIdExtendableResource(  ) ) )
+            if ( StringUtils.isNumeric( history.getIdExtendableResource( ) ) )
             {
-                int nIdDocument = Integer.parseInt( history.getIdExtendableResource(  ) );
+                int nIdDocument = Integer.parseInt( history.getIdExtendableResource( ) );
                 Document document = DocumentHome.findByPrimaryKeyWithoutBinaries( nIdDocument );
-                 Rating rating = _ratingService.findByResource( history.getIdExtendableResource(  ),
-                        history.getExtendableResourceType(  ) );
-                MyVote myVote = new MyVote( document, history.getDateCreation(  ), rating.getVoteCount(  ) );
+                Rating rating = _ratingService.findByResource( history.getIdExtendableResource( ), history.getExtendableResourceType( ) );
+                MyVote myVote = new MyVote( document, history.getDateCreation( ), rating.getVoteCount( ) );
                 listVotes.add( myVote );
             }
         }
-        
+
         return listVotes;
     }
-    
-    
-    
+
     /**
      * Get the list of ratings of a user
-     * @param user The user to get the list of ratings of
+     * 
+     * @param user
+     *            The user to get the list of ratings of
      * @return The list of ratings of the user
      */
     public int getNbUserVote( LuteceUser user )
     {
-        
-    	int nbCount=0;
-    	ResourceExtenderHistoryFilter filter = new ResourceExtenderHistoryFilter(  );
+
+        int nbCount = 0;
+        ResourceExtenderHistoryFilter filter = new ResourceExtenderHistoryFilter( );
         filter.setExtenderType( RatingResourceExtender.RESOURCE_EXTENDER );
         filter.setExtendableResourceType( RatingAddOnService.PROPERTY_RESOURCE_TYPE );
-        filter.setUserGuid( user.getName(  ) );
-        
-        List<ResourceExtenderHistory> listResourceHistory = _resourceExtenderHistoryService.findByFilter(filter);
-        
-        if(listResourceHistory!=null)
+        filter.setUserGuid( user.getName( ) );
+
+        List<ResourceExtenderHistory> listResourceHistory = _resourceExtenderHistoryService.findByFilter( filter );
+
+        if ( listResourceHistory != null )
         {
-        	nbCount=listResourceHistory.size();
+            nbCount = listResourceHistory.size( );
         }
         return nbCount;
     }
@@ -161,140 +161,151 @@ public class MyVoteService
      * @param idUser
      * @return
      */
-    
+
     public MyVote getUserVote( String idUser )
     {
-    	MyVote myVote= new MyVote();
-    	int nbrVoteArrdt = VoteHome.getVoteUserNotLocalisation(idUser, 75000);
-		int nbrVoteParis = VoteHome.getVoteUserArrondissement(idUser, 75000);
-		List<Vote> listvote = VoteHome.getVoteUser(idUser);
-		for(Vote vote: listvote){
-			if(vote.getArrondissement( ) != 75000){
-				
-				myVote.setArrondissementUser(getArrondissement(String.valueOf(vote.getArrondissement( ))));				
-			
-			}
-		}
-				
-		int nbrVoteTotal = nbrVoteArrdt + nbrVoteParis;
-			
-		myVote.setNbTotVotes(nbrVoteTotal);
-		myVote.setNbTotVotesArrondissement(nbrVoteArrdt);
-		myVote.setNbTotVotesToutParis(nbrVoteParis);
-    	
-		return myVote;
+        MyVote myVote = new MyVote( );
+        int nbrVoteArrdt = VoteHome.getVoteUserNotLocalisation( idUser, 75000 );
+        int nbrVoteParis = VoteHome.getVoteUserArrondissement( idUser, 75000 );
+        List<Vote> listvote = VoteHome.getVoteUser( idUser );
+        for ( Vote vote : listvote )
+        {
+            if ( vote.getArrondissement( ) != 75000 )
+            {
+
+                myVote.setArrondissementUser( getArrondissement( String.valueOf( vote.getArrondissement( ) ) ) );
+
+            }
+        }
+
+        int nbrVoteTotal = nbrVoteArrdt + nbrVoteParis;
+
+        myVote.setNbTotVotes( nbrVoteTotal );
+        myVote.setNbTotVotesArrondissement( nbrVoteArrdt );
+        myVote.setNbTotVotesToutParis( nbrVoteParis );
+
+        return myVote;
     }
+
     /**
      * GET ARRONDISSEMENT
+     * 
      * @param arrondissement
      * @return
      */
-    private static String getArrondissement(String arrondissement) {
-		
-    	String strArrondissement = "";
-		
-		Pattern p = Pattern.compile("75(020|00[1-9]|116|01[0-9])$");
-		Matcher m = p.matcher(arrondissement);
-		if (m.matches())
-			strArrondissement = Integer.valueOf(arrondissement
-					.substring(2)) + "e " + "arrondissement";
+    private static String getArrondissement( String arrondissement )
+    {
 
-		return strArrondissement;
-	}
+        String strArrondissement = "";
+
+        Pattern p = Pattern.compile( "75(020|00[1-9]|116|01[0-9])$" );
+        Matcher m = p.matcher( arrondissement );
+        if ( m.matches( ) )
+            strArrondissement = Integer.valueOf( arrondissement.substring( 2 ) ) + "e " + "arrondissement";
+
+        return strArrondissement;
+    }
+
     /**
      * 
      * @param nSpaceId
      * @return
      */
-   public int getNumberDocumentSpace(int nSpaceId){
-    	
+    public int getNumberDocumentSpace( int nSpaceId )
+    {
 
-	   int nbrDoc = 0;
-	   String strSpaceCacheKey=""+nSpaceId;
-	   Integer nbDocInSpaceCache= (Integer)_nbProjetcache.getFromCache(strSpaceCacheKey);
-	   if(nbDocInSpaceCache != null)
-	   {
-		   
-		   return nbDocInSpaceCache;
-	   }
-	   else
-	   {
-		   List<DocumentSpace> docSpace= DocumentSpaceHome.findChilds(nSpaceId);
-	    	DocumentFilter filter= new DocumentFilter();
-	    	filter.setIsPublished(true);
-	    	filter.setCodeDocumentType("project_2015");
-	    	for(DocumentSpace ds:docSpace){
-	    		
-	    		filter.setIdSpace(ds.getId( ));
-	    		nbrDoc= nbrDoc + DocumentHome.findByFilter(filter, new Locale("fr","FR")).size();
-	    	}
-	    	
-	    	_nbProjetcache.putInCache(strSpaceCacheKey, nbrDoc);
-	   }
-	    	
-	   	return nbrDoc;
+        int nbrDoc = 0;
+        String strSpaceCacheKey = "" + nSpaceId;
+        Integer nbDocInSpaceCache = (Integer) _nbProjetcache.getFromCache( strSpaceCacheKey );
+        if ( nbDocInSpaceCache != null )
+        {
+
+            return nbDocInSpaceCache;
+        }
+        else
+        {
+            List<DocumentSpace> docSpace = DocumentSpaceHome.findChilds( nSpaceId );
+            DocumentFilter filter = new DocumentFilter( );
+            filter.setIsPublished( true );
+            filter.setCodeDocumentType( "project_2015" );
+            for ( DocumentSpace ds : docSpace )
+            {
+
+                filter.setIdSpace( ds.getId( ) );
+                nbrDoc = nbrDoc + DocumentHome.findByFilter( filter, new Locale( "fr", "FR" ) ).size( );
+            }
+
+            _nbProjetcache.putInCache( strSpaceCacheKey, nbrDoc );
+        }
+
+        return nbrDoc;
     }
-    
-   /**
-    * Valdate Votes
-    * @param userId
-    * @param status
-    */
-    public void validateVotes(String userId, int status){
-    	
-    	VoteHome.validateVote(userId, status);
-    	
-    } 
+
+    /**
+     * Valdate Votes
+     * 
+     * @param userId
+     * @param status
+     */
+    public void validateVotes( String userId, int status )
+    {
+
+        VoteHome.validateVote( userId, status );
+
+    }
+
     /**
      * 
      * @param userId
      * @return
      */
-    public boolean isUserVoteValidated(String userId){
-    	
-    	List<Vote> listvote= VoteHome.getVoteUser(userId, Vote.Status.STATUS_VALIDATED.getValeur());
-    	if(listvote == null || listvote.isEmpty( )){
-    		
-    		return false;
-    	}
-    	
-    	return true;
-    }
-    
-    public String cancelVote ( HttpServletRequest request)
+    public boolean isUserVoteValidated( String userId )
     {
-		
-		String strExtendableResourceType = request
-				.getParameter(RatingConstants.PARAMETER_EXTENDABLE_RESOURCE_TYPE);
-		LuteceUser user = SecurityService.getInstance().getRegisteredUser(
-				request);
-		
-		if ( !CampaignService.getInstance().isDuring("VOTE") || isUserVoteValidated(user.getName()))
-		{
-        	try {
-				SiteMessageService.setMessage( request, RatingConstants.MESSAGE_CANNOT_VOTE, SiteMessage.TYPE_STOP );
-			} catch (SiteMessageException e) {
-				return JsonUtil.buildJsonResponse( new ErrorJsonResponse( AppPathService.getSiteMessageUrl( request ) ) );
-			}
-          }
-	
-		List<Vote> listVote = VoteHome.getVoteUser(user.getName());
 
-		for (Vote vote : listVote) {
-			//cancel all vote for stat export, and after recreate vote TP
-			_ratingService.doCancelVote(user,
-					String.valueOf(vote.getProjetId()),
-					strExtendableResourceType);
-			if (vote.getLocalisation() == "whole_city")
-			{
-				request.setAttribute( Constants.PROJECT_THEMATIQUE, vote.getThematique( ) );
-				request.setAttribute( Constants.PROJECT_TITLE, vote.getTitle( ));
-				request.setAttribute( Constants.PROJECT_LOCALISATION, Constants.LOCALISATION_PARIS );
-				_ratingService.doVote( String.valueOf( vote.getProjetId( ) ), strExtendableResourceType, BudgetRatingService.VOTE_VALUE, request );				
-			}
-		}
+        List<Vote> listvote = VoteHome.getVoteUser( userId, Vote.Status.STATUS_VALIDATED.getValeur( ) );
+        if ( listvote == null || listvote.isEmpty( ) )
+        {
 
-		//return MyInfosXPage.getMyInfosPanelForAjax(request);
-		return "";
-	}
+            return false;
+        }
+
+        return true;
+    }
+
+    public String cancelVote( HttpServletRequest request )
+    {
+
+        String strExtendableResourceType = request.getParameter( RatingConstants.PARAMETER_EXTENDABLE_RESOURCE_TYPE );
+        LuteceUser user = SecurityService.getInstance( ).getRegisteredUser( request );
+
+        if ( !CampaignService.getInstance( ).isDuring( "VOTE" ) || isUserVoteValidated( user.getName( ) ) )
+        {
+            try
+            {
+                SiteMessageService.setMessage( request, RatingConstants.MESSAGE_CANNOT_VOTE, SiteMessage.TYPE_STOP );
+            }
+            catch( SiteMessageException e )
+            {
+                return JsonUtil.buildJsonResponse( new ErrorJsonResponse( AppPathService.getSiteMessageUrl( request ) ) );
+            }
+        }
+
+        List<Vote> listVote = VoteHome.getVoteUser( user.getName( ) );
+
+        for ( Vote vote : listVote )
+        {
+            // cancel all vote for stat export, and after recreate vote TP
+            _ratingService.doCancelVote( user, String.valueOf( vote.getProjetId( ) ), strExtendableResourceType );
+            if ( vote.getLocalisation( ) == "whole_city" )
+            {
+                request.setAttribute( Constants.PROJECT_THEMATIQUE, vote.getThematique( ) );
+                request.setAttribute( Constants.PROJECT_TITLE, vote.getTitle( ) );
+                request.setAttribute( Constants.PROJECT_LOCALISATION, Constants.LOCALISATION_PARIS );
+                _ratingService.doVote( String.valueOf( vote.getProjetId( ) ), strExtendableResourceType, BudgetRatingService.VOTE_VALUE, request );
+            }
+        }
+
+        // return MyInfosXPage.getMyInfosPanelForAjax(request);
+        return "";
+    }
 }

@@ -63,22 +63,24 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
 
     /**
      * Generates a new primary key
-     * @param plugin The Plugin
+     * 
+     * @param plugin
+     *            The Plugin
      * @return The new primary key
      */
-    public int newPrimaryKey( Plugin plugin)
+    public int newPrimaryKey( Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK , plugin  );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin );
         daoUtil.executeQuery( );
 
         int nKey = 1;
 
-        if( daoUtil.next( ) )
+        if ( daoUtil.next( ) )
         {
-                nKey = daoUtil.getInt( 1 ) + 1;
+            nKey = daoUtil.getInt( 1 ) + 1;
         }
 
-        daoUtil.free();
+        daoUtil.free( );
 
         return nKey;
     }
@@ -112,7 +114,7 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
     public CampagneArea load( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
-        daoUtil.setInt( 1 , nKey );
+        daoUtil.setInt( 1, nKey );
         daoUtil.executeQuery( );
 
         CampagneArea campagneArea = null;
@@ -125,6 +127,7 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
         daoUtil.free( );
         return campagneArea;
     }
+
     /**
      * {@inheritDoc }
      */
@@ -132,7 +135,7 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
     public void delete( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
-        daoUtil.setInt( 1 , nKey );
+        daoUtil.setInt( 1, nKey );
         daoUtil.executeUpdate( );
         daoUtil.free( );
     }
@@ -145,7 +148,7 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
     {
         int nCpt = 1;
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-        
+
         daoUtil.setInt( nCpt++, campagneArea.getId( ) );
         daoUtil.setString( nCpt++, campagneArea.getCodeCampagne( ) );
         daoUtil.setString( nCpt++, campagneArea.getTitle( ) );
@@ -165,11 +168,11 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
     @Override
     public Collection<CampagneArea> selectCampagneAreasList( Plugin plugin )
     {
-        Collection<CampagneArea> campagneAreaList = new ArrayList(  );
+        Collection<CampagneArea> campagneAreaList = new ArrayList( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
             CampagneArea campagneArea = getRow( daoUtil );
 
@@ -179,30 +182,30 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
         daoUtil.free( );
         return campagneAreaList;
     }
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
     public Collection<Integer> selectIdCampagneAreasList( Plugin plugin )
     {
-            Collection<Integer> campagneAreaList = new ArrayList<Integer>( );
-            DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-            daoUtil.executeQuery(  );
+        Collection<Integer> campagneAreaList = new ArrayList<Integer>( );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
+        daoUtil.executeQuery( );
 
-            while ( daoUtil.next(  ) )
-            {
-                campagneAreaList.add( daoUtil.getInt( 1 ) );
-            }
+        while ( daoUtil.next( ) )
+        {
+            campagneAreaList.add( daoUtil.getInt( 1 ) );
+        }
 
-            daoUtil.free( );
-            return campagneAreaList;
+        daoUtil.free( );
+        return campagneAreaList;
     }
 
-    private CampagneArea getRow( DAOUtil daoUtil)
+    private CampagneArea getRow( DAOUtil daoUtil )
     {
-        int nCpt=1;
-        CampagneArea campagneArea = new CampagneArea(  );
+        int nCpt = 1;
+        CampagneArea campagneArea = new CampagneArea( );
 
         campagneArea.setId( daoUtil.getInt( nCpt++ ) );
         campagneArea.setCodeCampagne( daoUtil.getString( nCpt++ ) );
@@ -220,12 +223,12 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
     @Override
     public Collection<CampagneArea> selectCampagneAreasListByCampagne( String campagneCode, Plugin plugin )
     {
-        Collection<CampagneArea> campagneAreaList = new ArrayList(  );
+        Collection<CampagneArea> campagneAreaList = new ArrayList( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_BY_CAMPAGNE, plugin );
-        daoUtil.setString( 1 , campagneCode );
-        daoUtil.executeQuery(  );
+        daoUtil.setString( 1, campagneCode );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
             CampagneArea campagneArea = getRow( daoUtil );
 
@@ -242,18 +245,19 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
     @Override
     public Map<String, List<CampagneArea>> selectCampagneAreasMapByCampagne( Plugin plugin )
     {
-        Map<String, List<CampagneArea>> campagneAreaMap = new HashMap<String, List<CampagneArea>>(  );
+        Map<String, List<CampagneArea>> campagneAreaMap = new HashMap<String, List<CampagneArea>>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
             CampagneArea campagneArea = getRow( daoUtil );
 
-            List<CampagneArea> campagneAreaList = campagneAreaMap.get( campagneArea.getCodeCampagne() );
-            if (campagneAreaList == null) {
-                campagneAreaList = new ArrayList<CampagneArea>();
-                campagneAreaMap.put( campagneArea.getCodeCampagne(), campagneAreaList );
+            List<CampagneArea> campagneAreaList = campagneAreaMap.get( campagneArea.getCodeCampagne( ) );
+            if ( campagneAreaList == null )
+            {
+                campagneAreaList = new ArrayList<CampagneArea>( );
+                campagneAreaMap.put( campagneArea.getCodeCampagne( ), campagneAreaList );
             }
             campagneAreaList.add( campagneArea );
         }

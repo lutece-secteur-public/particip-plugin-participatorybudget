@@ -47,8 +47,8 @@ public enum Civility
 {
     DEFAULT( "0", "NPR" ), MRS( "2", "M" ), MS( "1", "MME" );
 
-    private static Map<String,Civility> _mapNumericCivility = new HashMap<>(  );
-    private static Map<String,Civility> _mapLabelCivility = new HashMap<>(  );
+    private static Map<String, Civility> _mapNumericCivility = new HashMap<>( );
+    private static Map<String, Civility> _mapLabelCivility = new HashMap<>( );
 
     static
     {
@@ -64,73 +64,85 @@ public enum Civility
 
     /**
      * Constructor
-     * @param strNumericCode the numeric code
-     * @param strLabelCode the label code
+     * 
+     * @param strNumericCode
+     *            the numeric code
+     * @param strLabelCode
+     *            the label code
      */
     Civility( String strNumericCode, String strLabelCode )
     {
         _strNumericCode = strNumericCode;
         _strLabelCode = strLabelCode;
     }
-    
+
     /**
      * Gives the numeric code
+     * 
      * @return the code
      */
-    public String getNumericCode(  )
+    public String getNumericCode( )
     {
         return _strNumericCode;
     }
-    
+
     /**
      * Gives the label code
+     * 
      * @return the code
      */
-    public String getLabelCode(  )
+    public String getLabelCode( )
     {
         return _strLabelCode;
     }
 
     /**
      * Retrieves the Civility from the specified numeric code.
-     * @param strNumericCode the code
+     * 
+     * @param strNumericCode
+     *            the code
      * @return the Civility
      */
     public static Civility fromNumericCode( String strNumericCode )
     {
         return fromCode( strNumericCode, _mapNumericCivility );
     }
-    
+
     /**
      * Retrieves the Civility from the specified numeric code.
-     * @param strLabelCode the code
+     * 
+     * @param strLabelCode
+     *            the code
      * @return the Civility
      */
     public static Civility fromLabelCode( String strLabelCode )
-    { 
+    {
         return fromCode( strLabelCode, _mapLabelCivility );
     }
-    
+
     /**
      * Retrieves the Civility from the specified code in the specified map.
-     * @param strCode the code
-     * @param map the map
+     * 
+     * @param strCode
+     *            the code
+     * @param map
+     *            the map
      * @return the Civility
      */
-    private static Civility fromCode( String strCode, Map<String,Civility> map )
+    private static Civility fromCode( String strCode, Map<String, Civility> map )
     {
         Civility civility = DEFAULT;
-        
+
         if ( !StringUtils.isEmpty( strCode ) )
         {
             civility = map.get( strCode );
-            
+
             if ( civility == null )
             {
                 civility = DEFAULT;
             }
         }
-        
+
         return civility;
     }
 }

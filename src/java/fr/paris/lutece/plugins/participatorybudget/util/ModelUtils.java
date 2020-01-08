@@ -50,38 +50,42 @@ public final class ModelUtils
 {
     // Markers
     private static final String MARKER_AUTHORIZED_ADDRESS = "authorized_address";
-    
-    private static List<String> _listAuthorizedCities = Arrays.asList( AppPropertiesService.getProperty( 
-            Constants.PROPERTY_AUTHORIZED_CITIES ).split( Constants.AUTHORIZED_CITIES_SEPARATOR ) );
-    
+
+    private static List<String> _listAuthorizedCities = Arrays.asList( AppPropertiesService.getProperty( Constants.PROPERTY_AUTHORIZED_CITIES ).split(
+            Constants.AUTHORIZED_CITIES_SEPARATOR ) );
+
     /**
      * Default constructor
      */
-    private ModelUtils(  )
+    private ModelUtils( )
     {
     }
-    
+
     /**
      * Stores into the specified model the flag to know if the user address is authorized or not
-     * @param model the model the fill
-     * @param strAddress the user address
-     * @param user the user
+     * 
+     * @param model
+     *            the model the fill
+     * @param strAddress
+     *            the user address
+     * @param user
+     *            the user
      */
-    public static void storeUnauthorizedAddress( Map<String, Object> model, String strAddress, LuteceUser user  )
+    public static void storeUnauthorizedAddress( Map<String, Object> model, String strAddress, LuteceUser user )
     {
         boolean bIsAuthorized = true;
-        
+
         if ( StringUtils.isEmpty( strAddress ) )
         {
             String strCity = user.getUserInfo( LuteceUser.HOME_INFO_POSTAL_CITY );
-            
-            if ( !StringUtils.isEmpty( strCity ) && !_listAuthorizedCities.contains( strCity.trim(  ).toLowerCase(  ) ) )
+
+            if ( !StringUtils.isEmpty( strCity ) && !_listAuthorizedCities.contains( strCity.trim( ).toLowerCase( ) ) )
             {
                 bIsAuthorized = false;
             }
         }
-        
-        model.put( MARKER_AUTHORIZED_ADDRESS, bIsAuthorized  );
+
+        model.put( MARKER_AUTHORIZED_ADDRESS, bIsAuthorized );
     }
 
 }

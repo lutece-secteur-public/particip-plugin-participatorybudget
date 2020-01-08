@@ -41,44 +41,45 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *  VoteResourceExtenderComponent : Fake ExtenderComponent not used by the Extender
+ * VoteResourceExtenderComponent : Fake ExtenderComponent not used by the Extender
  */
 public class VoteResourceExtenderComponent extends AbstractResourceExtenderComponent
 {
 
     @Override
-    public void buildXmlAddOn(String strIdExtendableResource, String strExtendableResourceType, String strParameters, StringBuffer strXml)
+    public void buildXmlAddOn( String strIdExtendableResource, String strExtendableResourceType, String strParameters, StringBuffer strXml )
     {
-        throw new UnsupportedOperationException("Not supported.");
+        throw new UnsupportedOperationException( "Not supported." );
     }
 
     @Override
-    public String getPageAddOn(String strIdExtendableResource, String strExtendableResourceType, String strParameters, HttpServletRequest request)
+    public String getPageAddOn( String strIdExtendableResource, String strExtendableResourceType, String strParameters, HttpServletRequest request )
     {
-        throw new UnsupportedOperationException("Not supported.");    }
-
-    @Override
-    public String getConfigHtml(ResourceExtenderDTO resourceExtender, Locale locale, HttpServletRequest request)
-    {
-        throw new UnsupportedOperationException("Not supported.");
+        throw new UnsupportedOperationException( "Not supported." );
     }
 
     @Override
-    public String getInfoHtml(ResourceExtenderDTO resourceExtender, Locale locale, HttpServletRequest request)
+    public String getConfigHtml( ResourceExtenderDTO resourceExtender, Locale locale, HttpServletRequest request )
     {
-        throw new UnsupportedOperationException("Not supported.");
+        throw new UnsupportedOperationException( "Not supported." );
     }
 
     @Override
-    public IExtenderConfig getConfig(int nIdExtender)
+    public String getInfoHtml( ResourceExtenderDTO resourceExtender, Locale locale, HttpServletRequest request )
     {
-        throw new UnsupportedOperationException("Not supported.");
+        throw new UnsupportedOperationException( "Not supported." );
     }
 
     @Override
-    public void doSaveConfig(HttpServletRequest request, IExtenderConfig config) throws ExtendErrorException
+    public IExtenderConfig getConfig( int nIdExtender )
     {
-        throw new UnsupportedOperationException("Not supported.");
+        throw new UnsupportedOperationException( "Not supported." );
     }
-    
+
+    @Override
+    public void doSaveConfig( HttpServletRequest request, IExtenderConfig config ) throws ExtendErrorException
+    {
+        throw new UnsupportedOperationException( "Not supported." );
+    }
+
 }

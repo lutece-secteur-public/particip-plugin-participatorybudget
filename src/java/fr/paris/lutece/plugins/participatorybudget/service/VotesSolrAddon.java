@@ -47,7 +47,8 @@ import fr.paris.lutece.portal.service.security.UserNotSignedException;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 
-public class VotesSolrAddon implements ISolrSearchAppAddOn {
+public class VotesSolrAddon implements ISolrSearchAppAddOn
+{
 
     private static final String MARK_RESULTS_LIST = "results_list";
     private static final String MARK_RESULTS_IDEES_MAP = "results_idee_map";
@@ -55,34 +56,41 @@ public class VotesSolrAddon implements ISolrSearchAppAddOn {
     private static final String MARK_PREV_ITEMS_PER_PAGE = "prev_items_per_page";
 
     @Override
-    public void buildPageAddOn(Map<String, Object> model, HttpServletRequest request) {
-        Map<String, Object> mapAdditionalInfos =  new HashMap<String, Object>();
-        List<SolrSearchResult> listResults =  (List<SolrSearchResult>) model.get(MARK_RESULTS_LIST);
+    public void buildPageAddOn( Map<String, Object> model, HttpServletRequest request )
+    {
+        Map<String, Object> mapAdditionalInfos = new HashMap<String, Object>( );
+        List<SolrSearchResult> listResults = (List<SolrSearchResult>) model.get( MARK_RESULTS_LIST );
 
-        IDocumentBodyService documentBodyService = SpringContextService.getBean(DocumentBodyService.BEAN_NAME);
+        IDocumentBodyService documentBodyService = SpringContextService.getBean( DocumentBodyService.BEAN_NAME );
 
-        for (SolrSearchResult solrSearchResult: listResults) {
-            String solrDocPortletId = solrSearchResult.getDocPortletId();
-            String parsedSolrDocPortletId[] = solrDocPortletId.split("&");
-            AppLogService.debug("participatorybudget, fetching " +  solrDocPortletId);
-            if (parsedSolrDocPortletId.length == 2) {
-                try {
-                    mapAdditionalInfos.put(solrSearchResult.getId(),
-                            documentBodyService.getPage(request,
-                                    parsedSolrDocPortletId[0],
-                                    parsedSolrDocPortletId[1],
-                                    PortalMenuService.MODE_NORMAL));
-                } catch (UserNotSignedException e) {
-                    AppLogService.error("participatorybudget, SolrVoteAddon, got exception " +e, e);
-                } catch (SiteMessageException e) {
-                    AppLogService.error("participatorybudget, SolrVoteAddon, got exception " +e, e);
+        for ( SolrSearchResult solrSearchResult : listResults )
+        {
+            String solrDocPortletId = solrSearchResult.getDocPortletId( );
+            String parsedSolrDocPortletId [ ] = solrDocPortletId.split( "&" );
+            AppLogService.debug( "participatorybudget, fetching " + solrDocPortletId );
+            if ( parsedSolrDocPortletId.length == 2 )
+            {
+                try
+                {
+                    mapAdditionalInfos.put( solrSearchResult.getId( ),
+                            documentBodyService.getPage( request, parsedSolrDocPortletId [0], parsedSolrDocPortletId [1], PortalMenuService.MODE_NORMAL ) );
                 }
-            } else {
-                AppLogService.error("participatorybudget, VotesSolrSaddon, Error parsing DocPortletId " + solrDocPortletId);
+                catch( UserNotSignedException e )
+                {
+                    AppLogService.error( "participatorybudget, SolrVoteAddon, got exception " + e, e );
+                }
+                catch( SiteMessageException e )
+                {
+                    AppLogService.error( "participatorybudget, SolrVoteAddon, got exception " + e, e );
+                }
+            }
+            else
+            {
+                AppLogService.error( "participatorybudget, VotesSolrSaddon, Error parsing DocPortletId " + solrDocPortletId );
             }
         }
-        model.put(MARK_RESULTS_IDEES_MAP, mapAdditionalInfos);
+        model.put( MARK_RESULTS_IDEES_MAP, mapAdditionalInfos );
 
-        model.put(MARK_PREV_ITEMS_PER_PAGE, request.getParameter(PARAMETER_PREV_ITEMS_PER_PAGE));
+        model.put( MARK_PREV_ITEMS_PER_PAGE, request.getParameter( PARAMETER_PREV_ITEMS_PER_PAGE ) );
     }
 }

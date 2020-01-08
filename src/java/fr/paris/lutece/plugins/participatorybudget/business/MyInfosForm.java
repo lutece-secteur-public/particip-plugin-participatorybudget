@@ -47,7 +47,6 @@ import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.util.beanvalidation.BeanValidationUtil;
 
-
 /**
  * MesInfosForm
  */
@@ -58,45 +57,46 @@ public class MyInfosForm implements Serializable, Cloneable
 
     @NotEmpty( message = "participatorybudget.validation.civility.notEmpty" )
     private String _strCivility;
-	//@NotEmpty( message = "participatorybudget.validation.firstname.notEmpty" )
+    // @NotEmpty( message = "participatorybudget.validation.firstname.notEmpty" )
     private String _strFirstname;
-    //@NotEmpty( message = "participatorybudget.validation.lastname.notEmpty" )
+    // @NotEmpty( message = "participatorybudget.validation.lastname.notEmpty" )
     private String _strLastname;
     private String _strPostalCode;
-//    @NotEmpty( message = "participatorybudget.validation.address.notEmpty" )
+    // @NotEmpty( message = "participatorybudget.validation.address.notEmpty" )
     private String _strAddress;
-	private Double _dLongitude;
-	private Double _dLatitude;
-	@NotEmpty( message = "participatorybudget.validation.birthdate.notEmpty" )
-    @Pattern( regexp = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)" , message = "participatorybudget.validation.birthdate.pattern")
+    private Double _dLongitude;
+    private Double _dLatitude;
+    @NotEmpty( message = "participatorybudget.validation.birthdate.notEmpty" )
+    @Pattern( regexp = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)", message = "participatorybudget.validation.birthdate.pattern" )
     private String _strBirthdate;
-	//@NotEmpty( message = "participatorybudget.validation.arrondissement.notEmpty" )
-    //@Pattern( regexp = "(7500[1-9])|(7501[0-9])|(75020)", message = "participatorybudget.validation.arrondissement.pattern" )
+    // @NotEmpty( message = "participatorybudget.validation.arrondissement.notEmpty" )
+    // @Pattern( regexp = "(7500[1-9])|(7501[0-9])|(75020)", message = "participatorybudget.validation.arrondissement.pattern" )
     private String _strArrondissement;
     @NotEmpty( message = "participatorybudget.validation.iliveinparis.notEmpty" )
     private String _strIliveinparis;
     private boolean _bIsValid;
-    //@Min( value = 15 , message = "participatorybudget.validation.age.min" )
+    // @Min( value = 15 , message = "participatorybudget.validation.age.min" )
     private int _nAge;
     private String _strSendaccountvalidation;
     private boolean _bAccountVerified;
-//    @NotEmpty( message = "participatorybudget.validation.geojson.notEmpty" )
+    // @NotEmpty( message = "participatorybudget.validation.geojson.notEmpty" )
     private String _strGeojson;
-    
-    
-    
+
     /**
      * Returns the Firstname
+     * 
      * @return The Firstname
      */
-    public String getFirstname(  )
+    public String getFirstname( )
     {
         return _strFirstname;
     }
 
     /**
      * Sets the Firstname
-     * @param strFirstname The Firstname
+     * 
+     * @param strFirstname
+     *            The Firstname
      */
     public void setFirstname( String strFirstname )
     {
@@ -105,16 +105,19 @@ public class MyInfosForm implements Serializable, Cloneable
 
     /**
      * Returns the Lastname
+     * 
      * @return The Lastname
      */
-    public String getLastname(  )
+    public String getLastname( )
     {
         return _strLastname;
     }
 
     /**
      * Sets the Lastname
-     * @param strLastname The Lastname
+     * 
+     * @param strLastname
+     *            The Lastname
      */
     public void setLastname( String strLastname )
     {
@@ -123,16 +126,19 @@ public class MyInfosForm implements Serializable, Cloneable
 
     /**
      * Returns the Address
+     * 
      * @return The Address
      */
-    public String getAddress(  )
+    public String getAddress( )
     {
         return _strAddress;
     }
 
     /**
      * Sets the Address
-     * @param strAddress The Address
+     * 
+     * @param strAddress
+     *            The Address
      */
     public void setAddress( String strAddress )
     {
@@ -141,63 +147,70 @@ public class MyInfosForm implements Serializable, Cloneable
 
     /**
      * Returns the Birthdate
+     * 
      * @return The Birthdate
      */
-    public String getBirthdate(  )
+    public String getBirthdate( )
     {
         return _strBirthdate;
     }
 
     /**
      * Sets the Birthdate
-     * @param strBirthdate The Birthdate
+     * 
+     * @param strBirthdate
+     *            The Birthdate
      */
-    public void setBirthdate( String strBirthdate ) 
+    public void setBirthdate( String strBirthdate )
     {
         _strBirthdate = strBirthdate;
-        
+
         // Validate Birth Date format before calculating the age
-        Validator validator = BeanValidationUtil.getValidator();
-        Set<ConstraintViolation<MyInfosForm>> constraintViolations = validator.validateProperty(this , "_strBirthdate" );
-        if( constraintViolations.isEmpty() )
+        Validator validator = BeanValidationUtil.getValidator( );
+        Set<ConstraintViolation<MyInfosForm>> constraintViolations = validator.validateProperty( this, "_strBirthdate" );
+        if ( constraintViolations.isEmpty( ) )
         {
             try
             {
                 _nAge = MyInfosService.getAge( strBirthdate );
             }
-            catch (ParseException ex)
+            catch( ParseException ex )
             {
                 _nAge = 0;
-                AppLogService.error( "Error setting age from birthdate" + ex.getMessage(), ex );
+                AppLogService.error( "Error setting age from birthdate" + ex.getMessage( ), ex );
             }
         }
         else
         {
-            _nAge = 18;  // A valid age to not create a violation since the date format is not valid
+            _nAge = 18; // A valid age to not create a violation since the date format is not valid
         }
     }
-    
+
     /**
      * Returns the Age
+     * 
      * @return The Age
      */
-    public int getAge(  )
+    public int getAge( )
     {
         return _nAge;
     }
 
     /**
      * Returns the Arrondissement
+     * 
      * @return The Arrondissement
      */
-    public String getArrondissement(  )
+    public String getArrondissement( )
     {
         return _strArrondissement;
     }
 
     /**
      * Sets the Arrondissement
-     * @param strArrondissement The Arrondissement
+     * 
+     * @param strArrondissement
+     *            The Arrondissement
      */
     public void setArrondissement( String strArrondissement )
     {
@@ -206,16 +219,19 @@ public class MyInfosForm implements Serializable, Cloneable
 
     /**
      * Returns the Iliveinparis
+     * 
      * @return The Iliveinparis
      */
-    public String getIliveinparis(  )
+    public String getIliveinparis( )
     {
         return _strIliveinparis;
     }
 
     /**
      * Sets the Iliveinparis
-     * @param strIliveinparis The Iliveinparis
+     * 
+     * @param strIliveinparis
+     *            The Iliveinparis
      */
     public void setIliveinparis( String strIliveinparis )
     {
@@ -224,16 +240,19 @@ public class MyInfosForm implements Serializable, Cloneable
 
     /**
      * Check if the user is valid or not
+     * 
      * @return True if the user is valid
      */
-    public boolean getIsValid(  )
+    public boolean getIsValid( )
     {
         return _bIsValid;
     }
 
     /**
      * Set the user to valid or not valid
-     * @param bIsValid True if the user is valid, false otherwise
+     * 
+     * @param bIsValid
+     *            True if the user is valid, false otherwise
      */
     public void setIsValid( boolean bIsValid )
     {
@@ -244,34 +263,37 @@ public class MyInfosForm implements Serializable, Cloneable
      * {@inheritDoc}
      */
     @Override
-    public MyInfosForm clone(  )
+    public MyInfosForm clone( )
     {
         try
         {
-            return (MyInfosForm) super.clone(  );
+            return (MyInfosForm) super.clone( );
         }
-        catch ( CloneNotSupportedException e )
+        catch( CloneNotSupportedException e )
         {
             return null;
         }
     }
-	
-	/**
-	 * Send Account Validation
-	 * @param strSendAccountValidation strSendAccountValidation
-	 */
-	public void setSendaccountvalidation(String strSendAccountValidation)
-	{
-		
-		_strSendaccountvalidation=strSendAccountValidation;
-		
-	}
-	
-	/**
+
+    /**
+     * Send Account Validation
+     * 
+     * @param strSendAccountValidation
+     *            strSendAccountValidation
+     */
+    public void setSendaccountvalidation( String strSendAccountValidation )
+    {
+
+        _strSendaccountvalidation = strSendAccountValidation;
+
+    }
+
+    /**
      * Returns the SendAccountValidation
+     * 
      * @return The SendAccountValidation
      */
-    public String getSendaccountvalidation(  )
+    public String getSendaccountvalidation( )
     {
         return _strSendaccountvalidation;
     }
@@ -280,91 +302,110 @@ public class MyInfosForm implements Serializable, Cloneable
      * 
      * @return true if the account is verified
      */
-	public boolean isAccountVerified() {
-		return _bAccountVerified;
-	}
+    public boolean isAccountVerified( )
+    {
+        return _bAccountVerified;
+    }
 
-	/**
-	 * 
-	 * @param _bAccountVerified true if the account is verified
-	 */
-	public void setAccountVerified(boolean _bAccountVerified) {
-		this._bAccountVerified = _bAccountVerified;
-	}
-	
-    public String getNickname() {
-		return _strNickname;
-	}
+    /**
+     * 
+     * @param _bAccountVerified
+     *            true if the account is verified
+     */
+    public void setAccountVerified( boolean _bAccountVerified )
+    {
+        this._bAccountVerified = _bAccountVerified;
+    }
 
-	public void setNickname(String _strNickname) {
-		this._strNickname = _strNickname;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String getCivility() {
-		return _strCivility;
-	}
+    public String getNickname( )
+    {
+        return _strNickname;
+    }
 
-	public void setCivility(String strCivility) {
-		this._strCivility = strCivility;
-	}
-	
-	/**
-	 * 
-	 * @return the postal code
-	 */
-	public String getPostalCode() {
-		return _strPostalCode;
-	}
-	
-	/**
-	 * 
-	 * @param _strPostalCode  the postal code
-	 */
-	public void setPostalCode(String _strPostalCode) {
-		this._strPostalCode = _strPostalCode;
-	}
-	
-	/**
-	 * 
-	 * @return the longitude
-	 */
-	public Double getLongitude() {
-		return _dLongitude;
-	}
+    public void setNickname( String _strNickname )
+    {
+        this._strNickname = _strNickname;
+    }
 
-	/**
-	 * 
-	 * @param _dLongitude the longitude
-	 */
-	public void setLongitude(Double _dLongitude) {
-		this._dLongitude = _dLongitude;
-	}
-	/**
-	 * 
-	 * @return the latitude
-	 */
-    public Double getLatitude() {
-		return _dLatitude;
-	}
- /**
-  * 
-  * @param _dLatitude the latitude
-  */
-	public void setLatitude(Double _dLatitude) {
-		this._dLatitude = _dLatitude;
-	}
+    /**
+     * 
+     * @return
+     */
+    public String getCivility( )
+    {
+        return _strCivility;
+    }
 
-public String getGeojson() {
-	return _strGeojson;
-}
+    public void setCivility( String strCivility )
+    {
+        this._strCivility = strCivility;
+    }
 
-public void setGeojson(String _strGeojson) {
-	this._strGeojson = _strGeojson;
-}
+    /**
+     * 
+     * @return the postal code
+     */
+    public String getPostalCode( )
+    {
+        return _strPostalCode;
+    }
 
-	
+    /**
+     * 
+     * @param _strPostalCode
+     *            the postal code
+     */
+    public void setPostalCode( String _strPostalCode )
+    {
+        this._strPostalCode = _strPostalCode;
+    }
+
+    /**
+     * 
+     * @return the longitude
+     */
+    public Double getLongitude( )
+    {
+        return _dLongitude;
+    }
+
+    /**
+     * 
+     * @param _dLongitude
+     *            the longitude
+     */
+    public void setLongitude( Double _dLongitude )
+    {
+        this._dLongitude = _dLongitude;
+    }
+
+    /**
+     * 
+     * @return the latitude
+     */
+    public Double getLatitude( )
+    {
+        return _dLatitude;
+    }
+
+    /**
+     * 
+     * @param _dLatitude
+     *            the latitude
+     */
+    public void setLatitude( Double _dLatitude )
+    {
+        this._dLatitude = _dLatitude;
+    }
+
+    public String getGeojson( )
+    {
+        return _strGeojson;
+    }
+
+    public void setGeojson( String _strGeojson )
+    {
+        this._strGeojson = _strGeojson;
+    }
+
 }

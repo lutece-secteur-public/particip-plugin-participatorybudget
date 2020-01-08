@@ -39,7 +39,6 @@ import javax.servlet.http.HttpSessionListener;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneUploadHandler;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
-
 /**
  * Will remove fileItems uploaded
  */
@@ -60,10 +59,9 @@ public class CampagneSessionListener implements HttpSessionListener
     @Override
     public void sessionDestroyed( HttpSessionEvent se )
     {
-        String strSessionId = se.getSession(  ).getId(  );
+        String strSessionId = se.getSession( ).getId( );
 
-        for ( CampagneUploadHandler handler : SpringContextService.getBeansOfType( 
-                CampagneUploadHandler.class ) )
+        for ( CampagneUploadHandler handler : SpringContextService.getBeansOfType( CampagneUploadHandler.class ) )
         {
             handler.removeSessionFiles( strSessionId );
         }

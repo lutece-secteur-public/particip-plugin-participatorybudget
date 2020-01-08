@@ -38,10 +38,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Retention(RetentionPolicy.RUNTIME)
-
-@Target   (ElementType.METHOD)
-
-public @interface BizStatDescription {
-    public String value();
+@Retention( RetentionPolicy.RUNTIME )
+@Target( ElementType.METHOD )
+public @interface BizStatDescription
+{
+    public String value( );
 }

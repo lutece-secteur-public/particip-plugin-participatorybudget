@@ -45,120 +45,144 @@ import fr.paris.lutece.portal.business.user.AdminUser;
  */
 public class BizStatFile implements Serializable
 {
-	
-	public static String STATUS_REQUESTED       = "requested";
-	public static String STATUS_UNDER_TREATMENT = "(being processed...)";
-	public static String STATUS_AVAILABLE       = "available";
-	public static String STATUS_PURGED          = "purged";
-	public static String STATUT_ERROR           = "error";
-	
-    private int       _nIdBizStatFile;
-    private String    _strStatus;
-    private String    _strFileName;
-    private int       _nIdAdminUser;
-	private String    _strAdminUserAccessCode;
-    private String    _strAdminUserEmail;
-    private String    _strReason;
-    private String    _strDescription;
-    private String    _strError;
+
+    public static String STATUS_REQUESTED = "requested";
+    public static String STATUS_UNDER_TREATMENT = "(being processed...)";
+    public static String STATUS_AVAILABLE = "available";
+    public static String STATUS_PURGED = "purged";
+    public static String STATUT_ERROR = "error";
+
+    private int _nIdBizStatFile;
+    private String _strStatus;
+    private String _strFileName;
+    private int _nIdAdminUser;
+    private String _strAdminUserAccessCode;
+    private String _strAdminUserEmail;
+    private String _strReason;
+    private String _strDescription;
+    private String _strError;
     private Timestamp _tsCreationDate;
-    private byte [ ]  _byValue;
-    private int       _nContentSize;
-    
-	public int getIdBizStatFile() {
-		return _nIdBizStatFile;
-	}
-	
-	public void setIdBizStatFile(int _nIdBizStatFile) {
-		this._nIdBizStatFile = _nIdBizStatFile;
-	}
-	
-	public String getStatus() {
-		return _strStatus;
-	}
-	
-	public void setStatus(String _strStatus) {
-		this._strStatus = _strStatus;
-	}
-	
-	public String getFileName() {
-		return _strFileName;
-	}
-	
-	public void setFileName(String _strFileName) {
-		this._strFileName = _strFileName;
-	}
-	
-    public int getIdAdminUser() {
-		return _nIdAdminUser;
-	}
+    private byte [ ] _byValue;
+    private int _nContentSize;
 
-	public void setIdAdminUser(int _nIdAdminUser) {
-		this._nIdAdminUser = _nIdAdminUser;
-	}
+    public int getIdBizStatFile( )
+    {
+        return _nIdBizStatFile;
+    }
 
-	public String getAdminUserAccessCode() {
-		return _strAdminUserAccessCode;
-	}
+    public void setIdBizStatFile( int _nIdBizStatFile )
+    {
+        this._nIdBizStatFile = _nIdBizStatFile;
+    }
 
-	public void setAdminUserAccessCode(String _strAdminUserAccessCode) {
-		this._strAdminUserAccessCode = _strAdminUserAccessCode;
-	}
+    public String getStatus( )
+    {
+        return _strStatus;
+    }
 
-	public String getAdminUserEmail() {
-		return _strAdminUserEmail;
-	}
+    public void setStatus( String _strStatus )
+    {
+        this._strStatus = _strStatus;
+    }
 
-	public void setAdminUserEmail(String _strAdminUserEmail) {
-		this._strAdminUserEmail = _strAdminUserEmail;
-	}
+    public String getFileName( )
+    {
+        return _strFileName;
+    }
 
-	public String getReason() {
-		return _strReason;
-	}
+    public void setFileName( String _strFileName )
+    {
+        this._strFileName = _strFileName;
+    }
 
-	public void setReason(String _strReason) {
-		this._strReason = _strReason;
-	}
+    public int getIdAdminUser( )
+    {
+        return _nIdAdminUser;
+    }
 
-	public String getDescription() {
-		return _strDescription;
-	}
-	
-	public void setDescription(String _strDescription) {
-		this._strDescription = _strDescription;
-	}
-	
-	public String getError() {
-		return _strError;
-	}
-	
-	public void setError(String _strError) {
-		this._strError = _strError;
-	}
-	
-	public Timestamp getCreationDate() {
-		return _tsCreationDate;
-	}
-	
-	public void setCreationDate(Timestamp _tsCreationDate) {
-		this._tsCreationDate = _tsCreationDate;
-	}
-	
-	public byte[] getValue() {
-		return _byValue;
-	}
-	
-	public void setValue(byte[] _byValue) {
-		this._byValue = _byValue;
-	}
+    public void setIdAdminUser( int _nIdAdminUser )
+    {
+        this._nIdAdminUser = _nIdAdminUser;
+    }
 
-	public int getContentSize() {
-		return _nContentSize;
-	}
+    public String getAdminUserAccessCode( )
+    {
+        return _strAdminUserAccessCode;
+    }
 
-	public void setContentSize(int _nContentSize) {
-		this._nContentSize = _nContentSize;
-	}
+    public void setAdminUserAccessCode( String _strAdminUserAccessCode )
+    {
+        this._strAdminUserAccessCode = _strAdminUserAccessCode;
+    }
+
+    public String getAdminUserEmail( )
+    {
+        return _strAdminUserEmail;
+    }
+
+    public void setAdminUserEmail( String _strAdminUserEmail )
+    {
+        this._strAdminUserEmail = _strAdminUserEmail;
+    }
+
+    public String getReason( )
+    {
+        return _strReason;
+    }
+
+    public void setReason( String _strReason )
+    {
+        this._strReason = _strReason;
+    }
+
+    public String getDescription( )
+    {
+        return _strDescription;
+    }
+
+    public void setDescription( String _strDescription )
+    {
+        this._strDescription = _strDescription;
+    }
+
+    public String getError( )
+    {
+        return _strError;
+    }
+
+    public void setError( String _strError )
+    {
+        this._strError = _strError;
+    }
+
+    public Timestamp getCreationDate( )
+    {
+        return _tsCreationDate;
+    }
+
+    public void setCreationDate( Timestamp _tsCreationDate )
+    {
+        this._tsCreationDate = _tsCreationDate;
+    }
+
+    public byte [ ] getValue( )
+    {
+        return _byValue;
+    }
+
+    public void setValue( byte [ ] _byValue )
+    {
+        this._byValue = _byValue;
+    }
+
+    public int getContentSize( )
+    {
+        return _nContentSize;
+    }
+
+    public void setContentSize( int _nContentSize )
+    {
+        this._nContentSize = _nContentSize;
+    }
 
 }

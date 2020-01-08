@@ -51,17 +51,17 @@ import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
 /**
- * Manager for add on display
- * TODO : move this class into a document specific class !
+ * Manager for add on display TODO : move this class into a document specific class !
  */
 public class DocumentPageProjectOPService implements IResourceDisplayManager
 {
     private static final String SOLR_QUERY_ALL = "*:*";
-	private static final String SOLR_FQ_PROJECTS_OP_SUIVI_SYNT = "document_suivi_synt_text_text:";
-	private static final String SOLR_FQ_PROJECTS_OP_STATUT     = "-statut_text:";
+    private static final String SOLR_FQ_PROJECTS_OP_SUIVI_SYNT = "document_suivi_synt_text_text:";
+    private static final String SOLR_FQ_PROJECTS_OP_STATUT = "-statut_text:";
 
-	private static final String SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX = "solr.reponse.max";
-    private static final int SOLRSEARCHAPP_SOLR_RESPONSE_MAX = Integer.parseInt(AppPropertiesService.getProperty(SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX, "50"));
+    private static final String SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX = "solr.reponse.max";
+    private static final int SOLRSEARCHAPP_SOLR_RESPONSE_MAX = Integer.parseInt( AppPropertiesService.getProperty( SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX,
+            "50" ) );
 
     private static final String MARK_STATUS = "status_document";
     private static final String MARK_STATUS_VOTED = "SUIVI";
@@ -76,50 +76,53 @@ public class DocumentPageProjectOPService implements IResourceDisplayManager
     @Override
     public void getXmlAddOn( StringBuffer strXml, String strResourceType, int nResourceId )
     {
-    	return ;
+        return;
     }
 
     @Override
-    public void buildPageAddOn( Map<String, Object> model, String strResourceType, int nIdResource,
-        String strPortletId, HttpServletRequest request )
+    public void buildPageAddOn( Map<String, Object> model, String strResourceType, int nIdResource, String strPortletId, HttpServletRequest request )
     {
-    	// Getting "PB Project OP" child documents from root "PB Project" document
-    	List<HashMap<String, Object>> points = null;
+        // Getting "PB Project OP" child documents from root "PB Project" document
+        List<HashMap<String, Object>> points = null;
 
-    	// Only for voted project !
-    	Object isVotedProject = model.get(MARK_STATUS);
-    	if ( MARK_STATUS_VOTED.equals(isVotedProject) )
-    	{
-	    	String[] strQuery = { SOLR_FQ_PROJECTS_OP_SUIVI_SYNT + nIdResource , SOLR_FQ_PROJECTS_OP_STATUT + "Obsolète" , SOLR_FQ_PROJECTS_OP_STATUT + "Abandonné" , SOLR_FQ_PROJECTS_OP_STATUT + "Suppression" , SOLR_FQ_PROJECTS_OP_STATUT + "Reliquat" };
-	        SolrSearchEngine engine = SolrSearchEngine.getInstance();
-	        List<SolrSearchResult> results = engine.getGeolocSearchResults(SOLR_QUERY_ALL, strQuery, SOLRSEARCHAPP_SOLR_RESPONSE_MAX);
-	        points = getGeolocModel(results);
-    	}
-    	else
-    	{
-    		points = new ArrayList<HashMap<String, Object>>( );
-    	}
-    	
+        // Only for voted project !
+        Object isVotedProject = model.get( MARK_STATUS );
+        if ( MARK_STATUS_VOTED.equals( isVotedProject ) )
+        {
+            String [ ] strQuery = {
+                    SOLR_FQ_PROJECTS_OP_SUIVI_SYNT + nIdResource, SOLR_FQ_PROJECTS_OP_STATUT + "Obsolète", SOLR_FQ_PROJECTS_OP_STATUT + "Abandonné",
+                    SOLR_FQ_PROJECTS_OP_STATUT + "Suppression", SOLR_FQ_PROJECTS_OP_STATUT + "Reliquat"
+            };
+            SolrSearchEngine engine = SolrSearchEngine.getInstance( );
+            List<SolrSearchResult> results = engine.getGeolocSearchResults( SOLR_QUERY_ALL, strQuery, SOLRSEARCHAPP_SOLR_RESPONSE_MAX );
+            points = getGeolocModel( results );
+        }
+        else
+        {
+            points = new ArrayList<HashMap<String, Object>>( );
+        }
+
         // Putting them in freemarker model
         model.put( MARK_PROJECTS_OP_POINTS, points );
-	}
+    }
 
     /**
      * CopyPasted from ProjectOPSolrAddon to have the same freemarkers as if it was a search
      */
-    private static List<HashMap<String, Object>> getGeolocModel( List<SolrSearchResult> listResultsGeoloc ) {
-        List<HashMap<String, Object>> points = new ArrayList<HashMap<String, Object>>( listResultsGeoloc.size(  ) );
-        HashMap<String, String> iconKeysCache = new HashMap<String, String>(  );
- 
+    private static List<HashMap<String, Object>> getGeolocModel( List<SolrSearchResult> listResultsGeoloc )
+    {
+        List<HashMap<String, Object>> points = new ArrayList<HashMap<String, Object>>( listResultsGeoloc.size( ) );
+        HashMap<String, String> iconKeysCache = new HashMap<String, String>( );
+
         for ( SolrSearchResult result : listResultsGeoloc )
         {
-            Map<String, Object> dynamicFields = result.getDynamicFields(  );
+            Map<String, Object> dynamicFields = result.getDynamicFields( );
 
-            for ( String key : dynamicFields.keySet(  ) )
+            for ( String key : dynamicFields.keySet( ) )
             {
                 if ( key.endsWith( SolrItem.DYNAMIC_GEOJSON_FIELD_SUFFIX ) )
                 {
-                    HashMap<String, Object> h = new HashMap<String, Object>(  );
+                    HashMap<String, Object> h = new HashMap<String, Object>( );
                     String strJson = (String) dynamicFields.get( key );
                     GeolocItem geolocItem = null;
 
@@ -127,38 +130,35 @@ public class DocumentPageProjectOPService implements IResourceDisplayManager
                     {
                         geolocItem = GeolocItem.fromJSON( strJson );
                     }
-                    catch ( IOException e )
+                    catch( IOException e )
                     {
-                        AppLogService.error( "SolrSearchApp: error parsing geoloc JSON: " + strJson +
-                            ", exception " + e );
+                        AppLogService.error( "SolrSearchApp: error parsing geoloc JSON: " + strJson + ", exception " + e );
                     }
 
                     if ( geolocItem != null )
                     {
-                        String strType = result.getId(  ).substring( result.getId(  ).lastIndexOf( "_" ) + 1 );
+                        String strType = result.getId( ).substring( result.getId( ).lastIndexOf( "_" ) + 1 );
                         String strIcon;
 
-                        if ( iconKeysCache.containsKey( geolocItem.getIcon(  ) ) )
+                        if ( iconKeysCache.containsKey( geolocItem.getIcon( ) ) )
                         {
-                            strIcon = iconKeysCache.get( geolocItem.getIcon(  ) );
+                            strIcon = iconKeysCache.get( geolocItem.getIcon( ) );
                         }
                         else
                         {
-                            strIcon = IconService.getIcon( strType, geolocItem.getIcon(  ) );
-                            iconKeysCache.put( geolocItem.getIcon(  ), strIcon );
+                            strIcon = IconService.getIcon( strType, geolocItem.getIcon( ) );
+                            iconKeysCache.put( geolocItem.getIcon( ), strIcon );
                         }
 
                         geolocItem.setIcon( strIcon );
-                        h.put( SOLRSEARCHAPP_MARK_POINTS_GEOJSON, geolocItem.toJSON(  ) );
-                        h.put( SOLRSEARCHAPP_MARK_POINTS_ID,
-                            result.getId(  )
-                                  .substring( result.getId(  ).indexOf( "_" ) + 1,
-                                result.getId(  ).lastIndexOf( "_" ) ) );
+                        h.put( SOLRSEARCHAPP_MARK_POINTS_GEOJSON, geolocItem.toJSON( ) );
+                        h.put( SOLRSEARCHAPP_MARK_POINTS_ID, result.getId( ).substring( result.getId( ).indexOf( "_" ) + 1, result.getId( ).lastIndexOf( "_" ) ) );
                         h.put( SOLRSEARCHAPP_MARK_POINTS_FIELDCODE, key.substring( 0, key.lastIndexOf( "_" ) ) );
-                        if(strType.equals("doc")){
-                        	
-                        	h.put( SOLRSEARCHAPP_MARK_POINTS_TYPE, "gagnant" );
-                        
+                        if ( strType.equals( "doc" ) )
+                        {
+
+                            h.put( SOLRSEARCHAPP_MARK_POINTS_TYPE, "gagnant" );
+
                         }
                         points.add( h );
                     }
@@ -167,5 +167,5 @@ public class DocumentPageProjectOPService implements IResourceDisplayManager
         }
         return points;
     }
-  
+
 }

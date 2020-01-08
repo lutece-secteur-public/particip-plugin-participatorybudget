@@ -36,8 +36,6 @@ package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import java.util.Collection;
 
-
-
 /**
  * ICampagnePhaseDAO Interface
  */
@@ -45,56 +43,74 @@ public interface ICampagnePhaseDAO
 {
     /**
      * Insert a new record in the table.
-     * @param campagnePhase instance of the CampagnePhase object to insert
-     * @param plugin the Plugin
+     * 
+     * @param campagnePhase
+     *            instance of the CampagnePhase object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( CampagnePhase campagnePhase, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param campagnePhase the reference of the CampagnePhase
-     * @param plugin the Plugin
+     * 
+     * @param campagnePhase
+     *            the reference of the CampagnePhase
+     * @param plugin
+     *            the Plugin
      */
     void store( CampagnePhase campagnePhase, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the CampagnePhase to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the CampagnePhase to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the campagnePhase
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the campagnePhase
+     * @param plugin
+     *            the Plugin
      * @return The instance of the campagnePhase
      */
     CampagnePhase load( int nKey, Plugin plugin );
 
     /**
      * Load the data of all the campagnePhase objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the campagnePhase objects
      */
     Collection<CampagnePhase> selectCampagnePhasesList( Plugin plugin );
-    
+
     /**
      * Load the id of all the campagnePhase objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the campagnePhase objects
      */
     Collection<Integer> selectIdCampagnePhasesList( Plugin plugin );
-    
+
     /**
      * Load the data of all the campagnePhase objects for a campagne and returns them as a collection
-     * @param campagneCode the campagne code
-     * @param plugin the Plugin
+     * 
+     * @param campagneCode
+     *            the campagne code
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the campagnePhase objects
      */
     Collection<CampagnePhase> selectCampagnePhasesListByCampagne( String campagneCode, Plugin plugin );
 }
-

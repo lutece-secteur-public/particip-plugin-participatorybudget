@@ -41,7 +41,6 @@ import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneIncl
 import fr.paris.lutece.portal.service.content.PageData;
 import fr.paris.lutece.portal.service.includes.PageInclude;
 
-
 /**
  * Page include to add the
  */
@@ -50,13 +49,13 @@ public class MyInfosHeaderInclude implements PageInclude
 
     // Mark
     public static final String MARK_MES_INFOS_INCLUDE = "mes_infos_include";
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void fillTemplate( Map<String, Object> rootModel, PageData data, int nMode, HttpServletRequest request )
     {
-      rootModel.put( MARK_MES_INFOS_INCLUDE,  CampagneIncludeService.getMyInfos(request) );
+        rootModel.put( MARK_MES_INFOS_INCLUDE, CampagneIncludeService.getMyInfos( request ) );
     }
 }

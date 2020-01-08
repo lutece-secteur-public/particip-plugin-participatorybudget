@@ -39,77 +39,102 @@ import java.util.List;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
 import fr.paris.lutece.util.ReferenceList;
 
-public interface ICampaignService {
+public interface ICampaignService
+{
 
     // ***********************************************************************************
-	// * CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN *
-	// * CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN *
-	// ***********************************************************************************
+    // * CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN *
+    // * CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN *
+    // ***********************************************************************************
 
-	// Returns the campain the code of which is the SQL 'max'.
-	// Ex : if 6 campagne with 'B0' - 'C' - 'D' - 'G0' - 'GA' - 'G', returns campagne 'GA'.
-	public Campagne getLastCampagne ( ); 
-    
-	// ***********************************************************************************
-	// * PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE P *
-	// * PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE P *
-	// ***********************************************************************************
-	
-    public boolean   isBeforeBeginning( String campagne, String phase ); // ......current < PHASE_BEGINNING
-    public boolean   isBeforeEnd      ( String campagne, String phase ); // ..................................current < PHASE_END
-    public boolean   isDuring         ( String campagne, String phase ); //                 PHASE_BEGINNING < current < PHASE_END
-    public boolean   isAfterBeginning ( String campagne, String phase ); //                 PHASE_BEGINNING < current............................
-    public boolean   isAfterEnd       ( String campagne, String phase ); //                                             PHASE_END < current......
-	public Timestamp start            ( String campagne, String phase ); 
-	public Timestamp end              ( String campagne, String phase ); 
-	public String    startStr         ( String campagne, String phase, String format, boolean withAccents ); 
-	public String    endStr           ( String campagne, String phase, String format, boolean withAccents ); 
-
-	// Same as precedent, for last campagne
-    public boolean   isBeforeBeginning( String phase ); 
-    public boolean   isBeforeEnd      ( String phase );
-    public boolean   isDuring         ( String phase );
-    public boolean   isAfterBeginning ( String phase );
-    public boolean   isAfterEnd       ( String phase ); 
-    public Timestamp start            ( String phase ); 
-	public Timestamp end              ( String phase ); 
-	public String    startStr         ( String phase, String format, boolean withAccents ); 
-	public String    endStr           ( String phase, String format, boolean withAccents ); 
+    // Returns the campain the code of which is the SQL 'max'.
+    // Ex : if 6 campagne with 'B0' - 'C' - 'D' - 'G0' - 'GA' - 'G', returns campagne 'GA'.
+    public Campagne getLastCampagne( );
 
     // ***********************************************************************************
-	// * AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS A *
-	// * AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS A *
-	// ***********************************************************************************
+    // * PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE P *
+    // * PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE P *
+    // ***********************************************************************************
 
-	public List<String> getAllAreas	      ( String codeCampaign ); 
-	public List<String> getLocalizedAreas ( String codeCampaign );
-	public boolean  hasWholeArea	      ( String codeCampaign );
-	public boolean  hasWholeArea          ( String codeCampaign, int idCampaign );
-	public String   getWholeArea          ( String codeCampaign );
+    public boolean isBeforeBeginning( String campagne, String phase ); // ......current < PHASE_BEGINNING
 
-	// Same as precedent, for last campagne
-	public List<String> getAllAreas	     ( );
-	public List<String> getLocalizedAreas( );
-	public boolean  hasWholeArea         ( );
-	public boolean  hasWholeArea         ( int idCampaign );
-	public String   getWholeArea         ( );
+    public boolean isBeforeEnd( String campagne, String phase ); // ..................................current < PHASE_END
+
+    public boolean isDuring( String campagne, String phase ); // PHASE_BEGINNING < current < PHASE_END
+
+    public boolean isAfterBeginning( String campagne, String phase ); // PHASE_BEGINNING < current............................
+
+    public boolean isAfterEnd( String campagne, String phase ); // PHASE_END < current......
+
+    public Timestamp start( String campagne, String phase );
+
+    public Timestamp end( String campagne, String phase );
+
+    public String startStr( String campagne, String phase, String format, boolean withAccents );
+
+    public String endStr( String campagne, String phase, String format, boolean withAccents );
+
+    // Same as precedent, for last campagne
+    public boolean isBeforeBeginning( String phase );
+
+    public boolean isBeforeEnd( String phase );
+
+    public boolean isDuring( String phase );
+
+    public boolean isAfterBeginning( String phase );
+
+    public boolean isAfterEnd( String phase );
+
+    public Timestamp start( String phase );
+
+    public Timestamp end( String phase );
+
+    public String startStr( String phase, String format, boolean withAccents );
+
+    public String endStr( String phase, String format, boolean withAccents );
 
     // ***********************************************************************************
-	// * THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES TH *
-	// * THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES TH *
-	// ***********************************************************************************
+    // * AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS A *
+    // * AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS AREAS A *
+    // ***********************************************************************************
 
-	public ReferenceList getThemes ( String codeCampaign ); 
+    public List<String> getAllAreas( String codeCampaign );
 
-	// Same as precedent, for last campagne
-	public ReferenceList getThemes ( ); 
+    public List<String> getLocalizedAreas( String codeCampaign );
+
+    public boolean hasWholeArea( String codeCampaign );
+
+    public boolean hasWholeArea( String codeCampaign, int idCampaign );
+
+    public String getWholeArea( String codeCampaign );
+
+    // Same as precedent, for last campagne
+    public List<String> getAllAreas( );
+
+    public List<String> getLocalizedAreas( );
+
+    public boolean hasWholeArea( );
+
+    public boolean hasWholeArea( int idCampaign );
+
+    public String getWholeArea( );
 
     // ***********************************************************************************
-	// * CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE C *
-	// * CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE C *
-	// ***********************************************************************************
+    // * THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES TH *
+    // * THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES TH *
+    // ***********************************************************************************
+
+    public ReferenceList getThemes( String codeCampaign );
+
+    // Same as precedent, for last campagne
+    public ReferenceList getThemes( );
+
+    // ***********************************************************************************
+    // * CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE C *
+    // * CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE C *
+    // ***********************************************************************************
 
     // Resets the internal cache of phases
-	public void reset( ); 
-    
+    public void reset( );
+
 }

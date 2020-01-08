@@ -36,8 +36,6 @@ package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import java.util.Collection;
 
-
-
 /**
  * ICampagneDAO Interface
  */
@@ -45,55 +43,72 @@ public interface ICampagneDAO
 {
     /**
      * Insert a new record in the table.
-     * @param campagne instance of the Campagne object to insert
-     * @param plugin the Plugin
+     * 
+     * @param campagne
+     *            instance of the Campagne object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( Campagne campagne, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param campagne the reference of the Campagne
-     * @param plugin the Plugin
+     * 
+     * @param campagne
+     *            the reference of the Campagne
+     * @param plugin
+     *            the Plugin
      */
     void store( Campagne campagne, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the Campagne to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the Campagne to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the campagne
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the campagne
+     * @param plugin
+     *            the Plugin
      * @return The instance of the campagne
      */
     Campagne load( int nKey, Plugin plugin );
 
     /**
      * Returns an instance which represents the last campagne
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return an instance of Campagne
      */
     Campagne selectLastCampagne( Plugin _plugin );
-    
+
     /**
      * Load the data of all the campagne objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the campagne objects
      */
     Collection<Campagne> selectCampagnesList( Plugin plugin );
-    
+
     /**
      * Load the id of all the campagne objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the campagne objects
      */
     Collection<Integer> selectIdCampagnesList( Plugin plugin );
 }
-

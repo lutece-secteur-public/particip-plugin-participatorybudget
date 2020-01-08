@@ -57,9 +57,9 @@ public class NotifyDocumentbpService implements INotifyDocumentbpService
     public static final String CONSTANT_RESOURCE_TYPE = "DOCUMENT_BP";
     public static final String BEAN_DOCUMENT_BP_SERVICE = "workflow-notifydocumentbp.documentbpService";
 
-    public static final String PROPERTY_WORKFLOW_ID                   = "workflow-notifydocumentbp.workflow.id";
+    public static final String PROPERTY_WORKFLOW_ID = "workflow-notifydocumentbp.workflow.id";
     public static final String PROPERTY_WORKFLOW_ACTION_INITIER_NOTIF = "workflow-notifydocumentbp.workflow.actionNameInitierNotif";
-    public static final String PROPERTY_WORKFLOW_ACTION_NOTIFIER      = "workflow-notifydocumentbp.workflow.actionNameNotifier";
+    public static final String PROPERTY_WORKFLOW_ACTION_NOTIFIER = "workflow-notifydocumentbp.workflow.actionNameNotifier";
 
     private static INotifyDocumentbpService _singleton;
 
@@ -80,11 +80,11 @@ public class NotifyDocumentbpService implements INotifyDocumentbpService
     @Override
     public void processAction( int nIdWorkflow )
     {
-    	AppLogService.error("Processing actions for workflow #" + nIdWorkflow + " (INotifyDocumentbpService) :");
-    	
+        AppLogService.error( "Processing actions for workflow #" + nIdWorkflow + " (INotifyDocumentbpService) :" );
+
         IWorkflowService workflowService = SpringContextService.getBean( WorkflowService.BEAN_SERVICE );
         String strIdWorkflowActionNameNotifier = AppPropertiesService.getProperty( NotifyDocumentbpService.PROPERTY_WORKFLOW_ACTION_NOTIFIER, "" );
-        
+
         IActionService actionService = SpringContextService.getBean( ActionService.BEAN_SERVICE );
         ActionFilter filter = new ActionFilter( );
         filter.setIdWorkflow( nIdWorkflow );
@@ -93,33 +93,34 @@ public class NotifyDocumentbpService implements INotifyDocumentbpService
 
         for ( Action action : listActions )
         {
-        	if ( strIdWorkflowActionNameNotifier.equals(action.getName()) )
-        	{
-            	AppLogService.error("	- Launching action '" + strIdWorkflowActionNameNotifier + "'...");
+            if ( strIdWorkflowActionNameNotifier.equals( action.getName( ) ) )
+            {
+                AppLogService.error( "	- Launching action '" + strIdWorkflowActionNameNotifier + "'..." );
 
-            	IResourceWorkflowService resourceWorkflowService = SpringContextService.getBean( ResourceWorkflowService.BEAN_SERVICE );
-	            ResourceWorkflowFilter resourceWorkflowFilter = new ResourceWorkflowFilter( );
-	            resourceWorkflowFilter.setIdWorkflow( nIdWorkflow );
-	            resourceWorkflowFilter.setResourceType( CONSTANT_RESOURCE_TYPE );
-	
-	            List<ResourceWorkflow> listResource = resourceWorkflowService.getListResourceWorkflowByFilter( resourceWorkflowFilter );
+                IResourceWorkflowService resourceWorkflowService = SpringContextService.getBean( ResourceWorkflowService.BEAN_SERVICE );
+                ResourceWorkflowFilter resourceWorkflowFilter = new ResourceWorkflowFilter( );
+                resourceWorkflowFilter.setIdWorkflow( nIdWorkflow );
+                resourceWorkflowFilter.setResourceType( CONSTANT_RESOURCE_TYPE );
 
-            	AppLogService.error("	  ... for " + listResource.size() + " resources.");
+                List<ResourceWorkflow> listResource = resourceWorkflowService.getListResourceWorkflowByFilter( resourceWorkflowFilter );
 
-	            for ( ResourceWorkflow resource : listResource )
-	            {
-	                workflowService.doProcessAction( resource.getIdResource( ), resource.getResourceType( ), action.getId( ), -1, null, Locale.getDefault( ), true, null );
-	            }
-        	}
+                AppLogService.error( "	  ... for " + listResource.size( ) + " resources." );
+
+                for ( ResourceWorkflow resource : listResource )
+                {
+                    workflowService.doProcessAction( resource.getIdResource( ), resource.getResourceType( ), action.getId( ), -1, null, Locale.getDefault( ),
+                            true, null );
+                }
+            }
         }
     }
 
     @Override
     public void processAction( Workflow workflow, Document document )
     {
-    	AppLogService.error("Processing actions for workflow #" + workflow.getId() + " and document #" + document.getId() + " (INotifyDocumentbpService) :");
+        AppLogService.error( "Processing actions for workflow #" + workflow.getId( ) + " and document #" + document.getId( ) + " (INotifyDocumentbpService) :" );
 
-    	if ( workflow != null && workflow.isEnabled( ) )
+        if ( workflow != null && workflow.isEnabled( ) )
         {
             IWorkflowService workflowService = SpringContextService.getBean( WorkflowService.BEAN_SERVICE );
 
@@ -133,23 +134,23 @@ public class NotifyDocumentbpService implements INotifyDocumentbpService
 
             for ( Action action : listActions )
             {
-            	if ( PROPERTY_WORKFLOW_ACTION_NOTIFIER.equals(action.getName()) )
-            	{
-                	AppLogService.error("	- Launching action '" + PROPERTY_WORKFLOW_ACTION_NOTIFIER + "'...");
+                if ( PROPERTY_WORKFLOW_ACTION_NOTIFIER.equals( action.getName( ) ) )
+                {
+                    AppLogService.error( "	- Launching action '" + PROPERTY_WORKFLOW_ACTION_NOTIFIER + "'..." );
 
-                	IResourceWorkflowService resourceWorkflowService = SpringContextService.getBean( ResourceWorkflowService.BEAN_SERVICE );
-	                ResourceWorkflowFilter resourceWorkflowFilter = new ResourceWorkflowFilter( );
-	                resourceWorkflowFilter.setIdWorkflow( workflow.getId( ) );
-	
-	                List<ResourceWorkflow> listResource = resourceWorkflowService.getListResourceWorkflowByFilter( resourceWorkflowFilter );
-	
-	            	AppLogService.error("	  ... for " + listResource.size() + " resources.");
+                    IResourceWorkflowService resourceWorkflowService = SpringContextService.getBean( ResourceWorkflowService.BEAN_SERVICE );
+                    ResourceWorkflowFilter resourceWorkflowFilter = new ResourceWorkflowFilter( );
+                    resourceWorkflowFilter.setIdWorkflow( workflow.getId( ) );
 
-	            	for ( ResourceWorkflow resource : listResource )
-	                {
-	                    workflowService.doProcessAction( resource.getIdResource( ), resource.getResourceType( ), action.getId( ), resource.getExternalParentId( ),
-	                            null, Locale.getDefault( ), true, null );
-	                }
+                    List<ResourceWorkflow> listResource = resourceWorkflowService.getListResourceWorkflowByFilter( resourceWorkflowFilter );
+
+                    AppLogService.error( "	  ... for " + listResource.size( ) + " resources." );
+
+                    for ( ResourceWorkflow resource : listResource )
+                    {
+                        workflowService.doProcessAction( resource.getIdResource( ), resource.getResourceType( ), action.getId( ),
+                                resource.getExternalParentId( ), null, Locale.getDefault( ), true, null );
+                    }
                 }
             }
 

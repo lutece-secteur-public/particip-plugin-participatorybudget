@@ -36,8 +36,6 @@ package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import java.util.Collection;
 
-
-
 /**
  * ICampagneImageDAO Interface
  */
@@ -45,48 +43,63 @@ public interface ICampagneImageDAO
 {
     /**
      * Insert a new record in the table.
-     * @param campagneImage instance of the CampagneImage object to insert
-     * @param plugin the Plugin
+     * 
+     * @param campagneImage
+     *            instance of the CampagneImage object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( CampagneImage campagneImage, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param campagneImage the reference of the CampagneImage
-     * @param plugin the Plugin
+     * 
+     * @param campagneImage
+     *            the reference of the CampagneImage
+     * @param plugin
+     *            the Plugin
      */
     void store( CampagneImage campagneImage, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the CampagneImage to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the CampagneImage to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the campagneImage
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the campagneImage
+     * @param plugin
+     *            the Plugin
      * @return The instance of the campagneImage
      */
     CampagneImage load( int nKey, Plugin plugin );
 
     /**
      * Load the data of all the campagneImage objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the campagneImage objects
      */
     Collection<CampagneImage> selectCampagneImagesList( Plugin plugin );
-    
+
     /**
      * Load the id of all the campagneImage objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the campagneImage objects
      */
     Collection<Integer> selectIdCampagneImagesList( Plugin plugin );
 }
-

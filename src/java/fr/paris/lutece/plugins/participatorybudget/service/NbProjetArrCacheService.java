@@ -35,7 +35,6 @@ package fr.paris.lutece.plugins.participatorybudget.service;
 
 import fr.paris.lutece.portal.service.cache.AbstractCacheableService;
 
-
 /**
  * NbProjetArrCacheService
  */
@@ -44,17 +43,18 @@ public class NbProjetArrCacheService extends AbstractCacheableService
     private static final String CACHE_SERVICE_NAME = "Nb Projet Arr Cache Service";
 
     /** Constructor */
-    public NbProjetArrCacheService(  )
+    public NbProjetArrCacheService( )
     {
-        initCache(  );
+        initCache( );
     }
 
     /**
      * Gets the cache service name
+     * 
      * @return The service name
      */
     @Override
-    public String getName(  )
+    public String getName( )
     {
         return CACHE_SERVICE_NAME;
     }

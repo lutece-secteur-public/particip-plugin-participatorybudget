@@ -55,14 +55,16 @@ public final class CampagneThemeHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagneThemeHome(  )
+    private CampagneThemeHome( )
     {
     }
 
     /**
      * Create an instance of the campagneTheme class
-     * @param campagneTheme The instance of the CampagneTheme which contains the informations to store
-     * @return The  instance of campagneTheme which has been created with its primary key.
+     * 
+     * @param campagneTheme
+     *            The instance of the CampagneTheme which contains the informations to store
+     * @return The instance of campagneTheme which has been created with its primary key.
      */
     public static CampagneTheme create( CampagneTheme campagneTheme )
     {
@@ -73,8 +75,10 @@ public final class CampagneThemeHome
 
     /**
      * Update of the campagneTheme which is specified in parameter
-     * @param campagneTheme The instance of the CampagneTheme which contains the data to store
-     * @return The instance of the  campagneTheme which has been updated
+     * 
+     * @param campagneTheme
+     *            The instance of the CampagneTheme which contains the data to store
+     * @return The instance of the campagneTheme which has been updated
      */
     public static CampagneTheme update( CampagneTheme campagneTheme )
     {
@@ -85,47 +89,55 @@ public final class CampagneThemeHome
 
     /**
      * Remove the campagneTheme whose identifier is specified in parameter
-     * @param nKey The campagneTheme Id
+     * 
+     * @param nKey
+     *            The campagneTheme Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a campagneTheme whose identifier is specified in parameter
-     * @param nKey The campagneTheme primary key
+     * 
+     * @param nKey
+     *            The campagneTheme primary key
      * @return an instance of CampagneTheme
      */
     public static CampagneTheme findByPrimaryKey( int nKey )
     {
-        return _dao.load( nKey, _plugin);
+        return _dao.load( nKey, _plugin );
     }
-    
+
     /**
      * Returns an instance of a campagneTheme whose identifier is specified in parameter
-     * @param codeTheme The codeTheme
+     * 
+     * @param codeTheme
+     *            The codeTheme
      * @return an instance of CampagneTheme
      */
     public static CampagneTheme findByCodeTheme( String codeTheme )
     {
-        return _dao.loadByCodeTheme(codeTheme, _plugin);
+        return _dao.loadByCodeTheme( codeTheme, _plugin );
     }
 
     /**
      * Load the data of all the campagneTheme objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the campagneTheme objects
      */
     public static Collection<CampagneTheme> getCampagneThemesList( )
     {
         return _dao.selectCampagneThemesList( _plugin );
     }
-    
+
     /**
      * Load the id of all the campagneTheme objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the campagneTheme objects
      */
     public static Collection<Integer> getIdCampagneThemesList( )
@@ -135,6 +147,7 @@ public final class CampagneThemeHome
 
     /**
      * Load the data of all the campagneTheme objects for a campagne and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the campagneTheme objects
      */
     public static Collection<CampagneTheme> getCampagneThemesListByCampagne( String codeCampagne )
@@ -144,6 +157,7 @@ public final class CampagneThemeHome
 
     /**
      * Load the data of all the campagneTheme objects mapped from campagne code and returns them in form of a map
+     * 
      * @return the collection which contains the data of all the campagneTheme objects
      */
     public static Map<String, List<CampagneTheme>> getCampagneThemesMapByCampagne( )
@@ -151,4 +165,3 @@ public final class CampagneThemeHome
         return _dao.selectCampagneThemesMapByCampagne( _plugin );
     }
 }
-

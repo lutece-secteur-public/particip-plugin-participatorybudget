@@ -31,9 +31,8 @@
  *
  * License 1.0
  */
- 
-package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
+package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
 import java.util.List;
 import java.util.Map;
@@ -50,7 +49,6 @@ import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.util.url.UrlItem;
 
-
 /**
  * This class provides the user interface to manage CampagnePhase features ( manage, create, modify, remove )
  */
@@ -58,14 +56,13 @@ import fr.paris.lutece.util.url.UrlItem;
 public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
 {
 
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
     private static final String TEMPLATE_MANAGE_CAMPAGNEPHASES = "/admin/plugins/participatorybudget/campaign/manage_campagnephases.html";
     private static final String TEMPLATE_CREATE_CAMPAGNEPHASE = "/admin/plugins/participatorybudget/campaign/create_campagnephase.html";
     private static final String TEMPLATE_MODIFY_CAMPAGNEPHASE = "/admin/plugins/participatorybudget/campaign/modify_campagnephase.html";
-
 
     // Parameters
     private static final String PARAMETER_ID_CAMPAGNEPHASE = "id";
@@ -84,7 +81,7 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNEPHASE = "participatorybudget.message.confirmRemoveCampagnePhase";
     private static final String PROPERTY_DEFAULT_LIST_CAMPAGNEPHASE_PER_PAGE = "participatorybudget.listCampagnePhases.itemsPerPage";
- 
+
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagnephase.attribute.";
 
     // Views
@@ -102,21 +99,22 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     private static final String INFO_CAMPAGNEPHASE_CREATED = "participatorybudget.info.campagnephase.created";
     private static final String INFO_CAMPAGNEPHASE_UPDATED = "participatorybudget.info.campagnephase.updated";
     private static final String INFO_CAMPAGNEPHASE_REMOVED = "participatorybudget.info.campagnephase.removed";
-    
+
     // Session variable to store working values
     private CampagnePhase _campagnephase;
-    
-    
+
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_CAMPAGNEPHASES, defaultView = true )
     public String getManageCampagnePhases( HttpServletRequest request )
     {
         _campagnephase = null;
-        List<CampagnePhase> listCampagnePhases = (List<CampagnePhase>) CampagnePhaseHome.getCampagnePhasesList(  );
+        List<CampagnePhase> listCampagnePhases = (List<CampagnePhase>) CampagnePhaseHome.getCampagnePhasesList( );
         Map<String, Object> model = getPaginatedListModel( request, MARK_CAMPAGNEPHASE_LIST, listCampagnePhases, JSP_MANAGE_CAMPAGNEPHASES );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNEPHASES, TEMPLATE_MANAGE_CAMPAGNEPHASES, model );
@@ -125,15 +123,16 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     /**
      * Returns the form to create a campagnephase
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the campagnephase form
      */
     @View( VIEW_CREATE_CAMPAGNEPHASE )
     public String getCreateCampagnePhase( HttpServletRequest request )
     {
-        _campagnephase = ( _campagnephase != null ) ? _campagnephase : new CampagnePhase(  );
+        _campagnephase = ( _campagnephase != null ) ? _campagnephase : new CampagnePhase( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_CAMPAGNEPHASE, _campagnephase );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_CAMPAGNEPHASE, TEMPLATE_CREATE_CAMPAGNEPHASE, model );
@@ -142,7 +141,8 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     /**
      * Process the data capture form of a new campagnephase
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_CAMPAGNEPHASE )
@@ -157,18 +157,18 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
         }
 
         CampagnePhaseHome.create( _campagnephase );
-        addInfo( INFO_CAMPAGNEPHASE_CREATED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNEPHASE_CREATED, getLocale( ) );
 
-        CampaignService.getInstance().reset();
-        
+        CampaignService.getInstance( ).reset( );
+
         return redirectView( request, VIEW_MANAGE_CAMPAGNEPHASES );
     }
 
     /**
-     * Manages the removal form of a campagnephase whose identifier is in the http
-     * request
+     * Manages the removal form of a campagnephase whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_CAMPAGNEPHASE )
@@ -178,8 +178,7 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNEPHASE ) );
         url.addParameter( PARAMETER_ID_CAMPAGNEPHASE, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEPHASE,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEPHASE, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -187,7 +186,8 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     /**
      * Handles the removal form of a campagnephase
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage campagnephases
      */
     @Action( ACTION_REMOVE_CAMPAGNEPHASE )
@@ -195,17 +195,18 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNEPHASE ) );
         CampagnePhaseHome.remove( nId );
-        addInfo( INFO_CAMPAGNEPHASE_REMOVED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNEPHASE_REMOVED, getLocale( ) );
 
-        CampaignService.getInstance().reset();
-        
+        CampaignService.getInstance( ).reset( );
+
         return redirectView( request, VIEW_MANAGE_CAMPAGNEPHASES );
     }
 
     /**
      * Returns the form to update info about a campagnephase
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_CAMPAGNEPHASE )
@@ -213,12 +214,12 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNEPHASE ) );
 
-        if ( _campagnephase == null || ( _campagnephase.getId(  ) != nId ))
+        if ( _campagnephase == null || ( _campagnephase.getId( ) != nId ) )
         {
             _campagnephase = CampagnePhaseHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_CAMPAGNEPHASE, _campagnephase );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNEPHASE, TEMPLATE_MODIFY_CAMPAGNEPHASE, model );
@@ -227,7 +228,8 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     /**
      * Process the change form of a campagnephase
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_CAMPAGNEPHASE )
@@ -242,10 +244,10 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
         }
 
         CampagnePhaseHome.update( _campagnephase );
-        addInfo( INFO_CAMPAGNEPHASE_UPDATED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNEPHASE_UPDATED, getLocale( ) );
 
-        CampaignService.getInstance().reset();
-        
+        CampaignService.getInstance( ).reset( );
+
         return redirectView( request, VIEW_MANAGE_CAMPAGNEPHASES );
     }
 }

@@ -41,7 +41,6 @@ import fr.paris.lutece.test.LuteceTestCase;
 
 import java.sql.Timestamp;
 
-
 public class VoteBusinessTest extends LuteceTestCase
 {
     private final static String IDUSER1 = "1";
@@ -59,10 +58,10 @@ public class VoteBusinessTest extends LuteceTestCase
     private final static String LOCATION = "0";
     private final static String THEME = "Theme";
 
-    public void testBusiness(  )
+    public void testBusiness( )
     {
         // Initialize an object
-        Vote vote = new Vote(  );
+        Vote vote = new Vote( );
         vote.setUserId( IDUSER1 );
         vote.setProjetId( IDPROJET1 );
         vote.setDateVote( DATEVOTE1 );
@@ -77,9 +76,9 @@ public class VoteBusinessTest extends LuteceTestCase
         VoteHome.create( vote );
 
         // List test
-        VoteHome.getVotesList(  );
+        VoteHome.getVotesList( );
 
         // Delete test
-        VoteHome.remove( vote.getUserId(  ), vote.getProjetId(  ) );
+        VoteHome.remove( vote.getUserId( ), vote.getProjetId( ) );
     }
 }

@@ -58,7 +58,7 @@ public class VoteResourceExtender extends AbstractResourceExtender
     private static final String DSKEY_USER_CANNOT_VOTE_DEFAULT = "participatorybudget.extend.template.userCannotVote not defined in datastore";
     private static final String BOOKMARK_ID = "@id@";
     @Inject
-	private MyVoteService _myVoteService;
+    private MyVoteService _myVoteService;
     @Inject
     private IRatingSecurityService _ratingSecurityService;
 
@@ -66,29 +66,29 @@ public class VoteResourceExtender extends AbstractResourceExtender
      * {@inheritDoc }
      */
     @Override
-    public String getContent(String strIdExtendableResource, String strExtendableResourceType, String strParameters, HttpServletRequest request)
+    public String getContent( String strIdExtendableResource, String strExtendableResourceType, String strParameters, HttpServletRequest request )
     {
         boolean bCanVote;
-        
-        bCanVote = !_ratingSecurityService.hasAlreadyVoted(request, strIdExtendableResource, strExtendableResourceType);
-        
+
+        bCanVote = !_ratingSecurityService.hasAlreadyVoted( request, strIdExtendableResource, strExtendableResourceType );
+
         String strTemplate;
-        if( bCanVote )
+        if ( bCanVote )
         {
-            strTemplate = DatastoreService.getDataValue( DSKEY_USER_CAN_VOTE , DSKEY_USER_CAN_VOTE_DEFAULT );
-        } 
+            strTemplate = DatastoreService.getDataValue( DSKEY_USER_CAN_VOTE, DSKEY_USER_CAN_VOTE_DEFAULT );
+        }
         else
         {
-            strTemplate = DatastoreService.getDataValue( DSKEY_USER_CANNOT_VOTE , DSKEY_USER_CANNOT_VOTE_DEFAULT );
+            strTemplate = DatastoreService.getDataValue( DSKEY_USER_CANNOT_VOTE, DSKEY_USER_CANNOT_VOTE_DEFAULT );
         }
-        return strTemplate.replaceAll( BOOKMARK_ID , strIdExtendableResource );
+        return strTemplate.replaceAll( BOOKMARK_ID, strIdExtendableResource );
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public void doCreateResourceAddOn(ResourceExtenderDTO resourceExtender)
+    public void doCreateResourceAddOn( ResourceExtenderDTO resourceExtender )
     {
     }
 
@@ -96,7 +96,7 @@ public class VoteResourceExtender extends AbstractResourceExtender
      * {@inheritDoc }
      */
     @Override
-    public void doDeleteResourceAddOn(ResourceExtenderDTO resourceExtender)
+    public void doDeleteResourceAddOn( ResourceExtenderDTO resourceExtender )
     {
     }
 
@@ -108,7 +108,7 @@ public class VoteResourceExtender extends AbstractResourceExtender
     {
         if ( StringUtils.isNotBlank( strExtenderType ) )
         {
-            return getKey(  ).equals( strExtenderType );
+            return getKey( ).equals( strExtenderType );
         }
 
         return false;

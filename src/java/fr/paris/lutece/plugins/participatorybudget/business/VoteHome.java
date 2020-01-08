@@ -40,7 +40,6 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 import java.util.List;
 
-
 /**
  * This class provides instances management methods (create, find, ...) for Vote objects
  */
@@ -53,14 +52,16 @@ public final class VoteHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private VoteHome(  )
+    private VoteHome( )
     {
     }
 
     /**
      * Create an instance of the vote class
-     * @param vote The instance of the Vote which contains the informations to store
-     * @return The  instance of vote which has been created with its primary key.
+     * 
+     * @param vote
+     *            The instance of the Vote which contains the informations to store
+     * @return The instance of vote which has been created with its primary key.
      */
     public static Vote create( Vote vote )
     {
@@ -71,8 +72,11 @@ public final class VoteHome
 
     /**
      * Remove the vote whose identifier is specified in parameter
-     * @param nVoteId The vote Id
-     * @param plugin the Plugin
+     * 
+     * @param nVoteId
+     *            The vote Id
+     * @param plugin
+     *            the Plugin
      */
     public static void remove( String strUserId, int nProjetId )
     {
@@ -81,86 +85,94 @@ public final class VoteHome
 
     /**
      * Load the data of all the vote objects and returns them in form of a list
+     * 
      * @return the list which contains the data of all the vote objects
      */
-    public static List<Vote> getVotesList(  )
+    public static List<Vote> getVotesList( )
     {
         return _dao.selectVotesList( _plugin );
     }
+
     /**
      * 
      * @param nUserId
      * @param nProjetId
      */
-    public static void removeAll( String strUserId)
+    public static void removeAll( String strUserId )
     {
         _dao.deleteAll( strUserId, _plugin );
     }
+
     /**
      * 
      * @param nUserId
      * @return
      */
-    public static List<Vote> getVoteUser( String strUserId)
+    public static List<Vote> getVoteUser( String strUserId )
     {
-    	return _dao.selectVotesUser(strUserId, _plugin);
+        return _dao.selectVotesUser( strUserId, _plugin );
     }
-    /**
-     * 
-     * @param nUserId
-     * @param nLocalisation
-     * @return
-     */
-    public static int getVoteUserArrondissement(String strUserId, int nLocalisation)
-    {
-    	return _dao.countNbVotesUserArrondissement(strUserId, nLocalisation, _plugin);
-    }
+
     /**
      * 
      * @param nUserId
      * @param nLocalisation
      * @return
      */
-    public static int getVoteUserNotLocalisation(String strUserId, int nLocalisation )
+    public static int getVoteUserArrondissement( String strUserId, int nLocalisation )
     {
-    	return _dao.countNbVotesUser(strUserId, nLocalisation, _plugin);
+        return _dao.countNbVotesUserArrondissement( strUserId, nLocalisation, _plugin );
     }
+
+    /**
+     * 
+     * @param nUserId
+     * @param nLocalisation
+     * @return
+     */
+    public static int getVoteUserNotLocalisation( String strUserId, int nLocalisation )
+    {
+        return _dao.countNbVotesUser( strUserId, nLocalisation, _plugin );
+    }
+
     /**
      * 
      * @param strUserId
      * @param nIdProject
      * @return
      */
-    public static Vote  getVote ( String strUserId, int nIdProject )
+    public static Vote getVote( String strUserId, int nIdProject )
     {
-    	return _dao.selectVote(strUserId, nIdProject, _plugin);
+        return _dao.selectVote( strUserId, nIdProject, _plugin );
     }
+
     /**
      * 
      * @return
      */
-    public static List<String>  getAllUserId ( )
+    public static List<String> getAllUserId( )
     {
-    	return _dao.selectUser(_plugin);
+        return _dao.selectUser( _plugin );
     }
+
     /**
      * 
      * @param nUserId
      * @param nStatus
      * @return
      */
-    public static void validateVote( String userId, int status)
+    public static void validateVote( String userId, int status )
     {
-    	 _dao.validateVote(userId, status, _plugin);
+        _dao.validateVote( userId, status, _plugin );
     }
-    
+
     /**
      * 
      * @param nUserId
      * @return
      */
-    public static List<Vote> getVoteUser( String userId, int status)
+    public static List<Vote> getVoteUser( String userId, int status )
     {
-    	return _dao.selectVotes(userId, status, _plugin);
+        return _dao.selectVotes( userId, status, _plugin );
     }
 }

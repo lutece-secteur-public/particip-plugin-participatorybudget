@@ -37,7 +37,6 @@ import fr.paris.lutece.plugins.document.business.Document;
 
 import java.util.Date;
 
-
 /**
  * Class that represents the rating of a document from a user
  */
@@ -54,16 +53,20 @@ public class MyVote
     /**
      * Creates a default vote
      */
-    public MyVote(  )
+    public MyVote( )
     {
         // Do nothing
     }
 
     /**
      * Creates a new vote
-     * @param document The rated document
-     * @param dateVote The date of the rating
-     * @param nNbTotVotes The total number of votes for this document
+     * 
+     * @param document
+     *            The rated document
+     * @param dateVote
+     *            The date of the rating
+     * @param nNbTotVotes
+     *            The total number of votes for this document
      */
     public MyVote( Document document, Date dateVote, int nNbTotVotes )
     {
@@ -71,33 +74,41 @@ public class MyVote
         this._dateVote = dateVote;
         this._nNbTotVotes = nNbTotVotes;
     }
-    
+
     /**
      * Creates a new vote
-     * @param document The rated document
-     * @param dateVote The date of the rating
-     * @param nNbTotVotes The total number of votes for this document
+     * 
+     * @param document
+     *            The rated document
+     * @param dateVote
+     *            The date of the rating
+     * @param nNbTotVotes
+     *            The total number of votes for this document
      */
     public MyVote( Document document, Date dateVote, int nNbTotVotes, int nNbVotesToutParis, int nNbVoteArrondissement )
     {
         this._document = document;
         this._dateVote = dateVote;
         this._nNbTotVotes = nNbTotVotes;
-        this._nNbTotVotesArrondissement= nNbVoteArrondissement;
-        this._nNbTotVotesToutParis= nNbVotesToutParis;
+        this._nNbTotVotesArrondissement = nNbVoteArrondissement;
+        this._nNbTotVotesToutParis = nNbVotesToutParis;
     }
+
     /**
      * Get the rated document
+     * 
      * @return The rated document
      */
-    public Document getDocument(  )
+    public Document getDocument( )
     {
         return _document;
     }
 
     /**
      * Set the rated document
-     * @param document The rated document
+     * 
+     * @param document
+     *            The rated document
      */
     public void setDocument( Document document )
     {
@@ -106,16 +117,19 @@ public class MyVote
 
     /**
      * Get the rating date
+     * 
      * @return The rating date
      */
-    public Date getDateVote(  )
+    public Date getDateVote( )
     {
         return _dateVote;
     }
 
     /**
      * Set the rating date
-     * @param dateVote The rating date
+     * 
+     * @param dateVote
+     *            The rating date
      */
     public void setDateVote( Date dateVote )
     {
@@ -124,90 +138,99 @@ public class MyVote
 
     /**
      * Get the total number of votes for the document
+     * 
      * @return The total number of votes for the document
      */
-    public int getNbTotVotes(  )
+    public int getNbTotVotes( )
     {
         return _nNbTotVotes;
     }
 
     /**
      * Set the total number of votes for the document
-     * @param nNbTotVotes The total number of votes for the document
+     * 
+     * @param nNbTotVotes
+     *            The total number of votes for the document
      */
     public void setNbTotVotes( int nNbTotVotes )
     {
         this._nNbTotVotes = nNbTotVotes;
     }
-    
+
     /**
      * Get the total number of votes in TOUT paris for the document
+     * 
      * @return The total number of votes in tout paris for the document
      */
-    public int getTotVotesToutParis(  )
+    public int getTotVotesToutParis( )
     {
         return _nNbTotVotesToutParis;
     }
 
     /**
      * Set the total number of votes in tout paris for the document
-     * @param nNbTotVotes The total number of votes in tout paris for the document
+     * 
+     * @param nNbTotVotes
+     *            The total number of votes in tout paris for the document
      */
     public void setNbTotVotesToutParis( int nNbTotVotesToutParis )
     {
         this._nNbTotVotesToutParis = nNbTotVotesToutParis;
     }
-    
-    
+
     /**
      * Get the total number of votes in TOUT paris for the document
+     * 
      * @return The total number of votes in tout paris for the document
      */
-    public int getTotVotesArrondissement(  )
+    public int getTotVotesArrondissement( )
     {
         return _nNbTotVotesArrondissement;
     }
 
     /**
      * Set the total number of votes in Arrondissement for the document
-     * @param nNbTotVotes The total number of votes in Arrondissementfor the document
+     * 
+     * @param nNbTotVotes
+     *            The total number of votes in Arrondissementfor the document
      */
-    public void setNbTotVotesArrondissement (int nNbTotVotesArrondissement )
+    public void setNbTotVotesArrondissement( int nNbTotVotesArrondissement )
     {
         this._nNbTotVotesArrondissement = nNbTotVotesArrondissement;
     }
+
     /**
      * 
      * @return
      */
-    public String getArrondissementUser(  )
+    public String getArrondissementUser( )
     {
         return this._strArrondissementUser;
     }
+
     /**
      * 
      * @param strArrondissementUser
      */
-    public void setArrondissementUser (String strArrondissementUser )
+    public void setArrondissementUser( String strArrondissementUser )
     {
         this._strArrondissementUser = strArrondissementUser;
     }
-    
-    
+
     /**
      * 
      */
-    public boolean isVoteVlidated(  )
+    public boolean isVoteVlidated( )
     {
         return this._bVoteValidated;
     }
-    
+
     /**
      * 
      */
     public void setVoteVlidated( boolean bool )
     {
-        _bVoteValidated= bool;
+        _bVoteValidated = bool;
     }
 
 }

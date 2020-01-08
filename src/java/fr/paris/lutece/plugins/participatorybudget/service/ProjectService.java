@@ -48,13 +48,13 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 public class ProjectService
 {
-	private static final String BEAN_PROJECT_SERVICE="participatorybudget.projectService";
-	private static ProjectService _singleton;
-	
+    private static final String BEAN_PROJECT_SERVICE = "participatorybudget.projectService";
+    private static ProjectService _singleton;
+
     @Inject
     private IResourceExtenderHistoryService _resourceExtenderHistoryService;
-	
-	public static ProjectService getInstance(  )
+
+    public static ProjectService getInstance( )
     {
         if ( _singleton == null )
         {
@@ -72,23 +72,24 @@ public class ProjectService
     /**
      * Returns a Set containing guid of followers of a document project.
      */
-    public Set<String> getUniqueUserGuidsProjectFollowers ( Document project ) {
-    	Set<String> userGuids = new HashSet<String>();
+    public Set<String> getUniqueUserGuidsProjectFollowers( Document project )
+    {
+        Set<String> userGuids = new HashSet<String>( );
 
         ResourceExtenderHistoryFilter filter = new ResourceExtenderHistoryFilter( );
-        
-        filter.setExtenderType          ( FollowResourceExtender.RESOURCE_EXTENDER );
-        filter.setExtendableResourceType( "document"                               );
-        filter.setIdExtendableResource  ( String.valueOf( project.getId( ) )      );
+
+        filter.setExtenderType( FollowResourceExtender.RESOURCE_EXTENDER );
+        filter.setExtendableResourceType( "document" );
+        filter.setIdExtendableResource( String.valueOf( project.getId( ) ) );
 
         List<ResourceExtenderHistory> listHistories = _resourceExtenderHistoryService.findByFilter( filter );
 
         for ( ResourceExtenderHistory followerHistory : listHistories )
         {
-       		userGuids.add( followerHistory.getUserGuid() );
+            userGuids.add( followerHistory.getUserGuid( ) );
         }
 
         return userGuids;
     }
-    
+
 }

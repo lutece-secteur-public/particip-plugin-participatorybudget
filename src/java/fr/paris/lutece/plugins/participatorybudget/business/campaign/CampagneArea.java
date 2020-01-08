@@ -41,25 +41,25 @@ import java.io.Serializable;
 
 /**
  * This is the business class for the object CampagneArea
- */ 
+ */
 public class CampagneArea implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    // Variables declarations 
+    // Variables declarations
     private int _nId;
-    
+
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagnearea.CodeCampagne.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnearea.CodeCampagne.size}" ) 
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnearea.CodeCampagne.size}" )
     private String _strCodeCampagne;
-    
+
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagnearea.Title.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnearea.Title.size}" ) 
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnearea.Title.size}" )
     private String _strTitle;
 
     @Pattern( regexp = "(whole|localized)", message = "#i18n{participatorybudget.validation.campagnearea.Type.pattern}" )
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagnearea.Type.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnearea.Type.size}" ) 
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnearea.Type.size}" )
     private String _strType;
 
     @Min( value = 0, message = "#i18n{participatorybudget.validation.campagnearea.NumberVotes.min}" )
@@ -69,6 +69,7 @@ public class CampagneArea implements Serializable
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
     public int getId( )
@@ -78,8 +79,10 @@ public class CampagneArea implements Serializable
 
     /**
      * Sets the Id
-     * @param nId The Id
-     */ 
+     * 
+     * @param nId
+     *            The Id
+     */
     public void setId( int nId )
     {
         _nId = nId;
@@ -87,6 +90,7 @@ public class CampagneArea implements Serializable
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
     public int getNumberVotes( )
@@ -96,8 +100,10 @@ public class CampagneArea implements Serializable
 
     /**
      * Sets the Id
-     * @param nId The Id
-     */ 
+     * 
+     * @param nId
+     *            The Id
+     */
     public void setNumberVotes( int numberVotes )
     {
         _nNumberVotes = numberVotes;
@@ -105,6 +111,7 @@ public class CampagneArea implements Serializable
 
     /**
      * Returns the CodeCampagne
+     * 
      * @return The CodeCampagne
      */
     public String getCodeCampagne( )
@@ -114,14 +121,18 @@ public class CampagneArea implements Serializable
 
     /**
      * Sets the CodeCampagne
-     * @param strCodeCampagne The CodeCampagne
-     */ 
+     * 
+     * @param strCodeCampagne
+     *            The CodeCampagne
+     */
     public void setCodeCampagne( String strCodeCampagne )
     {
         _strCodeCampagne = strCodeCampagne;
     }
+
     /**
      * Returns the Title
+     * 
      * @return The Title
      */
     public String getTitle( )
@@ -131,13 +142,15 @@ public class CampagneArea implements Serializable
 
     /**
      * Sets the Title
-     * @param strTitle The Title
-     */ 
+     * 
+     * @param strTitle
+     *            The Title
+     */
     public void setTitle( String strTitle )
     {
         _strTitle = strTitle;
     }
-    
+
     public boolean getActive( )
     {
         return _bActive;
@@ -145,13 +158,15 @@ public class CampagneArea implements Serializable
 
     /**
      * Sets the Active
-     * @param bActive The Active
-     */ 
+     * 
+     * @param bActive
+     *            The Active
+     */
     public void setActive( boolean bActive )
     {
         _bActive = bActive;
     }
-    
+
     public String getType( )
     {
         return _strType;
@@ -159,8 +174,10 @@ public class CampagneArea implements Serializable
 
     /**
      * Sets the Type
-     * @param strType The Type
-     */ 
+     * 
+     * @param strType
+     *            The Type
+     */
     public void setType( String strType )
     {
         _strType = strType;

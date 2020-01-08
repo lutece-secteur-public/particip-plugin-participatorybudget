@@ -54,43 +54,43 @@ public class MyInfosFormTest extends LuteceTestCase
      * Test of setBirthdate method, of class MyInfosForm.
      */
     @Test
-    public void testSetBirthdate()
+    public void testSetBirthdate( )
     {
-        MyInfosForm instance = getValidBean();
+        MyInfosForm instance = getValidBean( );
 
-        System.out.println("setBirthdate - Date format");
-        instance.setBirthdate("01/01/1960");
-        validate( instance , 0 );  // Valid format
-        instance.setBirthdate("1/1/1960");
-        validate( instance , 0 );  // Valid format
-        instance.setBirthdate("10/21/2010");
-        validate( instance , 1 );  // Wrong format : month > 12
-        instance.setBirthdate("10-10-2010");
-        validate( instance , 1 );  // Wrong format : bad separator
+        System.out.println( "setBirthdate - Date format" );
+        instance.setBirthdate( "01/01/1960" );
+        validate( instance, 0 ); // Valid format
+        instance.setBirthdate( "1/1/1960" );
+        validate( instance, 0 ); // Valid format
+        instance.setBirthdate( "10/21/2010" );
+        validate( instance, 1 ); // Wrong format : month > 12
+        instance.setBirthdate( "10-10-2010" );
+        validate( instance, 1 ); // Wrong format : bad separator
     }
 
-    private void validate(MyInfosForm instance , int nViolationCount )
+    private void validate( MyInfosForm instance, int nViolationCount )
     {
         Set<ConstraintViolation<MyInfosForm>> listErrors = BeanValidationUtil.validate( instance );
-        for( ConstraintViolation<MyInfosForm> cv : listErrors )
+        for ( ConstraintViolation<MyInfosForm> cv : listErrors )
         {
-            System.out.println( "- constraint violation : " + I18nService.getLocalizedString( cv.getMessage() , Locale.FRENCH) );
+            System.out.println( "- constraint violation : " + I18nService.getLocalizedString( cv.getMessage( ), Locale.FRENCH ) );
         }
-        assertEquals( listErrors.size() , nViolationCount );
+        assertEquals( listErrors.size( ), nViolationCount );
     }
 
-    private MyInfosForm getValidBean()
+    private MyInfosForm getValidBean( )
     {
-         MyInfosForm bean = new MyInfosForm();
-         bean.setAddress( "Address");
-         bean.setFirstname( "John");
-         bean.setFirstname( "John");
-         bean.setLastname( "Doe");
-         bean.setCivility( "MME" );
-         bean.setArrondissement( "75001");
-         bean.setBirthdate( "10/10/1960" );
-         bean.setIliveinparis( "on" );
-         return bean;
+        MyInfosForm bean = new MyInfosForm( );
+        bean.setAddress( "Address" );
+        bean.setFirstname( "John" );
+        bean.setFirstname( "John" );
+        bean.setLastname( "Doe" );
+        bean.setCivility( "MME" );
+        bean.setArrondissement( "75001" );
+        bean.setBirthdate( "10/10/1960" );
+        bean.setIliveinparis( "on" );
+        return bean;
 
     }
 

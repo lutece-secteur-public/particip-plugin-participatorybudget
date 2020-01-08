@@ -35,16 +35,15 @@ package fr.paris.lutece.plugins.participatorybudget.business;
 
 import java.sql.Timestamp;
 
-
 /**
  * This is the business class for the object Votes
  */
 public class Vote
 {
-    // Variables declarations 
-	private int id;
-   
-	private String _strUserId;
+    // Variables declarations
+    private int id;
+
+    private String _strUserId;
     private Timestamp _dateVote;
     private int _nArrondissement;
     private int _nAge;
@@ -57,49 +56,60 @@ public class Vote
     private int _nStatus;
     private int _nStatusExportStats;
 
-    
     /**
-     * Status of Vote 
+     * Status of Vote
      */
-     public enum Status {
-    	
-    	STATUS_VALIDATED (1, 	"participatorybudget.message.labelStatusValidated"),
-    	STATUS_NOT_VALIDATED (0, 	"participatorybudget.message.labelStatusNotValidated" );
-    	
-    	private final int nValue;
-        private final String strLibelle;
-        
-        Status (int nValeur, String strMessage)
-        {
-        	this.nValue = nValeur;
-        	this.strLibelle = strMessage;
-        }
-        
-        public int getValeur(){ return this.nValue; }
-        public String getLibelle(){ return this.strLibelle; }
-    }
-    
-    
-    public int getId() {
-		return id;
-	}
+    public enum Status
+    {
 
-	public void setId(int id) {
-		this.id = id;
-	}
+        STATUS_VALIDATED( 1, "participatorybudget.message.labelStatusValidated" ), STATUS_NOT_VALIDATED( 0,
+                "participatorybudget.message.labelStatusNotValidated" );
+
+        private final int nValue;
+        private final String strLibelle;
+
+        Status( int nValeur, String strMessage )
+        {
+            this.nValue = nValeur;
+            this.strLibelle = strMessage;
+        }
+
+        public int getValeur( )
+        {
+            return this.nValue;
+        }
+
+        public String getLibelle( )
+        {
+            return this.strLibelle;
+        }
+    }
+
+    public int getId( )
+    {
+        return id;
+    }
+
+    public void setId( int id )
+    {
+        this.id = id;
+    }
 
     /**
      * Returns the DateVote
+     * 
      * @return The DateVote
      */
-    public Timestamp getDateVote(  )
+    public Timestamp getDateVote( )
     {
         return _dateVote;
     }
 
     /**
      * Sets the DateVote
-     * @param dateVote The DateVote
+     * 
+     * @param dateVote
+     *            The DateVote
      */
     public void setDateVote( Timestamp dateVote )
     {
@@ -108,16 +118,19 @@ public class Vote
 
     /**
      * Returns the Arrondissement
+     * 
      * @return The Arrondissement
      */
-    public int getArrondissement(  )
+    public int getArrondissement( )
     {
         return _nArrondissement;
     }
 
     /**
      * Sets the Arrondissement
-     * @param nArrondissement The Arrondissement
+     * 
+     * @param nArrondissement
+     *            The Arrondissement
      */
     public void setArrondissement( int nArrondissement )
     {
@@ -126,16 +139,19 @@ public class Vote
 
     /**
      * Returns the Age
+     * 
      * @return The Age
      */
-    public int getAge(  )
+    public int getAge( )
     {
         return _nAge;
     }
 
     /**
      * Sets the Age
-     * @param nAge The Age
+     * 
+     * @param nAge
+     *            The Age
      */
     public void setAge( int nAge )
     {
@@ -144,16 +160,19 @@ public class Vote
 
     /**
      * Returns the IdUser
+     * 
      * @return The IdUser
      */
-    public String getUserId(  )
+    public String getUserId( )
     {
         return _strUserId;
     }
 
     /**
      * Sets the IdUser
-     * @param nIdUser The IdUser
+     * 
+     * @param nIdUser
+     *            The IdUser
      */
     public void setUserId( String strIdUser )
     {
@@ -162,16 +181,19 @@ public class Vote
 
     /**
      * Returns the IdProjet
+     * 
      * @return The IdProjet
      */
-    public int getProjetId(  )
+    public int getProjetId( )
     {
         return _nProjetId;
     }
 
     /**
      * Sets the IdProjet
-     * @param nIdProjet The IdProjet
+     * 
+     * @param nIdProjet
+     *            The IdProjet
      */
     public void setProjetId( int nIdProjet )
     {
@@ -182,118 +204,138 @@ public class Vote
      * 
      * @return the birhday date
      */
-	public String getBirthDate() {
-		return _strBirthDate;
-	}
-	/**
-	 * 
-	 * @param strBirthDate the birhday date
-	 */
-	public void setBirthDate(String strBirthDate) {
-		this._strBirthDate = strBirthDate;
-	}
+    public String getBirthDate( )
+    {
+        return _strBirthDate;
+    }
 
-	/**
-	 * 
-	 * @return the user if adress
-	 */
-	public String getIpAddress() {
-		return _strIpAddress;
-	}
-	
-	/**
-	 * 
-	 * @param strIpAdress the user if adress
-	 */
-	public void setIpAddress(String strIpAdress) {
-		this._strIpAddress = strIpAdress;
-	}
-	
-	/**
-	 * 
-	 * @return the project title
-	 */
-	public String getTitle() {
-		return _strTitle;
-	}
-	
-	/**
-	 * 
-	 * @param strTitle the project title
-	 */
-	public void setTitle(String strTitle) {
-		this._strTitle = strTitle;
-	}
-	
-	 /**
-     * Returns the project localisation 
+    /**
+     * 
+     * @param strBirthDate
+     *            the birhday date
+     */
+    public void setBirthDate( String strBirthDate )
+    {
+        this._strBirthDate = strBirthDate;
+    }
+
+    /**
+     * 
+     * @return the user if adress
+     */
+    public String getIpAddress( )
+    {
+        return _strIpAddress;
+    }
+
+    /**
+     * 
+     * @param strIpAdress
+     *            the user if adress
+     */
+    public void setIpAddress( String strIpAdress )
+    {
+        this._strIpAddress = strIpAdress;
+    }
+
+    /**
+     * 
+     * @return the project title
+     */
+    public String getTitle( )
+    {
+        return _strTitle;
+    }
+
+    /**
+     * 
+     * @param strTitle
+     *            the project title
+     */
+    public void setTitle( String strTitle )
+    {
+        this._strTitle = strTitle;
+    }
+
+    /**
+     * Returns the project localisation
+     * 
      * @return The project localisation
      */
-    public String getLocalisation(  )
+    public String getLocalisation( )
     {
         return _strLocalisation;
     }
 
     /**
      * Sets the nLocalisation
-     * @param nLocalisation The project localisation
+     * 
+     * @param nLocalisation
+     *            The project localisation
      */
     public void setLocalisation( String nLocalisation )
     {
         _strLocalisation = nLocalisation;
     }
-    
+
     /**
-	 * 
-	 * @param strThematique the uproject thematique
-	 */
-	public void setThematique(String strThematique) {
-		this._strThematique = strThematique;
-	}
-	
-	/**
-	 * 
-	 * @return the project thematique
-	 */
-	public String getThematique() {
-		return _strThematique;
-	}
-	
-	/**
-     * Returns the project Status 
+     * 
+     * @param strThematique
+     *            the uproject thematique
+     */
+    public void setThematique( String strThematique )
+    {
+        this._strThematique = strThematique;
+    }
+
+    /**
+     * 
+     * @return the project thematique
+     */
+    public String getThematique( )
+    {
+        return _strThematique;
+    }
+
+    /**
+     * Returns the project Status
+     * 
      * @return The project Status
      */
-    public int geStatus(  )
+    public int geStatus( )
     {
         return _nStatus;
     }
 
     /**
      * Sets the Status
-     * @param nLocalisation The project Status
+     * 
+     * @param nLocalisation
+     *            The project Status
      */
     public void setStatus( int nStatus )
     {
         _nStatus = nStatus;
     }
-    
+
     /**
      * GET StatusExportStats
+     * 
      * @return
      */
-	public int getStatusExportStats( ) 
-	{
-		return _nStatusExportStats;
-	}
-	/**
-	 * SET StatusExportStats
-	 * @param nStatusExportStats
-	 */
-	public void setStatusExportStats(int nStatusExportStats) 
-	{
-		this._nStatusExportStats = nStatusExportStats;
-	}
-    
-    
+    public int getStatusExportStats( )
+    {
+        return _nStatusExportStats;
+    }
+
+    /**
+     * SET StatusExportStats
+     * 
+     * @param nStatusExportStats
+     */
+    public void setStatusExportStats( int nStatusExportStats )
+    {
+        this._nStatusExportStats = nStatusExportStats;
+    }
 
 }

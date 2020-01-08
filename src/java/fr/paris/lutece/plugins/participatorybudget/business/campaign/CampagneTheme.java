@@ -41,38 +41,38 @@ import fr.paris.lutece.portal.business.file.File;
 
 import java.io.Serializable;
 
-
 /**
  * This is the business class for the object CampagneTheme
- */ 
+ */
 public class CampagneTheme implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    // Variables declarations 
+    // Variables declarations
     private int _nId;
-    
+
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.CodeCampagne.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnetheme.CodeCampagne.size}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnetheme.CodeCampagne.size}" )
     private String _strCodeCampagne;
 
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Code.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnetheme.Code.size}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnetheme.Code.size}" )
     private String _strCode;
-    
+
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Title.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{participatorybudget.validation.campagnetheme.Title.size}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnetheme.Title.size}" )
     private String _strTitle;
-    
+
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Description.notEmpty}" )
     private String _strDescription;
-    
+
     private boolean _bActive;
-    
+
     private File _fileImage;
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
     public int getId( )
@@ -82,8 +82,10 @@ public class CampagneTheme implements Serializable
 
     /**
      * Sets the Id
-     * @param nId The Id
-     */ 
+     * 
+     * @param nId
+     *            The Id
+     */
     public void setId( int nId )
     {
         _nId = nId;
@@ -91,6 +93,7 @@ public class CampagneTheme implements Serializable
 
     /**
      * Returns the CodeCampagne
+     * 
      * @return The CodeCampagne
      */
     public String getCodeCampagne( )
@@ -100,14 +103,18 @@ public class CampagneTheme implements Serializable
 
     /**
      * Sets the CodeCampagne
-     * @param strCodeCampagne The CodeCampagne
-     */ 
+     * 
+     * @param strCodeCampagne
+     *            The CodeCampagne
+     */
     public void setCodeCampagne( String strCodeCampagne )
     {
         _strCodeCampagne = strCodeCampagne;
     }
+
     /**
      * Returns the Title
+     * 
      * @return The Title
      */
     public String getTitle( )
@@ -117,14 +124,18 @@ public class CampagneTheme implements Serializable
 
     /**
      * Sets the Title
-     * @param strTitle The Title
-     */ 
+     * 
+     * @param strTitle
+     *            The Title
+     */
     public void setTitle( String strTitle )
     {
         _strTitle = strTitle;
     }
+
     /**
      * Returns the Description
+     * 
      * @return The Description
      */
     public String getDescription( )
@@ -134,14 +145,18 @@ public class CampagneTheme implements Serializable
 
     /**
      * Sets the Description
-     * @param strDescription The Description
-     */ 
+     * 
+     * @param strDescription
+     *            The Description
+     */
     public void setDescription( String strDescription )
     {
         _strDescription = strDescription;
     }
+
     /**
      * Returns the Active
+     * 
      * @return The Active
      */
     public boolean getActive( )
@@ -151,8 +166,10 @@ public class CampagneTheme implements Serializable
 
     /**
      * Sets the Active
-     * @param bActive The Active
-     */ 
+     * 
+     * @param bActive
+     *            The Active
+     */
     public void setActive( boolean bActive )
     {
         _bActive = bActive;
@@ -161,28 +178,34 @@ public class CampagneTheme implements Serializable
     /**
      * @return the Code
      */
-    public String getCode() {
+    public String getCode( )
+    {
         return _strCode;
     }
 
     /**
-     * @param Code the Code to set
+     * @param Code
+     *            the Code to set
      */
-    public void setCode(String strCode) {
+    public void setCode( String strCode )
+    {
         this._strCode = strCode;
-	}
+    }
 
-	/**
-	 * @return the Image
-	 */
-	public File getImage() {
-		return _fileImage;
-	}
+    /**
+     * @return the Image
+     */
+    public File getImage( )
+    {
+        return _fileImage;
+    }
 
-	/**
-	 * @param _fileImage the Image to set
-	 */
-	public void setImage(File _fileImage) {
-		this._fileImage = _fileImage;
-	}
+    /**
+     * @param _fileImage
+     *            the Image to set
+     */
+    public void setImage( File _fileImage )
+    {
+        this._fileImage = _fileImage;
+    }
 }

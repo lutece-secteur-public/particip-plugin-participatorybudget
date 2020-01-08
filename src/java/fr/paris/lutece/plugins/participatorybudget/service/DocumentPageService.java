@@ -50,8 +50,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * Manager for add on display
- * TODO : move this class into a document specific class !
+ * Manager for add on display TODO : move this class into a document specific class !
  */
 public class DocumentPageService implements IResourceDisplayManager
 {
@@ -63,84 +62,85 @@ public class DocumentPageService implements IResourceDisplayManager
     private static final String MARK_STATUS = "status_document";
     private static final String MARK_CAMPAGNE = "campagne_text_document";
 
-
     @Override
     public void getXmlAddOn( StringBuffer strXml, String strResourceType, int nResourceId )
     {
-    	return ;
+        return;
     }
 
     @Override
-    public void buildPageAddOn( Map<String, Object> model, String strResourceType, int nIdResource,
-        String strPortletId, HttpServletRequest request )
+    public void buildPageAddOn( Map<String, Object> model, String strResourceType, int nIdResource, String strPortletId, HttpServletRequest request )
     {
 
-		MyVoteService _myVoteService = SpringContextService.getBean(MyVoteService.BEAN_NAME);
-		String arrondissement= null;
-		boolean isValidated= false;
-		
-		LuteceUser user = SecurityService.getInstance().getRegisteredUser(
-				request);
-		
-		if(user != null){
-			arrondissement = BudgetUtils.getArrondissementDisplay(user);
-			isValidated= _myVoteService.isUserVoteValidated(user.getName( ));
+        MyVoteService _myVoteService = SpringContextService.getBean( MyVoteService.BEAN_NAME );
+        String arrondissement = null;
+        boolean isValidated = false;
 
-		}
-		
-		if (arrondissement != null){
-			
-	        model.put( MARK_ARRONDISSEMENT_VOTE_USER, arrondissement );
+        LuteceUser user = SecurityService.getInstance( ).getRegisteredUser( request );
 
-		}else{
-			
-	        model.put( MARK_ARRONDISSEMENT_VOTE_USER, "notConnected" );
+        if ( user != null )
+        {
+            arrondissement = BudgetUtils.getArrondissementDisplay( user );
+            isValidated = _myVoteService.isUserVoteValidated( user.getName( ) );
 
-		}
-		Document doc = DocumentHome.findByPrimaryKey( nIdResource );
-		//recup localisation
-     	DocumentAttribute attr = doc.getAttribute("localisation");
-     	String strLocalisationDoc = StringUtils.EMPTY ;
-     	if ( attr!=null && StringUtils.isNotEmpty(attr.getTextValue() ) )
-     	{
-     		strLocalisationDoc = attr.getTextValue() ;
-     	}
-     	// recup thematique
-     	attr = doc.getAttribute("thematique");
-     	String strThematiqueDoc = StringUtils.EMPTY ;
-     	if ( attr!=null && StringUtils.isNotEmpty(attr.getTextValue() ) )
-     	{
-     		strThematiqueDoc = attr.getTextValue() ;
-     	}
-     	//recup title
-     	attr = doc.getAttribute("title_idea");
-     	String strTitleDoc = StringUtils.EMPTY ;
-     	if ( attr!=null && StringUtils.isNotEmpty(attr.getTextValue() ) )
-     	{
-     		strTitleDoc = attr.getTextValue() ;
-     	}
-     	//recup status
-     	attr = doc.getAttribute("statut_project");
-     	String strStatusDoc = StringUtils.EMPTY ;
-     	if ( attr!=null && StringUtils.isNotEmpty(attr.getTextValue() ) )
-     	{
-     		strStatusDoc = attr.getTextValue() ;
-     	}
-     	//recup campagne
-     	attr = doc.getAttribute("campagne");
-     	String strCampagneDoc = StringUtils.EMPTY ;
-     	if ( attr!=null && StringUtils.isNotEmpty(attr.getTextValue() ) )
-     	{
-     		strCampagneDoc = attr.getTextValue() ;
-     	}
-     	
-		model.put(             MARK_ID_DOCUMENT     , nIdResource);
-		model.put(             MARK_LOCALISATION    , strLocalisationDoc );
-		model.put(             MARK_THEMATIQUE      , strThematiqueDoc );
-		model.put(             MARK_TITLE           , strTitleDoc );
-		model.put(             MARK_STATUS          , strStatusDoc );
-		model.put(             MARK_CAMPAGNE        , strCampagneDoc );
-		model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
-		model.put( BudgetUtils.MARK_VOTE_VALIDATED  , isValidated);
-	}
+        }
+
+        if ( arrondissement != null )
+        {
+
+            model.put( MARK_ARRONDISSEMENT_VOTE_USER, arrondissement );
+
+        }
+        else
+        {
+
+            model.put( MARK_ARRONDISSEMENT_VOTE_USER, "notConnected" );
+
+        }
+        Document doc = DocumentHome.findByPrimaryKey( nIdResource );
+        // recup localisation
+        DocumentAttribute attr = doc.getAttribute( "localisation" );
+        String strLocalisationDoc = StringUtils.EMPTY;
+        if ( attr != null && StringUtils.isNotEmpty( attr.getTextValue( ) ) )
+        {
+            strLocalisationDoc = attr.getTextValue( );
+        }
+        // recup thematique
+        attr = doc.getAttribute( "thematique" );
+        String strThematiqueDoc = StringUtils.EMPTY;
+        if ( attr != null && StringUtils.isNotEmpty( attr.getTextValue( ) ) )
+        {
+            strThematiqueDoc = attr.getTextValue( );
+        }
+        // recup title
+        attr = doc.getAttribute( "title_idea" );
+        String strTitleDoc = StringUtils.EMPTY;
+        if ( attr != null && StringUtils.isNotEmpty( attr.getTextValue( ) ) )
+        {
+            strTitleDoc = attr.getTextValue( );
+        }
+        // recup status
+        attr = doc.getAttribute( "statut_project" );
+        String strStatusDoc = StringUtils.EMPTY;
+        if ( attr != null && StringUtils.isNotEmpty( attr.getTextValue( ) ) )
+        {
+            strStatusDoc = attr.getTextValue( );
+        }
+        // recup campagne
+        attr = doc.getAttribute( "campagne" );
+        String strCampagneDoc = StringUtils.EMPTY;
+        if ( attr != null && StringUtils.isNotEmpty( attr.getTextValue( ) ) )
+        {
+            strCampagneDoc = attr.getTextValue( );
+        }
+
+        model.put( MARK_ID_DOCUMENT, nIdResource );
+        model.put( MARK_LOCALISATION, strLocalisationDoc );
+        model.put( MARK_THEMATIQUE, strThematiqueDoc );
+        model.put( MARK_TITLE, strTitleDoc );
+        model.put( MARK_STATUS, strStatusDoc );
+        model.put( MARK_CAMPAGNE, strCampagneDoc );
+        model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+        model.put( BudgetUtils.MARK_VOTE_VALIDATED, isValidated );
+    }
 }

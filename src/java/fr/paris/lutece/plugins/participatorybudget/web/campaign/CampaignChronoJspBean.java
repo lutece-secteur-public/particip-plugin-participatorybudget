@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
- 
+
 package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
 import java.util.ArrayList;
@@ -58,7 +58,6 @@ import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.util.url.UrlItem;
 
-
 /**
  * This class provides the user interface to manage Ideation Campagnes feature : generating new campagne
  */
@@ -66,7 +65,7 @@ import fr.paris.lutece.util.url.UrlItem;
 public class CampaignChronoJspBean extends ManageCampagnebpJspBean
 {
 
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
@@ -77,93 +76,95 @@ public class CampaignChronoJspBean extends ManageCampagnebpJspBean
 
     // Markers
     private static final String MARK_IDEATIONCAMPAGNE_LIST = "ideationcampagne_list";
-    private static final String MARK_PHASE_MAP             = "phase_map";
-    private static final String MARK_THEME_MAP             = "theme_map";
+    private static final String MARK_PHASE_MAP = "phase_map";
+    private static final String MARK_THEME_MAP = "theme_map";
 
-    private static final String JSP_MANAGE_CAMPAIGNCHRONO  = "jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp";
+    private static final String JSP_MANAGE_CAMPAIGNCHRONO = "jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp";
 
     // Properties
     private static final String MESSAGE_CONFIRM_GENERATE_CAMPAIGNCHRONO = "participatorybudget.manage_campaignchrono.confirmGenerateCampagneChrono";
 
     // Views
-    private static final String VIEW_MANAGE_CAMPAIGNCHRONO              = "manageCampaignChrono";
-    private static final String VIEW_CONFIRM_GENERATE_CAMPAIGNCHRONO    = "confirmGenerateCampaignChrono";
+    private static final String VIEW_MANAGE_CAMPAIGNCHRONO = "manageCampaignChrono";
+    private static final String VIEW_CONFIRM_GENERATE_CAMPAIGNCHRONO = "confirmGenerateCampaignChrono";
 
     // Actions
-    private static final String ACTION_GENERATE_CAMPAIGNCHRONO          = "generateCampaignChrono";
+    private static final String ACTION_GENERATE_CAMPAIGNCHRONO = "generateCampaignChrono";
 
     // Infos
-    private static final String INFO_CAMPAIGNCHRONO_GENERATED           = "participatorybudget.manage_campaignchrono.generated";
-    
+    private static final String INFO_CAMPAIGNCHRONO_GENERATED = "participatorybudget.manage_campaignchrono.generated";
+
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_CAMPAIGNCHRONO, defaultView = true )
     public String getManageIdeationCampagnes( HttpServletRequest request )
     {
-    	// Adding campagnes in model
-        List<Campagne> campagnes = new ArrayList<Campagne>( CampagneHome.getCampagnesList() );
+        // Adding campagnes in model
+        List<Campagne> campagnes = new ArrayList<Campagne>( CampagneHome.getCampagnesList( ) );
         Map<String, Object> model = getPaginatedListModel( request, MARK_IDEATIONCAMPAGNE_LIST, campagnes, JSP_MANAGE_CAMPAIGNCHRONO );
-        
-    	// Adding phases in model, sorted by start phase in ascending order
-        Map<String, List<CampagnePhase>> phaseMap = new HashMap<String, List<CampagnePhase>>();
-        List<CampagnePhase> phases = new ArrayList<CampagnePhase>( CampagnePhaseHome.getCampagnePhasesList() );
-        for (CampagnePhase phase : phases) {
-			if ( phaseMap.get(phase.getCodeCampagne()) == null )
-				phaseMap.put(phase.getCodeCampagne(), new ArrayList<CampagnePhase>());
-			phaseMap.get(phase.getCodeCampagne()).add(phase);
-		}
-        phaseMap.forEach((k,v) -> 
-	        Collections.sort(v, new Comparator<CampagnePhase>() {
-	            @Override
-	            public int compare(CampagnePhase phase1, CampagnePhase phase2)
-	            {
-	                return ( phase1.getStart().before(phase2.getStart()) ? -1 : 1);
-	            }
-	        })
-	    );
-        model.put( MARK_PHASE_MAP, phaseMap);
-        
-    	// Adding themes in model, sorted by code in ascending order
-        Map<String, List<CampagneTheme>> themeMap = new HashMap<String, List<CampagneTheme>>();
-        List<CampagneTheme> themes = new ArrayList<CampagneTheme>( CampagneThemeHome.getCampagneThemesList() );
-        for (CampagneTheme theme : themes) {
-			if ( themeMap.get(theme.getCodeCampagne()) == null )
-				themeMap.put(theme.getCodeCampagne(), new ArrayList<CampagneTheme>());
-			themeMap.get(theme.getCodeCampagne()).add(theme);
-		}
-        themeMap.forEach((k,v) -> 
-	        Collections.sort(v, new Comparator<CampagneTheme>() {
-	            @Override
-	            public int compare(CampagneTheme theme1, CampagneTheme theme2)
-	            {
-	                return ( theme1.getCode().compareTo(theme2.getCode() ));
-	            }
-	        })
-	    );
-        model.put( MARK_THEME_MAP, themeMap);
-        
-    	// Adding depositaires in model, sorted by code in ascending order
-//        Map<String, List<CampagneDepositaire>> depositaireMap = new HashMap<String, List<CampagneDepositaire>>();
-//        List<CampagneDepositaire> depositaires = new ArrayList<CampagneDepositaire>( CampagneDepositaireHome.getCampagneDepositairesList() );
-//        for (CampagneDepositaire depositaire : depositaires) {
-//			if ( depositaireMap.get(depositaire.getCodeCampagne()) == null )
-//				depositaireMap.put(depositaire.getCodeCampagne(), new ArrayList<CampagneDepositaire>());
-//			depositaireMap.get(depositaire.getCodeCampagne()).add(depositaire);
-//		}
-//        depositaireMap.forEach((k,v) -> 
-//	        Collections.sort(v, new Comparator<CampagneDepositaire>() {
-//	            @Override
-//	            public int compare(CampagneDepositaire depositaire1, CampagneDepositaire depositaire2)
-//	            {
-//	                return ( depositaire1.getCodeDepositaireType().compareTo(depositaire2.getCodeDepositaireType() ));
-//	            }
-//	        })
-//	    );
-//        model.put( MARK_DEPOSITAIRE_MAP, depositaireMap);
-        
+
+        // Adding phases in model, sorted by start phase in ascending order
+        Map<String, List<CampagnePhase>> phaseMap = new HashMap<String, List<CampagnePhase>>( );
+        List<CampagnePhase> phases = new ArrayList<CampagnePhase>( CampagnePhaseHome.getCampagnePhasesList( ) );
+        for ( CampagnePhase phase : phases )
+        {
+            if ( phaseMap.get( phase.getCodeCampagne( ) ) == null )
+                phaseMap.put( phase.getCodeCampagne( ), new ArrayList<CampagnePhase>( ) );
+            phaseMap.get( phase.getCodeCampagne( ) ).add( phase );
+        }
+        phaseMap.forEach( ( k, v ) -> Collections.sort( v, new Comparator<CampagnePhase>( )
+        {
+            @Override
+            public int compare( CampagnePhase phase1, CampagnePhase phase2 )
+            {
+                return ( phase1.getStart( ).before( phase2.getStart( ) ) ? -1 : 1 );
+            }
+        } ) );
+        model.put( MARK_PHASE_MAP, phaseMap );
+
+        // Adding themes in model, sorted by code in ascending order
+        Map<String, List<CampagneTheme>> themeMap = new HashMap<String, List<CampagneTheme>>( );
+        List<CampagneTheme> themes = new ArrayList<CampagneTheme>( CampagneThemeHome.getCampagneThemesList( ) );
+        for ( CampagneTheme theme : themes )
+        {
+            if ( themeMap.get( theme.getCodeCampagne( ) ) == null )
+                themeMap.put( theme.getCodeCampagne( ), new ArrayList<CampagneTheme>( ) );
+            themeMap.get( theme.getCodeCampagne( ) ).add( theme );
+        }
+        themeMap.forEach( ( k, v ) -> Collections.sort( v, new Comparator<CampagneTheme>( )
+        {
+            @Override
+            public int compare( CampagneTheme theme1, CampagneTheme theme2 )
+            {
+                return ( theme1.getCode( ).compareTo( theme2.getCode( ) ) );
+            }
+        } ) );
+        model.put( MARK_THEME_MAP, themeMap );
+
+        // Adding depositaires in model, sorted by code in ascending order
+        // Map<String, List<CampagneDepositaire>> depositaireMap = new HashMap<String, List<CampagneDepositaire>>();
+        // List<CampagneDepositaire> depositaires = new ArrayList<CampagneDepositaire>( CampagneDepositaireHome.getCampagneDepositairesList() );
+        // for (CampagneDepositaire depositaire : depositaires) {
+        // if ( depositaireMap.get(depositaire.getCodeCampagne()) == null )
+        // depositaireMap.put(depositaire.getCodeCampagne(), new ArrayList<CampagneDepositaire>());
+        // depositaireMap.get(depositaire.getCodeCampagne()).add(depositaire);
+        // }
+        // depositaireMap.forEach((k,v) ->
+        // Collections.sort(v, new Comparator<CampagneDepositaire>() {
+        // @Override
+        // public int compare(CampagneDepositaire depositaire1, CampagneDepositaire depositaire2)
+        // {
+        // return ( depositaire1.getCodeDepositaireType().compareTo(depositaire2.getCodeDepositaireType() ));
+        // }
+        // })
+        // );
+        // model.put( MARK_DEPOSITAIRE_MAP, depositaireMap);
+
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_IDEATIONCAMPAGNES, TEMPLATE_MANAGE_IDEATIONCAMPAGNES, model );
     }
 
@@ -171,12 +172,12 @@ public class CampaignChronoJspBean extends ManageCampagnebpJspBean
     // * GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERAT *
     // * GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERAT *
     // ***********************************************************************************
-    
+
     /**
-     * Confirmation of the generation of a new ideation campagne
-     * request
+     * Confirmation of the generation of a new ideation campagne request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @View( VIEW_CONFIRM_GENERATE_CAMPAIGNCHRONO )
@@ -184,7 +185,8 @@ public class CampaignChronoJspBean extends ManageCampagnebpJspBean
     {
         UrlItem url = new UrlItem( getActionUrl( ACTION_GENERATE_CAMPAIGNCHRONO ) );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_GENERATE_CAMPAIGNCHRONO, url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_GENERATE_CAMPAIGNCHRONO, url.getUrl( ),
+                AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -192,17 +194,20 @@ public class CampaignChronoJspBean extends ManageCampagnebpJspBean
     /**
      * Handles the generation of a new ideation campagne
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage campagnedepositaires
      */
     @Action( ACTION_GENERATE_CAMPAIGNCHRONO )
     public String doGenerateIdeationCampagne( HttpServletRequest request )
     {
-    	String newCampagneCode = CampaignChronoService.getInstance().generate(); 
-    	
-        String msg = I18nService.getLocalizedString( INFO_CAMPAIGNCHRONO_GENERATED, new String [ ] { newCampagneCode } , getLocale( ) );
+        String newCampagneCode = CampaignChronoService.getInstance( ).generate( );
+
+        String msg = I18nService.getLocalizedString( INFO_CAMPAIGNCHRONO_GENERATED, new String [ ] {
+            newCampagneCode
+        }, getLocale( ) );
         addInfo( msg );
-        
+
         return redirectView( request, VIEW_MANAGE_CAMPAIGNCHRONO );
     }
 

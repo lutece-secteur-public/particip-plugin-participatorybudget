@@ -41,32 +41,32 @@ public final class Constants
 {
     // Properties
     public static final String PROPERTY_AUTHORIZED_CITIES = "participatorybudget.authorized.cities";
-    
+
     // Other constants
     public static final String AUTHORIZED_CITIES_SEPARATOR = ",";
-    
+
     // CampagnePhase
-	
-	public static final String    PRE_IDEATION =    "PRE_IDEATION";
-    public static final String        IDEATION =        "IDEATION";
-    public static final String   POST_IDEATION =   "POST_IDEATION";
+
+    public static final String PRE_IDEATION = "PRE_IDEATION";
+    public static final String IDEATION = "IDEATION";
+    public static final String POST_IDEATION = "POST_IDEATION";
     public static final String CO_CONSTRUCTION = "CO_CONSTRUCTION";
-    public static final String      PRE_SUBMIT =      "PRE_SUBMIT";
-    public static final String          SUBMIT =          "SUBMIT";
-    public static final String        PRE_VOTE =        "PRE_VOTE";
-    public static final String            VOTE =            "VOTE";
-    public static final String       POST_VOTE =       "POST_VOTE";
-    public static final String      PRE_RESULT =      "PRE_RESULT";
-    public static final String          RESULT =          "RESULT";
+    public static final String PRE_SUBMIT = "PRE_SUBMIT";
+    public static final String SUBMIT = "SUBMIT";
+    public static final String PRE_VOTE = "PRE_VOTE";
+    public static final String VOTE = "VOTE";
+    public static final String POST_VOTE = "POST_VOTE";
+    public static final String PRE_RESULT = "PRE_RESULT";
+    public static final String RESULT = "RESULT";
 
     public static final String BEGINNING_DATETIME = "BEGINNING_DATETIME";
-    public static final String       END_DATETIME =       "END_DATETIME";
+    public static final String END_DATETIME = "END_DATETIME";
 
     /**
      * Private constructor
      */
-    private Constants(  )
+    private Constants( )
     {
     }
-    
+
 }

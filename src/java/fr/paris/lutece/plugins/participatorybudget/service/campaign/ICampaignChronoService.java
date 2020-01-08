@@ -33,7 +33,8 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service.campaign;
 
-public interface ICampaignChronoService {
+public interface ICampaignChronoService
+{
 
     /**
      * Generate a new complete ideation campagne.

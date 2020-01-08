@@ -57,28 +57,27 @@ import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
-
 public class BudgetRatingService extends RatingService
 {
-	public static final int VOTE_VALUE = AppPropertiesService.getPropertyInt( "participatorybudget.defaultVoteValue", 0 );
-	
+    public static final int VOTE_VALUE = AppPropertiesService.getPropertyInt( "participatorybudget.defaultVoteValue", 0 );
+
     /**
      * {@inheritDoc}
      */
     @Override
     @Transactional( RatingPlugin.TRANSACTION_MANAGER )
-    public synchronized void  doVote( String strIdExtendableResource, String strExtendableResourceType, double dVoteValue,
-        HttpServletRequest request )
+    public synchronized void doVote( String strIdExtendableResource, String strExtendableResourceType, double dVoteValue, HttpServletRequest request )
     {
         super.doVote( strIdExtendableResource, strExtendableResourceType, dVoteValue, request );
 
-        if ( !isBudgetResource( strIdExtendableResource, strExtendableResourceType ) ) { 
+        if ( !isBudgetResource( strIdExtendableResource, strExtendableResourceType ) )
+        {
             return;
         }
 
-        LuteceUser user = SecurityService.getInstance(  ).getRegisteredUser( request );
-        doVote( user, strIdExtendableResource,request );
-        doVoteHistory ( user, strIdExtendableResource,request, 1 );
+        LuteceUser user = SecurityService.getInstance( ).getRegisteredUser( request );
+        doVote( user, strIdExtendableResource, request );
+        doVoteHistory( user, strIdExtendableResource, request, 1 );
     }
 
     /**
@@ -90,194 +89,207 @@ public class BudgetRatingService extends RatingService
     {
         super.doCancelVote( user, strIdExtendableResource, strExtendableResourceType );
 
-        if ( !isBudgetResource( strIdExtendableResource, strExtendableResourceType ) ) { 
+        if ( !isBudgetResource( strIdExtendableResource, strExtendableResourceType ) )
+        {
             return;
         }
 
-        doCancelHistoryVote ( user, strIdExtendableResource );
+        doCancelHistoryVote( user, strIdExtendableResource );
         doCancelVote( user, strIdExtendableResource );
     }
 
     /**
      * Save the vote
-     * @param user The User
-     * @param strProjectId  The project Id
-     * @param strIpAddress  The user Ip
+     * 
+     * @param user
+     *            The User
+     * @param strProjectId
+     *            The project Id
+     * @param strIpAddress
+     *            The user Ip
      */
-    private void doVote( LuteceUser user, String strProjectId , HttpServletRequest request)
+    private void doVote( LuteceUser user, String strProjectId, HttpServletRequest request )
     {
-    	
-		Vote vote = new Vote(  );
-        vote.setUserId( user.getName(  )  );
+
+        Vote vote = new Vote( );
+        vote.setUserId( user.getName( ) );
         vote.setProjetId( Integer.parseInt( strProjectId ) );
-        vote.setIpAddress(request.getRemoteAddr());
-        
-        String strThematique = request.getParameter(Constants.PROJECT_THEMATIQUE);
-        if( strThematique==null )
+        vote.setIpAddress( request.getRemoteAddr( ) );
+
+        String strThematique = request.getParameter( Constants.PROJECT_THEMATIQUE );
+        if ( strThematique == null )
         {
-        	strThematique = ( String ) request.getAttribute( Constants.PROJECT_THEMATIQUE );
+            strThematique = (String) request.getAttribute( Constants.PROJECT_THEMATIQUE );
         }
         vote.setThematique( strThematique );
-        
-        String strTitle = request.getParameter(Constants.PROJECT_TITLE);
-        if( strTitle==null )
+
+        String strTitle = request.getParameter( Constants.PROJECT_TITLE );
+        if ( strTitle == null )
         {
-        	strTitle = ( String ) request.getAttribute( Constants.PROJECT_TITLE );
+            strTitle = (String) request.getAttribute( Constants.PROJECT_TITLE );
         }
         vote.setTitle( strTitle );
-        
-        String strLocalisation = request.getParameter(Constants.PROJECT_LOCALISATION);
-        if( strLocalisation==null )
+
+        String strLocalisation = request.getParameter( Constants.PROJECT_LOCALISATION );
+        if ( strLocalisation == null )
         {
-        	strLocalisation = ( String ) request.getAttribute( Constants.PROJECT_LOCALISATION );
+            strLocalisation = (String) request.getAttribute( Constants.PROJECT_LOCALISATION );
         }
         vote.setLocalisation( strLocalisation );
 
         // TODO [JPO 2019-12-23] This method shoud get the area id from vote http request
         vote.setLocalisation( "75000" );
-        
-        MyInfosForm myInfos = MyInfosService.loadUserInfos(user);
+
+        MyInfosForm myInfos = MyInfosService.loadUserInfos( user );
         String strBirthDate = null;
         String strArrondissement = null;
-        if (myInfos != null) {
-            strBirthDate = myInfos.getBirthdate();
-            strArrondissement = myInfos.getArrondissement();
-        }
-        
-        if(StringUtils.isNotEmpty(strBirthDate))
-        {	
-        	vote.setBirthDate(strBirthDate);
-        	 try
-             {
-        		 vote.setAge( MyInfosService.getAge( strBirthDate ) );
-             }
-        	catch ( ParseException ex )
-            {
-                AppLogService.error( "Error storing vote " + ex.getMessage(  ), ex );
-            }
-        }
-        
-        if(StringUtils.isNotEmpty(strArrondissement))
+        if ( myInfos != null )
         {
-        	try
+            strBirthDate = myInfos.getBirthdate( );
+            strArrondissement = myInfos.getArrondissement( );
+        }
+
+        if ( StringUtils.isNotEmpty( strBirthDate ) )
+        {
+            vote.setBirthDate( strBirthDate );
+            try
             {
-        		vote.setArrondissement( Integer.parseInt( strArrondissement ) );
+                vote.setAge( MyInfosService.getAge( strBirthDate ) );
             }
-        	catch ( NumberFormatException ex )
+            catch( ParseException ex )
             {
-                AppLogService.error( "Error storing vote " + ex.getMessage(  ), ex );
+                AppLogService.error( "Error storing vote " + ex.getMessage( ), ex );
+            }
+        }
+
+        if ( StringUtils.isNotEmpty( strArrondissement ) )
+        {
+            try
+            {
+                vote.setArrondissement( Integer.parseInt( strArrondissement ) );
+            }
+            catch( NumberFormatException ex )
+            {
+                AppLogService.error( "Error storing vote " + ex.getMessage( ), ex );
             }
 
         }
-         VoteHome.create( vote );
+        VoteHome.create( vote );
     }
-        
-            
 
     /**
      * Cancel a vote
-     * @param user The User
-     * @param strProjetId  The project ID
+     * 
+     * @param user
+     *            The User
+     * @param strProjetId
+     *            The project ID
      */
     private void doCancelVote( LuteceUser user, String strProjetId )
     {
-      
+
         int nProjetId = 0;
 
         try
         {
-        	
+
             nProjetId = Integer.parseInt( strProjetId );
-            VoteHome.remove( user.getName(  ), nProjetId );
+            VoteHome.remove( user.getName( ), nProjetId );
         }
-        catch ( NumberFormatException ex )
+        catch( NumberFormatException ex )
         {
-            AppLogService.error( "Error canceling vote userId=" + user.getName(  ) + " - projetId=" + nProjetId + " Error : " +
-                ex.getMessage(  ), ex );
+            AppLogService.error( "Error canceling vote userId=" + user.getName( ) + " - projetId=" + nProjetId + " Error : " + ex.getMessage( ), ex );
         }
     }
-    
+
     /**
      * Save the vote
-     * @param user The User
-     * @param strProjectId  The project Id
-     * @param strIpAddress  The user Ip
+     * 
+     * @param user
+     *            The User
+     * @param strProjectId
+     *            The project Id
+     * @param strIpAddress
+     *            The user Ip
      */
 
-    
-    private void doVoteHistory ( LuteceUser user, String strProjectId , HttpServletRequest request, int status)
+    private void doVoteHistory( LuteceUser user, String strProjectId, HttpServletRequest request, int status )
     {
-    		Vote vote = new Vote(  );
-            vote.setUserId( user.getName(  )  );
-            vote.setProjetId( Integer.parseInt( strProjectId ) );
-            vote.setIpAddress(request.getRemoteAddr());
-            
-            String strThematique = request.getParameter(Constants.PROJECT_THEMATIQUE);
-            if( strThematique==null )
-            {
-            	strThematique = ( String ) request.getAttribute( Constants.PROJECT_THEMATIQUE );
-            }
-            vote.setThematique( strThematique );
-            
-            String strTitle = request.getParameter(Constants.PROJECT_TITLE);
-            if( strTitle==null )
-            {
-            	strTitle = ( String ) request.getAttribute( Constants.PROJECT_TITLE );
-            }
-            vote.setTitle( strTitle );
-            
-            String strLocalisation = request.getParameter(Constants.PROJECT_LOCALISATION);
-            if( strLocalisation==null )
-            {
-            	strLocalisation = ( String ) request.getAttribute( Constants.PROJECT_LOCALISATION );
-            }
-            vote.setLocalisation( strLocalisation );
-            
-            // TODO [JPO 2019-12-23] This method shoud get the area id from vote http request
-            vote.setLocalisation( "75000" );
+        Vote vote = new Vote( );
+        vote.setUserId( user.getName( ) );
+        vote.setProjetId( Integer.parseInt( strProjectId ) );
+        vote.setIpAddress( request.getRemoteAddr( ) );
 
-            vote.setStatus(status);
-            
-            MyInfosForm myInfos = MyInfosService.loadUserInfos(user);
-            String strBirthDate = null;
-            String strArrondissement = null;
-            if (myInfos != null) {
-                strBirthDate = myInfos.getBirthdate();
-                strArrondissement = myInfos.getArrondissement();
-            }
-            
-            if(StringUtils.isNotEmpty(strBirthDate))
-            {	
-            	vote.setBirthDate(strBirthDate);
-            	 try
-                 {
-            		 vote.setAge( MyInfosService.getAge( strBirthDate ) );
-                 }
-            	catch ( ParseException ex )
-                {
-                    AppLogService.error( "Error storing vote " + ex.getMessage(  ), ex );
-                }
-            }
-            
-            if(StringUtils.isNotEmpty(strArrondissement))
-            {
-            	try
-                {
-            		vote.setArrondissement( Integer.parseInt( strArrondissement ) );
-                }
-            	catch ( NumberFormatException ex )
-                {
-                    AppLogService.error( "Error storing vote " + ex.getMessage(  ), ex );
-                }
-
-            }
-             VoteHistoryHome.create( vote );
+        String strThematique = request.getParameter( Constants.PROJECT_THEMATIQUE );
+        if ( strThematique == null )
+        {
+            strThematique = (String) request.getAttribute( Constants.PROJECT_THEMATIQUE );
         }
-        
+        vote.setThematique( strThematique );
+
+        String strTitle = request.getParameter( Constants.PROJECT_TITLE );
+        if ( strTitle == null )
+        {
+            strTitle = (String) request.getAttribute( Constants.PROJECT_TITLE );
+        }
+        vote.setTitle( strTitle );
+
+        String strLocalisation = request.getParameter( Constants.PROJECT_LOCALISATION );
+        if ( strLocalisation == null )
+        {
+            strLocalisation = (String) request.getAttribute( Constants.PROJECT_LOCALISATION );
+        }
+        vote.setLocalisation( strLocalisation );
+
+        // TODO [JPO 2019-12-23] This method shoud get the area id from vote http request
+        vote.setLocalisation( "75000" );
+
+        vote.setStatus( status );
+
+        MyInfosForm myInfos = MyInfosService.loadUserInfos( user );
+        String strBirthDate = null;
+        String strArrondissement = null;
+        if ( myInfos != null )
+        {
+            strBirthDate = myInfos.getBirthdate( );
+            strArrondissement = myInfos.getArrondissement( );
+        }
+
+        if ( StringUtils.isNotEmpty( strBirthDate ) )
+        {
+            vote.setBirthDate( strBirthDate );
+            try
+            {
+                vote.setAge( MyInfosService.getAge( strBirthDate ) );
+            }
+            catch( ParseException ex )
+            {
+                AppLogService.error( "Error storing vote " + ex.getMessage( ), ex );
+            }
+        }
+
+        if ( StringUtils.isNotEmpty( strArrondissement ) )
+        {
+            try
+            {
+                vote.setArrondissement( Integer.parseInt( strArrondissement ) );
+            }
+            catch( NumberFormatException ex )
+            {
+                AppLogService.error( "Error storing vote " + ex.getMessage( ), ex );
+            }
+
+        }
+        VoteHistoryHome.create( vote );
+    }
+
     /**
-     * add a vote in history 
-     * @param user The User
-     * @param strProjetId  The project ID
+     * add a vote in history
+     * 
+     * @param user
+     *            The User
+     * @param strProjetId
+     *            The project ID
      */
     private void doCancelHistoryVote( LuteceUser user, String strProjetId )
     {
@@ -286,28 +298,29 @@ public class BudgetRatingService extends RatingService
 
         try
         {
-          
+
             nProjetId = Integer.parseInt( strProjetId );
-            Vote vote= VoteHome.getVote( user.getName(), nProjetId );
-            Vote vte= VoteHistoryHome.getVoteUser( user.getName(), nProjetId );
-            
-            if(vote !=null && vte != null){
-            	vote.setStatus(-1);
-            	Calendar c = Calendar.getInstance ();
-            	Date date = c.getTime ();
-            	vote.setDateVote(new Timestamp(date.getTime()));
-            	VoteHistoryHome.create(vote);
+            Vote vote = VoteHome.getVote( user.getName( ), nProjetId );
+            Vote vte = VoteHistoryHome.getVoteUser( user.getName( ), nProjetId );
+
+            if ( vote != null && vte != null )
+            {
+                vote.setStatus( -1 );
+                Calendar c = Calendar.getInstance( );
+                Date date = c.getTime( );
+                vote.setDateVote( new Timestamp( date.getTime( ) ) );
+                VoteHistoryHome.create( vote );
             }
         }
-        catch ( NumberFormatException ex )
+        catch( NumberFormatException ex )
         {
-            AppLogService.error( "Error canceling vote userId=" + nUserId + " - projetId=" + nProjetId + " Error : " +
-                ex.getMessage(  ), ex );
+            AppLogService.error( "Error canceling vote userId=" + nUserId + " - projetId=" + nProjetId + " Error : " + ex.getMessage( ), ex );
         }
     }
-   
-    public static boolean isBudgetResource( String strIdExtendableResource, String strExtendableResourceType ) {
-        //We may also check in the document for normal documents vs budget documents ?
-        return Document.PROPERTY_RESOURCE_TYPE.equals(strExtendableResourceType);
+
+    public static boolean isBudgetResource( String strIdExtendableResource, String strExtendableResourceType )
+    {
+        // We may also check in the document for normal documents vs budget documents ?
+        return Document.PROPERTY_RESOURCE_TYPE.equals( strExtendableResourceType );
     }
 }

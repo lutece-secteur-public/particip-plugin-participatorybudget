@@ -58,22 +58,24 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
 
     /**
      * Generates a new primary key
-     * @param plugin The Plugin
+     * 
+     * @param plugin
+     *            The Plugin
      * @return The new primary key
      */
-    public int newPrimaryKey( Plugin plugin)
+    public int newPrimaryKey( Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK , plugin  );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin );
         daoUtil.executeQuery( );
 
         int nKey = 1;
 
-        if( daoUtil.next( ) )
+        if ( daoUtil.next( ) )
         {
-                nKey = daoUtil.getInt( 1 ) + 1;
+            nKey = daoUtil.getInt( 1 ) + 1;
         }
 
-        daoUtil.free();
+        daoUtil.free( );
 
         return nKey;
     }
@@ -105,14 +107,14 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
     public CampagnePhase load( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
-        daoUtil.setInt( 1 , nKey );
+        daoUtil.setInt( 1, nKey );
         daoUtil.executeQuery( );
 
         CampagnePhase campagnePhase = null;
 
         if ( daoUtil.next( ) )
         {
-            campagnePhase = new CampagnePhase();
+            campagnePhase = new CampagnePhase( );
             campagnePhase.setId( daoUtil.getInt( 1 ) );
             campagnePhase.setCodePhaseType( daoUtil.getString( 2 ) );
             campagnePhase.setCodeCampagne( daoUtil.getString( 3 ) );
@@ -131,7 +133,7 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
     public void delete( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
-        daoUtil.setInt( 1 , nKey );
+        daoUtil.setInt( 1, nKey );
         daoUtil.executeUpdate( );
         daoUtil.free( );
     }
@@ -143,7 +145,7 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
     public void store( CampagnePhase campagnePhase, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-        
+
         daoUtil.setInt( 1, campagnePhase.getId( ) );
         daoUtil.setString( 2, campagnePhase.getCodePhaseType( ) );
         daoUtil.setString( 3, campagnePhase.getCodeCampagne( ) );
@@ -161,19 +163,19 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
     @Override
     public Collection<CampagnePhase> selectCampagnePhasesList( Plugin plugin )
     {
-        Collection<CampagnePhase> campagnePhaseList = new ArrayList<CampagnePhase>(  );
+        Collection<CampagnePhase> campagnePhaseList = new ArrayList<CampagnePhase>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-            CampagnePhase campagnePhase = new CampagnePhase(  );
-            
+            CampagnePhase campagnePhase = new CampagnePhase( );
+
             campagnePhase.setId( daoUtil.getInt( 1 ) );
-                campagnePhase.setCodePhaseType( daoUtil.getString( 2 ) );
-                campagnePhase.setCodeCampagne( daoUtil.getString( 3 ) );
-                campagnePhase.setStart( daoUtil.getTimestamp( 4 ) );
-                campagnePhase.setEnd( daoUtil.getTimestamp( 5 ) );
+            campagnePhase.setCodePhaseType( daoUtil.getString( 2 ) );
+            campagnePhase.setCodeCampagne( daoUtil.getString( 3 ) );
+            campagnePhase.setStart( daoUtil.getTimestamp( 4 ) );
+            campagnePhase.setEnd( daoUtil.getTimestamp( 5 ) );
 
             campagnePhaseList.add( campagnePhase );
         }
@@ -181,41 +183,41 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
         daoUtil.free( );
         return campagnePhaseList;
     }
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
     public Collection<Integer> selectIdCampagnePhasesList( Plugin plugin )
     {
-            Collection<Integer> campagnePhaseList = new ArrayList<Integer>( );
-            DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-            daoUtil.executeQuery(  );
+        Collection<Integer> campagnePhaseList = new ArrayList<Integer>( );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
+        daoUtil.executeQuery( );
 
-            while ( daoUtil.next(  ) )
-            {
-                campagnePhaseList.add( daoUtil.getInt( 1 ) );
-            }
+        while ( daoUtil.next( ) )
+        {
+            campagnePhaseList.add( daoUtil.getInt( 1 ) );
+        }
 
-            daoUtil.free( );
-            return campagnePhaseList;
+        daoUtil.free( );
+        return campagnePhaseList;
     }
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
     public Collection<CampagnePhase> selectCampagnePhasesListByCampagne( String campagneCode, Plugin plugin )
     {
-        Collection<CampagnePhase> campagnePhaseList = new ArrayList<CampagnePhase>(  );
+        Collection<CampagnePhase> campagnePhaseList = new ArrayList<CampagnePhase>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_BY_CAMPAGNE, plugin );
-        daoUtil.setString( 1 , campagneCode );
-        daoUtil.executeQuery(  );
+        daoUtil.setString( 1, campagneCode );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-            CampagnePhase campagnePhase = new CampagnePhase(  );
-            
+            CampagnePhase campagnePhase = new CampagnePhase( );
+
             campagnePhase.setId( daoUtil.getInt( 1 ) );
             campagnePhase.setCodePhaseType( daoUtil.getString( 2 ) );
             campagnePhase.setCodeCampagne( daoUtil.getString( 3 ) );

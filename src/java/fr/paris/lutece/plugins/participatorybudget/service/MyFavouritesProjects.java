@@ -50,79 +50,78 @@ import fr.paris.lutece.plugins.extend.modules.rating.service.RatingAddOnService;
 import fr.paris.lutece.plugins.extend.service.extender.history.IResourceExtenderHistoryService;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 
-public class MyFavouritesProjects {
-	
-	 @Inject
-	 private IResourceExtenderHistoryService _resourceExtenderHistoryService;
-	 
-	 public static final String BEAN_NAME = "participatorybudget.myFavouritesProjects";
+public class MyFavouritesProjects
+{
 
-	
-	
-	public List<Document> getFavouritesProjects( LuteceUser user )
+    @Inject
+    private IResourceExtenderHistoryService _resourceExtenderHistoryService;
+
+    public static final String BEAN_NAME = "participatorybudget.myFavouritesProjects";
+
+    public List<Document> getFavouritesProjects( LuteceUser user )
     {
-        
-		List<ResourceExtenderHistory> listResourceHistory = getFavorisListResourceExtender( user );
-        List<Document> listProjects = new ArrayList<Document>( listResourceHistory.size(  ) );
+
+        List<ResourceExtenderHistory> listResourceHistory = getFavorisListResourceExtender( user );
+        List<Document> listProjects = new ArrayList<Document>( listResourceHistory.size( ) );
 
         for ( ResourceExtenderHistory history : listResourceHistory )
         {
-            if ( StringUtils.isNumeric( history.getIdExtendableResource(  ) ) )
+            if ( StringUtils.isNumeric( history.getIdExtendableResource( ) ) )
             {
-                int nIdDocument = Integer.parseInt( history.getIdExtendableResource(  ) );
+                int nIdDocument = Integer.parseInt( history.getIdExtendableResource( ) );
                 Document document = DocumentHome.findByPrimaryKeyWithoutBinaries( nIdDocument );
                 listProjects.add( document );
             }
         }
-        
+
         return listProjects;
     }
-	
-	public List<ResourceExtenderHistory> getFavorisListResourceExtender(LuteceUser user)
-	{
-		
-		List<ResourceExtenderHistory> listResourceHistory = new ArrayList<ResourceExtenderHistory>( );
-		ResourceExtenderHistoryFilter filter = new ResourceExtenderHistoryFilter(  );
+
+    public List<ResourceExtenderHistory> getFavorisListResourceExtender( LuteceUser user )
+    {
+
+        List<ResourceExtenderHistory> listResourceHistory = new ArrayList<ResourceExtenderHistory>( );
+        ResourceExtenderHistoryFilter filter = new ResourceExtenderHistoryFilter( );
         filter.setExtenderType( FavoriteResourceExtender.RESOURCE_EXTENDER );
         filter.setExtendableResourceType( RatingAddOnService.PROPERTY_RESOURCE_TYPE );
-        filter.setUserGuid( user.getName(  ) );
+        filter.setUserGuid( user.getName( ) );
 
         listResourceHistory = _resourceExtenderHistoryService.findByFilter( filter );
-        
+
         return listResourceHistory;
-	}
-	
-	public List<Document> getFollowersProjects( LuteceUser user )
+    }
+
+    public List<Document> getFollowersProjects( LuteceUser user )
     {
-        
-		List<ResourceExtenderHistory> listResourceHistory = getFollowerListResourceExtender( user );
-        List<Document> listProjects = new ArrayList<Document>( listResourceHistory.size(  ) );
+
+        List<ResourceExtenderHistory> listResourceHistory = getFollowerListResourceExtender( user );
+        List<Document> listProjects = new ArrayList<Document>( listResourceHistory.size( ) );
 
         for ( ResourceExtenderHistory history : listResourceHistory )
         {
-            if ( StringUtils.isNumeric( history.getIdExtendableResource(  ) ) )
+            if ( StringUtils.isNumeric( history.getIdExtendableResource( ) ) )
             {
-                int nIdDocument = Integer.parseInt( history.getIdExtendableResource(  ) );
+                int nIdDocument = Integer.parseInt( history.getIdExtendableResource( ) );
                 Document document = DocumentHome.findByPrimaryKeyWithoutBinaries( nIdDocument );
                 listProjects.add( document );
             }
         }
-        
+
         return listProjects;
     }
-	
-	public List<ResourceExtenderHistory> getFollowerListResourceExtender(LuteceUser user)
-	{
-		
-		List<ResourceExtenderHistory> listResourceHistory = new ArrayList<ResourceExtenderHistory>( );
-		ResourceExtenderHistoryFilter filter = new ResourceExtenderHistoryFilter(  );
+
+    public List<ResourceExtenderHistory> getFollowerListResourceExtender( LuteceUser user )
+    {
+
+        List<ResourceExtenderHistory> listResourceHistory = new ArrayList<ResourceExtenderHistory>( );
+        ResourceExtenderHistoryFilter filter = new ResourceExtenderHistoryFilter( );
         filter.setExtenderType( FollowResourceExtender.RESOURCE_EXTENDER );
         filter.setExtendableResourceType( RatingAddOnService.PROPERTY_RESOURCE_TYPE );
-        filter.setUserGuid( user.getName(  ) );
+        filter.setUserGuid( user.getName( ) );
 
         listResourceHistory = _resourceExtenderHistoryService.findByFilter( filter );
-        
+
         return listResourceHistory;
-	}
+    }
 
 }

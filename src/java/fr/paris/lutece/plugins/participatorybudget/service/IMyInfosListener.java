@@ -37,16 +37,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.paris.lutece.portal.service.security.LuteceUser;
 
-public interface IMyInfosListener {
-	
+public interface IMyInfosListener
+{
 
-		void updateNickName(String strLuteceUserName,String strNickName);
-		
-		void createNickName(String strLuteceUserName,String strNickName);
-		
-		int canChangeArrond( LuteceUser user);
+    void updateNickName( String strLuteceUserName, String strNickName );
 
-		String deleteVotes(  HttpServletRequest request );
+    void createNickName( String strLuteceUserName, String strNickName );
 
+    int canChangeArrond( LuteceUser user );
+
+    String deleteVotes( HttpServletRequest request );
 
 }

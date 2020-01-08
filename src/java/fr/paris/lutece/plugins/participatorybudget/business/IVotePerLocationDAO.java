@@ -37,33 +37,40 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 
 import java.util.List;
 
-
 /**
-* IVoteDAO Interface
-*/
+ * IVoteDAO Interface
+ */
 public interface IVotePerLocationDAO
 {
-    
+
     /**
      * Update a record from the table
-     * @param VotePerLocation The votePerLocation object
-     * @param plugin  The plugin
+     * 
+     * @param VotePerLocation
+     *            The votePerLocation object
+     * @param plugin
+     *            The plugin
      */
-    public void update( VotePerLocation vote , Plugin plugin );
-    
+    public void update( VotePerLocation vote, Plugin plugin );
+
     /**
      * Load all records
-     * @param plugin The plugin
+     * 
+     * @param plugin
+     *            The plugin
      * @return List VotePerLocation
      */
     public List<VotePerLocation> getListVotes( Plugin plugin );
-    
+
     /**
      * Load Vote per location record
-     * @param strArrd the arrandissment
-     * @param plugin the plugin
+     * 
+     * @param strArrd
+     *            the arrandissment
+     * @param plugin
+     *            the plugin
      * @return Vote per location record
      */
-    public VotePerLocation select( String strArrd , Plugin plugin) ;
+    public VotePerLocation select( String strArrd, Plugin plugin );
 
 }

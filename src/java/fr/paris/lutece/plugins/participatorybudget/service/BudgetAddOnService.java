@@ -44,7 +44,6 @@ import fr.paris.lutece.plugins.participatorybudget.web.includes.MyInfosPageInclu
 import fr.paris.lutece.portal.business.resourceenhancer.IResourceDisplayManager;
 import fr.paris.lutece.portal.service.security.SecurityService;
 
-
 /**
  * Manager for add on display
  */
@@ -56,25 +55,24 @@ public class BudgetAddOnService implements IResourceDisplayManager
     @Inject
     @Named( MyVoteService.BEAN_NAME )
     private MyVoteService _myVoteService;
+
     /**
      * {@inheritDoc }
      */
     @Override
     public void getXmlAddOn( StringBuffer strXml, String strResourceType, int nResourceId )
     {
-      
+
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public void buildPageAddOn( Map<String, Object> model, String strResourceType, int nIdResource,
-        String strPortletId, HttpServletRequest request )
+    public void buildPageAddOn( Map<String, Object> model, String strResourceType, int nIdResource, String strPortletId, HttpServletRequest request )
     {
-    	 model.put(MARK_USER, SecurityService.isAuthenticationEnable()?SecurityService.getInstance().getRegisteredUser(request) : null);
-         model.put(MyInfosPageInclude.MARK_MES_INFOS_INCLUDE, CampagneIncludeService.getMyInfos(request));
+        model.put( MARK_USER, SecurityService.isAuthenticationEnable( ) ? SecurityService.getInstance( ).getRegisteredUser( request ) : null );
+        model.put( MyInfosPageInclude.MARK_MES_INFOS_INCLUDE, CampagneIncludeService.getMyInfos( request ) );
     }
-    
-      
+
 }

@@ -48,8 +48,8 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 public final class RGPDTreatmentLogHome
 {
     // Static variable pointed at the DAO instance
-    private static IRGPDTreatmentLogDAO _dao    = SpringContextService.getBean( "participatorybudget.rgpdTreatmentLogDAO" );
-    private static Plugin               _plugin = PluginService.getPlugin( Constants.PLUGIN_NAME );
+    private static IRGPDTreatmentLogDAO _dao = SpringContextService.getBean( "participatorybudget.rgpdTreatmentLogDAO" );
+    private static Plugin _plugin = PluginService.getPlugin( Constants.PLUGIN_NAME );
 
     private RGPDTreatmentLogHome( )
     {

@@ -47,8 +47,8 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 public final class BizStatFileHome
 {
     // Static variable pointed at the DAO instance
-    private static IBizStatFileDAO _dao    = SpringContextService.getBean( "participatorybudget.bizStatFileDAO" );
-    private static Plugin          _plugin = PluginService.getPlugin( Constants.PLUGIN_NAME );
+    private static IBizStatFileDAO _dao = SpringContextService.getBean( "participatorybudget.bizStatFileDAO" );
+    private static Plugin _plugin = PluginService.getPlugin( Constants.PLUGIN_NAME );
 
     /**
      * Private constructor - this class need not be instantiated
@@ -58,11 +58,11 @@ public final class BizStatFileHome
     }
 
     /**
-     * Creation of a record 
+     * Creation of a record
      */
     public static void create( BizStatFile file )
     {
-    	_dao.insert( file, _plugin );
+        _dao.insert( file, _plugin );
     }
 
     /**
@@ -70,17 +70,17 @@ public final class BizStatFileHome
      */
     public static void update( BizStatFile file )
     {
-    	_dao.update( file, _plugin) ;
+        _dao.update( file, _plugin );
     }
-    
+
     /**
      * Delete a record
      */
     public static void remove( int nId )
     {
-        _dao.delete( nId,_plugin );
+        _dao.delete( nId, _plugin );
     }
-    
+
     /**
      * Returns a record, with binary content
      */
@@ -88,7 +88,7 @@ public final class BizStatFileHome
     {
         return _dao.loadWithBytes( nKey, _plugin );
     }
-    
+
     /**
      * Returns all records, WITHOUT binary content
      */
@@ -96,7 +96,7 @@ public final class BizStatFileHome
     {
         return _dao.selectAllWithoutBytes( _plugin );
     }
-    
+
     /**
      * Returns records depending of the status, WITHOUT binary content
      */

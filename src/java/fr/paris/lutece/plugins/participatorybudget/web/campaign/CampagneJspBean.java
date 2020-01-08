@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
- 
+
 package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
@@ -49,7 +49,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage Campagne features ( manage, create, modify, remove )
  */
@@ -57,14 +56,13 @@ import javax.servlet.http.HttpServletRequest;
 public class CampagneJspBean extends ManageCampagnebpJspBean
 {
 
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
     private static final String TEMPLATE_MANAGE_CAMPAGNES = "/admin/plugins/participatorybudget/campaign/manage_campagnes.html";
     private static final String TEMPLATE_CREATE_CAMPAGNE = "/admin/plugins/participatorybudget/campaign/create_campagne.html";
     private static final String TEMPLATE_MODIFY_CAMPAGNE = "/admin/plugins/participatorybudget/campaign/modify_campagne.html";
-
 
     // Parameters
     private static final String PARAMETER_ID_CAMPAGNE = "id";
@@ -83,7 +81,7 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNE = "participatorybudget.message.confirmRemoveCampagne";
     private static final String PROPERTY_DEFAULT_LIST_CAMPAGNE_PER_PAGE = "participatorybudget.listCampagnes.itemsPerPage";
- 
+
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagne.attribute.";
 
     // Views
@@ -101,21 +99,22 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     private static final String INFO_CAMPAGNE_CREATED = "participatorybudget.info.campagne.created";
     private static final String INFO_CAMPAGNE_UPDATED = "participatorybudget.info.campagne.updated";
     private static final String INFO_CAMPAGNE_REMOVED = "participatorybudget.info.campagne.removed";
-    
+
     // Session variable to store working values
     private Campagne _campagne;
-    
-    
+
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_CAMPAGNES, defaultView = true )
     public String getManageCampagnes( HttpServletRequest request )
     {
         _campagne = null;
-        List<Campagne> listCampagnes = (List<Campagne>) CampagneHome.getCampagnesList(  );
+        List<Campagne> listCampagnes = (List<Campagne>) CampagneHome.getCampagnesList( );
         Map<String, Object> model = getPaginatedListModel( request, MARK_CAMPAGNE_LIST, listCampagnes, JSP_MANAGE_CAMPAGNES );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNES, TEMPLATE_MANAGE_CAMPAGNES, model );
@@ -124,15 +123,16 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     /**
      * Returns the form to create a campagne
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the campagne form
      */
     @View( VIEW_CREATE_CAMPAGNE )
     public String getCreateCampagne( HttpServletRequest request )
     {
-        _campagne = ( _campagne != null ) ? _campagne : new Campagne(  );
+        _campagne = ( _campagne != null ) ? _campagne : new Campagne( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_CAMPAGNE, _campagne );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_CAMPAGNE, TEMPLATE_CREATE_CAMPAGNE, model );
@@ -141,7 +141,8 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     /**
      * Process the data capture form of a new campagne
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_CAMPAGNE )
@@ -156,18 +157,18 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
         }
 
         CampagneHome.create( _campagne );
-        addInfo( INFO_CAMPAGNE_CREATED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNE_CREATED, getLocale( ) );
 
-        CampaignService.getInstance().reset();
-        
+        CampaignService.getInstance( ).reset( );
+
         return redirectView( request, VIEW_MANAGE_CAMPAGNES );
     }
 
     /**
-     * Manages the removal form of a campagne whose identifier is in the http
-     * request
+     * Manages the removal form of a campagne whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_CAMPAGNE )
@@ -177,8 +178,7 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNE ) );
         url.addParameter( PARAMETER_ID_CAMPAGNE, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNE,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNE, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -186,7 +186,8 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     /**
      * Handles the removal form of a campagne
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage campagnes
      */
     @Action( ACTION_REMOVE_CAMPAGNE )
@@ -194,17 +195,18 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNE ) );
         CampagneHome.remove( nId );
-        addInfo( INFO_CAMPAGNE_REMOVED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNE_REMOVED, getLocale( ) );
 
-        CampaignService.getInstance().reset();
-        
+        CampaignService.getInstance( ).reset( );
+
         return redirectView( request, VIEW_MANAGE_CAMPAGNES );
     }
 
     /**
      * Returns the form to update info about a campagne
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_CAMPAGNE )
@@ -212,12 +214,12 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNE ) );
 
-        if ( _campagne == null || ( _campagne.getId(  ) != nId ))
+        if ( _campagne == null || ( _campagne.getId( ) != nId ) )
         {
             _campagne = CampagneHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_CAMPAGNE, _campagne );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNE, TEMPLATE_MODIFY_CAMPAGNE, model );
@@ -226,7 +228,8 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     /**
      * Process the change form of a campagne
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_CAMPAGNE )
@@ -241,10 +244,10 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
         }
 
         CampagneHome.update( _campagne );
-        addInfo( INFO_CAMPAGNE_UPDATED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNE_UPDATED, getLocale( ) );
 
-        CampaignService.getInstance().reset();
-        
+        CampaignService.getInstance( ).reset( );
+
         return redirectView( request, VIEW_MANAGE_CAMPAGNES );
     }
 }

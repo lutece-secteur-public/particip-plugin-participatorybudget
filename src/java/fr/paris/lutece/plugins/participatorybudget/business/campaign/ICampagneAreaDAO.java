@@ -39,8 +39,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-
-
 /**
  * ICampagneAreaDAO Interface
  */
@@ -48,62 +46,81 @@ public interface ICampagneAreaDAO
 {
     /**
      * Insert a new record in the table.
-     * @param campagneArea instance of the CampagneArea object to insert
-     * @param plugin the Plugin
+     * 
+     * @param campagneArea
+     *            instance of the CampagneArea object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( CampagneArea campagneArea, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param campagneArea the reference of the CampagneArea
-     * @param plugin the Plugin
+     * 
+     * @param campagneArea
+     *            the reference of the CampagneArea
+     * @param plugin
+     *            the Plugin
      */
     void store( CampagneArea campagneArea, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the CampagneArea to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the CampagneArea to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the campagneArea
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the campagneArea
+     * @param plugin
+     *            the Plugin
      * @return The instance of the campagneArea
      */
     CampagneArea load( int nKey, Plugin plugin );
 
     /**
      * Load the data of all the campagneArea objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the campagneArea objects
      */
     Collection<CampagneArea> selectCampagneAreasList( Plugin plugin );
-    
+
     /**
      * Load the id of all the campagneArea objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the campagneArea objects
      */
     Collection<Integer> selectIdCampagneAreasList( Plugin plugin );
 
     /**
      * Load the data of all the campagneArea objects for a campaign and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the campagneArea objects
      */
     Collection<CampagneArea> selectCampagneAreasListByCampagne( String campagneCode, Plugin plugin );
 
     /**
      * Load the data of all the campagneArea objects mapped from cmapgne and returns them as a map
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the campagneArea objects
      */
     Map<String, List<CampagneArea>> selectCampagneAreasMapByCampagne( Plugin plugin );
 }
-

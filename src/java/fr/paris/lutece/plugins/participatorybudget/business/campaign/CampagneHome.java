@@ -52,14 +52,16 @@ public final class CampagneHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagneHome(  )
+    private CampagneHome( )
     {
     }
 
     /**
      * Create an instance of the campagne class
-     * @param campagne The instance of the Campagne which contains the informations to store
-     * @return The  instance of campagne which has been created with its primary key.
+     * 
+     * @param campagne
+     *            The instance of the Campagne which contains the informations to store
+     * @return The instance of campagne which has been created with its primary key.
      */
     public static Campagne create( Campagne campagne )
     {
@@ -70,8 +72,10 @@ public final class CampagneHome
 
     /**
      * Update of the campagne which is specified in parameter
-     * @param campagne The instance of the Campagne which contains the data to store
-     * @return The instance of the  campagne which has been updated
+     * 
+     * @param campagne
+     *            The instance of the Campagne which contains the data to store
+     * @return The instance of the campagne which has been updated
      */
     public static Campagne update( Campagne campagne )
     {
@@ -82,28 +86,33 @@ public final class CampagneHome
 
     /**
      * Remove the campagne whose identifier is specified in parameter
-     * @param nKey The campagne Id
+     * 
+     * @param nKey
+     *            The campagne Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a campagne whose identifier is specified in parameter
-     * @param nKey The campagne primary key
+     * 
+     * @param nKey
+     *            The campagne primary key
      * @return an instance of Campagne
      */
     public static Campagne findByPrimaryKey( int nKey )
     {
-        return _dao.load( nKey, _plugin);
+        return _dao.load( nKey, _plugin );
     }
-    
+
     /**
      * Returns an instance which represents the last campagne
+     * 
      * @return an instance of Campagne
      */
     public static Campagne getLastCampagne( )
@@ -113,15 +122,17 @@ public final class CampagneHome
 
     /**
      * Load the data of all the campagne objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the campagne objects
      */
     public static Collection<Campagne> getCampagnesList( )
     {
         return _dao.selectCampagnesList( _plugin );
     }
-    
+
     /**
      * Load the id of all the campagne objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the campagne objects
      */
     public static Collection<Integer> getIdCampagnesList( )
@@ -129,4 +140,3 @@ public final class CampagneHome
         return _dao.selectIdCampagnesList( _plugin );
     }
 }
-

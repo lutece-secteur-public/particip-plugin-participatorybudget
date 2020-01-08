@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
- 
+
 package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneTheme;
@@ -48,7 +48,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage CampagneTheme features ( manage, create, modify, remove )
  */
@@ -56,14 +55,13 @@ import javax.servlet.http.HttpServletRequest;
 public class CampagneThemeJspBean extends ManageCampagnebpJspBean
 {
 
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
     private static final String TEMPLATE_MANAGE_CAMPAGNETHEMES = "/admin/plugins/participatorybudget/campaign/manage_campagnethemes.html";
     private static final String TEMPLATE_CREATE_CAMPAGNETHEME = "/admin/plugins/participatorybudget/campaign/create_campagnetheme.html";
     private static final String TEMPLATE_MODIFY_CAMPAGNETHEME = "/admin/plugins/participatorybudget/campaign/modify_campagnetheme.html";
-
 
     // Parameters
     private static final String PARAMETER_ID_CAMPAGNETHEME = "id";
@@ -82,7 +80,7 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNETHEME = "participatorybudget.message.confirmRemoveCampagneTheme";
     private static final String PROPERTY_DEFAULT_LIST_CAMPAGNETHEME_PER_PAGE = "participatorybudget.listCampagneThemes.itemsPerPage";
- 
+
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagnetheme.attribute.";
 
     // Views
@@ -100,21 +98,22 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     private static final String INFO_CAMPAGNETHEME_CREATED = "participatorybudget.info.campagnetheme.created";
     private static final String INFO_CAMPAGNETHEME_UPDATED = "participatorybudget.info.campagnetheme.updated";
     private static final String INFO_CAMPAGNETHEME_REMOVED = "participatorybudget.info.campagnetheme.removed";
-    
+
     // Session variable to store working values
     private CampagneTheme _campagnetheme;
-    
-    
+
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_CAMPAGNETHEMES, defaultView = true )
     public String getManageCampagneThemes( HttpServletRequest request )
     {
         _campagnetheme = null;
-        List<CampagneTheme> listCampagneThemes = (List<CampagneTheme>) CampagneThemeHome.getCampagneThemesList(  );
+        List<CampagneTheme> listCampagneThemes = (List<CampagneTheme>) CampagneThemeHome.getCampagneThemesList( );
         Map<String, Object> model = getPaginatedListModel( request, MARK_CAMPAGNETHEME_LIST, listCampagneThemes, JSP_MANAGE_CAMPAGNETHEMES );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNETHEMES, TEMPLATE_MANAGE_CAMPAGNETHEMES, model );
@@ -123,15 +122,16 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     /**
      * Returns the form to create a campagnetheme
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the campagnetheme form
      */
     @View( VIEW_CREATE_CAMPAGNETHEME )
     public String getCreateCampagneTheme( HttpServletRequest request )
     {
-        _campagnetheme = ( _campagnetheme != null ) ? _campagnetheme : new CampagneTheme(  );
+        _campagnetheme = ( _campagnetheme != null ) ? _campagnetheme : new CampagneTheme( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_CAMPAGNETHEME, _campagnetheme );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_CAMPAGNETHEME, TEMPLATE_CREATE_CAMPAGNETHEME, model );
@@ -140,7 +140,8 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     /**
      * Process the data capture form of a new campagnetheme
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_CAMPAGNETHEME )
@@ -155,16 +156,16 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
         }
 
         CampagneThemeHome.create( _campagnetheme );
-        addInfo( INFO_CAMPAGNETHEME_CREATED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNETHEME_CREATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_CAMPAGNETHEMES );
     }
 
     /**
-     * Manages the removal form of a campagnetheme whose identifier is in the http
-     * request
+     * Manages the removal form of a campagnetheme whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_CAMPAGNETHEME )
@@ -174,8 +175,7 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNETHEME ) );
         url.addParameter( PARAMETER_ID_CAMPAGNETHEME, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNETHEME,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNETHEME, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -183,7 +183,8 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     /**
      * Handles the removal form of a campagnetheme
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage campagnethemes
      */
     @Action( ACTION_REMOVE_CAMPAGNETHEME )
@@ -191,7 +192,7 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNETHEME ) );
         CampagneThemeHome.remove( nId );
-        addInfo( INFO_CAMPAGNETHEME_REMOVED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNETHEME_REMOVED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_CAMPAGNETHEMES );
     }
@@ -199,7 +200,8 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     /**
      * Returns the form to update info about a campagnetheme
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_CAMPAGNETHEME )
@@ -207,12 +209,12 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNETHEME ) );
 
-        if ( _campagnetheme == null || ( _campagnetheme.getId(  ) != nId ))
+        if ( _campagnetheme == null || ( _campagnetheme.getId( ) != nId ) )
         {
             _campagnetheme = CampagneThemeHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_CAMPAGNETHEME, _campagnetheme );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNETHEME, TEMPLATE_MODIFY_CAMPAGNETHEME, model );
@@ -221,7 +223,8 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
     /**
      * Process the change form of a campagnetheme
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_CAMPAGNETHEME )
@@ -236,7 +239,7 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
         }
 
         CampagneThemeHome.update( _campagnetheme );
-        addInfo( INFO_CAMPAGNETHEME_UPDATED, getLocale(  ) );
+        addInfo( INFO_CAMPAGNETHEME_UPDATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_CAMPAGNETHEMES );
     }

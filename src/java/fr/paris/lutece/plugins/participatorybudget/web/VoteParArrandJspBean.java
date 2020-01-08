@@ -58,93 +58,95 @@ import org.apache.commons.lang.StringUtils;
  */
 
 @Controller( controllerJsp = "VoteParArrandissement.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/", right = "VOTE_PAR_ARRANDISSEMENT" )
-public class VoteParArrandJspBean extends  MVCAdminJspBean
+public class VoteParArrandJspBean extends MVCAdminJspBean
 {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	////////////////////////////////////////////////////////////////////////////
+    private static final long serialVersionUID = 1L;
+    // //////////////////////////////////////////////////////////////////////////
     // Constantes
     /**
      * Right to manage indexation
      */
     public static final String RIGHT_INDEXER = "/";
     private static final String TEMPLATE_MANAGE_VOTES_PAR_ARRAND = "admin/plugins/participatorybudget/vote_par_arrandissement.html";
-    
+
     // Properties for page titles
     private static final String PROPERTY_PAGE_TITLE_VOTE_PAR_ARRAND = "participatorybudget.vote_par_arrd.pageTitle";
-    
-    //Parameters
+
+    // Parameters
     private static final String PARAMETER_NB = "nb_";
-    
-    //Mark
+
+    // Mark
     private static final String MARK_LIST_VOTES = "listVotes";
-    
-    //views
+
+    // views
     private static final String VIEW_MANAGE_VOTE_PAR_ARRAND = "manageVoteParArrand";
-    
-    //Actions
+
+    // Actions
     private static final String ACTION_DO_UPDATE = "update";
-  
+
     /**
      * Displays the indexing parameters
      *
-     * @param request the http request
+     * @param request
+     *            the http request
      * @return the html code which displays the parameters page
-     * @throws UserNotSignedException 
+     * @throws UserNotSignedException
      */
     @View( value = VIEW_MANAGE_VOTE_PAR_ARRAND, defaultView = true )
     public String getManageVoteParArrand( HttpServletRequest request ) throws UserNotSignedException
     {
-    	
-    	List<VotePerLocation> listVotes = VotePerLocationHome.getListVotesPerLocation( );
-    	
-    	Map<String, Object> model = getModel(  );
-    	
-    	model.put( MARK_LIST_VOTES , listVotes );
-    	
+
+        List<VotePerLocation> listVotes = VotePerLocationHome.getListVotesPerLocation( );
+
+        Map<String, Object> model = getModel( );
+
+        model.put( MARK_LIST_VOTES, listVotes );
+
         return getPage( PROPERTY_PAGE_TITLE_VOTE_PAR_ARRAND, TEMPLATE_MANAGE_VOTES_PAR_ARRAND, model );
     }
 
     /**
      * Calls the indexing process
      *
-     * @param request the http request
+     * @param request
+     *            the http request
      * @return the result of the indexing process
-     * @throws IOException 
+     * @throws IOException
      */
-    @Action ( ACTION_DO_UPDATE )
+    @Action( ACTION_DO_UPDATE )
     public String doUpdate( HttpServletRequest request ) throws IOException
     {
-    	List<VotePerLocation> listVotes = VotePerLocationHome.getListVotesPerLocation( );
-    	
-    	for (int i = 1 ; i<= listVotes.size( ) ; i++)
-    	{
-    		VotePerLocation vote = null ;
-    		String strVal = request.getParameter( PARAMETER_NB +i) == null ? StringUtils.EMPTY : request.getParameter( PARAMETER_NB +i) ;
-    		if ( StringUtils.isEmpty( strVal ) ||  !StringUtils.isNumeric( strVal ) )
-    		{
-    			if ( i== 21)
-    			{
-    				addError( "Champs Tout Paris n'est pas remplis" );
-    				return redirectView( request, VIEW_MANAGE_VOTE_PAR_ARRAND );
-    			}
-    			else
-    			{
-    				addError( "Champs Paris " + i  + " Arrandissement n'est pas remplis" );
-    				return redirectView( request, VIEW_MANAGE_VOTE_PAR_ARRAND ) ;
-    			}
-    		}
-    		vote =listVotes.get(i-1);
-    		vote.setNbVotes( Integer.parseInt( strVal ) );
-    	}
-    	
-    	for( VotePerLocation vpl : listVotes  )
-    	{
-    		VotePerLocationHome.updateVotesPerLocation( vpl );
-    	}
-    	addInfo( "Votes par Arrandissemente modifié" );
-    	return redirectView( request, VIEW_MANAGE_VOTE_PAR_ARRAND );
+        List<VotePerLocation> listVotes = VotePerLocationHome.getListVotesPerLocation( );
+
+        for ( int i = 1; i <= listVotes.size( ); i++ )
+        {
+            VotePerLocation vote = null;
+            String strVal = request.getParameter( PARAMETER_NB + i ) == null ? StringUtils.EMPTY : request.getParameter( PARAMETER_NB + i );
+            if ( StringUtils.isEmpty( strVal ) || !StringUtils.isNumeric( strVal ) )
+            {
+                if ( i == 21 )
+                {
+                    addError( "Champs Tout Paris n'est pas remplis" );
+                    return redirectView( request, VIEW_MANAGE_VOTE_PAR_ARRAND );
+                }
+                else
+                {
+                    addError( "Champs Paris " + i + " Arrandissement n'est pas remplis" );
+                    return redirectView( request, VIEW_MANAGE_VOTE_PAR_ARRAND );
+                }
+            }
+            vote = listVotes.get( i - 1 );
+            vote.setNbVotes( Integer.parseInt( strVal ) );
+        }
+
+        for ( VotePerLocation vpl : listVotes )
+        {
+            VotePerLocationHome.updateVotesPerLocation( vpl );
+        }
+        addInfo( "Votes par Arrandissemente modifié" );
+        return redirectView( request, VIEW_MANAGE_VOTE_PAR_ARRAND );
     }
 }

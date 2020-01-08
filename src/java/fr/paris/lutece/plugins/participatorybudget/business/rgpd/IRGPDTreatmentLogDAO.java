@@ -38,17 +38,19 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 
 import java.util.List;
 
-
 /**
-* IVoteDAO Interface
-*/
+ * IVoteDAO Interface
+ */
 public interface IRGPDTreatmentLogDAO
 {
     /**
      * Insert a new record in the table.
-     * @param vote instance of the Vote object to inssert
-     * @param plugin the Plugin
+     * 
+     * @param vote
+     *            instance of the Vote object to inssert
+     * @param plugin
+     *            the Plugin
      */
-	void insert( AdminUser user, String strTreatmentTypeStr, String strTreatmentObjectName, String strTreatmentObjectFields, Plugin plugin ); 
+    void insert( AdminUser user, String strTreatmentTypeStr, String strTreatmentObjectName, String strTreatmentObjectFields, Plugin plugin );
 
 }

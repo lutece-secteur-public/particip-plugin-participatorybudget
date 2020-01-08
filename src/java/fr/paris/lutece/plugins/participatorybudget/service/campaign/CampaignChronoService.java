@@ -45,13 +45,14 @@ import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThe
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeHome;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
-public class CampaignChronoService implements ICampaignChronoService {
-	
-	private static final String BEAN_CAMPAIGNCHRONO_SERVICE = "participatorybudget.campaignChronoService";
-	
-	private static ICampaignChronoService _singleton;
-	
-	public static ICampaignChronoService getInstance(  )
+public class CampaignChronoService implements ICampaignChronoService
+{
+
+    private static final String BEAN_CAMPAIGNCHRONO_SERVICE = "participatorybudget.campaignChronoService";
+
+    private static ICampaignChronoService _singleton;
+
+    public static ICampaignChronoService getInstance( )
     {
         if ( _singleton == null )
         {
@@ -59,91 +60,96 @@ public class CampaignChronoService implements ICampaignChronoService {
         }
         return _singleton;
     }
-	
-	
-	// ***********************************************************************************
-	// * GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERAT *
-	// * GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERAT *
-	// ***********************************************************************************
-	
+
+    // ***********************************************************************************
+    // * GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERAT *
+    // * GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERATE GENERAT *
+    // ***********************************************************************************
+
     /**
      * {@inheritDoc}
      */
     @Override
-	public String generate( )
+    public String generate( )
     {
-    	// Creates new campagne ---------------------------------------------------------------------------
-    	
-    	Campagne lastCampagne = CampagneHome.getLastCampagne();
+        // Creates new campagne ---------------------------------------------------------------------------
 
-    	char newCampagneCode = lastCampagne.getCode().charAt(0);
-    	newCampagneCode += 1;
-    	
-    	Campagne newCampagne = new Campagne();
-    	newCampagne.setCode               ( newCampagneCode + "" );
-    	newCampagne.setTitle              ( "(clone) " + lastCampagne.getTitle() );
-    	newCampagne.setDescription        ( "(clone) " + lastCampagne.getDescription() );
-    	newCampagne.setActive             ( false );
-    	newCampagne.setCodeModerationType ( lastCampagne.getCodeModerationType() );
-    	newCampagne.setModerationDuration ( lastCampagne.getModerationDuration() );
-    	
+        Campagne lastCampagne = CampagneHome.getLastCampagne( );
+
+        char newCampagneCode = lastCampagne.getCode( ).charAt( 0 );
+        newCampagneCode += 1;
+
+        Campagne newCampagne = new Campagne( );
+        newCampagne.setCode( newCampagneCode + "" );
+        newCampagne.setTitle( "(clone) " + lastCampagne.getTitle( ) );
+        newCampagne.setDescription( "(clone) " + lastCampagne.getDescription( ) );
+        newCampagne.setActive( false );
+        newCampagne.setCodeModerationType( lastCampagne.getCodeModerationType( ) );
+        newCampagne.setModerationDuration( lastCampagne.getModerationDuration( ) );
+
         CampagneHome.create( newCampagne );
-    	
+
         // Creates phases ---------------------------------------------------------------------------------
-        
-        Collection<CampagnePhase> lastPhases = CampagnePhaseHome.getCampagnePhasesListByCampagne( lastCampagne.getCode() );
-        
-        for (CampagnePhase lastPhase : lastPhases) {
-        	
-			CampagnePhase phase = new CampagnePhase();
 
-			Calendar newStart = Calendar.getInstance(); newStart.setTime( lastPhase.getStart() ); newStart.add( Calendar.YEAR, 1 );
-			Calendar newEnd   = Calendar.getInstance();   newEnd.setTime(   lastPhase.getEnd() );   newEnd.add( Calendar.YEAR, 1 );
-			
-			phase.setCodePhaseType ( lastPhase.getCodePhaseType() );
-			phase.setCodeCampagne  ( "" + newCampagneCode );
-			phase.setStart         ( new Timestamp(newStart.getTimeInMillis()) );
-			phase.setEnd           ( new Timestamp(  newEnd.getTimeInMillis()) );
-			
-			CampagnePhaseHome.create( phase );
-		}
-    	
-    	// Creates themes ---------------------------------------------------------------------------------
-    	
-        Collection<CampagneTheme> lastThemes = CampagneThemeHome.getCampagneThemesListByCampagne( lastCampagne.getCode() );
-        
-        for (CampagneTheme lastTheme : lastThemes) {
-        	
-        	CampagneTheme theme = new CampagneTheme();
+        Collection<CampagnePhase> lastPhases = CampagnePhaseHome.getCampagnePhasesListByCampagne( lastCampagne.getCode( ) );
 
-			theme.setCode         ( lastTheme.getCode() );
-			theme.setCodeCampagne ( "" + newCampagneCode );
-			theme.setTitle        ( lastTheme.getTitle() );
-			theme.setDescription  ( lastTheme.getDescription() );
-			theme.setActive       ( true );
-			
-			CampagneThemeHome.create( theme );
-		}
-        
-    	// Creates depositary ----------------------------------------------------------------------------- 
-    	
-//        Collection<CampagneDepositaire> lastDepositaires = CampagneDepositaireHome.getCampagneDepositaireListByCampagne( lastCampagne.getCode() );
-//        
-//        for (CampagneDepositaire lastDepositaire : lastDepositaires) {
-//        	
-//        	CampagneDepositaire depositaire = new CampagneDepositaire();
-//
-//        	depositaire.setCodeDepositaireType ( lastDepositaire.getCodeDepositaireType() );
-//        	depositaire.setCodeCampagne        ( "" + newCampagneCode );
-//			
-//			CampagneDepositaireHome.create( depositaire );
-//		}
-        
+        for ( CampagnePhase lastPhase : lastPhases )
+        {
+
+            CampagnePhase phase = new CampagnePhase( );
+
+            Calendar newStart = Calendar.getInstance( );
+            newStart.setTime( lastPhase.getStart( ) );
+            newStart.add( Calendar.YEAR, 1 );
+            Calendar newEnd = Calendar.getInstance( );
+            newEnd.setTime( lastPhase.getEnd( ) );
+            newEnd.add( Calendar.YEAR, 1 );
+
+            phase.setCodePhaseType( lastPhase.getCodePhaseType( ) );
+            phase.setCodeCampagne( "" + newCampagneCode );
+            phase.setStart( new Timestamp( newStart.getTimeInMillis( ) ) );
+            phase.setEnd( new Timestamp( newEnd.getTimeInMillis( ) ) );
+
+            CampagnePhaseHome.create( phase );
+        }
+
+        // Creates themes ---------------------------------------------------------------------------------
+
+        Collection<CampagneTheme> lastThemes = CampagneThemeHome.getCampagneThemesListByCampagne( lastCampagne.getCode( ) );
+
+        for ( CampagneTheme lastTheme : lastThemes )
+        {
+
+            CampagneTheme theme = new CampagneTheme( );
+
+            theme.setCode( lastTheme.getCode( ) );
+            theme.setCodeCampagne( "" + newCampagneCode );
+            theme.setTitle( lastTheme.getTitle( ) );
+            theme.setDescription( lastTheme.getDescription( ) );
+            theme.setActive( true );
+
+            CampagneThemeHome.create( theme );
+        }
+
+        // Creates depositary -----------------------------------------------------------------------------
+
+        // Collection<CampagneDepositaire> lastDepositaires = CampagneDepositaireHome.getCampagneDepositaireListByCampagne( lastCampagne.getCode() );
+        //
+        // for (CampagneDepositaire lastDepositaire : lastDepositaires) {
+        //
+        // CampagneDepositaire depositaire = new CampagneDepositaire();
+        //
+        // depositaire.setCodeDepositaireType ( lastDepositaire.getCodeDepositaireType() );
+        // depositaire.setCodeCampagne ( "" + newCampagneCode );
+        //
+        // CampagneDepositaireHome.create( depositaire );
+        // }
+
         // Reseting cache
-        
-        CampaignService.getInstance().reset();
-        
-        return newCampagne.getCode();
+
+        CampaignService.getInstance( ).reset( );
+
+        return newCampagne.getCode( );
     }
-    
+
 }

@@ -57,76 +57,75 @@ import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.util.html.HtmlTemplate;
 
-
 /**
  * Page include to add the
  */
 public class HeaderInclude implements PageInclude
 {
-	//Marks
-	public  static final String MARK_HEADER_INCLUDE = "header_include";
-	public  static final String MARK_HEADER_CONNEXION = "header_connexion";
-	public  static final String MARK_USER = "user";
-	public  static final String MARK_RANDOM = "RANDOM";
-	private static final String MARK_URL_DO_LOGIN = "url_dologin";
+    // Marks
+    public static final String MARK_HEADER_INCLUDE = "header_include";
+    public static final String MARK_HEADER_CONNEXION = "header_connexion";
+    public static final String MARK_USER = "user";
+    public static final String MARK_RANDOM = "RANDOM";
+    private static final String MARK_URL_DO_LOGIN = "url_dologin";
     private static final String MARK_URL_DO_LOGOUT = "url_dologout";
     private static final String MARK_URL_MONCOMPTE = "url_moncompte";
     private static final String MARK_CAMPAGNE_SERVICE = "campagneService";
-    
-	// TODO : delete following mark 
-	public static final String MARK_USER_ARRONDISSEMENT_VOTE = "user_arr_vote";
+
+    // TODO : delete following mark
+    public static final String MARK_USER_ARRONDISSEMENT_VOTE = "user_arr_vote";
 
     // Properties
     private static final String PROPERTY_URL_MONCOMPTE = "participatorybudget.include.url.moncompte";
-	
-	//Services
+
+    // Services
     private MyVoteService _myVoteService = SpringContextService.getBean( MyVoteService.BEAN_NAME );
-    
-    //Templates
+
+    // Templates
     private static final String TEMPLATE_CONNEXION = "skin/plugins/mylutece/includes/user_login_title.html";
 
-    private static final Random _random = new Random(  );
-    
+    private static final Random _random = new Random( );
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void fillTemplate( Map<String, Object> rootModel, PageData data, int nMode, HttpServletRequest request )
-    {                        
-		if ( request != null )
-		{ 
-		    rootModel.put( MARK_HEADER_INCLUDE, BudgetIncludeService.getHeaderTemplate(request, _myVoteService));
-		    rootModel.put( MARK_URL_DO_LOGIN  , SecurityService.getInstance().getDoLoginUrl() );
-		    rootModel.put( MARK_URL_DO_LOGOUT , SecurityService.getInstance().getDoLogoutUrl() );
-		 
-			LuteceUser user = null;
-			try 
-			{
-				user = SecurityService.getInstance().getRemoteUser(request);
-				if(user!=null)
-				{
-					rootModel.put(             MARK_USER_ARRONDISSEMENT_VOTE, BudgetUtils.getArrondissement( user.getName( ) ) );
-					rootModel.put( BudgetUtils.MARK_VOTE_VALIDATED          , _myVoteService.isUserVoteValidated( user.getName( ) ) );
-				}
-			} 
-			catch (UserNotSignedException e) 
-			{
-				AppLogService.error( e.getMessage( ) ) ;
-			}
-			
-			rootModel.put( MARK_USER, user);
-			
-			rootModel.put(SecurityTokenService.MARK_TOKEN,SecurityTokenService.getInstance().getToken(request, MyInfosXPage.TOKEN_DO_CREATE_MY_INFOS));
-			
-			rootModel.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
-			
-			HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_CONNEXION, request.getLocale(), rootModel );
-			
-	        rootModel.put( MARK_USER, user);
-	        rootModel.put( MARK_HEADER_CONNEXION, template.getHtml(  ) );
-	        rootModel.put( MARK_RANDOM, Math.abs( _random.nextLong( ) ) );
-	        rootModel.put( MARK_URL_MONCOMPTE, AppPropertiesService.getProperty( PROPERTY_URL_MONCOMPTE ) );
-	        rootModel.put( MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
-		}
-	}
+    {
+        if ( request != null )
+        {
+            rootModel.put( MARK_HEADER_INCLUDE, BudgetIncludeService.getHeaderTemplate( request, _myVoteService ) );
+            rootModel.put( MARK_URL_DO_LOGIN, SecurityService.getInstance( ).getDoLoginUrl( ) );
+            rootModel.put( MARK_URL_DO_LOGOUT, SecurityService.getInstance( ).getDoLogoutUrl( ) );
+
+            LuteceUser user = null;
+            try
+            {
+                user = SecurityService.getInstance( ).getRemoteUser( request );
+                if ( user != null )
+                {
+                    rootModel.put( MARK_USER_ARRONDISSEMENT_VOTE, BudgetUtils.getArrondissement( user.getName( ) ) );
+                    rootModel.put( BudgetUtils.MARK_VOTE_VALIDATED, _myVoteService.isUserVoteValidated( user.getName( ) ) );
+                }
+            }
+            catch( UserNotSignedException e )
+            {
+                AppLogService.error( e.getMessage( ) );
+            }
+
+            rootModel.put( MARK_USER, user );
+
+            rootModel.put( SecurityTokenService.MARK_TOKEN, SecurityTokenService.getInstance( ).getToken( request, MyInfosXPage.TOKEN_DO_CREATE_MY_INFOS ) );
+
+            rootModel.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+
+            HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_CONNEXION, request.getLocale( ), rootModel );
+
+            rootModel.put( MARK_USER, user );
+            rootModel.put( MARK_HEADER_CONNEXION, template.getHtml( ) );
+            rootModel.put( MARK_RANDOM, Math.abs( _random.nextLong( ) ) );
+            rootModel.put( MARK_URL_MONCOMPTE, AppPropertiesService.getProperty( PROPERTY_URL_MONCOMPTE ) );
+            rootModel.put( MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+        }
+    }
 }

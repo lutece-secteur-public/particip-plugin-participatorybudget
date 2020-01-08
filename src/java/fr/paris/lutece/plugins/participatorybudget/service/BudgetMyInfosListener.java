@@ -47,56 +47,57 @@ import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
-public class BudgetMyInfosListener implements IMyInfosListener {
+public class BudgetMyInfosListener implements IMyInfosListener
+{
 
-	private MyVoteService _myVoteService = SpringContextService.getBean(MyVoteService.BEAN_NAME);
-	
-	@Override
-	public void updateNickName(String strLuteceUserName, String strNickName) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+    private MyVoteService _myVoteService = SpringContextService.getBean( MyVoteService.BEAN_NAME );
 
-	@Override
-	public void createNickName(String strLuteceUserName, String strNickName) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void updateNickName( String strLuteceUserName, String strNickName )
+    {
+        // TODO Auto-generated method stub
 
-	@Override
-	public int canChangeArrond( LuteceUser user) 
-	{
-		// Vote arrondissement can be changed only during submission or vote phases, and during vote only is the user has not validated his votes
-		
-    	boolean isValidated = false;
-		if ( user != null )
-		{
-			isValidated= _myVoteService.isUserVoteValidated( user.getName( ) );
-		}
+    }
 
-    	if ( CampaignService.getInstance().isDuring("VOTE") && isValidated)
-    	{
-    		return -1; // Vote opened but vote already validated
-    	}
-    	
-    	if ( CampaignService.getInstance().isBeforeBeginning("SUBMIT") || CampaignService.getInstance().isAfterEnd("VOTE") )
-    	{
-    		return 2; // Not in submission or vote phase
-    	}
-    	
-    	if ( CampaignService.getInstance().isDuring("VOTE") )
-    	{
-    		return 1; // In vote phase, need confirmatinon of votes suppression 
-    	}
-    	
-   		return 0; // In submission phase, basic confirmation 
-	}
-	
-	public String deleteVotes( HttpServletRequest request )
-	{
-		return _myVoteService.cancelVote(request) ;
-	}
+    @Override
+    public void createNickName( String strLuteceUserName, String strNickName )
+    {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public int canChangeArrond( LuteceUser user )
+    {
+        // Vote arrondissement can be changed only during submission or vote phases, and during vote only is the user has not validated his votes
+
+        boolean isValidated = false;
+        if ( user != null )
+        {
+            isValidated = _myVoteService.isUserVoteValidated( user.getName( ) );
+        }
+
+        if ( CampaignService.getInstance( ).isDuring( "VOTE" ) && isValidated )
+        {
+            return -1; // Vote opened but vote already validated
+        }
+
+        if ( CampaignService.getInstance( ).isBeforeBeginning( "SUBMIT" ) || CampaignService.getInstance( ).isAfterEnd( "VOTE" ) )
+        {
+            return 2; // Not in submission or vote phase
+        }
+
+        if ( CampaignService.getInstance( ).isDuring( "VOTE" ) )
+        {
+            return 1; // In vote phase, need confirmatinon of votes suppression
+        }
+
+        return 0; // In submission phase, basic confirmation
+    }
+
+    public String deleteVotes( HttpServletRequest request )
+    {
+        return _myVoteService.cancelVote( request );
+    }
 
 }

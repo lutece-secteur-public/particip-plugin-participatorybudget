@@ -43,20 +43,19 @@ import fr.paris.lutece.plugins.participatorybudget.business.bizstat.BizStatFileH
 import fr.paris.lutece.plugins.participatorybudget.service.bizstat.BizStartExportThread;
 import fr.paris.lutece.portal.service.daemon.Daemon;
 
-
 /**
  * Daemon to send notification to users
  */
 public class BizStatExportDaemon extends Daemon
 {
 
-	private BizStartExportThread _threadExport = null;
-	
+    private BizStartExportThread _threadExport = null;
+
     @Override
     public void run( )
     {
-    	purge();
-    	export();
+        purge( );
+        export( );
 
     }
 
@@ -65,71 +64,76 @@ public class BizStatExportDaemon extends Daemon
     // * PURGE PURGE PURGE PURGE PURGE PURGE PURGE PURGE PURGE PURGE PURGE PURGE PURGE PURGE PURGE *
     // *********************************************************************************************
 
-    private void purge() {
-    	
-    	// Get all exports
-    	List<BizStatFile> files = BizStatFileHome.findAllWithoutBinaryContent();
+    private void purge( )
+    {
 
-    	// Calculating beginning of the current day
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis( System.currentTimeMillis() );
-		calendar.set( Calendar.HOUR_OF_DAY , 0 );
-		calendar.set( Calendar.MINUTE      , 0 );
-		calendar.set( Calendar.SECOND      , 0 );
-		calendar.set( Calendar.MILLISECOND , 0 );
-		Timestamp today = new Timestamp( calendar.getTimeInMillis() );
+        // Get all exports
+        List<BizStatFile> files = BizStatFileHome.findAllWithoutBinaryContent( );
 
-    	// Purging old ones
-    	for (BizStatFile file : files) {
-			if ( file.getCreationDate().before( today ) )
-			{
-				file.setValue  ( null );
-				file.setStatus ( BizStatFile.STATUS_PURGED );
-				BizStatFileHome.update( file );
-			}
-		}
-    	
+        // Calculating beginning of the current day
+        Calendar calendar = Calendar.getInstance( );
+        calendar.setTimeInMillis( System.currentTimeMillis( ) );
+        calendar.set( Calendar.HOUR_OF_DAY, 0 );
+        calendar.set( Calendar.MINUTE, 0 );
+        calendar.set( Calendar.SECOND, 0 );
+        calendar.set( Calendar.MILLISECOND, 0 );
+        Timestamp today = new Timestamp( calendar.getTimeInMillis( ) );
+
+        // Purging old ones
+        for ( BizStatFile file : files )
+        {
+            if ( file.getCreationDate( ).before( today ) )
+            {
+                file.setValue( null );
+                file.setStatus( BizStatFile.STATUS_PURGED );
+                BizStatFileHome.update( file );
+            }
+        }
+
     }
-    
+
     // *********************************************************************************************
     // * EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPOR *
     // * EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPORT EXPOR *
     // *********************************************************************************************
-    
-    private void export() {
-	
-    	if ( _threadExport == null )
-		{
-        	// Creates a thread if does not exist
-			_threadExport = new BizStartExportThread();
-		}
-    	else if ( _threadExport.getState() == State.TERMINATED )
-     	{
-	    	// Creates a new thread
-			_threadExport = new BizStartExportThread();
 
-			// Files stilling in a 'being processed' status are statued as 'error'
-        	List<BizStatFile> files = BizStatFileHome.findByStatusWithoutBinaryContent( BizStatFile.STATUS_UNDER_TREATMENT );
-	    	for (BizStatFile file : files) {
-				file.setStatus ( BizStatFile.STATUT_ERROR );
-				file.setError  ( "Still 'being processed' while the export daemon was terminated." );
-				BizStatFileHome.update( file );
-			}
-     	}
-    	
-    	if ( _threadExport.getState() == State.NEW ) 
-    	{
-        	// Launches the thread if it does not run
-			try 
-			{
-				_threadExport.start();
-			} 
-			catch (Exception e) 
-			{
-				_threadExport.interrupt();
-				_threadExport = null;
-			}
-		}
+    private void export( )
+    {
+
+        if ( _threadExport == null )
+        {
+            // Creates a thread if does not exist
+            _threadExport = new BizStartExportThread( );
+        }
+        else
+            if ( _threadExport.getState( ) == State.TERMINATED )
+            {
+                // Creates a new thread
+                _threadExport = new BizStartExportThread( );
+
+                // Files stilling in a 'being processed' status are statued as 'error'
+                List<BizStatFile> files = BizStatFileHome.findByStatusWithoutBinaryContent( BizStatFile.STATUS_UNDER_TREATMENT );
+                for ( BizStatFile file : files )
+                {
+                    file.setStatus( BizStatFile.STATUT_ERROR );
+                    file.setError( "Still 'being processed' while the export daemon was terminated." );
+                    BizStatFileHome.update( file );
+                }
+            }
+
+        if ( _threadExport.getState( ) == State.NEW )
+        {
+            // Launches the thread if it does not run
+            try
+            {
+                _threadExport.start( );
+            }
+            catch( Exception e )
+            {
+                _threadExport.interrupt( );
+                _threadExport = null;
+            }
+        }
     }
-    
+
 }

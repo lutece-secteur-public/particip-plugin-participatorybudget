@@ -56,12 +56,11 @@ import fr.paris.lutece.portal.util.mvc.xpage.MVCApplication;
 import fr.paris.lutece.portal.util.mvc.xpage.annotations.Controller;
 import fr.paris.lutece.portal.web.xpages.XPage;
 
-
 /**
  * This class provides the user interface to view Idee xpages
  */
- 
-@Controller( xpageName = "myFavourites" , pageTitleI18nKey = "participatorybudget.xpage.projectsFavourite.pageTitle" , pagePathI18nKey = "participatorybudget.xpage.projectsFavourite.pagePathLabel" )
+
+@Controller( xpageName = "myFavourites", pageTitleI18nKey = "participatorybudget.xpage.projectsFavourite.pageTitle", pagePathI18nKey = "participatorybudget.xpage.projectsFavourite.pagePathLabel" )
 public class FavouritesProjectsXPage extends MVCApplication
 {
     /**
@@ -69,79 +68,73 @@ public class FavouritesProjectsXPage extends MVCApplication
      */
     private static final long serialVersionUID = 2703580251118435168L;
 
-
-    private static final String TEMPLATE_VIEW_FAVOURITE_PROJECT="/skin/plugins/participatorybudget/view_favourites_projects.html";
+    private static final String TEMPLATE_VIEW_FAVOURITE_PROJECT = "/skin/plugins/participatorybudget/view_favourites_projects.html";
 
     // Markers
-  
+
     private static final String MARK_PROJECTS_FAVOURITE = "favouriteProjects";
     private static final String MARK_PROJECTS_FOLLOWERS = "followerProjects";
     private static final String MARK_USER_ARRONDISSEMENT = "userArrondissement";
-	private static final String MARK_ARRONDISSEMENT = "arrondissement";
+    private static final String MARK_ARRONDISSEMENT = "arrondissement";
 
-
-  
     // Properties
-    
 
     // Views
-  
+
     private static final String VIEW_FAVOURITES_PROJECTS = "myFavourites";
-    
+
     // Actions
-    
-	private MyFavouritesProjects _myFavouriteService = SpringContextService.getBean(MyFavouritesProjects.BEAN_NAME);
-	private MyVoteService _myVoteService = SpringContextService
-			.getBean(MyVoteService.BEAN_NAME);
-    
+
+    private MyFavouritesProjects _myFavouriteService = SpringContextService.getBean( MyFavouritesProjects.BEAN_NAME );
+    private MyVoteService _myVoteService = SpringContextService.getBean( MyVoteService.BEAN_NAME );
+
     /**
      * Returns the favourite projects for user
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HT
      */
-    
-    
-    @View( value = VIEW_FAVOURITES_PROJECTS, defaultView = true)
+
+    @View( value = VIEW_FAVOURITES_PROJECTS, defaultView = true )
     public XPage getFavouritesProject( HttpServletRequest request ) throws UserNotSignedException
     {
-    	LuteceUser user= checkUserAuthorized(request); 
-    	List<Document> listFavouris=_myFavouriteService.getFavouritesProjects(user);
-    	List<Document> listFollowers=_myFavouriteService.getFollowersProjects(user);
-    	String arrondissement= BudgetUtils.getArrondissementDisplay(user);
-		boolean isValidated= _myVoteService.isUserVoteValidated(user.getName( ));
+        LuteceUser user = checkUserAuthorized( request );
+        List<Document> listFavouris = _myFavouriteService.getFavouritesProjects( user );
+        List<Document> listFollowers = _myFavouriteService.getFollowersProjects( user );
+        String arrondissement = BudgetUtils.getArrondissementDisplay( user );
+        boolean isValidated = _myVoteService.isUserVoteValidated( user.getName( ) );
 
-    	
-		Map<String, Object> model = getModel();
-		model.put( MARK_USER_ARRONDISSEMENT, arrondissement );  
-    	model.put( MARK_PROJECTS_FAVOURITE, listFavouris );
-    	model.put( MARK_PROJECTS_FOLLOWERS, listFollowers );
-		model.put(BudgetUtils.MARK_VOTE_VALIDATED, isValidated);
+        Map<String, Object> model = getModel( );
+        model.put( MARK_USER_ARRONDISSEMENT, arrondissement );
+        model.put( MARK_PROJECTS_FAVOURITE, listFavouris );
+        model.put( MARK_PROJECTS_FOLLOWERS, listFollowers );
+        model.put( BudgetUtils.MARK_VOTE_VALIDATED, isValidated );
 
-		model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance() );
+        model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
 
-    	return getXPage( TEMPLATE_VIEW_FAVOURITE_PROJECT, request.getLocale(  ), model );
+        return getXPage( TEMPLATE_VIEW_FAVOURITE_PROJECT, request.getLocale( ), model );
     }
-    
-    
-   /**
-    * Check User
-    * @param request
-    * @return
-    * @throws UserNotSignedException
-    */
-    private LuteceUser checkUserAuthorized(HttpServletRequest request)throws UserNotSignedException
+
+    /**
+     * Check User
+     * 
+     * @param request
+     * @return
+     * @throws UserNotSignedException
+     */
+    private LuteceUser checkUserAuthorized( HttpServletRequest request ) throws UserNotSignedException
     {
-        LuteceUser user=null;
-        if (SecurityService.isAuthenticationEnable()) {
-            user=SecurityService.getInstance().getRemoteUser(request);
-            if(user==null)
+        LuteceUser user = null;
+        if ( SecurityService.isAuthenticationEnable( ) )
+        {
+            user = SecurityService.getInstance( ).getRemoteUser( request );
+            if ( user == null )
             {
-                throw new UserNotSignedException();
+                throw new UserNotSignedException( );
             }
         }
         return user;
     }
- 
-  
+
 }
