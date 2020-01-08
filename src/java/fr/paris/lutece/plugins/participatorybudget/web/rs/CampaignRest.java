@@ -32,7 +32,7 @@
  * License 1.0
  */
 /*
-/*
+ /*
  * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
@@ -67,8 +67,6 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.web.rs;
 
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
@@ -79,15 +77,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import fr.paris.lutece.plugins.participatorybudget.service.NoSuchPhaseException;
-import fr.paris.lutece.plugins.participatorybudget.service.authentication.RequestAuthenticationService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.rest.service.RestConstants;
 import fr.paris.lutece.portal.service.util.AppLogService;
-import fr.paris.lutece.util.ReferenceList;
-import net.sf.json.JSONObject;
 
 @Path( RestConstants.BASE_PATH + "campaign" )
-public class CampaignRest
+public class CampaignRest extends AbstractServiceRest
 {
 
     private static final String LOG_UNAUTHENTICATED_REQUEST = "Calling Campaign rest API with unauthenticated request";
@@ -611,44 +606,6 @@ public class CampaignRest
             AppLogService.error( e );
             return formatJson( "KO", false );
         }
-    }
-
-    // *********************************************************************************************
-    // * REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST *
-    // * REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST REST *
-    // *********************************************************************************************
-
-    /**
-     * Checks if the request is authenticated or not
-     *
-     * @param request
-     *            the HTTP request
-     * @return {@code true} if the request is authenticated, {@code false} otherwise
-     */
-    private boolean isRequestAuthenticated( HttpServletRequest request )
-    {
-        return RequestAuthenticationService.getRequestAuthenticator( ).isRequestAuthenticated( request );
-    }
-
-    // *********************************************************************************************
-    // * JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON *
-    // * JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON *
-    // *********************************************************************************************
-
-    private String formatJson( String status, Object result )
-    {
-        return formatJson( status, result, "" );
-    }
-
-    private String formatJson( String status, Object result, Object complement )
-    {
-        String message;
-        JSONObject json = new JSONObject( );
-        json.put( "status", status );
-        json.put( "result", result );
-        json.put( "complement", complement );
-        message = json.toString( );
-        return message;
     }
 
 }
