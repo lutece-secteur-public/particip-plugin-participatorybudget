@@ -76,6 +76,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
 import fr.paris.lutece.plugins.participatorybudget.service.NoSuchPhaseException;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.rest.service.RestConstants;
@@ -86,6 +87,38 @@ public class CampaignRest extends AbstractServiceRest
 {
 
     private static final String LOG_UNAUTHENTICATED_REQUEST = "Calling Campaign rest API with unauthenticated request";
+
+    // *********************************************************************************************
+    // * CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN *
+    // * CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN CAMPAIGN *
+    // *********************************************************************************************
+
+    /**
+     * Returns the list of campaigns
+     * 
+     * @return the List of campaigns
+     * @throws ServletException
+     */
+    @GET
+    @Path( "campaigns" )
+    @Produces( MediaType.APPLICATION_JSON )
+    public String getCampaigns( @Context HttpServletRequest request ) throws ServletException
+    {
+        if ( !isRequestAuthenticated( request ) )
+        {
+            AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+            throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+        }
+        try
+        {
+            return formatJson( "OK", CampagneHome.getCampagnesList( ) );
+        }
+        catch( NoSuchPhaseException e )
+        {
+            AppLogService.error( e );
+            return formatJson( "KO", false );
+        }
+    }
 
     // *********************************************************************************************
     // * PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE *

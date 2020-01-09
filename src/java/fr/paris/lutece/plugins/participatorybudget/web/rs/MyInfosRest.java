@@ -77,6 +77,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
+import fr.paris.lutece.plugins.participatorybudget.web.MyInfosXPage;
 import fr.paris.lutece.plugins.rest.service.RestConstants;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
@@ -117,6 +118,33 @@ public class MyInfosRest extends AbstractServiceRest
                 return formatJson( "KO", "No such user : " + userId + " !" );
             }
             return formatJson( "OK", MyInfosService.loadUserInfos( user ).getIsValid( ) );
+        }
+        catch( Exception e )
+        {
+            AppLogService.error( e );
+            return formatJson( "KO", false );
+        }
+    }
+
+    /**
+     * Returns URL of page where user can fill its personal infos
+     * 
+     * @return url of the web page
+     * @throws ServletException
+     */
+    @GET
+    @Path( "url-myinfos-fill-action" )
+    @Produces( MediaType.APPLICATION_JSON )
+    public String getUrlMyInfosFillAction( @Context HttpServletRequest request ) throws ServletException
+    {
+        if ( !isRequestAuthenticated( request ) )
+        {
+            AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+            throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+        }
+        try
+        {
+            return formatJson( "OK", MyInfosXPage.getUrlMyInfos( ) );
         }
         catch( Exception e )
         {
