@@ -69,8 +69,7 @@ package fr.paris.lutece.plugins.participatorybudget.web.rs;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -80,10 +79,7 @@ import org.apache.commons.lang.NotImplementedException;
 
 import com.google.gson.JsonObject;
 
-import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.plugins.rest.service.RestConstants;
-import fr.paris.lutece.portal.service.security.LuteceUser;
-import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 
 @Path( RestConstants.BASE_PATH + "project" )
@@ -103,11 +99,12 @@ public class ProjectRest extends AbstractServiceRest
      * @return The id of the new project
      * @throws ServletException
      */
-    @POST
-    @Path( "/project/create" )
-    @Consumes( MediaType.APPLICATION_JSON )
+    // @POST
+    @GET
+    @Path( "/create" )
+    // @Consumes( MediaType.APPLICATION_JSON )
     @Produces( MediaType.APPLICATION_JSON )
-    public String areMyInfosValid( @Context HttpServletRequest request, JsonObject jsonRequest ) throws ServletException
+    public String createProject( @Context HttpServletRequest request ) throws ServletException
     {
         if ( !isRequestAuthenticated( request ) )
         {
@@ -116,7 +113,7 @@ public class ProjectRest extends AbstractServiceRest
         }
         try
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException( );
         }
         catch( Exception e )
         {

@@ -24,6 +24,7 @@
 	
     <!-- CAMPAIGN WS REST -->
     <bean id="participatorybudget.CampaignRest" class="fr.paris.lutece.plugins.participatorybudget.web.rs.CampaignRest" />
+    <bean id="participatorybudget.ProjectRest" class="fr.paris.lutece.plugins.participatorybudget.web.rs.ProjectRest" />
     <bean id="participatorybudget.MyInfosRest" class="fr.paris.lutece.plugins.participatorybudget.web.rs.MyInfosRest" />
     <bean id='participatorybudget.hashService' class='fr.paris.lutece.util.signrequest.security.Sha1HashService' />
     <bean id='participatorybudget.requestAuthentication' class='fr.paris.lutece.util.signrequest.HeaderHashAuthenticator' >
