@@ -60,8 +60,8 @@ public class DocumentPageProjectOPService implements IResourceDisplayManager
     private static final String SOLR_FQ_PROJECTS_OP_STATUT = "-statut_text:";
 
     private static final String SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX = "solr.reponse.max";
-    private static final int SOLRSEARCHAPP_SOLR_RESPONSE_MAX = Integer.parseInt( AppPropertiesService.getProperty( SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX,
-            "50" ) );
+    private static final int SOLRSEARCHAPP_SOLR_RESPONSE_MAX = Integer
+            .parseInt( AppPropertiesService.getProperty( SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX, "50" ) );
 
     private static final String MARK_STATUS = "status_document";
     private static final String MARK_STATUS_VOTED = "SUIVI";
@@ -152,7 +152,8 @@ public class DocumentPageProjectOPService implements IResourceDisplayManager
 
                         geolocItem.setIcon( strIcon );
                         h.put( SOLRSEARCHAPP_MARK_POINTS_GEOJSON, geolocItem.toJSON( ) );
-                        h.put( SOLRSEARCHAPP_MARK_POINTS_ID, result.getId( ).substring( result.getId( ).indexOf( "_" ) + 1, result.getId( ).lastIndexOf( "_" ) ) );
+                        h.put( SOLRSEARCHAPP_MARK_POINTS_ID,
+                                result.getId( ).substring( result.getId( ).indexOf( "_" ) + 1, result.getId( ).lastIndexOf( "_" ) ) );
                         h.put( SOLRSEARCHAPP_MARK_POINTS_FIELDCODE, key.substring( 0, key.lastIndexOf( "_" ) ) );
                         if ( strType.equals( "doc" ) )
                         {

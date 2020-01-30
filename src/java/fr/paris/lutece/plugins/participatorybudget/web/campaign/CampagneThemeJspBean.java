@@ -174,7 +174,8 @@ public class CampagneThemeJspBean extends ManageCampagnebpJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNETHEME ) );
         url.addParameter( PARAMETER_ID_CAMPAGNETHEME, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNETHEME, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNETHEME, url.getUrl( ),
+                AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }

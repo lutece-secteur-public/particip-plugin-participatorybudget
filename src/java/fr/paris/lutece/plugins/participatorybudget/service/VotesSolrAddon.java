@@ -66,7 +66,7 @@ public class VotesSolrAddon implements ISolrSearchAppAddOn
         for ( SolrSearchResult solrSearchResult : listResults )
         {
             String solrDocPortletId = solrSearchResult.getDocPortletId( );
-            String parsedSolrDocPortletId [ ] = solrDocPortletId.split( "&" );
+            String parsedSolrDocPortletId[] = solrDocPortletId.split( "&" );
             AppLogService.debug( "participatorybudget, fetching " + solrDocPortletId );
             if ( parsedSolrDocPortletId.length == 2 )
             {

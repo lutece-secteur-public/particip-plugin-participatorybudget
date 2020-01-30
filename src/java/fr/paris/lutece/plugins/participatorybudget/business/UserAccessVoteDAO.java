@@ -48,7 +48,7 @@ public class UserAccessVoteDAO implements IUserAccessVoteDAO
     @Override
     public void insert( UserAccessVote userVote, Plugin plugin )
     {
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )
         {
             daoUtil.setString( 1, userVote.getId( ) );
             daoUtil.setBoolean( 2, userVote.isHasAccessVote( ) );
@@ -61,7 +61,7 @@ public class UserAccessVoteDAO implements IUserAccessVoteDAO
     @Override
     public void update( UserAccessVote userVote, Plugin plugin )
     {
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin ) )
         {
             daoUtil.setBoolean( 1, userVote.isHasAccessVote( ) );
             daoUtil.setString( 2, userVote.getId( ) );
@@ -73,7 +73,7 @@ public class UserAccessVoteDAO implements IUserAccessVoteDAO
     @Override
     public void delete( String strUserId, Plugin plugin )
     {
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
 
@@ -86,7 +86,7 @@ public class UserAccessVoteDAO implements IUserAccessVoteDAO
     {
         UserAccessVote userAccessVote = null;
 
-        try( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
             daoUtil.executeQuery( );

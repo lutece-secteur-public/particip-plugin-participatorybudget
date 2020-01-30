@@ -51,8 +51,8 @@ public final class ModelUtils
     // Markers
     private static final String MARKER_AUTHORIZED_ADDRESS = "authorized_address";
 
-    private static List<String> _listAuthorizedCities = Arrays.asList( AppPropertiesService.getProperty( Constants.PROPERTY_AUTHORIZED_CITIES ).split(
-            Constants.AUTHORIZED_CITIES_SEPARATOR ) );
+    private static List<String> _listAuthorizedCities = Arrays
+            .asList( AppPropertiesService.getProperty( Constants.PROPERTY_AUTHORIZED_CITIES ).split( Constants.AUTHORIZED_CITIES_SEPARATOR ) );
 
     /**
      * Default constructor

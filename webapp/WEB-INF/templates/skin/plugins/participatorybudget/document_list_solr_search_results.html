@@ -9,38 +9,38 @@
 		<h2 class="visuallyhidden">Liste des résultats de la recherche</h2>
 		<div id="psoum-list" class="row">
 
-			<#assign theme_class = "autre">
-			
 			<#-- On boucle sur les projets à afficher -->
 			<#list results_list as result>
+			
+				<#assign theme_class = "other">
 			
 				<#assign id_document = "${(result.id?split('Lutece_')?last)?split('_')?first}">
 				<#assign result_detail_idx = ((paginator.pageCurrent-1)*paginator.itemsPerPage)+1+result_index>
 
 				<#-- on identifie la classe CSS relative au thème du projet en cours -->
-				<#if result.dynamicFields?? && result.dynamicFields.thematique_text??>
-					<#if result.dynamicFields.thematique_text = "Cadre de vie"><#assign theme_class = "cadre_vie">
-					<#elseif result.dynamicFields.thematique_text = "Culture" || result.dynamicFields.thematique_text = "Culture et patrimoine"><#assign theme_class = "culture">
-					<#elseif result.dynamicFields.thematique_text = "Economie et emploi"><#assign theme_class = "economie_emploi">
-					<#elseif result.dynamicFields.thematique_text = "Économie, emploi et attractivité"><#assign theme_class = "economie_emploi">
-					<#elseif result.dynamicFields.thematique_text = "Education et jeunesse"><#assign theme_class = "education">
-					<#elseif result.dynamicFields.thematique_text = "Environnement" || result.dynamicFields.thematique_text = "Nature en ville"><#assign theme_class = "environnement">
-					<#elseif result.dynamicFields.thematique_text = "Logement et habitat"><#assign theme_class = "logement">
-					<#elseif result.dynamicFields.thematique_text = "Participation citoyenne"><#assign theme_class = "participation_citoyenne">
-					<#elseif result.dynamicFields.thematique_text = "Prévention et sécurité"><#assign theme_class = "prevention_securite">
-					<#elseif result.dynamicFields.thematique_text = "Propreté"><#assign theme_class = "proprete">
-					<#elseif result.dynamicFields.thematique_text = "Santé"><#assign theme_class = "sante">
-					<#elseif result.dynamicFields.thematique_text = "Solidarité" || result.dynamicFields.thematique_text = "Vivre ensemble" || result.dynamicFields.thematique_text = "Solidarité et cohésion sociale " || result.dynamicFields.thematique_text = "Solidarité et cohésion sociale"><#assign theme_class = "solidarite">
-					<#elseif result.dynamicFields.thematique_text = "Sport"><#assign theme_class = "sport">
-					<#elseif result.dynamicFields.thematique_text = "Transport et mobilité"><#assign theme_class = "transport">
-					<#elseif result.dynamicFields.thematique_text = "Ville intelligente et numérique"><#assign theme_class = "ville_numerique">
+				<#if result.dynamicFields?? && result.dynamicFields.theme_text??>
+					<#if     result.dynamicFields.theme_text = "Cadre de vie"><#assign theme_class = "cadre_vie">
+					<#elseif result.dynamicFields.theme_text = "Culture" || result.dynamicFields.theme_text = "Culture et patrimoine"><#assign theme_class = "culture">
+					<#elseif result.dynamicFields.theme_text = "Economie et emploi"><#assign theme_class = "economie_emploi">
+					<#elseif result.dynamicFields.theme_text = "Économie, emploi et attractivité"><#assign theme_class = "economie_emploi">
+					<#elseif result.dynamicFields.theme_text = "Education et jeunesse"><#assign theme_class = "education">
+					<#elseif result.dynamicFields.theme_text = "Environnement" || result.dynamicFields.theme_text = "Nature en ville"><#assign theme_class = "environnement">
+					<#elseif result.dynamicFields.theme_text = "Logement et habitat"><#assign theme_class = "logement">
+					<#elseif result.dynamicFields.theme_text = "Participation citoyenne"><#assign theme_class = "participation_citoyenne">
+					<#elseif result.dynamicFields.theme_text = "Prévention et sécurité"><#assign theme_class = "prevention_securite">
+					<#elseif result.dynamicFields.theme_text = "Propreté"><#assign theme_class = "proprete">
+					<#elseif result.dynamicFields.theme_text = "Santé"><#assign theme_class = "sante">
+					<#elseif result.dynamicFields.theme_text = "Solidarité" || result.dynamicFields.theme_text = "Vivre ensemble" || result.dynamicFields.theme_text = "Solidarité et cohésion sociale " || result.dynamicFields.theme_text = "Solidarité et cohésion sociale"><#assign theme_class = "solidarite">
+					<#elseif result.dynamicFields.theme_text = "Sport"><#assign theme_class = "sport">
+					<#elseif result.dynamicFields.theme_text = "Transport et mobilité"><#assign theme_class = "transport">
+					<#elseif result.dynamicFields.theme_text = "Ville intelligente et numérique"><#assign theme_class = "ville_numerique">
 					</#if>
 				</#if>
 				
 				<#-- On calcule au préalable quelques variables sur le projet. -->
 				
 				<#assign abandonne = false>
-				<#if result.dynamicFields?? && result.dynamicFields.statut_eudo_text?? && result.dynamicFields.statut_eudo_text = 'Abandonné'>
+				<#if result.dynamicFields?? && result.dynamicFields.status_text?? && result.dynamicFields.status_text = 'Abandonné'>
 					<#assign abandonne = true>
 				</#if>
 				
@@ -51,26 +51,18 @@
 				</#if>
 				
 				<#assign dNow = .now?long>
-				<#if result.dynamicFields?? && result.dynamicFields.step1_date?? && result.dynamicFields.step1_date?has_content > <#assign step1 = result.dynamicFields.step1_date?date?long> <#else> <#assign step1 = "31/12/2099"?date?long> </#if>
-				<#if result.dynamicFields?? && result.dynamicFields.step2_date?? && result.dynamicFields.step2_date?has_content > <#assign step2 = result.dynamicFields.step2_date?date?long> <#else> <#assign step2 = "31/12/2099"?date?long> </#if>
-				<#if result.dynamicFields?? && result.dynamicFields.step3_date?? && result.dynamicFields.step3_date?has_content > <#assign step3 = result.dynamicFields.step3_date?date?long> <#else> <#assign step3 = "31/12/2099"?date?long> </#if>
-				<#if result.dynamicFields?? && result.dynamicFields.step4_date?? && result.dynamicFields.step4_date?has_content > <#assign step4 = result.dynamicFields.step4_date?date?long> <#else> <#assign step4 = "31/12/2099"?date?long> </#if>
-				<#if result.dynamicFields?? && result.dynamicFields.step5_date?? && result.dynamicFields.step5_date?has_content > <#assign step5 = result.dynamicFields.step5_date?date?long> <#else> <#assign step5 = "31/12/2099"?date?long> </#if>
-
-<#--
----<#if result.dynamicFields.phase1_date_deb_date?has_content>${result.dynamicFields.phase1_date_deb_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<#if step1?has_content>${step1?number_to_date}</#if>---<#if result.dynamicFields.step1_date?has_content>${result.dynamicFields.step1_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<br>
----<#if result.dynamicFields.phase2_date_deb_date?has_content>${result.dynamicFields.phase2_date_deb_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<#if step2?has_content>${step2?number_to_date}</#if>---<#if result.dynamicFields.step2_date?has_content>${result.dynamicFields.step2_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<br>
----<#if result.dynamicFields.phase3_date_deb_date?has_content>${result.dynamicFields.phase3_date_deb_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<#if step3?has_content>${step3?number_to_date}</#if>---<#if result.dynamicFields.step3_date?has_content>${result.dynamicFields.step3_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<br>
----<#if result.dynamicFields.phase4_date_deb_date?has_content>${result.dynamicFields.phase4_date_deb_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<#if step4?has_content>${step4?number_to_date}</#if>---<#if result.dynamicFields.step4_date?has_content>${result.dynamicFields.step4_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<br>
----<#if result.dynamicFields.phase4_date_fin_date?has_content>${result.dynamicFields.phase4_date_fin_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<#if step5?has_content>${step5?number_to_date}</#if>---<#if result.dynamicFields.step5_date?has_content>${result.dynamicFields.step5_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<br>
--->
+				<#if result.dynamicFields?? && result.dynamicFields.step1_start_date?? && result.dynamicFields.step1_start_date?has_content > <#assign step1 = result.dynamicFields.step1_start_date?date?long> <#else> <#assign step1 = "31/12/2099"?date?long> </#if>
+				<#if result.dynamicFields?? && result.dynamicFields.step2_start_date?? && result.dynamicFields.step2_start_date?has_content > <#assign step2 = result.dynamicFields.step2_start_date?date?long> <#else> <#assign step2 = "31/12/2099"?date?long> </#if>
+				<#if result.dynamicFields?? && result.dynamicFields.step3_start_date?? && result.dynamicFields.step3_start_date?has_content > <#assign step3 = result.dynamicFields.step3_start_date?date?long> <#else> <#assign step3 = "31/12/2099"?date?long> </#if>
+				<#if result.dynamicFields?? && result.dynamicFields.step4_start_date?? && result.dynamicFields.step4_start_date?has_content > <#assign step4 = result.dynamicFields.step4_start_date?date?long> <#else> <#assign step4 = "31/12/2099"?date?long> </#if>
+				<#if result.dynamicFields?? && result.dynamicFields.step5_start_date?? && result.dynamicFields.step5_start_date?has_content > <#assign step5 = result.dynamicFields.step5_start_date?date?long> <#else> <#assign step5 = "31/12/2099"?date?long> </#if>
 
 				<div class="col-xs-12 col-sm-6 col-md-4 psoum-panel <#if abandonne>psoum-abandonne</#if>">
 					
 					<a id="title-${id_document}" href="${result.url}" alt="${result.title}" title="${result.title}">
 					
 						<#-- Image -->
-						<#assign img_url = "images/local/skin/i_${theme_class}_1x2.png">
+						<#assign img_url = "images/local/skin/theme_${theme_class}.png">
 						<#if result.dynamicFields.image_text?has_content>
 							<#assign img_url = result.dynamicFields.image_text?split("src=\"")[1]?split("\"")[0]>
 						</#if>
@@ -80,8 +72,7 @@
 	
 							<#-- Thématique -->
 							<div class="psoum-card-theme bgcolor-theme-${theme_class} bgcolor-theme-${theme_class_bis}">
-								<img src="images/local/skin/i2_${theme_class}.png">
-								<span>${result.dynamicFields.thematique_text!"Sans thématique"}</span>
+								<span>${result.dynamicFields.theme_text!"No theme"}</span>
 							</div>
 	
 							<#-- Localisation -->
@@ -97,8 +88,8 @@
 									${result.dynamicFields.localisation_text!''}
 									
 									<div class="psoum-card-loc-prec">
-										<#if result.dynamicFields?? && result.dynamicFields.localisation_precise_address_text?? && (result.dynamicFields.localisation_text != 'whole_city') >
-											${result.dynamicFields.localisation_precise_address_text}
+										<#if result.dynamicFields?? && result.dynamicFields.address_geoloc_text?? && (result.dynamicFields.district_text != 'whole_city') >
+											${result.dynamicFields.address_geoloc_text}
 										<#else>
 											&nbsp;
 										</#if>
@@ -166,11 +157,11 @@
 								<div class="budget pull-right">
 									<img src="images/local/skin/money-${theme_class}.png" width="25px" height="25px" alt="" title="">
 									<#if result.dynamicFields??>
-										<#if result.dynamicFields.budget_long?? && result.dynamicFields.budget_long &gt; 0>
+										<#if result.dynamicFields.value_long?? && result.dynamicFields.value_long &gt; 0>
 											<#setting locale="fr_FR">
-											${result.dynamicFields.budget_long?string("#,###")} &#8364;
+											${result.dynamicFields.value_long?string("#,###")} &#8364;
 										<#else>
-											${result.dynamicFields.budget_text!""}
+											${result.dynamicFields.value_text!""}
 										</#if>
 									<#else>
 										-
@@ -179,9 +170,9 @@
 							</div>
 									
 							<#-- Champs transmis en Ajax lors du vote. Encore utilisé au 05/05/2017 ? -->
-							<input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${result.dynamicFields.localisation_text!}">
+							<input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${result.dynamicFields.district_text!}">
 							<input type="hidden" name="title_${id_document}" id="title_${id_document}" value="${result.title}">
-							<input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${result.dynamicFields.thematique_text}">
+							<input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${result.dynamicFields.theme_text}">
 							<input type="hidden" name="arrondUser" id="arrondUser" value="${arrondissementVote!}">
 	
 						</div>

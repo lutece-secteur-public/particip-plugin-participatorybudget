@@ -144,8 +144,8 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampaignService.getInstance( ).isBeforeBeginning( campaign, phase ), CampaignService.getInstance( )
-                    .start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );
+            return formatJson( "OK", CampaignService.getInstance( ).isBeforeBeginning( campaign, phase ),
+                    CampaignService.getInstance( ).start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );
         }
         catch( NoSuchPhaseException e )
         {
@@ -172,8 +172,8 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampaignService.getInstance( ).isBeforeBeginning( phase ), CampaignService.getInstance( ).start( phase ) + " ==> "
-                    + CampaignService.getInstance( ).end( phase ) );
+            return formatJson( "OK", CampaignService.getInstance( ).isBeforeBeginning( phase ),
+                    CampaignService.getInstance( ).start( phase ) + " ==> " + CampaignService.getInstance( ).end( phase ) );
         }
         catch( NoSuchPhaseException e )
         {
@@ -201,8 +201,8 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampaignService.getInstance( ).isAfterBeginning( campaign, phase ), CampaignService.getInstance( ).start( campaign, phase )
-                    + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );
+            return formatJson( "OK", CampaignService.getInstance( ).isAfterBeginning( campaign, phase ),
+                    CampaignService.getInstance( ).start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );
         }
         catch( NoSuchPhaseException e )
         {
@@ -229,8 +229,8 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampaignService.getInstance( ).isAfterBeginning( phase ), CampaignService.getInstance( ).start( phase ) + " ==> "
-                    + CampaignService.getInstance( ).end( phase ) );
+            return formatJson( "OK", CampaignService.getInstance( ).isAfterBeginning( phase ),
+                    CampaignService.getInstance( ).start( phase ) + " ==> " + CampaignService.getInstance( ).end( phase ) );
         }
         catch( NoSuchPhaseException e )
         {
@@ -258,8 +258,8 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampaignService.getInstance( ).isDuring( campaign, phase ), CampaignService.getInstance( ).start( campaign, phase )
-                    + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );
+            return formatJson( "OK", CampaignService.getInstance( ).isDuring( campaign, phase ),
+                    CampaignService.getInstance( ).start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );
         }
         catch( NoSuchPhaseException e )
         {
@@ -286,8 +286,8 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampaignService.getInstance( ).isDuring( phase ), CampaignService.getInstance( ).start( phase ) + " ==> "
-                    + CampaignService.getInstance( ).end( phase ) );
+            return formatJson( "OK", CampaignService.getInstance( ).isDuring( phase ),
+                    CampaignService.getInstance( ).start( phase ) + " ==> " + CampaignService.getInstance( ).end( phase ) );
         }
         catch( NoSuchPhaseException e )
         {
@@ -315,8 +315,8 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampaignService.getInstance( ).isBeforeEnd( campaign, phase ), CampaignService.getInstance( ).start( campaign, phase )
-                    + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );
+            return formatJson( "OK", CampaignService.getInstance( ).isBeforeEnd( campaign, phase ),
+                    CampaignService.getInstance( ).start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );
         }
         catch( NoSuchPhaseException e )
         {
@@ -343,8 +343,8 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampaignService.getInstance( ).isBeforeEnd( phase ), CampaignService.getInstance( ).start( phase ) + " ==> "
-                    + CampaignService.getInstance( ).end( phase ) );
+            return formatJson( "OK", CampaignService.getInstance( ).isBeforeEnd( phase ),
+                    CampaignService.getInstance( ).start( phase ) + " ==> " + CampaignService.getInstance( ).end( phase ) );
         }
         catch( NoSuchPhaseException e )
         {
@@ -372,8 +372,8 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampaignService.getInstance( ).isAfterEnd( campaign, phase ), CampaignService.getInstance( ).start( campaign, phase )
-                    + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );
+            return formatJson( "OK", CampaignService.getInstance( ).isAfterEnd( campaign, phase ),
+                    CampaignService.getInstance( ).start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );
         }
         catch( NoSuchPhaseException e )
         {
@@ -400,8 +400,8 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampaignService.getInstance( ).isAfterEnd( phase ), CampaignService.getInstance( ).start( phase ) + " ==> "
-                    + CampaignService.getInstance( ).end( phase ) );
+            return formatJson( "OK", CampaignService.getInstance( ).isAfterEnd( phase ),
+                    CampaignService.getInstance( ).start( phase ) + " ==> " + CampaignService.getInstance( ).end( phase ) );
         }
         catch( NoSuchPhaseException e )
         {

@@ -177,7 +177,8 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNEPHASE ) );
         url.addParameter( PARAMETER_ID_CAMPAGNEPHASE, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEPHASE, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEPHASE, url.getUrl( ),
+                AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }

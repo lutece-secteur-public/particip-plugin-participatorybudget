@@ -123,8 +123,8 @@ public class ProjectsXpage extends MVCApplication
 
         // Check if the user has remove the filter on his borough
         String strRemoveUserArrFilter = request.getParameter( PARAMETER_REMOVE_ARR_FILTER );
-        boolean removeUserArrFilterSelected = ( StringUtils.isNotBlank( strRemoveUserArrFilter ) && strUserRemoveArrFilterSelected
-                .equals( strRemoveUserArrFilter ) ) ? Boolean.TRUE : Boolean.FALSE;
+        boolean removeUserArrFilterSelected = ( StringUtils.isNotBlank( strRemoveUserArrFilter )
+                && strUserRemoveArrFilterSelected.equals( strRemoveUserArrFilter ) ) ? Boolean.TRUE : Boolean.FALSE;
         if ( !locationFilterActivated && removeUserArrFilterSelected )
         {
             sbReq.append( strAmpSymbol + PARAMETER_REMOVE_ARR_FILTER + strEqualSymbol + strRemoveUserArrFilter );

@@ -174,7 +174,8 @@ public class CampagneImageJspBean extends ManageCampagnebpJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNEIMAGE ) );
         url.addParameter( PARAMETER_ID_CAMPAGNEIMAGE, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEIMAGE, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEIMAGE, url.getUrl( ),
+                AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }

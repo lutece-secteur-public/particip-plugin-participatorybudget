@@ -57,7 +57,7 @@
     <bean id="participatorybudget.budgetparticipatifSitePropertiesGroup" class="fr.paris.lutece.plugins.participatorybudget.service.BudgetparticipatifSitePropertiesGroup" />
     <bean id="participatorybudget.budgetAddOnService"                    class="fr.paris.lutece.plugins.participatorybudget.service.BudgetAddOnService" />
     <bean id="participatorybudget.voteParArrandService"                  class="fr.paris.lutece.plugins.participatorybudget.service.VoteParArrandissementService" />
-    <bean id="participatorybudget.projectService"                        class="fr.paris.lutece.plugins.participatorybudget.service.ProjectService" />
+    <bean id="participatorybudget.projectService"                        class="fr.paris.lutece.plugins.participatorybudget.service.project.ProjectService" />
     <bean id="participatorybudget.bizStatService"                        class="fr.paris.lutece.plugins.participatorybudget.service.bizstat.BizStatService" />
     <!-- Resource extender -->
     <bean id="participatorybudget.voteResourceExtender" class="fr.paris.lutece.plugins.participatorybudget.service.rating.VoteResourceExtender"

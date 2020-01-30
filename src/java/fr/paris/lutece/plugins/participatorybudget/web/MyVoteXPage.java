@@ -366,8 +366,8 @@ public class MyVoteXPage extends MVCApplication
             arrChoosed = false;
         }
 
-        return JsonUtil.buildJsonResponse( new JsonResponse( templateVotesParis + SEPARATOR + templateVotesOther + SEPARATOR + templateValidBtn + SEPARATOR
-                + arrChoosed ) );
+        return JsonUtil.buildJsonResponse(
+                new JsonResponse( templateVotesParis + SEPARATOR + templateVotesOther + SEPARATOR + templateValidBtn + SEPARATOR + arrChoosed ) );
     }
 
     /**
@@ -428,12 +428,12 @@ public class MyVoteXPage extends MVCApplication
                     if ( _ratingSecurityService.hasAlreadyVoted( request, strIdExtendableResource, strExtendableResourceType ) )
                     {
 
-                        return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_CODE_USER_ALREADY_VOTED, DatastoreService.getDataValue(
-                                KEY_ERROR_CODE_USER_ALREADY_VOTED, "" ) ) );
+                        return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_CODE_USER_ALREADY_VOTED,
+                                DatastoreService.getDataValue( KEY_ERROR_CODE_USER_ALREADY_VOTED, "" ) ) );
 
                     }
-                    return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_CODE_USER_CAN_NOT_VOTE, DatastoreService.getDataValue(
-                            KEY_ERROR_CODE_USER_CAN_NOT_VOTE, "" ) ) );
+                    return JsonUtil.buildJsonResponse(
+                            new ErrorJsonResponse( JSON_ERROR_CODE_USER_CAN_NOT_VOTE, DatastoreService.getDataValue( KEY_ERROR_CODE_USER_CAN_NOT_VOTE, "" ) ) );
                 }
             }
             catch( UserNotSignedException e )
@@ -456,30 +456,30 @@ public class MyVoteXPage extends MVCApplication
         if ( nbrVoteUserParis >= maxDcmtToutParis && nbrVoteUserArrond >= maxDcmtArrondissement )
         {
 
-            return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_CODE_USER__VOTED_MAX, DatastoreService.getDataValue(
-                    KEY_ERROR_CODE_USER__VOTED_MAX, "" ) ) );
+            return JsonUtil.buildJsonResponse(
+                    new ErrorJsonResponse( JSON_ERROR_CODE_USER__VOTED_MAX, DatastoreService.getDataValue( KEY_ERROR_CODE_USER__VOTED_MAX, "" ) ) );
         }
         if ( nbrVoteUserParis >= maxDcmtToutParis && maxDcmtToutParis > 0
                 && request.getParameter( Constants.PROJECT_LOCALISATION ).equals( Constants.LOCALISATION_PARIS ) )
         {
 
-            return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_TOUT_PARIS, DatastoreService.getDataValue(
-                    KEY_ERROR_ALREADY_VOTED_TOUT_PARIS, "" ) ) );
+            return JsonUtil.buildJsonResponse(
+                    new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_TOUT_PARIS, DatastoreService.getDataValue( KEY_ERROR_ALREADY_VOTED_TOUT_PARIS, "" ) ) );
         }
         if ( nbrVoteUserArrond >= maxDcmtArrondissement && maxDcmtArrondissement > 0
                 && !request.getParameter( Constants.PROJECT_LOCALISATION ).equals( Constants.LOCALISATION_PARIS ) )
         {
 
-            return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_ARRONDISSEMENT, DatastoreService.getDataValue(
-                    KEY_ERROR_ALREADY_VOTED_ARRONDISSEMENT, "" ) ) );
+            return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_ARRONDISSEMENT,
+                    DatastoreService.getDataValue( KEY_ERROR_ALREADY_VOTED_ARRONDISSEMENT, "" ) ) );
 
         }
         if ( localisationProjet != null && !localisationProjet.equals( BudgetUtils.getArrondissementDisplay( user ) )
                 && !localisationProjet.equals( Constants.LOCALISATION_PARIS ) )
         {
 
-            return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_VOTE_USER_ARROND, DatastoreService.getDataValue( KEY_ERROR_VOTE_USER_ARROND,
-                    "" ) ) );
+            return JsonUtil
+                    .buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_VOTE_USER_ARROND, DatastoreService.getDataValue( KEY_ERROR_VOTE_USER_ARROND, "" ) ) );
 
         }
 

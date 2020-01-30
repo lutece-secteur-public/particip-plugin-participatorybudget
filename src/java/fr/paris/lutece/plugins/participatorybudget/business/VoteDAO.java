@@ -68,7 +68,7 @@ public final class VoteDAO implements IVoteDAO
     @Override
     public void insert( Vote vote, Plugin plugin )
     {
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )
         {
             daoUtil.setString( 1, vote.getUserId( ) );
             daoUtil.setInt( 2, vote.getProjetId( ) );
@@ -98,7 +98,7 @@ public final class VoteDAO implements IVoteDAO
      */
     public void delete( String strUserId, int nProjetId, Plugin plugin )
     {
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
             daoUtil.setInt( 2, nProjetId );
@@ -119,7 +119,7 @@ public final class VoteDAO implements IVoteDAO
     {
         List<Vote> voteList = new ArrayList<Vote>( );
 
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin ) )
         {
             daoUtil.executeQuery( );
 
@@ -147,12 +147,12 @@ public final class VoteDAO implements IVoteDAO
     }
 
     /**
-	 * 
-	 */
+     * 
+     */
     @Override
     public void deleteAll( String strUserId, Plugin plugin )
     {
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE_ALL, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE_ALL, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
 
@@ -172,7 +172,7 @@ public final class VoteDAO implements IVoteDAO
     {
         List<Vote> voteList = new ArrayList<Vote>( );
 
-        try( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
 
@@ -213,7 +213,7 @@ public final class VoteDAO implements IVoteDAO
     {
         int nbrVotes = 0;
 
-        try( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_ARR, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_ARR, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
             daoUtil.setInt( 2, nLocalisation );
@@ -241,7 +241,7 @@ public final class VoteDAO implements IVoteDAO
     {
         int nbrVotes = 0;
 
-        try( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
             daoUtil.setInt( 2, nLocalisation );
@@ -258,14 +258,14 @@ public final class VoteDAO implements IVoteDAO
     }
 
     /**
-	  * 
-	  */
+      * 
+      */
     @Override
     public Vote selectVote( String strUserId, int nIdproject, Plugin plugin )
     {
         Vote vote = null;
 
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_VOTE, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_VOTE, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
             daoUtil.setInt( 2, nIdproject );
@@ -303,7 +303,7 @@ public final class VoteDAO implements IVoteDAO
     {
         List<String> userList = new ArrayList<>( );
 
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_USER, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_USER, plugin ) )
         {
             daoUtil.executeQuery( );
 
@@ -319,7 +319,7 @@ public final class VoteDAO implements IVoteDAO
     @Override
     public void validateVote( String strUserId, int statusVote, Plugin plugin )
     {
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_VALIDATE_VOTE, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_VALIDATE_VOTE, plugin ) )
         {
             daoUtil.setInt( 1, statusVote );
             daoUtil.setString( 2, strUserId );
@@ -333,7 +333,7 @@ public final class VoteDAO implements IVoteDAO
     {
         List<Vote> voteList = new ArrayList<>( );
 
-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_VOTE_STATUS, plugin ) )
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_VOTE_STATUS, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
             daoUtil.setInt( 2, statusVote );

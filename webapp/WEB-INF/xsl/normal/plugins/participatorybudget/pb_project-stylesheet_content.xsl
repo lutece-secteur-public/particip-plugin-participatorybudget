@@ -13,7 +13,7 @@
 		<!-- pre><xsl:copy-of select="."/></pre -->
 	
 		<xsl:choose>
-			<xsl:when test="(string(pb_project/pb_project-statut_project)!='SUIVI') and (java:isBeforeBeginning(java:fr.paris.lutece.plugins.participatorybudget.service.CampagnesService.getInstance(), 'SUBMIT'))" >
+			<xsl:when test="(string(pb_project/pb_project-statut_project)!='SUIVI') and (java:isBeforeBeginning(java:fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService.getInstance(), 'SUBMIT'))" >
 				<div id="prop-card">
 					<div class="row">
 						<div class="col-xs-12 col-sm-offset-2 col-sm-8">
@@ -43,25 +43,25 @@
 		<!-- On identifie le code technique du theme pour la gestion de la couleur de fond et de l'image -->
 		<xsl:variable name="theme">
 			<xsl:choose>
-				<xsl:when test="(pb_project-thematique='Cadre de vie')" >cadre_vie</xsl:when> 
-				<xsl:when test="(pb_project-thematique='Culture')" >culture</xsl:when>
-				<xsl:when test="(pb_project-thematique='Culture et patrimoine')" >culture</xsl:when>
-				<xsl:when test="(pb_project-thematique='Economie et emploi')" >economie_emploi</xsl:when>
-				<xsl:when test="(pb_project-thematique='Économie, emploi et attractivité')" >economie_emploi</xsl:when>
-				<xsl:when test="(pb_project-thematique='Education et jeunesse')" >education</xsl:when>
-				<xsl:when test="(pb_project-thematique='Environnement')" >environnement</xsl:when>
-				<xsl:when test="(pb_project-thematique='Logement et habitat')" >logement</xsl:when>
-				<xsl:when test="(pb_project-thematique='Participation citoyenne')" >participation_citoyenne</xsl:when>
-				<xsl:when test="(pb_project-thematique='Propreté')" >proprete</xsl:when>
-				<xsl:when test="(pb_project-thematique='Prévention et sécurité')" >prevention_securite</xsl:when>
-				<xsl:when test="(pb_project-thematique='Santé')" >sante</xsl:when>
-				<xsl:when test="(pb_project-thematique='Solidarité')" >solidarite</xsl:when>
-				<xsl:when test="(pb_project-thematique='Solidarité et cohésion sociale')" >solidarite</xsl:when>
-				<xsl:when test="(pb_project-thematique='Solidarité et cohésion sociale ')" >solidarite</xsl:when>
-				<xsl:when test="(pb_project-thematique='Sport')" >sport</xsl:when>
-				<xsl:when test="(pb_project-thematique='Transport et mobilité')" >transport</xsl:when>
-				<xsl:when test="(pb_project-thematique='Ville intelligente et numérique')" >ville_numerique</xsl:when>
-				<xsl:otherwise><img src="images/local/skin/autre_1x2.jpg"/></xsl:otherwise>
+				<xsl:when test="(pb_project-theme='Cadre de vie')" >cadre_vie</xsl:when> 
+				<xsl:when test="(pb_project-theme='Culture')" >culture</xsl:when>
+				<xsl:when test="(pb_project-theme='Culture et patrimoine')" >culture</xsl:when>
+				<xsl:when test="(pb_project-theme='Economie et emploi')" >economie_emploi</xsl:when>
+				<xsl:when test="(pb_project-theme='Économie, emploi et attractivité')" >economie_emploi</xsl:when>
+				<xsl:when test="(pb_project-theme='Education et jeunesse')" >education</xsl:when>
+				<xsl:when test="(pb_project-theme='Environnement')" >environnement</xsl:when>
+				<xsl:when test="(pb_project-theme='Logement et habitat')" >logement</xsl:when>
+				<xsl:when test="(pb_project-theme='Participation citoyenne')" >participation_citoyenne</xsl:when>
+				<xsl:when test="(pb_project-theme='Propreté')" >proprete</xsl:when>
+				<xsl:when test="(pb_project-theme='Prévention et sécurité')" >prevention_securite</xsl:when>
+				<xsl:when test="(pb_project-theme='Santé')" >sante</xsl:when>
+				<xsl:when test="(pb_project-theme='Solidarité')" >solidarite</xsl:when>
+				<xsl:when test="(pb_project-theme='Solidarité et cohésion sociale')" >solidarite</xsl:when>
+				<xsl:when test="(pb_project-theme='Solidarité et cohésion sociale ')" >solidarite</xsl:when>
+				<xsl:when test="(pb_project-theme='Sport')" >sport</xsl:when>
+				<xsl:when test="(pb_project-theme='Transport et mobilité')" >transport</xsl:when>
+				<xsl:when test="(pb_project-theme='Ville intelligente et numérique')" >ville_numerique</xsl:when>
+				<xsl:otherwise>other</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
 
@@ -71,8 +71,8 @@
 		
 		<xsl:variable name="dtStep4f-txt"> <!-- Format String : 31/12/2099 -->
 			<xsl:choose>
-				<xsl:when test="pb_project-step5 = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>
-				<xsl:otherwise><xsl:value-of select="string(pb_project-step5)" /></xsl:otherwise>
+				<xsl:when test="pb_project-step5_start_date = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>
+				<xsl:otherwise><xsl:value-of select="string(pb_project-step5_start_date)" /></xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="dtStep4f"    select="java:parse(java:java.text.SimpleDateFormat.new('dd/MM/yyyy'), $dtStep4f-txt )" />    <!-- Format Date : Thu Dec 31 00:00:00 CET 2099 -->
@@ -80,8 +80,8 @@
 		
 		<xsl:variable name="dtStep4-txt"> <!-- Format String : 31/12/2099 -->
 			<xsl:choose>
-				<xsl:when test="pb_project-step4 = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>
-				<xsl:otherwise><xsl:value-of select="string(pb_project-step4)" /></xsl:otherwise>
+				<xsl:when test="pb_project-step4_start_date = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>
+				<xsl:otherwise><xsl:value-of select="string(pb_project-step4_start_date)" /></xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="dtStep4"    select="java:parse(java:java.text.SimpleDateFormat.new('dd/MM/yyyy'), $dtStep4-txt )" />    <!-- Format Date : Thu Dec 31 00:00:00 CET 2099 -->
@@ -89,8 +89,8 @@
 
 		<xsl:variable name="dtStep3-txt"> <!-- Format String : 31/12/2099 -->
 			<xsl:choose>
-				<xsl:when test="pb_project-step3 = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>
-				<xsl:otherwise><xsl:value-of select="string(pb_project-step3)" /></xsl:otherwise>
+				<xsl:when test="pb_project-step3_start_date = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>
+				<xsl:otherwise><xsl:value-of select="string(pb_project-step3_start_date)" /></xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="dtStep3"    select="java:parse(java:java.text.SimpleDateFormat.new('dd/MM/yyyy'), $dtStep3-txt )" />    <!-- Format Date : Thu Dec 31 00:00:00 CET 2099 -->
@@ -98,8 +98,8 @@
 
 		<xsl:variable name="dtStep2-txt"> <!-- Format String : 31/12/2099 -->
 			<xsl:choose>
-				<xsl:when test="pb_project-step2 = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>
-				<xsl:otherwise><xsl:value-of select="string(pb_project-step2)" /></xsl:otherwise>
+				<xsl:when test="pb_project-step2_start_date = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>
+				<xsl:otherwise><xsl:value-of select="string(pb_project-step2_start_date)" /></xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="dtStep2"    select="java:parse(java:java.text.SimpleDateFormat.new('dd/MM/yyyy'), $dtStep2-txt )" />    <!-- Format Date : Thu Dec 31 00:00:00 CET 2099 -->
@@ -107,42 +107,16 @@
 
 		<xsl:variable name="dtStep1-txt"> <!-- Format String : 31/12/2099 -->
 			<xsl:choose>
-				<xsl:when test="pb_project-step1 = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>
-				<xsl:otherwise><xsl:value-of select="string(pb_project-step1)" /></xsl:otherwise>
+				<xsl:when test="pb_project-step1_start_date = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>
+				<xsl:otherwise><xsl:value-of select="string(pb_project-step1_start_date)" /></xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="dtStep1"    select="java:parse(java:java.text.SimpleDateFormat.new('dd/MM/yyyy'), $dtStep1-txt )" />    <!-- Format Date : Thu Dec 31 00:00:00 CET 2099 -->
 		<xsl:variable name="date-step1" select="number( java:format(java:java.text.SimpleDateFormat.new('yyyyMMdd'), $dtStep1 ))" /> <!-- Format Number : 20990131 -->
 
-		<!-- Affichage de debug... -->
-		<!-- 
-		<div style="display:none">
-		<br/><br/><br/><br/><br/><br/><br/>
-		auj = <xsl:value-of select="$auj" /><br/>
-		<br/>
-		pb_project-phase1_date_deb = <xsl:value-of select="pb_project-phase1_date_deb" /><br/>
-		pb_project-phase2_date_deb = <xsl:value-of select="pb_project-phase2_date_deb" /><br/>
-		pb_project-phase3_date_deb = <xsl:value-of select="pb_project-phase3_date_deb" /><br/>
-		pb_project-phase4_date_deb = <xsl:value-of select="pb_project-phase4_date_deb" /><br/>
-		pb_project-phase4_date_fin = <xsl:value-of select="pb_project-phase4_date_fin" /><br/>
-		<br/>
-		$dtStep1  = <xsl:value-of select="$dtStep1" /><br/>
-		$dtStep2  = <xsl:value-of select="$dtStep2" /><br/>
-		$dtStep3  = <xsl:value-of select="$dtStep3" /><br/>
-		$dtStep4  = <xsl:value-of select="$dtStep4" /><br/>
-		$dtStep4f = <xsl:value-of select="$dtStep4f" /><br/>
-		<br/>
-		$date-step1  = <xsl:value-of select="$date-step1" /><br/>
-		$date-step2  = <xsl:value-of select="$date-step2" /><br/>
-		$date-step3  = <xsl:value-of select="$date-step3" /><br/>
-		$date-step4  = <xsl:value-of select="$date-step4" /><br/>
-		$date-step4f = <xsl:value-of select="$date-step4f" /><br/>
-		</div>
-		-->
-		
 		<div class="container">
 		
-			<xsl:if test="string(pb_project-statut_project)='PERDANT' or string(pb_project-statut_project)='NON_SUIVI' or string(pb_project-statut_eudo)='Abandonné'">
+			<xsl:if test="string(pb_project-status)='PERDANT' or string(pb_project-status)='NON_SUIVI'">
 				<xsl:attribute name="class">container grayscaled</xsl:attribute>
 			</xsl:if>
 		
@@ -153,7 +127,7 @@
 			<div id="psoum-header">
 				<xsl:attribute name="class">row bgcolor-theme-<xsl:value-of select="$theme"/></xsl:attribute>
 			
-				<span><xsl:value-of select="pb_project-thematique" /></span>
+				<span><xsl:value-of select="pb_project-theme" /></span>
 			
 				<div class="psoum-header-share">
 					<a href="http://www.facebook.com" data-action="facebook-action" data-title="{document-title}" data-doc="{document-id}" class="share"  title="Share on Facebook">
@@ -182,31 +156,23 @@
 						</img>
 					
 						<div class="psoum-desc-localisation-addr">
-							<xsl:if test="not(string(pb_project-lieu)='')"><xsl:value-of select="pb_project-lieu" /><br /></xsl:if>
-							<xsl:value-of select="pb_project-localisation" />
+							<xsl:if test="not(string(pb_project-address)='')"><xsl:value-of select="pb_project-address" /><br /></xsl:if>
+							<xsl:value-of select="pb_project-district" />
 						</div>
 					</div>
 					
 					<!-- Title -->
 					<div class="psoum-desc-titre">
 						<h1>
-							<xsl:choose>
-								<xsl:when test="not(string(pb_project-code_projet)='') and (string(pb_project-statut_project)='SOUMIS')">
-									<p class="num-project"><xsl:variable name="ordre" select="pb_project-code_projet"></xsl:variable><span>Projet n° <xsl:value-of select='format-number($ordre, "##")' /></span></p>
-								</xsl:when>
-								<xsl:otherwise>
-									<p class="num-project">&#160;</p> <!-- To keep margin between location and title divs -->
-								</xsl:otherwise>
-							</xsl:choose>
 							<p><xsl:value-of select="document-title" /></p>
 						</h1>
 					</div>
 					
 					<!-- Subtitle -->
 					<div class="psoum-desc-soustitre">
-						<xsl:if test="not(string(pb_project-sous_titre)='')">
+						<xsl:if test="not(string(pb_project-subtitle)='')">
 							<h2>
-								<p><xsl:value-of select="pb_project-sous_titre" /></p>
+								<p><xsl:value-of select="pb_project-subtitle" /></p>
 							</h2>
 						</xsl:if>
 					</div>
@@ -216,14 +182,6 @@
 						<div>
 							<xsl:attribute name="class">psoum-desc-delivered visible-xs visible-sm bgcolor-theme-<xsl:value-of select="$theme"/></xsl:attribute>
 							#i18n{participatorybudget.project.sheet.status.completed}
-						</div>
-					</xsl:if>
-
-					<!-- Abandoned project (only in XS format) -->
-					<xsl:if test="string(pb_project-statut_eudo)='Abandonné'">
-						<div>
-							<xsl:attribute name="class">psoum-desc-undeliverable visible-xs visible-sm bgcolor-theme-<xsl:value-of select="$theme"/></xsl:attribute>
-							#i18n{participatorybudget.project.sheet.status.abandoned}
 						</div>
 					</xsl:if>
 
@@ -263,7 +221,7 @@
 					-->
 
 					<!-- Project progress -->
-					<xsl:if test="(string(pb_project-statut_project)='SUIVI' or string(pb_project-statut_project)='suivi') and (pb_project-content != '')">
+					<xsl:if test="(string(pb_project-status)='SUIVI' or string(pb_project-status)='suivi') and (pb_project-content != '')">
 						<h2>
 							<xsl:attribute name="class">color-theme-<xsl:value-of select="$theme"/></xsl:attribute>
 							<a id="avct"></a>
@@ -293,30 +251,6 @@
 						</div>
 					</xsl:if>
 					
-					<!-- Abandoned project -->
-					<xsl:if test="string(pb_project-statut_eudo)='Abandonné'">
-						<div>
-							<xsl:attribute name="class">psoum-data-undeliverable hidden-xs hidden-sm bgcolor-theme-<xsl:value-of select="$theme"/></xsl:attribute>
-							#i18n{participatorybudget.project.sheet.status.abandoned}
-						</div>
-					</xsl:if>
-					
-				<!-- 	<div id="psoum-data-header">
-						
-						Pastille QP et RATP
-						<div id="psoum-data-pastilles">
-							<xsl:if test="not(string(pb_project-pop_district)='')">
-								<img class="img-qp" src="images/local/skin/quartier-populaire.png" alt="Projet en quartier populaire" />
-							</xsl:if>
-							<xsl:if test="not(string(pb_project-direction)='')">
-								<xsl:if test="string(pb_project-direction)='RATP'">
-									<img class="img-ratp" src="images/local/skin/ratp_color.png" alt="Projet RATP" />
-								</xsl:if>
-							</xsl:if>
-						</div>
-
-					</div> -->
-						
 					<!-- Voting button. The HTML of the bookmark button is in the database (table = core-template, templatename = extend_follow). -->
 					<div id="title-{document-id}" title="{document-title}" style="display:none;">.</div>
 					<div id="vote">&#160;</div>		<!-- Extend : vote -->
@@ -328,34 +262,34 @@
 					<div class="psoum-data-kv">
 						<div class="psoum-data-key">
 							<img alt="Campaign" title="Campaign">
-								<xsl:attribute name="src">images/local/skin/logo_paris_bp_ultramini-<xsl:value-of select="$theme"/>.png</xsl:attribute>
+								<xsl:attribute name="src">images/local/skin/logo-mini-<xsl:value-of select="$theme"/>.png</xsl:attribute>
 							</img>
 						</div>
 						<div class="psoum-data-value">
-							<xsl:value-of select="pb_project-campagne" />
+							<xsl:value-of select="pb_project-campaign" />
 						</div>
 					</div>
 					
 					<!-- Result of the vote -->
 					<div class="psoum-data-kv">
 						<xsl:choose>
-							<xsl:when test="(string(pb_project-statut_project)='GAGNANT') or (string(pb_project-statut_project)='SUIVI')">
+							<xsl:when test="(string(pb_project-status)='GAGNANT') or (string(pb_project-status)='SUIVI')">
 								<div class="psoum-data-key">
 									<img alt="Result of the vote" title="Result of the vote">
 										<xsl:attribute name="src">images/local/skin/trophy-<xsl:value-of select="$theme"/>.png</xsl:attribute>
 									</img>
 								</div>
 								<div class="psoum-data-value">
-									<xsl:variable name="nb_votes" select="pb_project-nombre_de_votes"></xsl:variable>
+									<xsl:variable name="nb_votes" select="pb_project-total_votes"></xsl:variable>
 									#i18n{participatorybudget.project.sheet.vote_result.winning} <xsl:value-of select='format-number($nb_votes, "# ###", "space")' /> votes !
 								</div>
 							</xsl:when>
-							<xsl:when test="(string(pb_project-statut_project)='PERDANT') or (string(pb_project-statut_project)='NON_SUIVI')">
+							<xsl:when test="(string(pb_project-status)='PERDANT') or (string(pb_project-status)='NON_SUIVI')">
 								<div class="psoum-data-key">
 									<img src="images/local/skin/trophy-empty.png" alt="Result of the vote" title="Result of the vote"/>
 								</div>
 								<div class="psoum-data-value">
-									<xsl:variable name="nb_votes" select="pb_project-nombre_de_votes"></xsl:variable>
+									<xsl:variable name="nb_votes" select="pb_project-total_votes"></xsl:variable>
 									#i18n{participatorybudget.project.sheet.vote_result.losing} <xsl:value-of select='format-number($nb_votes, "# ###", "space")' /> votes
 								</div>
 							</xsl:when>
@@ -364,40 +298,33 @@
 					
 
 					<!-- Cost -->
-					<xsl:if test="not(string(pb_project-budget)='')">
+					<xsl:if test="not(string(pb_project-value)='')">
 						<div class="psoum-data-kv last">
 							<div class="psoum-data-key">
 								<img alt="Cost" title="Cost">
-									<xsl:attribute name="src">images/local/skin/money-<xsl:value-of select="$theme"/>.png</xsl:attribute>
+									<xsl:attribute name="src">images/local/skin/value-<xsl:value-of select="$theme"/>.png</xsl:attribute>
 								</img>
 							</div>
 							<div class="psoum-data-value">
-								<xsl:variable name="budget" select="pb_project-budget"></xsl:variable>
+								<xsl:variable name="budget" select="pb_project-value"></xsl:variable>
 								<xsl:value-of select='format-number($budget, "# ###", "space")' /> €
 							</div>
 						</div>
 					</xsl:if>
 
-					<!-- Handicap -->
-					<xsl:if test="string(pb_project-handicap)='oui'">
-						<p id="psoum-data-handicap">
-							Les questions du handicap et de l'accessibilité sont prises en compte dans le cadre de ce projet.
-						</p>
-					</xsl:if>
-
 					<!-- Project Mapping -->
 					<xsl:choose>
-						<xsl:when test="(string(pb_project-localisation_precise/geoloc/address) = '') and (string(pb_project-statut_project)='SUIVI')">
+						<xsl:when test="(string(pb_project-address_geoloc/geoloc/address) = '') and (string(pb_project-status)='SUIVI')">
 							<script type='text/javascript'>
 								var x = 48.8564826;
 								var y = 2.3524135;
 							</script>
 							<div id="carto" class="psoum-data-carto">&#160;</div>
 						</xsl:when>
-						<xsl:when test="(pb_project-localisation_precise/geoloc/address != '') or (string(pb_project-statut_project)='SUIVI')">
+						<xsl:when test="(pb_project-address_geoloc/geoloc/address != '') or (string(pb_project-status)='SUIVI')">
 							<script type='text/javascript'>
-								var x = <xsl:value-of select="pb_project-localisation_precise/geoloc/lat"/>;
-								var y = <xsl:value-of select="pb_project-localisation_precise/geoloc/lon"/>;
+								var x = <xsl:value-of select="pb_project-address_geoloc/geoloc/lat"/>;
+								var y = <xsl:value-of select="pb_project-address_geoloc/geoloc/lon"/>;
 							</script>
 							<div id="carto" class="psoum-data-carto">&#160;</div>
 						</xsl:when>
@@ -411,13 +338,11 @@
 					</xsl:choose>
 
 					<!-- Bookmark buttons. The HTML of the bookmark button is in the database (table = core-template, templatename = extend_follow). -->
-					<xsl:if test="string(pb_project-statut_eudo)!='Abandonné'">
-						<div id="fav">&#160;</div>		<!-- Extend : favorite -->
-						<div id="follow">&#160;</div>	<!-- Extend : follow -->
-					</xsl:if>
+					<div id="fav">&#160;</div>		<!-- Extend : favorite -->
+					<div id="follow">&#160;</div>	<!-- Extend : follow -->
 
 					<!-- Schedule: in grey if not started, in black if started, in black with check if finished -->
-					<xsl:if test="(string(pb_project-statut_project)='SUIVI' or string(pb_project-statut_project)='suivi') and (string(pb_project-statut_eudo)!='Abandonné')">
+					<xsl:if test="(string(pb_project-status)='SUIVI' or string(pb_project-status)='suivi')">
 						<div class="psoum-data-planning separator-horiz-4px">
 						
 							<h2>#i18n{participatorybudget.project.sheet.planning}</h2>
@@ -429,14 +354,14 @@
 							
 							<!-- <xsl:value-of select="pb_project-phase1_date_deb" /> -->
 							<xsl:choose>
-								<xsl:when test="($auj &gt;= $date-step2) and (pb_project-phase1_date_deb = '')">
+								<xsl:when test="($auj &gt;= $date-step2) and (pb_project-phase1_start_date = '')">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed studies" title=""/>#i18n{participatorybudget.project.sheet.planning.study}</p>
 								</xsl:when>
 								<xsl:when test="($auj &gt;= $date-step2)">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed studies" title=""/>#i18n{participatorybudget.project.sheet.planning.study}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>1. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.started_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep1 )" />)</span></p>
 								</xsl:when>
 							
-								<xsl:when test="($auj &lt; $date-step2) and ($auj &gt;= $date-step1) and (pb_project-phase1_date_deb = '')">
+								<xsl:when test="($auj &lt; $date-step2) and ($auj &gt;= $date-step1) and (pb_project-phase1_start_date = '')">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check-current.png" alt="Studies in progress" title=""/>#i18n{participatorybudget.project.sheet.planning.study}</p>
 								</xsl:when>
 								<xsl:when test="($auj &lt; $date-step2) and ($auj &gt;= $date-step1)">
@@ -447,7 +372,7 @@
 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming studies" title=""/>#i18n{participatorybudget.project.sheet.planning.study}</p>
 								</xsl:when>
 
-								<xsl:when test="($auj &lt; $date-step1) and (pb_project-phase1_date_deb != '')">
+								<xsl:when test="($auj &lt; $date-step1) and (pb_project-phase1_start_date != '')">
 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming studies" title=""/>#i18n{participatorybudget.project.sheet.planning.study}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>1. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.expected_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep1 )" />)</span></p>
 								</xsl:when>
 
@@ -459,14 +384,14 @@
 						
 							<!-- <xsl:value-of select="pb_project-phase2_date_deb" /> -->
 							<xsl:choose>
-								<xsl:when test="($auj &gt;= $date-step3) and (pb_project-phase2_date_deb = '')">
+								<xsl:when test="($auj &gt;= $date-step3) and (pb_project-phase2_start_date = '')">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed procedures" title=""/>#i18n{participatorybudget.project.sheet.planning.proceeding}</p>
 								</xsl:when>
 								<xsl:when test="($auj &gt;= $date-step3)">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed procedures" title=""/>#i18n{participatorybudget.project.sheet.planning.proceeding}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>2. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.started_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep2 )" />)</span></p>
 								</xsl:when>
 
-								<xsl:when test="($auj &lt; $date-step3) and ($auj &gt;= $date-step2) and (pb_project-phase2_date_deb = '')">
+								<xsl:when test="($auj &lt; $date-step3) and ($auj &gt;= $date-step2) and (pb_project-phase2_start_date = '')">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check-current.png" alt="Procedures in progress" title=""/>#i18n{participatorybudget.project.sheet.planning.proceeding}</p>
 								</xsl:when>
 								<xsl:when test="($auj &lt; $date-step3) and ($auj &gt;= $date-step2)">
@@ -477,7 +402,7 @@
 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming procedures" title=""/>#i18n{participatorybudget.project.sheet.planning.proceeding}</p>
 								</xsl:when>
 
-								<xsl:when test="($auj &lt; $date-step2) and (pb_project-phase2_date_deb != '')">
+								<xsl:when test="($auj &lt; $date-step2) and (pb_project-phase2_start_date != '')">
 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming procedures" title=""/>#i18n{participatorybudget.project.sheet.planning.proceeding}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>2. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.expected_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep2 )" />)</span></p>
 								</xsl:when>
 
@@ -488,14 +413,14 @@
 						
 							<!-- <xsl:value-of select="pb_project-phase3_date_deb" /> -->
 							<xsl:choose>
-								<xsl:when test="($auj &gt;= $date-step4) and (pb_project-phase3_date_deb = '')">
+								<xsl:when test="($auj &gt;= $date-step4) and (pb_project-phase3_start_date = '')">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed work" title=""/>#i18n{participatorybudget.project.sheet.planning.work}</p>
 								</xsl:when>
 								<xsl:when test="($auj &gt;= $date-step4)">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed work" title=""/>#i18n{participatorybudget.project.sheet.planning.work}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>3. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.started_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep3 )" />)</span></p>
 								</xsl:when>
 								
-								<xsl:when test="($auj &lt; $date-step4) and ($auj &gt;= $date-step3) and (pb_project-phase3_date_deb = '')">
+								<xsl:when test="($auj &lt; $date-step4) and ($auj &gt;= $date-step3) and (pb_project-phase3_start_date = '')">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check-current.png" alt="Work in progress" title=""/>#i18n{participatorybudget.project.sheet.planning.work}</p>
 								</xsl:when>
 								<xsl:when test="($auj &lt; $date-step4) and ($auj &gt;= $date-step3)">
@@ -506,7 +431,7 @@
 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming work" title=""/>#i18n{participatorybudget.project.sheet.planning.work}</p>
 								</xsl:when>
 								
-								<xsl:when test="($auj &lt; $date-step3) and (pb_project-phase3_date_deb != '')">
+								<xsl:when test="($auj &lt; $date-step3) and (pb_project-phase3_start_date != '')">
 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming work" title=""/>#i18n{participatorybudget.project.sheet.planning.work}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>3. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.expected_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep3 )" />)</span></p>
 								</xsl:when>
 								
@@ -517,14 +442,14 @@
 						
 							<!-- <xsl:value-of select="pb_project-phase4_date_deb" /> -->
 							<xsl:choose>
-								<xsl:when test="($auj &gt;= $date-step4f) and (pb_project-phase4_date_deb = '')">
+								<xsl:when test="($auj &gt;= $date-step4f) and (pb_project-phase4_start_date = '')">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed !" title=""/>#i18n{participatorybudget.project.sheet.planning.delivery.completed}</p>
 								</xsl:when>
 								<xsl:when test="($auj &gt;= $date-step4f)">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed !" title=""/>#i18n{participatorybudget.project.sheet.planning.delivery.completed}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>4. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.delivered_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep4f )" />)</span></p>
 								</xsl:when>
 								
-								<xsl:when test="($auj &lt; $date-step4f) and ($auj &gt;= $date-step4) and (pb_project-phase4_date_deb = '')">
+								<xsl:when test="($auj &lt; $date-step4f) and ($auj &gt;= $date-step4) and (pb_project-phase4_start_date = '')">
 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check-current.png" alt="Delivery in progress" title=""/>#i18n{participatorybudget.project.sheet.planning.delivery.in_progress}</p>
 								</xsl:when>
 								<xsl:when test="($auj &lt; $date-step4f) and ($auj &gt;= $date-step4)">
@@ -535,7 +460,7 @@
 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming delivery" title=""/>#i18n{participatorybudget.project.sheet.planning.delivery}</p>
 								</xsl:when>
 								
-								<xsl:when test="($auj &lt; $date-step4) and (pb_project-phase4_date_deb != '')">
+								<xsl:when test="($auj &lt; $date-step4) and (pb_project-phase4_start_date != '')">
 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming delivery" title=""/>#i18n{participatorybudget.project.sheet.planning.delivery}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>4. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.expected_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep4 )" />)</span></p>
 								</xsl:when>
 								

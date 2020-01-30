@@ -52,7 +52,7 @@ import fr.paris.lutece.plugins.document.business.DocumentHome;
 import fr.paris.lutece.plugins.document.business.attributes.DocumentAttribute;
 import fr.paris.lutece.plugins.extend.service.extender.history.IResourceExtenderHistoryService;
 import fr.paris.lutece.plugins.participatorybudget.business.notify.TaskNotifyDocumentbpConfig;
-import fr.paris.lutece.plugins.participatorybudget.service.ProjectService;
+import fr.paris.lutece.plugins.participatorybudget.service.project.ProjectService;
 import fr.paris.lutece.plugins.subscribe.business.Subscription;
 import fr.paris.lutece.plugins.subscribe.business.SubscriptionFilter;
 import fr.paris.lutece.plugins.subscribe.service.SubscriptionService;
@@ -234,8 +234,8 @@ public class TaskNotifyDocumentbp extends SimpleTask
         model.put( MARK_PSEUDO_ABONNEE, strNickNameUser );
         model.put( MARK_TITRE_PROJET, documentTitle );
         model.put( MARK_NUMERO_LUTECE_DOCUMENT, documentId );
-        model.put( MARK_URL_FICHE, AppPathService.getProdUrl( "https://budgetparticipatif.paris.fr/bp" ) + "jsp/site/Portal.jsp?document_id=" + documentId
-                + "&portlet_id=158" );
+        model.put( MARK_URL_FICHE,
+                AppPathService.getProdUrl( "https://budgetparticipatif.paris.fr/bp" ) + "jsp/site/Portal.jsp?document_id=" + documentId + "&portlet_id=158" );
         model.put( MARK_PHASE_ACTUELLE_PROJET, "" );
         model.put( MARK_MESSAGE_NOTIFICATION, realizationNotify );
 

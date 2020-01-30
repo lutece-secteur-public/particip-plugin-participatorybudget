@@ -550,11 +550,11 @@ public class MyInfosXPage extends MVCApplication
                 // addError(MESSAGE_ERROR_ADRESS_GEOLOC_FORMAT, getLocale(request));
                 // }
 
-                if ( !bError
-                        && ( form.getNickname( ) != null
-                                && ( MyInfosService.loadUserNickname( user.getName( ) ) != null
-                                        && !form.getNickname( ).equals( MyInfosService.loadUserNickname( user.getName( ) ) ) || MyInfosService
-                                        .loadUserNickname( user.getName( ) ) == null ) && MyInfosService.isNicknameAlreadyExist( form.getNickname( ) ) ) )
+                if ( !bError && ( form.getNickname( ) != null
+                        && ( MyInfosService.loadUserNickname( user.getName( ) ) != null
+                                && !form.getNickname( ).equals( MyInfosService.loadUserNickname( user.getName( ) ) )
+                                || MyInfosService.loadUserNickname( user.getName( ) ) == null )
+                        && MyInfosService.isNicknameAlreadyExist( form.getNickname( ) ) ) )
                 {
                     bError = true;
                     addError( MESSAGE_ERROR_NICKNAME_ALREADY_EXIST, getLocale( request ) );
@@ -856,11 +856,11 @@ public class MyInfosXPage extends MVCApplication
                 // addError(MESSAGE_ERROR_ADRESS_GEOLOC_FORMAT, getLocale(request));
                 // }
 
-                if ( !bError
-                        && ( form.getNickname( ) != null
-                                && ( MyInfosService.loadUserNickname( user.getName( ) ) != null
-                                        && !form.getNickname( ).equals( MyInfosService.loadUserNickname( user.getName( ) ) ) || MyInfosService
-                                        .loadUserNickname( user.getName( ) ) == null ) && MyInfosService.isNicknameAlreadyExist( form.getNickname( ) ) ) )
+                if ( !bError && ( form.getNickname( ) != null
+                        && ( MyInfosService.loadUserNickname( user.getName( ) ) != null
+                                && !form.getNickname( ).equals( MyInfosService.loadUserNickname( user.getName( ) ) )
+                                || MyInfosService.loadUserNickname( user.getName( ) ) == null )
+                        && MyInfosService.isNicknameAlreadyExist( form.getNickname( ) ) ) )
                 {
                     bError = true;
                     addError( MESSAGE_ERROR_NICKNAME_ALREADY_EXIST, getLocale( request ) );

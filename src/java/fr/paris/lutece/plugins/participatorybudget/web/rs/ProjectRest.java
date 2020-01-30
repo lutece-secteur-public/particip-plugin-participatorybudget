@@ -79,6 +79,8 @@ import org.apache.commons.lang.NotImplementedException;
 
 import com.google.gson.JsonObject;
 
+import fr.paris.lutece.plugins.participatorybudget.service.project.ProjectService;
+import fr.paris.lutece.plugins.participatorybudget.service.project.IProjectService;
 import fr.paris.lutece.plugins.rest.service.RestConstants;
 import fr.paris.lutece.portal.service.util.AppLogService;
 
@@ -111,9 +113,10 @@ public class ProjectRest extends AbstractServiceRest
             AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
             throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
         }
+
         try
         {
-            throw new NotImplementedException( );
+            return Integer.toString( ProjectService.getInstance( ).createproject( ) );
         }
         catch( Exception e )
         {

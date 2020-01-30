@@ -24,37 +24,37 @@
 					<h2 class="visuallyhidden">Liste des résultats de la recherche</h2>
 					<div id="psoum-list" class="row">
 			
-						<#assign theme_class = "autre">
-						
 						<#-- On boucle sur les projets à afficher -->
 						<#list results_list as result>
+						
+							<#assign theme_class = "other">
 						
 							<#assign id_document = "${(result.id?split('Lutece_')?last)?split('_')?first}">
 							<#assign result_detail_idx = ((paginator.pageCurrent-1)*paginator.itemsPerPage)+1+result_index>
 			
 							<#-- on identifie la classe CSS relative au thème du projet en cours -->
-							<#if result.dynamicFields.statut_project_text?? && result.dynamicFields.statut_project_text = "PERDANT">
+							<#if result.dynamicFields.status_text?? && result.dynamicFields.status_text = "PERDANT">
 								<#assign theme_class_bis = "perdant">
 							<#else>
 								<#assign theme_class_bis = "undefined">
 							</#if>
 							
-							<#if result.dynamicFields?? && result.dynamicFields.thematique_text??>
-								<#if result.dynamicFields.thematique_text = "Cadre de vie"><#assign theme_class = "cadre_vie">
-								<#elseif result.dynamicFields.thematique_text = "Culture" || result.dynamicFields.thematique_text = "Culture et patrimoine"><#assign theme_class = "culture">
-								<#elseif result.dynamicFields.thematique_text = "Economie et emploi"><#assign theme_class = "economie_emploi">
-								<#elseif result.dynamicFields.thematique_text = "Économie, emploi et attractivité"><#assign theme_class = "economie_emploi">
-								<#elseif result.dynamicFields.thematique_text = "Education et jeunesse"><#assign theme_class = "education">
-								<#elseif result.dynamicFields.thematique_text = "Environnement" || result.dynamicFields.thematique_text = "Nature en ville"><#assign theme_class = "environnement">
-								<#elseif result.dynamicFields.thematique_text = "Logement et habitat"><#assign theme_class = "logement">
-								<#elseif result.dynamicFields.thematique_text = "Participation citoyenne"><#assign theme_class = "participation_citoyenne">
-								<#elseif result.dynamicFields.thematique_text = "Prévention et sécurité"><#assign theme_class = "prevention_securite">
-								<#elseif result.dynamicFields.thematique_text = "Propreté"><#assign theme_class = "proprete">
-								<#elseif result.dynamicFields.thematique_text = "Santé"><#assign theme_class = "sante">
-								<#elseif result.dynamicFields.thematique_text = "Solidarité" || result.dynamicFields.thematique_text = "Vivre ensemble" || result.dynamicFields.thematique_text = "Solidarité et cohésion sociale " || result.dynamicFields.thematique_text = "Solidarité et cohésion sociale"><#assign theme_class = "solidarite">
-								<#elseif result.dynamicFields.thematique_text = "Sport"><#assign theme_class = "sport">
-								<#elseif result.dynamicFields.thematique_text = "Transport et mobilité"><#assign theme_class = "transport">
-								<#elseif result.dynamicFields.thematique_text = "Ville intelligente et numérique"><#assign theme_class = "ville_numerique">
+							<#if result.dynamicFields?? && result.dynamicFields.theme_text??>
+								<#if     result.dynamicFields.theme_text = "Cadre de vie"><#assign theme_class = "cadre_vie">
+								<#elseif result.dynamicFields.theme_text = "Culture" || result.dynamicFields.theme_text = "Culture et patrimoine"><#assign theme_class = "culture">
+								<#elseif result.dynamicFields.theme_text = "Economie et emploi"><#assign theme_class = "economie_emploi">
+								<#elseif result.dynamicFields.theme_text = "Économie, emploi et attractivité"><#assign theme_class = "economie_emploi">
+								<#elseif result.dynamicFields.theme_text = "Education et jeunesse"><#assign theme_class = "education">
+								<#elseif result.dynamicFields.theme_text = "Environnement" || result.dynamicFields.theme_text = "Nature en ville"><#assign theme_class = "environnement">
+								<#elseif result.dynamicFields.theme_text = "Logement et habitat"><#assign theme_class = "logement">
+								<#elseif result.dynamicFields.theme_text = "Participation citoyenne"><#assign theme_class = "participation_citoyenne">
+								<#elseif result.dynamicFields.theme_text = "Prévention et sécurité"><#assign theme_class = "prevention_securite">
+								<#elseif result.dynamicFields.theme_text = "Propreté"><#assign theme_class = "proprete">
+								<#elseif result.dynamicFields.theme_text = "Santé"><#assign theme_class = "sante">
+								<#elseif result.dynamicFields.theme_text = "Solidarité" || result.dynamicFields.theme_text = "Vivre ensemble" || result.dynamicFields.theme_text = "Solidarité et cohésion sociale " || result.dynamicFields.theme_text = "Solidarité et cohésion sociale"><#assign theme_class = "solidarite">
+								<#elseif result.dynamicFields.theme_text = "Sport"><#assign theme_class = "sport">
+								<#elseif result.dynamicFields.theme_text = "Transport et mobilité"><#assign theme_class = "transport">
+								<#elseif result.dynamicFields.theme_text = "Ville intelligente et numérique"><#assign theme_class = "ville_numerique">
 								</#if>
 							</#if>
 							
@@ -63,16 +63,16 @@
 								<a id="title-${id_document}" href="${result.url}" alt="${result.title}" title="${result.title}">
 			
 									<#-- Image et éventuel résultat du vote -->
-									<#assign img_url = "images/local/skin/i_${theme_class}_1x2.png">
+									<#assign img_url = "images/local/skin/theme_${theme_class}.png">
 									<#if result.dynamicFields.image_text?has_content>
 										<#assign img_url = result.dynamicFields.image_text?split("src=\"")[1]?split("\"")[0]>
 									</#if>
 									<div class="psoum-card-img" style="background-image:url(${img_url!})">
 										<#if campagneService.isAfterBeginning( "RESULT" )>
-											<#if result.dynamicFields.statut_project_text=="GAGNANT" || result.dynamicFields.statut_project_text=="SUIVI" >
+											<#if result.dynamicFields.status_text == "GAGNANT" || result.dynamicFields.status_text == "SUIVI" >
 												<p class="winner">Projet gagnant<br>avec ${result.dynamicFields.nombre_de_votes_long?string.number!''} votes</p>
-											<#elseif result.dynamicFields.statut_project_text=="PERDANT">
-												<p class="looser">${result.dynamicFields.nombre_de_votes_long?string.number!''} votes</p>
+											<#elseif result.dynamicFields.status_text == "PERDANT">
+												<p class="looser">${result.dynamicFields.total_votes_long?string.number!''} votes</p>
 											</#if>
 										</#if>
 									</div>
@@ -80,34 +80,33 @@
 									<#-- La classe 'print-theme-${theme_class}' utilisee lors de l'impression -->
 									<div class="psoum-card print-theme-${theme_class} bordered-4px-theme-${theme_class}">
 					
-										<#-- Thématique -->
+										<#-- Theme -->
 										<div class="psoum-card-theme bgcolor-theme-${theme_class} bgcolor-theme-${theme_class_bis}">
-											<img src="images/local/skin/i2_${theme_class}.png"/>
-											<span>${result.dynamicFields.thematique_text!"Sans thématique"}</span>
+											<span>${result.dynamicFields.theme_text!"No theme"}</span>
 										</div>
 					
-										<#-- Localisation -->
+										<#-- Location -->
 										<div class="psoum-card-loc">
 				
-											<#if result.dynamicFields.statut_project_text?? && result.dynamicFields.statut_project_text = "PERDANT">
+											<#if result.dynamicFields.status_text?? && result.dynamicFields.status_text = "PERDANT">
 												<img src="images/local/skin/marker.png" class="img-responsive pull-left" alt="" title="">
 											<#else>
 												<img src="images/local/skin/marker-${theme_class}.png" class="img-responsive pull-left" alt="" title="">
 											</#if>
 				
 											<div class="for-print">
-												<#if result.dynamicFields.localisation_precise_address_text?has_content>
-													${result.dynamicFields.localisation_precise_address_text?replace(", 750[0-2][0-9] (?i)PARIS(?-i)", "", "r")}
+												<#if result.dynamicFields.address_text?has_content>
+													${result.dynamicFields.address_text!''}
 												<#else>
-													${(result.dynamicFields.localisation_text!'')}
+													${(result.dynamicFields.district_text!'')}
 												</#if>
 											</div>
 				
-											<div class="for-screen">${result.dynamicFields.localisation_text!''}
+											<div class="for-screen">${result.dynamicFields.district_text!''}
 												
 												<div class="psoum-card-loc-prec">
-													<#if result.dynamicFields?? && result.dynamicFields.localisation_precise_address_text??>
-														${result.dynamicFields.localisation_precise_address_text?replace(", 750[0-2][0-9] (?i)PARIS(?-i)", "", "r")}
+													<#if result.dynamicFields?? && result.dynamicFields.address_text??>
+														${result.dynamicFields.address_text!''}
 													<#else>
 														&nbsp;
 													</#if>
@@ -118,30 +117,30 @@
 										<#-- Titre -->
 										<div class="psoum-card-titre">
 											<h3>
-												<span class="color-theme-${theme_class_bis}"><#if result.dynamicFields.code_projet_long?has_content && result.dynamicFields.code_projet_long &gt; 0 >${result.dynamicFields.code_projet_long} - </#if>${result.title}</span>
+												<span class="color-theme-${theme_class_bis}">${result.title}</span>
 											</h3>
 										</div>
 					
 										<#if campagneService.isDuring("VOTE") && voteValidated= true >
 											<div class="psoum-card-vote">
-													<div class="vote-done">Vous avez d&eacute;j&agrave; vot&eacute; ! Merci de votre int&eacute;r&ecirc;t pour le Budget Participatif.</div>
+													<div class="vote-done">Thank for your vote !</div>
 											</div>
 										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && arrondissementVote= "notConnected" >
 											<div class="psoum-card-vote">
 													@Extender[${id_document},document,vote,{show:"all"}]@
 											</div>
-										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.localisation_text || result.dynamicFields.localisation_text= "whole_city")>
+										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.district_text || result.dynamicFields.district_text= "whole_city")>
 											<div class="psoum-card-vote">
 													@Extender[${id_document},document,vote,{show:"all"}]@
 											</div>
 										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && arrondissementVote != result.dynamicFields.localisation_text>
 											<div class="psoum-card-vote">
-													<div class="novote">Vous ne pouvez pas voter pour ce projet car il n'est pas situ&eacute; dans votre arrondissement de vote.</div>
+													<div class="novote">You can vote only for district you choose for voting.</div>
 											</div>
 										<#else>
 											<div class="psoum-card-link">
 												<span class="btn btn-14rem btn-black-on-white">
-													découvrir le projet
+													discover project
 												</span>
 											</div>
 										</#if>
@@ -151,11 +150,11 @@
 											<div class="budget pull-right">
 												<img src="images/local/skin/money-${theme_class}.png" width="25px" height="25px" alt="" title="">
 												<#if result.dynamicFields??>
-													<#if result.dynamicFields.budget_long?? && result.dynamicFields.budget_long &gt; 0>
+													<#if result.dynamicFields.value_long?? && result.dynamicFields.value_long &gt; 0>
 														<#setting locale="fr_FR">
-														${result.dynamicFields.budget_long?string("#,###")} &#8364;
+														${result.dynamicFields.value_long?string("#,###")} &#8364;
 													<#else>
-														${result.dynamicFields.budget_text!""}
+														${result.dynamicFields.value_text!""}
 													</#if>
 												<#else>
 													-
@@ -165,14 +164,14 @@
 										</div>
 										
 										<#-- Champs cachés pouvant être utilisés pour l'impression -->
-										<div class="psoum-card-origin"><#if result.dynamicFields.pseudos_text?has_content>${result.dynamicFields.pseudos_text}</#if></div>
+										<div class="psoum-card-origin">${result.dynamicFields.proposal_nicknames_text!''}</div>
 										
 										<div class="psoum-card-description">${result.dynamicFields.description_text!""}</div>
 										
 										<#-- Champs transmis en Ajax lors du vote. Encore utilise au 05/05/2017 ? -->
-										<input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${result.dynamicFields.localisation_text!}">
+										<input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${result.dynamicFields.district_text!}">
 										<input type="hidden" name="title_${id_document}" id="title_${id_document}" value="${result.title}">
-										<input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${result.dynamicFields.thematique_text}">
+										<input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${result.dynamicFields.theme_text}">
 										<input type="hidden" name="arrondUser" id="arrondUser" value="${arrondissementVote!}">
 					
 									</div>

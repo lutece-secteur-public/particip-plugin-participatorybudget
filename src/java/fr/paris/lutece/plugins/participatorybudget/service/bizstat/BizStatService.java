@@ -48,7 +48,7 @@ import org.apache.solr.common.SolrDocumentList;
 import fr.paris.lutece.plugins.document.business.Document;
 import fr.paris.lutece.plugins.document.business.DocumentHome;
 import fr.paris.lutece.plugins.document.business.attributes.DocumentAttribute;
-import fr.paris.lutece.plugins.participatorybudget.service.ProjectService;
+import fr.paris.lutece.plugins.participatorybudget.service.project.ProjectService;
 import fr.paris.lutece.plugins.search.solr.business.SolrServerService;
 import fr.paris.lutece.plugins.subscribe.business.Subscription;
 import fr.paris.lutece.plugins.subscribe.business.SubscriptionFilter;
@@ -129,8 +129,8 @@ public class BizStatService
 
             // Adding project followers
             Document document = DocumentHome.findByPrimaryKey( Integer.parseInt( docId ) );
-            projectNotifiableFollowers.addAll( getActiveSubscribersGuid( listSubUpdate,
-                    ProjectService.getInstance( ).getUniqueUserGuidsProjectFollowers( document ) ) );
+            projectNotifiableFollowers
+                    .addAll( getActiveSubscribersGuid( listSubUpdate, ProjectService.getInstance( ).getUniqueUserGuidsProjectFollowers( document ) ) );
 
             // Calculating unique notifiable users
             uniqueNotifiable.addAll( projectNotifiableFollowers );

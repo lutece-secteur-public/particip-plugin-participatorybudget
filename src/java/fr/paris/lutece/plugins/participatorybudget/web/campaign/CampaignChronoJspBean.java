@@ -203,7 +203,7 @@ public class CampaignChronoJspBean extends ManageCampagnebpJspBean
         String newCampagneCode = CampaignChronoService.getInstance( ).generate( );
 
         String msg = I18nService.getLocalizedString( INFO_CAMPAIGNCHRONO_GENERATED, new String [ ] {
-            newCampagneCode
+                newCampagneCode
         }, getLocale( ) );
         addInfo( msg );
 

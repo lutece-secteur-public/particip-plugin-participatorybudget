@@ -118,7 +118,8 @@ public class NotifyDocumentbpService implements INotifyDocumentbpService
     @Override
     public void processAction( Workflow workflow, Document document )
     {
-        AppLogService.error( "Processing actions for workflow #" + workflow.getId( ) + " and document #" + document.getId( ) + " (INotifyDocumentbpService) :" );
+        AppLogService
+                .error( "Processing actions for workflow #" + workflow.getId( ) + " and document #" + document.getId( ) + " (INotifyDocumentbpService) :" );
 
         if ( workflow != null && workflow.isEnabled( ) )
         {

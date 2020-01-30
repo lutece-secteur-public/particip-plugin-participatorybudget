@@ -115,8 +115,8 @@ public class CampaignService implements ICampaignService
             cache.put( beginningKey, phase.getStart( ) );
             cache.put( endKey, phase.getEnd( ) );
 
-            AppLogService.debug( "  -> Added '" + phase.getCodeCampagne( ) + "-" + phase.getCodePhaseType( ) + "' = '" + phase.getStart( ) + "/"
-                    + phase.getEnd( ) + "'." );
+            AppLogService.debug(
+                    "  -> Added '" + phase.getCodeCampagne( ) + "-" + phase.getCodePhaseType( ) + "' = '" + phase.getStart( ) + "/" + phase.getEnd( ) + "'." );
         }
 
         _cache = cache;

@@ -175,8 +175,8 @@ public final class DocumentBodyService extends AbstractCacheableService implemen
      * @throws SiteMessageException
      *             occurs when a site message need to be displayed
      */
-    public String getPage( HttpServletRequest request, String strDocumentId, String strPortletId, int nMode ) throws UserNotSignedException,
-            SiteMessageException
+    public String getPage( HttpServletRequest request, String strDocumentId, String strPortletId, int nMode )
+            throws UserNotSignedException, SiteMessageException
     {
         if ( !_bInit )
         {

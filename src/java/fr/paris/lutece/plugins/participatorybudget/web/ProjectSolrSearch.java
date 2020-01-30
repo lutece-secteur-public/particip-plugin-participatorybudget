@@ -129,7 +129,7 @@ public class ProjectSolrSearch extends HttpServlet
                 sbReq.append( "&fq=type:" + PROJECT );
             }
 
-        }// By Arrondissement
+        } // By Arrondissement
         if ( StringUtils.isNotEmpty( getArrondissement( request, user ) ) && !request.getParameter( MARK_ARRONDISSEMENT ).isEmpty( ) )
         {
             sbReq.append( "&fq=" + LOCALISATION + ":" + getArrondissement( request, user ) );

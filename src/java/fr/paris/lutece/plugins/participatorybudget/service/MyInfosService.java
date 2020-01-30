@@ -102,8 +102,8 @@ public final class MyInfosService
     private static final String TYPE_VALIDATE_ACCOUNT = "validate_account";
     private static volatile ReferenceList _listArrondissements;
     private static volatile ReferenceList _listPostalCode;
-    private static List<String> _listAuthorizedCities = Arrays.asList( AppPropertiesService.getProperty( Constants.PROPERTY_AUTHORIZED_CITIES ).split(
-            Constants.AUTHORIZED_CITIES_SEPARATOR ) );
+    private static List<String> _listAuthorizedCities = Arrays
+            .asList( AppPropertiesService.getProperty( Constants.PROPERTY_AUTHORIZED_CITIES ).split( Constants.AUTHORIZED_CITIES_SEPARATOR ) );
 
     /** Private constructor */
     private MyInfosService( )
