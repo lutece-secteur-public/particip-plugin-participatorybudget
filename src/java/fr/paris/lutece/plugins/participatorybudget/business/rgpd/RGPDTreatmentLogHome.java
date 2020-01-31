@@ -33,10 +33,7 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.rgpd;
 
-import java.util.List;
-
-import fr.paris.lutece.plugins.participatorybudget.Constants;
-import fr.paris.lutece.plugins.participatorybudget.business.bizstat.IBizStatFileDAO;
+import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;

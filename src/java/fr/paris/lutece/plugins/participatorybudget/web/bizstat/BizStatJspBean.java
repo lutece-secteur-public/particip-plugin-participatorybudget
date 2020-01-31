@@ -33,8 +33,6 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.web.bizstat;
 
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -42,10 +40,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.lang.StringUtils;
 
 import fr.paris.lutece.plugins.participatorybudget.business.bizstat.BizStatFile;

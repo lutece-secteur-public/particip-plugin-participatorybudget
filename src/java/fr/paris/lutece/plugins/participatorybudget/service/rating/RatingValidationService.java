@@ -38,7 +38,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 import fr.paris.lutece.plugins.extend.modules.rating.service.validator.IRatingValidationService;
-import fr.paris.lutece.plugins.participatorybudget.Constants;
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
 import fr.paris.lutece.plugins.participatorybudget.business.VoteHome;
 import fr.paris.lutece.plugins.participatorybudget.business.VotePerLocation;
@@ -48,6 +47,7 @@ import fr.paris.lutece.plugins.participatorybudget.service.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.service.VoteParArrandissementService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
+import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.plugins.participatorybudget.web.MyInfosXPage;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.spring.SpringContextService;

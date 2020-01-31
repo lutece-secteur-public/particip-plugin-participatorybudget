@@ -1,1876 +1,0 @@
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/business/UserAccessVoteDAO.java b/src/java/fr/paris/lutece/plugins/participatorybudget/business/UserAccessVoteDAO.java[m
-[1mindex f42a02f..b266ca1 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/business/UserAccessVoteDAO.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/business/UserAccessVoteDAO.java[m
-[36m@@ -48,7 +48,7 @@[m [mpublic class UserAccessVoteDAO implements IUserAccessVoteDAO[m
-     @Override[m
-     public void insert( UserAccessVote userVote, Plugin plugin )[m
-     {[m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )[m
-         {[m
-             daoUtil.setString( 1, userVote.getId( ) );[m
-             daoUtil.setBoolean( 2, userVote.isHasAccessVote( ) );[m
-[36m@@ -61,7 +61,7 @@[m [mpublic class UserAccessVoteDAO implements IUserAccessVoteDAO[m
-     @Override[m
-     public void update( UserAccessVote userVote, Plugin plugin )[m
-     {[m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin ) )[m
-         {[m
-             daoUtil.setBoolean( 1, userVote.isHasAccessVote( ) );[m
-             daoUtil.setString( 2, userVote.getId( ) );[m
-[36m@@ -73,7 +73,7 @@[m [mpublic class UserAccessVoteDAO implements IUserAccessVoteDAO[m
-     @Override[m
-     public void delete( String strUserId, Plugin plugin )[m
-     {[m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )[m
-         {[m
-             daoUtil.setString( 1, strUserId );[m
- [m
-[36m@@ -86,7 +86,7 @@[m [mpublic class UserAccessVoteDAO implements IUserAccessVoteDAO[m
-     {[m
-         UserAccessVote userAccessVote = null;[m
- [m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )[m
-         {[m
-             daoUtil.setString( 1, strUserId );[m
-             daoUtil.executeQuery( );[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/business/VoteDAO.java b/src/java/fr/paris/lutece/plugins/participatorybudget/business/VoteDAO.java[m
-[1mindex 4751b2d..4b862fc 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/business/VoteDAO.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/business/VoteDAO.java[m
-[36m@@ -68,7 +68,7 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-     @Override[m
-     public void insert( Vote vote, Plugin plugin )[m
-     {[m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )[m[41m[m
-         {[m
-             daoUtil.setString( 1, vote.getUserId( ) );[m
-             daoUtil.setInt( 2, vote.getProjetId( ) );[m
-[36m@@ -98,7 +98,7 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-      */[m
-     public void delete( String strUserId, int nProjetId, Plugin plugin )[m
-     {[m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )[m[41m[m
-         {[m
-             daoUtil.setString( 1, strUserId );[m
-             daoUtil.setInt( 2, nProjetId );[m
-[36m@@ -119,7 +119,7 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-     {[m
-         List<Vote> voteList = new ArrayList<Vote>( );[m
- [m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin ) )[m[41m[m
-         {[m
-             daoUtil.executeQuery( );[m
- [m
-[36m@@ -147,12 +147,12 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-     }[m
- [m
-     /**[m
-[31m-	 * [m
-[31m-	 */[m
-[32m+[m[32m     *[m[41m [m
-[32m+[m[32m     */[m[41m[m
-     @Override[m
-     public void deleteAll( String strUserId, Plugin plugin )[m
-     {[m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE_ALL, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE_ALL, plugin ) )[m[41m[m
-         {[m
-             daoUtil.setString( 1, strUserId );[m
- [m
-[36m@@ -172,7 +172,7 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-     {[m
-         List<Vote> voteList = new ArrayList<Vote>( );[m
- [m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_SELECT, plugin ) )[m[41m[m
-         {[m
-             daoUtil.setString( 1, strUserId );[m
- [m
-[36m@@ -213,7 +213,7 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-     {[m
-         int nbrVotes = 0;[m
- [m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_ARR, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_ARR, plugin ) )[m[41m[m
-         {[m
-             daoUtil.setString( 1, strUserId );[m
-             daoUtil.setInt( 2, nLocalisation );[m
-[36m@@ -241,7 +241,7 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-     {[m
-         int nbrVotes = 0;[m
- [m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE, plugin ) )[m[41m[m
-         {[m
-             daoUtil.setString( 1, strUserId );[m
-             daoUtil.setInt( 2, nLocalisation );[m
-[36m@@ -258,14 +258,14 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-     }[m
- [m
-     /**[m
-[31m-	  * [m
-[31m-	  */[m
-[32m+[m[32m      *[m[41m [m
-[32m+[m[32m      */[m[41m[m
-     @Override[m
-     public Vote selectVote( String strUserId, int nIdproject, Plugin plugin )[m
-     {[m
-         Vote vote = null;[m
- [m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_VOTE, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_VOTE, plugin ) )[m[41m[m
-         {[m
-             daoUtil.setString( 1, strUserId );[m
-             daoUtil.setInt( 2, nIdproject );[m
-[36m@@ -303,7 +303,7 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-     {[m
-         List<String> userList = new ArrayList<>( );[m
- [m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_USER, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_USER, plugin ) )[m[41m[m
-         {[m
-             daoUtil.executeQuery( );[m
- [m
-[36m@@ -319,7 +319,7 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-     @Override[m
-     public void validateVote( String strUserId, int statusVote, Plugin plugin )[m
-     {[m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_VALIDATE_VOTE, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_VALIDATE_VOTE, plugin ) )[m[41m[m
-         {[m
-             daoUtil.setInt( 1, statusVote );[m
-             daoUtil.setString( 2, strUserId );[m
-[36m@@ -333,7 +333,7 @@[m [mpublic final class VoteDAO implements IVoteDAO[m
-     {[m
-         List<Vote> voteList = new ArrayList<>( );[m
- [m
-[31m-        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_VOTE_STATUS, plugin ) )[m
-[32m+[m[32m        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_VOTE_STATUS, plugin ) )[m[41m[m
-         {[m
-             daoUtil.setString( 1, strUserId );[m
-             daoUtil.setInt( 2, statusVote );[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/business/campaign/package-info.java b/src/java/fr/paris/lutece/plugins/participatorybudget/business/campaign/package-info.java[m
-[1mindex 141620c..3ad5f7b 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/business/campaign/package-info.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/business/campaign/package-info.java[m
-[36m@@ -38,4 +38,4 @@[m
-  * @author poirierje[m
-  *[m
-  */[m
-[31m-package fr.paris.lutece.plugins.participatorybudget.business.campaign;[m
-\ No newline at end of file[m
-[32m+[m[32mpackage fr.paris.lutece.plugins.participatorybudget.business.campaign;[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/business/notify/package-info.java b/src/java/fr/paris/lutece/plugins/participatorybudget/business/notify/package-info.java[m
-[1mindex f4c2615..a6342e4 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/business/notify/package-info.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/business/notify/package-info.java[m
-[36m@@ -38,4 +38,4 @@[m
-  * @author poirierje[m
-  *[m
-  */[m
-[31m-package fr.paris.lutece.plugins.participatorybudget.business.notify;[m
-\ No newline at end of file[m
-[32m+[m[32mpackage fr.paris.lutece.plugins.participatorybudget.business.notify;[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/business/package-info.java b/src/java/fr/paris/lutece/plugins/participatorybudget/business/package-info.java[m
-[1mindex 96d8ba5..9244540 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/business/package-info.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/business/package-info.java[m
-[36m@@ -38,4 +38,4 @@[m
-  * @author rafik[m
-  *[m
-  */[m
-[31m-package fr.paris.lutece.plugins.participatorybudget.business;[m
-\ No newline at end of file[m
-[32m+[m[32mpackage fr.paris.lutece.plugins.participatorybudget.business;[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/BudgetSolrAddon.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/BudgetSolrAddon.java[m
-[1mindex dd474fb..b8e56e9 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/BudgetSolrAddon.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/BudgetSolrAddon.java[m
-[36m@@ -67,15 +67,15 @@[m [mpublic class BudgetSolrAddon implements ISolrSearchAppAddOn[m
-     private static final String SOLRSEARCHAPP_MARK_POINTS_FIELDCODE = "code";[m
-     private static final String SOLRSEARCHAPP_MARK_POINTS_TYPE = "type";[m
-     private static final String SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX = "solr.reponse.max";[m
-[31m-    private static final int SOLRSEARCHAPP_SOLR_RESPONSE_MAX = Integer.parseInt( AppPropertiesService.getProperty( SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX,[m
-[31m-            "50" ) );[m
-[32m+[m[32m    private static final int SOLRSEARCHAPP_SOLR_RESPONSE_MAX = Integer[m
-[32m+[m[32m            .parseInt( AppPropertiesService.getProperty( SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX, "50" ) );[m
- [m
-     private static final String PARAMETER_CONF_MAP_PROJETS = "map_projets"; // Vue des projets soumis au vote[m
- [m
-     private static final String SOLR_QUERY_ALL = "*:*";[m
-     private static final String PROPERTY_OLDPROJECTS_FQ = "participatorybudget.oldprojects.fq";[m
-     private static final String [ ] SOLR_FQ_OLDPROJECTS = {[m
-[31m-        AppPropertiesService.getProperty( PROPERTY_OLDPROJECTS_FQ, "(statut_project_text:GAGNANT' OR statut_project_text:'gagnant') AND type:'PB Project" )[m
-[32m+[m[32m            AppPropertiesService.getProperty( PROPERTY_OLDPROJECTS_FQ, "(statut_project_text:GAGNANT' OR statut_project_text:'gagnant') AND type:'PB Project" )[m
-     };[m
-     private static final String MARK_OLDPROJECTS_POINTS = "oldprojects_points";[m
- [m
-[36m@@ -168,7 +168,8 @@[m [mpublic class BudgetSolrAddon implements ISolrSearchAppAddOn[m
- [m
-                         geolocItem.setIcon( strIcon );[m
-                         h.put( SOLRSEARCHAPP_MARK_POINTS_GEOJSON, geolocItem.toJSON( ) );[m
-[31m-                        h.put( SOLRSEARCHAPP_MARK_POINTS_ID, result.getId( ).substring( result.getId( ).indexOf( "_" ) + 1, result.getId( ).lastIndexOf( "_" ) ) );[m
-[32m+[m[32m                        h.put( SOLRSEARCHAPP_MARK_POINTS_ID,[m
-[32m+[m[32m                                result.getId( ).substring( result.getId( ).indexOf( "_" ) + 1, result.getId( ).lastIndexOf( "_" ) ) );[m
-                         h.put( SOLRSEARCHAPP_MARK_POINTS_FIELDCODE, key.substring( 0, key.lastIndexOf( "_" ) ) );[m
-                         if ( strType.equals( "doc" ) )[m
-                         {[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/DocumentBodyService.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/DocumentBodyService.java[m
-[1mindex 7d56add..de39301 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/DocumentBodyService.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/DocumentBodyService.java[m
-[36m@@ -175,8 +175,8 @@[m [mpublic final class DocumentBodyService extends AbstractCacheableService implemen[m
-      * @throws SiteMessageException[m
-      *             occurs when a site message need to be displayed[m
-      */[m
-[31m-    public String getPage( HttpServletRequest request, String strDocumentId, String strPortletId, int nMode ) throws UserNotSignedException,[m
-[31m-            SiteMessageException[m
-[32m+[m[32m    public String getPage( HttpServletRequest request, String strDocumentId, String strPortletId, int nMode )[m
-[32m+[m[32m            throws UserNotSignedException, SiteMessageException[m
-     {[m
-         if ( !_bInit )[m
-         {[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/DocumentPageProjectOPService.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/DocumentPageProjectOPService.java[m
-[1mindex 6929cb7..6e60efe 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/DocumentPageProjectOPService.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/DocumentPageProjectOPService.java[m
-[36m@@ -60,8 +60,8 @@[m [mpublic class DocumentPageProjectOPService implements IResourceDisplayManager[m
-     private static final String SOLR_FQ_PROJECTS_OP_STATUT = "-statut_text:";[m
- [m
-     private static final String SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX = "solr.reponse.max";[m
-[31m-    private static final int SOLRSEARCHAPP_SOLR_RESPONSE_MAX = Integer.parseInt( AppPropertiesService.getProperty( SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX,[m
-[31m-            "50" ) );[m
-[32m+[m[32m    private static final int SOLRSEARCHAPP_SOLR_RESPONSE_MAX = Integer[m
-[32m+[m[32m            .parseInt( AppPropertiesService.getProperty( SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX, "50" ) );[m
- [m
-     private static final String MARK_STATUS = "status_document";[m
-     private static final String MARK_STATUS_VOTED = "SUIVI";[m
-[36m@@ -152,7 +152,8 @@[m [mpublic class DocumentPageProjectOPService implements IResourceDisplayManager[m
- [m
-                         geolocItem.setIcon( strIcon );[m
-                         h.put( SOLRSEARCHAPP_MARK_POINTS_GEOJSON, geolocItem.toJSON( ) );[m
-[31m-                        h.put( SOLRSEARCHAPP_MARK_POINTS_ID, result.getId( ).substring( result.getId( ).indexOf( "_" ) + 1, result.getId( ).lastIndexOf( "_" ) ) );[m
-[32m+[m[32m                        h.put( SOLRSEARCHAPP_MARK_POINTS_ID,[m
-[32m+[m[32m                                result.getId( ).substring( result.getId( ).indexOf( "_" ) + 1, result.getId( ).lastIndexOf( "_" ) ) );[m
-                         h.put( SOLRSEARCHAPP_MARK_POINTS_FIELDCODE, key.substring( 0, key.lastIndexOf( "_" ) ) );[m
-                         if ( strType.equals( "doc" ) )[m
-                         {[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/IDocumentBodyService.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/IDocumentBodyService.java[m
-[1mindex 0f79d38..0edf98c 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/IDocumentBodyService.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/IDocumentBodyService.java[m
-[36m@@ -41,6 +41,6 @@[m [mimport fr.paris.lutece.portal.service.security.UserNotSignedException;[m
- interface IDocumentBodyService[m
- {[m
- [m
-[31m-    public String getPage( HttpServletRequest request, String strDocumentId, String strPortletId, int nMode ) throws UserNotSignedException,[m
-[31m-            SiteMessageException;[m
-[32m+[m[32m    public String getPage( HttpServletRequest request, String strDocumentId, String strPortletId, int nMode )[m
-[32m+[m[32m            throws UserNotSignedException, SiteMessageException;[m
- }[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/MyInfosService.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/MyInfosService.java[m
-[1mindex d741ead..8f4fdd3 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/MyInfosService.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/MyInfosService.java[m
-[36m@@ -102,8 +102,8 @@[m [mpublic final class MyInfosService[m
-     private static final String TYPE_VALIDATE_ACCOUNT = "validate_account";[m
-     private static volatile ReferenceList _listArrondissements;[m
-     private static volatile ReferenceList _listPostalCode;[m
-[31m-    private static List<String> _listAuthorizedCities = Arrays.asList( AppPropertiesService.getProperty( Constants.PROPERTY_AUTHORIZED_CITIES ).split([m
-[31m-            Constants.AUTHORIZED_CITIES_SEPARATOR ) );[m
-[32m+[m[32m    private static List<String> _listAuthorizedCities = Arrays[m
-[32m+[m[32m            .asList( AppPropertiesService.getProperty( Constants.PROPERTY_AUTHORIZED_CITIES ).split( Constants.AUTHORIZED_CITIES_SEPARATOR ) );[m
- [m
-     /** Private constructor */[m
-     private MyInfosService( )[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/ProjectLaureatAddOn.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/ProjectLaureatAddOn.java[m
-[1mindex 17a9074..aa81fc2 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/ProjectLaureatAddOn.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/ProjectLaureatAddOn.java[m
-[36m@@ -55,7 +55,7 @@[m [mpublic class ProjectLaureatAddOn implements ISolrSearchAppAddOn[m
-     private static final String PARAMETER_CONF_ELECTED_PROJECT = "elected_projects";[m
-     private static final String PROPERTY_PROJECTS_FQ = "participatorybudget.projects.laureat.fq";[m
-     private static final String [ ] SOLR_FQ_PROJECTS_TOUT_PARIS = {[m
-[31m-        AppPropertiesService.getProperty( PROPERTY_PROJECTS_FQ, "(statut_project_text:GAGNANT') AND localisation_text:'whole_city' AND type:'PB Project" )[m
-[32m+[m[32m            AppPropertiesService.getProperty( PROPERTY_PROJECTS_FQ, "(statut_project_text:GAGNANT') AND localisation_text:'whole_city' AND type:'PB Project" )[m
-     };[m
- [m
-     private static final String PROPERTY_SOLR_RESPONSE_MAX = "solr.reponse.max";[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/VotesSolrAddon.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/VotesSolrAddon.java[m
-[1mindex 562958c..a2b401c 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/VotesSolrAddon.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/VotesSolrAddon.java[m
-[36m@@ -66,7 +66,7 @@[m [mpublic class VotesSolrAddon implements ISolrSearchAppAddOn[m
-         for ( SolrSearchResult solrSearchResult : listResults )[m
-         {[m
-             String solrDocPortletId = solrSearchResult.getDocPortletId( );[m
-[31m-            String parsedSolrDocPortletId [ ] = solrDocPortletId.split( "&" );[m
-[32m+[m[32m            String parsedSolrDocPortletId[] = solrDocPortletId.split( "&" );[m
-             AppLogService.debug( "participatorybudget, fetching " + solrDocPortletId );[m
-             if ( parsedSolrDocPortletId.length == 2 )[m
-             {[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/bizstat/BizStatService.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/bizstat/BizStatService.java[m
-[1mindex 7ef63be..5f4030c 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/bizstat/BizStatService.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/bizstat/BizStatService.java[m
-[36m@@ -48,7 +48,7 @@[m [mimport org.apache.solr.common.SolrDocumentList;[m
- import fr.paris.lutece.plugins.document.business.Document;[m
- import fr.paris.lutece.plugins.document.business.DocumentHome;[m
- import fr.paris.lutece.plugins.document.business.attributes.DocumentAttribute;[m
-[31m-import fr.paris.lutece.plugins.participatorybudget.service.ProjectService;[m
-[32m+[m[32mimport fr.paris.lutece.plugins.participatorybudget.service.project.ProjectService;[m
- import fr.paris.lutece.plugins.search.solr.business.SolrServerService;[m
- import fr.paris.lutece.plugins.subscribe.business.Subscription;[m
- import fr.paris.lutece.plugins.subscribe.business.SubscriptionFilter;[m
-[36m@@ -129,8 +129,8 @@[m [mpublic class BizStatService[m
- [m
-             // Adding project followers[m
-             Document document = DocumentHome.findByPrimaryKey( Integer.parseInt( docId ) );[m
-[31m-            projectNotifiableFollowers.addAll( getActiveSubscribersGuid( listSubUpdate,[m
-[31m-                    ProjectService.getInstance( ).getUniqueUserGuidsProjectFollowers( document ) ) );[m
-[32m+[m[32m            projectNotifiableFollowers[m
-[32m+[m[32m                    .addAll( getActiveSubscribersGuid( listSubUpdate, ProjectService.getInstance( ).getUniqueUserGuidsProjectFollowers( document ) ) );[m
- [m
-             // Calculating unique notifiable users[m
-             uniqueNotifiable.addAll( projectNotifiableFollowers );[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/campaign/CampaignService.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/campaign/CampaignService.java[m
-[1mindex f4f1bae..d214924 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/campaign/CampaignService.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/campaign/CampaignService.java[m
-[36m@@ -115,8 +115,8 @@[m [mpublic class CampaignService implements ICampaignService[m
-             cache.put( beginningKey, phase.getStart( ) );[m
-             cache.put( endKey, phase.getEnd( ) );[m
- [m
-[31m-            AppLogService.debug( "  -> Added '" + phase.getCodeCampagne( ) + "-" + phase.getCodePhaseType( ) + "' = '" + phase.getStart( ) + "/"[m
-[31m-                    + phase.getEnd( ) + "'." );[m
-[32m+[m[32m            AppLogService.debug([m
-[32m+[m[32m                    "  -> Added '" + phase.getCodeCampagne( ) + "-" + phase.getCodePhaseType( ) + "' = '" + phase.getStart( ) + "/" + phase.getEnd( ) + "'." );[m
-         }[m
- [m
-         _cache = cache;[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/campaign/package-info.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/campaign/package-info.java[m
-[1mindex 681d7f6..6a89045 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/campaign/package-info.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/campaign/package-info.java[m
-[36m@@ -38,4 +38,4 @@[m
-  * @author poirierje[m
-  *[m
-  */[m
-[31m-package fr.paris.lutece.plugins.participatorybudget.service.campaign;[m
-\ No newline at end of file[m
-[32m+[m[32mpackage fr.paris.lutece.plugins.participatorybudget.service.campaign;[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/NotifyDocumentbpService.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/NotifyDocumentbpService.java[m
-[1mindex a9c8af7..094136b 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/NotifyDocumentbpService.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/NotifyDocumentbpService.java[m
-[36m@@ -118,7 +118,8 @@[m [mpublic class NotifyDocumentbpService implements INotifyDocumentbpService[m
-     @Override[m
-     public void processAction( Workflow workflow, Document document )[m
-     {[m
-[31m-        AppLogService.error( "Processing actions for workflow #" + workflow.getId( ) + " and document #" + document.getId( ) + " (INotifyDocumentbpService) :" );[m
-[32m+[m[32m        AppLogService[m
-[32m+[m[32m                .error( "Processing actions for workflow #" + workflow.getId( ) + " and document #" + document.getId( ) + " (INotifyDocumentbpService) :" );[m
- [m
-         if ( workflow != null && workflow.isEnabled( ) )[m
-         {[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/TaskNotifyDocumentbp.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/TaskNotifyDocumentbp.java[m
-[1mindex 9aaee7b..6c1d739 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/TaskNotifyDocumentbp.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/TaskNotifyDocumentbp.java[m
-[36m@@ -52,7 +52,7 @@[m [mimport fr.paris.lutece.plugins.document.business.DocumentHome;[m
- import fr.paris.lutece.plugins.document.business.attributes.DocumentAttribute;[m
- import fr.paris.lutece.plugins.extend.service.extender.history.IResourceExtenderHistoryService;[m
- import fr.paris.lutece.plugins.participatorybudget.business.notify.TaskNotifyDocumentbpConfig;[m
-[31m-import fr.paris.lutece.plugins.participatorybudget.service.ProjectService;[m
-[32m+[m[32mimport fr.paris.lutece.plugins.participatorybudget.service.project.ProjectService;[m
- import fr.paris.lutece.plugins.subscribe.business.Subscription;[m
- import fr.paris.lutece.plugins.subscribe.business.SubscriptionFilter;[m
- import fr.paris.lutece.plugins.subscribe.service.SubscriptionService;[m
-[36m@@ -234,8 +234,8 @@[m [mpublic class TaskNotifyDocumentbp extends SimpleTask[m
-         model.put( MARK_PSEUDO_ABONNEE, strNickNameUser );[m
-         model.put( MARK_TITRE_PROJET, documentTitle );[m
-         model.put( MARK_NUMERO_LUTECE_DOCUMENT, documentId );[m
-[31m-        model.put( MARK_URL_FICHE, AppPathService.getProdUrl( "https://budgetparticipatif.paris.fr/bp" ) + "jsp/site/Portal.jsp?document_id=" + documentId[m
-[31m-                + "&portlet_id=158" );[m
-[32m+[m[32m        model.put( MARK_URL_FICHE,[m
-[32m+[m[32m                AppPathService.getProdUrl( "https://budgetparticipatif.paris.fr/bp" ) + "jsp/site/Portal.jsp?document_id=" + documentId + "&portlet_id=158" );[m
-         model.put( MARK_PHASE_ACTUELLE_PROJET, "" );[m
-         model.put( MARK_MESSAGE_NOTIFICATION, realizationNotify );[m
- [m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/package-info.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/package-info.java[m
-[1mindex 571ff21..b2a1b7c 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/package-info.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/notify/package-info.java[m
-[36m@@ -38,4 +38,4 @@[m
-  * @author poirierje[m
-  *[m
-  */[m
-[31m-package fr.paris.lutece.plugins.participatorybudget.service.notify;[m
-\ No newline at end of file[m
-[32m+[m[32mpackage fr.paris.lutece.plugins.participatorybudget.service.notify;[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/service/project/ProjectService.java b/src/java/fr/paris/lutece/plugins/participatorybudget/service/project/ProjectService.java[m
-[1mindex b66b58a..c39a515 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/service/project/ProjectService.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/service/project/ProjectService.java[m
-[36m@@ -31,7 +31,7 @@[m
-  *[m
-  * License 1.0[m
-  */[m
-[31m-package fr.paris.lutece.plugins.participatorybudget.service;[m
-[32m+[m[32mpackage fr.paris.lutece.plugins.participatorybudget.service.project;[m
- [m
- import java.util.HashSet;[m
- import java.util.List;[m
-[36m@@ -39,6 +39,8 @@[m [mimport java.util.Set;[m
- [m
- import javax.inject.Inject;[m
- [m
-[32m+[m[32mimport org.apache.commons.lang.NotImplementedException;[m
-[32m+[m
- import fr.paris.lutece.plugins.document.business.Document;[m
- import fr.paris.lutece.plugins.extend.business.extender.history.ResourceExtenderHistory;[m
- import fr.paris.lutece.plugins.extend.business.extender.history.ResourceExtenderHistoryFilter;[m
-[36m@@ -46,7 +48,7 @@[m [mimport fr.paris.lutece.plugins.extend.modules.follow.service.extender.FollowReso[m
- import fr.paris.lutece.plugins.extend.service.extender.history.IResourceExtenderHistoryService;[m
- import fr.paris.lutece.portal.service.spring.SpringContextService;[m
- [m
-[31m-public class ProjectService[m
-[32m+[m[32mpublic class ProjectService implements IProjectService[m
- {[m
-     private static final String BEAN_PROJECT_SERVICE = "participatorybudget.projectService";[m
-     private static ProjectService _singleton;[m
-[36m@@ -54,24 +56,32 @@[m [mpublic class ProjectService[m
-     @Inject[m
-     private IResourceExtenderHistoryService _resourceExtenderHistoryService;[m
- [m
-[31m-    public static ProjectService getInstance( )[m
-[32m+[m[32m    public static IProjectService getInstance( )[m
-     {[m
-         if ( _singleton == null )[m
-         {[m
-             _singleton = SpringContextService.getBean( BEAN_PROJECT_SERVICE );[m
-         }[m
-[31m-[m
-         return _singleton;[m
-     }[m
- [m
-[32m+[m[32m    // ***********************************************************************************[m
-[32m+[m[32m    // * CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CR *[m
-[32m+[m[32m    // * CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CR *[m
-[32m+[m[32m    // ***********************************************************************************[m
-[32m+[m
-[32m+[m[32m    @Override[m
-[32m+[m[32m    public int createproject( )[m
-[32m+[m[32m    {[m
-[32m+[m[32m        throw new NotImplementedException( );[m
-[32m+[m[32m    }[m
-[32m+[m
-     // *********************************************************************************************[m
-     // * FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLO *[m
-     // * FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLO *[m
-     // *********************************************************************************************[m
- [m
-[31m-    /**[m
-[31m-     * Returns a Set containing guid of followers of a document project.[m
-[31m-     */[m
-[32m+[m[32m    @Override[m
-     public Set<String> getUniqueUserGuidsProjectFollowers( Document project )[m
-     {[m
-         Set<String> userGuids = new HashSet<String>( );[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/util/Constants.java b/src/java/fr/paris/lutece/plugins/participatorybudget/util/Constants.java[m
-[1mindex b102b90..730ec56 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/util/Constants.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/util/Constants.java[m
-[36m@@ -33,6 +33,8 @@[m
-  */[m
- package fr.paris.lutece.plugins.participatorybudget.util;[m
- [m
-[32m+[m[32mimport org.apache.commons.lang.NotImplementedException;[m
-[32m+[m
- /**[m
-  * This class provides constants[m
-  *[m
-[36m@@ -62,11 +64,49 @@[m [mpublic final class Constants[m
-     public static final String BEGINNING_DATETIME = "BEGINNING_DATETIME";[m
-     public static final String END_DATETIME = "END_DATETIME";[m
- [m
-[32m+[m[32m    // Document fields[m
-[32m+[m
-[32m+[m[32m    public static final String DOCUMENT_TYPE_PROJECT = "pb_project";[m
-[32m+[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_STATUS = "status";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_CAMPAIGN = "campaign";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_THEME = "theme";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_DESCRIPTION = "description";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_CONTENT = "content";[m
-[32m+[m[41m    [m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_DISTRICT = "district";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_ADDRESS = "address";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_ADDRESS_GEOLOC = "address_geoloc";[m
-[32m+[m[41m    [m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_DEPARTMENT = "department";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_VALUE = "value";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_IMAGE = "image";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_TOTAL_VOTES = "total_votes";[m
-[32m+[m[41m    [m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_ID = "proposal_id";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_TITLE = "proposal_title";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_SUBTITLE = "proposal_subtitle";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_URL = "proposal_url";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_NICKNAMES = "proposal_nicknames";[m
-[32m+[m[41m    [m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_PHASE_1_START_DATE = "phase1_start_date";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_PHASE_2_START_DATE = "phase2_start_date";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_PHASE_3_START_DATE = "phase3_start_date";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_PHASE_4_START_DATE = "phase4_start_date";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_PHASE_4_END_DATE = "phase4_end_date";[m
-[32m+[m[41m    [m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_STEP_1_START_DATE = "step1_start_date";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_STEP_2_START_DATE = "step2_start_date";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_STEP_3_START_DATE = "step3_start_date";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_STEP_4_START_DATE = "step4_start_date";[m
-[32m+[m[32m    public static final String DOCUMENT_ATTRIBUTE_STEP_5_START_DATE = "step5_start_date";[m
-[32m+[m
-     /**[m
-      * Private constructor[m
-      */[m
-     private Constants( )[m
-     {[m
-[32m+[m[41m    [m	[32mthrow new NotImplementedException( "This class should not be instantiated !" );[m
-     }[m
- [m
- }[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/util/ModelUtils.java b/src/java/fr/paris/lutece/plugins/participatorybudget/util/ModelUtils.java[m
-[1mindex 499e694..89dc111 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/util/ModelUtils.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/util/ModelUtils.java[m
-[36m@@ -51,8 +51,8 @@[m [mpublic final class ModelUtils[m
-     // Markers[m
-     private static final String MARKER_AUTHORIZED_ADDRESS = "authorized_address";[m
- [m
-[31m-    private static List<String> _listAuthorizedCities = Arrays.asList( AppPropertiesService.getProperty( Constants.PROPERTY_AUTHORIZED_CITIES ).split([m
-[31m-            Constants.AUTHORIZED_CITIES_SEPARATOR ) );[m
-[32m+[m[32m    private static List<String> _listAuthorizedCities = Arrays[m
-[32m+[m[32m            .asList( AppPropertiesService.getProperty( Constants.PROPERTY_AUTHORIZED_CITIES ).split( Constants.AUTHORIZED_CITIES_SEPARATOR ) );[m
- [m
-     /**[m
-      * Default constructor[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/MyInfosXPage.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/MyInfosXPage.java[m
-[1mindex 27d79ba..3ed7b99 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/MyInfosXPage.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/MyInfosXPage.java[m
-[36m@@ -550,11 +550,11 @@[m [mpublic class MyInfosXPage extends MVCApplication[m
-                 // addError(MESSAGE_ERROR_ADRESS_GEOLOC_FORMAT, getLocale(request));[m
-                 // }[m
- [m
-[31m-                if ( !bError[m
-[31m-                        && ( form.getNickname( ) != null[m
-[31m-                                && ( MyInfosService.loadUserNickname( user.getName( ) ) != null[m
-[31m-                                        && !form.getNickname( ).equals( MyInfosService.loadUserNickname( user.getName( ) ) ) || MyInfosService[m
-[31m-                                        .loadUserNickname( user.getName( ) ) == null ) && MyInfosService.isNicknameAlreadyExist( form.getNickname( ) ) ) )[m
-[32m+[m[32m                if ( !bError && ( form.getNickname( ) != null[m
-[32m+[m[32m                        && ( MyInfosService.loadUserNickname( user.getName( ) ) != null[m
-[32m+[m[32m                                && !form.getNickname( ).equals( MyInfosService.loadUserNickname( user.getName( ) ) )[m
-[32m+[m[32m                                || MyInfosService.loadUserNickname( user.getName( ) ) == null )[m
-[32m+[m[32m                        && MyInfosService.isNicknameAlreadyExist( form.getNickname( ) ) ) )[m
-                 {[m
-                     bError = true;[m
-                     addError( MESSAGE_ERROR_NICKNAME_ALREADY_EXIST, getLocale( request ) );[m
-[36m@@ -856,11 +856,11 @@[m [mpublic class MyInfosXPage extends MVCApplication[m
-                 // addError(MESSAGE_ERROR_ADRESS_GEOLOC_FORMAT, getLocale(request));[m
-                 // }[m
- [m
-[31m-                if ( !bError[m
-[31m-                        && ( form.getNickname( ) != null[m
-[31m-                                && ( MyInfosService.loadUserNickname( user.getName( ) ) != null[m
-[31m-                                        && !form.getNickname( ).equals( MyInfosService.loadUserNickname( user.getName( ) ) ) || MyInfosService[m
-[31m-                                        .loadUserNickname( user.getName( ) ) == null ) && MyInfosService.isNicknameAlreadyExist( form.getNickname( ) ) ) )[m
-[32m+[m[32m                if ( !bError && ( form.getNickname( ) != null[m
-[32m+[m[32m                        && ( MyInfosService.loadUserNickname( user.getName( ) ) != null[m
-[32m+[m[32m                                && !form.getNickname( ).equals( MyInfosService.loadUserNickname( user.getName( ) ) )[m
-[32m+[m[32m                                || MyInfosService.loadUserNickname( user.getName( ) ) == null )[m
-[32m+[m[32m                        && MyInfosService.isNicknameAlreadyExist( form.getNickname( ) ) ) )[m
-                 {[m
-                     bError = true;[m
-                     addError( MESSAGE_ERROR_NICKNAME_ALREADY_EXIST, getLocale( request ) );[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/MyVoteXPage.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/MyVoteXPage.java[m
-[1mindex fd7fbde..3e685b8 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/MyVoteXPage.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/MyVoteXPage.java[m
-[36m@@ -366,8 +366,8 @@[m [mpublic class MyVoteXPage extends MVCApplication[m
-             arrChoosed = false;[m
-         }[m
- [m
-[31m-        return JsonUtil.buildJsonResponse( new JsonResponse( templateVotesParis + SEPARATOR + templateVotesOther + SEPARATOR + templateValidBtn + SEPARATOR[m
-[31m-                + arrChoosed ) );[m
-[32m+[m[32m        return JsonUtil.buildJsonResponse([m[41m[m
-[32m+[m[32m                new JsonResponse( templateVotesParis + SEPARATOR + templateVotesOther + SEPARATOR + templateValidBtn + SEPARATOR + arrChoosed ) );[m[41m[m
-     }[m
- [m
-     /**[m
-[36m@@ -428,12 +428,12 @@[m [mpublic class MyVoteXPage extends MVCApplication[m
-                     if ( _ratingSecurityService.hasAlreadyVoted( request, strIdExtendableResource, strExtendableResourceType ) )[m
-                     {[m
- [m
-[31m-                        return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_CODE_USER_ALREADY_VOTED, DatastoreService.getDataValue([m
-[31m-                                KEY_ERROR_CODE_USER_ALREADY_VOTED, "" ) ) );[m
-[32m+[m[32m                        return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_CODE_USER_ALREADY_VOTED,[m[41m[m
-[32m+[m[32m                                DatastoreService.getDataValue( KEY_ERROR_CODE_USER_ALREADY_VOTED, "" ) ) );[m[41m[m
- [m
-                     }[m
-[31m-                    return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_CODE_USER_CAN_NOT_VOTE, DatastoreService.getDataValue([m
-[31m-                            KEY_ERROR_CODE_USER_CAN_NOT_VOTE, "" ) ) );[m
-[32m+[m[32m                    return JsonUtil.buildJsonResponse([m[41m[m
-[32m+[m[32m                            new ErrorJsonResponse( JSON_ERROR_CODE_USER_CAN_NOT_VOTE, DatastoreService.getDataValue( KEY_ERROR_CODE_USER_CAN_NOT_VOTE, "" ) ) );[m[41m[m
-                 }[m
-             }[m
-             catch( UserNotSignedException e )[m
-[36m@@ -456,30 +456,30 @@[m [mpublic class MyVoteXPage extends MVCApplication[m
-         if ( nbrVoteUserParis >= maxDcmtToutParis && nbrVoteUserArrond >= maxDcmtArrondissement )[m
-         {[m
- [m
-[31m-            return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_CODE_USER__VOTED_MAX, DatastoreService.getDataValue([m
-[31m-                    KEY_ERROR_CODE_USER__VOTED_MAX, "" ) ) );[m
-[32m+[m[32m            return JsonUtil.buildJsonResponse([m[41m[m
-[32m+[m[32m                    new ErrorJsonResponse( JSON_ERROR_CODE_USER__VOTED_MAX, DatastoreService.getDataValue( KEY_ERROR_CODE_USER__VOTED_MAX, "" ) ) );[m[41m[m
-         }[m
-         if ( nbrVoteUserParis >= maxDcmtToutParis && maxDcmtToutParis > 0[m
-                 && request.getParameter( Constants.PROJECT_LOCALISATION ).equals( Constants.LOCALISATION_PARIS ) )[m
-         {[m
- [m
-[31m-            return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_TOUT_PARIS, DatastoreService.getDataValue([m
-[31m-                    KEY_ERROR_ALREADY_VOTED_TOUT_PARIS, "" ) ) );[m
-[32m+[m[32m            return JsonUtil.buildJsonResponse([m[41m[m
-[32m+[m[32m                    new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_TOUT_PARIS, DatastoreService.getDataValue( KEY_ERROR_ALREADY_VOTED_TOUT_PARIS, "" ) ) );[m[41m[m
-         }[m
-         if ( nbrVoteUserArrond >= maxDcmtArrondissement && maxDcmtArrondissement > 0[m
-                 && !request.getParameter( Constants.PROJECT_LOCALISATION ).equals( Constants.LOCALISATION_PARIS ) )[m
-         {[m
- [m
-[31m-            return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_ARRONDISSEMENT, DatastoreService.getDataValue([m
-[31m-                    KEY_ERROR_ALREADY_VOTED_ARRONDISSEMENT, "" ) ) );[m
-[32m+[m[32m            return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_ARRONDISSEMENT,[m[41m[m
-[32m+[m[32m                    DatastoreService.getDataValue( KEY_ERROR_ALREADY_VOTED_ARRONDISSEMENT, "" ) ) );[m[41m[m
- [m
-         }[m
-         if ( localisationProjet != null && !localisationProjet.equals( BudgetUtils.getArrondissementDisplay( user ) )[m
-                 && !localisationProjet.equals( Constants.LOCALISATION_PARIS ) )[m
-         {[m
- [m
-[31m-            return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_VOTE_USER_ARROND, DatastoreService.getDataValue( KEY_ERROR_VOTE_USER_ARROND,[m
-[31m-                    "" ) ) );[m
-[32m+[m[32m            return JsonUtil[m[41m[m
-[32m+[m[32m                    .buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_VOTE_USER_ARROND, DatastoreService.getDataValue( KEY_ERROR_VOTE_USER_ARROND, "" ) ) );[m[41m[m
- [m
-         }[m
- [m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/ProjectSolrSearch.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/ProjectSolrSearch.java[m
-[1mindex 1e9e495..a9e4592 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/ProjectSolrSearch.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/ProjectSolrSearch.java[m
-[36m@@ -129,7 +129,7 @@[m [mpublic class ProjectSolrSearch extends HttpServlet[m
-                 sbReq.append( "&fq=type:" + PROJECT );[m
-             }[m
- [m
-[31m-        }// By Arrondissement[m
-[32m+[m[32m        } // By Arrondissement[m
-         if ( StringUtils.isNotEmpty( getArrondissement( request, user ) ) && !request.getParameter( MARK_ARRONDISSEMENT ).isEmpty( ) )[m
-         {[m
-             sbReq.append( "&fq=" + LOCALISATION + ":" + getArrondissement( request, user ) );[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/ProjectsXpage.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/ProjectsXpage.java[m
-[1mindex 4890def..a5cc114 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/ProjectsXpage.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/ProjectsXpage.java[m
-[36m@@ -123,8 +123,8 @@[m [mpublic class ProjectsXpage extends MVCApplication[m
- [m
-         // Check if the user has remove the filter on his borough[m
-         String strRemoveUserArrFilter = request.getParameter( PARAMETER_REMOVE_ARR_FILTER );[m
-[31m-        boolean removeUserArrFilterSelected = ( StringUtils.isNotBlank( strRemoveUserArrFilter ) && strUserRemoveArrFilterSelected[m
-[31m-                .equals( strRemoveUserArrFilter ) ) ? Boolean.TRUE : Boolean.FALSE;[m
-[32m+[m[32m        boolean removeUserArrFilterSelected = ( StringUtils.isNotBlank( strRemoveUserArrFilter )[m
-[32m+[m[32m                && strUserRemoveArrFilterSelected.equals( strRemoveUserArrFilter ) ) ? Boolean.TRUE : Boolean.FALSE;[m
-         if ( !locationFilterActivated && removeUserArrFilterSelected )[m
-         {[m
-             sbReq.append( strAmpSymbol + PARAMETER_REMOVE_ARR_FILTER + strEqualSymbol + strRemoveUserArrFilter );[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/VoteParArrandJspBean.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/VoteParArrandJspBean.java[m
-[1mindex 4337086..fd04a04 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/VoteParArrandJspBean.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/VoteParArrandJspBean.java[m
-[36m@@ -61,8 +61,8 @@[m [mimport org.apache.commons.lang.StringUtils;[m
- public class VoteParArrandJspBean extends MVCAdminJspBean[m
- {[m
-     /**[m
-[31m-	 * [m
-[31m-	 */[m
-[32m+[m[32m     *[m[41m [m
-[32m+[m[32m     */[m
-     private static final long serialVersionUID = 1L;[m
-     // //////////////////////////////////////////////////////////////////////////[m
-     // Constantes[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/bizstat/package-info.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/bizstat/package-info.java[m
-[1mindex 4441340..1ec1829 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/bizstat/package-info.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/bizstat/package-info.java[m
-[36m@@ -38,4 +38,4 @@[m
-  * @author poirierje[m
-  *[m
-  */[m
-[31m-package fr.paris.lutece.plugins.participatorybudget.web.bizstat;[m
-\ No newline at end of file[m
-[32m+[m[32mpackage fr.paris.lutece.plugins.participatorybudget.web.bizstat;[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagneImageJspBean.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagneImageJspBean.java[m
-[1mindex 38ea259..6d669ce 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagneImageJspBean.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagneImageJspBean.java[m
-[36m@@ -174,7 +174,8 @@[m [mpublic class CampagneImageJspBean extends ManageCampagnebpJspBean[m
-         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNEIMAGE ) );[m
-         url.addParameter( PARAMETER_ID_CAMPAGNEIMAGE, nId );[m
- [m
-[31m-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEIMAGE, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );[m
-[32m+[m[32m        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEIMAGE, url.getUrl( ),[m
-[32m+[m[32m                AdminMessage.TYPE_CONFIRMATION );[m
- [m
-         return redirect( request, strMessageUrl );[m
-     }[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagnePhaseJspBean.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagnePhaseJspBean.java[m
-[1mindex 238dc90..68a5309 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagnePhaseJspBean.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagnePhaseJspBean.java[m
-[36m@@ -177,7 +177,8 @@[m [mpublic class CampagnePhaseJspBean extends ManageCampagnebpJspBean[m
-         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNEPHASE ) );[m
-         url.addParameter( PARAMETER_ID_CAMPAGNEPHASE, nId );[m
- [m
-[31m-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEPHASE, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );[m
-[32m+[m[32m        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEPHASE, url.getUrl( ),[m
-[32m+[m[32m                AdminMessage.TYPE_CONFIRMATION );[m
- [m
-         return redirect( request, strMessageUrl );[m
-     }[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagneThemeJspBean.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagneThemeJspBean.java[m
-[1mindex 12ba998..17d910d 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagneThemeJspBean.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampagneThemeJspBean.java[m
-[36m@@ -174,7 +174,8 @@[m [mpublic class CampagneThemeJspBean extends ManageCampagnebpJspBean[m
-         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNETHEME ) );[m
-         url.addParameter( PARAMETER_ID_CAMPAGNETHEME, nId );[m
- [m
-[31m-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNETHEME, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );[m
-[32m+[m[32m        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNETHEME, url.getUrl( ),[m
-[32m+[m[32m                AdminMessage.TYPE_CONFIRMATION );[m
- [m
-         return redirect( request, strMessageUrl );[m
-     }[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampaignChronoJspBean.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampaignChronoJspBean.java[m
-[1mindex 7bd6876..d6ab03e 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampaignChronoJspBean.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/CampaignChronoJspBean.java[m
-[36m@@ -203,7 +203,7 @@[m [mpublic class CampaignChronoJspBean extends ManageCampagnebpJspBean[m
-         String newCampagneCode = CampaignChronoService.getInstance( ).generate( );[m
- [m
-         String msg = I18nService.getLocalizedString( INFO_CAMPAIGNCHRONO_GENERATED, new String [ ] {[m
-[31m-            newCampagneCode[m
-[32m+[m[32m                newCampagneCode[m
-         }, getLocale( ) );[m
-         addInfo( msg );[m
- [m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/package-info.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/package-info.java[m
-[1mindex cc854dd..3955e6d 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/package-info.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/campaign/package-info.java[m
-[36m@@ -38,4 +38,4 @@[m
-  * @author poirierje[m
-  *[m
-  */[m
-[31m-package fr.paris.lutece.plugins.participatorybudget.web.campaign;[m
-\ No newline at end of file[m
-[32m+[m[32mpackage fr.paris.lutece.plugins.participatorybudget.web.campaign;[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/notify/package-info.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/notify/package-info.java[m
-[1mindex 7e87105..32b1b85 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/notify/package-info.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/notify/package-info.java[m
-[36m@@ -38,4 +38,4 @@[m
-  * @author poirierje[m
-  *[m
-  */[m
-[31m-package fr.paris.lutece.plugins.participatorybudget.web.notify;[m
-\ No newline at end of file[m
-[32m+[m[32mpackage fr.paris.lutece.plugins.participatorybudget.web.notify;[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/rs/CampaignRest.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/rs/CampaignRest.java[m
-[1mindex 531a6fc..a2134c8 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/rs/CampaignRest.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/rs/CampaignRest.java[m
-[36m@@ -144,8 +144,8 @@[m [mpublic class CampaignRest extends AbstractServiceRest[m
-         }[m
-         try[m
-         {[m
-[31m-            return formatJson( "OK", CampaignService.getInstance( ).isBeforeBeginning( campaign, phase ), CampaignService.getInstance( )[m
-[31m-                    .start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );[m
-[32m+[m[32m            return formatJson( "OK", CampaignService.getInstance( ).isBeforeBeginning( campaign, phase ),[m
-[32m+[m[32m                    CampaignService.getInstance( ).start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );[m
-         }[m
-         catch( NoSuchPhaseException e )[m
-         {[m
-[36m@@ -172,8 +172,8 @@[m [mpublic class CampaignRest extends AbstractServiceRest[m
-         }[m
-         try[m
-         {[m
-[31m-            return formatJson( "OK", CampaignService.getInstance( ).isBeforeBeginning( phase ), CampaignService.getInstance( ).start( phase ) + " ==> "[m
-[31m-                    + CampaignService.getInstance( ).end( phase ) );[m
-[32m+[m[32m            return formatJson( "OK", CampaignService.getInstance( ).isBeforeBeginning( phase ),[m
-[32m+[m[32m                    CampaignService.getInstance( ).start( phase ) + " ==> " + CampaignService.getInstance( ).end( phase ) );[m
-         }[m
-         catch( NoSuchPhaseException e )[m
-         {[m
-[36m@@ -201,8 +201,8 @@[m [mpublic class CampaignRest extends AbstractServiceRest[m
-         }[m
-         try[m
-         {[m
-[31m-            return formatJson( "OK", CampaignService.getInstance( ).isAfterBeginning( campaign, phase ), CampaignService.getInstance( ).start( campaign, phase )[m
-[31m-                    + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );[m
-[32m+[m[32m            return formatJson( "OK", CampaignService.getInstance( ).isAfterBeginning( campaign, phase ),[m
-[32m+[m[32m                    CampaignService.getInstance( ).start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );[m
-         }[m
-         catch( NoSuchPhaseException e )[m
-         {[m
-[36m@@ -229,8 +229,8 @@[m [mpublic class CampaignRest extends AbstractServiceRest[m
-         }[m
-         try[m
-         {[m
-[31m-            return formatJson( "OK", CampaignService.getInstance( ).isAfterBeginning( phase ), CampaignService.getInstance( ).start( phase ) + " ==> "[m
-[31m-                    + CampaignService.getInstance( ).end( phase ) );[m
-[32m+[m[32m            return formatJson( "OK", CampaignService.getInstance( ).isAfterBeginning( phase ),[m
-[32m+[m[32m                    CampaignService.getInstance( ).start( phase ) + " ==> " + CampaignService.getInstance( ).end( phase ) );[m
-         }[m
-         catch( NoSuchPhaseException e )[m
-         {[m
-[36m@@ -258,8 +258,8 @@[m [mpublic class CampaignRest extends AbstractServiceRest[m
-         }[m
-         try[m
-         {[m
-[31m-            return formatJson( "OK", CampaignService.getInstance( ).isDuring( campaign, phase ), CampaignService.getInstance( ).start( campaign, phase )[m
-[31m-                    + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );[m
-[32m+[m[32m            return formatJson( "OK", CampaignService.getInstance( ).isDuring( campaign, phase ),[m
-[32m+[m[32m                    CampaignService.getInstance( ).start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );[m
-         }[m
-         catch( NoSuchPhaseException e )[m
-         {[m
-[36m@@ -286,8 +286,8 @@[m [mpublic class CampaignRest extends AbstractServiceRest[m
-         }[m
-         try[m
-         {[m
-[31m-            return formatJson( "OK", CampaignService.getInstance( ).isDuring( phase ), CampaignService.getInstance( ).start( phase ) + " ==> "[m
-[31m-                    + CampaignService.getInstance( ).end( phase ) );[m
-[32m+[m[32m            return formatJson( "OK", CampaignService.getInstance( ).isDuring( phase ),[m
-[32m+[m[32m                    CampaignService.getInstance( ).start( phase ) + " ==> " + CampaignService.getInstance( ).end( phase ) );[m
-         }[m
-         catch( NoSuchPhaseException e )[m
-         {[m
-[36m@@ -315,8 +315,8 @@[m [mpublic class CampaignRest extends AbstractServiceRest[m
-         }[m
-         try[m
-         {[m
-[31m-            return formatJson( "OK", CampaignService.getInstance( ).isBeforeEnd( campaign, phase ), CampaignService.getInstance( ).start( campaign, phase )[m
-[31m-                    + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );[m
-[32m+[m[32m            return formatJson( "OK", CampaignService.getInstance( ).isBeforeEnd( campaign, phase ),[m
-[32m+[m[32m                    CampaignService.getInstance( ).start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );[m
-         }[m
-         catch( NoSuchPhaseException e )[m
-         {[m
-[36m@@ -343,8 +343,8 @@[m [mpublic class CampaignRest extends AbstractServiceRest[m
-         }[m
-         try[m
-         {[m
-[31m-            return formatJson( "OK", CampaignService.getInstance( ).isBeforeEnd( phase ), CampaignService.getInstance( ).start( phase ) + " ==> "[m
-[31m-                    + CampaignService.getInstance( ).end( phase ) );[m
-[32m+[m[32m            return formatJson( "OK", CampaignService.getInstance( ).isBeforeEnd( phase ),[m
-[32m+[m[32m                    CampaignService.getInstance( ).start( phase ) + " ==> " + CampaignService.getInstance( ).end( phase ) );[m
-         }[m
-         catch( NoSuchPhaseException e )[m
-         {[m
-[36m@@ -372,8 +372,8 @@[m [mpublic class CampaignRest extends AbstractServiceRest[m
-         }[m
-         try[m
-         {[m
-[31m-            return formatJson( "OK", CampaignService.getInstance( ).isAfterEnd( campaign, phase ), CampaignService.getInstance( ).start( campaign, phase )[m
-[31m-                    + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );[m
-[32m+[m[32m            return formatJson( "OK", CampaignService.getInstance( ).isAfterEnd( campaign, phase ),[m
-[32m+[m[32m                    CampaignService.getInstance( ).start( campaign, phase ) + " ==> " + CampaignService.getInstance( ).end( campaign, phase ) );[m
-         }[m
-         catch( NoSuchPhaseException e )[m
-         {[m
-[36m@@ -400,8 +400,8 @@[m [mpublic class CampaignRest extends AbstractServiceRest[m
-         }[m
-         try[m
-         {[m
-[31m-            return formatJson( "OK", CampaignService.getInstance( ).isAfterEnd( phase ), CampaignService.getInstance( ).start( phase ) + " ==> "[m
-[31m-                    + CampaignService.getInstance( ).end( phase ) );[m
-[32m+[m[32m            return formatJson( "OK", CampaignService.getInstance( ).isAfterEnd( phase ),[m
-[32m+[m[32m                    CampaignService.getInstance( ).start( phase ) + " ==> " + CampaignService.getInstance( ).end( phase ) );[m
-         }[m
-         catch( NoSuchPhaseException e )[m
-         {[m
-[1mdiff --git a/src/java/fr/paris/lutece/plugins/participatorybudget/web/rs/ProjectRest.java b/src/java/fr/paris/lutece/plugins/participatorybudget/web/rs/ProjectRest.java[m
-[1mindex e666bea..b86170e 100644[m
-[1m--- a/src/java/fr/paris/lutece/plugins/participatorybudget/web/rs/ProjectRest.java[m
-[1m+++ b/src/java/fr/paris/lutece/plugins/participatorybudget/web/rs/ProjectRest.java[m
-[36m@@ -79,6 +79,8 @@[m [mimport org.apache.commons.lang.NotImplementedException;[m
- [m
- import com.google.gson.JsonObject;[m
- [m
-[32m+[m[32mimport fr.paris.lutece.plugins.participatorybudget.service.project.ProjectService;[m
-[32m+[m[32mimport fr.paris.lutece.plugins.participatorybudget.service.project.IProjectService;[m
- import fr.paris.lutece.plugins.rest.service.RestConstants;[m
- import fr.paris.lutece.portal.service.util.AppLogService;[m
- [m
-[36m@@ -111,9 +113,10 @@[m [mpublic class ProjectRest extends AbstractServiceRest[m
-             AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );[m
-             throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );[m
-         }[m
-[32m+[m
-         try[m
-         {[m
-[31m-            throw new NotImplementedException( );[m
-[32m+[m[32m            return Integer.toString( ProjectService.getInstance( ).createproject( ) );[m
-         }[m
-         catch( Exception e )[m
-         {[m
-[1mdiff --git a/webapp/WEB-INF/conf/plugins/participatorybudget_context.xml b/webapp/WEB-INF/conf/plugins/participatorybudget_context.xml[m
-[1mindex 4bbea18..c569aaa 100644[m
-[1m--- a/webapp/WEB-INF/conf/plugins/participatorybudget_context.xml[m
-[1m+++ b/webapp/WEB-INF/conf/plugins/participatorybudget_context.xml[m
-[36m@@ -57,7 +57,7 @@[m
-     <bean id="participatorybudget.budgetparticipatifSitePropertiesGroup" class="fr.paris.lutece.plugins.participatorybudget.service.BudgetparticipatifSitePropertiesGroup" />[m
-     <bean id="participatorybudget.budgetAddOnService"                    class="fr.paris.lutece.plugins.participatorybudget.service.BudgetAddOnService" />[m
-     <bean id="participatorybudget.voteParArrandService"                  class="fr.paris.lutece.plugins.participatorybudget.service.VoteParArrandissementService" />[m
-[31m-    <bean id="participatorybudget.projectService"                        class="fr.paris.lutece.plugins.participatorybudget.service.ProjectService" />[m
-[32m+[m[32m    <bean id="participatorybudget.projectService"                        class="fr.paris.lutece.plugins.participatorybudget.service.project.ProjectService" />[m[41m[m
-     <bean id="participatorybudget.bizStatService"                        class="fr.paris.lutece.plugins.participatorybudget.service.bizstat.BizStatService" />[m
-     <!-- Resource extender -->[m
-     <bean id="participatorybudget.voteResourceExtender" class="fr.paris.lutece.plugins.participatorybudget.service.rating.VoteResourceExtender"[m
-[1mdiff --git a/webapp/WEB-INF/templates/skin/plugins/participatorybudget/document_list_solr_search_results.html b/webapp/WEB-INF/templates/skin/plugins/participatorybudget/document_list_solr_search_results.html[m
-[1mindex 5f3cbb6..f3f4bf6 100644[m
-[1m--- a/webapp/WEB-INF/templates/skin/plugins/participatorybudget/document_list_solr_search_results.html[m
-[1m+++ b/webapp/WEB-INF/templates/skin/plugins/participatorybudget/document_list_solr_search_results.html[m
-[36m@@ -9,38 +9,38 @@[m
- 		<h2 class="visuallyhidden">Liste des résultats de la recherche</h2>[m
- 		<div id="psoum-list" class="row">[m
- [m
-[31m-			<#assign theme_class = "autre">[m
-[31m-			[m
- 			<#-- On boucle sur les projets à afficher -->[m
- 			<#list results_list as result>[m
- 			[m
-[32m+[m				[32m<#assign theme_class = "other">[m
-[32m+[m[41m			[m
- 				<#assign id_document = "${(result.id?split('Lutece_')?last)?split('_')?first}">[m
- 				<#assign result_detail_idx = ((paginator.pageCurrent-1)*paginator.itemsPerPage)+1+result_index>[m
- [m
- 				<#-- on identifie la classe CSS relative au thème du projet en cours -->[m
-[31m-				<#if result.dynamicFields?? && result.dynamicFields.thematique_text??>[m
-[31m-					<#if result.dynamicFields.thematique_text = "Cadre de vie"><#assign theme_class = "cadre_vie">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Culture" || result.dynamicFields.thematique_text = "Culture et patrimoine"><#assign theme_class = "culture">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Economie et emploi"><#assign theme_class = "economie_emploi">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Économie, emploi et attractivité"><#assign theme_class = "economie_emploi">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Education et jeunesse"><#assign theme_class = "education">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Environnement" || result.dynamicFields.thematique_text = "Nature en ville"><#assign theme_class = "environnement">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Logement et habitat"><#assign theme_class = "logement">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Participation citoyenne"><#assign theme_class = "participation_citoyenne">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Prévention et sécurité"><#assign theme_class = "prevention_securite">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Propreté"><#assign theme_class = "proprete">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Santé"><#assign theme_class = "sante">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Solidarité" || result.dynamicFields.thematique_text = "Vivre ensemble" || result.dynamicFields.thematique_text = "Solidarité et cohésion sociale " || result.dynamicFields.thematique_text = "Solidarité et cohésion sociale"><#assign theme_class = "solidarite">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Sport"><#assign theme_class = "sport">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Transport et mobilité"><#assign theme_class = "transport">[m
-[31m-					<#elseif result.dynamicFields.thematique_text = "Ville intelligente et numérique"><#assign theme_class = "ville_numerique">[m
-[32m+[m				[32m<#if result.dynamicFields?? && result.dynamicFields.theme_text??>[m
-[32m+[m					[32m<#if     result.dynamicFields.theme_text = "Cadre de vie"><#assign theme_class = "cadre_vie">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Culture" || result.dynamicFields.theme_text = "Culture et patrimoine"><#assign theme_class = "culture">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Economie et emploi"><#assign theme_class = "economie_emploi">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Économie, emploi et attractivité"><#assign theme_class = "economie_emploi">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Education et jeunesse"><#assign theme_class = "education">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Environnement" || result.dynamicFields.theme_text = "Nature en ville"><#assign theme_class = "environnement">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Logement et habitat"><#assign theme_class = "logement">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Participation citoyenne"><#assign theme_class = "participation_citoyenne">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Prévention et sécurité"><#assign theme_class = "prevention_securite">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Propreté"><#assign theme_class = "proprete">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Santé"><#assign theme_class = "sante">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Solidarité" || result.dynamicFields.theme_text = "Vivre ensemble" || result.dynamicFields.theme_text = "Solidarité et cohésion sociale " || result.dynamicFields.theme_text = "Solidarité et cohésion sociale"><#assign theme_class = "solidarite">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Sport"><#assign theme_class = "sport">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Transport et mobilité"><#assign theme_class = "transport">[m
-[32m+[m					[32m<#elseif result.dynamicFields.theme_text = "Ville intelligente et numérique"><#assign theme_class = "ville_numerique">[m
- 					</#if>[m
- 				</#if>[m
- 				[m
- 				<#-- On calcule au préalable quelques variables sur le projet. -->[m
- 				[m
- 				<#assign abandonne = false>[m
-[31m-				<#if result.dynamicFields?? && result.dynamicFields.statut_eudo_text?? && result.dynamicFields.statut_eudo_text = 'Abandonné'>[m
-[32m+[m				[32m<#if result.dynamicFields?? && result.dynamicFields.status_text?? && result.dynamicFields.status_text = 'Abandonné'>[m
- 					<#assign abandonne = true>[m
- 				</#if>[m
- 				[m
-[36m@@ -51,26 +51,18 @@[m
- 				</#if>[m
- 				[m
- 				<#assign dNow = .now?long>[m
-[31m-				<#if result.dynamicFields?? && result.dynamicFields.step1_date?? && result.dynamicFields.step1_date?has_content > <#assign step1 = result.dynamicFields.step1_date?date?long> <#else> <#assign step1 = "31/12/2099"?date?long> </#if>[m
-[31m-				<#if result.dynamicFields?? && result.dynamicFields.step2_date?? && result.dynamicFields.step2_date?has_content > <#assign step2 = result.dynamicFields.step2_date?date?long> <#else> <#assign step2 = "31/12/2099"?date?long> </#if>[m
-[31m-				<#if result.dynamicFields?? && result.dynamicFields.step3_date?? && result.dynamicFields.step3_date?has_content > <#assign step3 = result.dynamicFields.step3_date?date?long> <#else> <#assign step3 = "31/12/2099"?date?long> </#if>[m
-[31m-				<#if result.dynamicFields?? && result.dynamicFields.step4_date?? && result.dynamicFields.step4_date?has_content > <#assign step4 = result.dynamicFields.step4_date?date?long> <#else> <#assign step4 = "31/12/2099"?date?long> </#if>[m
-[31m-				<#if result.dynamicFields?? && result.dynamicFields.step5_date?? && result.dynamicFields.step5_date?has_content > <#assign step5 = result.dynamicFields.step5_date?date?long> <#else> <#assign step5 = "31/12/2099"?date?long> </#if>[m
-[31m-[m
-[31m-<#--[m
-[31m----<#if result.dynamicFields.phase1_date_deb_date?has_content>${result.dynamicFields.phase1_date_deb_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<#if step1?has_content>${step1?number_to_date}</#if>---<#if result.dynamicFields.step1_date?has_content>${result.dynamicFields.step1_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<br>[m
-[31m----<#if result.dynamicFields.phase2_date_deb_date?has_content>${result.dynamicFields.phase2_date_deb_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<#if step2?has_content>${step2?number_to_date}</#if>---<#if result.dynamicFields.step2_date?has_content>${result.dynamicFields.step2_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<br>[m
-[31m----<#if result.dynamicFields.phase3_date_deb_date?has_content>${result.dynamicFields.phase3_date_deb_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<#if step3?has_content>${step3?number_to_date}</#if>---<#if result.dynamicFields.step3_date?has_content>${result.dynamicFields.step3_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<br>[m
-[31m----<#if result.dynamicFields.phase4_date_deb_date?has_content>${result.dynamicFields.phase4_date_deb_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<#if step4?has_content>${step4?number_to_date}</#if>---<#if result.dynamicFields.step4_date?has_content>${result.dynamicFields.step4_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<br>[m
-[31m----<#if result.dynamicFields.phase4_date_fin_date?has_content>${result.dynamicFields.phase4_date_fin_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<#if step5?has_content>${step5?number_to_date}</#if>---<#if result.dynamicFields.step5_date?has_content>${result.dynamicFields.step5_date?string('dd.MM.yyyy HH:mm:ss')}</#if>---<br>[m
-[31m--->[m
-[32m+[m				[32m<#if result.dynamicFields?? && result.dynamicFields.step1_start_date?? && result.dynamicFields.step1_start_date?has_content > <#assign step1 = result.dynamicFields.step1_start_date?date?long> <#else> <#assign step1 = "31/12/2099"?date?long> </#if>[m
-[32m+[m				[32m<#if result.dynamicFields?? && result.dynamicFields.step2_start_date?? && result.dynamicFields.step2_start_date?has_content > <#assign step2 = result.dynamicFields.step2_start_date?date?long> <#else> <#assign step2 = "31/12/2099"?date?long> </#if>[m
-[32m+[m				[32m<#if result.dynamicFields?? && result.dynamicFields.step3_start_date?? && result.dynamicFields.step3_start_date?has_content > <#assign step3 = result.dynamicFields.step3_start_date?date?long> <#else> <#assign step3 = "31/12/2099"?date?long> </#if>[m
-[32m+[m				[32m<#if result.dynamicFields?? && result.dynamicFields.step4_start_date?? && result.dynamicFields.step4_start_date?has_content > <#assign step4 = result.dynamicFields.step4_start_date?date?long> <#else> <#assign step4 = "31/12/2099"?date?long> </#if>[m
-[32m+[m				[32m<#if result.dynamicFields?? && result.dynamicFields.step5_start_date?? && result.dynamicFields.step5_start_date?has_content > <#assign step5 = result.dynamicFields.step5_start_date?date?long> <#else> <#assign step5 = "31/12/2099"?date?long> </#if>[m
- [m
- 				<div class="col-xs-12 col-sm-6 col-md-4 psoum-panel <#if abandonne>psoum-abandonne</#if>">[m
- 					[m
- 					<a id="title-${id_document}" href="${result.url}" alt="${result.title}" title="${result.title}">[m
- 					[m
- 						<#-- Image -->[m
-[31m-						<#assign img_url = "images/local/skin/i_${theme_class}_1x2.png">[m
-[32m+[m						[32m<#assign img_url = "images/local/skin/theme_${theme_class}.png">[m
- 						<#if result.dynamicFields.image_text?has_content>[m
- 							<#assign img_url = result.dynamicFields.image_text?split("src=\"")[1]?split("\"")[0]>[m
- 						</#if>[m
-[36m@@ -80,8 +72,7 @@[m
- 	[m
- 							<#-- Thématique -->[m
- 							<div class="psoum-card-theme bgcolor-theme-${theme_class} bgcolor-theme-${theme_class_bis}">[m
-[31m-								<img src="images/local/skin/i2_${theme_class}.png">[m
-[31m-								<span>${result.dynamicFields.thematique_text!"Sans thématique"}</span>[m
-[32m+[m								[32m<span>${result.dynamicFields.theme_text!"No theme"}</span>[m
- 							</div>[m
- 	[m
- 							<#-- Localisation -->[m
-[36m@@ -97,8 +88,8 @@[m
- 									${result.dynamicFields.localisation_text!''}[m
- 									[m
- 									<div class="psoum-card-loc-prec">[m
-[31m-										<#if result.dynamicFields?? && result.dynamicFields.localisation_precise_address_text?? && (result.dynamicFields.localisation_text != 'whole_city') >[m
-[31m-											${result.dynamicFields.localisation_precise_address_text}[m
-[32m+[m										[32m<#if result.dynamicFields?? && result.dynamicFields.address_geoloc_text?? && (result.dynamicFields.district_text != 'whole_city') >[m
-[32m+[m											[32m${result.dynamicFields.address_geoloc_text}[m
- 										<#else>[m
- 											&nbsp;[m
- 										</#if>[m
-[36m@@ -166,11 +157,11 @@[m
- 								<div class="budget pull-right">[m
- 									<img src="images/local/skin/money-${theme_class}.png" width="25px" height="25px" alt="" title="">[m
- 									<#if result.dynamicFields??>[m
-[31m-										<#if result.dynamicFields.budget_long?? && result.dynamicFields.budget_long &gt; 0>[m
-[32m+[m										[32m<#if result.dynamicFields.value_long?? && result.dynamicFields.value_long &gt; 0>[m
- 											<#setting locale="fr_FR">[m
-[31m-											${result.dynamicFields.budget_long?string("#,###")} &#8364;[m
-[32m+[m											[32m${result.dynamicFields.value_long?string("#,###")} &#8364;[m
- 										<#else>[m
-[31m-											${result.dynamicFields.budget_text!""}[m
-[32m+[m											[32m${result.dynamicFields.value_text!""}[m
- 										</#if>[m
- 									<#else>[m
- 										-[m
-[36m@@ -179,9 +170,9 @@[m
- 							</div>[m
- 									[m
- 							<#-- Champs transmis en Ajax lors du vote. Encore utilisé au 05/05/2017 ? -->[m
-[31m-							<input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${result.dynamicFields.localisation_text!}">[m
-[32m+[m							[32m<input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${result.dynamicFields.district_text!}">[m
- 							<input type="hidden" name="title_${id_document}" id="title_${id_document}" value="${result.title}">[m
-[31m-							<input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${result.dynamicFields.thematique_text}">[m
-[32m+[m							[32m<input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${result.dynamicFields.theme_text}">[m
- 							<input type="hidden" name="arrondUser" id="arrondUser" value="${arrondissementVote!}">[m
- 	[m
- 						</div>[m
-[1mdiff --git a/webapp/WEB-INF/templates/skin/plugins/participatorybudget/projet_mdp_list_solr_search_results.html b/webapp/WEB-INF/templates/skin/plugins/participatorybudget/projet_mdp_list_solr_search_results.html[m
-[1mindex d4b4f25..f812602 100644[m
-[1m--- a/webapp/WEB-INF/templates/skin/plugins/participatorybudget/projet_mdp_list_solr_search_results.html[m
-[1m+++ b/webapp/WEB-INF/templates/skin/plugins/participatorybudget/projet_mdp_list_solr_search_results.html[m
-[36m@@ -24,37 +24,37 @@[m
- 					<h2 class="visuallyhidden">Liste des résultats de la recherche</h2>[m
- 					<div id="psoum-list" class="row">[m
- 			[m
-[31m-						<#assign theme_class = "autre">[m
-[31m-						[m
- 						<#-- On boucle sur les projets à afficher -->[m
- 						<#list results_list as result>[m
- 						[m
-[32m+[m							[32m<#assign theme_class = "other">[m[41m[m
-[32m+[m[41m						[m
- 							<#assign id_document = "${(result.id?split('Lutece_')?last)?split('_')?first}">[m
- 							<#assign result_detail_idx = ((paginator.pageCurrent-1)*paginator.itemsPerPage)+1+result_index>[m
- 			[m
- 							<#-- on identifie la classe CSS relative au thème du projet en cours -->[m
-[31m-							<#if result.dynamicFields.statut_project_text?? && result.dynamicFields.statut_project_text = "PERDANT">[m
-[32m+[m							[32m<#if result.dynamicFields.status_text?? && result.dynamicFields.status_text = "PERDANT">[m[41m[m
- 								<#assign theme_class_bis = "perdant">[m
- 							<#else>[m
- 								<#assign theme_class_bis = "undefined">[m
- 							</#if>[m
- 							[m
-[31m-							<#if result.dynamicFields?? && result.dynamicFields.thematique_text??>[m
-[31m-								<#if result.dynamicFields.thematique_text = "Cadre de vie"><#assign theme_class = "cadre_vie">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Culture" || result.dynamicFields.thematique_text = "Culture et patrimoine"><#assign theme_class = "culture">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Economie et emploi"><#assign theme_class = "economie_emploi">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Économie, emploi et attractivité"><#assign theme_class = "economie_emploi">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Education et jeunesse"><#assign theme_class = "education">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Environnement" || result.dynamicFields.thematique_text = "Nature en ville"><#assign theme_class = "environnement">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Logement et habitat"><#assign theme_class = "logement">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Participation citoyenne"><#assign theme_class = "participation_citoyenne">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Prévention et sécurité"><#assign theme_class = "prevention_securite">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Propreté"><#assign theme_class = "proprete">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Santé"><#assign theme_class = "sante">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Solidarité" || result.dynamicFields.thematique_text = "Vivre ensemble" || result.dynamicFields.thematique_text = "Solidarité et cohésion sociale " || result.dynamicFields.thematique_text = "Solidarité et cohésion sociale"><#assign theme_class = "solidarite">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Sport"><#assign theme_class = "sport">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Transport et mobilité"><#assign theme_class = "transport">[m
-[31m-								<#elseif result.dynamicFields.thematique_text = "Ville intelligente et numérique"><#assign theme_class = "ville_numerique">[m
-[32m+[m							[32m<#if result.dynamicFields?? && result.dynamicFields.theme_text??>[m[41m[m
-[32m+[m								[32m<#if     result.dynamicFields.theme_text = "Cadre de vie"><#assign theme_class = "cadre_vie">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Culture" || result.dynamicFields.theme_text = "Culture et patrimoine"><#assign theme_class = "culture">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Economie et emploi"><#assign theme_class = "economie_emploi">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Économie, emploi et attractivité"><#assign theme_class = "economie_emploi">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Education et jeunesse"><#assign theme_class = "education">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Environnement" || result.dynamicFields.theme_text = "Nature en ville"><#assign theme_class = "environnement">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Logement et habitat"><#assign theme_class = "logement">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Participation citoyenne"><#assign theme_class = "participation_citoyenne">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Prévention et sécurité"><#assign theme_class = "prevention_securite">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Propreté"><#assign theme_class = "proprete">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Santé"><#assign theme_class = "sante">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Solidarité" || result.dynamicFields.theme_text = "Vivre ensemble" || result.dynamicFields.theme_text = "Solidarité et cohésion sociale " || result.dynamicFields.theme_text = "Solidarité et cohésion sociale"><#assign theme_class = "solidarite">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Sport"><#assign theme_class = "sport">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Transport et mobilité"><#assign theme_class = "transport">[m[41m[m
-[32m+[m								[32m<#elseif result.dynamicFields.theme_text = "Ville intelligente et numérique"><#assign theme_class = "ville_numerique">[m[41m[m
- 								</#if>[m
- 							</#if>[m
- 							[m
-[36m@@ -63,16 +63,16 @@[m
- 								<a id="title-${id_document}" href="${result.url}" alt="${result.title}" title="${result.title}">[m
- 			[m
- 									<#-- Image et éventuel résultat du vote -->[m
-[31m-									<#assign img_url = "images/local/skin/i_${theme_class}_1x2.png">[m
-[32m+[m									[32m<#assign img_url = "images/local/skin/theme_${theme_class}.png">[m[41m[m
- 									<#if result.dynamicFields.image_text?has_content>[m
- 										<#assign img_url = result.dynamicFields.image_text?split("src=\"")[1]?split("\"")[0]>[m
- 									</#if>[m
- 									<div class="psoum-card-img" style="background-image:url(${img_url!})">[m
- 										<#if campagneService.isAfterBeginning( "RESULT" )>[m
-[31m-											<#if result.dynamicFields.statut_project_text=="GAGNANT" || result.dynamicFields.statut_project_text=="SUIVI" >[m
-[32m+[m											[32m<#if result.dynamicFields.status_text == "GAGNANT" || result.dynamicFields.status_text == "SUIVI" >[m[41m[m
- 												<p class="winner">Projet gagnant<br>avec ${result.dynamicFields.nombre_de_votes_long?string.number!''} votes</p>[m
-[31m-											<#elseif result.dynamicFields.statut_project_text=="PERDANT">[m
-[31m-												<p class="looser">${result.dynamicFields.nombre_de_votes_long?string.number!''} votes</p>[m
-[32m+[m											[32m<#elseif result.dynamicFields.status_text == "PERDANT">[m[41m[m
-[32m+[m												[32m<p class="looser">${result.dynamicFields.total_votes_long?string.number!''} votes</p>[m[41m[m
- 											</#if>[m
- 										</#if>[m
- 									</div>[m
-[36m@@ -80,34 +80,33 @@[m
- 									<#-- La classe 'print-theme-${theme_class}' utilisee lors de l'impression -->[m
- 									<div class="psoum-card print-theme-${theme_class} bordered-4px-theme-${theme_class}">[m
- 					[m
-[31m-										<#-- Thématique -->[m
-[32m+[m										[32m<#-- Theme -->[m[41m[m
- 										<div class="psoum-card-theme bgcolor-theme-${theme_class} bgcolor-theme-${theme_class_bis}">[m
-[31m-											<img src="images/local/skin/i2_${theme_class}.png"/>[m
-[31m-											<span>${result.dynamicFields.thematique_text!"Sans thématique"}</span>[m
-[32m+[m											[32m<span>${result.dynamicFields.theme_text!"No theme"}</span>[m[41m[m
- 										</div>[m
- 					[m
-[31m-										<#-- Localisation -->[m
-[32m+[m										[32m<#-- Location -->[m[41m[m
- 										<div class="psoum-card-loc">[m
- 				[m
-[31m-											<#if result.dynamicFields.statut_project_text?? && result.dynamicFields.statut_project_text = "PERDANT">[m
-[32m+[m											[32m<#if result.dynamicFields.status_text?? && result.dynamicFields.status_text = "PERDANT">[m[41m[m
- 												<img src="images/local/skin/marker.png" class="img-responsive pull-left" alt="" title="">[m
- 											<#else>[m
- 												<img src="images/local/skin/marker-${theme_class}.png" class="img-responsive pull-left" alt="" title="">[m
- 											</#if>[m
- 				[m
- 											<div class="for-print">[m
-[31m-												<#if result.dynamicFields.localisation_precise_address_text?has_content>[m
-[31m-													${result.dynamicFields.localisation_precise_address_text?replace(", 750[0-2][0-9] (?i)PARIS(?-i)", "", "r")}[m
-[32m+[m												[32m<#if result.dynamicFields.address_text?has_content>[m[41m[m
-[32m+[m													[32m${result.dynamicFields.address_text!''}[m[41m[m
- 												<#else>[m
-[31m-													${(result.dynamicFields.localisation_text!'')}[m
-[32m+[m													[32m${(result.dynamicFields.district_text!'')}[m[41m[m
- 												</#if>[m
- 											</div>[m
- 				[m
-[31m-											<div class="for-screen">${result.dynamicFields.localisation_text!''}[m
-[32m+[m											[32m<div class="for-screen">${result.dynamicFields.district_text!''}[m[41m[m
- 												[m
- 												<div class="psoum-card-loc-prec">[m
-[31m-													<#if result.dynamicFields?? && result.dynamicFields.localisation_precise_address_text??>[m
-[31m-														${result.dynamicFields.localisation_precise_address_text?replace(", 750[0-2][0-9] (?i)PARIS(?-i)", "", "r")}[m
-[32m+[m													[32m<#if result.dynamicFields?? && result.dynamicFields.address_text??>[m[41m[m
-[32m+[m														[32m${result.dynamicFields.address_text!''}[m[41m[m
- 													<#else>[m
- 														&nbsp;[m
- 													</#if>[m
-[36m@@ -118,30 +117,30 @@[m
- 										<#-- Titre -->[m
- 										<div class="psoum-card-titre">[m
- 											<h3>[m
-[31m-												<span class="color-theme-${theme_class_bis}"><#if result.dynamicFields.code_projet_long?has_content && result.dynamicFields.code_projet_long &gt; 0 >${result.dynamicFields.code_projet_long} - </#if>${result.title}</span>[m
-[32m+[m												[32m<span class="color-theme-${theme_class_bis}">${result.title}</span>[m[41m[m
- 											</h3>[m
- 										</div>[m
- 					[m
- 										<#if campagneService.isDuring("VOTE") && voteValidated= true >[m
- 											<div class="psoum-card-vote">[m
-[31m-													<div class="vote-done">Vous avez d&eacute;j&agrave; vot&eacute; ! Merci de votre int&eacute;r&ecirc;t pour le Budget Participatif.</div>[m
-[32m+[m													[32m<div class="vote-done">Thank for your vote !</div>[m[41m[m
- 											</div>[m
- 										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && arrondissementVote= "notConnected" >[m
- 											<div class="psoum-card-vote">[m
- 													@Extender[${id_document},document,vote,{show:"all"}]@[m
- 											</div>[m
-[31m-										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.localisation_text || result.dynamicFields.localisation_text= "whole_city")>[m
-[32m+[m										[32m<#elseif campagneService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.district_text || result.dynamicFields.district_text= "whole_city")>[m[41m[m
- 											<div class="psoum-card-vote">[m
- 													@Extender[${id_document},document,vote,{show:"all"}]@[m
- 											</div>[m
- 										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && arrondissementVote != result.dynamicFields.localisation_text>[m
- 											<div class="psoum-card-vote">[m
-[31m-													<div class="novote">Vous ne pouvez pas voter pour ce projet car il n'est pas situ&eacute; dans votre arrondissement de vote.</div>[m
-[32m+[m													[32m<div class="novote">You can vote only for district you choose for voting.</div>[m[41m[m
- 											</div>[m
- 										<#else>[m
- 											<div class="psoum-card-link">[m
- 												<span class="btn btn-14rem btn-black-on-white">[m
-[31m-													découvrir le projet[m
-[32m+[m													[32mdiscover project[m[41m[m
- 												</span>[m
- 											</div>[m
- 										</#if>[m
-[36m@@ -151,11 +150,11 @@[m
- 											<div class="budget pull-right">[m
- 												<img src="images/local/skin/money-${theme_class}.png" width="25px" height="25px" alt="" title="">[m
- 												<#if result.dynamicFields??>[m
-[31m-													<#if result.dynamicFields.budget_long?? && result.dynamicFields.budget_long &gt; 0>[m
-[32m+[m													[32m<#if result.dynamicFields.value_long?? && result.dynamicFields.value_long &gt; 0>[m[41m[m
- 														<#setting locale="fr_FR">[m
-[31m-														${result.dynamicFields.budget_long?string("#,###")} &#8364;[m
-[32m+[m														[32m${result.dynamicFields.value_long?string("#,###")} &#8364;[m[41m[m
- 													<#else>[m
-[31m-														${result.dynamicFields.budget_text!""}[m
-[32m+[m														[32m${result.dynamicFields.value_text!""}[m[41m[m
- 													</#if>[m
- 												<#else>[m
- 													-[m
-[36m@@ -165,14 +164,14 @@[m
- 										</div>[m
- 										[m
- 										<#-- Champs cachés pouvant être utilisés pour l'impression -->[m
-[31m-										<div class="psoum-card-origin"><#if result.dynamicFields.pseudos_text?has_content>${result.dynamicFields.pseudos_text}</#if></div>[m
-[32m+[m										[32m<div class="psoum-card-origin">${result.dynamicFields.proposal_nicknames_text!''}</div>[m[41m[m
- 										[m
- 										<div class="psoum-card-description">${result.dynamicFields.description_text!""}</div>[m
- 										[m
- 										<#-- Champs transmis en Ajax lors du vote. Encore utilise au 05/05/2017 ? -->[m
-[31m-										<input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${result.dynamicFields.localisation_text!}">[m
-[32m+[m										[32m<input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${result.dynamicFields.district_text!}">[m[41m[m
- 										<input type="hidden" name="title_${id_document}" id="title_${id_document}" value="${result.title}">[m
-[31m-										<input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${result.dynamicFields.thematique_text}">[m
-[32m+[m										[32m<input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${result.dynamicFields.theme_text}">[m[41m[m
- 										<input type="hidden" name="arrondUser" id="arrondUser" value="${arrondissementVote!}">[m
- 					[m
- 									</div>[m
-[1mdiff --git a/webapp/WEB-INF/xsl/normal/plugins/participatorybudget/pb_project-stylesheet_content.xsl b/webapp/WEB-INF/xsl/normal/plugins/participatorybudget/pb_project-stylesheet_content.xsl[m
-[1mindex 989a42c..35ffb9d 100644[m
-[1m--- a/webapp/WEB-INF/xsl/normal/plugins/participatorybudget/pb_project-stylesheet_content.xsl[m
-[1m+++ b/webapp/WEB-INF/xsl/normal/plugins/participatorybudget/pb_project-stylesheet_content.xsl[m
-[36m@@ -13,7 +13,7 @@[m
- 		<!-- pre><xsl:copy-of select="."/></pre -->[m
- 	[m
- 		<xsl:choose>[m
-[31m-			<xsl:when test="(string(pb_project/pb_project-statut_project)!='SUIVI') and (java:isBeforeBeginning(java:fr.paris.lutece.plugins.participatorybudget.service.CampagnesService.getInstance(), 'SUBMIT'))" >[m
-[32m+[m			[32m<xsl:when test="(string(pb_project/pb_project-statut_project)!='SUIVI') and (java:isBeforeBeginning(java:fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService.getInstance(), 'SUBMIT'))" >[m
- 				<div id="prop-card">[m
- 					<div class="row">[m
- 						<div class="col-xs-12 col-sm-offset-2 col-sm-8">[m
-[36m@@ -43,25 +43,25 @@[m
- 		<!-- On identifie le code technique du theme pour la gestion de la couleur de fond et de l'image -->[m
- 		<xsl:variable name="theme">[m
- 			<xsl:choose>[m
-[31m-				<xsl:when test="(pb_project-thematique='Cadre de vie')" >cadre_vie</xsl:when> [m
-[31m-				<xsl:when test="(pb_project-thematique='Culture')" >culture</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Culture et patrimoine')" >culture</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Economie et emploi')" >economie_emploi</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Économie, emploi et attractivité')" >economie_emploi</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Education et jeunesse')" >education</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Environnement')" >environnement</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Logement et habitat')" >logement</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Participation citoyenne')" >participation_citoyenne</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Propreté')" >proprete</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Prévention et sécurité')" >prevention_securite</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Santé')" >sante</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Solidarité')" >solidarite</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Solidarité et cohésion sociale')" >solidarite</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Solidarité et cohésion sociale ')" >solidarite</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Sport')" >sport</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Transport et mobilité')" >transport</xsl:when>[m
-[31m-				<xsl:when test="(pb_project-thematique='Ville intelligente et numérique')" >ville_numerique</xsl:when>[m
-[31m-				<xsl:otherwise><img src="images/local/skin/autre_1x2.jpg"/></xsl:otherwise>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Cadre de vie')" >cadre_vie</xsl:when>[m[41m [m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Culture')" >culture</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Culture et patrimoine')" >culture</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Economie et emploi')" >economie_emploi</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Économie, emploi et attractivité')" >economie_emploi</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Education et jeunesse')" >education</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Environnement')" >environnement</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Logement et habitat')" >logement</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Participation citoyenne')" >participation_citoyenne</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Propreté')" >proprete</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Prévention et sécurité')" >prevention_securite</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Santé')" >sante</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Solidarité')" >solidarite</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Solidarité et cohésion sociale')" >solidarite</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Solidarité et cohésion sociale ')" >solidarite</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Sport')" >sport</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Transport et mobilité')" >transport</xsl:when>[m
-[32m+[m				[32m<xsl:when test="(pb_project-theme='Ville intelligente et numérique')" >ville_numerique</xsl:when>[m
-[32m+[m				[32m<xsl:otherwise>other</xsl:otherwise>[m
- 			</xsl:choose>[m
- 		</xsl:variable>[m
- [m
-[36m@@ -71,8 +71,8 @@[m
- 		[m
- 		<xsl:variable name="dtStep4f-txt"> <!-- Format String : 31/12/2099 -->[m
- 			<xsl:choose>[m
-[31m-				<xsl:when test="pb_project-step5 = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>[m
-[31m-				<xsl:otherwise><xsl:value-of select="string(pb_project-step5)" /></xsl:otherwise>[m
-[32m+[m				[32m<xsl:when test="pb_project-step5_start_date = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>[m
-[32m+[m				[32m<xsl:otherwise><xsl:value-of select="string(pb_project-step5_start_date)" /></xsl:otherwise>[m
- 			</xsl:choose>[m
- 		</xsl:variable>[m
- 		<xsl:variable name="dtStep4f"    select="java:parse(java:java.text.SimpleDateFormat.new('dd/MM/yyyy'), $dtStep4f-txt )" />    <!-- Format Date : Thu Dec 31 00:00:00 CET 2099 -->[m
-[36m@@ -80,8 +80,8 @@[m
- 		[m
- 		<xsl:variable name="dtStep4-txt"> <!-- Format String : 31/12/2099 -->[m
- 			<xsl:choose>[m
-[31m-				<xsl:when test="pb_project-step4 = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>[m
-[31m-				<xsl:otherwise><xsl:value-of select="string(pb_project-step4)" /></xsl:otherwise>[m
-[32m+[m				[32m<xsl:when test="pb_project-step4_start_date = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>[m
-[32m+[m				[32m<xsl:otherwise><xsl:value-of select="string(pb_project-step4_start_date)" /></xsl:otherwise>[m
- 			</xsl:choose>[m
- 		</xsl:variable>[m
- 		<xsl:variable name="dtStep4"    select="java:parse(java:java.text.SimpleDateFormat.new('dd/MM/yyyy'), $dtStep4-txt )" />    <!-- Format Date : Thu Dec 31 00:00:00 CET 2099 -->[m
-[36m@@ -89,8 +89,8 @@[m
- [m
- 		<xsl:variable name="dtStep3-txt"> <!-- Format String : 31/12/2099 -->[m
- 			<xsl:choose>[m
-[31m-				<xsl:when test="pb_project-step3 = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>[m
-[31m-				<xsl:otherwise><xsl:value-of select="string(pb_project-step3)" /></xsl:otherwise>[m
-[32m+[m				[32m<xsl:when test="pb_project-step3_start_date = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>[m
-[32m+[m				[32m<xsl:otherwise><xsl:value-of select="string(pb_project-step3_start_date)" /></xsl:otherwise>[m
- 			</xsl:choose>[m
- 		</xsl:variable>[m
- 		<xsl:variable name="dtStep3"    select="java:parse(java:java.text.SimpleDateFormat.new('dd/MM/yyyy'), $dtStep3-txt )" />    <!-- Format Date : Thu Dec 31 00:00:00 CET 2099 -->[m
-[36m@@ -98,8 +98,8 @@[m
- [m
- 		<xsl:variable name="dtStep2-txt"> <!-- Format String : 31/12/2099 -->[m
- 			<xsl:choose>[m
-[31m-				<xsl:when test="pb_project-step2 = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>[m
-[31m-				<xsl:otherwise><xsl:value-of select="string(pb_project-step2)" /></xsl:otherwise>[m
-[32m+[m				[32m<xsl:when test="pb_project-step2_start_date = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>[m
-[32m+[m				[32m<xsl:otherwise><xsl:value-of select="string(pb_project-step2_start_date)" /></xsl:otherwise>[m
- 			</xsl:choose>[m
- 		</xsl:variable>[m
- 		<xsl:variable name="dtStep2"    select="java:parse(java:java.text.SimpleDateFormat.new('dd/MM/yyyy'), $dtStep2-txt )" />    <!-- Format Date : Thu Dec 31 00:00:00 CET 2099 -->[m
-[36m@@ -107,42 +107,16 @@[m
- [m
- 		<xsl:variable name="dtStep1-txt"> <!-- Format String : 31/12/2099 -->[m
- 			<xsl:choose>[m
-[31m-				<xsl:when test="pb_project-step1 = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>[m
-[31m-				<xsl:otherwise><xsl:value-of select="string(pb_project-step1)" /></xsl:otherwise>[m
-[32m+[m				[32m<xsl:when test="pb_project-step1_start_date = ''"><xsl:value-of select="string('31/12/2099')" /></xsl:when>[m
-[32m+[m				[32m<xsl:otherwise><xsl:value-of select="string(pb_project-step1_start_date)" /></xsl:otherwise>[m
- 			</xsl:choose>[m
- 		</xsl:variable>[m
- 		<xsl:variable name="dtStep1"    select="java:parse(java:java.text.SimpleDateFormat.new('dd/MM/yyyy'), $dtStep1-txt )" />    <!-- Format Date : Thu Dec 31 00:00:00 CET 2099 -->[m
- 		<xsl:variable name="date-step1" select="number( java:format(java:java.text.SimpleDateFormat.new('yyyyMMdd'), $dtStep1 ))" /> <!-- Format Number : 20990131 -->[m
- [m
-[31m-		<!-- Affichage de debug... -->[m
-[31m-		<!-- [m
-[31m-		<div style="display:none">[m
-[31m-		<br/><br/><br/><br/><br/><br/><br/>[m
-[31m-		auj = <xsl:value-of select="$auj" /><br/>[m
-[31m-		<br/>[m
-[31m-		pb_project-phase1_date_deb = <xsl:value-of select="pb_project-phase1_date_deb" /><br/>[m
-[31m-		pb_project-phase2_date_deb = <xsl:value-of select="pb_project-phase2_date_deb" /><br/>[m
-[31m-		pb_project-phase3_date_deb = <xsl:value-of select="pb_project-phase3_date_deb" /><br/>[m
-[31m-		pb_project-phase4_date_deb = <xsl:value-of select="pb_project-phase4_date_deb" /><br/>[m
-[31m-		pb_project-phase4_date_fin = <xsl:value-of select="pb_project-phase4_date_fin" /><br/>[m
-[31m-		<br/>[m
-[31m-		$dtStep1  = <xsl:value-of select="$dtStep1" /><br/>[m
-[31m-		$dtStep2  = <xsl:value-of select="$dtStep2" /><br/>[m
-[31m-		$dtStep3  = <xsl:value-of select="$dtStep3" /><br/>[m
-[31m-		$dtStep4  = <xsl:value-of select="$dtStep4" /><br/>[m
-[31m-		$dtStep4f = <xsl:value-of select="$dtStep4f" /><br/>[m
-[31m-		<br/>[m
-[31m-		$date-step1  = <xsl:value-of select="$date-step1" /><br/>[m
-[31m-		$date-step2  = <xsl:value-of select="$date-step2" /><br/>[m
-[31m-		$date-step3  = <xsl:value-of select="$date-step3" /><br/>[m
-[31m-		$date-step4  = <xsl:value-of select="$date-step4" /><br/>[m
-[31m-		$date-step4f = <xsl:value-of select="$date-step4f" /><br/>[m
-[31m-		</div>[m
-[31m-		-->[m
-[31m-		[m
- 		<div class="container">[m
- 		[m
-[31m-			<xsl:if test="string(pb_project-statut_project)='PERDANT' or string(pb_project-statut_project)='NON_SUIVI' or string(pb_project-statut_eudo)='Abandonné'">[m
-[32m+[m			[32m<xsl:if test="string(pb_project-status)='PERDANT' or string(pb_project-status)='NON_SUIVI'">[m
- 				<xsl:attribute name="class">container grayscaled</xsl:attribute>[m
- 			</xsl:if>[m
- 		[m
-[36m@@ -153,7 +127,7 @@[m
- 			<div id="psoum-header">[m
- 				<xsl:attribute name="class">row bgcolor-theme-<xsl:value-of select="$theme"/></xsl:attribute>[m
- 			[m
-[31m-				<span><xsl:value-of select="pb_project-thematique" /></span>[m
-[32m+[m				[32m<span><xsl:value-of select="pb_project-theme" /></span>[m
- 			[m
- 				<div class="psoum-header-share">[m
- 					<a href="http://www.facebook.com" data-action="facebook-action" data-title="{document-title}" data-doc="{document-id}" class="share"  title="Share on Facebook">[m
-[36m@@ -182,31 +156,23 @@[m
- 						</img>[m
- 					[m
- 						<div class="psoum-desc-localisation-addr">[m
-[31m-							<xsl:if test="not(string(pb_project-lieu)='')"><xsl:value-of select="pb_project-lieu" /><br /></xsl:if>[m
-[31m-							<xsl:value-of select="pb_project-localisation" />[m
-[32m+[m							[32m<xsl:if test="not(string(pb_project-address)='')"><xsl:value-of select="pb_project-address" /><br /></xsl:if>[m
-[32m+[m							[32m<xsl:value-of select="pb_project-district" />[m
- 						</div>[m
- 					</div>[m
- 					[m
- 					<!-- Title -->[m
- 					<div class="psoum-desc-titre">[m
- 						<h1>[m
-[31m-							<xsl:choose>[m
-[31m-								<xsl:when test="not(string(pb_project-code_projet)='') and (string(pb_project-statut_project)='SOUMIS')">[m
-[31m-									<p class="num-project"><xsl:variable name="ordre" select="pb_project-code_projet"></xsl:variable><span>Projet n° <xsl:value-of select='format-number($ordre, "##")' /></span></p>[m
-[31m-								</xsl:when>[m
-[31m-								<xsl:otherwise>[m
-[31m-									<p class="num-project">&#160;</p> <!-- To keep margin between location and title divs -->[m
-[31m-								</xsl:otherwise>[m
-[31m-							</xsl:choose>[m
- 							<p><xsl:value-of select="document-title" /></p>[m
- 						</h1>[m
- 					</div>[m
- 					[m
- 					<!-- Subtitle -->[m
- 					<div class="psoum-desc-soustitre">[m
-[31m-						<xsl:if test="not(string(pb_project-sous_titre)='')">[m
-[32m+[m						[32m<xsl:if test="not(string(pb_project-subtitle)='')">[m
- 							<h2>[m
-[31m-								<p><xsl:value-of select="pb_project-sous_titre" /></p>[m
-[32m+[m								[32m<p><xsl:value-of select="pb_project-subtitle" /></p>[m
- 							</h2>[m
- 						</xsl:if>[m
- 					</div>[m
-[36m@@ -219,14 +185,6 @@[m
- 						</div>[m
- 					</xsl:if>[m
- [m
-[31m-					<!-- Abandoned project (only in XS format) -->[m
-[31m-					<xsl:if test="string(pb_project-statut_eudo)='Abandonné'">[m
-[31m-						<div>[m
-[31m-							<xsl:attribute name="class">psoum-desc-undeliverable visible-xs visible-sm bgcolor-theme-<xsl:value-of select="$theme"/></xsl:attribute>[m
-[31m-							#i18n{participatorybudget.project.sheet.status.abandoned}[m
-[31m-						</div>[m
-[31m-					</xsl:if>[m
-[31m-[m
- 					<!-- Image: specific to the current document or general to the theme -->[m
- 					<div class="psoum-desc-img">[m
- 						<xsl:choose>[m
-[36m@@ -263,7 +221,7 @@[m
- 					-->[m
- [m
- 					<!-- Project progress -->[m
-[31m-					<xsl:if test="(string(pb_project-statut_project)='SUIVI' or string(pb_project-statut_project)='suivi') and (pb_project-content != '')">[m
-[32m+[m					[32m<xsl:if test="(string(pb_project-status)='SUIVI' or string(pb_project-status)='suivi') and (pb_project-content != '')">[m
- 						<h2>[m
- 							<xsl:attribute name="class">color-theme-<xsl:value-of select="$theme"/></xsl:attribute>[m
- 							<a id="avct"></a>[m
-[36m@@ -293,30 +251,6 @@[m
- 						</div>[m
- 					</xsl:if>[m
- 					[m
-[31m-					<!-- Abandoned project -->[m
-[31m-					<xsl:if test="string(pb_project-statut_eudo)='Abandonné'">[m
-[31m-						<div>[m
-[31m-							<xsl:attribute name="class">psoum-data-undeliverable hidden-xs hidden-sm bgcolor-theme-<xsl:value-of select="$theme"/></xsl:attribute>[m
-[31m-							#i18n{participatorybudget.project.sheet.status.abandoned}[m
-[31m-						</div>[m
-[31m-					</xsl:if>[m
-[31m-					[m
-[31m-				<!-- 	<div id="psoum-data-header">[m
-[31m-						[m
-[31m-						Pastille QP et RATP[m
-[31m-						<div id="psoum-data-pastilles">[m
-[31m-							<xsl:if test="not(string(pb_project-pop_district)='')">[m
-[31m-								<img class="img-qp" src="images/local/skin/quartier-populaire.png" alt="Projet en quartier populaire" />[m
-[31m-							</xsl:if>[m
-[31m-							<xsl:if test="not(string(pb_project-direction)='')">[m
-[31m-								<xsl:if test="string(pb_project-direction)='RATP'">[m
-[31m-									<img class="img-ratp" src="images/local/skin/ratp_color.png" alt="Projet RATP" />[m
-[31m-								</xsl:if>[m
-[31m-							</xsl:if>[m
-[31m-						</div>[m
-[31m-[m
-[31m-					</div> -->[m
-[31m-						[m
- 					<!-- Voting button. The HTML of the bookmark button is in the database (table = core-template, templatename = extend_follow). -->[m
- 					<div id="title-{document-id}" title="{document-title}" style="display:none;">.</div>[m
- 					<div id="vote">&#160;</div>		<!-- Extend : vote -->[m
-[36m@@ -328,34 +262,34 @@[m
- 					<div class="psoum-data-kv">[m
- 						<div class="psoum-data-key">[m
- 							<img alt="Campaign" title="Campaign">[m
-[31m-								<xsl:attribute name="src">images/local/skin/logo_paris_bp_ultramini-<xsl:value-of select="$theme"/>.png</xsl:attribute>[m
-[32m+[m								[32m<xsl:attribute name="src">images/local/skin/logo-mini-<xsl:value-of select="$theme"/>.png</xsl:attribute>[m
- 							</img>[m
- 						</div>[m
- 						<div class="psoum-data-value">[m
-[31m-							<xsl:value-of select="pb_project-campagne" />[m
-[32m+[m							[32m<xsl:value-of select="pb_project-campaign" />[m
- 						</div>[m
- 					</div>[m
- 					[m
- 					<!-- Result of the vote -->[m
- 					<div class="psoum-data-kv">[m
- 						<xsl:choose>[m
-[31m-							<xsl:when test="(string(pb_project-statut_project)='GAGNANT') or (string(pb_project-statut_project)='SUIVI')">[m
-[32m+[m							[32m<xsl:when test="(string(pb_project-status)='GAGNANT') or (string(pb_project-status)='SUIVI')">[m
- 								<div class="psoum-data-key">[m
- 									<img alt="Result of the vote" title="Result of the vote">[m
- 										<xsl:attribute name="src">images/local/skin/trophy-<xsl:value-of select="$theme"/>.png</xsl:attribute>[m
- 									</img>[m
- 								</div>[m
- 								<div class="psoum-data-value">[m
-[31m-									<xsl:variable name="nb_votes" select="pb_project-nombre_de_votes"></xsl:variable>[m
-[32m+[m									[32m<xsl:variable name="nb_votes" select="pb_project-total_votes"></xsl:variable>[m
- 									#i18n{participatorybudget.project.sheet.vote_result.winning} <xsl:value-of select='format-number($nb_votes, "# ###", "space")' /> votes ![m
- 								</div>[m
- 							</xsl:when>[m
-[31m-							<xsl:when test="(string(pb_project-statut_project)='PERDANT') or (string(pb_project-statut_project)='NON_SUIVI')">[m
-[32m+[m							[32m<xsl:when test="(string(pb_project-status)='PERDANT') or (string(pb_project-status)='NON_SUIVI')">[m
- 								<div class="psoum-data-key">[m
- 									<img src="images/local/skin/trophy-empty.png" alt="Result of the vote" title="Result of the vote"/>[m
- 								</div>[m
- 								<div class="psoum-data-value">[m
-[31m-									<xsl:variable name="nb_votes" select="pb_project-nombre_de_votes"></xsl:variable>[m
-[32m+[m									[32m<xsl:variable name="nb_votes" select="pb_project-total_votes"></xsl:variable>[m
- 									#i18n{participatorybudget.project.sheet.vote_result.losing} <xsl:value-of select='format-number($nb_votes, "# ###", "space")' /> votes[m
- 								</div>[m
- 							</xsl:when>[m
-[36m@@ -364,40 +298,33 @@[m
- 					[m
- [m
- 					<!-- Cost -->[m
-[31m-					<xsl:if test="not(string(pb_project-budget)='')">[m
-[32m+[m					[32m<xsl:if test="not(string(pb_project-value)='')">[m
- 						<div class="psoum-data-kv last">[m
- 							<div class="psoum-data-key">[m
- 								<img alt="Cost" title="Cost">[m
-[31m-									<xsl:attribute name="src">images/local/skin/money-<xsl:value-of select="$theme"/>.png</xsl:attribute>[m
-[32m+[m									[32m<xsl:attribute name="src">images/local/skin/value-<xsl:value-of select="$theme"/>.png</xsl:attribute>[m
- 								</img>[m
- 							</div>[m
- 							<div class="psoum-data-value">[m
-[31m-								<xsl:variable name="budget" select="pb_project-budget"></xsl:variable>[m
-[32m+[m								[32m<xsl:variable name="budget" select="pb_project-value"></xsl:variable>[m
- 								<xsl:value-of select='format-number($budget, "# ###", "space")' /> €[m
- 							</div>[m
- 						</div>[m
- 					</xsl:if>[m
- [m
-[31m-					<!-- Handicap -->[m
-[31m-					<xsl:if test="string(pb_project-handicap)='oui'">[m
-[31m-						<p id="psoum-data-handicap">[m
-[31m-							Les questions du handicap et de l'accessibilité sont prises en compte dans le cadre de ce projet.[m
-[31m-						</p>[m
-[31m-					</xsl:if>[m
-[31m-[m
- 					<!-- Project Mapping -->[m
- 					<xsl:choose>[m
-[31m-						<xsl:when test="(string(pb_project-localisation_precise/geoloc/address) = '') and (string(pb_project-statut_project)='SUIVI')">[m
-[32m+[m						[32m<xsl:when test="(string(pb_project-address_geoloc/geoloc/address) = '') and (string(pb_project-status)='SUIVI')">[m
- 							<script type='text/javascript'>[m
- 								var x = 48.8564826;[m
- 								var y = 2.3524135;[m
- 							</script>[m
- 							<div id="carto" class="psoum-data-carto">&#160;</div>[m
- 						</xsl:when>[m
-[31m-						<xsl:when test="(pb_project-localisation_precise/geoloc/address != '') or (string(pb_project-statut_project)='SUIVI')">[m
-[32m+[m						[32m<xsl:when test="(pb_project-address_geoloc/geoloc/address != '') or (string(pb_project-status)='SUIVI')">[m
- 							<script type='text/javascript'>[m
-[31m-								var x = <xsl:value-of select="pb_project-localisation_precise/geoloc/lat"/>;[m
-[31m-								var y = <xsl:value-of select="pb_project-localisation_precise/geoloc/lon"/>;[m
-[32m+[m								[32mvar x = <xsl:value-of select="pb_project-address_geoloc/geoloc/lat"/>;[m
-[32m+[m								[32mvar y = <xsl:value-of select="pb_project-address_geoloc/geoloc/lon"/>;[m
- 							</script>[m
- 							<div id="carto" class="psoum-data-carto">&#160;</div>[m
- 						</xsl:when>[m
-[36m@@ -411,13 +338,11 @@[m
- 					</xsl:choose>[m
- [m
- 					<!-- Bookmark buttons. The HTML of the bookmark button is in the database (table = core-template, templatename = extend_follow). -->[m
-[31m-					<xsl:if test="string(pb_project-statut_eudo)!='Abandonné'">[m
-[31m-						<div id="fav">&#160;</div>		<!-- Extend : favorite -->[m
-[31m-						<div id="follow">&#160;</div>	<!-- Extend : follow -->[m
-[31m-					</xsl:if>[m
-[32m+[m					[32m<div id="fav">&#160;</div>		<!-- Extend : favorite -->[m
-[32m+[m					[32m<div id="follow">&#160;</div>	<!-- Extend : follow -->[m
- [m
- 					<!-- Schedule: in grey if not started, in black if started, in black with check if finished -->[m
-[31m-					<xsl:if test="(string(pb_project-statut_project)='SUIVI' or string(pb_project-statut_project)='suivi') and (string(pb_project-statut_eudo)!='Abandonné')">[m
-[32m+[m					[32m<xsl:if test="(string(pb_project-status)='SUIVI' or string(pb_project-status)='suivi')">[m
- 						<div class="psoum-data-planning separator-horiz-4px">[m
- 						[m
- 							<h2>#i18n{participatorybudget.project.sheet.planning}</h2>[m
-[36m@@ -429,14 +354,14 @@[m
- 							[m
- 							<!-- <xsl:value-of select="pb_project-phase1_date_deb" /> -->[m
- 							<xsl:choose>[m
-[31m-								<xsl:when test="($auj &gt;= $date-step2) and (pb_project-phase1_date_deb = '')">[m
-[32m+[m								[32m<xsl:when test="($auj &gt;= $date-step2) and (pb_project-phase1_start_date = '')">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed studies" title=""/>#i18n{participatorybudget.project.sheet.planning.study}</p>[m
- 								</xsl:when>[m
- 								<xsl:when test="($auj &gt;= $date-step2)">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed studies" title=""/>#i18n{participatorybudget.project.sheet.planning.study}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>1. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.started_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep1 )" />)</span></p>[m
- 								</xsl:when>[m
- 							[m
-[31m-								<xsl:when test="($auj &lt; $date-step2) and ($auj &gt;= $date-step1) and (pb_project-phase1_date_deb = '')">[m
-[32m+[m								[32m<xsl:when test="($auj &lt; $date-step2) and ($auj &gt;= $date-step1) and (pb_project-phase1_start_date = '')">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check-current.png" alt="Studies in progress" title=""/>#i18n{participatorybudget.project.sheet.planning.study}</p>[m
- 								</xsl:when>[m
- 								<xsl:when test="($auj &lt; $date-step2) and ($auj &gt;= $date-step1)">[m
-[36m@@ -447,7 +372,7 @@[m
- 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming studies" title=""/>#i18n{participatorybudget.project.sheet.planning.study}</p>[m
- 								</xsl:when>[m
- [m
-[31m-								<xsl:when test="($auj &lt; $date-step1) and (pb_project-phase1_date_deb != '')">[m
-[32m+[m								[32m<xsl:when test="($auj &lt; $date-step1) and (pb_project-phase1_start_date != '')">[m
- 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming studies" title=""/>#i18n{participatorybudget.project.sheet.planning.study}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>1. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.expected_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep1 )" />)</span></p>[m
- 								</xsl:when>[m
- [m
-[36m@@ -459,14 +384,14 @@[m
- 						[m
- 							<!-- <xsl:value-of select="pb_project-phase2_date_deb" /> -->[m
- 							<xsl:choose>[m
-[31m-								<xsl:when test="($auj &gt;= $date-step3) and (pb_project-phase2_date_deb = '')">[m
-[32m+[m								[32m<xsl:when test="($auj &gt;= $date-step3) and (pb_project-phase2_start_date = '')">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed procedures" title=""/>#i18n{participatorybudget.project.sheet.planning.proceeding}</p>[m
- 								</xsl:when>[m
- 								<xsl:when test="($auj &gt;= $date-step3)">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed procedures" title=""/>#i18n{participatorybudget.project.sheet.planning.proceeding}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>2. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.started_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep2 )" />)</span></p>[m
- 								</xsl:when>[m
- [m
-[31m-								<xsl:when test="($auj &lt; $date-step3) and ($auj &gt;= $date-step2) and (pb_project-phase2_date_deb = '')">[m
-[32m+[m								[32m<xsl:when test="($auj &lt; $date-step3) and ($auj &gt;= $date-step2) and (pb_project-phase2_start_date = '')">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check-current.png" alt="Procedures in progress" title=""/>#i18n{participatorybudget.project.sheet.planning.proceeding}</p>[m
- 								</xsl:when>[m
- 								<xsl:when test="($auj &lt; $date-step3) and ($auj &gt;= $date-step2)">[m
-[36m@@ -477,7 +402,7 @@[m
- 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming procedures" title=""/>#i18n{participatorybudget.project.sheet.planning.proceeding}</p>[m
- 								</xsl:when>[m
- [m
-[31m-								<xsl:when test="($auj &lt; $date-step2) and (pb_project-phase2_date_deb != '')">[m
-[32m+[m								[32m<xsl:when test="($auj &lt; $date-step2) and (pb_project-phase2_start_date != '')">[m
- 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming procedures" title=""/>#i18n{participatorybudget.project.sheet.planning.proceeding}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>2. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.expected_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep2 )" />)</span></p>[m
- 								</xsl:when>[m
- [m
-[36m@@ -488,14 +413,14 @@[m
- 						[m
- 							<!-- <xsl:value-of select="pb_project-phase3_date_deb" /> -->[m
- 							<xsl:choose>[m
-[31m-								<xsl:when test="($auj &gt;= $date-step4) and (pb_project-phase3_date_deb = '')">[m
-[32m+[m								[32m<xsl:when test="($auj &gt;= $date-step4) and (pb_project-phase3_start_date = '')">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed work" title=""/>#i18n{participatorybudget.project.sheet.planning.work}</p>[m
- 								</xsl:when>[m
- 								<xsl:when test="($auj &gt;= $date-step4)">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed work" title=""/>#i18n{participatorybudget.project.sheet.planning.work}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>3. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.started_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep3 )" />)</span></p>[m
- 								</xsl:when>[m
- 								[m
-[31m-								<xsl:when test="($auj &lt; $date-step4) and ($auj &gt;= $date-step3) and (pb_project-phase3_date_deb = '')">[m
-[32m+[m								[32m<xsl:when test="($auj &lt; $date-step4) and ($auj &gt;= $date-step3) and (pb_project-phase3_start_date = '')">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check-current.png" alt="Work in progress" title=""/>#i18n{participatorybudget.project.sheet.planning.work}</p>[m
- 								</xsl:when>[m
- 								<xsl:when test="($auj &lt; $date-step4) and ($auj &gt;= $date-step3)">[m
-[36m@@ -506,7 +431,7 @@[m
- 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming work" title=""/>#i18n{participatorybudget.project.sheet.planning.work}</p>[m
- 								</xsl:when>[m
- 								[m
-[31m-								<xsl:when test="($auj &lt; $date-step3) and (pb_project-phase3_date_deb != '')">[m
-[32m+[m								[32m<xsl:when test="($auj &lt; $date-step3) and (pb_project-phase3_start_date != '')">[m
- 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming work" title=""/>#i18n{participatorybudget.project.sheet.planning.work}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>3. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.expected_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep3 )" />)</span></p>[m
- 								</xsl:when>[m
- 								[m
-[36m@@ -517,14 +442,14 @@[m
- 						[m
- 							<!-- <xsl:value-of select="pb_project-phase4_date_deb" /> -->[m
- 							<xsl:choose>[m
-[31m-								<xsl:when test="($auj &gt;= $date-step4f) and (pb_project-phase4_date_deb = '')">[m
-[32m+[m								[32m<xsl:when test="($auj &gt;= $date-step4f) and (pb_project-phase4_start_date = '')">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed !" title=""/>#i18n{participatorybudget.project.sheet.planning.delivery.completed}</p>[m
- 								</xsl:when>[m
- 								<xsl:when test="($auj &gt;= $date-step4f)">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check.png" alt="Completed !" title=""/>#i18n{participatorybudget.project.sheet.planning.delivery.completed}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>4. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.delivered_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep4f )" />)</span></p>[m
- 								</xsl:when>[m
- 								[m
-[31m-								<xsl:when test="($auj &lt; $date-step4f) and ($auj &gt;= $date-step4) and (pb_project-phase4_date_deb = '')">[m
-[32m+[m								[32m<xsl:when test="($auj &lt; $date-step4f) and ($auj &gt;= $date-step4) and (pb_project-phase4_start_date = '')">[m
- 									<p class="date-step phase-active"><img src="images/local/skin/plugins/plugin-participatorybudget/check-current.png" alt="Delivery in progress" title=""/>#i18n{participatorybudget.project.sheet.planning.delivery.in_progress}</p>[m
- 								</xsl:when>[m
- 								<xsl:when test="($auj &lt; $date-step4f) and ($auj &gt;= $date-step4)">[m
-[36m@@ -535,7 +460,7 @@[m
- 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming delivery" title=""/>#i18n{participatorybudget.project.sheet.planning.delivery}</p>[m
- 								</xsl:when>[m
- 								[m
-[31m-								<xsl:when test="($auj &lt; $date-step4) and (pb_project-phase4_date_deb != '')">[m
-[32m+[m								[32m<xsl:when test="($auj &lt; $date-step4) and (pb_project-phase4_start_date != '')">[m
- 									<p class="date-step phase-unactive"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png" alt="Upcoming delivery" title=""/>#i18n{participatorybudget.project.sheet.planning.delivery}<br/><span style="color:#ffffff"><img src="images/local/skin/plugins/plugin-participatorybudget/check-empty.png"/>4. </span><span class="phase-beginning">(#i18n{participatorybudget.project.sheet.planning.expected_in} <xsl:value-of select="java:format(java:java.text.SimpleDateFormat.new('MMMM yyyy'), $dtStep4 )" />)</span></p>[m
- 								</xsl:when>[m
- 								[m
-[1mdiff --git a/webapp/WEB-INF/xsl/normal/plugins/participatorybudget/portlet_document_list_3_projets_en_focus.xsl b/webapp/WEB-INF/xsl/normal/plugins/participatorybudget/portlet_document_list_3_projets_en_focus.xsl[m
-[1mindex a6f7533..464e71d 100644[m
-[1m--- a/webapp/WEB-INF/xsl/normal/plugins/participatorybudget/portlet_document_list_3_projets_en_focus.xsl[m
-[1m+++ b/webapp/WEB-INF/xsl/normal/plugins/participatorybudget/portlet_document_list_3_projets_en_focus.xsl[m
-[36m@@ -5,81 +5,6 @@[m
- [m
- 	<xsl:variable name="portlet-id" select="portlet/portlet-id" />[m
- [m
-[31m-	<!-- [m
-[31m-	<portlet>[m
-[31m-		<portlet-name>Les realisations a la une</portlet-name>[m
-[31m-		<portlet-id>195</portlet-id>[m
-[31m-		<page-id>7</page-id>[m
-[31m-		<plugin-name>document</plugin-name>[m
-[31m-		<display-portlet-title>0</display-portlet-title>[m
-[31m-		<display-on-small-device>1</display-on-small-device>[m
-[31m-		<display-on-normal-device>1</display-on-normal-device>[m
-[31m-		<display-on-large-device>1</display-on-large-device>[m
-[31m-		<display-on-xlarge-device>1</display-on-xlarge-device>[m
-[31m-		<document-list-portlet>[m
-[31m-			<document>[m
-[31m-				<document-id>1636</document-id>[m
-[31m-				<document-date-publication>06/07/2018</document-date-publication>[m
-[31m-				<document-xml-content>[m
-[31m-					<pb_project>[m
-[31m-						<document-id>1636</document-id>[m
-[31m-						<document-title>Sécuriser les traversées piétonnes avenue Simon Bolivar</document-title>[m
-[31m-						<document-summary>Le projet consiste à limiter la vitesse sur l'avenue Simon Bolivar à 30 km/h et à installer des ralentisseurs type coussins berlinois, afin de réduire la pollution sonore et d'assurer un meilleur partage de l'espace public entre tous les usagers.</document-summary>[m
-[31m-						<document-date-begin/>[m
-[31m-						<document-date-end/>[m
-[31m-						<document-categories/>[m
-[31m-						<pb_project-code_projet>22</pb_project-code_projet>[m
-[31m-						<pb_project-identifiant>2871</pb_project-identifiant>[m
-[31m-						<pb_project-thematique>Transport et mobilité</pb_project-thematique>[m
-[31m-						<pb_project-description>&lt;p&gt;Le projet consiste &amp;agrave; limiter la vitesse sur l'avenue Simon Bolivar &amp;agrave; 30 km/h et &amp;agrave; installer des ralentisseurs type coussins berlinois, afin de r&amp;eacute;duire la pollution sonore et d'assurer un meilleur partage de l'espace public entre tous les usagers.&lt;/p&gt;</pb_project-description>[m
-[31m-						<pb_project-localisation>19e arrondissement</pb_project-localisation>[m
-[31m-						<pb_project-lieu>Avenue Simon Bolivar</pb_project-lieu>[m
-[31m-						<pb_project-url>https://idee.paris.fr/amenagement-de-lavenue-simon-bolivar</pb_project-url>[m
-[31m-						<pb_project-budget>200000</pb_project-budget>[m
-[31m-						<pb_project-contributeur>Projet élaboré à partir des propositions de deux Parisiens.</pb_project-contributeur>[m
-[31m-						<pb_project-direction>DVD</pb_project-direction>[m
-[31m-						<pb_project-image>&lt;img src="document?id=1329&amp;id_attribute=43" class="img-responsive" alt="Thématique : Transport et mobilité" title="Thématique : Transport et mobilité" height="100%" width="100%"/&gt;</pb_project-image>[m
-[31m-						<pb_project-nombre_de_votes>791</pb_project-nombre_de_votes>[m
-[31m-						<pb_project-statut_project>SUIVI</pb_project-statut_project>[m
-[31m-						<pb_project-content>&lt;p style="margin: 0cm 0cm 10pt;"&gt;&lt;font face="Calibri" size="3"&gt;L’avenue Simon Bolivar au niveau du 36 ayant déjà été aménagée pour plus de sécurité, la sécurisation de l’avenue a consisté&amp;nbsp;en la mise en place d’îlots au niveau de la rue Sadi Lecointe et de la rue Lauzi, complétée par la création d’un plateau surélevé.&lt;/font&gt;&lt;/p&gt;[m
-[31m-						</pb_project-content>[m
-[31m-						<pb_project-pop_district/>[m
-[31m-						<pb_project-localisation_precise>[m
-[31m-							<geoloc>[m
-[31m-							<lon>2.379279372158752</lon>[m
-[31m-							<lat>48.87759102013792</lat>[m
-[31m-							<address>Avenue Simon Bolivar, 75019 PARIS</address>[m
-[31m-							</geoloc>[m
-[31m-						</pb_project-localisation_precise>[m
-[31m-						<pb_project-phase1_date_deb>01/04/2016</pb_project-phase1_date_deb>[m
-[31m-						<pb_project-phase1_echeancier/>[m
-[31m-						<pb_project-phase2_date_deb>01/10/2016</pb_project-phase2_date_deb>[m
-[31m-						<pb_project-phase2_echeancier/>[m
-[31m-						<pb_project-phase3_date_deb>01/08/2017</pb_project-phase3_date_deb>[m
-[31m-						<pb_project-phase3_echeancier/>[m
-[31m-						<pb_project-phase4_date_deb>10/11/2017</pb_project-phase4_date_deb>[m
-[31m-						<pb_project-phase4_date_fin>17/11/2017</pb_project-phase4_date_fin>[m
-[31m-						<pb_project-phase4_echeancier/>[m
-[31m-						<pb_project-campagne>Budget Participatif 2015</pb_project-campagne>[m
-[31m-						<pb_project-statut_eudo>Achevé</pb_project-statut_eudo>[m
-[31m-						<pb_project-num_idea>2961</pb_project-num_idea>[m
-[31m-						<pb_project-pseudos>Treize Accessible  (autre Collectif CQ et Associations)</pb_project-pseudos>[m
-[31m-						<pb_project-title_idea>Mise en accessibilité des centres d'animation</pb_project-title_idea>[m
-[31m-						<pb_project-statut_eudo>Achevé</pb_project-statut_eudo>[m
-[31m-						<pb_project-step1>01/01/2017</pb_project-step1>[m
-[31m-						<pb_project-step2>01/04/2017</pb_project-step2>[m
-[31m-						<pb_project-step3>01/07/2017</pb_project-step3>[m
-[31m-						<pb_project-step4>30/09/2017</pb_project-step4>[m
-[31m-						<pb_project-step5>10/03/2018</pb_project-step5>[m
-[31m-						<pb_project-handicap>non</pb_project-handicap>[m
-[31m-					</pb_project>[m
-[31m-				</document-xml-content>[m
-[31m-				<document-number-comment>0</document-number-comment>[m
-[31m-				<document-number-favorite>2</document-number-favorite>[m
-[31m-				<document-number-follow>3</document-number-follow>[m
-[31m-			</document>[m
-[31m-	-->[m
-[31m-		[m
- 	<!-- *********************************************************************************** -->[m
- 	<!-- * HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HE * -->[m
- 	<!-- * HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HE * -->[m
-[36m@@ -101,7 +26,7 @@[m
- 		[m
- 			<div id="portlet-pgagn-focus" class="{$device_class}">[m
- 				<div class="focus-body">[m
-[31m-					<p>Projects in the news !</p>[m
-[32m+[m					[32m<p>News about projects !</p>[m
- 					<xsl:apply-templates select="document-list-portlet" />				[m
- 				</div>[m
- 			</div>[m
-[36m@@ -148,7 +73,7 @@[m
- 	[m
- 		<div>[m
- 			<xsl:attribute name="class">focus-theme bgcolor-theme-<xsl:value-of select="$theme"/></xsl:attribute>[m
-[31m-			<xsl:value-of select="pb_project-thematique"/>[m
-[32m+[m			[32m<xsl:value-of select="pb_project-theme"/>[m
- 		</div>[m
- 		[m
- 		<div>[m
-[36m@@ -160,7 +85,7 @@[m
- 	[m
- 			<div class="focus-link btn btn-14rem btn-black-on-white">[m
- 				<xsl:attribute name="href">jsp/site/Portal.jsp?document_id=<xsl:value-of select="document-id"/>&amp;portlet_id=158</xsl:attribute>[m
-[31m-				découvrir le projet[m
-[32m+[m				[32mdiscover project[m
- 			</div>[m
- 			[m
- 		</div>[m
-[1mdiff --git a/webapp/css/plugins/participatorybudget/participatorybudget.css b/webapp/css/plugins/participatorybudget/participatorybudget.css[m
-[1mindex 381a980..86a426a 100644[m
-[1m--- a/webapp/css/plugins/participatorybudget/participatorybudget.css[m
-[1m+++ b/webapp/css/plugins/participatorybudget/participatorybudget.css[m
-[36m@@ -1 +1 @@[m
-[31m-/*** ECRASE LA CSS DU PLUGIN - A SUPPRIMER DU PLUGIN ****/.budget-projet-filtre-arr-label {padding-top:10px; margin-left:15px;}.budget-projet-filtre-arr-checkbox {min-width:0 !important;}.modal .btn-generic {color:#FFFFFF; background-color:#000000;}@media only screen and (min-width: 768px) {	body.phaseVote { margin-top: 90px; }}/* ********************************************************************************************* *//* * PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTL * *//* * PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTL * *//* ********************************************************************************************* *//* ------------------------------ Realization focus ------------------------------ */#pgagn-focus {	margin-bottom: 70px;	display: flex; flex-direction: column; align-items: center; justify-content: center;}#pgagn-focus #portlet-pgagn p.main {	margin: 0px;}#pgagn-focus #portlet-pgagn p.sub {	margin-bottom: 60px;	text-align: right;	font-size: 1.2rem; }#portlet-pgagn-focus p {	margin-bottom: 25px;	font-size: 3rem; font-weight: 700;}#portlet-pgagn-focus .focus-item {	height: 100%;	display: flex; flex-direction: column;}#portlet-pgagn-focus .col-md-4 a {	color: inherit;}#portlet-pgagn-focus .col-md-4 a:hover,#portlet-pgagn-focus .col-md-4 a:active,#portlet-pgagn-focus .col-md-4 a:focus {	text-decoration: none;}#portlet-pgagn-focus .col-md-4 a:hover  .focus-link,#portlet-pgagn-focus .col-md-4 a:active .focus-link,#portlet-pgagn-focus .col-md-4 a:focus  .focus-link {	background-color: #071f32;	color: #ffffff;}#portlet-pgagn-focus .focus-img img {	width: 100%; height: 200px;	object-fit: cover;}#portlet-pgagn-focus .focus-theme {	height: 46px;	padding: 2px 0px 0px 24px;	display: flex; align-items: center;	font-family: 'Open Sans Condensed', sans-serif; font-size: 1.8rem; font-weight: 700; line-height: 2.6rem; text-transform: uppercase;}#portlet-pgagn-focus .focus-theme img {	margin-left: 20px; margin-right: 15px;	height: 38px;}#portlet-pgagn-focus div [class*='bordered-4px'] {	padding: 25px 20px; 	display: flex; flex-direction: column; align-items: center; justify-content: flex-start; flex-grow: 1; }#portlet-pgagn-focus div .finished { 	border-width: 4px; 	border-radius: 1000px;}#portlet-pgagn-focus .focus-title {	width: 100%;	padding-bottom: 35px;	font-size: 1.8rem; font-weight: 700;}/* To force alignment on bottom */#portlet-pgagn-focus .focus-bottom {	margin-top: auto;}#portlet-pgagn-focus .focus-phase {	margin-bottom: 10px; 	text-align: center;	font-family: 'Open Sans Condensed', sans-serif; font-size: 1.8rem; font-weight: 700; text-transform: uppercase;}#portlet-pgagn-focus .focus-steps {	margin-bottom: 24px;	display: flex; justify-items: center;}#portlet-pgagn-focus .focus-step {	height: 18px;	flex-grow: 1;}#portlet-pgagn-focus .focus-step:first-child {	border-top-left-radius: 2rem;	border-bottom-left-radius: 2rem;}#portlet-pgagn-focus .focus-step:last-child {	border-top-right-radius: 2rem;	border-bottom-right-radius: 2rem;}#portlet-pgagn-focus .focus-step:not(last-child) {	margin-right: 1px;}[m
-\ No newline at end of file[m
-[32m+[m[32m/*** ECRASE LA CSS DU PLUGIN - A SUPPRIMER DU PLUGIN ****/.budget-projet-filtre-arr-label {padding-top:10px; margin-left:15px;}.budget-projet-filtre-arr-checkbox {min-width:0 !important;}.modal .btn-generic {color:#FFFFFF; background-color:#000000;}@media only screen and (min-width: 768px) {	body.phaseVote { margin-top: 90px; }}/* ********************************************************************************************* *//* * PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM * *//* * PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM PSOUM * *//* ********************************************************************************************* *//* ------------------------------------- LIST ------------------------------------- */#psoum-list .psoum-panel { 	margin: 0px 0px 60px 0px; }#psoum-list .psoum-panel a { 	color: inherit;}#psoum-list .psoum-panel a:hover,#psoum-list .psoum-panel a:active#psoum-list .psoum-panel a:focus { 	text-decoration: none; }#psoum-list .psoum-panel a:hover  .psoum-card-link span,#psoum-list .psoum-panel a:active .psoum-card-link span,#psoum-list .psoum-panel a:focus  .psoum-card-link span { 	background-color: #071f32;	color: #ffffff;}#psoum-list .psoum-perdant { 		-webkit-filter: grayscale(1); filter: grayscale(1); }#psoum-list .psoum-card.psoum-perdant { 		border-color: #e0e0e0; }#psoum-list .psoum-perdant div.psoum-card-img { 	opacity: 0.4; }#psoum-list .psoum-abandonne { 	-webkit-filter: grayscale(1); filter: grayscale(1); }#psoum-list div.psoum-abandonne > div.psoum-card { 		border-color: #e0e0e0; }#psoum-list .psoum-abandonne div.psoum-card-img	{ 	opacity: 0.4; }#psoum-list .psoum-card-img {	display: flex; align-items: center; justify-content: center; 	width: 100%; height: 200px; 	overflow: hidden; 	background-size: cover; background-position: center; background-repeat: no-repeat; } #psoum-list .psoum-card-theme	{	padding-left: 20px;	padding-bottom: 2px;	height: 46px;    display: flex; align-items: center;    font-family: 'Open Sans Condensed', sans-serif; font-size: 1.8rem; font-weight: 700; line-height: 2.6rem; text-transform: uppercase;}#psoum-list .psoum-card-theme img {     margin-left: 20px;    margin-right: 15px;    height: 38px;}#psoum-list .psoum-abandonne .psoum-card-theme img { 	opacity: 0.3; }#psoum-list .psoum-card-img p					{ max-width: 80%; margin: 0px; padding: 10px; background-color: #ffffff; opacity: 0.9; font-weight: 700; font-size: 2rem; display: flex; display: flex; justify-content: center; align-items: flex-end; }#psoum-list .psoum-card-img p.winner			{ height: 70%; opacity: 1; text-transform: uppercase; width: 70%; font-weight: bold; background-image: url(../images/local/skin/crown.png); background-size: 50%; background-repeat: no-repeat; background-position: top; background-position: 50% 10%; border-radius: 10px; }#psoum-list .psoum-card-img p.looser			{ background-color: white; color: #2d2d2d; opacity: 0.90; width: 50%; border-radius: 10px; }#psoum-list .psoum-card-loc .for-print	{ 	display: none;}#psoum-list .psoum-card-loc	{ 	margin: 25px 20px 15px 20px; 	display: flex; align-items: center;	overflow: hidden; text-overflow: ellipsis; white-space: nowrap;	color: #0a4264 ;	font-size: 1.4rem; font-weight: 500; line-height: 1.8rem; text-transform: uppercase; }#psoum-list .psoum-card-loc-prec { 	overflow: hidden; text-overflow: ellipsis; white-space: nowrap;	text-transform: lowercase;}#psoum-list .psoum-card-loc img	{ 	margin-right: 10px;	height: 30px;}	#psoum-list .psoum-card-titre {	margin: 20px 20px 0px 20px; 	height: 8rem; 	overflow: hidden; text-overflow: ellipsis;  }#psoum-list .psoum-card-titre h3 { /* cf https: //codepen.io/martinwolf/pen/qlFdp */	margin: 0 auto;	height: 7.5rem; /* = line-height * nb-lines-to-show = 2.5 * 3 */	display: block;	filter: none!important;-webkit-filter: none!important; 	-webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; 	font-size: 1.8rem; font-weight: 700; line-height: 2.5rem; } #psoum-list .psoum-card-titre h3 span {	display: block;	text-align: center;}	#psoum-list .psoum-card-line					{ height: 2px; margin: 0px 15px 0px 15px; }#psoum-list .psoum-card-avancement { 	margin: 0px 20px 10px 20px; 	display: flex; flex-direction: column; align-items: center;}#psoum-list .psoum-card-abandonne-title {	margin-top: 20px; 	font-size: 1.8rem; line-height: 1.2rem; text-align: center; }#psoum-list .psoum-card-abandonne-desc { 	margin-bottom: 32px;	font-size: 1.6rem; line-height: 1.2rem; text-align: center; }#psoum-list .psoum-card-abandonne-desc a { 	font-weight: 700; }#psoum-list .psoum-card-abandonne-desc a:hover,#psoum-list .psoum-card-abandonne-desc a:active,#psoum-list .psoum-card-abandonne-desc a:focus { 	border-bottom: 1px solid #071f32;	text-decoration: none;}#psoum-list .psoum-card-progressbar	{ 	margin-bottom: 15px;	width: 70%; 	display: flex; }#psoum-list .psoum-card-progressbar.finished { 	border-width: 4px; 	border-radius: 1000px;}#psoum-list .psoum-card-progressbar.unfinished { 	border: 4px solid #ffffff!important;	border-radius: 1000px;}#psoum-list .psoum-card-progressbar-header		{ height: 10px; }#psoum-list .psoum-card-progressbar-txt	{   	margin-bottom: 10px;	font-family: 'Open Sans Condensed', sans-serif; font-size: 1.8rem; font-weight: 700; text-transform: uppercase; }#psoum-list .psoum-card-progressbar .phase { 	height: 18px;	flex-grow: 1; }#psoum-list .psoum-card-progressbar .phase:first-child {     border-top-left-radius: 2rem;    border-bottom-left-radius: 2rem;}#psoum-list .psoum-card-progressbar .phase:last-child {     border-top-right-radius: 2rem;    border-bottom-right-radius: 2rem;}#psoum-list .psoum-card-progressbar .phase:not(:last-child) { 	margin-right: 1px; }#psoum-list .psoum-card-link { 	display: flex; justify-content: center;}#psoum-list .psoum-card-footer					{ height: 78px; padding: 20px 20px 10px 20px; }#psoum-list .psoum-card-footer .img-qp			{ width: 48px; }#psoum-list .psoum-card-footer .img-ratp		{ width: 48px; }#psoum-list .psoum-card-footer .budget { 	padding-top: 10px; 	font-size: 1.8rem; font-weight: 700;}#psoum-list .psoum-card-footer .budget img		{ vertical-align: bottom; }#psoum-list .psoum-card-origin					{ display: none; }#psoum-list .psoum-card-description				{ display: none; }#psoum-list .psoum-card-vote					{ display: flex; justify-content: center; align-items: flex-start; height: 60px; }#psoum-list .psoum-card-vote .btn				{ overflow: inherit; }#psoum-list .psoum-card-vote .vote				{ display: flex; flex-direction: column; justify-content: center; align-items: center; }#psoum-list .psoum-card-vote .vote .budget-label-jai-vote { color: #ffffff; background-color: #071f32; border: 4px solid #071f32; padding: 8px 30px 5px 30px; font-size: 1.4rem; font-weight: 700; line-height: normal; text-transform: uppercase; }#psoum-list .budget-btn-do-vote:hover { color: #ffffff; }#psoum-list .budget-label-remove-vote { margin-top: 10px; font-weight:500; }#psoum-list .budget-label-remove-vote:hover,#psoum-list .budget-label-remove-vote:focus,#psoum-list .budget-label-remove-vote:active { border-bottom: 1px solid #071f32; }#psoum-list .psoum-card-vote .vote-done			{ color: #2F8355; padding: 0px 5px; }#psoum-list .psoum-card-vote .novote			{ font-style: italic; color: #808080; padding: 0px 5px; }/* ------------------------------------- CARD ------------------------------------- */#psoum-card .container { 	margin-top: 100px; margin-bottom: 60px;} #psoum-card #psoum-header	{ 	display: flex; align-items: center; 	padding: 0px 10px 0px 40px; 	color: #071f32;	font-family: 'Open Sans Condensed', sans-serif; font-size: 4.0rem; font-weight: 700; text-transform: uppercase; } #psoum-card #psoum-header .psoum-header-share {	margin-left: auto;	display: flex; align-items: center;}#psoum-card #psoum-header a	{	display: flex; } #psoum-card #psoum-header a:hover,#psoum-card #psoum-header a:active,#psoum-card #psoum-header a:focus	{	background-color: none;	color: #071f32;} #psoum-card #psoum-header img	{	margin-left: 10px;	height: 30px; } #psoum-card #psoum-body	{ 	display: flex;	border-top: 0; } 	#psoum-card #psoum-desc { 	padding: 35px 35px 70px 35px;} #psoum-card #psoum-desc .psoum-desc-localisation { 	display: flex; align-items: center;} #psoum-card #psoum-desc .psoum-desc-localisation img { 	margin-right: 5px;} #psoum-card #psoum-desc .psoum-desc-localisation-addr {	color: #071f32;	font-size: 1.6rem; font-weight: 700; } #psoum-card #psoum-desc .psoum-desc-titre h1 { 	margin-top: 20px; margin-bottom: 60px;	font-size: 2.9rem; font-weight: 700;}#psoum-card #psoum-desc .psoum-desc-titre .num-project { 	font-size: 2.2rem; margin-bottom: 10px; } #psoum-card #psoum-desc .psoum-desc-soustitre h2						{ padding-top: 0px; margin-top: 0px; margin-bottom: 30px; color: #337ab7; }#psoum-card #psoum-desc .psoum-desc-delivered  { 	margin-bottom: 30px;	height: 70px; 	color: #071f32; 	line-height: 70px; font-size: 4.0rem; font-weight: bold; text-align: center; text-transform: uppercase;  }	#psoum-card #psoum-desc .psoum-desc-undeliverable						{ height: 50px; line-height: 50px; font-size: 2.0rem; font-weight: bold; text-align: center; color: #ffffff; margin-bottom: 20px; }#psoum-card #psoum-desc .psoum-desc-undeliverable a						{ color: #ffffff; }#psoum-card #psoum-desc .psoum-desc-img									{ padding-bottom: 0px; margin-bottom: 0px; }#psoum-card #psoum-desc .psoum-desc-img img								{ width: 100%; }#psoum-card #psoum-desc h2 { 	padding-top: 30px; margin-bottom: 40px;  	font-family: 'Open Sans Condensed', sans-serif; font-size: 2.9rem; font-weight: 700; text-transform: uppercase; }#psoum-card #psoum-desc .psoum-desc-txt { 	text-align: justify;	font-size: 1.8rem; white-space: pre-wrap;  } #psoum-card #psoum-desc .psoum-desc-txt iframe	*						{ max-width: 100%; }#psoum-card #psoum-desc .psoum-desc-txt iframe							{ max-width: 100%; }#psoum-card #psoum-desc .psoum-desc-txt img		*						{ max-width: 100%; height: auto; }#psoum-card #psoum-desc .psoum-desc-txt img								{ max-width: 100%; height: auto; }#psoum-card #psoum-desc .psoum-desc-avct								{ font-size: 2.0rem; color: #000000; /* font-weight: bold; white-space: pre-wrap; */ color: #000000; } 	/*   * = overrides subnodes, gniark gniark ! */ #psoum-card #psoum-desc .psoum-desc-avct		*						{ font-size: 2.0rem; color: #000000; /* font-weight: bold; white-space: pre-wrap; */ color: #000000; } 	/*   * = overrides subnodes, gniark gniark ! */ #psoum-card #psoum-desc .psoum-desc-avct iframe	*						{ max-width: 100%; }#psoum-card #psoum-desc .psoum-desc-avct iframe							{ max-width: 100%; }#psoum-card #psoum-desc .psoum-desc-avct img	*						{ max-width: 100%; height: auto; }#psoum-card #psoum-desc .psoum-desc-avct img							{ max-width: 100%; height: auto; }#psoum-card #psoum-desc .psoum-desc-carto					{ height: 180px; }	#psoum-card #psoum-data { 	padding: 70px 35px;	background-color: #f9f9f9; } #psoum-card #psoum-data .psoum-data-sep									{ height: 0px; border-top: 1px solid #d5d5d5; margin-top: 0px; padding-top: 30px; }#psoum-card #psoum-data .psoum-data-delivered { 	margin-bottom: 30px;	height: 100px; 	color: #071f32; 	line-height: 100px; font-size: 4.0rem; font-weight: 700; text-align: center; text-transform: uppercase;  }	#psoum-card #psoum-data .psoum-data-undeliverable						{ height: 80px; line-height: 80px; font-size: 2.0rem; text-align: center; color: #ffffff; margin-bottom: 20px; }#psoum-card #psoum-data .psoum-data-undeliverable a						{ color: #ffffff; }#psoum-card #psoum-data #psoum-data-header {	margin: 0px 0px 40px 35px;	display: flex; align-items: center;}	#psoum-card #psoum-data #psoum-data-pastilles { 	display: flex; }#psoum-card #psoum-data #psoum-data-pastilles img { 	margin-right: 10px; }#psoum-card #psoum-data h2 { 	margin: 0px 0px 20px 35px;    font-family: 'Open Sans Condensed', sans-serif; font-size: 2.2rem; text-transform: uppercase;}#psoum-card #psoum-data p				 							{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } #psoum-card #psoum-data p:hover									{ overflow: initial; } #psoum-card #psoum-data img												{ vertical-align: bottom; } #psoum-card #psoum-data #fav {	margin-top: 50px;	display: flex; flex-direction: column; align-items: center;} #psoum-card #psoum-data .status-btn-follow {	margin-top: 50px;	display: flex; flex-direction: column; align-items: center;} #psoum-card #psoum-data .status-btn-follow p {	font-size: 1.8rem; white-space: normal; text-align: center;}	#psoum-card #psoum-data .psoum-data-planning .date-step { 	overflow: hidden; text-overflow: ellipsis; white-space: nowrap; 	font-size: 1.8rem; } #psoum-card #psoum-data .psoum-data-planning .date-step img { 	margin-left: 11px; margin-right: 11px;	vertical-align: inherit;  } #psoum-card #psoum-data .psoum-data-planning .date-step.phase-unactive  { 	color: #666666; 	font-weight: normal; line-height: 2rem;  } #psoum-card #psoum-data .psoum-data-planning .date-step.phase-active { 	line-height: 2rem; } #psoum-card #psoum-data .psoum-data-planning span.phase-beginning { 	font-size: 1.4rem;  } #psoum-card #psoum-data .psoum-data-origin { 	font-size: 1.8rem; } #psoum-card #psoum-data .psoum-data-origin p {	margin-left: 35px;}	#psoum-card #psoum-data .psoum-data-origin p.basic-origin { 	white-space: inherit; text-align: justify; } /* Specific to 2014-2015 projects : no overflow management on text */#psoum-card #psoum-data .psoum-data-origin a { 	color: #337ab7; } /* Couleur initiale Bootstrap */#psoum-card #psoum-data .psoum-data-vote						{ display: flex; justify-content: center; align-items: flex-start; margin: 50px 0px; }#psoum-card #psoum-data .psoum-data-vote .btn					{ overflow: inherit; }#psoum-card #psoum-data .psoum-data-vote .vote								{ display: flex; flex-direction: column; justify-content: space-around; width: 100%; }#psoum-card #psoum-data .psoum-data-vote .vote .btn-group					{ display: flex; justify-content: space-around; }#psoum-card #psoum-data .psoum-data-vote .vote .budget-btn-do-vote			{ background-image: none; font-size: 1.8rem; }#psoum-card #psoum-data .psoum-data-vote .vote .budget-cancel-vote-button	{ width: 100%; }#psoum-card #psoum-data .psoum-data-vote .vote .budget-label-jai-vote { color: #ffffff; background-color: #071f32; border: 4px solid #071f32; padding: 8px 30px 5px 30px; font-size: 1.4rem; font-weight: 700; line-height: normal; text-transform: uppercase; }#psoum-card #psoum-data .psoum-data-vote .vote .budget-label-remove-vote { margin-top: 10px; text-align: center; }#psoum-card #psoum-data .psoum-data-vote .vote .budget-cancel-vote-button { font-weight:500; color: #071f32; }#psoum-card #psoum-data .psoum-data-vote .vote .budget-cancel-vote-button:hover,#psoum-card #psoum-data .psoum-data-vote .vote .budget-cancel-vote-button:focus,#psoum-card #psoum-data .psoum-data-vote .vote .budget-cancel-vote-button:active { border-bottom: 1px solid #071f32; text-decoration: none;}#psoum-card #psoum-data .psoum-data-vote .vote-done			{ color: #2F8355; font-weight: normal; }#psoum-card #psoum-data .psoum-data-vote .novote				{ overflow: inherit; text-overflow: inherit; white-space: inherit; color: #808080; font-style: italic; font-weight: normal; }#psoum-card #psoum-data .psoum-data-carto					{ height: 240px; }#psoum-card #psoum-data .leaflet-popup-content 				{ margin: 5px; }#psoum-card #psoum-data .leaflet-container a.leaflet-popup-close-button				{ display: none; }#psoum-card #psoum-data .leaflet-popup-content .popup-idee .popup-idee-content br		{ display: none; }#psoum-card #psoum-data .leaflet-popup-content .popup-idee .popup-idee-content .popup-title	{ font-family: "TradeGothicNo.18-Condensed"; font-size: 1.4rem; line-height: 1.4rem; margin-bottom: 5px; }#psoum-card #psoum-data .leaflet-popup-content .popup-idee .popup-idee-content .popup-localisation	{ font-size: 1rem; margin-bottom: 2px; display: none; }#psoum-card #psoum-data .leaflet-popup-content .popup-idee .popup-idee-content .date-step		{ font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin: 0px; }#psoum-card #psoum-data .leaflet-popup-content .popup-idee .popup-idee-content .date-step	img	{ vertical-align: inherit; margin-right: 5px; }#psoum-card #psoum-data .leaflet-popup-content .popup-idee .popup-idee-content .date-step.phase-unactive { color: #737373; font-weight: normal; } #psoum-card #psoum-data .leaflet-popup-content .popup-idee .popup-idee-content .date-step.phase-active	{ } #psoum-card #psoum-data .leaflet-popup-content .popup-idee .popup-idee-content p:last-of-type	{ display: none; }#psoum-card #psoum-data .map-legend								{ margin-bottom: 20px; background-color: rgba(255, 255, 255, 0.75); font-weight: bold; }#psoum-card #psoum-data .map-legend img							{ height: 16px; margin-right: 5px; }#psoum-card #psoum-data .map-legend								{ display: flex; flex-direction: column; background-color: rgba(255, 255, 255, 0.75); font-weight: bold; }#psoum-card #psoum-data .map-legend-line							{ display: flex; height: 20px; }#psoum-card #psoum-data .map-legend-line	div.marker 				{ width: 10px; height: 14px; margin-top: 0; margin-left: 0; margin-right: 5px; text-align: center; }#psoum-card #psoum-data .map-legend-line  img						{ height: 14px; vertical-align: text-bottom; }#psoum-card #psoum-data .psoum-data-vote						{ display: flex; justify-content: center; align-items: flex-start; margin: 50px 0px; }#psoum-card #psoum-data .psoum-data-kv { 	display: flex; align-items: center;	font-size: 1.8rem; line-height: 1.8rem;	margin-bottom: 10px;} #psoum-card #psoum-data .psoum-data-kv.last { 	margin-bottom: 35px;} #psoum-card #psoum-data .psoum-data-key { 	width: 35px; } #psoum-card #psoum-data .psoum-data-value { 	margin: 0px;} #psoum-card #psoum-data-handicap		 					{ margin-top: 15px; margin-bottom: 25px; font-size: 1.5rem; border-radius: 5px; background-color: #d7eff1;padding: 5px; white-space: normal!important; } /* ********************************************************************************************* *//* * PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTL * *//* * PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTLET-FOCUS PORTL * *//* ********************************************************************************************* *//* ------------------------------ Realization focus ------------------------------ */#pgagn-focus {	margin-bottom: 70px;	display: flex; flex-direction: column; align-items: center; justify-content: center;}#pgagn-focus #portlet-pgagn p.main {	margin: 0px;}#pgagn-focus #portlet-pgagn p.sub {	margin-bottom: 60px;	text-align: right;	font-size: 1.2rem; }#portlet-pgagn-focus p {	margin-bottom: 25px;	font-size: 3rem; font-weight: 700;}#portlet-pgagn-focus .focus-item {	height: 100%;	display: flex; flex-direction: column;}#portlet-pgagn-focus .col-md-4 a {	color: inherit;}#portlet-pgagn-focus .col-md-4 a:hover,#portlet-pgagn-focus .col-md-4 a:active,#portlet-pgagn-focus .col-md-4 a:focus {	text-decoration: none;}#portlet-pgagn-focus .col-md-4 a:hover  .focus-link,#portlet-pgagn-focus .col-md-4 a:active .focus-link,#portlet-pgagn-focus .col-md-4 a:focus  .focus-link {	background-color: #071f32;	color: #ffffff;}#portlet-pgagn-focus .focus-img img {	width: 100%; height: 200px;	object-fit: cover;}#portlet-pgagn-focus .focus-theme {	height: 46px;	padding: 2px 0px 0px 24px;	display: flex; align-items: center;	font-family: 'Open Sans Condensed', sans-serif; font-size: 1.8rem; font-weight: 700; line-height: 2.6rem; text-transform: uppercase;}#portlet-pgagn-focus .focus-theme img {	margin-left: 20px; margin-right: 15px;	height: 38px;}#portlet-pgagn-focus div [class*='bordered-4px'] {	padding: 25px 20px; 	display: flex; flex-direction: column; align-items: center; justify-content: flex-start; flex-grow: 1; }#portlet-pgagn-focus div .finished { 	border-width: 4px; 	border-radius: 1000px;}#portlet-pgagn-focus .focus-title {	width: 100%;	padding-bottom: 35px;	font-size: 1.8rem; font-weight: 700;}/* To force alignment on bottom */#portlet-pgagn-focus .focus-bottom {	margin-top: auto;}#portlet-pgagn-focus .focus-phase {	margin-bottom: 10px; 	text-align: center;	font-family: 'Open Sans Condensed', sans-serif; font-size: 1.8rem; font-weight: 700; text-transform: uppercase;}#portlet-pgagn-focus .focus-steps {	margin-bottom: 24px;	display: flex; justify-items: center;}#portlet-pgagn-focus .focus-step {	height: 18px;	flex-grow: 1;}#portlet-pgagn-focus .focus-step:first-child {	border-top-left-radius: 2rem;	border-bottom-left-radius: 2rem;}#portlet-pgagn-focus .focus-step:last-child {	border-top-right-radius: 2rem;	border-bottom-right-radius: 2rem;}#portlet-pgagn-focus .focus-step:not(last-child) {	margin-right: 1px;}[m[41m[m
-\ No newline at end of file[m

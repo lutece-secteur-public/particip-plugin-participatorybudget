@@ -35,17 +35,19 @@ package fr.paris.lutece.plugins.participatorybudget.service.project;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang.NotImplementedException;
-
 import fr.paris.lutece.plugins.document.business.Document;
+import fr.paris.lutece.plugins.document.business.spaces.DocumentSpace;
+import fr.paris.lutece.plugins.document.business.spaces.DocumentSpaceHome;
 import fr.paris.lutece.plugins.extend.business.extender.history.ResourceExtenderHistory;
 import fr.paris.lutece.plugins.extend.business.extender.history.ResourceExtenderHistoryFilter;
 import fr.paris.lutece.plugins.extend.modules.follow.service.extender.FollowResourceExtender;
 import fr.paris.lutece.plugins.extend.service.extender.history.IResourceExtenderHistoryService;
+import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 public class ProjectService implements IProjectService
@@ -71,9 +73,51 @@ public class ProjectService implements IProjectService
     // ***********************************************************************************
 
     @Override
-    public int createproject( )
+    public int createproject( Map<String, String> docFields )
     {
-        throw new NotImplementedException( );
+        // Get the document space where to store the document. Create it if necessary.
+        int idSpace = getOrCreateIdSpace( docFields.get( Constants.DOCUMENT_ATTRIBUTE_CAMPAIGN ) );
+
+        // Construct document.
+
+        // Store, approve and validate document.
+
+        // Publish document.
+
+        // Index document.
+
+        return -1;
+    }
+
+    /**
+     * Returns the id of the searched document space. Creates it if not existing.
+     */
+    private int getOrCreateIdSpace( String nameSpaceChild )
+    {
+        // Search for child space.
+        List<DocumentSpace> docSpace = DocumentSpaceHome.findChilds( Constants.DOCUMENT_PROJECT_PARENT_SPACE_ID );
+        for ( DocumentSpace item : docSpace )
+        {
+            if ( nameSpaceChild.equals( item.getName( ) ) )
+            {
+                return item.getId( );
+            }
+        }
+
+        // Child not found, so create it.
+        DocumentSpace childSpace = new DocumentSpace( );
+        childSpace.setIdParent( Constants.DOCUMENT_PROJECT_PARENT_SPACE_ID );
+        childSpace.setName( nameSpaceChild );
+        childSpace.setDescription( nameSpaceChild );
+        childSpace.setViewType( "detail" );
+        childSpace.setIdIcon( 2 );
+        childSpace.resetAllowedDocumentTypesList( );
+        childSpace.setDocumentCreationAllowed( true );
+        childSpace.setWorkgroup( "all" );
+        childSpace.addAllowedDocumentType( Constants.DOCUMENT_TYPE_PROJECT );
+        DocumentSpaceHome.create( childSpace );
+
+        return childSpace.getId( );
     }
 
     // *********************************************************************************************

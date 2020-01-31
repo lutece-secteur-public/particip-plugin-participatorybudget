@@ -35,7 +35,7 @@ package fr.paris.lutece.plugins.participatorybudget.business;
 
 import java.util.List;
 
-import fr.paris.lutece.plugins.participatorybudget.Constants;
+import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;

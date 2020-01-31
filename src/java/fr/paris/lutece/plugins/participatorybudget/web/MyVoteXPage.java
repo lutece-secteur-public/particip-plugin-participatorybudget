@@ -34,10 +34,9 @@
 package fr.paris.lutece.plugins.participatorybudget.web;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -48,15 +47,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 
-import fr.paris.lutece.plugins.subscribe.business.Subscription;
-import fr.paris.lutece.plugins.subscribe.business.SubscriptionFilter;
-import fr.paris.lutece.plugins.subscribe.service.ISubscriptionProviderService;
-import fr.paris.lutece.plugins.subscribe.service.SubscriptionService;
 import fr.paris.lutece.plugins.extend.business.extender.history.ResourceExtenderHistory;
 import fr.paris.lutece.plugins.extend.business.extender.history.ResourceExtenderHistoryFilter;
-import fr.paris.lutece.plugins.extend.modules.favorite.service.FavoriteService;
-import fr.paris.lutece.plugins.extend.modules.favorite.service.IFavoriteService;
-import fr.paris.lutece.plugins.extend.modules.follow.business.FollowFilter;
 import fr.paris.lutece.plugins.extend.modules.follow.service.FollowService;
 import fr.paris.lutece.plugins.extend.modules.follow.service.IFollowService;
 import fr.paris.lutece.plugins.extend.modules.follow.service.extender.FollowResourceExtender;
@@ -69,7 +61,6 @@ import fr.paris.lutece.plugins.extend.modules.rating.service.validator.RatingVal
 import fr.paris.lutece.plugins.extend.modules.rating.util.constants.RatingConstants;
 import fr.paris.lutece.plugins.extend.service.extender.history.IResourceExtenderHistoryService;
 import fr.paris.lutece.plugins.extend.service.extender.history.ResourceExtenderHistoryService;
-import fr.paris.lutece.plugins.participatorybudget.Constants;
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
 import fr.paris.lutece.plugins.participatorybudget.business.MyVote;
 import fr.paris.lutece.plugins.participatorybudget.business.Vote;
@@ -82,6 +73,7 @@ import fr.paris.lutece.plugins.participatorybudget.service.VoteParArrandissement
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.rating.BudgetRatingService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
+import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.plugins.subscribe.business.Subscription;
 import fr.paris.lutece.plugins.subscribe.business.SubscriptionFilter;
 import fr.paris.lutece.plugins.subscribe.service.SubscriptionService;
@@ -99,7 +91,6 @@ import fr.paris.lutece.portal.service.security.UserNotSignedException;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.portal.service.util.AppPathService;
-import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.portal.util.mvc.xpage.MVCApplication;

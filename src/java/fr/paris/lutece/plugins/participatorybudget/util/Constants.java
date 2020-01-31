@@ -41,6 +41,12 @@ import org.apache.commons.lang.NotImplementedException;
  */
 public final class Constants
 {
+    public static final String PLUGIN_NAME = "participatorybudget";
+    public static final String PROJECT_TITLE = "title";
+    public static final String PROJECT_LOCALISATION = "localisation";
+    public static final String PROJECT_THEMATIQUE = "thematique";
+    public static final String LOCALISATION_PARIS = "whole_city";
+
     // Properties
     public static final String PROPERTY_AUTHORIZED_CITIES = "participatorybudget.authorized.cities";
 
@@ -64,7 +70,9 @@ public final class Constants
     public static final String BEGINNING_DATETIME = "BEGINNING_DATETIME";
     public static final String END_DATETIME = "END_DATETIME";
 
-    // Document fields
+    // Document constants
+
+    public static final int DOCUMENT_PROJECT_PARENT_SPACE_ID = 2;
 
     public static final String DOCUMENT_TYPE_PROJECT = "pb_project";
 

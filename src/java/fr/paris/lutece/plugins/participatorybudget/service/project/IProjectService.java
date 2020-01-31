@@ -33,6 +33,7 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service.project;
 
+import java.util.Map;
 import java.util.Set;
 
 import fr.paris.lutece.plugins.document.business.Document;
@@ -46,9 +47,9 @@ public interface IProjectService
     // ***********************************************************************************
 
     /**
-     * Creates a new project and returns its identifier.
+     * Creates a new project and returns its technical identifier.
      */
-    public int createproject( );
+    public int createproject( Map<String, String> docFields );
 
     // *********************************************************************************************
     // * FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLO *
