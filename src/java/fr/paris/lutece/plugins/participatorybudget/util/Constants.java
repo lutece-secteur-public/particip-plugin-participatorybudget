@@ -54,7 +54,6 @@ public final class Constants
     public static final String AUTHORIZED_CITIES_SEPARATOR = ",";
 
     // CampagnePhase
-
     public static final String PRE_IDEATION = "PRE_IDEATION";
     public static final String IDEATION = "IDEATION";
     public static final String POST_IDEATION = "POST_IDEATION";
@@ -72,42 +71,43 @@ public final class Constants
 
     // Document constants
 
+    // TODO : Put this space id in property file
     public static final int DOCUMENT_PROJECT_PARENT_SPACE_ID = 2;
 
     public static final String DOCUMENT_TYPE_PROJECT = "pb_project";
 
-    public static final String DOCUMENT_ATTRIBUTE_STATUS = "status";
-    public static final String DOCUMENT_ATTRIBUTE_CAMPAIGN = "campaign";
-    public static final String DOCUMENT_ATTRIBUTE_THEME = "theme";
-    public static final String DOCUMENT_ATTRIBUTE_DESCRIPTION = "description";
-    public static final String DOCUMENT_ATTRIBUTE_CONTENT = "content";
-
-    public static final String DOCUMENT_ATTRIBUTE_DISTRICT = "district";
     public static final String DOCUMENT_ATTRIBUTE_ADDRESS = "address";
     public static final String DOCUMENT_ATTRIBUTE_ADDRESS_GEOLOC = "address_geoloc";
-
+    public static final String DOCUMENT_ATTRIBUTE_CAMPAIGN = "campaign";
+    public static final String DOCUMENT_ATTRIBUTE_CONTENT = "content";
     public static final String DOCUMENT_ATTRIBUTE_DEPARTMENT = "department";
-    public static final String DOCUMENT_ATTRIBUTE_VALUE = "value";
+    public static final String DOCUMENT_ATTRIBUTE_DESCRIPTION = "description";
+    public static final String DOCUMENT_ATTRIBUTE_DISTRICT = "district";
     public static final String DOCUMENT_ATTRIBUTE_IMAGE = "image";
-    public static final String DOCUMENT_ATTRIBUTE_TOTAL_VOTES = "total_votes";
-
-    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_ID = "proposal_id";
-    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_TITLE = "proposal_title";
-    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_SUBTITLE = "proposal_subtitle";
-    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_URL = "proposal_url";
-    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_NICKNAMES = "proposal_nicknames";
 
     public static final String DOCUMENT_ATTRIBUTE_PHASE_1_START_DATE = "phase1_start_date";
     public static final String DOCUMENT_ATTRIBUTE_PHASE_2_START_DATE = "phase2_start_date";
     public static final String DOCUMENT_ATTRIBUTE_PHASE_3_START_DATE = "phase3_start_date";
-    public static final String DOCUMENT_ATTRIBUTE_PHASE_4_START_DATE = "phase4_start_date";
     public static final String DOCUMENT_ATTRIBUTE_PHASE_4_END_DATE = "phase4_end_date";
+    public static final String DOCUMENT_ATTRIBUTE_PHASE_4_START_DATE = "phase4_start_date";
+
+    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_ID = "proposal_id";
+    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_NICKNAMES = "proposal_nicknames";
+    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_SUBTITLE = "proposal_subtitle";
+    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_TITLE = "proposal_title";
+    public static final String DOCUMENT_ATTRIBUTE_PROPOSAL_URL = "proposal_url";
+
+    public static final String DOCUMENT_ATTRIBUTE_STATUS = "status";
 
     public static final String DOCUMENT_ATTRIBUTE_STEP_1_START_DATE = "step1_start_date";
     public static final String DOCUMENT_ATTRIBUTE_STEP_2_START_DATE = "step2_start_date";
     public static final String DOCUMENT_ATTRIBUTE_STEP_3_START_DATE = "step3_start_date";
     public static final String DOCUMENT_ATTRIBUTE_STEP_4_START_DATE = "step4_start_date";
     public static final String DOCUMENT_ATTRIBUTE_STEP_5_START_DATE = "step5_start_date";
+
+    public static final String DOCUMENT_ATTRIBUTE_THEME = "theme";
+    public static final String DOCUMENT_ATTRIBUTE_TOTAL_VOTES = "total_votes";
+    public static final String DOCUMENT_ATTRIBUTE_VALUE = "value";
 
     /**
      * Private constructor

@@ -33,6 +33,8 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service.project;
 
+import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -40,19 +42,45 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang.StringUtils;
+
 import fr.paris.lutece.plugins.document.business.Document;
+import fr.paris.lutece.plugins.document.business.DocumentType;
+import fr.paris.lutece.plugins.document.business.DocumentTypeHome;
+import fr.paris.lutece.plugins.document.business.attributes.DocumentAttribute;
 import fr.paris.lutece.plugins.document.business.spaces.DocumentSpace;
 import fr.paris.lutece.plugins.document.business.spaces.DocumentSpaceHome;
+import fr.paris.lutece.plugins.document.business.workflow.DocumentAction;
+import fr.paris.lutece.plugins.document.business.workflow.DocumentActionHome;
+import fr.paris.lutece.plugins.document.business.workflow.DocumentState;
+import fr.paris.lutece.plugins.document.modules.solr.indexer.SolrDocIndexer;
+import fr.paris.lutece.plugins.document.service.DocumentException;
+import fr.paris.lutece.plugins.document.service.DocumentService;
+import fr.paris.lutece.plugins.document.service.publishing.PublishingService;
 import fr.paris.lutece.plugins.extend.business.extender.history.ResourceExtenderHistory;
 import fr.paris.lutece.plugins.extend.business.extender.history.ResourceExtenderHistoryFilter;
 import fr.paris.lutece.plugins.extend.modules.follow.service.extender.FollowResourceExtender;
 import fr.paris.lutece.plugins.extend.service.extender.history.IResourceExtenderHistoryService;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.portal.business.portlet.Portlet;
+import fr.paris.lutece.portal.business.portlet.PortletHome;
+import fr.paris.lutece.portal.business.user.AdminUser;
+import fr.paris.lutece.portal.business.user.AdminUserHome;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
+import fr.paris.lutece.portal.service.util.AppLogService;
 
 public class ProjectService implements IProjectService
 {
+    
+	private static final String DEFAULT_ADMIN = "admin";
+
+    // ***********************************************************************************
+    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
+    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
+    // ***********************************************************************************
+
     private static final String BEAN_PROJECT_SERVICE = "participatorybudget.projectService";
+
     private static ProjectService _singleton;
 
     @Inject
@@ -73,20 +101,78 @@ public class ProjectService implements IProjectService
     // ***********************************************************************************
 
     @Override
-    public int createproject( Map<String, String> docFields )
+    public int createproject( String title, String summary, Timestamp validityBegin, int portletId, Map<String, String> docFields ) throws DocumentException
     {
         // Get the document space where to store the document. Create it if necessary.
         int idSpace = getOrCreateIdSpace( docFields.get( Constants.DOCUMENT_ATTRIBUTE_CAMPAIGN ) );
 
-        // Construct document.
+        // Construct then store the document.
+        Document doc = new Document( );
+        doc.setCodeDocumentType( Constants.DOCUMENT_TYPE_PROJECT );
+        doc.setSpaceId( idSpace );
+        doc.setStateId( 1 );
+        doc.setPageTemplateDocumentId( 1 );
+        doc.setSkipPortlet( true );
+        doc.setSkipCategories( true );
 
-        // Store, approve and validate document.
+        DocumentType documentType = DocumentTypeHome.findByPrimaryKey( Constants.DOCUMENT_TYPE_PROJECT );
+        List<DocumentAttribute> attributes = documentType.getAttributes( );
+        doc.setAttributes( attributes );
 
-        // Publish document.
+        doc.setTitle( title );
+        doc.setSummary( summary );
+        doc.setDateValidityBegin( validityBegin );
 
-        // Index document.
+        // Searching for attributes values in the Map, else put empty string. 
+        for ( DocumentAttribute attribute : attributes )
+        {
+            String code = attribute.getCode( );
+            String value = ( docFields.containsKey( code ) ? docFields.get( code ) : StringUtils.EMPTY );
+            doc.getAttribute( attribute.getCode( ) ).setTextValue( value == null ? "" : value );
+        }
 
-        return -1;
+        doc.setPublishedStatus( 0 );
+
+        AdminUser defaultAdmin = AdminUserHome.findUserByLogin( DEFAULT_ADMIN );
+        DocumentService.getInstance( ).createDocument( doc, defaultAdmin );
+
+        // Approve and validate document.
+        DocumentService.getInstance( ).changeDocumentState( doc, defaultAdmin, DocumentState.STATE_IN_CHANGE );
+
+        DocumentAction actionApprobation = DocumentActionHome.findByPrimaryKey( DocumentAction.ACTION_SUBMIT_CHANGE );
+        DocumentService.getInstance( ).changeDocumentState( doc, defaultAdmin, actionApprobation.getFinishDocumentState( ).getId( ) );
+
+        DocumentAction actionValidation = DocumentActionHome.findByPrimaryKey( DocumentAction.ACTION_VALIDATE_CHANGE );
+        DocumentService.getInstance( ).validateDocument( doc, defaultAdmin, actionValidation.getFinishDocumentState( ).getId( ) );
+
+        // Publish and indexing document if portletId > 0
+        if ( portletId > 0 )
+        {
+            PublishingService.getInstance( ).assign( doc.getId( ), portletId );
+            PublishingService.getInstance( ).publish( doc.getId( ), portletId );
+            PublishingService.getInstance( ).changeDocumentOrder( doc.getId( ), portletId, 1 );
+
+            // Add document to sorl incremental index actions.
+            SolrDocIndexer indexer = SpringContextService.getBean( SolrDocIndexer.BEAN_NAME );
+            Portlet portlet = PortletHome.findByPrimaryKey( portletId );
+            if ( portlet == null )
+            {
+                AppLogService.error( "Unable to find portlet #" + portletId + " ! Documents not indexed." );
+            }
+            else
+            {
+                try
+                {
+                    indexer.indexListDocuments( portlet, Arrays.asList( doc.getId( ) ) );
+                }
+                catch( Exception e )
+                {
+                    AppLogService.error( "Error when indexing document #" + doc.getId( ) + " with SOLR", e );
+                }
+            }
+        }
+
+        return doc.getId( );
     }
 
     /**

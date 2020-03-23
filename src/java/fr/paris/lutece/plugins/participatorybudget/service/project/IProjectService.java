@@ -33,10 +33,12 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service.project;
 
+import java.sql.Timestamp;
 import java.util.Map;
 import java.util.Set;
 
 import fr.paris.lutece.plugins.document.business.Document;
+import fr.paris.lutece.plugins.document.service.DocumentException;
 
 public interface IProjectService
 {
@@ -48,8 +50,21 @@ public interface IProjectService
 
     /**
      * Creates a new project and returns its technical identifier.
+     * 
+     * @param title
+     *            Title of the project
+     * @param summary
+     *            Summary of the project
+     * @param validityBegin
+     *            Validity begin date of the project
+     * @param portletId
+     *            Id of the portlet for publishing and indexing. If < 1 then no publishing
+     * @param docFields
+     *            A map containing the attribute code of the document as key, and attribute text value as value
+     * 
+     * @return Id of the created document
      */
-    public int createproject( Map<String, String> docFields );
+    public int createproject( String title, String summary, Timestamp validityBegin, int portletId, Map<String, String> docFields ) throws DocumentException;
 
     // *********************************************************************************************
     // * FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLOW FOLLO *
