@@ -71,8 +71,8 @@ import fr.paris.lutece.portal.service.util.AppLogService;
 
 public class ProjectService implements IProjectService
 {
-    
-	private static final String DEFAULT_ADMIN = "admin";
+
+    private static final String DEFAULT_ADMIN = "admin";
 
     // ***********************************************************************************
     // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
@@ -123,7 +123,7 @@ public class ProjectService implements IProjectService
         doc.setSummary( summary );
         doc.setDateValidityBegin( validityBegin );
 
-        // Searching for attributes values in the Map, else put empty string. 
+        // Searching for attributes values in the Map, else put empty string.
         for ( DocumentAttribute attribute : attributes )
         {
             String code = attribute.getCode( );
