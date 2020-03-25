@@ -33,10 +33,12 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
+import java.util.Collection;
+import java.util.List;
+
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
-import java.util.Collection;
 
 /**
  * This class provides instances management methods (create, find, ...) for CampagnePhase objects
@@ -108,6 +110,16 @@ public final class CampagnePhaseHome
     public static CampagnePhase findByPrimaryKey( int nKey )
     {
         return _dao.load( nKey, _plugin );
+    }
+
+    /**
+     * Load the data of all the campagnePhase objects and returns them in form of an ordered list
+     * 
+     * @return the collection which contains the data of all the campagnePhase objects
+     */
+    public static List<CampagnePhase> getCampagnePhasesOrderedList( )
+    {
+        return _dao.selectCampagnePhasesOrderedList( _plugin );
     }
 
     /**

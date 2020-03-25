@@ -5,11 +5,12 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" >
 
-    <bean id="participatorybudget.campagneDAO"       class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneDAO" />  
-    <bean id="participatorybudget.campagnePhaseDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseDAO" />  
-    <bean id="participatorybudget.campagneImageDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneImageDAO" />  
-    <bean id="participatorybudget.campagneThemeDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeDAO" />  
-    <bean id="participatorybudget.campagneAreaDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaDAO" />
+    <bean id="participatorybudget.campagneDAO"           class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneDAO" />  
+    <bean id="participatorybudget.campagnePhaseTypeDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseTypeDAO" />  
+    <bean id="participatorybudget.campagnePhaseDAO"      class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseDAO" />  
+    <bean id="participatorybudget.campagneImageDAO"      class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneImageDAO" />  
+    <bean id="participatorybudget.campagneThemeDAO"      class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeDAO" />  
+    <bean id="participatorybudget.campagneAreaDAO"       class="fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaDAO" />
    
     <!-- Site properties -->
     

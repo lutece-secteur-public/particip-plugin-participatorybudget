@@ -6,18 +6,18 @@ INSERT INTO participatorybudget_campaign_moderation_type (id_moderation_type, co
 INSERT INTO participatorybudget_campaign (id_campagne, code_campagne, title, description, active, code_moderation_type, moderation_duration) VALUES
 	(1, 'A', 'Participatory Budget 2019', 'Participatory Budget 2019', 1, 'NONE', 0);
 
-INSERT INTO participatorybudget_campaign_phase_type (id_phase_type, code_phase_type, libelle) VALUES
-	(1, 'PRE_IDEATION', 'Before ideation phase'),
-	(2, 'IDEATION', 'Ideation phase open'),
-	(3, 'POST_IDEATION', 'After ideation phase'),
-	(4, 'CO_CONSTRUCTION', 'Co-construction phase'),
-	(5, 'PRE_SUBMIT', 'Before submission phase'),
-	(6, 'SUBMIT', 'View projects to be voted'),
-	(7, 'PRE_VOTE', 'Before vote phase'),
-	(8, 'VOTE', 'Vote phase open'),
-	(9, 'POST_VOTE', 'After vote phase'),
-	(10, 'PRE_RESULT', 'Before result phase'),
-	(11, 'RESULT', 'Announce vote results');
+INSERT INTO participatorybudget_campaign_phase_type (id_phase_type, code_phase_type, label, order_num) VALUES
+	(1, 'PRE_IDEATION', 'Before ideation phase', 1),
+	(2, 'IDEATION', 'Ideation phase open', 2),
+	(3, 'POST_IDEATION', 'After ideation phase', 3),
+	(4, 'CO_CONSTRUCTION', 'Co-construction phase', 4),
+	(5, 'PRE_SUBMIT', 'Before submission phase', 5),
+	(6, 'SUBMIT', 'View projects to be voted', 6),
+	(7, 'PRE_VOTE', 'Before vote phase', 7),
+	(8, 'VOTE', 'Vote phase open', 8),
+	(9, 'POST_VOTE', 'After vote phase', 9),
+	(10, 'PRE_RESULT', 'Before result phase', 10),
+	(11, 'RESULT', 'Announce vote results', 11);
 
 INSERT INTO participatorybudget_campaign_phase (id_campagne_phase, code_phase_type, code_campagne, start, end) VALUES
 	(1, 'PRE_IDEATION', 'A', '2019-08-09 00:00:00', '2019-08-22 23:59:59'),

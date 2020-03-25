@@ -61,7 +61,8 @@ ALTER TABLE participatorybudget_campaign_image ADD CONSTRAINT fk_participatorybu
 CREATE TABLE IF NOT EXISTS participatorybudget_campaign_phase_type (
   id_phase_type int NOT NULL,
   code_phase_type varchar(50) NOT NULL,
-  libelle varchar(255) NOT NULL,
+  label varchar(255) NOT NULL,
+  order_num int NOT NULL,
   PRIMARY KEY (id_phase_type)
 );
 ALTER TABLE participatorybudget_campaign_phase_type ADD CONSTRAINT uc_code_phase_type UNIQUE (code_phase_type);

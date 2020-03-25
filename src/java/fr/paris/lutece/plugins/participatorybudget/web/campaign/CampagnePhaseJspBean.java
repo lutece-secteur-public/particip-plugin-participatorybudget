@@ -33,6 +33,10 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +83,7 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNEPHASE = "participatorybudget.message.confirmRemoveCampagnePhase";
-    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNEPHASE_PER_PAGE = "participatorybudget.listCampagnePhases.itemsPerPage";
+    private static final String MESSAGE_CONFIRM_TARGET_CAMPAGNEPHASE = "participatorybudget.message.confirmTargetCampagnePhase";
 
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagnephase.attribute.";
 
@@ -92,12 +96,15 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     private static final String ACTION_CREATE_CAMPAGNEPHASE = "createCampagnePhase";
     private static final String ACTION_MODIFY_CAMPAGNEPHASE = "modifyCampagnePhase";
     private static final String ACTION_REMOVE_CAMPAGNEPHASE = "removeCampagnePhase";
+    private static final String ACTION_TARGET_CAMPAGNEPHASE = "targetCampagnePhase";
     private static final String ACTION_CONFIRM_REMOVE_CAMPAGNEPHASE = "confirmRemoveCampagnePhase";
+    private static final String ACTION_CONFIRM_TARGET_CAMPAGNEPHASE = "confirmTargetCampagnePhase";
 
     // Infos
     private static final String INFO_CAMPAGNEPHASE_CREATED = "participatorybudget.info.campagnephase.created";
     private static final String INFO_CAMPAGNEPHASE_UPDATED = "participatorybudget.info.campagnephase.updated";
     private static final String INFO_CAMPAGNEPHASE_REMOVED = "participatorybudget.info.campagnephase.removed";
+    private static final String INFO_CAMPAGNEPHASE_TARGETED = "participatorybudget.info.campagnephase.targeted";
 
     // Session variable to store working values
     private CampagnePhase _campagnephase;
@@ -184,6 +191,26 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     }
 
     /**
+     * Manages the target form of a campagnephase whose identifier is in the http request
+     *
+     * @param request
+     *            The Http request
+     * @return the html code to confirm
+     */
+    @Action( ACTION_CONFIRM_TARGET_CAMPAGNEPHASE )
+    public String getConfirmTargetCampagnePhase( HttpServletRequest request )
+    {
+        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNEPHASE ) );
+        UrlItem url = new UrlItem( getActionUrl( ACTION_TARGET_CAMPAGNEPHASE ) );
+        url.addParameter( PARAMETER_ID_CAMPAGNEPHASE, nId );
+
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_TARGET_CAMPAGNEPHASE, url.getUrl( ),
+                AdminMessage.TYPE_CONFIRMATION );
+
+        return redirect( request, strMessageUrl );
+    }
+
+    /**
      * Handles the removal form of a campagnephase
      *
      * @param request
@@ -200,6 +227,58 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
         CampaignService.getInstance( ).reset( );
 
         return redirectView( request, VIEW_MANAGE_CAMPAGNEPHASES );
+    }
+
+    /**
+     * Handles the target form of a campagnephase
+     *
+     * @param request
+     *            The Http request
+     * @return the jsp URL to display the form to manage campagnephases
+     */
+    @Action( ACTION_TARGET_CAMPAGNEPHASE )
+    public String doTargetCampagnePhase( HttpServletRequest request )
+    {
+        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNEPHASE ) );
+        CampagnePhase targetedPhase = CampagnePhaseHome.findByPrimaryKey( nId );
+        
+        List<CampagnePhase> phases = CampagnePhaseHome.getCampagnePhasesOrderedList();
+    	
+        // Search the position of the targeted hase in the list
+        int index = 0;
+        for ( index = 0 ; index < phases.size() ; index++ ) 
+        {
+			if ( targetedPhase.getId() == phases.get( index ).getId() )
+			{
+				break;
+			}
+		}
+        
+        // Calculate the date of the very first phase
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis( System.currentTimeMillis( ) );
+        cal.add(Calendar.HOUR, -(2*24)); 
+        cal.add(Calendar.DAY_OF_YEAR, -(index*7));
+
+        // Set each phase begin/end dates
+        for ( CampagnePhase phase : phases ) 
+    	{
+    		phase.setStart( new Timestamp( cal.getTime().getTime() ));
+            
+    		cal.add(Calendar.DAY_OF_YEAR, 7);
+            cal.add(Calendar.SECOND, -1);
+    		phase.setEnd( new Timestamp( cal.getTime().getTime() ));
+            
+    		CampagnePhaseHome.update( phase );
+
+            cal.add(Calendar.SECOND, 1);
+    	}
+
+    	addInfo( INFO_CAMPAGNEPHASE_TARGETED, getLocale( ) );
+
+    	CampaignService.getInstance( ).reset( );
+
+    	return redirectView( request, VIEW_MANAGE_CAMPAGNEPHASES );
     }
 
     /**

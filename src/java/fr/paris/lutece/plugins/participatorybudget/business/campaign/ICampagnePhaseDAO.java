@@ -33,8 +33,10 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
-import fr.paris.lutece.portal.service.plugin.Plugin;
 import java.util.Collection;
+import java.util.List;
+
+import fr.paris.lutece.portal.service.plugin.Plugin;
 
 /**
  * ICampagnePhaseDAO Interface
@@ -84,6 +86,15 @@ public interface ICampagnePhaseDAO
      * @return The instance of the campagnePhase
      */
     CampagnePhase load( int nKey, Plugin plugin );
+
+    /**
+     * Load the data of all the campagnePhase objects and returns them as an ordered list
+     * 
+     * @param plugin
+     *            the Plugin
+     * @return The collection which contains the data of all the campagnePhase objects
+     */
+    List<CampagnePhase> selectCampagnePhasesOrderedList( Plugin plugin );
 
     /**
      * Load the data of all the campagnePhase objects and returns them as a collection

@@ -33,12 +33,12 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
-import fr.paris.lutece.portal.business.file.FileHome;
-import fr.paris.lutece.portal.service.plugin.Plugin;
-import fr.paris.lutece.util.sql.DAOUtil;
-
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
+import fr.paris.lutece.portal.service.plugin.Plugin;
+import fr.paris.lutece.util.sql.DAOUtil;
 
 /**
  * This class provides Data Access methods for CampagnePhase objects
@@ -55,6 +55,7 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
     private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_phase, code_phase_type, code_campagne, start, end FROM participatorybudget_campaign_phase";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_phase FROM participatorybudget_campaign_phase";
     private static final String SQL_QUERY_SELECTALL_BY_CAMPAGNE = SQL_QUERY_SELECTALL + " WHERE code_campagne = ?";
+    private static final String SQL_QUERY_SELECTALL_ORDERED = "SELECT participatorybudget_campaign_phase.id_campagne_phase, participatorybudget_campaign_phase.code_phase_type, participatorybudget_campaign_phase.code_campagne, participatorybudget_campaign_phase.start, participatorybudget_campaign_phase.END FROM participatorybudget_campaign_phase JOIN participatorybudget_campaign_phase_type ON participatorybudget_campaign_phase_type.code_phase_type = participatorybudget_campaign_phase.code_phase_type ORDER BY participatorybudget_campaign_phase.code_campagne ASC, participatorybudget_campaign_phase_type.order_num ASC";
 
     /**
      * Generates a new primary key
@@ -181,6 +182,35 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
         }
 
         daoUtil.free( );
+        return campagnePhaseList;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public List<CampagnePhase> selectCampagnePhasesOrderedList( Plugin plugin )
+    {
+    	List<CampagnePhase> campagnePhaseList = new ArrayList<CampagnePhase>( );
+        
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ORDERED, plugin ) )
+        {
+	        daoUtil.executeQuery( );
+	
+	        while ( daoUtil.next( ) )
+	        {
+	            CampagnePhase campagnePhase = new CampagnePhase( );
+	
+	            campagnePhase.setId( daoUtil.getInt( 1 ) );
+	            campagnePhase.setCodePhaseType( daoUtil.getString( 2 ) );
+	            campagnePhase.setCodeCampagne( daoUtil.getString( 3 ) );
+	            campagnePhase.setStart( daoUtil.getTimestamp( 4 ) );
+	            campagnePhase.setEnd( daoUtil.getTimestamp( 5 ) );
+	
+	            campagnePhaseList.add( campagnePhase );
+	        }
+	    }
+        
         return campagnePhaseList;
     }
 
