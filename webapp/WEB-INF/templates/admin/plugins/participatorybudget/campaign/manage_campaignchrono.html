@@ -32,13 +32,25 @@
 				        
 				        <@tableHeadBodySeparator />
 				
-						<#assign yearDurationMS = (1000 * 60 * 60 * 24 * 365) >
+						<#assign  yearDurationMS = (1000 * 60 * 60 * 24 * 365) >
+						<#assign monthDurationMS = yearDurationMS /  12 >
+						<#assign   dayDurationMS = yearDurationMS / 365 >
 				
 			            <#list ideationcampagne_list as ideationcampagne >
-			            
-			            	<#-- TODO : REFACTOR TO DISPLAY ALL CAMPAIGN PERIOD !!! -->
 
-							<#assign phaseYearBeginMS = (ideationcampagne.title?keep_after("Participatory Budget ") + "-01-01T00:00:00.000Z")?datetime.iso?long>
+							<#-- Search for begin/end of the campaign (from the first day of the first month, to the last day of the last month) -->
+							<#assign beginDate = phase_map[ideationcampagne.code][0].start>					
+							<#assign endDate = phase_map[ideationcampagne.code][0].end>
+							<#list phase_map[ideationcampagne.code] as phase>
+								<#if phase.start lt beginDate><#assign beginDate = phase.start></#if>
+								<#if phase.end   gt   endDate><#assign   endDate = phase.end  ></#if>
+							</#list>
+
+							<#-- Add some duration space between beginning and end to avoid problems with different number of days for each month -->
+							<#assign beginMonth = (beginDate?string("MM/yyyy")?date("MM/yyyy")?long -    monthDurationMS  + (3*dayDurationMS))?number_to_date>				
+							<#assign   endMonth = (  endDate?string("MM/yyyy")?date("MM/yyyy")?long + (2*monthDurationMS) - (3*dayDurationMS))?number_to_date>					
+
+							<#assign nbMonths = ((endMonth?long - beginMonth?long) / monthDurationMS)?int + 1>
 
 					        <tr>
 					            <input type="hidden" id="id" name="id" />
@@ -46,29 +58,28 @@
 					            <td>${ideationcampagne.code!'?)'}</td>
 					            <td><a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp?view=modifyCampagne&id=${ideationcampagne.id!'?'}">${ideationcampagne.title!'?'}</a></td>
 					            <td>${ideationcampagne.active?string!'?'}</td>
+					            
 					            <td style="text-align:right">
-					            	<div class="row" style="margin:0;text-align:center">
-					            		<div class="col-xs-1">Jan</div>
-					            		<div class="col-xs-1">Fev</div>
-					            		<div class="col-xs-1">Mar</div>
-					            		<div class="col-xs-1">Avr</div>
-					            		<div class="col-xs-1">Mai</div>
-					            		<div class="col-xs-1">Jui</div>
-					            		<div class="col-xs-1">Jui</div>
-					            		<div class="col-xs-1">Aou</div>
-					            		<div class="col-xs-1">Sep</div>
-					            		<div class="col-xs-1">Oct</div>
-					            		<div class="col-xs-1">Nov</div>
-					            		<div class="col-xs-1">Dec</div>
-									</div>							            		
+
+						            <#-- Display column names -->
+					            	<div class="chrono-rowh" style="margin:0;text-align:center; display: flex">
+
+							            <#assign currentDateCol = beginMonth>
+							            <#list 1..nbMonths as i>
+						            		<div class="chrono-colh" style="width:calc(100% * (1/${nbMonths})); text-align: center">${(currentDateCol?string[(i==1)?then("MMMyy","MMM")])!''}</div>
+							            	<#assign currentDateCol = (currentDateCol?long + monthDurationMS)?number_to_date>
+										</#list>
+					            	</div>
+					   	         
+						            <#-- Display phase rows -->
 									<#list phase_map[ideationcampagne.code] as phase>
-										<#assign  leftLimitFraction = ((phase.start?long - phaseYearBeginMS) / yearDurationMS) >
-										<#assign rightLimitFraction = ((phase.end?long   - phaseYearBeginMS) / yearDurationMS) >
+										<#assign  leftLimitFraction = (phase.start?long - beginMonth?long) / (endMonth?long - beginMonth?long) >
+										<#assign rightLimitFraction = (phase.end?long - beginMonth?long) / (endMonth?long - beginMonth?long) >
 
 										<div style="width:100%; border-bottom:1px solid rgba(100,100,100,0.1); white-space:nowrap; background:linear-gradient(90deg, #e8e8e8 calc(100% * ${leftLimitFraction?c}), #ffc871 calc(100% * ${leftLimitFraction?c}) calc(100% * ${rightLimitFraction?c}), #e8e8e8 calc(100% * ${rightLimitFraction?c})); position:relative;">
 											<a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnePhases.jsp?view=modifyCampagnePhase&id=${phase.id}">${phase.codePhaseType}</a> <span style="color:darkred">(${phase.start?string["dd.MM.yy, HH:mm"]} &rArr; ${phase.end?string["dd.MM.yy, HH:mm"]})</span>
-							            	<#list 1..11 as m>
-												<div style="border-left:1px solid rgba(100,100,100,0.5); position:absolute; left:calc(100% * (${m}/12)); bottom:0px; top:0px"></div>
+							            	<#list 1..(nbMonths-1) as m>
+												<div style="border-left:1px solid rgba(100,100,100,0.2); position:absolute; left:calc(100% * (${m}/${nbMonths})); bottom:0px; top:0px"></div>
 											</#list>
 											<div style="border-left:2px solid rgba(100,100,100,0.5); position:absolute; left:0%; bottom:0px; top:0px"></div>
 											<div style="border-left:2px solid rgba(100,100,100,0.5); position:absolute; left:100%; bottom:0px; top:0px"></div>
