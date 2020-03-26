@@ -101,7 +101,7 @@ ${encoded_facets_queries}
 		
 		<div id="search-form">
 
-			<h1>Suivi des réalisations</h1>
+			<h1>#i18n{participatorybudget.search.header.title}</h1>
 	
 			<#-- Barre de recherche, avec fond bleu moyen -->
 			<div id="search-prj-fields" class="container form">
@@ -110,7 +110,7 @@ ${encoded_facets_queries}
 					<div class="col-md-12">
 						<#-- recherche par mot clé -->
 						<div class="form-group">
-							<label class="sr-only" for="query">Rechercher par mots cl&eacute;</label>
+							<label class="sr-only" for="query">#i18n{participatorybudget.search.form.field.keyword.label}</label>
 							<div class="input-group">
 								<input class="form-control" type="text" name="query" value="${sQuery!}" placeholder="Rechercher par mots cl&eacute;" id="solr-t"/>
 								<span class="input-group-btn">
@@ -125,7 +125,7 @@ ${encoded_facets_queries}
 					
 				</div>
 
-				<a class="searchParametersButton visible-xs" href="#searchParameters" data-toggle="collapse">Recherche avancée</a>
+				<a class="searchParametersButton visible-xs" href="#searchParameters" data-toggle="collapse">#i18n{participatorybudget.search.form.advanced.title}</a>
 			
 				<div id="searchParameters" class="collapse dont-collapse-sm">
 			
@@ -136,19 +136,19 @@ ${encoded_facets_queries}
 							<label class="select" for="arrondissement">
 								<select name="fq" id="arrondissement" onChange="searchArrond()" class="form-control">
 									<#if arr=="">
-										<option value="type:PB Project" selected="selected" >Rechercher par localisation </option>
+										<option value="type:PB Project" selected="selected" >#i18n{participatorybudget.search.form.field.location.label}</option>
 										<option value="localisation_text:whole_city">Projets Tout Paris</option>
 										<option value="-localisation_text:whole_city">Projets Tous Arrondissements</option>
 									<#elseif arr=="whole_city">
-										<option value="type:PB Project">Rechercher par localisation </option>
+										<option value="type:PB Project">#i18n{participatorybudget.search.form.field.location.label}</option>
 										<option value="localisation_text:whole_city" selected="selected" >Projets Tout Paris</option>
 										<option value="-localisation_text:whole_city">Projets Tous Arrondissements</option>
 									<#elseif arr=="all_arr">
-										<option value="type:PB Project">Rechercher par localisation </option>
+										<option value="type:PB Project">#i18n{participatorybudget.search.form.field.location.label}</option>
 										<option value="localisation_text:whole_city">Projets Tout Paris</option>
 										<option value="-localisation_text:whole_city" selected="selected">Projets Tous Arrondissements</option>
 									<#else>
-										<option value="type:PB Project">Rechercher par localisation </option>
+										<option value="type:PB Project">#i18n{participatorybudget.search.form.field.location.label}</option>
 										<option value="localisation_text:whole_city">Projets Tout Paris</option>
 										<option value="-localisation_text:whole_city">Projets Tous Arrondissements</option>
 									</#if>
@@ -172,7 +172,7 @@ ${encoded_facets_queries}
 										<#list facets as facet>
 											<#if facet.values??>
 												<#if solr_fields[facet.name].label?? && solr_fields[facet.name].label= "Thematique">
-													<option value="type:PB Project" <#if facet_theme='tout_theme'>selected="selected"</#if> >Rechercher par th&egrave;me</option>
+													<option value="type:PB Project" <#if facet_theme='tout_theme'>selected="selected"</#if> >#i18n{participatorybudget.search.form.field.theme.label}</option>
 													<#list facet.values?sort as count>
 														<option value="thematique_text:${count.name}" <#if facet_theme=count.name>selected="selected"</#if> >${count.name}</option>
 													</#list>
@@ -192,7 +192,7 @@ ${encoded_facets_queries}
 										<#list facets as facet>
 											<#if facet.values??>
 												<#if solr_fields[facet.name].label?? && solr_fields[facet.name].label= "Campagne">
-													<option value="type:PB Project" <#if facet_campagne='toute_campagne'>selected="selected"</#if> >Rechercher par ann&eacute;e</option>
+													<option value="type:PB Project" <#if facet_campagne='toute_campagne'>selected="selected"</#if> >#i18n{participatorybudget.search.form.field.campaign.label}</option>
 													<#list facet.values?sort as count>
 														<#if count.name?starts_with("Budget")>
 															<option value="campagne_text:${count.name}" <#if facet_campagne=count.name>selected="selected"</#if> >${count.name}</option>
@@ -218,17 +218,17 @@ ${encoded_facets_queries}
 							
 							<label class="select" for="phase">
 								<select name="fq" id="phase" onChange="searchArrond()" class="form-control">
-									<option value="type:PB Project">✅ Rechercher par phase</option>
+									<option value="type:PB Project">#i18n{participatorybudget.search.form.field.step.label}</option>
 									<option disabled="disabled">----</option>
-									<option value="${fq_ph1}" <#if step=fq_ph1>selected="selected"</#if>>En cours de démarrage</option>
-									<option value="${fq_ph2}" <#if step=fq_ph2>selected="selected"</#if>>Etudes et conception</option>
-									<option value="${fq_ph3}" <#if step=fq_ph3>selected="selected"</#if>>Lancement des procédures</option>
-									<option value="${fq_ph4}" <#if step=fq_ph4>selected="selected"</#if>>Réalisation des travaux</option>
-									<option value="${fq_ph5}" <#if step=fq_ph5>selected="selected"</#if>>Livraison</option>
+									<option value="${fq_ph1}" <#if step=fq_ph1>selected="selected"</#if>>#i18n{participatorybudget.search.form.field.step.begin}</option>
+									<option value="${fq_ph2}" <#if step=fq_ph2>selected="selected"</#if>>#i18n{participatorybudget.search.form.field.step.studies}</option>
+									<option value="${fq_ph3}" <#if step=fq_ph3>selected="selected"</#if>>#i18n{participatorybudget.search.form.field.step.formal}</option>
+									<option value="${fq_ph4}" <#if step=fq_ph4>selected="selected"</#if>>#i18n{participatorybudget.search.form.field.step.work}</option>
+									<option value="${fq_ph5}" <#if step=fq_ph5>selected="selected"</#if>>#i18n{participatorybudget.search.form.field.step.deliver}</option>
 									<option disabled="disabled">----</option>
-									<option value="${fq_ph6}" <#if step=fq_ph6>selected="selected"</#if>>✅ Projets réalisés !</option>
+									<option value="${fq_ph6}" <#if step=fq_ph6>selected="selected"</#if>>#i18n{participatorybudget.search.form.field.step.done}</option>
 									<option disabled="disabled">----</option>
-									<option value="${fq_ph7}" <#if step=fq_ph7>selected="selected"</#if>>Projets non réalisables</option>
+									<option value="${fq_ph7}" <#if step=fq_ph7>selected="selected"</#if>>#i18n{participatorybudget.search.form.field.step.aborted}</option>
 								</select>
 							</label>
 						</div>
@@ -242,7 +242,7 @@ ${encoded_facets_queries}
 							<div class="checkbox form-control">
 								<label for="qpop">
 									<input type="checkbox" name="fq" id="qpop" value="-pop_district_text:""" onChange="this.form.submit()" <#if facet_qpop="yes">checked</#if> />
-		       						Quartier populaire
+		       						#i18n{participatorybudget.search.form.field.qpop.label}
 		       					</label>
 		       				</div>
 						</div>
@@ -252,7 +252,7 @@ ${encoded_facets_queries}
 							<div class="checkbox form-control">
 								<label for="handicap">
 									<input type="checkbox" name="fq" id="handicap" value="handicap_text:oui" onChange="this.form.submit()" <#if facet_handicap="oui">checked</#if> />
-		       						Volet handicap/accessibilité
+		       						#i18n{participatorybudget.search.form.field.handicap.label}
 		       					</label>
 		       				</div>
 						</div>
@@ -283,7 +283,7 @@ ${encoded_facets_queries}
 
 							<#-- if sort_list?? -->
 								<div class="form-group">
-									Trier par :
+									#i18n{participatorybudget.search.form.sort.title}
 									<label class="select" for="sort_name">
 										<select name="sort_name" id="sort_name" class="form-control" onChange="searchTri()" >
 											<#list sort_list as field>
@@ -291,10 +291,10 @@ ${encoded_facets_queries}
 													<#assign monTri = sort_name+"&sort_order="+sort_order>
 													
 													<#if sort_name?ends_with("random") && ordre_aleatoire == "true" >
-														<option value="${number_random}_random" selected="selected" >Ordre al&eacute;atoire</option>
+														<option value="${number_random}_random" selected="selected" >#i18n{participatorybudget.search.form.sort.random.label}</option>
 														<#assign ordre_aleatoire= "false">
 													<#elseif ordre_aleatoire == "true" >
-														<option value="${number_random}_random">Ordre al&eacute;atoire</option> >
+														<option value="${number_random}_random">#i18n{participatorybudget.search.form.sort.random.label}</option> >
 														<#assign ordre_aleatoire= "false">
 													</#if>
 													
@@ -311,8 +311,8 @@ ${encoded_facets_queries}
 
 									<label class="select" for="sort_order">
 										<select name="sort_order" id="sort_order" class="form-control" onChange="searchTri()" >
-											<option value="asc" <#if sort_order?? && sort_order="asc">selected="selected"</#if> >Ascendant</option>
-											<option value="desc" <#if sort_order?? && sort_order="desc">selected="selected"</#if>>Descendant</option>
+											<option value="asc" <#if sort_order?? && sort_order="asc">selected="selected"</#if> >#i18n{participatorybudget.search.form.sort.random.asc}</option>
+											<option value="desc" <#if sort_order?? && sort_order="desc">selected="selected"</#if>>#i18n{participatorybudget.search.form.sort.random.desc}</option>
 										</select>
 									</label>
 								</div>
@@ -325,22 +325,22 @@ ${encoded_facets_queries}
 				<div id="sub-search-right-panel" class="col-xs-6 col-sm-6 col-md-6">
 					<#if conf_user_query = "list_projects">
 						<div id="sub-search-nbitems" class="">
-							${paginator.itemsCount} projet(s) trouv&eacute;(s)
+							${i18n('participatorybudget.search.form.result.number', paginator.itemsCount)}
 						</div>
 						<div id="sub-search-switch">
 								<div class="form-group" >
-									<button id="button_map_list" class="btn  btn-map-active" type="submit" alt="Voir la cartographie des projets"><p>carte</p></button>
+									<button id="button_map_list" class="btn  btn-map-active" type="submit" alt="Voir la cartographie des projets"><p>#i18n{participatorybudget.search.form.view.map}</p></button>
 									<button class="btn btn-list-unactive " disabled/>
 								</div>
 						</div>
 					<#else>
 						<div id="sub-search-nbitems" class="">
-							${paginator.itemsCount} projet(s) trouv&eacute;(s)
+							${i18n('participatorybudget.search.form.result.number', paginator.itemsCount)}
 						</div>
 						<div id="sub-search-switch">
 								<div class="form-group" >
 									<button class="btn btn-map-unactive " disabled/>
-									<button id="button_list" class="btn  btn-list-active" type="submit" alt="Voir la liste des vignettes des projets"><p>liste</p></button>
+									<button id="button_list" class="btn  btn-list-active" type="submit" alt="Voir la liste des vignettes des projets"><p>#i18n{participatorybudget.search.form.view.list}</p></button>
 								</div>
 						</div>
 					</#if>
