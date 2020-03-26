@@ -48,7 +48,7 @@ import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePha
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseHome;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneTheme;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeHome;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignChronoService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
@@ -81,17 +81,20 @@ public class CampaignChronoJspBean extends ManageCampagnebpJspBean
     private static final String JSP_MANAGE_CAMPAIGNCHRONO = "jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp";
 
     // Properties
-    private static final String MESSAGE_CONFIRM_GENERATE_CAMPAIGNCHRONO = "participatorybudget.manage_campaignchrono.confirmGenerateCampagneChrono";
+    private static final String MESSAGE_CONFIRM_CLONE_CAMPAIGNCHRONO = "participatorybudget.manage_campaignchrono.confirmCloneCampagneChrono";
+
+    // Request Parameter
+    private static final String PARAMETER_CAMPAIGN_ID = "campaign_id";
 
     // Views
     private static final String VIEW_MANAGE_CAMPAIGNCHRONO = "manageCampaignChrono";
-    private static final String VIEW_CONFIRM_GENERATE_CAMPAIGNCHRONO = "confirmGenerateCampaignChrono";
+    private static final String VIEW_CONFIRM_CLONE_CAMPAIGNCHRONO = "confirmGenerateCampaignChrono";
 
     // Actions
-    private static final String ACTION_GENERATE_CAMPAIGNCHRONO = "generateCampaignChrono";
+    private static final String ACTION_CLONE_CAMPAIGNCHRONO = "cloneCampaignChrono";
 
     // Infos
-    private static final String INFO_CAMPAIGNCHRONO_GENERATED = "participatorybudget.manage_campaignchrono.generated";
+    private static final String INFO_CAMPAIGNCHRONO_CLONED = "participatorybudget.manage_campaignchrono.cloned";
 
     /**
      * Build the Manage View
@@ -173,37 +176,39 @@ public class CampaignChronoJspBean extends ManageCampagnebpJspBean
     // ***********************************************************************************
 
     /**
-     * Confirmation of the generation of a new ideation campagne request
+     * Confirmation of cloning a campaign request
      *
      * @param request
      *            The Http request
      * @return the html code to confirm
      */
-    @View( VIEW_CONFIRM_GENERATE_CAMPAIGNCHRONO )
-    public String getConfirmGenerateIdeationCampagne( HttpServletRequest request )
+    @View( VIEW_CONFIRM_CLONE_CAMPAIGNCHRONO )
+    public String getConfirmCloneCampaign( HttpServletRequest request )
     {
-        UrlItem url = new UrlItem( getActionUrl( ACTION_GENERATE_CAMPAIGNCHRONO ) );
+        UrlItem url = new UrlItem( getActionUrl( ACTION_CLONE_CAMPAIGNCHRONO ) );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_GENERATE_CAMPAIGNCHRONO, url.getUrl( ),
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_CLONE_CAMPAIGNCHRONO, url.getUrl( ),
                 AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
 
     /**
-     * Handles the generation of a new ideation campagne
+     * Handles the clone process of a campaign
      *
      * @param request
      *            The Http request
-     * @return the jsp URL to display the form to manage campagnedepositaires
+     * @return the jsp URL to display after cloning
      */
-    @Action( ACTION_GENERATE_CAMPAIGNCHRONO )
-    public String doGenerateIdeationCampagne( HttpServletRequest request )
+    @Action( ACTION_CLONE_CAMPAIGNCHRONO )
+    public String doCloneCampaign( HttpServletRequest request )
     {
-        String newCampagneCode = CampaignChronoService.getInstance( ).generate( );
+        int campaignId = Integer.parseInt( request.getParameter( PARAMETER_CAMPAIGN_ID ) );
 
-        String msg = I18nService.getLocalizedString( INFO_CAMPAIGNCHRONO_GENERATED, new String [ ] {
-                newCampagneCode
+        int newCampaignId = CampaignService.getInstance( ).clone( campaignId );
+
+        String msg = I18nService.getLocalizedString( INFO_CAMPAIGNCHRONO_CLONED, new String [ ] {
+                campaignId + "", newCampaignId + ""
         }, getLocale( ) );
         addInfo( msg );
 

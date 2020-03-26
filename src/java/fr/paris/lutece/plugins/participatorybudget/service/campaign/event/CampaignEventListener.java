@@ -31,33 +31,20 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.business.campaign;
+package fr.paris.lutece.plugins.participatorybudget.service.campaign.event;
 
-import java.util.Collection;
-import java.util.List;
-
-import fr.paris.lutece.portal.service.plugin.Plugin;
+import java.util.EventListener;
 
 /**
- * ICampagneDAO Interface
+ * Interface for campaign changes listeners
  */
-public interface ICampagnePhaseTypeDAO
+public interface CampaignEventListener extends EventListener
 {
     /**
-     * Load the data of all the campagnePhaseType objects and returns them as a collection
+     * Process a campaign event
      * 
-     * @param plugin
-     *            the Plugin
-     * @return The collection which contains the data of all the campagnePhaseType objects
+     * @param event
+     *            The event to process
      */
-    Collection<CampagnePhaseType> selectAll( Plugin plugin );
-
-    /**
-     * Load the data of all the campagnePhaseType objects and returns them as an ordered list
-     * 
-     * @param plugin
-     *            the Plugin
-     * @return The collection which contains the data of all the campagnePhaseType objects
-     */
-    List<CampagnePhaseType> selectAllOrdered( Plugin plugin );
+    void processCampaignEvent( CampaignEvent event );
 }

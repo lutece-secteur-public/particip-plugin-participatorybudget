@@ -3,12 +3,12 @@
 
 <@rowBox>
     <@boxHeader i18nTitleKey="participatorybudget.manage_campaignchrono.tableLabel">
-        <@headerButtons>
-			<form class="form-inline pull-right" method="post" name="manage_campaignchrono" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp">
-	            <@actionButtons button1Name="view_confirmGenerateCampaignChrono" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campaignchrono.buttonGenerate" offset=1 />
-	        </form>
-	    </@headerButtons>
-	    
+	        <@headerButtons>
+				<form class="form-inline pull-right" method="post" name="manage_campaignchrono" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp">
+		            <@actionButtons button1Name="view_confirmCloneCampaignChrono" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campaignchrono.buttonClone" offset=1 />
+		        </form>
+		    </@headerButtons>
+		    
     </@boxHeader>
     
     <@boxBody>
@@ -27,6 +27,7 @@
 				            <th>#i18n{participatorybudget.manage_campaignchrono.columnCode}</th>
 				            <th>#i18n{participatorybudget.manage_campaignchrono.columnTitle}</th>
 				            <th>#i18n{participatorybudget.manage_campaignchrono.columnActive}</th>
+				            <th>#i18n{portal.util.labelActions}</th>
 				            <th>#i18n{participatorybudget.manage_campaignchrono.columnPhases}</th>
 				        </tr>
 				        
@@ -59,6 +60,13 @@
 					            <td><a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp?view=modifyCampagne&id=${ideationcampagne.id!'?'}">${ideationcampagne.title!'?'}</a></td>
 					            <td>${ideationcampagne.active?string!'?'}</td>
 					            
+					            <td>
+						            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp?action=cloneCampaignChrono&campaign_id=${ideationcampagne.id!'?'}"
+						               class="btn btn-primary btn-small" title="#i18n{participatorybudget.manage_campaignchrono.buttonClone}" >
+						                <i class="fa fa-clone"></i>
+						            </a>
+					            </td>
+				
 					            <td style="text-align:right">
 
 						            <#-- Display column names -->
@@ -86,6 +94,7 @@
 										</div>
 									</#list>
 					            </td>
+
 					        </tr>
 				        </#list>
 				    </@table>

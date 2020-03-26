@@ -31,16 +31,63 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.service.campaign;
+package fr.paris.lutece.plugins.participatorybudget.service.campaign.event;
 
-public interface ICampaignChronoService
+import fr.paris.lutece.portal.service.util.AppLogService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ */
+public class CampaignEventListernersManager
 {
+    private static List<CampaignEventListener> _listEventListeners = new ArrayList<>( );
+
+    /////////////////////////////////////////////////////////////////////////////
+    // Events Listeners management
 
     /**
-     * Generate a new complete ideation campagne.
+     * Add the a listener
      * 
-     * @return the generated campagne code, or '' if not generated
+     * @param listener
+     *            The Listener to add
      */
-    public String generate( );
+    public void addListener( CampaignEventListener listener )
+    {
+        _listEventListeners.add( listener );
 
+        AppLogService.info( "New Campaign Event Listener registered : " + listener.getClass( ).getName( ) );
+    }
+
+    /**
+     * Sets the listeners list
+     * 
+     * @param listEventListeners
+     *            The Listeners list
+     */
+    public void setListeners( List<CampaignEventListener> listEventListeners )
+    {
+        _listEventListeners = listEventListeners;
+
+        for ( CampaignEventListener listener : _listEventListeners )
+        {
+            AppLogService.info( "New Campaign Event Listener registered : " + listener.getClass( ).getName( ) );
+        }
+    }
+
+    /**
+     * Notify an event to all listeners
+     *
+     * @param event
+     *            A campaign Event
+     */
+    public void notifyListeners( CampaignEvent event )
+    {
+        for ( CampaignEventListener listener : _listEventListeners )
+        {
+            listener.processCampaignEvent( event );
+        }
+    }
 }

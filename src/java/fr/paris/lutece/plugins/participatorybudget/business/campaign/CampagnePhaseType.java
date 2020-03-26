@@ -44,7 +44,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class CampagnePhaseType implements Serializable
 {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     // Variables declarations
     private int _nId;
@@ -59,42 +59,50 @@ public class CampagnePhaseType implements Serializable
 
     @NotEmpty( message = "#i18n{participatorybudget.validation.campagnephasetype.Order.notEmpty}" )
     private int _nOrder;
-    
+
     // *********************************************************************************************
     // * GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET G *
     // * GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET GET-SET G *
     // *********************************************************************************************
 
-    public int getId() {
-		return _nId;
-	}
+    public int getId( )
+    {
+        return _nId;
+    }
 
-	public void setId(int _nId) {
-		this._nId = _nId;
-	}
+    public void setId( int _nId )
+    {
+        this._nId = _nId;
+    }
 
-	public String getCode() {
-		return _strCode;
-	}
+    public String getCode( )
+    {
+        return _strCode;
+    }
 
-	public void setCode(String _strCode) {
-		this._strCode = _strCode;
-	}
+    public void setCode( String _strCode )
+    {
+        this._strCode = _strCode;
+    }
 
-	public String getLabel() {
-		return _strLabel;
-	}
+    public String getLabel( )
+    {
+        return _strLabel;
+    }
 
-	public void setLabel(String _strLabel) {
-		this._strLabel = _strLabel;
-	}
+    public void setLabel( String _strLabel )
+    {
+        this._strLabel = _strLabel;
+    }
 
-	public int getOrder() {
-		return _nOrder;
-	}
+    public int getOrder( )
+    {
+        return _nOrder;
+    }
 
-	public void setOrder(int _strOrder) {
-		this._nOrder = _strOrder;
-	}
+    public void setOrder( int _strOrder )
+    {
+        this._nOrder = _strOrder;
+    }
 
 }

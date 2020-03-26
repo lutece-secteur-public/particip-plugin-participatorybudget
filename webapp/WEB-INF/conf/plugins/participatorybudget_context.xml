@@ -20,8 +20,8 @@
     
 
     <!-- CAMPAGNE_SERVICE BEAN -->
-    <bean id="participatorybudget.campaignService"       class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService"/>
-	<bean id="participatorybudget.campaignChronoService" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignChronoService" />  
+    <bean id="participatorybudget.campaignService"                class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService"/>
+    <bean id="participatorybudget.campaignEventListernersManager" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEventListernersManager"/>
 	
     <!-- CAMPAIGN WS REST -->
     <bean id="participatorybudget.CampaignRest" class="fr.paris.lutece.plugins.participatorybudget.web.rs.CampaignRest" />

@@ -129,6 +129,20 @@ public interface ICampaignService
     // Same as precedent, for last campagne
     public ReferenceList getThemes( );
 
+    // *********************************************************************************************
+    // * CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE *
+    // * CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE *
+    // *********************************************************************************************
+
+    /**
+     * Clone a campaign.
+     * 
+     * @param campaignId
+     *            the id of the campaign to clone
+     * @return the id of the new campaign code, or '' if not generated
+     */
+    public int clone( int campaignId );
+
     // ***********************************************************************************
     // * CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE C *
     // * CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE CACHE C *

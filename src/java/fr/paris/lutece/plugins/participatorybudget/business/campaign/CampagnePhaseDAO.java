@@ -191,26 +191,26 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
     @Override
     public List<CampagnePhase> selectCampagnePhasesOrderedList( Plugin plugin )
     {
-    	List<CampagnePhase> campagnePhaseList = new ArrayList<CampagnePhase>( );
-        
+        List<CampagnePhase> campagnePhaseList = new ArrayList<CampagnePhase>( );
+
         try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ORDERED, plugin ) )
         {
-	        daoUtil.executeQuery( );
-	
-	        while ( daoUtil.next( ) )
-	        {
-	            CampagnePhase campagnePhase = new CampagnePhase( );
-	
-	            campagnePhase.setId( daoUtil.getInt( 1 ) );
-	            campagnePhase.setCodePhaseType( daoUtil.getString( 2 ) );
-	            campagnePhase.setCodeCampagne( daoUtil.getString( 3 ) );
-	            campagnePhase.setStart( daoUtil.getTimestamp( 4 ) );
-	            campagnePhase.setEnd( daoUtil.getTimestamp( 5 ) );
-	
-	            campagnePhaseList.add( campagnePhase );
-	        }
-	    }
-        
+            daoUtil.executeQuery( );
+
+            while ( daoUtil.next( ) )
+            {
+                CampagnePhase campagnePhase = new CampagnePhase( );
+
+                campagnePhase.setId( daoUtil.getInt( 1 ) );
+                campagnePhase.setCodePhaseType( daoUtil.getString( 2 ) );
+                campagnePhase.setCodeCampagne( daoUtil.getString( 3 ) );
+                campagnePhase.setStart( daoUtil.getTimestamp( 4 ) );
+                campagnePhase.setEnd( daoUtil.getTimestamp( 5 ) );
+
+                campagnePhaseList.add( campagnePhase );
+            }
+        }
+
         return campagnePhaseList;
     }
 

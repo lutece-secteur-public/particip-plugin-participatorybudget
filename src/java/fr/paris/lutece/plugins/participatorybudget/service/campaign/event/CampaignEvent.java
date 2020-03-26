@@ -31,33 +31,68 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.business.campaign;
+package fr.paris.lutece.plugins.participatorybudget.service.campaign.event;
 
-import java.util.Collection;
-import java.util.List;
-
-import fr.paris.lutece.portal.service.plugin.Plugin;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
 
 /**
- * ICampagneDAO Interface
+ * DocumentEvent are sent by CampaignService to notify campaigns changes to listeners.
  */
-public interface ICampagnePhaseTypeDAO
+public class CampaignEvent
 {
-    /**
-     * Load the data of all the campagnePhaseType objects and returns them as a collection
-     * 
-     * @param plugin
-     *            the Plugin
-     * @return The collection which contains the data of all the campagnePhaseType objects
-     */
-    Collection<CampagnePhaseType> selectAll( Plugin plugin );
+    public static final int CAMPAIGN_CREATED = 1;
+    public static final int CAMPAIGN_DELETED = 2;
+    public static final int CAMPAIGN_CLONED = 3;
+
+    // Variables declarations
+    private Campagne _mainCampaign;
+    private Campagne _linkedCampaign;
+    private int _nType;
 
     /**
-     * Load the data of all the campagnePhaseType objects and returns them as an ordered list
+     * Creates a new instance of CampaignEvent
      * 
-     * @param plugin
-     *            the Plugin
-     * @return The collection which contains the data of all the campagnePhaseType objects
+     * @param mainCampaign
+     *            The main campaign (the one the event is about)
+     * @param linkedCampaign
+     *            A linked campaign (for example, a cloned one)
+     * @param nType
+     *            The type of event
      */
-    List<CampagnePhaseType> selectAllOrdered( Plugin plugin );
+    public CampaignEvent( Campagne mainCampaign, Campagne linkedCampaign, int nType )
+    {
+        _mainCampaign = mainCampaign;
+        _linkedCampaign = linkedCampaign;
+        _nType = nType;
+    }
+
+    /**
+     * Returns the EventType
+     *
+     * @return The EventType
+     */
+    public int getEventType( )
+    {
+        return _nType;
+    }
+
+    /**
+     * Returns the main campaign (the one the event is about)
+     *
+     * @return The main campaign
+     */
+    public Campagne getMainCampaign( )
+    {
+        return _mainCampaign;
+    }
+
+    /**
+     * Returns the linked campaign (for example, a cloned one)
+     *
+     * @return The linked campaign
+     */
+    public Campagne getLinkedCampaign( )
+    {
+        return _linkedCampaign;
+    }
 }

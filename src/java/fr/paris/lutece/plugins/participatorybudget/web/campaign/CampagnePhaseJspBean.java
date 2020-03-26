@@ -241,44 +241,44 @@ public class CampagnePhaseJspBean extends ManageCampagnebpJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNEPHASE ) );
         CampagnePhase targetedPhase = CampagnePhaseHome.findByPrimaryKey( nId );
-        
-        List<CampagnePhase> phases = CampagnePhaseHome.getCampagnePhasesOrderedList();
-    	
+
+        List<CampagnePhase> phases = CampagnePhaseHome.getCampagnePhasesOrderedList( );
+
         // Search the position of the targeted hase in the list
         int index = 0;
-        for ( index = 0 ; index < phases.size() ; index++ ) 
+        for ( index = 0; index < phases.size( ); index++ )
         {
-			if ( targetedPhase.getId() == phases.get( index ).getId() )
-			{
-				break;
-			}
-		}
-        
+            if ( targetedPhase.getId( ) == phases.get( index ).getId( ) )
+            {
+                break;
+            }
+        }
+
         // Calculate the date of the very first phase
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance( );
         cal.setTimeInMillis( System.currentTimeMillis( ) );
-        cal.add(Calendar.HOUR, -(2*24)); 
-        cal.add(Calendar.DAY_OF_YEAR, -(index*7));
+        cal.add( Calendar.HOUR, -( 2 * 24 ) );
+        cal.add( Calendar.DAY_OF_YEAR, -( index * 7 ) );
 
         // Set each phase begin/end dates
-        for ( CampagnePhase phase : phases ) 
-    	{
-    		phase.setStart( new Timestamp( cal.getTime().getTime() ));
-            
-    		cal.add(Calendar.DAY_OF_YEAR, 7);
-            cal.add(Calendar.SECOND, -1);
-    		phase.setEnd( new Timestamp( cal.getTime().getTime() ));
-            
-    		CampagnePhaseHome.update( phase );
+        for ( CampagnePhase phase : phases )
+        {
+            phase.setStart( new Timestamp( cal.getTime( ).getTime( ) ) );
 
-            cal.add(Calendar.SECOND, 1);
-    	}
+            cal.add( Calendar.DAY_OF_YEAR, 7 );
+            cal.add( Calendar.SECOND, -1 );
+            phase.setEnd( new Timestamp( cal.getTime( ).getTime( ) ) );
 
-    	addInfo( INFO_CAMPAGNEPHASE_TARGETED, getLocale( ) );
+            CampagnePhaseHome.update( phase );
 
-    	CampaignService.getInstance( ).reset( );
+            cal.add( Calendar.SECOND, 1 );
+        }
 
-    	return redirectView( request, VIEW_MANAGE_CAMPAGNEPHASES );
+        addInfo( INFO_CAMPAGNEPHASE_TARGETED, getLocale( ) );
+
+        CampaignService.getInstance( ).reset( );
+
+        return redirectView( request, VIEW_MANAGE_CAMPAGNEPHASES );
     }
 
     /**

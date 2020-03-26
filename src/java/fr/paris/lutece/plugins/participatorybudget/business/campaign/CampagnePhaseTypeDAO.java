@@ -61,15 +61,15 @@ public final class CampagnePhaseTypeDAO implements ICampagnePhaseTypeDAO
     public int newPrimaryKey( Plugin plugin )
     {
         int nKey = 1;
-    	
+
         try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin ) )
         {
-	        daoUtil.executeQuery( );
-	
-	        if ( daoUtil.next( ) )
-	        {
-	            nKey = daoUtil.getInt( 1 ) + 1;
-	        }
+            daoUtil.executeQuery( );
+
+            if ( daoUtil.next( ) )
+            {
+                nKey = daoUtil.getInt( 1 ) + 1;
+            }
         }
 
         return nKey;
@@ -82,24 +82,24 @@ public final class CampagnePhaseTypeDAO implements ICampagnePhaseTypeDAO
     public Collection<CampagnePhaseType> selectAll( Plugin plugin )
     {
         Collection<CampagnePhaseType> list = new ArrayList<>( );
-        
+
         try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin ) )
-       	{
-	        daoUtil.executeQuery( );
-	
-	        while ( daoUtil.next( ) )
-	        {
-	        	CampagnePhaseType campagnePhaseType = new CampagnePhaseType( );
-	
-	        	campagnePhaseType.setId( daoUtil.getInt( 1 ) );
-	        	campagnePhaseType.setCode( daoUtil.getString( 2 ) );
-	        	campagnePhaseType.setLabel( daoUtil.getString( 3 ) );
-	        	campagnePhaseType.setOrder( daoUtil.getInt( 4 ) );
-	
-	            list.add( campagnePhaseType );
-	        }
-       	}
-        
+        {
+            daoUtil.executeQuery( );
+
+            while ( daoUtil.next( ) )
+            {
+                CampagnePhaseType campagnePhaseType = new CampagnePhaseType( );
+
+                campagnePhaseType.setId( daoUtil.getInt( 1 ) );
+                campagnePhaseType.setCode( daoUtil.getString( 2 ) );
+                campagnePhaseType.setLabel( daoUtil.getString( 3 ) );
+                campagnePhaseType.setOrder( daoUtil.getInt( 4 ) );
+
+                list.add( campagnePhaseType );
+            }
+        }
+
         return list;
     }
 
@@ -109,25 +109,25 @@ public final class CampagnePhaseTypeDAO implements ICampagnePhaseTypeDAO
     @Override
     public List<CampagnePhaseType> selectAllOrdered( Plugin plugin )
     {
-    	List<CampagnePhaseType> list = new ArrayList<>( );
-        
+        List<CampagnePhaseType> list = new ArrayList<>( );
+
         try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ORDERED, plugin ) )
-       	{
-	        daoUtil.executeQuery( );
-	
-	        while ( daoUtil.next( ) )
-	        {
-	        	CampagnePhaseType campagnePhaseType = new CampagnePhaseType( );
-	
-	        	campagnePhaseType.setId( daoUtil.getInt( 1 ) );
-	        	campagnePhaseType.setCode( daoUtil.getString( 2 ) );
-	        	campagnePhaseType.setLabel( daoUtil.getString( 3 ) );
-	        	campagnePhaseType.setOrder( daoUtil.getInt( 4 ) );
-	
-	            list.add( campagnePhaseType );
-	        }
-       	}
-        
+        {
+            daoUtil.executeQuery( );
+
+            while ( daoUtil.next( ) )
+            {
+                CampagnePhaseType campagnePhaseType = new CampagnePhaseType( );
+
+                campagnePhaseType.setId( daoUtil.getInt( 1 ) );
+                campagnePhaseType.setCode( daoUtil.getString( 2 ) );
+                campagnePhaseType.setLabel( daoUtil.getString( 3 ) );
+                campagnePhaseType.setOrder( daoUtil.getInt( 4 ) );
+
+                list.add( campagnePhaseType );
+            }
+        }
+
         return list;
     }
 

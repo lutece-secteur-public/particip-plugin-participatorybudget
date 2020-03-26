@@ -37,11 +37,14 @@ import java.sql.Timestamp;
 import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
 
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneArea;
@@ -52,6 +55,9 @@ import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePha
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneTheme;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeHome;
 import fr.paris.lutece.plugins.participatorybudget.service.NoSuchPhaseException;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEvent;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEventListener;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEventListernersManager;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppLogService;
@@ -60,24 +66,28 @@ import fr.paris.lutece.util.ReferenceList;
 public class CampaignService implements ICampaignService
 {
 
-    // Attributes
+    private static final String BEAN_CAMPAGNE_SERVICE = "participatorybudget.campaignService";
+    private static final String BEAN_EVENT_LISTENER_MANAGER = "participatorybudget.campaignEventListernersManager";
 
+    // Attributes
     private Map<String, Timestamp> _cache = null;
 
-    // ***********************************************************************************
-    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
-    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
-    // ***********************************************************************************
-
-    private static final String BEAN_CAMPAGNE_SERVICE = "participatorybudget.campaignService";
-
     private static ICampaignService _singleton;
+    private static CampaignEventListernersManager _managerEventListenersManager = null;
+
+    // ***********************************************************************************
+    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
+    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
+    // ***********************************************************************************
 
     public static ICampaignService getInstance( )
     {
         if ( _singleton == null )
         {
             _singleton = SpringContextService.getBean( BEAN_CAMPAGNE_SERVICE );
+
+            _managerEventListenersManager = SpringContextService.getBean( BEAN_EVENT_LISTENER_MANAGER );
+            _managerEventListenersManager.setListeners( SpringContextService.getBeansOfType( CampaignEventListener.class ) );
         }
         return _singleton;
     }
@@ -392,6 +402,99 @@ public class CampaignService implements ICampaignService
     public ReferenceList getThemes( )
     {
         return getThemes( getLastCampagne( ).getCode( ) );
+    }
+
+    // *********************************************************************************************
+    // * CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE *
+    // * CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE *
+    // *********************************************************************************************
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int clone( int campaignId )
+    {
+        // Creates new campagne ---------------------------------------------------------------------------
+
+        Campagne campaignToClone = CampagneHome.findByPrimaryKey( campaignId );
+
+        // Generate new code, max 50 chars
+        String newCampagneCode = StringUtils.abbreviate( "(clone) " + campaignToClone.getCode( ), 50 );
+
+        Campagne newCampagne = new Campagne( );
+        newCampagne.setCode( newCampagneCode + "" );
+        newCampagne.setTitle( "(clone) " + campaignToClone.getTitle( ) );
+        newCampagne.setDescription( "(clone) " + campaignToClone.getDescription( ) );
+        newCampagne.setActive( false );
+        newCampagne.setCodeModerationType( campaignToClone.getCodeModerationType( ) );
+        newCampagne.setModerationDuration( campaignToClone.getModerationDuration( ) );
+
+        CampagneHome.create( newCampagne );
+
+        // Creates phases ---------------------------------------------------------------------------------
+
+        Collection<CampagnePhase> lastPhases = CampagnePhaseHome.getCampagnePhasesListByCampagne( campaignToClone.getCode( ) );
+
+        for ( CampagnePhase lastPhase : lastPhases )
+        {
+
+            CampagnePhase phase = new CampagnePhase( );
+
+            Calendar newStart = Calendar.getInstance( );
+            newStart.setTime( lastPhase.getStart( ) );
+            newStart.add( Calendar.YEAR, 1 );
+            Calendar newEnd = Calendar.getInstance( );
+            newEnd.setTime( lastPhase.getEnd( ) );
+            newEnd.add( Calendar.YEAR, 1 );
+
+            phase.setCodePhaseType( lastPhase.getCodePhaseType( ) );
+            phase.setCodeCampagne( "" + newCampagneCode );
+            phase.setStart( new Timestamp( newStart.getTimeInMillis( ) ) );
+            phase.setEnd( new Timestamp( newEnd.getTimeInMillis( ) ) );
+
+            CampagnePhaseHome.create( phase );
+        }
+
+        // Creates themes ---------------------------------------------------------------------------------
+
+        Collection<CampagneTheme> lastThemes = CampagneThemeHome.getCampagneThemesListByCampagne( campaignToClone.getCode( ) );
+
+        for ( CampagneTheme lastTheme : lastThemes )
+        {
+
+            CampagneTheme theme = new CampagneTheme( );
+
+            theme.setCode( lastTheme.getCode( ) );
+            theme.setCodeCampagne( "" + newCampagneCode );
+            theme.setTitle( lastTheme.getTitle( ) );
+            theme.setDescription( lastTheme.getDescription( ) );
+            theme.setActive( true );
+
+            CampagneThemeHome.create( theme );
+        }
+
+        // Creates depositary -----------------------------------------------------------------------------
+
+        // Collection<CampagneDepositaire> lastDepositaires = CampagneDepositaireHome.getCampagneDepositaireListByCampagne( lastCampagne.getCode() );
+        //
+        // for (CampagneDepositaire lastDepositaire : lastDepositaires) {
+        //
+        // CampagneDepositaire depositaire = new CampagneDepositaire();
+        //
+        // depositaire.setCodeDepositaireType ( lastDepositaire.getCodeDepositaireType() );
+        // depositaire.setCodeCampagne ( "" + newCampagneCode );
+        //
+        // CampagneDepositaireHome.create( depositaire );
+        // }
+
+        // Reseting cache
+
+        CampaignService.getInstance( ).reset( );
+
+        _managerEventListenersManager.notifyListeners( new CampaignEvent( newCampagne, campaignToClone, CampaignEvent.CAMPAIGN_CLONED ) );
+
+        return newCampagne.getId( );
     }
 
     // ***********************************************************************************
