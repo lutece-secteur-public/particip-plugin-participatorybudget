@@ -120,16 +120,16 @@
 		
 		<div id="search-form">
 
-			<h1>Projets soumis au vote</h1>
+			<h1>#i18n{participatorybudget.search.submitted.header.title}</h1>
 			
 			<#-- Search bar -->
 			<div id="search-prj-fields" class="container form">
 				<div class="row">
 				
 					<div class="col-md-12">
-						<#-- recherche par mot clé -->
+						<#-- Full-text search -->
 						<div class="form-group">
-							<label class="sr-only" for="query">Rechercher par mots cl&eacute;</label>
+							<label class="sr-only" for="query">#i18n{participatorybudget.search.form.field.keyword.label}</label>
 							<div class="input-group">
 								<input class="form-control" type="text" name="query" value="${sQuery!}" placeholder="Rechercher par mots cl&eacute;" id="solr-t"/>
 								<span class="input-group-btn">
@@ -144,7 +144,7 @@
 					
 				</div>
 
-				<a class="searchParametersButton visible-xs" href="#searchParameters" data-toggle="collapse">Recherche avancée</a>
+				<a class="searchParametersButton visible-xs" href="#searchParameters" data-toggle="collapse">#i18n{participatorybudget.search.form.advanced.title}</a>
 			
 				<div id="searchParameters" class="collapse dont-collapse-sm">
 			
@@ -155,9 +155,9 @@
 							<label class="select" for="arrondissement">
 								<select name="fq" id="arrondissement" onChange="searchArrond()" class="form-control <#if arr != "">selected</#if>">
 									<#if arr=="">
-										<option value="" selected="selected">#i18n{participatoryideation.search.form.field.location.label} </option>
+										<option value="" selected="selected">#i18n{participatorybudget.search.form.field.location.label} </option>
 									<#else>
-										<option value="" >#i18n{participatoryideation.search.form.field.location.reset} </option>
+										<option value="" >#i18n{participatorybudget.search.form.field.location.reset} </option>
 									</#if>
 									
 									<option disabled="disabled">----</option>
@@ -187,9 +187,9 @@
 							<label class="select" for="arrondissement">
 								<select name="fq" id="arrondissement" onChange="searchArrond()" class="form-control <#if facet_theme != "">selected</#if>">
 									<#if arr=="">
-										<option value="" selected="selected">#i18n{participatoryideation.search.form.field.theme.label} </option>
+										<option value="" selected="selected">#i18n{participatorybudget.search.form.field.theme.label} </option>
 									<#else>
-										<option value="" >#i18n{participatoryideation.search.form.field.theme.reset} </option>
+										<option value="" >#i18n{participatorybudget.search.form.field.theme.reset} </option>
 									</#if>
 									
 									<option disabled="disabled">----</option>
@@ -219,9 +219,9 @@
 							<label class="select" for="qpop">
 								<select name="fq" id="qpop" onChange="searchArrond()" class="form-control <#if facet_qpop != "">selected</#if>">
 									<#if facet_qpop="">
-										<option value="" selected="selected">#i18n{participatoryideation.search.form.field.qpop.label}</option>
+										<option value="" selected="selected">#i18n{participatorybudget.search.form.field.qpop.label}</option>
 									<#else>
-										<option value="">#i18n{participatoryideation.search.form.field.qpop.reset}</option>
+										<option value="">#i18n{participatorybudget.search.form.field.qpop.reset}</option>
 									</#if>
 									
 									<option disabled="disabled">----</option>
@@ -281,7 +281,7 @@
 
 							<#-- if sort_list?? -->
 								<div class="form-group">
-									Trier par :
+									#i18n{participatorybudget.search.form.sort.title}
 										<label class="select" for="sort_name">
 										<select name="sort_name" id="sort_name" class="form-control" onChange="searchTri()" >
 											<#list sort_list as field>
@@ -289,10 +289,10 @@
 													<#assign monTri = sort_name+"&sort_order="+sort_order>
 													
 													<#if sort_name?ends_with("random") && ordre_aleatoire == "true" >
-														<option value="${number_random}_random" selected="selected" >Ordre al&eacute;atoire</option>
+														<option value="${number_random}_random" selected="selected" >#i18n{participatorybudget.search.form.sort.random.label}</option>
 														<#assign ordre_aleatoire= "false">
 													<#elseif ordre_aleatoire == "true" >
-														<option value="${number_random}_random">Ordre al&eacute;atoire</option> >
+														<option value="${number_random}_random">#i18n{participatorybudget.search.form.sort.random.label}</option>
 														<#assign ordre_aleatoire= "false">
 													</#if>
 													
@@ -309,8 +309,8 @@
 
 									<label class="select" for="sort_order">
 										<select name="sort_order" id="sort_order" class="form-control" onChange="searchTri()" >
-											<option value="asc" <#if sort_order?? && sort_order="asc">selected="selected"</#if> >Ascendant</option>
-											<option value="desc" <#if sort_order?? && sort_order="desc">selected="selected"</#if>>Descendant</option>
+											<option value="asc" <#if sort_order?? && sort_order="asc">selected="selected"</#if> >#i18n{participatorybudget.search.form.sort.random.asc}</option>
+											<option value="desc" <#if sort_order?? && sort_order="desc">selected="selected"</#if>>#i18n{participatorybudget.search.form.sort.random.desc}</option>
 										</select>
 									</label>
 								</div>
@@ -323,22 +323,22 @@
 				<div id="sub-search-right-panel" class="col-xs-6 col-sm-6 col-md-6">
 					<#if conf_user_query = "projects_mdp">
 						<div id="sub-search-nbitems" class="">
-							${paginator.itemsCount} projet(s) trouv&eacute;(s)
+							${i18n('participatorybudget.participatorybudget.form.result.number', paginator.itemsCount)}
 						</div>
 						<div id="sub-search-switch">
 								<div class="form-group" >
-									<button id="button_map_list" class="btn  btn-map-active" type="submit" alt="Voir la cartographie des projets"><p>carte</p></button>
+									<button id="button_map_list" class="btn  btn-map-active" type="submit" alt="Voir la cartographie des projets"><p>#i18n{participatorybudget.search.form.view.map}</p></button>
 									<button class="btn btn-list-unactive " disabled/>
 								</div>
 						</div>
 					<#else>
 						<div id="sub-search-nbitems" class="">
-							${paginator.itemsCount} projet(s) trouv&eacute;(s)
+							${i18n('participatorybudget.participatorybudget.form.result.number', paginator.itemsCount)}
 						</div>
 						<div id="sub-search-switch">
 								<div class="form-group" >
 									<button class="btn btn-map-unactive " disabled/>
-									<button id="button_list" class="btn  btn-list-active" type="submit" alt="Voir la liste des vignettes des projets"><p>liste</p></button>
+									<button id="button_list" class="btn  btn-list-active" type="submit" alt="Voir la liste des vignettes des projets"><p>#i18n{participatorybudget.search.form.view.list}</p></button>
 								</div>
 						</div>
 					</#if>
