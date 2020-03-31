@@ -88,6 +88,19 @@ public final class CampagneThemeHome
     }
 
     /**
+     * Change a campaign code
+     * 
+     * @param oldCampaignCode
+     *            The campaign code to change
+     * @param newCampaignCode
+     *            The new campaign code
+     */
+    public static void changeCampainCode( String oldCampaignCode, String newCampaignCode )
+    {
+        _dao.changeCampainCode( oldCampaignCode, newCampaignCode, _plugin );
+    }
+
+    /**
      * Remove the campagneTheme whose identifier is specified in parameter
      * 
      * @param nKey

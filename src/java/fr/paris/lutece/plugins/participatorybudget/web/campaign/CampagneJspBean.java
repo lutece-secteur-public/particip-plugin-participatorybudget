@@ -33,9 +33,23 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
+
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaHome;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneImageHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeHome;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEvent;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEventListernersManager;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
@@ -43,21 +57,20 @@ import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.util.url.UrlItem;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * This class provides the user interface to manage Campagne features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageCampagnebp.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAGNEBP_MANAGEMENT" )
 public class CampagneJspBean extends ManageCampagnebpJspBean
 {
+    private static final long serialVersionUID = 7914078112474732968L;
 
     // //////////////////////////////////////////////////////////////////////////
     // Constants
 
+    /**
+     * 
+     */
     // templates
     private static final String TEMPLATE_MANAGE_CAMPAGNES = "/admin/plugins/participatorybudget/campaign/manage_campagnes.html";
     private static final String TEMPLATE_CREATE_CAMPAGNE = "/admin/plugins/participatorybudget/campaign/create_campagne.html";
@@ -65,6 +78,7 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
 
     // Parameters
     private static final String PARAMETER_ID_CAMPAGNE = "id";
+    private static final String PARAMETER_CAMPAIGN_CODE = "code";
 
     // Properties for page titles
     private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNES = "participatorybudget.manage_campagnes.pageTitle";
@@ -79,7 +93,6 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNE = "participatorybudget.message.confirmRemoveCampagne";
-    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNE_PER_PAGE = "participatorybudget.listCampagnes.itemsPerPage";
 
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagne.attribute.";
 
@@ -234,6 +247,25 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
     @Action( ACTION_MODIFY_CAMPAGNE )
     public String doModifyCampagne( HttpServletRequest request )
     {
+        // If code modification, verify if authorized.
+        int oldCampaignId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNE ) );
+        Campagne oldCampaign = CampagneHome.findByPrimaryKey( oldCampaignId );
+        String oldCampaignCode = oldCampaign.getCode( );
+        String newCode = request.getParameter( PARAMETER_CAMPAIGN_CODE );
+
+        if ( !oldCampaignCode.equals( newCode ) )
+        {
+            CampaignEvent event = new CampaignEvent( oldCampaign, null, CampaignEvent.CAMPAIGN_CODE_MODIFICATION_AUTHORISATION );
+            List<String> results = CampaignEventListernersManager.getInstance( ).notifyListeners( event );
+            if ( CollectionUtils.isNotEmpty( results ) )
+            {
+                // Unauthorized campaign code modification.
+                addError( "Unauthorized campaign code modification : " + StringUtils.join( results, ", " ) );
+                return redirectView( request, VIEW_MANAGE_CAMPAGNES );
+            }
+        }
+
+        // Authorized campaign modification.
         populate( _campagne, request );
 
         // Check constraints
@@ -242,8 +274,23 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
             return redirect( request, VIEW_MODIFY_CAMPAGNE, PARAMETER_ID_CAMPAGNE, _campagne.getId( ) );
         }
 
+        // Update the campaign
         CampagneHome.update( _campagne );
         addInfo( INFO_CAMPAGNE_UPDATED, getLocale( ) );
+
+        // If code modification, inform listeners and update local data.
+        if ( !oldCampaignCode.equals( newCode ) )
+        {
+            // Update local data
+            CampagnePhaseHome.changeCampainCode( oldCampaignCode, newCode );
+            CampagneThemeHome.changeCampainCode( oldCampaignCode, newCode );
+            CampagneAreaHome.changeCampainCode( oldCampaignCode, newCode );
+            CampagneImageHome.changeCampainCode( oldCampaignCode, newCode );
+
+            // Inform listeners
+            CampaignEvent event = new CampaignEvent( oldCampaign, _campagne, CampaignEvent.CAMPAIGN_CODE_MODIFIED );
+            CampaignEventListernersManager.getInstance( ).notifyListeners( event );
+        }
 
         CampaignService.getInstance( ).reset( );
 

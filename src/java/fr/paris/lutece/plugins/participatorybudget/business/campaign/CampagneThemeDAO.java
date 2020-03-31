@@ -57,6 +57,7 @@ public final class CampagneThemeDAO implements ICampagneThemeDAO
     private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_theme ( id_campagne_theme, code_campagne, code_theme, title, description, active, image_file ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_theme WHERE id_campagne_theme = ? ";
     private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_theme SET id_campagne_theme = ?, code_campagne = ?, code_theme = ?, title = ?, description = ?, active = ?, image_file = ? WHERE id_campagne_theme = ?";
+    private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_theme SET code_campagne = ? WHERE code_campagne = ?";
     private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_theme, code_campagne, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme";
     private static final String SQL_QUERY_SELECTALL_BY_CAMPAGNE = SQL_QUERY_SELECTALL + " WHERE code_campagne = ?";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_theme FROM participatorybudget_campaign_theme";
@@ -157,6 +158,20 @@ public final class CampagneThemeDAO implements ICampagneThemeDAO
 
         daoUtil.free( );
         return campagneTheme;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public void changeCampainCode( String oldCampaignCode, String newCampaignCode, Plugin plugin )
+    {
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_CHANGEALL_CAMPAIGN_CODE, plugin ) )
+        {
+            daoUtil.setString( 1, newCampaignCode );
+            daoUtil.setString( 2, oldCampaignCode );
+            daoUtil.executeUpdate( );
+        }
     }
 
     /**

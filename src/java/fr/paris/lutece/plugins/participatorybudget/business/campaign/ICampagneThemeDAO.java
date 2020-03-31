@@ -65,6 +65,18 @@ public interface ICampagneThemeDAO
     void store( CampagneTheme campagneTheme, Plugin plugin );
 
     /**
+     * Change a campaign code
+     * 
+     * @param oldCampaignCode
+     *            The campaign code to change
+     * @param newCampaignCode
+     *            The new campaign code
+     * @param plugin
+     *            the Plugin
+     */
+    void changeCampainCode( String oldCampaignCode, String newCampaignCode, Plugin plugin );
+
+    /**
      * Delete a record from the table
      * 
      * @param nKey

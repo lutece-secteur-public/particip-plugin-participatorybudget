@@ -56,7 +56,6 @@ import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThe
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeHome;
 import fr.paris.lutece.plugins.participatorybudget.service.NoSuchPhaseException;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEvent;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEventListener;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEventListernersManager;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
@@ -67,27 +66,22 @@ public class CampaignService implements ICampaignService
 {
 
     private static final String BEAN_CAMPAGNE_SERVICE = "participatorybudget.campaignService";
-    private static final String BEAN_EVENT_LISTENER_MANAGER = "participatorybudget.campaignEventListernersManager";
 
     // Attributes
     private Map<String, Timestamp> _cache = null;
 
-    private static ICampaignService _singleton;
-    private static CampaignEventListernersManager _managerEventListenersManager = null;
+    // ***********************************************************************************
+    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
+    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
+    // ***********************************************************************************
 
-    // ***********************************************************************************
-    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
-    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
-    // ***********************************************************************************
+    private static ICampaignService _singleton;
 
     public static ICampaignService getInstance( )
     {
         if ( _singleton == null )
         {
             _singleton = SpringContextService.getBean( BEAN_CAMPAGNE_SERVICE );
-
-            _managerEventListenersManager = SpringContextService.getBean( BEAN_EVENT_LISTENER_MANAGER );
-            _managerEventListenersManager.setListeners( SpringContextService.getBeansOfType( CampaignEventListener.class ) );
         }
         return _singleton;
     }
@@ -415,7 +409,7 @@ public class CampaignService implements ICampaignService
     @Override
     public int clone( int campaignId )
     {
-        // Creates new campagne ---------------------------------------------------------------------------
+        // Create new campagne ---------------------------------------------------------------------------
 
         Campagne campaignToClone = CampagneHome.findByPrimaryKey( campaignId );
 
@@ -432,7 +426,7 @@ public class CampaignService implements ICampaignService
 
         CampagneHome.create( newCampagne );
 
-        // Creates phases ---------------------------------------------------------------------------------
+        // Clone phases ---------------------------------------------------------------------------------
 
         Collection<CampagnePhase> lastPhases = CampagnePhaseHome.getCampagnePhasesListByCampagne( campaignToClone.getCode( ) );
 
@@ -456,7 +450,7 @@ public class CampaignService implements ICampaignService
             CampagnePhaseHome.create( phase );
         }
 
-        // Creates themes ---------------------------------------------------------------------------------
+        // Clone themes ---------------------------------------------------------------------------------
 
         Collection<CampagneTheme> lastThemes = CampagneThemeHome.getCampagneThemesListByCampagne( campaignToClone.getCode( ) );
 
@@ -474,25 +468,29 @@ public class CampaignService implements ICampaignService
             CampagneThemeHome.create( theme );
         }
 
-        // Creates depositary -----------------------------------------------------------------------------
+        // Clone areas -----------------------------------------------------------------------------
 
-        // Collection<CampagneDepositaire> lastDepositaires = CampagneDepositaireHome.getCampagneDepositaireListByCampagne( lastCampagne.getCode() );
-        //
-        // for (CampagneDepositaire lastDepositaire : lastDepositaires) {
-        //
-        // CampagneDepositaire depositaire = new CampagneDepositaire();
-        //
-        // depositaire.setCodeDepositaireType ( lastDepositaire.getCodeDepositaireType() );
-        // depositaire.setCodeCampagne ( "" + newCampagneCode );
-        //
-        // CampagneDepositaireHome.create( depositaire );
-        // }
+        Collection<CampagneArea> lastAreas = CampagneAreaHome.getCampagneAreasListByCampagne( campaignToClone.getCode( ) );
+
+        for ( CampagneArea lastArea : lastAreas )
+        {
+
+            CampagneArea area = new CampagneArea( );
+
+            area.setActive( lastArea.getActive( ) );
+            area.setCodeCampagne( "" + newCampagneCode );
+            area.setNumberVotes( lastArea.getNumberVotes( ) );
+            area.setTitle( lastArea.getTitle( ) );
+            area.setType( lastArea.getType( ) );
+
+            CampagneAreaHome.create( area );
+        }
+
+        CampaignEventListernersManager.getInstance( ).notifyListeners( new CampaignEvent( newCampagne, campaignToClone, CampaignEvent.CAMPAIGN_CLONED ) );
 
         // Reseting cache
 
         CampaignService.getInstance( ).reset( );
-
-        _managerEventListenersManager.notifyListeners( new CampaignEvent( newCampagne, campaignToClone, CampaignEvent.CAMPAIGN_CLONED ) );
 
         return newCampagne.getId( );
     }

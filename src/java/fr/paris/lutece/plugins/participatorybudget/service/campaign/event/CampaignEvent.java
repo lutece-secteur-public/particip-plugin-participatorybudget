@@ -40,14 +40,17 @@ import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
  */
 public class CampaignEvent
 {
-    public static final int CAMPAIGN_CREATED = 1;
-    public static final int CAMPAIGN_DELETED = 2;
-    public static final int CAMPAIGN_CLONED = 3;
+    public static final String CAMPAIGN_CREATED = "CAMPAIGN_CREATED";
+    public static final String CAMPAIGN_DELETED = "CAMPAIGN_DELETED";
+    public static final String CAMPAIGN_CLONED = "CAMPAIGN_CLONED";
+
+    public static final String CAMPAIGN_CODE_MODIFICATION_AUTHORISATION = "CAMPAIGN_CODE_MODIFICATION_AUTHORISATION"; // Want to modify campaign code
+    public static final String CAMPAIGN_CODE_MODIFIED = "CAMPAIGN_CODE_MODIFIED";
 
     // Variables declarations
     private Campagne _mainCampaign;
     private Campagne _linkedCampaign;
-    private int _nType;
+    private String _strType;
 
     /**
      * Creates a new instance of CampaignEvent
@@ -59,11 +62,11 @@ public class CampaignEvent
      * @param nType
      *            The type of event
      */
-    public CampaignEvent( Campagne mainCampaign, Campagne linkedCampaign, int nType )
+    public CampaignEvent( Campagne mainCampaign, Campagne linkedCampaign, String strType )
     {
         _mainCampaign = mainCampaign;
         _linkedCampaign = linkedCampaign;
-        _nType = nType;
+        _strType = strType;
     }
 
     /**
@@ -71,9 +74,9 @@ public class CampaignEvent
      *
      * @return The EventType
      */
-    public int getEventType( )
+    public String getEventType( )
     {
-        return _nType;
+        return _strType;
     }
 
     /**

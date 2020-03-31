@@ -33,11 +33,11 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
-import fr.paris.lutece.portal.service.plugin.Plugin;
-import fr.paris.lutece.util.sql.DAOUtil;
-
 import java.util.ArrayList;
 import java.util.Collection;
+
+import fr.paris.lutece.portal.service.plugin.Plugin;
+import fr.paris.lutece.util.sql.DAOUtil;
 
 /**
  * This class provides Data Access methods for CampagneImage objects
@@ -51,6 +51,7 @@ public final class CampagneImageDAO implements ICampagneImageDAO
     private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_image ( id_campagne_image, code_campagne, id_file ) VALUES ( ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_image WHERE id_campagne_image = ? ";
     private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_image SET id_campagne_image = ?, code_campagne = ?, id_file = ? WHERE id_campagne_image = ?";
+    private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_image SET code_campagne = ? WHERE code_campagne = ?";
     private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_image, code_campagne, id_file FROM participatorybudget_campaign_image";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_image FROM participatorybudget_campaign_image";
 
@@ -118,6 +119,20 @@ public final class CampagneImageDAO implements ICampagneImageDAO
 
         daoUtil.free( );
         return campagneImage;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public void changeCampainCode( String oldCampaignCode, String newCampaignCode, Plugin plugin )
+    {
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_CHANGEALL_CAMPAIGN_CODE, plugin ) )
+        {
+            daoUtil.setString( 1, newCampaignCode );
+            daoUtil.setString( 2, oldCampaignCode );
+            daoUtil.executeUpdate( );
+        }
     }
 
     /**

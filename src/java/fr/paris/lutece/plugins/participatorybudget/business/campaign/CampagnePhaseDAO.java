@@ -52,6 +52,7 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
     private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_phase ( id_campagne_phase, code_phase_type, code_campagne, start, end ) VALUES ( ?, ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_phase WHERE id_campagne_phase = ? ";
     private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_phase SET id_campagne_phase = ?, code_phase_type = ?, code_campagne = ?, start = ?, end = ? WHERE id_campagne_phase = ?";
+    private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_phase SET code_campagne = ? WHERE code_campagne = ?";
     private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_phase, code_phase_type, code_campagne, start, end FROM participatorybudget_campaign_phase";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_phase FROM participatorybudget_campaign_phase";
     private static final String SQL_QUERY_SELECTALL_BY_CAMPAGNE = SQL_QUERY_SELECTALL + " WHERE code_campagne = ?";
@@ -125,6 +126,20 @@ public final class CampagnePhaseDAO implements ICampagnePhaseDAO
 
         daoUtil.free( );
         return campagnePhase;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public void changeCampainCode( String oldCampaignCode, String newCampaignCode, Plugin plugin )
+    {
+        try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_CHANGEALL_CAMPAIGN_CODE, plugin ) )
+        {
+            daoUtil.setString( 1, newCampaignCode );
+            daoUtil.setString( 2, oldCampaignCode );
+            daoUtil.executeUpdate( );
+        }
     }
 
     /**

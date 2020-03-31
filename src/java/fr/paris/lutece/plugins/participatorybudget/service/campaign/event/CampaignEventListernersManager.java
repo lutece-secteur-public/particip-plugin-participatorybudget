@@ -33,20 +33,44 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service.campaign.event;
 
-import fr.paris.lutece.portal.service.util.AppLogService;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
+import fr.paris.lutece.portal.service.spring.SpringContextService;
+import fr.paris.lutece.portal.service.util.AppLogService;
 
 /**
  *
  */
 public class CampaignEventListernersManager
 {
+    private static final String BEAN_EVENT_LISTENER_MANAGER = "participatorybudget.campaignEventListernersManager";
+
     private static List<CampaignEventListener> _listEventListeners = new ArrayList<>( );
 
-    /////////////////////////////////////////////////////////////////////////////
-    // Events Listeners management
+    // ***********************************************************************************
+    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
+    // * SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON SINGLETON *
+    // ***********************************************************************************
+
+    private static CampaignEventListernersManager _singleton;
+
+    public static CampaignEventListernersManager getInstance( )
+    {
+        if ( _singleton == null )
+        {
+            _singleton = SpringContextService.getBean( BEAN_EVENT_LISTENER_MANAGER );
+            _singleton.setListeners( SpringContextService.getBeansOfType( CampaignEventListener.class ) );
+        }
+        return _singleton;
+    }
+
+    // ***********************************************************************************
+    // * EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EV *
+    // * EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EVENTS EV *
+    // ***********************************************************************************
 
     /**
      * Add the a listener
@@ -82,12 +106,21 @@ public class CampaignEventListernersManager
      *
      * @param event
      *            A campaign Event
+     * @return Results of listeners, or empty List if no result.
      */
-    public void notifyListeners( CampaignEvent event )
+    public List<String> notifyListeners( CampaignEvent event )
     {
+        List<String> results = new ArrayList<>( );
+
         for ( CampaignEventListener listener : _listEventListeners )
         {
-            listener.processCampaignEvent( event );
+            String result = listener.processCampaignEvent( event );
+            if ( StringUtils.isNotBlank( result ) )
+            {
+                results.add( result );
+            }
         }
+
+        return results;
     }
 }

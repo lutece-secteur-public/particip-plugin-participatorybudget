@@ -45,6 +45,7 @@ public interface CampaignEventListener extends EventListener
      * 
      * @param event
      *            The event to process
+     * @return A string representing the result of the process
      */
-    void processCampaignEvent( CampaignEvent event );
+    String processCampaignEvent( CampaignEvent event );
 }
