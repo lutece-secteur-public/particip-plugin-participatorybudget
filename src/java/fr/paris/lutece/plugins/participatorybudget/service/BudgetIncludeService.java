@@ -40,7 +40,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
-import fr.paris.lutece.plugins.participatorybudget.business.VoteHome;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VoteHome;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.IVoteParArrandissementService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.VoteParArrandissementService;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;

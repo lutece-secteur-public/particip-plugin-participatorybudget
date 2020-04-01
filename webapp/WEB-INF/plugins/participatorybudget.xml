@@ -54,7 +54,7 @@
     <applications>
         <application>
             <application-id>mesVotes</application-id>
-            <application-class>fr.paris.lutece.plugins.participatorybudget.web.MyVoteXPage</application-class>
+            <application-class>fr.paris.lutece.plugins.participatorybudget.web.vote.MyVoteXPage</application-class>
         </application>
         <application>
             <application-id>myFavourites</application-id>

@@ -33,6 +33,8 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business;
 
+import fr.paris.lutece.plugins.participatorybudget.business.vote.MyVote;
+
 public class NotifyUser
 {
 

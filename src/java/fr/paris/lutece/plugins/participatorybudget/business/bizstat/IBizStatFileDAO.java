@@ -35,7 +35,7 @@ package fr.paris.lutece.plugins.participatorybudget.business.bizstat;
 
 import java.util.List;
 
-import fr.paris.lutece.plugins.participatorybudget.business.VotePerLocation;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocation;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 
 /**

@@ -31,52 +31,20 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.business;
+package fr.paris.lutece.plugins.participatorybudget.service.vote;
 
-public class UserAccessVote
+import fr.paris.lutece.plugins.participatorybudget.business.vote.UserAccessVote;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocation;
+
+public interface IVoteParArrandissementService
 {
-    String _strId;
-    boolean _bHasAccessVote;
+    VotePerLocation selectVotePerLocation( String strArrd );
 
-    /**
-     * GET id user
-     * 
-     * @return id user
-     */
-    public String getId( )
-    {
-        return _strId;
-    }
+    boolean isUserAccessVote( String strIdUser );
 
-    /**
-     * Set Id user
-     * 
-     * @param _strId
-     *            the user Id
-     */
-    public void setId( String _strId )
-    {
-        this._strId = _strId;
-    }
+    void updateUserAccessVote( UserAccessVote userAccessVote );
 
-    /**
-     * Get if user has access vote
-     * 
-     * @return
-     */
-    public boolean isHasAccessVote( )
-    {
-        return _bHasAccessVote;
-    }
+    void insertUserAccessVote( UserAccessVote userAccessVote );
 
-    /**
-     * Set user access vote
-     * 
-     * @param bHasAccessVote
-     */
-    public void setHasAccessVote( boolean bHasAccessVote )
-    {
-        _bHasAccessVote = bHasAccessVote;
-    }
-
+    void setAccessVote( boolean bool, String userId );
 }

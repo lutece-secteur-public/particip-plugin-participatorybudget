@@ -43,6 +43,7 @@ import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHom
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhase;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseHome;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.spring.SpringContextService;

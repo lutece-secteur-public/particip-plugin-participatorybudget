@@ -31,63 +31,46 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.business;
+package fr.paris.lutece.plugins.participatorybudget.business.vote;
+
+import fr.paris.lutece.portal.service.plugin.Plugin;
 
 import java.util.List;
 
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
-import fr.paris.lutece.portal.service.plugin.Plugin;
-import fr.paris.lutece.portal.service.plugin.PluginService;
-import fr.paris.lutece.portal.service.spring.SpringContextService;
-
 /**
- * This class provides instances management methods (create, find, ...) for Vote objects
+ * IVoteDAO Interface
  */
-public final class VotePerLocationHome
+public interface IVotePerLocationDAO
 {
-    // Static variable pointed at the DAO instance
-    private static IVotePerLocationDAO _dao = (IVotePerLocationDAO) SpringContextService.getBean( "participatorybudget.votePerLocationDAO" );
-    private static Plugin _plugin = PluginService.getPlugin( Constants.PLUGIN_NAME );
 
     /**
-     * Private constructor - this class need not be instantiated
-     */
-    private VotePerLocationHome( )
-    {
-    }
-
-    /**
+     * Update a record from the table
      * 
-     * @param nUserId
-     * @param nLocalisation
-     * @return
+     * @param VotePerLocation
+     *            The votePerLocation object
+     * @param plugin
+     *            The plugin
      */
-    public static void updateVotesPerLocation( VotePerLocation vote )
-    {
-        _dao.update( vote, _plugin );
-    }
+    public void update( VotePerLocation vote, Plugin plugin );
 
     /**
-     * Get List Votes PerLocation
+     * Load all records
      * 
-     * @return
+     * @param plugin
+     *            The plugin
+     * @return List VotePerLocation
      */
-    public static List<VotePerLocation> getListVotesPerLocation( )
-    {
-        return _dao.getListVotes( _plugin );
-    }
+    public List<VotePerLocation> getListVotes( Plugin plugin );
 
     /**
-     * Select vote per location
+     * Load Vote per location record
      * 
      * @param strArrd
-     *            the arrandissement
+     *            the arrandissment
      * @param plugin
      *            the plugin
-     * @return VotePerLocation object
+     * @return Vote per location record
      */
-    public static VotePerLocation selectVotePerLocation( String strArrd )
-    {
-        return _dao.select( strArrd, _plugin );
-    }
+    public VotePerLocation select( String strArrd, Plugin plugin );
+
 }

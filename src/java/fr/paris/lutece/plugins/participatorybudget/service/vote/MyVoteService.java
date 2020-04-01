@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.service;
+package fr.paris.lutece.plugins.participatorybudget.service.vote;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,9 +60,10 @@ import fr.paris.lutece.plugins.extend.modules.rating.service.security.IRatingSec
 import fr.paris.lutece.plugins.extend.modules.rating.util.constants.RatingConstants;
 import fr.paris.lutece.plugins.extend.service.extender.config.IResourceExtenderConfigService;
 import fr.paris.lutece.plugins.extend.service.extender.history.IResourceExtenderHistoryService;
-import fr.paris.lutece.plugins.participatorybudget.business.MyVote;
-import fr.paris.lutece.plugins.participatorybudget.business.Vote;
-import fr.paris.lutece.plugins.participatorybudget.business.VoteHome;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.MyVote;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.Vote;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VoteHome;
+import fr.paris.lutece.plugins.participatorybudget.service.NbProjetArrCacheService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.rating.BudgetRatingService;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;

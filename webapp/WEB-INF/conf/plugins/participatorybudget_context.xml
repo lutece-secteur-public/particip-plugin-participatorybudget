@@ -44,21 +44,23 @@
 
 
     <!-- DAO -->
-    <bean id="participatorybudget.voteDAO"             class="fr.paris.lutece.plugins.participatorybudget.business.VoteDAO" />
-	<bean id="participatorybudget.voteHistoryDAO"      class="fr.paris.lutece.plugins.participatorybudget.business.VoteHistoryDAO" />
-	<bean id="participatorybudget.votePerLocationDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.VotePerLocationDAO" />
-	<bean id="participatorybudget.userAccessVoteDAO"   class="fr.paris.lutece.plugins.participatorybudget.business.UserAccessVoteDAO" />
+    <bean id="participatorybudget.voteDAO"             class="fr.paris.lutece.plugins.participatorybudget.business.vote.VoteDAO" />
+	<bean id="participatorybudget.voteHistoryDAO"      class="fr.paris.lutece.plugins.participatorybudget.business.vote.VoteHistoryDAO" />
+	<bean id="participatorybudget.votePerLocationDAO"  class="fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocationDAO" />
+	<bean id="participatorybudget.userAccessVoteDAO"   class="fr.paris.lutece.plugins.participatorybudget.business.vote.UserAccessVoteDAO" />
 	<bean id="participatorybudget.bizStatFileDAO"      class="fr.paris.lutece.plugins.participatorybudget.business.bizstat.BizStatFileDAO" />
 	<bean id="participatorybudget.rgpdTreatmentLogDAO" class="fr.paris.lutece.plugins.participatorybudget.business.rgpd.RGPDTreatmentLogDAO" />
 
     <!-- Services -->
     <bean id="participatorybudget.ratingValidationService"               class="fr.paris.lutece.plugins.participatorybudget.service.rating.RatingValidationService" />
-    <bean id="participatorybudget.myVoteService"                         class="fr.paris.lutece.plugins.participatorybudget.service.MyVoteService" />
+    <bean id="participatorybudget.myVoteService"                         class="fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService" />
     <bean id="participatorybudget.budgetparticipatifSitePropertiesGroup" class="fr.paris.lutece.plugins.participatorybudget.service.BudgetparticipatifSitePropertiesGroup" />
     <bean id="participatorybudget.budgetAddOnService"                    class="fr.paris.lutece.plugins.participatorybudget.service.BudgetAddOnService" />
-    <bean id="participatorybudget.voteParArrandService"                  class="fr.paris.lutece.plugins.participatorybudget.service.VoteParArrandissementService" />
+    <bean id="participatorybudget.voteParArrandService"                  class="fr.paris.lutece.plugins.participatorybudget.service.vote.VoteParArrandissementService" />
     <bean id="participatorybudget.projectService"                        class="fr.paris.lutece.plugins.participatorybudget.service.project.ProjectService" />
     <bean id="participatorybudget.bizStatService"                        class="fr.paris.lutece.plugins.participatorybudget.service.bizstat.BizStatService" />
+    <bean id="participatorybudget.voteStatService"                       class="fr.paris.lutece.plugins.participatorybudget.service.vote.VoteStatService" />
+    
     <!-- Resource extender -->
     <bean id="participatorybudget.voteResourceExtender" class="fr.paris.lutece.plugins.participatorybudget.service.rating.VoteResourceExtender"
         p:key="vote"
@@ -76,7 +78,7 @@
     <bean id="participatorybudget.ProjectLaureatAddOn" class="fr.paris.lutece.plugins.participatorybudget.service.ProjectLaureatAddOn" />
     
 
-	<bean id="participatorybudget.VotesSolrAddon" class="fr.paris.lutece.plugins.participatorybudget.service.VotesSolrAddon" />
+	<bean id="participatorybudget.VotesSolrAddon" class="fr.paris.lutece.plugins.participatorybudget.service.vote.VotesSolrAddon" />
 	<bean id="participatorybudget.DocumentBodyService" class="fr.paris.lutece.plugins.participatorybudget.service.DocumentBodyService" />
 	<bean id="participatorybudget.myFavouritesProjects" class="fr.paris.lutece.plugins.participatorybudget.service.MyFavouritesProjects" />
 	

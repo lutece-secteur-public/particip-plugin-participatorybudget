@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.web;
+package fr.paris.lutece.plugins.participatorybudget.web.vote;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,16 +62,16 @@ import fr.paris.lutece.plugins.extend.modules.rating.util.constants.RatingConsta
 import fr.paris.lutece.plugins.extend.service.extender.history.IResourceExtenderHistoryService;
 import fr.paris.lutece.plugins.extend.service.extender.history.ResourceExtenderHistoryService;
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
-import fr.paris.lutece.plugins.participatorybudget.business.MyVote;
-import fr.paris.lutece.plugins.participatorybudget.business.Vote;
-import fr.paris.lutece.plugins.participatorybudget.business.VoteHome;
-import fr.paris.lutece.plugins.participatorybudget.business.VotePerLocation;
-import fr.paris.lutece.plugins.participatorybudget.service.IVoteParArrandissementService;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.MyVote;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.Vote;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VoteHome;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocation;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
-import fr.paris.lutece.plugins.participatorybudget.service.MyVoteService;
-import fr.paris.lutece.plugins.participatorybudget.service.VoteParArrandissementService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.rating.BudgetRatingService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.IVoteParArrandissementService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.VoteParArrandissementService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.plugins.subscribe.business.Subscription;

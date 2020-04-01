@@ -31,10 +31,13 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.business;
+package fr.paris.lutece.plugins.participatorybudget.business.vote;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.util.sql.DAOUtil;
@@ -44,6 +47,8 @@ import fr.paris.lutece.util.sql.DAOUtil;
  */
 public final class VoteDAO implements IVoteDAO
 {
+    private static final int CAMPAIGN_CODE_DOCUMENT_ATTR_ID = 165;
+
     // Constants
     private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_votes ( id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_votes WHERE id_user = ? AND id_projet = ?";
@@ -53,9 +58,15 @@ public final class VoteDAO implements IVoteDAO
     private static final String SQL_QUERY_SELECT_VOTE = SQl_QUERY_SELECT + " and id_projet= ?";
     private static final String SQl_QUERY_COUNT_VOTE_ARR = "SELECT COUNT(*) FROM participatorybudget_votes where id_user= ? and localisation = ?";
     private static final String SQl_QUERY_COUNT_VOTE = "SELECT COUNT(*) FROM participatorybudget_votes where id_user= ? and localisation <> ?";
+    private static final String SQl_QUERY_COUNT_VOTE_BY_CAMPAIGN = "SELECT dc.text_value, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
+            + CAMPAIGN_CODE_DOCUMENT_ATTR_ID + " GROUP BY dc.text_value";
+    private static final String SQl_QUERY_COUNT_VOTE_BY_DATE_BY_CAMPAIGN = "SELECT dc.text_value, CONVERT(v.date_vote, DATE), COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
+            + CAMPAIGN_CODE_DOCUMENT_ATTR_ID + " GROUP BY dc.text_value, CONVERT(v.date_vote, DATE)";
     private static final String SQL_QUERY_SELECT_USER = "SELECT DISTINCT id_user FROM participatorybudget_votes";
     private static final String SQL_QUERY_VALIDATE_VOTE = "UPDATE participatorybudget_votes SET status= ? where id_user=?";
     private static final String SQL_QUERY_SELECT_VOTE_STATUS = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status FROM participatorybudget_votes where id_user= ? and status = ?";
+
+    private final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd" );
 
     /**
      * Insert a new record in the table.
@@ -255,6 +266,53 @@ public final class VoteDAO implements IVoteDAO
         }
 
         return nbrVotes;
+    }
+
+    @Override
+    public Map<String, Integer> countNbVotesByCampaignCode( Plugin plugin )
+    {
+        Map<String, Integer> values = new HashMap<>( );
+
+        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_BY_CAMPAIGN, plugin ) )
+        {
+            daoUtil.executeQuery( );
+
+            while ( daoUtil.next( ) )
+            {
+                values.put( daoUtil.getString( 1 ), daoUtil.getInt( 2 ) );
+            }
+        }
+
+        return values;
+    }
+
+    @Override
+    public Map<String, Map<String, Integer>> countNbVoteByDateAllCampaigns( Plugin plugin )
+    {
+        Map<String, Map<String, Integer>> values = new HashMap<>( );
+
+        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_BY_DATE_BY_CAMPAIGN, plugin ) )
+        {
+            daoUtil.executeQuery( );
+
+            while ( daoUtil.next( ) )
+            {
+                // Get map for the campaign
+                String campaignCode = daoUtil.getString( 1 );
+                if ( !values.containsKey( campaignCode ) )
+                {
+                    values.put( campaignCode, new HashMap<>( ) );
+                }
+                Map<String, Integer> campaignValues = values.get( campaignCode );
+
+                // Get number of vote for the date
+                String date = sdf.format( daoUtil.getTimestamp( 2 ) );
+                int nbVotes = daoUtil.getInt( 3 );
+                campaignValues.put( date, nbVotes );
+            }
+        }
+
+        return values;
     }
 
     /**

@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.service;
+package fr.paris.lutece.plugins.participatorybudget.service.vote;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +39,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import fr.paris.lutece.plugins.participatorybudget.service.IDocumentBodyService;
+import fr.paris.lutece.plugins.participatorybudget.service.DocumentBodyService;
 import fr.paris.lutece.plugins.search.solr.business.SolrSearchResult;
 import fr.paris.lutece.plugins.search.solr.service.ISolrSearchAppAddOn;
 import fr.paris.lutece.portal.service.message.SiteMessageException;

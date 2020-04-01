@@ -46,6 +46,7 @@ import fr.paris.lutece.plugins.leaflet.service.IconService;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.plugins.search.solr.business.SolrSearchEngine;
 import fr.paris.lutece.plugins.search.solr.business.SolrSearchResult;

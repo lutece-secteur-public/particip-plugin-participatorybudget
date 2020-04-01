@@ -59,7 +59,6 @@ public class BizStatService
 {
 
     private static final String SOLR_QUERY_ALL = "*:*";
-    private static final String SOLR_FACET_ALL_PROJECTS = "type:\"PB Project\"";
     private static final String SOLR_FACET_WINNER_PROJECTS = "statut_project_text:\"SUIVI\" AND type:\"PB Project\"";
 
     // *********************************************************************************************

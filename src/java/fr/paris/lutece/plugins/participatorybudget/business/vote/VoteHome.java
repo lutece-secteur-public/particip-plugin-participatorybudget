@@ -31,9 +31,10 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.business;
+package fr.paris.lutece.plugins.participatorybudget.business.vote;
 
 import java.util.List;
+import java.util.Map;
 
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.portal.service.plugin.Plugin;
@@ -43,16 +44,16 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 /**
  * This class provides instances management methods (create, find, ...) for Vote objects
  */
-public final class VoteHistoryHome
+public final class VoteHome
 {
     // Static variable pointed at the DAO instance
-    private static IVoteHistoryDAO _dao = (IVoteHistoryDAO) SpringContextService.getBean( "participatorybudget.voteHistoryDAO" );
+    private static IVoteDAO _dao = (IVoteDAO) SpringContextService.getBean( "participatorybudget.voteDAO" );
     private static Plugin _plugin = PluginService.getPlugin( Constants.PLUGIN_NAME );
 
     /**
      * Private constructor - this class need not be instantiated
      */
-    private VoteHistoryHome( )
+    private VoteHome( )
     {
     }
 
@@ -136,34 +137,63 @@ public final class VoteHistoryHome
     }
 
     /**
+     * Return number of votes by campaign
+     * 
+     * @return A map with the campaign code as key and number of votes as value
+     */
+    public static Map<String, Integer> countNbVotesByCampaignCode( )
+    {
+        return _dao.countNbVotesByCampaignCode( _plugin );
+    }
+
+    /**
+     * Return number of votes by campaign then by date
+     * 
+     * @return A map with the campaign code as key and a map as value containing the date as key and the number of votes as value
+     */
+    public static Map<String, Map<String, Integer>> countNbVoteByDateAllCampaigns( )
+    {
+        return _dao.countNbVoteByDateAllCampaigns( _plugin );
+    }
+
+    /**
      * 
      * @param strUserId
      * @param nIdProject
      * @return
      */
-    public static Vote getVoteUser( String strUserId, int nIdProject )
+    public static Vote getVote( String strUserId, int nIdProject )
     {
-        return _dao.selectVoteUser( strUserId, nIdProject, _plugin );
+        return _dao.selectVote( strUserId, nIdProject, _plugin );
     }
 
     /**
      * 
+     * @return
+     */
+    public static List<String> getAllUserId( )
+    {
+        return _dao.selectUser( _plugin );
+    }
+
+    /**
+     * 
+     * @param nUserId
      * @param nStatus
      * @return
      */
-    public static List<Vote> selectVotesListByExportStatus( int nStatus )
+    public static void validateVote( String userId, int status )
     {
-        return _dao.selectVotesListByExportStatus( _plugin, nStatus );
+        _dao.validateVote( userId, status, _plugin );
     }
 
     /**
      * 
-     * @param nIdVote
-     * @param nTag
+     * @param nUserId
+     * @return
      */
-    public static void updateVoteHistoryTag( Vote vote, int nTag )
+    public static List<Vote> getVoteUser( String userId, int status )
     {
-        _dao.updateTagStats( vote, nTag, _plugin );
+        return _dao.selectVotes( userId, status, _plugin );
     }
-
 }

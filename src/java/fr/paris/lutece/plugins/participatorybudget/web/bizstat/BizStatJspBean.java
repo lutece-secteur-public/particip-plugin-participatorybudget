@@ -107,7 +107,7 @@ public class BizStatJspBean extends MVCAdminJspBean
 
         model.put( MARK_PAGE_TITLE, AppPropertiesService.getProperty( PROPERTY_PAGE_TITLE_BIZ_STAT, "Business Statistics" ) );
 
-        // List of export methods from BizStatService (sorted by description)
+        // List of export methods from VoteStatService (sorted by description)
         List<Method> methods = Arrays.asList( BizStatService.class.getDeclaredMethods( ) );
         methods.sort( new Comparator<Method>( )
         {

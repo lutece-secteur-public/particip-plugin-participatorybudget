@@ -31,12 +31,12 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.web;
+package fr.paris.lutece.plugins.participatorybudget.web.vote;
 
-import fr.paris.lutece.plugins.participatorybudget.business.UserAccessVote;
-import fr.paris.lutece.plugins.participatorybudget.business.UserAccessVoteHome;
-import fr.paris.lutece.plugins.participatorybudget.business.VotePerLocation;
-import fr.paris.lutece.plugins.participatorybudget.business.VotePerLocationHome;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.UserAccessVote;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.UserAccessVoteHome;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocation;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocationHome;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.security.UserNotSignedException;

@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.business;
+package fr.paris.lutece.plugins.participatorybudget.business.vote;
 
 import java.util.List;
 
@@ -43,16 +43,16 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 /**
  * This class provides instances management methods (create, find, ...) for Vote objects
  */
-public final class VoteHome
+public final class VoteHistoryHome
 {
     // Static variable pointed at the DAO instance
-    private static IVoteDAO _dao = (IVoteDAO) SpringContextService.getBean( "participatorybudget.voteDAO" );
+    private static IVoteHistoryDAO _dao = (IVoteHistoryDAO) SpringContextService.getBean( "participatorybudget.voteHistoryDAO" );
     private static Plugin _plugin = PluginService.getPlugin( Constants.PLUGIN_NAME );
 
     /**
      * Private constructor - this class need not be instantiated
      */
-    private VoteHome( )
+    private VoteHistoryHome( )
     {
     }
 
@@ -141,38 +141,29 @@ public final class VoteHome
      * @param nIdProject
      * @return
      */
-    public static Vote getVote( String strUserId, int nIdProject )
+    public static Vote getVoteUser( String strUserId, int nIdProject )
     {
-        return _dao.selectVote( strUserId, nIdProject, _plugin );
+        return _dao.selectVoteUser( strUserId, nIdProject, _plugin );
     }
 
     /**
      * 
-     * @return
-     */
-    public static List<String> getAllUserId( )
-    {
-        return _dao.selectUser( _plugin );
-    }
-
-    /**
-     * 
-     * @param nUserId
      * @param nStatus
      * @return
      */
-    public static void validateVote( String userId, int status )
+    public static List<Vote> selectVotesListByExportStatus( int nStatus )
     {
-        _dao.validateVote( userId, status, _plugin );
+        return _dao.selectVotesListByExportStatus( _plugin, nStatus );
     }
 
     /**
      * 
-     * @param nUserId
-     * @return
+     * @param nIdVote
+     * @param nTag
      */
-    public static List<Vote> getVoteUser( String userId, int status )
+    public static void updateVoteHistoryTag( Vote vote, int nTag )
     {
-        return _dao.selectVotes( userId, status, _plugin );
+        _dao.updateTagStats( vote, nTag, _plugin );
     }
+
 }

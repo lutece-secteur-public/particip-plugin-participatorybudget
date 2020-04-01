@@ -31,11 +31,12 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.business;
-
-import fr.paris.lutece.portal.service.plugin.Plugin;
+package fr.paris.lutece.plugins.participatorybudget.business.vote;
 
 import java.util.List;
+import java.util.Map;
+
+import fr.paris.lutece.portal.service.plugin.Plugin;
 
 /**
  * IVoteDAO Interface
@@ -111,6 +112,20 @@ public interface IVoteDAO
      * @return
      */
     public int countNbVotesUserArrondissement( String strUserId, int nLocalisation, Plugin plugin );
+
+    /**
+     * Return number of votes by campaign
+     * 
+     * @return A map with the campaign code as key and number of votes as value
+     */
+    public Map<String, Integer> countNbVotesByCampaignCode( Plugin plugin );
+
+    /**
+     * Return number of votes by campaign then by date
+     * 
+     * @return A map with the campaign code as key and a map as value containing the date as key and the number of votes as value
+     */
+    public Map<String, Map<String, Integer>> countNbVoteByDateAllCampaigns( Plugin plugin );
 
     /**
      * 

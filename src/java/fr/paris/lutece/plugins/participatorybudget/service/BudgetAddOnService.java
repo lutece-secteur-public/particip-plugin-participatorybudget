@@ -40,6 +40,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneIncludeService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.web.includes.MyInfosPageInclude;
 import fr.paris.lutece.portal.business.resourceenhancer.IResourceDisplayManager;
 import fr.paris.lutece.portal.service.security.SecurityService;

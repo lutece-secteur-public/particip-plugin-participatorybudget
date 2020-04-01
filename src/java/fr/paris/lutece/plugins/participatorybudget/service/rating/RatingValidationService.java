@@ -39,13 +39,13 @@ import org.apache.commons.lang.StringUtils;
 
 import fr.paris.lutece.plugins.extend.modules.rating.service.validator.IRatingValidationService;
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
-import fr.paris.lutece.plugins.participatorybudget.business.VoteHome;
-import fr.paris.lutece.plugins.participatorybudget.business.VotePerLocation;
-import fr.paris.lutece.plugins.participatorybudget.service.IVoteParArrandissementService;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VoteHome;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocation;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
-import fr.paris.lutece.plugins.participatorybudget.service.MyVoteService;
-import fr.paris.lutece.plugins.participatorybudget.service.VoteParArrandissementService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.IVoteParArrandissementService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.VoteParArrandissementService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.plugins.participatorybudget.web.MyInfosXPage;

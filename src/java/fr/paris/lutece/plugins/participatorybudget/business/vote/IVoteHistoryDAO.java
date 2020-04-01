@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.participatorybudget.business;
+package fr.paris.lutece.plugins.participatorybudget.business.vote;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 

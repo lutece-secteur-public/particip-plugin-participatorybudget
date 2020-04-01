@@ -1,3 +1,28 @@
+<#-- Random function, used for chart colors -->
+<#assign rnd="0.${turnoverstr(.now?long?string)}"?number />
+
+<#function random >
+	<#local h = "0.${turnoverstr(.now?long?string)}" />
+	<#local r = (h?number + rnd) />
+	<#if (r gte 1)>
+		<#local r = (r-1) />
+	</#if>
+	<#assign rnd=r />
+	<#return r/>
+</#function>
+
+<#function turnoverstr str >
+	<#local l = str?length />
+	<#local r = ""/>
+	<#list 1..l as i>
+		<#local r = r+str?substring(l-i,l-i+1)/>
+	</#list>
+	<#return r/>
+</#function>
+
+
+
+<script src="js/plugins/participatorybudget/Chart.bundle.min.js"></script>
 <div class="row">
 	<div class="col-xs-12 col-sm-12">
 		 <div class="box box-danger">
@@ -6,8 +31,127 @@
 	       		<@messages errors=errors />
 	        	<h1 class="box-title">Vote dashboard</h1>
 
-		        <br>To be implemented<br>
+				<div class="container">
+					<div class="row">
+					
+						<div class="col-md-6">
+							<canvas id="nbVotes_allCmp" aria-label="Number of votes of each campaign" role="img">
+								<p>Number of votes of each campaign</p>
+							</canvas>
+						</div>
+						
+						<div class="col-md-6">
+							<canvas id="nbVotesByDay_curCmp" aria-label="Number of votes by day for current campaign" role="img">
+								<p>Number of votes by day for current campaign</p>
+							</canvas>
+						</div>
+						
+					</div>
+				</div>
 
+				<script>
+				
+					<#-- ********************************************************************************************* -->
+					<#-- * nbVotes_allCmp nbVotes_allCmp nbVotes_allCmp nbVotes_allCmp nbVotes_allCmp nbVotes_allCmp * -->
+					<#-- * nbVotes_allCmp nbVotes_allCmp nbVotes_allCmp nbVotes_allCmp nbVotes_allCmp nbVotes_allCmp * -->
+					<#-- ********************************************************************************************* -->
+				
+					<#assign map = nbVotesByCampaignCodeMap>
+					
+					var ctx = document.getElementById('nbVotes_allCmp').getContext('2d');
+					var myChart = new Chart(ctx, {
+					    type: 'bar',
+					    data: {
+					        labels: ['${map?keys?join("', '")}'],
+					        datasets: [{
+					            label: 'Nb of votes',
+					            data: [
+					            	<#assign str = ''>
+					            	<#list map?keys as key>
+					            		<#assign str = str + "'" + map[key] + "',">
+					            	</#list>
+					            	${str?keep_before_last(",")}
+					            ],
+				            	<#assign color = "rgba(" + (random()*255)?round + ", " + (random()*255)?round + ", " + (random()*255)?round + ",">
+					            backgroundColor: "${color} 0.5)",
+								borderColor: "${color} 1)",
+					            borderWidth: 3
+					        }]
+					    },
+					    options: {
+					        scales: {
+					            yAxes: [{
+					                ticks: {
+					                    beginAtZero: true
+					                }
+					            }]
+					        },
+					        title: {
+								display: true,
+								text: 'Number of votes by campaign'
+							}
+					    }
+					});
+					
+					<#-- ********************************************************************************************* -->
+					<#-- * nbVotesByDay_allCmp nbVotesByDay_allCmp nbVotesByDay_allCmp nbVotesByDay_allCmp nbVotesBy * -->
+					<#-- * nbVotesByDay_allCmp nbVotesByDay_allCmp nbVotesByDay_allCmp nbVotesByDay_allCmp nbVotesBy * -->
+					<#-- ********************************************************************************************* -->
+
+					<#assign map = nbVotesByDateAllCampaignsMap>
+					
+					<#-- Calculate size of longer campaign -->
+					<#assign nbDays = 0>
+					<#list map?keys as key>
+						<#if map[key]?size gt nbDays>
+							<#assign nbDays = map[key]?size>
+						</#if>
+					</#list>
+					
+					var ctx = document.getElementById('nbVotesByDay_curCmp').getContext('2d');
+					var myChart = new Chart(ctx, {
+					    type: 'line',
+					    data: {
+					        labels: ['${(1..nbDays)?join("', '")}'],
+					        datasets: [
+				            	<#assign str = ''>
+						        <#list map?keys?sort as keyCmp>
+							        <#assign mapCmp = map[keyCmp]>
+						        	<#assign strData = ''>
+							        <#list mapCmp?keys?sort as keyDate>
+							        	<#assign strData = strData + "'" + mapCmp[keyDate?string] + "',">
+					            	</#list>
+					            	<#assign color = "rgba(" + (random()*255)?round + ", " + (random()*255)?round + ", " + (random()*255)?round + ", 1)">
+					            	<#assign str = str + "{">
+					            	<#assign str = str + "label: 'Campaign " + keyCmp + "',">
+					            	<#assign str = str + "borderColor: \"" + color + "\",">
+					            	<#assign str = str + "backgroundColor: \"" + color + "\",">
+					            	<#assign str = str + "fill: false,">
+					            	<#assign str = str + "data: [" + strData?keep_before_last(",") + "]">
+					            	<#assign str = str + "},">
+					            	
+				            	</#list>
+				            	${str?keep_before_last(",")}
+				            ]
+					    },
+					    options: {
+					        scales: {
+					            yAxes: [{
+					                ticks: {
+					                    beginAtZero: true
+					                }
+					            }]
+					        },
+					        title: {
+								display: true,
+								text: 'Number of votes by day number and by campaign'
+							}
+				        }
+					});
+					
+					
+				</script>
+				
 		    </div>
 		</div>     
 	</div>

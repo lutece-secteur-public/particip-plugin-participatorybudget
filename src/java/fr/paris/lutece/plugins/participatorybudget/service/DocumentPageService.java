@@ -37,6 +37,7 @@ import fr.paris.lutece.plugins.document.business.Document;
 import fr.paris.lutece.plugins.document.business.DocumentHome;
 import fr.paris.lutece.plugins.document.business.attributes.DocumentAttribute;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
+import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.portal.business.resourceenhancer.IResourceDisplayManager;
 import fr.paris.lutece.portal.service.security.LuteceUser;

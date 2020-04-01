@@ -113,7 +113,7 @@ public class BizStartExportThread extends Thread
 
                 Method method = BizStatService.class.getMethod( file.getFileName( ), null );
 
-                // Invoke the export method of BizStatService
+                // Invoke the export method of VoteStatService
                 List<String [ ]> rows = (List<String [ ]>) method.invoke( BizStatService.getInstance( ), null );
 
                 for ( String [ ] rowStrings : rows )
