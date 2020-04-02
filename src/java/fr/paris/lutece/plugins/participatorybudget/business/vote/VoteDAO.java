@@ -62,6 +62,15 @@ public final class VoteDAO implements IVoteDAO
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID + " GROUP BY dc.text_value";
     private static final String SQl_QUERY_COUNT_VOTE_BY_DATE_BY_CAMPAIGN = "SELECT dc.text_value, CONVERT(v.date_vote, DATE), COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID + " GROUP BY dc.text_value, CONVERT(v.date_vote, DATE)";
+    private static final String SQl_QUERY_COUNT_VOTE_BY_THEME = "SELECT v.thematique, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
+            + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
+            + " JOIN participatorybudget_campaign c ON c.code_campagne = dc.text_value AND c.id_campagne = ? GROUP BY v.thematique";
+    private static final String SQl_QUERY_COUNT_VOTE_BY_LOCATION = "SELECT v.localisation, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
+            + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
+            + " JOIN participatorybudget_campaign c ON c.code_campagne = dc.text_value AND c.id_campagne = ? GROUP BY v.localisation";
+    private static final String SQl_QUERY_COUNT_VOTE_BY_PROJECT_ID = "SELECT v.id_projet, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
+            + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
+            + " JOIN participatorybudget_campaign c ON c.code_campagne = dc.text_value AND c.id_campagne = ? GROUP BY v.id_projet";
     private static final String SQL_QUERY_SELECT_USER = "SELECT DISTINCT id_user FROM participatorybudget_votes";
     private static final String SQL_QUERY_VALIDATE_VOTE = "UPDATE participatorybudget_votes SET status= ? where id_user=?";
     private static final String SQL_QUERY_SELECT_VOTE_STATUS = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status FROM participatorybudget_votes where id_user= ? and status = ?";
@@ -287,7 +296,7 @@ public final class VoteDAO implements IVoteDAO
     }
 
     @Override
-    public Map<String, Map<String, Integer>> countNbVoteByDateAllCampaigns( Plugin plugin )
+    public Map<String, Map<String, Integer>> countNbVotesByDateAllCampaigns( Plugin plugin )
     {
         Map<String, Map<String, Integer>> values = new HashMap<>( );
 
@@ -309,6 +318,63 @@ public final class VoteDAO implements IVoteDAO
                 String date = sdf.format( daoUtil.getTimestamp( 2 ) );
                 int nbVotes = daoUtil.getInt( 3 );
                 campaignValues.put( date, nbVotes );
+            }
+        }
+
+        return values;
+    }
+
+    @Override
+    public Map<String, Integer> countNbVotesByTheme( int campaignId, Plugin plugin )
+    {
+        Map<String, Integer> values = new HashMap<>( );
+
+        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_BY_THEME, plugin ) )
+        {
+            daoUtil.setInt( 1, campaignId );
+            daoUtil.executeQuery( );
+
+            while ( daoUtil.next( ) )
+            {
+                values.put( daoUtil.getString( 1 ), daoUtil.getInt( 2 ) );
+            }
+        }
+
+        return values;
+    }
+
+    @Override
+    public Map<String, Integer> countNbVotesByLocation( int campaignId, Plugin plugin )
+    {
+        Map<String, Integer> values = new HashMap<>( );
+
+        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_BY_LOCATION, plugin ) )
+        {
+            daoUtil.setInt( 1, campaignId );
+            daoUtil.executeQuery( );
+
+            while ( daoUtil.next( ) )
+            {
+                values.put( daoUtil.getString( 1 ), daoUtil.getInt( 2 ) );
+            }
+        }
+
+        return values;
+    }
+
+    @Override
+    public Map<Integer, Integer> countNbVotesByProjectId( int campaignId, Plugin plugin )
+    {
+        Map<Integer, Integer> values = new HashMap<>( );
+
+        try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_BY_PROJECT_ID, plugin ) )
+        {
+            daoUtil.setInt( 1, campaignId );
+            daoUtil.executeQuery( );
+
+            while ( daoUtil.next( ) )
+            {
+                values.put( daoUtil.getInt( 1 ), daoUtil.getInt( 2 ) );
             }
         }
 

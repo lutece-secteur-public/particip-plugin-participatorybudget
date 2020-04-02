@@ -151,9 +151,45 @@ public final class VoteHome
      * 
      * @return A map with the campaign code as key and a map as value containing the date as key and the number of votes as value
      */
-    public static Map<String, Map<String, Integer>> countNbVoteByDateAllCampaigns( )
+    public static Map<String, Map<String, Integer>> countNbVotesByDateAllCampaigns( )
     {
-        return _dao.countNbVoteByDateAllCampaigns( _plugin );
+        return _dao.countNbVotesByDateAllCampaigns( _plugin );
+    }
+
+    /**
+     * Return number of votes by theme for a campaign
+     * 
+     * @param campaignId
+     *            The id of the campaign
+     * @return A map with the theme as key and and the number of votes as value
+     */
+    public static Map<String, Integer> countNbVotesByTheme( int campaignId )
+    {
+        return _dao.countNbVotesByTheme( campaignId, _plugin );
+    }
+
+    /**
+     * Return number of votes by project for a campaign
+     * 
+     * @param campaignId
+     *            The id of the campaign
+     * @return A map with the project id as key and and the number of votes as value
+     */
+    public static Map<Integer, Integer> countNbVotesByProjectId( int campaignId )
+    {
+        return _dao.countNbVotesByProjectId( campaignId, _plugin );
+    }
+
+    /**
+     * Return number of votes by location for a campaign
+     * 
+     * @param campaignId
+     *            The id of the campaign
+     * @return A map with the location as key and and the number of votes as value
+     */
+    public static Map<String, Integer> countNbVotesByLocation( int campaignId )
+    {
+        return _dao.countNbVotesByLocation( campaignId, _plugin );
     }
 
     /**

@@ -125,7 +125,34 @@ public interface IVoteDAO
      * 
      * @return A map with the campaign code as key and a map as value containing the date as key and the number of votes as value
      */
-    public Map<String, Map<String, Integer>> countNbVoteByDateAllCampaigns( Plugin plugin );
+    public Map<String, Map<String, Integer>> countNbVotesByDateAllCampaigns( Plugin plugin );
+
+    /**
+     * Return number of votes by theme for a campaign
+     * 
+     * @param campaignId
+     *            The id of the campaign
+     * @return A map with the theme as key and and the number of votes as value
+     */
+    public Map<String, Integer> countNbVotesByTheme( int campaignId, Plugin plugin );
+
+    /**
+     * Return number of votes by project for a campaign
+     * 
+     * @param campaignId
+     *            The id of the campaign
+     * @return A map with the project id as key and and the number of votes as value
+     */
+    public Map<Integer, Integer> countNbVotesByProjectId( int campaignId, Plugin plugin );
+
+    /**
+     * Return number of votes by location for a campaign
+     * 
+     * @param campaignId
+     *            The id of the campaign
+     * @return A map with the location as key and and the number of votes as value
+     */
+    public Map<String, Integer> countNbVotesByLocation( int campaignId, Plugin plugin );
 
     /**
      * 
