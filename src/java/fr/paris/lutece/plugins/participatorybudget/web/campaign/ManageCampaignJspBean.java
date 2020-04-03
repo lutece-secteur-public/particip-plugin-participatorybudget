@@ -43,12 +43,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * ManageCampaignbp JSP Bean abstract class for JSP Bean
+ * ManageCampaign JSP Bean abstract class for JSP Bean
  */
 public abstract class ManageCampaignJspBean extends MVCAdminJspBean
 {
     // Right
-    public static final String RIGHT_MANAGECAMPAIGNBP = "CAMPAIGNBP_MANAGEMENT";
+    public static final String RIGHT_MANAGECAMPAIGN = "CAMPAIGN_MANAGEMENT";
 
     private static final String PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE = "participatorybudget.listItems.itemsPerPage";
     private static final String PARAMETER_PAGE_INDEX = "page_index";

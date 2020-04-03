@@ -50,7 +50,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * This class provides the user interface to manage CampaignImage features ( manage, create, modify, remove )
  */
-@Controller( controllerJsp = "ManageCampaignImages.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGNBP_MANAGEMENT" )
+@Controller( controllerJsp = "ManageCampaignImages.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGN_MANAGEMENT" )
 public class CampaignImageJspBean extends ManageCampaignJspBean
 {
 

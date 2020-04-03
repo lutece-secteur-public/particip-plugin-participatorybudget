@@ -33,14 +33,31 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.web.vote;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.RandomUtils;
+
+import fr.paris.lutece.plugins.document.business.Document;
+import fr.paris.lutece.plugins.document.business.DocumentFilter;
+import fr.paris.lutece.plugins.document.business.DocumentHome;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignPhase;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignPhaseHome;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.Vote;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VoteHome;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.VoteStatService;
 import fr.paris.lutece.portal.service.i18n.I18nService;
+import fr.paris.lutece.portal.service.message.AdminMessage;
+import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.service.security.UserNotSignedException;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
@@ -48,6 +65,7 @@ import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.util.ReferenceList;
+import fr.paris.lutece.util.url.UrlItem;
 
 /**
  * This class provides the user interface to produce various business statistics
@@ -87,9 +105,12 @@ public class VoteDashboardJspBean extends MVCAdminJspBean
 
     // ACTIONS
     private static final String ACTION_DO_CHANGE_CAMPAIGN = "changeCampaign";
-
+    private static final String ACTION_CONFIRM_GENERATE_RANDOM_VOTE_DATA = "confirmGenerateRandomVoteData";
+    private static final String ACTION_GENERATE_RANDOM_VOTE_DATA = "generateRandomVoteData";
+    
     // Messages
     private static final String MESSAGE_CURRENT_CAMPAIGN_MODIFIED = "participatorybudget.vote_dashboard.message.currentCampaignModified";
+    private static final String MESSAGE_CONFIRM_GENERATE_RANDOM_VOTE_DATA = "participatorybudget.vote_dashboard.message.confirmGenerateRandomDataVote";
 
     // *********************************************************************************************
     // * VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW VIEW *
@@ -150,4 +171,64 @@ public class VoteDashboardJspBean extends MVCAdminJspBean
         return getManageVoteDashboard( request );
     }
 
+    /**
+     * Confirmation of generation of randomize vote data
+     */
+    @Action( ACTION_CONFIRM_GENERATE_RANDOM_VOTE_DATA )
+    public String getConfirmGenerateRandomVoteData( HttpServletRequest request )
+    {
+        UrlItem url = new UrlItem( getActionUrl( ACTION_GENERATE_RANDOM_VOTE_DATA ) );
+
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_GENERATE_RANDOM_VOTE_DATA, url.getUrl( ),
+                AdminMessage.TYPE_CONFIRMATION );
+
+        return redirect( request, strMessageUrl );
+    }
+
+    /**
+     * Generation of randomize vote data
+     */
+    @Action( ACTION_GENERATE_RANDOM_VOTE_DATA )
+    public String getGenerateRandomVoteData( HttpServletRequest request ) throws UserNotSignedException
+    {
+    	DocumentFilter documentFilter = new DocumentFilter();
+    	documentFilter.setCodeDocumentType( "pb_project" );
+    	List<Document> documents = new ArrayList<Document>( DocumentHome.findByFilter( documentFilter, request.getLocale() ) );
+
+    	List<Campaign> campaigns = new ArrayList<Campaign>( CampaignHome.getCampaignsList() );
+    	
+    	// Add 10 votes
+    	for (int i = 0; i < 10; i++) {
+			
+    		Vote vote = new Vote();
+			
+    		// User id
+    		vote.setUserId( UUID.randomUUID().toString() );
+			
+    		// Project data
+    		Document document = documents.get( RandomUtils.nextInt( 0, documents.size()) );
+    		vote.setProjetId( document.getId() );
+    		vote.setTitle( document.getTitle() );
+    		vote.setLocalisation( "" + document.getAttribute( "district" ).getId() );
+    		vote.setThematique( document.getAttribute( "theme" ).getTextValue() );
+
+    		// Vote date
+    		Campaign campaign = campaigns.get( RandomUtils.nextInt( 0, campaigns.size()) );
+    		Collection<CampaignPhase> phases = CampaignPhaseHome.getCampaignPhasesListByCampaign( campaign.getCode() );
+    		CampaignPhase votePhase = phases.stream().filter( p -> "VOTE".contentEquals( p.getCodePhaseType() ) ).findFirst().get();
+    		
+    		int voteNbDays = Math.round( ( votePhase.getEnd().getTime() - votePhase.getStart().getTime() ) / (1000  * 60 * 60 * 24) );
+    		Calendar cal = Calendar.getInstance();
+    		cal.setTime( votePhase.getStart() );
+    		cal.add(Calendar.DAY_OF_WEEK, RandomUtils.nextInt(0, voteNbDays ));
+    		vote.setDateVote( new Timestamp(cal.getTime().getTime()) );
+
+    		// Empty fields
+    		vote.setIpAddress( "127.0.0.1" );
+    		
+        	VoteHome.create( vote );
+		}
+    	
+        return getManageVoteDashboard( request );
+    }
 }

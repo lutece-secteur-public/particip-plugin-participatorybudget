@@ -54,9 +54,9 @@ import fr.paris.lutece.util.filesystem.UploadUtil;
 
 public class CampaignUploadHandler extends AbstractAsynchronousUploadHandler
 {
-    public static final String BEAN_NAME = "participatorybudget.campaignbpUploadHandler";
+    public static final String BEAN_NAME = "participatorybudget.campaignUploadHandler";
     private static final int DEFAULT_MAX_FILE_SIZE = 2097152;
-    private static final String HANDLER_NAME = "campaignbpUploadHandler";
+    private static final String HANDLER_NAME = "campaignUploadHandler";
 
     // Error messages
     private static final String ERROR_MESSAGE_MULTIPLE_UPLOAD = "participatorybudget.upload.message.multipleUpload";

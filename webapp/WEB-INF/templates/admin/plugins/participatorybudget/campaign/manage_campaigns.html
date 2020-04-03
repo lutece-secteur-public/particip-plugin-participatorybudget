@@ -1,4 +1,4 @@
-<#include "managecampaignbp_tabs.html" />
+<#include "manage_campaign_tabs.html" />
 <@tabs tab="campaign" />
 
 <@rowBox>
@@ -6,7 +6,7 @@
         <@headerButtons>
 
         
-        <form class="form-inline pull-right" method="post" name="manage_campaigns" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp">
+        <form class="form-inline pull-right" method="post" name="manage_campaigns" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaign.jsp">
             <!-- Add pull-right to class1 -->
             <@actionButtons button1Name="view_createCampaign" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campaigns.buttonAdd" />
         </form>
@@ -51,7 +51,7 @@
                 ${campaign.moderationDuration}
             </td>
         <td>
-            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp?view=modifyCampaign&id=${campaign.id}"
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaign.jsp?view=modifyCampaign&id=${campaign.id}"
                class="btn btn-primary btn-small" title="#i18n{portal.util.labelModify}">
                 <i class="fa fa-pencil"></i>
             </a>
@@ -61,7 +61,7 @@
                 <i class="fa fa-clone"></i>
             </a>
 
-            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp?action=confirmRemoveCampaign&id=${campaign.id}"
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaign.jsp?action=confirmRemoveCampaign&id=${campaign.id}"
                class="btn btn-danger btn-small" title="#i18n{portal.util.labelDelete}" >
                 <i class="fa fa-trash"></i>
             </a>

@@ -50,7 +50,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * This class provides the user interface to manage CampaignTheme features ( manage, create, modify, remove )
  */
-@Controller( controllerJsp = "ManageCampaignThemes.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGNBP_MANAGEMENT" )
+@Controller( controllerJsp = "ManageCampaignThemes.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGN_MANAGEMENT" )
 public class CampaignThemeJspBean extends ManageCampaignJspBean
 {
 

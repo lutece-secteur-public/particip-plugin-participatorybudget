@@ -16,7 +16,7 @@
     
     
       <!-- AsynchronousUpload -->
-	<bean id="participatorybudget.campaignbpUploadHandler" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignUploadHandler" />
+	<bean id="participatorybudget.campaignUploadHandler" class="fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignUploadHandler" />
     
 
     <!-- CAMPAIGN_SERVICE BEAN -->

@@ -55,7 +55,7 @@ import fr.paris.lutece.util.url.UrlItem;
 /**
  * This class provides the user interface to manage CampaignPhase features ( manage, create, modify, remove )
  */
-@Controller( controllerJsp = "ManageCampaignPhases.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGNBP_MANAGEMENT" )
+@Controller( controllerJsp = "ManageCampaignPhases.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGN_MANAGEMENT" )
 public class CampaignPhaseJspBean extends ManageCampaignJspBean
 {
 

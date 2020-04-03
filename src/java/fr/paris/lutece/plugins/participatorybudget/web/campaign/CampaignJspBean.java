@@ -60,7 +60,7 @@ import fr.paris.lutece.util.url.UrlItem;
 /**
  * This class provides the user interface to manage Campaign features ( manage, create, modify, remove )
  */
-@Controller( controllerJsp = "ManageCampaignbp.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGNBP_MANAGEMENT" )
+@Controller( controllerJsp = "ManageCampaign.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGN_MANAGEMENT" )
 public class CampaignJspBean extends ManageCampaignJspBean
 {
     private static final long serialVersionUID = 7914078112474732968L;
@@ -89,7 +89,7 @@ public class CampaignJspBean extends ManageCampaignJspBean
     private static final String MARK_CAMPAIGN_LIST = "campaign_list";
     private static final String MARK_CAMPAIGN = "campaign";
 
-    private static final String JSP_MANAGE_CAMPAIGNS = "jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp";
+    private static final String JSP_MANAGE_CAMPAIGNS = "jsp/admin/plugins/participatorybudget/campaign/ManageCampaign.jsp";
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_CAMPAIGN = "participatorybudget.message.confirmRemoveCampaign";

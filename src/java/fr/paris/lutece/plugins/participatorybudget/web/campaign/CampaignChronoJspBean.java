@@ -60,7 +60,7 @@ import fr.paris.lutece.util.url.UrlItem;
 /**
  * This class provides the user interface to manage Ideation Campaigns feature : generating new campaign
  */
-@Controller( controllerJsp = "ManageCampaignChrono.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGNBP_MANAGEMENT" )
+@Controller( controllerJsp = "ManageCampaignChrono.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGN_MANAGEMENT" )
 public class CampaignChronoJspBean extends ManageCampaignJspBean
 {
 

@@ -24,6 +24,13 @@
 
 <div class="container">
 
+	<@boxHeader title='' boxTools=true>
+		<@tform method='post' action='jsp/admin/plugins/participatorybudget/vote/VoteDashboard.jsp?action=confirmGenerateRandomVoteData'>
+			<@button type='submit' buttonIcon='plus' title='#i18n{participatorybudget.vote_dashboard.global.buttonGenerateRandomVoteData}' />
+		</@tform>
+	</@boxHeader>
+
+
 	<@messages infos=infos warnings=warnings errors=errors />
 		
 	<#-- ********************************************************************************************* -->
