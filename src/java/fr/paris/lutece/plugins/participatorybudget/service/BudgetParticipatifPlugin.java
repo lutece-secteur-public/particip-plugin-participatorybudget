@@ -52,6 +52,6 @@ public class BudgetParticipatifPlugin extends Plugin
         FollowListenerService.registerListener( Document.PROPERTY_RESOURCE_TYPE, new BudgetFollowListener( ) );
         MyInfosListenerService.registerListener( Document.PROPERTY_RESOURCE_TYPE, new BudgetMyInfosListener( ) );
         FavoriteListenerService.registerListener( Document.PROPERTY_RESOURCE_TYPE, new BudgetFavoriteListener( ) );
-        FavoriteListenerService.registerListener( "IDEE", new BudgetFavoriteListener( ) );
+        FavoriteListenerService.registerListener( "PROPOSAL", new BudgetFavoriteListener( ) );
     }
 }

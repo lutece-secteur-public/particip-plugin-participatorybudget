@@ -481,7 +481,7 @@ module.provider=Mairie de Paris
 message.mandatoryField=Le champ "{0}" est obligatoire.
 
 # Title of the task
-task_notify_notifydocumentbp_title=Notifier une idee notifydocumentbp
+task_notify_notifydocumentbp_title=Notifier une proposal notifydocumentbp
 task_notifydocumentbp_title=Notifier un document bp
 
 # Config
@@ -499,16 +499,16 @@ task_notify_notifydocumentbp_config.label_subject_comment=subject_comment
 task_notify_notifydocumentbp_config.label_message=message
 task_notify_notifydocumentbp_config.label_message_comment=Vous pouvez utiliser ces freemarkers <br> &#36;&#123;pseudo_abonnee&#125; : pseudo de l'abonn\u00e9e <br> &#36;&#123;titre_projet&#125; : titre du projet <br> &#36;&#123;numero_lutece_document&#125; : num\u00e9ro Lut\u00e9ce du document <br> &#36;&#123;url_fiche&#125; : L'URL permettant d'accéder à la fiche Lut\u00e9ce du projet gagnant <br> &#36;&#123;phase_actuelle_projet&#125; : phase actuelle du projet <br> &#36;&#123;message_notification&#125; : contenu champ Eudonet EVENT_7.EVT31 
 
-task_change_idee_status.labelUnpublishedIdee= D\u00e9publi\u00e9 une idee
-task_change_idee_status.labelPublishedIdee= Publi\u00e9 une idee
+task_change_proposal_status.labelUnpublishedProposal= D\u00e9publi\u00e9 une proposal
+task_change_proposal_status.labelPublishedProposal= Publi\u00e9 une proposal
 
 
-task_change_idee_status.title=Changer le statut d une idee
-task_change_idee_status.labelPublishedIdee=Publi\u00e9 l idee
-task_change_idee_status.labelUnpublishedIdee=Dépubli\u00e9 l idee
+task_change_proposal_status.title=Changer le statut d une proposal
+task_change_proposal_status.labelPublishedProposal=Publi\u00e9 l proposal
+task_change_proposal_status.labelUnpublishedProposal=Dépubli\u00e9 l proposal
 
-task_change_idee_status_config.label_status=Statut
-task_change_idee_status_config.label_status_comment=Nouveau statut de l idee
+task_change_proposal_status_config.label_status=Statut
+task_change_proposal_status_config.label_status_comment=Nouveau statut de l proposal
 task_notify_notifydocumentbp_config.label_abonnes= Abonn\u00e9s
 task_notify_notifydocumentbp_config.label_followers= Participants
 

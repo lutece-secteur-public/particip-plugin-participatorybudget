@@ -162,31 +162,31 @@ function doVote( idResource )
 	    	else if(data.errorCode =='JSON_ERROR_ALREADY_VOTED_ARRONDISSEMENT')
         {
 					$('.modal-title').append('Vous avez atteint le nombre maximal de votes possibles pour des projets d\'arrondissement. Vous avez encore la possibilité de voter pour des projets "Tout Paris"');
-			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-idee" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=localisation_text:whole_city" class="btn btn-std" onClick="voteArrond();">Voter pour des projets "Tout Paris"</a></p>');
+			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=localisation_text:whole_city" class="btn btn-std" onClick="voteArrond();">Voter pour des projets "Tout Paris"</a></p>');
 			 		$('#myModal').modal('toggle');
         }
 		    else if(data.errorCode =='JSON_ERROR_ALREADY_VOTED_TOUT_PARIS')
         {
 					$('.modal-title').append('Vous avez atteint le nombre maximal de votes possibles pour des projets "Tout Paris". Vous avez encore la possibilité de voter pour des projets d\'arrondissement.');
-			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-idee" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=localisation_text:' +arrondUser+ '">Voter pour des projets d\'arrondissement</a></p>');
+			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=localisation_text:' +arrondUser+ '">Voter pour des projets d\'arrondissement</a></p>');
 			 		$('#myModal').modal('toggle');
         }
 		   	else if(data.errorCode == "JSON_ERROR_VOTE_USER_ARROND")
 				{
 				  $('.modal-title').append("Il ne vous est pas possible de voter pour ce projet, car celui-ci n'est pas situé dans votre arrondissement de vote. Si vous n'avez pas validé définitivement vos votes, vous pouvez modifier votre arrondissement de vote au sein de votre profil, accessible dans le menu 'Mon compte'").css("text-align","center");
-			 		$('.modal-footer').append('<a class="btn btn-idee" href="javascript:location.reload();">Ok</a>').css("text-align","center");
+			 		$('.modal-footer').append('<a class="btn btn-proposal" href="javascript:location.reload();">Ok</a>').css("text-align","center");
 			 		$('#myModal').modal('toggle');
 				}
 				else if(data.errorCode == "ERROR_CODE_USER_VOTED_MAX")
 				{
 				   $('.modal-title').append('Vous avez atteint le nombre maximal de votes possibles pour des projets "Tout Paris" et d\'arrondissement.<br><br>Pour valider vos votes, cliquez sur la barre verte "Mes votes", puis sur le bouton "Valider mes votes".');
-				   $('.modal-footer').append('<p class="text-center"><button type="button" class="btn btn-idee" data-dismiss="modal">Fermer</button></p>');
+				   $('.modal-footer').append('<p class="text-center"><button type="button" class="btn btn-proposal" data-dismiss="modal">Fermer</button></p>');
 			 	   $('#myModal').modal('toggle');
 		   	}
 				else if(data.errorCode == "USER_ALREADY_VOTED")
 				{
 			  	$('.modal-title').append("Vous avez déja voté sur ce projet");
-			   	$('.modal-footer').append('<a class="btn btn-idee" href="jsp/site/Portal.jsp?page=mesVotes&view=myVotes">Voir mes votes</a>').css("text-align","center");
+			   	$('.modal-footer').append('<a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=mesVotes&view=myVotes">Voir mes votes</a>').css("text-align","center");
 		 	   	$('#myModal').modal('toggle');
 		   	}
         else
@@ -357,7 +357,7 @@ function popup()
  $('.modal-title').html("");
  $('.modal-footer').html("");
  $('.modal-title').append("Vous souhaitez voter pour des projets qui ne sont pas dans votre arrondissement de lieu de vie ou de travail enregistré dans votre profil.");
- $('.modal-footer').append("<a class='btn btn-idee' onClick='getInfoUser();'>J'ANNULE MES VOTES ET JE MODIFIE MON ARRONDISSEMENT</a> <a class='btn btn-std' data-dismiss='modal'>JE CONSERVE MON ARRONDISSEMENT</a>");
+ $('.modal-footer').append("<a class='btn btn-proposal' onClick='getInfoUser();'>J'ANNULE MES VOTES ET JE MODIFIE MON ARRONDISSEMENT</a> <a class='btn btn-std' data-dismiss='modal'>JE CONSERVE MON ARRONDISSEMENT</a>");
  $('#myModal').modal('toggle');
 };
 
@@ -366,7 +366,7 @@ function popupAccountNotVerified()
  $('.modal-title').html("");
  $('.modal-footer').html("");
  $('.modal-title').append("Pour utiliser le site du Budget Participatif, merci de valider votre compte en cliquant sur le lien qui vous a &eacute;t&eacute; envoy&eacute; par mail.");
- $('.modal-footer').append("<a class='btn btn-idee' onClick='reSendValidationMail();'>Me renvoyer le mail de validation de compte</a>").css("text-align","center");
+ $('.modal-footer').append("<a class='btn btn-proposal' onClick='reSendValidationMail();'>Me renvoyer le mail de validation de compte</a>").css("text-align","center");
  $('#myModal').modal('toggle');
 };
 

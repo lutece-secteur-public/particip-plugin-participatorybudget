@@ -53,7 +53,7 @@ public class VotesSolrAddon implements ISolrSearchAppAddOn
 {
 
     private static final String MARK_RESULTS_LIST = "results_list";
-    private static final String MARK_RESULTS_IDEES_MAP = "results_idee_map";
+    private static final String MARK_RESULTS_PROPOSALS_MAP = "results_proposal_map";
     private static final String PARAMETER_PREV_ITEMS_PER_PAGE = "prev_items_per_page";
     private static final String MARK_PREV_ITEMS_PER_PAGE = "prev_items_per_page";
 
@@ -91,7 +91,7 @@ public class VotesSolrAddon implements ISolrSearchAppAddOn
                 AppLogService.error( "participatorybudget, VotesSolrSaddon, Error parsing DocPortletId " + solrDocPortletId );
             }
         }
-        model.put( MARK_RESULTS_IDEES_MAP, mapAdditionalInfos );
+        model.put( MARK_RESULTS_PROPOSALS_MAP, mapAdditionalInfos );
 
         model.put( MARK_PREV_ITEMS_PER_PAGE, request.getParameter( PARAMETER_PREV_ITEMS_PER_PAGE ) );
     }

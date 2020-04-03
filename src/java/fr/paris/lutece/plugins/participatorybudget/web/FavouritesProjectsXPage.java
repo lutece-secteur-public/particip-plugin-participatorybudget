@@ -57,7 +57,7 @@ import fr.paris.lutece.portal.util.mvc.xpage.annotations.Controller;
 import fr.paris.lutece.portal.web.xpages.XPage;
 
 /**
- * This class provides the user interface to view Idee xpages
+ * This class provides the user interface to view Proposal xpages
  */
 
 @Controller( xpageName = "myFavourites", pageTitleI18nKey = "participatorybudget.xpage.projectsFavourite.pageTitle", pagePathI18nKey = "participatorybudget.xpage.projectsFavourite.pagePathLabel" )
