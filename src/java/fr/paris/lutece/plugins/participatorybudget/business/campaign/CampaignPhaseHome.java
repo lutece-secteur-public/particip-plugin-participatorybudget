@@ -41,49 +41,49 @@ import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 /**
- * This class provides instances management methods (create, find, ...) for CampagnePhase objects
+ * This class provides instances management methods (create, find, ...) for CampaignPhase objects
  */
 
-public final class CampagnePhaseHome
+public final class CampaignPhaseHome
 {
     // Static variable pointed at the DAO instance
 
-    private static ICampagnePhaseDAO _dao = SpringContextService.getBean( "participatorybudget.campagnePhaseDAO" );
+    private static ICampaignPhaseDAO _dao = SpringContextService.getBean( "participatorybudget.campaignPhaseDAO" );
     private static Plugin _plugin = PluginService.getPlugin( "participatorybudget" );
 
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagnePhaseHome( )
+    private CampaignPhaseHome( )
     {
     }
 
     /**
-     * Create an instance of the campagnePhase class
+     * Create an instance of the campaignPhase class
      * 
-     * @param campagnePhase
-     *            The instance of the CampagnePhase which contains the informations to store
-     * @return The instance of campagnePhase which has been created with its primary key.
+     * @param campaignPhase
+     *            The instance of the CampaignPhase which contains the informations to store
+     * @return The instance of campaignPhase which has been created with its primary key.
      */
-    public static CampagnePhase create( CampagnePhase campagnePhase )
+    public static CampaignPhase create( CampaignPhase campaignPhase )
     {
-        _dao.insert( campagnePhase, _plugin );
+        _dao.insert( campaignPhase, _plugin );
 
-        return campagnePhase;
+        return campaignPhase;
     }
 
     /**
-     * Update of the campagnePhase which is specified in parameter
+     * Update of the campaignPhase which is specified in parameter
      * 
-     * @param campagnePhase
-     *            The instance of the CampagnePhase which contains the data to store
-     * @return The instance of the campagnePhase which has been updated
+     * @param campaignPhase
+     *            The instance of the CampaignPhase which contains the data to store
+     * @return The instance of the campaignPhase which has been updated
      */
-    public static CampagnePhase update( CampagnePhase campagnePhase )
+    public static CampaignPhase update( CampaignPhase campaignPhase )
     {
-        _dao.store( campagnePhase, _plugin );
+        _dao.store( campaignPhase, _plugin );
 
-        return campagnePhase;
+        return campaignPhase;
     }
 
     /**
@@ -100,10 +100,10 @@ public final class CampagnePhaseHome
     }
 
     /**
-     * Remove the campagnePhase whose identifier is specified in parameter
+     * Remove the campaignPhase whose identifier is specified in parameter
      * 
      * @param nKey
-     *            The campagnePhase Id
+     *            The campaignPhase Id
      */
     public static void remove( int nKey )
     {
@@ -114,56 +114,56 @@ public final class CampagnePhaseHome
     // Finders
 
     /**
-     * Returns an instance of a campagnePhase whose identifier is specified in parameter
+     * Returns an instance of a campaignPhase whose identifier is specified in parameter
      * 
      * @param nKey
-     *            The campagnePhase primary key
-     * @return an instance of CampagnePhase
+     *            The campaignPhase primary key
+     * @return an instance of CampaignPhase
      */
-    public static CampagnePhase findByPrimaryKey( int nKey )
+    public static CampaignPhase findByPrimaryKey( int nKey )
     {
         return _dao.load( nKey, _plugin );
     }
 
     /**
-     * Load the data of all the campagnePhase objects and returns them in form of an ordered list
+     * Load the data of all the campaignPhase objects and returns them in form of an ordered list
      * 
-     * @return the collection which contains the data of all the campagnePhase objects
+     * @return the collection which contains the data of all the campaignPhase objects
      */
-    public static List<CampagnePhase> getCampagnePhasesOrderedList( )
+    public static List<CampaignPhase> getCampaignPhasesOrderedList( )
     {
-        return _dao.selectCampagnePhasesOrderedList( _plugin );
+        return _dao.selectCampaignPhasesOrderedList( _plugin );
     }
 
     /**
-     * Load the data of all the campagnePhase objects and returns them in form of a collection
+     * Load the data of all the campaignPhase objects and returns them in form of a collection
      * 
-     * @return the collection which contains the data of all the campagnePhase objects
+     * @return the collection which contains the data of all the campaignPhase objects
      */
-    public static Collection<CampagnePhase> getCampagnePhasesList( )
+    public static Collection<CampaignPhase> getCampaignPhasesList( )
     {
-        return _dao.selectCampagnePhasesList( _plugin );
+        return _dao.selectCampaignPhasesList( _plugin );
     }
 
     /**
-     * Load the id of all the campagnePhase objects and returns them in form of a collection
+     * Load the id of all the campaignPhase objects and returns them in form of a collection
      * 
-     * @return the collection which contains the id of all the campagnePhase objects
+     * @return the collection which contains the id of all the campaignPhase objects
      */
-    public static Collection<Integer> getIdCampagnePhasesList( )
+    public static Collection<Integer> getIdCampaignPhasesList( )
     {
-        return _dao.selectIdCampagnePhasesList( _plugin );
+        return _dao.selectIdCampaignPhasesList( _plugin );
     }
 
     /**
-     * Load the data of all the campagnePhase objects for a campagne and returns them in form of a collection
+     * Load the data of all the campaignPhase objects for a campaign and returns them in form of a collection
      * 
-     * @param campagneCode
-     *            the campagne code
-     * @return the collection which contains the data of all the campagnePhase objects
+     * @param campaignCode
+     *            the campaign code
+     * @return the collection which contains the data of all the campaignPhase objects
      */
-    public static Collection<CampagnePhase> getCampagnePhasesListByCampagne( String campagneCode )
+    public static Collection<CampaignPhase> getCampaignPhasesListByCampaign( String campaignCode )
     {
-        return _dao.selectCampagnePhasesListByCampagne( campagneCode, _plugin );
+        return _dao.selectCampaignPhasesListByCampaign( campaignCode, _plugin );
     }
 }

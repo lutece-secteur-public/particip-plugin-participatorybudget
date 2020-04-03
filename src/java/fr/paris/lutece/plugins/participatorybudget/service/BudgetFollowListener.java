@@ -61,7 +61,7 @@ public class BudgetFollowListener implements IFollowListener
     {
         // if ( strExtendableResourceType.equals( RatingAddOnService.PROPERTY_RESOURCE_TYPE ) )
         // {
-        // if ( CampagnesService.IsPhaseClosed(CampagneHome.getLastCampagne().getCode(),"SOUMISSION") )
+        // if ( CampaignsService.IsPhaseClosed(CampaignHome.getLastCampaign().getCode(),"SOUMISSION") )
         // {
         // return false;
         // }

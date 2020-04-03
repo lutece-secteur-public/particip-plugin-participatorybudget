@@ -39,29 +39,29 @@ import java.util.List;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 
 /**
- * ICampagnePhaseDAO Interface
+ * ICampaignPhaseDAO Interface
  */
-public interface ICampagnePhaseDAO
+public interface ICampaignPhaseDAO
 {
     /**
      * Insert a new record in the table.
      * 
-     * @param campagnePhase
-     *            instance of the CampagnePhase object to insert
+     * @param campaignPhase
+     *            instance of the CampaignPhase object to insert
      * @param plugin
      *            the Plugin
      */
-    void insert( CampagnePhase campagnePhase, Plugin plugin );
+    void insert( CampaignPhase campaignPhase, Plugin plugin );
 
     /**
      * Update the record in the table
      * 
-     * @param campagnePhase
-     *            the reference of the CampagnePhase
+     * @param campaignPhase
+     *            the reference of the CampaignPhase
      * @param plugin
      *            the Plugin
      */
-    void store( CampagnePhase campagnePhase, Plugin plugin );
+    void store( CampaignPhase campaignPhase, Plugin plugin );
 
     /**
      * Change a campaign code
@@ -79,7 +79,7 @@ public interface ICampagnePhaseDAO
      * Delete a record from the table
      * 
      * @param nKey
-     *            The identifier of the CampagnePhase to delete
+     *            The identifier of the CampaignPhase to delete
      * @param plugin
      *            the Plugin
      */
@@ -92,48 +92,48 @@ public interface ICampagnePhaseDAO
      * Load the data from the table
      * 
      * @param nKey
-     *            The identifier of the campagnePhase
+     *            The identifier of the campaignPhase
      * @param plugin
      *            the Plugin
-     * @return The instance of the campagnePhase
+     * @return The instance of the campaignPhase
      */
-    CampagnePhase load( int nKey, Plugin plugin );
+    CampaignPhase load( int nKey, Plugin plugin );
 
     /**
-     * Load the data of all the campagnePhase objects and returns them as an ordered list
+     * Load the data of all the campaignPhase objects and returns them as an ordered list
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagnePhase objects
+     * @return The collection which contains the data of all the campaignPhase objects
      */
-    List<CampagnePhase> selectCampagnePhasesOrderedList( Plugin plugin );
+    List<CampaignPhase> selectCampaignPhasesOrderedList( Plugin plugin );
 
     /**
-     * Load the data of all the campagnePhase objects and returns them as a collection
+     * Load the data of all the campaignPhase objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagnePhase objects
+     * @return The collection which contains the data of all the campaignPhase objects
      */
-    Collection<CampagnePhase> selectCampagnePhasesList( Plugin plugin );
+    Collection<CampaignPhase> selectCampaignPhasesList( Plugin plugin );
 
     /**
-     * Load the id of all the campagnePhase objects and returns them as a collection
+     * Load the id of all the campaignPhase objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the id of all the campagnePhase objects
+     * @return The collection which contains the id of all the campaignPhase objects
      */
-    Collection<Integer> selectIdCampagnePhasesList( Plugin plugin );
+    Collection<Integer> selectIdCampaignPhasesList( Plugin plugin );
 
     /**
-     * Load the data of all the campagnePhase objects for a campagne and returns them as a collection
+     * Load the data of all the campaignPhase objects for a campaign and returns them as a collection
      * 
-     * @param campagneCode
-     *            the campagne code
+     * @param campaignCode
+     *            the campaign code
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagnePhase objects
+     * @return The collection which contains the data of all the campaignPhase objects
      */
-    Collection<CampagnePhase> selectCampagnePhasesListByCampagne( String campagneCode, Plugin plugin );
+    Collection<CampaignPhase> selectCampaignPhasesListByCampaign( String campaignCode, Plugin plugin );
 }

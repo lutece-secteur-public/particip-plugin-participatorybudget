@@ -40,22 +40,22 @@ import java.sql.Timestamp;
 import java.io.Serializable;
 
 /**
- * This is the business class for the object CampagnePhase
+ * This is the business class for the object CampaignPhase
  */
-public class CampagnePhase implements Serializable
+public class CampaignPhase implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     // Variables declarations
     private int _nId;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnephase.CodePhaseType.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnephase.CodePhaseType.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaignphase.CodePhaseType.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaignphase.CodePhaseType.size}" )
     private String _strCodePhaseType;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnephase.CodeCampagne.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnephase.CodeCampagne.size}" )
-    private String _strCodeCampagne;
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaignphase.CodeCampaign.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaignphase.CodeCampaign.size}" )
+    private String _strCodeCampaign;
 
     private Timestamp _dateStart;
 
@@ -104,24 +104,24 @@ public class CampagnePhase implements Serializable
     }
 
     /**
-     * Returns the CodeCampagne
+     * Returns the CodeCampaign
      * 
-     * @return The CodeCampagne
+     * @return The CodeCampaign
      */
-    public String getCodeCampagne( )
+    public String getCodeCampaign( )
     {
-        return _strCodeCampagne;
+        return _strCodeCampaign;
     }
 
     /**
-     * Sets the CodeCampagne
+     * Sets the CodeCampaign
      * 
-     * @param strCodeCampagne
-     *            The CodeCampagne
+     * @param strCodeCampaign
+     *            The CodeCampaign
      */
-    public void setCodeCampagne( String strCodeCampagne )
+    public void setCodeCampaign( String strCodeCampaign )
     {
-        _strCodeCampagne = strCodeCampagne;
+        _strCodeCampaign = strCodeCampaign;
     }
 
     /**

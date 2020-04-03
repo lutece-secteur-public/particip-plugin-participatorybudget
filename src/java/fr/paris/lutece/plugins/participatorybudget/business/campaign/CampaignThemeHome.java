@@ -42,49 +42,49 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 import java.util.Collection;
 
 /**
- * This class provides instances management methods (create, find, ...) for CampagneTheme objects
+ * This class provides instances management methods (create, find, ...) for CampaignTheme objects
  */
 
-public final class CampagneThemeHome
+public final class CampaignThemeHome
 {
     // Static variable pointed at the DAO instance
 
-    private static ICampagneThemeDAO _dao = SpringContextService.getBean( "participatorybudget.campagneThemeDAO" );
+    private static ICampaignThemeDAO _dao = SpringContextService.getBean( "participatorybudget.campaignThemeDAO" );
     private static Plugin _plugin = PluginService.getPlugin( "participatorybudget" );
 
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagneThemeHome( )
+    private CampaignThemeHome( )
     {
     }
 
     /**
-     * Create an instance of the campagneTheme class
+     * Create an instance of the campaignTheme class
      * 
-     * @param campagneTheme
-     *            The instance of the CampagneTheme which contains the informations to store
-     * @return The instance of campagneTheme which has been created with its primary key.
+     * @param campaignTheme
+     *            The instance of the CampaignTheme which contains the informations to store
+     * @return The instance of campaignTheme which has been created with its primary key.
      */
-    public static CampagneTheme create( CampagneTheme campagneTheme )
+    public static CampaignTheme create( CampaignTheme campaignTheme )
     {
-        _dao.insert( campagneTheme, _plugin );
+        _dao.insert( campaignTheme, _plugin );
 
-        return campagneTheme;
+        return campaignTheme;
     }
 
     /**
-     * Update of the campagneTheme which is specified in parameter
+     * Update of the campaignTheme which is specified in parameter
      * 
-     * @param campagneTheme
-     *            The instance of the CampagneTheme which contains the data to store
-     * @return The instance of the campagneTheme which has been updated
+     * @param campaignTheme
+     *            The instance of the CampaignTheme which contains the data to store
+     * @return The instance of the campaignTheme which has been updated
      */
-    public static CampagneTheme update( CampagneTheme campagneTheme )
+    public static CampaignTheme update( CampaignTheme campaignTheme )
     {
-        _dao.store( campagneTheme, _plugin );
+        _dao.store( campaignTheme, _plugin );
 
-        return campagneTheme;
+        return campaignTheme;
     }
 
     /**
@@ -101,10 +101,10 @@ public final class CampagneThemeHome
     }
 
     /**
-     * Remove the campagneTheme whose identifier is specified in parameter
+     * Remove the campaignTheme whose identifier is specified in parameter
      * 
      * @param nKey
-     *            The campagneTheme Id
+     *            The campaignTheme Id
      */
     public static void remove( int nKey )
     {
@@ -115,66 +115,66 @@ public final class CampagneThemeHome
     // Finders
 
     /**
-     * Returns an instance of a campagneTheme whose identifier is specified in parameter
+     * Returns an instance of a campaignTheme whose identifier is specified in parameter
      * 
      * @param nKey
-     *            The campagneTheme primary key
-     * @return an instance of CampagneTheme
+     *            The campaignTheme primary key
+     * @return an instance of CampaignTheme
      */
-    public static CampagneTheme findByPrimaryKey( int nKey )
+    public static CampaignTheme findByPrimaryKey( int nKey )
     {
         return _dao.load( nKey, _plugin );
     }
 
     /**
-     * Returns an instance of a campagneTheme whose identifier is specified in parameter
+     * Returns an instance of a campaignTheme whose identifier is specified in parameter
      * 
      * @param codeTheme
      *            The codeTheme
-     * @return an instance of CampagneTheme
+     * @return an instance of CampaignTheme
      */
-    public static CampagneTheme findByCodeTheme( String codeTheme )
+    public static CampaignTheme findByCodeTheme( String codeTheme )
     {
         return _dao.loadByCodeTheme( codeTheme, _plugin );
     }
 
     /**
-     * Load the data of all the campagneTheme objects and returns them in form of a collection
+     * Load the data of all the campaignTheme objects and returns them in form of a collection
      * 
-     * @return the collection which contains the data of all the campagneTheme objects
+     * @return the collection which contains the data of all the campaignTheme objects
      */
-    public static Collection<CampagneTheme> getCampagneThemesList( )
+    public static Collection<CampaignTheme> getCampaignThemesList( )
     {
-        return _dao.selectCampagneThemesList( _plugin );
+        return _dao.selectCampaignThemesList( _plugin );
     }
 
     /**
-     * Load the id of all the campagneTheme objects and returns them in form of a collection
+     * Load the id of all the campaignTheme objects and returns them in form of a collection
      * 
-     * @return the collection which contains the id of all the campagneTheme objects
+     * @return the collection which contains the id of all the campaignTheme objects
      */
-    public static Collection<Integer> getIdCampagneThemesList( )
+    public static Collection<Integer> getIdCampaignThemesList( )
     {
-        return _dao.selectIdCampagneThemesList( _plugin );
+        return _dao.selectIdCampaignThemesList( _plugin );
     }
 
     /**
-     * Load the data of all the campagneTheme objects for a campagne and returns them in form of a collection
+     * Load the data of all the campaignTheme objects for a campaign and returns them in form of a collection
      * 
-     * @return the collection which contains the data of all the campagneTheme objects
+     * @return the collection which contains the data of all the campaignTheme objects
      */
-    public static Collection<CampagneTheme> getCampagneThemesListByCampagne( String codeCampagne )
+    public static Collection<CampaignTheme> getCampaignThemesListByCampaign( String codeCampaign )
     {
-        return _dao.selectCampagneThemesListByCampagne( codeCampagne, _plugin );
+        return _dao.selectCampaignThemesListByCampaign( codeCampaign, _plugin );
     }
 
     /**
-     * Load the data of all the campagneTheme objects mapped from campagne code and returns them in form of a map
+     * Load the data of all the campaignTheme objects mapped from campaign code and returns them in form of a map
      * 
-     * @return the collection which contains the data of all the campagneTheme objects
+     * @return the collection which contains the data of all the campaignTheme objects
      */
-    public static Map<String, List<CampagneTheme>> getCampagneThemesMapByCampagne( )
+    public static Map<String, List<CampaignTheme>> getCampaignThemesMapByCampaign( )
     {
-        return _dao.selectCampagneThemesMapByCampagne( _plugin );
+        return _dao.selectCampaignThemesMapByCampaign( _plugin );
     }
 }

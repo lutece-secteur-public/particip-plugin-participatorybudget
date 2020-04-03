@@ -1,5 +1,5 @@
-<#include "managecampagnebp_tabs.html" />
-<@tabs tab="campagnechrono" />
+<#include "managecampaignbp_tabs.html" />
+<@tabs tab="campaignchrono" />
 
 <@rowBox>
     
@@ -29,12 +29,12 @@
 						<#assign monthDurationMS = yearDurationMS /  12 >
 						<#assign   dayDurationMS = yearDurationMS / 365 >
 				
-			            <#list ideationcampagne_list as ideationcampagne >
+			            <#list ideationcampaign_list as ideationcampaign >
 
 							<#-- Search for begin/end of the campaign (from the first day of the first month, to the last day of the last month) -->
-							<#assign beginDate = phase_map[ideationcampagne.code][0].start>					
-							<#assign endDate = phase_map[ideationcampagne.code][0].end>
-							<#list phase_map[ideationcampagne.code] as phase>
+							<#assign beginDate = phase_map[ideationcampaign.code][0].start>					
+							<#assign endDate = phase_map[ideationcampaign.code][0].end>
+							<#list phase_map[ideationcampaign.code] as phase>
 								<#if phase.start lt beginDate><#assign beginDate = phase.start></#if>
 								<#if phase.end   gt   endDate><#assign   endDate = phase.end  ></#if>
 							</#list>
@@ -47,13 +47,13 @@
 
 					        <tr>
 					            <input type="hidden" id="id" name="id" />
-					            <td>${ideationcampagne.id!'?'}</td>
-					            <td>${ideationcampagne.code!'?)'}</td>
-					            <td><a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp?view=modifyCampagne&id=${ideationcampagne.id!'?'}">${ideationcampagne.title!'?'}</a></td>
-					            <td>${ideationcampagne.active?string!'?'}</td>
+					            <td>${ideationcampaign.id!'?'}</td>
+					            <td>${ideationcampaign.code!'?)'}</td>
+					            <td><a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp?view=modifyCampaign&id=${ideationcampaign.id!'?'}">${ideationcampaign.title!'?'}</a></td>
+					            <td>${ideationcampaign.active?string!'?'}</td>
 					            
 					            <td>
-						            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp?action=cloneCampaignChrono&campaign_id=${ideationcampagne.id!'?'}"
+						            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp?action=cloneCampaignChrono&campaign_id=${ideationcampaign.id!'?'}"
 						               class="btn btn-primary btn-small" title="#i18n{participatorybudget.manage_campaignchrono.buttonClone}" >
 						                <i class="fa fa-clone"></i>
 						            </a>
@@ -72,12 +72,12 @@
 					            	</div>
 					   	         
 						            <#-- Display phase rows -->
-									<#list phase_map[ideationcampagne.code] as phase>
+									<#list phase_map[ideationcampaign.code] as phase>
 										<#assign  leftLimitFraction = (phase.start?long - beginMonth?long) / (endMonth?long - beginMonth?long) >
 										<#assign rightLimitFraction = (phase.end?long - beginMonth?long) / (endMonth?long - beginMonth?long) >
 
 										<div style="width:100%; border-bottom:1px solid rgba(100,100,100,0.1); white-space:nowrap; background:linear-gradient(90deg, #e8e8e8 calc(100% * ${leftLimitFraction?c}), #ffc871 calc(100% * ${leftLimitFraction?c}) calc(100% * ${rightLimitFraction?c}), #e8e8e8 calc(100% * ${rightLimitFraction?c})); position:relative;">
-											<a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnePhases.jsp?view=modifyCampagnePhase&id=${phase.id}">${phase.codePhaseType}</a> <span style="color:darkred">(${phase.start?string["dd.MM.yy, HH:mm"]} &rArr; ${phase.end?string["dd.MM.yy, HH:mm"]})</span>
+											<a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignPhases.jsp?view=modifyCampaignPhase&id=${phase.id}">${phase.codePhaseType}</a> <span style="color:darkred">(${phase.start?string["dd.MM.yy, HH:mm"]} &rArr; ${phase.end?string["dd.MM.yy, HH:mm"]})</span>
 							            	<#list 1..(nbMonths-1) as m>
 												<div style="border-left:1px solid rgba(100,100,100,0.2); position:absolute; left:calc(100% * (${m}/${nbMonths})); bottom:0px; top:0px"></div>
 											</#list>

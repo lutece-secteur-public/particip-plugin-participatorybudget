@@ -40,18 +40,18 @@ import fr.paris.lutece.util.json.ErrorJsonResponse;
  * ParisConnectErrorJsonResponse
  *
  */
-public class CampagneErrorJsonResponse extends ErrorJsonResponse
+public class CampaignErrorJsonResponse extends ErrorJsonResponse
 {
 
     private static final long serialVersionUID = 5100059838966010325L;
     private String _strToken;
 
-    public CampagneErrorJsonResponse( String strErrorCode )
+    public CampaignErrorJsonResponse( String strErrorCode )
     {
         super( strErrorCode );
     }
 
-    public CampagneErrorJsonResponse( String strErrorCode, String strToken )
+    public CampaignErrorJsonResponse( String strErrorCode, String strToken )
     {
         super( strErrorCode );
         _strToken = strToken;

@@ -37,29 +37,29 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 import java.util.Collection;
 
 /**
- * ICampagneImageDAO Interface
+ * ICampaignImageDAO Interface
  */
-public interface ICampagneImageDAO
+public interface ICampaignImageDAO
 {
     /**
      * Insert a new record in the table.
      * 
-     * @param campagneImage
-     *            instance of the CampagneImage object to insert
+     * @param campaignImage
+     *            instance of the CampaignImage object to insert
      * @param plugin
      *            the Plugin
      */
-    void insert( CampagneImage campagneImage, Plugin plugin );
+    void insert( CampaignImage campaignImage, Plugin plugin );
 
     /**
      * Update the record in the table
      * 
-     * @param campagneImage
-     *            the reference of the CampagneImage
+     * @param campaignImage
+     *            the reference of the CampaignImage
      * @param plugin
      *            the Plugin
      */
-    void store( CampagneImage campagneImage, Plugin plugin );
+    void store( CampaignImage campaignImage, Plugin plugin );
 
     /**
      * Change a campaign code
@@ -77,7 +77,7 @@ public interface ICampagneImageDAO
      * Delete a record from the table
      * 
      * @param nKey
-     *            The identifier of the CampagneImage to delete
+     *            The identifier of the CampaignImage to delete
      * @param plugin
      *            the Plugin
      */
@@ -90,28 +90,28 @@ public interface ICampagneImageDAO
      * Load the data from the table
      * 
      * @param nKey
-     *            The identifier of the campagneImage
+     *            The identifier of the campaignImage
      * @param plugin
      *            the Plugin
-     * @return The instance of the campagneImage
+     * @return The instance of the campaignImage
      */
-    CampagneImage load( int nKey, Plugin plugin );
+    CampaignImage load( int nKey, Plugin plugin );
 
     /**
-     * Load the data of all the campagneImage objects and returns them as a collection
+     * Load the data of all the campaignImage objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagneImage objects
+     * @return The collection which contains the data of all the campaignImage objects
      */
-    Collection<CampagneImage> selectCampagneImagesList( Plugin plugin );
+    Collection<CampaignImage> selectCampaignImagesList( Plugin plugin );
 
     /**
-     * Load the id of all the campagneImage objects and returns them as a collection
+     * Load the id of all the campaignImage objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the id of all the campagneImage objects
+     * @return The collection which contains the id of all the campaignImage objects
      */
-    Collection<Integer> selectIdCampagneImagesList( Plugin plugin );
+    Collection<Integer> selectIdCampaignImagesList( Plugin plugin );
 }

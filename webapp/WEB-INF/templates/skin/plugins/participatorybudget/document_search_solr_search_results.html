@@ -75,7 +75,7 @@
 <#-- Retreiving current facets filters -->
 <#assign arr= "">
 <#assign facet_theme = "">
-<#assign facet_campagne = "">
+<#assign facet_campaign = "">
 <#assign facet_handicap = "">
 <#assign facet_qpop = "">
 <#assign step= "">
@@ -91,7 +91,7 @@
 		<#elseif facet?starts_with("theme_text:")>		 <#assign facet_theme = facet?split(":")?last>
 		<#elseif facet?starts_with("popular_area_text:")><#assign facet_qpop = facet?split(":")?last>
 		<#elseif facet?starts_with("handicap_text:")>	 <#assign facet_handicap = facet?split(":")?last>
-		<#elseif facet?starts_with("campaign_text:")>	 <#assign facet_campagne = facet?split(":")?last>
+		<#elseif facet?starts_with("campaign_text:")>	 <#assign facet_campaign = facet?split(":")?last>
 		<#elseif facet?starts_with("step")>				 <#assign step = facet>
 		<#elseif facet?starts_with("status_text:")>      <#assign step = facet>
 		</#if>
@@ -206,8 +206,8 @@
 						<div class="col-md-3 col-xs-12">
 							<#-- campaign-based search -->
 							<label class="select" for="campaign">
-								<select name="fq" id="campaign" onChange="searchArrond()" class="form-control <#if facet_campagne != "">selected</#if>">
-									<#if facet_campagne=="">
+								<select name="fq" id="campaign" onChange="searchArrond()" class="form-control <#if facet_campaign != "">selected</#if>">
+									<#if facet_campaign=="">
 										<option value="" selected="selected">#i18n{participatorybudget.search.form.field.campaign.label} </option>
 									<#else>
 										<option value="" >#i18n{participatorybudget.search.form.field.campaign.reset} </option>
@@ -220,7 +220,7 @@
 											<#if facet.name == "campaign_text">
 												<#list facet.values?sort as value>
 													<#if value.count != 0>
-														<#if facet_campagne == value.name>
+														<#if facet_campaign == value.name>
 															<option value="campaign_text:${(value.name)!''}" selected="selected" >${(value.name)!''} (${(value.count)!''})</option>
 														<#else>
 															<option value="campaign_text:${(value.name)!''}" >${(value.name)!''} (${(value.count)!''})</option>

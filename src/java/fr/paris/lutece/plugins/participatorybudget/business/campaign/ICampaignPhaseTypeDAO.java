@@ -39,25 +39,25 @@ import java.util.List;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 
 /**
- * ICampagneDAO Interface
+ * ICampaignDAO Interface
  */
-public interface ICampagnePhaseTypeDAO
+public interface ICampaignPhaseTypeDAO
 {
     /**
-     * Load the data of all the campagnePhaseType objects and returns them as a collection
+     * Load the data of all the campaignPhaseType objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagnePhaseType objects
+     * @return The collection which contains the data of all the campaignPhaseType objects
      */
-    Collection<CampagnePhaseType> selectAll( Plugin plugin );
+    Collection<CampaignPhaseType> selectAll( Plugin plugin );
 
     /**
-     * Load the data of all the campagnePhaseType objects and returns them as an ordered list
+     * Load the data of all the campaignPhaseType objects and returns them as an ordered list
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagnePhaseType objects
+     * @return The collection which contains the data of all the campaignPhaseType objects
      */
-    List<CampagnePhaseType> selectAllOrdered( Plugin plugin );
+    List<CampaignPhaseType> selectAllOrdered( Plugin plugin );
 }

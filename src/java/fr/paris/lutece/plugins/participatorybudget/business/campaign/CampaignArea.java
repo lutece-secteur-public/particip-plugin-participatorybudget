@@ -40,29 +40,29 @@ import org.hibernate.validator.constraints.*;
 import java.io.Serializable;
 
 /**
- * This is the business class for the object CampagneArea
+ * This is the business class for the object CampaignArea
  */
-public class CampagneArea implements Serializable
+public class CampaignArea implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     // Variables declarations
     private int _nId;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnearea.CodeCampagne.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnearea.CodeCampagne.size}" )
-    private String _strCodeCampagne;
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaignarea.CodeCampaign.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaignarea.CodeCampaign.size}" )
+    private String _strCodeCampaign;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnearea.Title.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnearea.Title.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaignarea.Title.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaignarea.Title.size}" )
     private String _strTitle;
 
-    @Pattern( regexp = "(whole|localized)", message = "#i18n{participatorybudget.validation.campagnearea.Type.pattern}" )
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnearea.Type.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnearea.Type.size}" )
+    @Pattern( regexp = "(whole|localized)", message = "#i18n{participatorybudget.validation.campaignarea.Type.pattern}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaignarea.Type.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaignarea.Type.size}" )
     private String _strType;
 
-    @Min( value = 0, message = "#i18n{participatorybudget.validation.campagnearea.NumberVotes.min}" )
+    @Min( value = 0, message = "#i18n{participatorybudget.validation.campaignarea.NumberVotes.min}" )
     private int _nNumberVotes;
 
     private boolean _bActive;
@@ -110,24 +110,24 @@ public class CampagneArea implements Serializable
     }
 
     /**
-     * Returns the CodeCampagne
+     * Returns the CodeCampaign
      * 
-     * @return The CodeCampagne
+     * @return The CodeCampaign
      */
-    public String getCodeCampagne( )
+    public String getCodeCampaign( )
     {
-        return _strCodeCampagne;
+        return _strCodeCampaign;
     }
 
     /**
-     * Sets the CodeCampagne
+     * Sets the CodeCampaign
      * 
-     * @param strCodeCampagne
-     *            The CodeCampagne
+     * @param strCodeCampaign
+     *            The CodeCampaign
      */
-    public void setCodeCampagne( String strCodeCampagne )
+    public void setCodeCampaign( String strCodeCampaign )
     {
-        _strCodeCampagne = strCodeCampagne;
+        _strCodeCampaign = strCodeCampaign;
     }
 
     /**

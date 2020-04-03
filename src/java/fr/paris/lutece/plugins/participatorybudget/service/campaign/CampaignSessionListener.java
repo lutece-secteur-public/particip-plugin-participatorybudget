@@ -36,13 +36,13 @@ package fr.paris.lutece.plugins.participatorybudget.service.campaign;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneUploadHandler;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignUploadHandler;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 /**
  * Will remove fileItems uploaded
  */
-public class CampagneSessionListener implements HttpSessionListener
+public class CampaignSessionListener implements HttpSessionListener
 {
     /**
      * {@inheritDoc}
@@ -61,7 +61,7 @@ public class CampagneSessionListener implements HttpSessionListener
     {
         String strSessionId = se.getSession( ).getId( );
 
-        for ( CampagneUploadHandler handler : SpringContextService.getBeansOfType( CampagneUploadHandler.class ) )
+        for ( CampaignUploadHandler handler : SpringContextService.getBeansOfType( CampaignUploadHandler.class ) )
         {
             handler.removeSessionFiles( strSessionId );
         }

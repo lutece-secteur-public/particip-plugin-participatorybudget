@@ -41,39 +41,39 @@ import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 /**
- * This class provides instances management methods (create, find, ...) for CampagnePhase objects
+ * This class provides instances management methods (create, find, ...) for CampaignPhase objects
  */
 
-public final class CampagnePhaseTypeHome
+public final class CampaignPhaseTypeHome
 {
     // Static variable pointed at the DAO instance
 
-    private static ICampagnePhaseTypeDAO _dao = SpringContextService.getBean( "participatorybudget.campagnePhaseTypeDAO" );
+    private static ICampaignPhaseTypeDAO _dao = SpringContextService.getBean( "participatorybudget.campaignPhaseTypeDAO" );
     private static Plugin _plugin = PluginService.getPlugin( "participatorybudget" );
 
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagnePhaseTypeHome( )
+    private CampaignPhaseTypeHome( )
     {
     }
 
     /**
-     * Load the data of all the campagnePhaseType objects and returns them in form of a collection
+     * Load the data of all the campaignPhaseType objects and returns them in form of a collection
      * 
-     * @return the collection which contains the data of all the campagnePhaseType objects
+     * @return the collection which contains the data of all the campaignPhaseType objects
      */
-    public static Collection<CampagnePhaseType> getCampagnePhasesTypeList( )
+    public static Collection<CampaignPhaseType> getCampaignPhasesTypeList( )
     {
         return _dao.selectAll( _plugin );
     }
 
     /**
-     * Load the data of all the campagnePhaseType objects and returns them in form of an ordered list
+     * Load the data of all the campaignPhaseType objects and returns them in form of an ordered list
      * 
-     * @return the collection which contains the data of all the campagnePhaseType objects
+     * @return the collection which contains the data of all the campaignPhaseType objects
      */
-    public static List<CampagnePhaseType> getCampagnePhasesTypeOrderedList( )
+    public static List<CampaignPhaseType> getCampaignPhasesTypeOrderedList( )
     {
         return _dao.selectAllOrdered( _plugin );
     }

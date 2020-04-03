@@ -1,18 +1,18 @@
-<#include "managecampagnebp_tabs.html" />
-<@tabs tab="campagnetheme" />
+<#include "managecampaignbp_tabs.html" />
+<@tabs tab="campaigntheme" />
 
-<@rowBoxHeader i18nTitleKey="participatorybudget.modify_campagnetheme.pageTitle">
-    <form class="form-horizontal" method="post" name="modify_campagnetheme" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampagneThemes.jsp">
+<@rowBoxHeader i18nTitleKey="participatorybudget.modify_campaigntheme.pageTitle">
+    <form class="form-horizontal" method="post" name="modify_campaigntheme" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignThemes.jsp">
         <@messages errors=errors />
-        <input type="hidden" id="id" name="id" value="${campagnetheme.id}"/>
+        <input type="hidden" id="id" name="id" value="${campaigntheme.id}"/>
         
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagnetheme.labelCodeCampagne" inputName="code_campagne" mandatory=true value="${campagnetheme.codeCampagne}" i18nHelpBlockKey="participatorybudget.modify_campagnetheme.labelCodeCampagne.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagnetheme.labelCode" inputName="code" mandatory=true value="${campagnetheme.code}" i18nHelpBlockKey="participatorybudget.modify_campagnetheme.labelCode.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagnetheme.labelTitle" inputName="title" mandatory=true value="${campagnetheme.title}" i18nHelpBlockKey="participatorybudget.modify_campagnetheme.labelTitle.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagnetheme.labelDescription" inputName="description" mandatory=true value="${campagnetheme.description}" i18nHelpBlockKey="participatorybudget.modify_campagnetheme.labelDescription.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagnetheme.labelActive" inputName="active" mandatory=true value="${campagnetheme.active?c}" i18nHelpBlockKey="participatorybudget.modify_campagnetheme.labelActive.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagnetheme.labelImage" inputName="imageId"  value="${(campagnetheme.image.idImage)!''}" i18nHelpBlockKey="participatorybudget.modify_campagnetheme.labelImage.help" />
-        <@actionButtons button1Name="action_modifyCampagneTheme" button2Name="view_manageCampagneThemes"/>
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaigntheme.labelCodeCampaign" inputName="code_campaign" mandatory=true value="${campaigntheme.codeCampaign}" i18nHelpBlockKey="participatorybudget.modify_campaigntheme.labelCodeCampaign.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaigntheme.labelCode" inputName="code" mandatory=true value="${campaigntheme.code}" i18nHelpBlockKey="participatorybudget.modify_campaigntheme.labelCode.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaigntheme.labelTitle" inputName="title" mandatory=true value="${campaigntheme.title}" i18nHelpBlockKey="participatorybudget.modify_campaigntheme.labelTitle.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaigntheme.labelDescription" inputName="description" mandatory=true value="${campaigntheme.description}" i18nHelpBlockKey="participatorybudget.modify_campaigntheme.labelDescription.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaigntheme.labelActive" inputName="active" mandatory=true value="${campaigntheme.active?c}" i18nHelpBlockKey="participatorybudget.modify_campaigntheme.labelActive.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaigntheme.labelImage" inputName="imageId"  value="${(campaigntheme.image.idImage)!''}" i18nHelpBlockKey="participatorybudget.modify_campaigntheme.labelImage.help" />
+        <@actionButtons button1Name="action_modifyCampaignTheme" button2Name="view_manageCampaignThemes"/>
     </form>
 </@rowBoxHeader>
 

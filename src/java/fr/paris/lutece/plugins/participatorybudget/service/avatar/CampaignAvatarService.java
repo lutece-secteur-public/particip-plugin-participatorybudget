@@ -43,10 +43,10 @@ import fr.paris.lutece.plugins.avatarserver.business.Avatar;
 import fr.paris.lutece.plugins.avatarserver.business.AvatarHome;
 import fr.paris.lutece.plugins.avatarserver.service.AvatarService;
 import fr.paris.lutece.plugins.avatarserver.service.HashService;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneUploadHandler;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignUploadHandler;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
-public class CampagneAvatarService
+public class CampaignAvatarService
 {
 
     private static final String PARAMETER_AVATAR_IMAGE = "avatar_image";
@@ -54,7 +54,7 @@ public class CampagneAvatarService
     public static void createAvatar( HttpServletRequest request, String strLuteceUserName )
     {
 
-        CampagneUploadHandler handler = SpringContextService.getBean( CampagneUploadHandler.BEAN_NAME );
+        CampaignUploadHandler handler = SpringContextService.getBean( CampaignUploadHandler.BEAN_NAME );
         List<FileItem> listAvatar = handler.getListUploadedFiles( PARAMETER_AVATAR_IMAGE, request.getSession( ) );
         // save Avatar
         if ( listAvatar != null && listAvatar.size( ) > 0 && listAvatar.get( 0 ).getSize( ) > 0 )
@@ -73,7 +73,7 @@ public class CampagneAvatarService
     public static void updateAvatar( HttpServletRequest request, String strLuteceUserName )
     {
 
-        CampagneUploadHandler handler = SpringContextService.getBean( CampagneUploadHandler.BEAN_NAME );
+        CampaignUploadHandler handler = SpringContextService.getBean( CampaignUploadHandler.BEAN_NAME );
         List<FileItem> listAvatar = handler.getListUploadedFiles( PARAMETER_AVATAR_IMAGE, request.getSession( ) );
         // save Avatar
         if ( listAvatar != null && listAvatar.size( ) > 0 && listAvatar.get( 0 ).getSize( ) > 0 )

@@ -475,7 +475,7 @@
 					</xsl:if>
 
 					<!-- Origin of the project -->
-					<!-- Propositions source ; fonctionnement différent entre les projets des campagnes avant 2016 et à partir de 2016 (regroupements) -->
+					<!-- Propositions source ; fonctionnement différent entre les projets des campaigns avant 2016 et à partir de 2016 (regroupements) -->
 					<div class="psoum-data-origin separator-horiz-4px">
 						<h2>#i18n{participatorybudget.project.sheet.origin}</h2>
 

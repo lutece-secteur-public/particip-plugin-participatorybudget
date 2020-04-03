@@ -61,7 +61,7 @@ public class DocumentPageService implements IResourceDisplayManager
     private static final String MARK_THEMATIQUE = "thematique_text";
     private static final String MARK_TITLE = "title_text";
     private static final String MARK_STATUS = "status_document";
-    private static final String MARK_CAMPAGNE = "campagne_text_document";
+    private static final String MARK_CAMPAIGN = "campaign_text_document";
 
     @Override
     public void getXmlAddOn( StringBuffer strXml, String strResourceType, int nResourceId )
@@ -127,12 +127,12 @@ public class DocumentPageService implements IResourceDisplayManager
         {
             strStatusDoc = attr.getTextValue( );
         }
-        // recup campagne
-        attr = doc.getAttribute( "campagne" );
-        String strCampagneDoc = StringUtils.EMPTY;
+        // recup campaign
+        attr = doc.getAttribute( "campaign" );
+        String strCampaignDoc = StringUtils.EMPTY;
         if ( attr != null && StringUtils.isNotEmpty( attr.getTextValue( ) ) )
         {
-            strCampagneDoc = attr.getTextValue( );
+            strCampaignDoc = attr.getTextValue( );
         }
 
         model.put( MARK_ID_DOCUMENT, nIdResource );
@@ -140,8 +140,8 @@ public class DocumentPageService implements IResourceDisplayManager
         model.put( MARK_THEMATIQUE, strThematiqueDoc );
         model.put( MARK_TITLE, strTitleDoc );
         model.put( MARK_STATUS, strStatusDoc );
-        model.put( MARK_CAMPAGNE, strCampagneDoc );
-        model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+        model.put( MARK_CAMPAIGN, strCampaignDoc );
+        model.put( BudgetUtils.MARK_CAMPAIGN_SERVICE, CampaignService.getInstance( ) );
         model.put( BudgetUtils.MARK_VOTE_VALIDATED, isValidated );
     }
 }

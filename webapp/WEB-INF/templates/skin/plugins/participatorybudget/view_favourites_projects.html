@@ -11,17 +11,17 @@
 	<@messages infos=infos />
 	<@messages errors=errors />
 
-	<#assign current_campagne = (campagneService.getLastCampagne().getTitle())?remove_beginning("Budget Participatif ")>
+	<#assign current_campaign = (campaignService.getLastCampaign().getTitle())?remove_beginning("Budget Participatif ")>
 
 	<div id="favorite">
 	
 		<#-- img src="images/local/skin/page-icon-prop.png" class="pull-left title-img" -->
-		<h2>Ma sélection pour le vote ${current_campagne!''}</h2>
+		<h2>Ma sélection pour le vote ${current_campaign!''}</h2>
 		
-		<@projectTable projects=favouriteProjects extend='favorite' edition=current_campagne tip='Ce tableau vous aidera à retrouver les projets pour lesquels vous souhaiteriez voter cette année !' class='favorite-current-campagne'/>
+		<@projectTable projects=favouriteProjects extend='favorite' edition=current_campaign tip='Ce tableau vous aidera à retrouver les projets pour lesquels vous souhaiteriez voter cette année !' class='favorite-current-campaign'/>
 		
 		<#-- img src="images/local/skin/page-icon-prop.png" class="pull-left title-img" -->
-		<h2>Mes projets favoris (toutes campagnes)</h2>
+		<h2>Mes projets favoris (toutes campaigns)</h2>
 		
 		<@projectTable projects=favouriteProjects extend='favorite' />
 		
@@ -51,7 +51,7 @@
 			],
 			"language": {
 				zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-		        emptyTable:     "Vous n'avez pas encore mis de projet ${current_campagne!''} en favori !"
+		        emptyTable:     "Vous n'avez pas encore mis de projet ${current_campaign!''} en favori !"
 			}
 		} );
 	} );
@@ -95,7 +95,7 @@
 							<#list document.attributes as attribute>
 								<#if     attribute.code = 'localisation'><#assign  localisation_projet = attribute.textValue>
 								<#elseif attribute.code = 'thematique'>  <#assign  thematique_projet   = attribute.textValue>
-								<#elseif attribute.code = 'campagne'>    <#assign  campagne_projet     = (attribute.textValue)?remove_beginning("Budget Participatif ")>
+								<#elseif attribute.code = 'campaign'>    <#assign  campaign_projet     = (attribute.textValue)?remove_beginning("Budget Participatif ")>
 								</#if>
 							</#list>
 
@@ -119,12 +119,12 @@
 								</#if>
 							-->
 
-							<#if (edition == 'all') || (edition == campagne_projet) >
+							<#if (edition == 'all') || (edition == campaign_projet) >
 	
 								<tr>
 									<td class="ellip hidden-xs "><a class="project-link" href="jsp/site/Portal.jsp?document_id=${document.id}&portlet_id=158">${document.title}</a></td>
-									<td class="ellip visible-xs">BP ${campagne_projet!"?"} - <a class="project-link" href="jsp/site/Portal.jsp?document_id=${document.id}&portlet_id=158">${document.title}</a></td>
-									<#if edition == 'all'><td class="ellip hidden-xs "><span>${campagne_projet!'?'}</span></td></#if>
+									<td class="ellip visible-xs">BP ${campaign_projet!"?"} - <a class="project-link" href="jsp/site/Portal.jsp?document_id=${document.id}&portlet_id=158">${document.title}</a></td>
+									<#if edition == 'all'><td class="ellip hidden-xs "><span>${campaign_projet!'?'}</span></td></#if>
 									<td class="ellip hidden-xs "><span>${localisation_projet?replace(" arrondissement", "")}</span></td>
 									<td class="ellip           ">@Extender[${document.id},document,${extend},{show:"tinylink"}]@</td>
 								</tr>

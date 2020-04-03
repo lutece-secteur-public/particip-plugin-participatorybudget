@@ -1,14 +1,14 @@
-<#include "managecampagnebp_tabs.html" />
-<@tabs tab="campagneimage" />
+<#include "managecampaignbp_tabs.html" />
+<@tabs tab="campaignimage" />
 
 <@rowBox>
-    <@boxHeader i18nTitleKey="participatorybudget.manage_campagneimages.tableLabel">
+    <@boxHeader i18nTitleKey="participatorybudget.manage_campaignimages.tableLabel">
         <@headerButtons>
 
         
-        <form class="form-inline pull-right" method="post" name="manage_campagneimages" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampagneImages.jsp">
+        <form class="form-inline pull-right" method="post" name="manage_campaignimages" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignImages.jsp">
             <!-- Add pull-right to class1 -->
-            <@actionButtons button1Name="view_createCampagneImage" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campagneimages.buttonAdd" />
+            <@actionButtons button1Name="view_createCampaignImage" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campaignimages.buttonAdd" />
         </form>
         
     </@headerButtons>
@@ -20,27 +20,27 @@
     <@table>
         <tr>
             <input type="hidden" id="id" name="id"/>
-            <th>#i18n{participatorybudget.manage_campagneimages.columnCodeCampagne}</th>
-            <th>#i18n{participatorybudget.manage_campagneimages.columnFile}</th>
+            <th>#i18n{participatorybudget.manage_campaignimages.columnCodeCampaign}</th>
+            <th>#i18n{participatorybudget.manage_campaignimages.columnFile}</th>
             <th>#i18n{portal.util.labelActions}</th>
         </tr>
         <@tableHeadBodySeparator />
-            <#list campagneimage_list as campagneimage >
+            <#list campaignimage_list as campaignimage >
         <tr>
             <input type="hidden" id="id" name="id"/>
             <td>
-                ${campagneimage.codeCampagne}
+                ${campaignimage.codeCampaign}
             </td>
             <td>
-                ${campagneimage.file}
+                ${campaignimage.file}
             </td>
         <td>
-            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagneImages.jsp?view=modifyCampagneImage&id=${campagneimage.id}"
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignImages.jsp?view=modifyCampaignImage&id=${campaignimage.id}"
                class="btn btn-primary btn-small" title="#i18n{portal.util.labelModify}">
                 <i class="fa fa-pencil"></i>
             </a>
 
-            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagneImages.jsp?action=confirmRemoveCampagneImage&id=${campagneimage.id}"
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignImages.jsp?action=confirmRemoveCampaignImage&id=${campaignimage.id}"
                class="btn btn-danger btn-small" title="#i18n{portal.util.labelDelete}" >
                 <i class="fa fa-trash"></i>
             </a>

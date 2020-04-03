@@ -37,35 +37,35 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 import java.util.Collection;
 
 /**
- * ICampagneDAO Interface
+ * ICampaignDAO Interface
  */
-public interface ICampagneDAO
+public interface ICampaignDAO
 {
     /**
      * Insert a new record in the table.
      * 
-     * @param campagne
-     *            instance of the Campagne object to insert
+     * @param campaign
+     *            instance of the Campaign object to insert
      * @param plugin
      *            the Plugin
      */
-    void insert( Campagne campagne, Plugin plugin );
+    void insert( Campaign campaign, Plugin plugin );
 
     /**
      * Update the record in the table
      * 
-     * @param campagne
-     *            the reference of the Campagne
+     * @param campaign
+     *            the reference of the Campaign
      * @param plugin
      *            the Plugin
      */
-    void store( Campagne campagne, Plugin plugin );
+    void store( Campaign campaign, Plugin plugin );
 
     /**
      * Delete a record from the table
      * 
      * @param nKey
-     *            The identifier of the Campagne to delete
+     *            The identifier of the Campaign to delete
      * @param plugin
      *            the Plugin
      */
@@ -78,37 +78,37 @@ public interface ICampagneDAO
      * Load the data from the table
      * 
      * @param nKey
-     *            The identifier of the campagne
+     *            The identifier of the campaign
      * @param plugin
      *            the Plugin
-     * @return The instance of the campagne
+     * @return The instance of the campaign
      */
-    Campagne load( int nKey, Plugin plugin );
+    Campaign load( int nKey, Plugin plugin );
 
     /**
-     * Returns an instance which represents the last campagne
+     * Returns an instance which represents the last campaign
      * 
      * @param plugin
      *            the Plugin
-     * @return an instance of Campagne
+     * @return an instance of Campaign
      */
-    Campagne selectLastCampagne( Plugin _plugin );
+    Campaign selectLastCampaign( Plugin _plugin );
 
     /**
-     * Load the data of all the campagne objects and returns them as a collection
+     * Load the data of all the campaign objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagne objects
+     * @return The collection which contains the data of all the campaign objects
      */
-    Collection<Campagne> selectCampagnesList( Plugin plugin );
+    Collection<Campaign> selectCampaignsList( Plugin plugin );
 
     /**
-     * Load the id of all the campagne objects and returns them as a collection
+     * Load the id of all the campaign objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the id of all the campagne objects
+     * @return The collection which contains the id of all the campaign objects
      */
-    Collection<Integer> selectIdCampagnesList( Plugin plugin );
+    Collection<Integer> selectIdCampaignsList( Plugin plugin );
 }

@@ -39,7 +39,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneIncludeService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignIncludeService;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.web.includes.MyInfosPageInclude;
 import fr.paris.lutece.portal.business.resourceenhancer.IResourceDisplayManager;
@@ -73,7 +73,7 @@ public class BudgetAddOnService implements IResourceDisplayManager
     public void buildPageAddOn( Map<String, Object> model, String strResourceType, int nIdResource, String strPortletId, HttpServletRequest request )
     {
         model.put( MARK_USER, SecurityService.isAuthenticationEnable( ) ? SecurityService.getInstance( ).getRegisteredUser( request ) : null );
-        model.put( MyInfosPageInclude.MARK_MES_INFOS_INCLUDE, CampagneIncludeService.getMyInfos( request ) );
+        model.put( MyInfosPageInclude.MARK_MES_INFOS_INCLUDE, CampaignIncludeService.getMyInfos( request ) );
     }
 
 }

@@ -33,7 +33,7 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service.campaign.event;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
 
 /**
  * DocumentEvent are sent by CampaignService to notify campaigns changes to listeners.
@@ -48,8 +48,8 @@ public class CampaignEvent
     public static final String CAMPAIGN_CODE_MODIFIED = "CAMPAIGN_CODE_MODIFIED";
 
     // Variables declarations
-    private Campagne _mainCampaign;
-    private Campagne _linkedCampaign;
+    private Campaign _mainCampaign;
+    private Campaign _linkedCampaign;
     private String _strType;
 
     /**
@@ -62,7 +62,7 @@ public class CampaignEvent
      * @param nType
      *            The type of event
      */
-    public CampaignEvent( Campagne mainCampaign, Campagne linkedCampaign, String strType )
+    public CampaignEvent( Campaign mainCampaign, Campaign linkedCampaign, String strType )
     {
         _mainCampaign = mainCampaign;
         _linkedCampaign = linkedCampaign;
@@ -84,7 +84,7 @@ public class CampaignEvent
      *
      * @return The main campaign
      */
-    public Campagne getMainCampaign( )
+    public Campaign getMainCampaign( )
     {
         return _mainCampaign;
     }
@@ -94,7 +94,7 @@ public class CampaignEvent
      *
      * @return The linked campaign
      */
-    public Campagne getLinkedCampaign( )
+    public Campaign getLinkedCampaign( )
     {
         return _linkedCampaign;
     }

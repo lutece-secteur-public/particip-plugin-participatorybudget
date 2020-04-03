@@ -39,18 +39,18 @@ import org.hibernate.validator.constraints.*;
 import java.io.Serializable;
 
 /**
- * This is the business class for the object CampagneImage
+ * This is the business class for the object CampaignImage
  */
-public class CampagneImage implements Serializable
+public class CampaignImage implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     // Variables declarations
     private int _nId;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagneimage.CodeCampagne.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagneimage.CodeCampagne.size}" )
-    private String _strCodeCampagne;
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaignimage.CodeCampaign.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaignimage.CodeCampaign.size}" )
+    private String _strCodeCampaign;
 
     private int _nFile;
 
@@ -76,24 +76,24 @@ public class CampagneImage implements Serializable
     }
 
     /**
-     * Returns the CodeCampagne
+     * Returns the CodeCampaign
      * 
-     * @return The CodeCampagne
+     * @return The CodeCampaign
      */
-    public String getCodeCampagne( )
+    public String getCodeCampaign( )
     {
-        return _strCodeCampagne;
+        return _strCodeCampaign;
     }
 
     /**
-     * Sets the CodeCampagne
+     * Sets the CodeCampaign
      * 
-     * @param strCodeCampagne
-     *            The CodeCampagne
+     * @param strCodeCampaign
+     *            The CodeCampaign
      */
-    public void setCodeCampagne( String strCodeCampagne )
+    public void setCodeCampaign( String strCodeCampaign )
     {
-        _strCodeCampagne = strCodeCampagne;
+        _strCodeCampaign = strCodeCampaign;
     }
 
     /**

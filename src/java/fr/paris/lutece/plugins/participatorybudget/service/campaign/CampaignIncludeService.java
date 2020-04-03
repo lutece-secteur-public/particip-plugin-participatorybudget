@@ -47,7 +47,7 @@ import fr.paris.lutece.util.html.HtmlTemplate;
  * BudgetIncludeService
  *
  */
-public class CampagneIncludeService
+public class CampaignIncludeService
 {
 
     // Template

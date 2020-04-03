@@ -1,14 +1,14 @@
-<#include "managecampagnebp_tabs.html" />
-<@tabs tab="campagneimage" />
+<#include "managecampaignbp_tabs.html" />
+<@tabs tab="campaignimage" />
 
-<@rowBoxHeader i18nTitleKey="participatorybudget.modify_campagneimage.pageTitle">
-    <form class="form-horizontal" method="post" name="modify_campagneimage" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampagneImages.jsp">
+<@rowBoxHeader i18nTitleKey="participatorybudget.modify_campaignimage.pageTitle">
+    <form class="form-horizontal" method="post" name="modify_campaignimage" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignImages.jsp">
         <@messages errors=errors />
-        <input type="hidden" id="id" name="id" value="${campagneimage.id}"/>
+        <input type="hidden" id="id" name="id" value="${campaignimage.id}"/>
         
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagneimage.labelCodeCampagne" inputName="code_campagne" mandatory=true value="${campagneimage.codeCampagne}" i18nHelpBlockKey="participatorybudget.modify_campagneimage.labelCodeCampagne.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagneimage.labelFile" inputName="file" mandatory=true value="${campagneimage.file}" i18nHelpBlockKey="participatorybudget.modify_campagneimage.labelFile.help" />
-        <@actionButtons button1Name="action_modifyCampagneImage" button2Name="view_manageCampagneImages"/>
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaignimage.labelCodeCampaign" inputName="code_campaign" mandatory=true value="${campaignimage.codeCampaign}" i18nHelpBlockKey="participatorybudget.modify_campaignimage.labelCodeCampaign.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaignimage.labelFile" inputName="file" mandatory=true value="${campaignimage.file}" i18nHelpBlockKey="participatorybudget.modify_campaignimage.labelFile.help" />
+        <@actionButtons button1Name="action_modifyCampaignImage" button2Name="view_manageCampaignImages"/>
     </form>
 </@rowBoxHeader>
 

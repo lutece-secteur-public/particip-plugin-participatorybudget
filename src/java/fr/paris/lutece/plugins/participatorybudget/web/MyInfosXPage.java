@@ -46,8 +46,8 @@ import fr.paris.lutece.plugins.participatorybudget.business.MyAccount;
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosListenerService;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
-import fr.paris.lutece.plugins.participatorybudget.service.avatar.CampagneAvatarService;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneUploadHandler;
+import fr.paris.lutece.plugins.participatorybudget.service.avatar.CampaignAvatarService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignUploadHandler;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.util.Constants;
 import fr.paris.lutece.plugins.participatorybudget.util.ModelUtils;
@@ -146,7 +146,7 @@ public class MyInfosXPage extends MVCApplication
     private static final String MARK_AVATAR_URL = "avatar_url";
     private static final String MARK_HANDLER = "handler";
 
-    private static final String MARK_CAMPAGNE_SERVICE = "campagneService";
+    private static final String MARK_CAMPAIGN_SERVICE = "campaignService";
 
     // Jsp redirections
     private static final String JSP_PORTAL = "jsp/site/Portal.jsp";
@@ -161,7 +161,7 @@ public class MyInfosXPage extends MVCApplication
     private static final String PROPERTY_CONFIRM_MODIFY_ARRAND_WITH_VOTES_DELETING = "participatorybudget.property_confirm_modify_arrand_with_votes_deleting";
     private static final String PROPERTY_ERROR_MODIFY_ARRAND = "participatorybudget.property_error_changement_arrond";
     private static final String PROPERTY_ERROR_END_PHASE = "participatorybudget.property_error_end_phase";
-    private static final String CAMPAGNE_BP_APP_CODE = AppPropertiesService.getProperty( "participatorybudget.identity.application.code" );
+    private static final String CAMPAIGN_BP_APP_CODE = AppPropertiesService.getProperty( "participatorybudget.identity.application.code" );
     // Parameters
     private static final String PARAMETER_COMPLETE_INFOS = "completeInfos";
     private static final String PARAMETER_REFERER = "referer";
@@ -279,14 +279,14 @@ public class MyInfosXPage extends MVCApplication
 
             model.put( MARK_INIT_FORM, true );
         }
-        model.put( MARK_HANDLER, SpringContextService.getBean( CampagneUploadHandler.BEAN_NAME ) );
+        model.put( MARK_HANDLER, SpringContextService.getBean( CampaignUploadHandler.BEAN_NAME ) );
 
         model.put( SecurityTokenService.MARK_TOKEN, SecurityTokenService.getInstance( ).getToken( request, MyInfosXPage.TOKEN_DO_CREATE_MY_INFOS ) );
         model.put( MARK_AREA_LIST, MyInfosService.getArrondissements( ) );
         model.put( MARK_POSTAL_CODE_LIST, MyInfosService.getPostalCodes( ) );
 
         // Check if the submission/vote phases are open or not
-        model.put( MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+        model.put( MARK_CAMPAIGN_SERVICE, CampaignService.getInstance( ) );
 
         return getXPage( TEMPLATE_CREATE_MY_INFOS, request.getLocale( ), model );
 
@@ -348,7 +348,7 @@ public class MyInfosXPage extends MVCApplication
         MyInfosService.saveUserInfos( user.getName( ), form );
         MyInfosService.saveUserEmail( user.getName( ), user.getEmail( ) );
         // Save avatar
-        CampagneAvatarService.createAvatar( request, user.getName( ) );
+        CampaignAvatarService.createAvatar( request, user.getName( ) );
 
         // Add message
 
@@ -450,7 +450,7 @@ public class MyInfosXPage extends MVCApplication
                     model.put( MARK_CONFIRMATION_PASSWORD, myAccountForm.getConfirmationPassword( ) );
 
                 }
-                model.put( MARK_HANDLER, SpringContextService.getBean( CampagneUploadHandler.BEAN_NAME ) );
+                model.put( MARK_HANDLER, SpringContextService.getBean( CampaignUploadHandler.BEAN_NAME ) );
                 model.put( MARK_NICKNAME, myInfos.getNickname( ) );
                 model.put( MARK_AVATAR_URL, AvatarService.getAvatarUrl( user.getName( ) ) );
                 model.put( MARK_FIRSTNAME, myInfos.getFirstname( ) );
@@ -481,7 +481,7 @@ public class MyInfosXPage extends MVCApplication
                 model.put( MARK_URL_MONCOMPTE, AppPropertiesService.getProperty( PROPERTY_URL_MONCOMPTE ) );
 
                 // Check if the submission/vote phases are open or not
-                model.put( MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+                model.put( MARK_CAMPAIGN_SERVICE, CampaignService.getInstance( ) );
 
                 ModelUtils.storeUnauthorizedAddress( model, myInfos.getAddress( ), user );
 
@@ -563,7 +563,7 @@ public class MyInfosXPage extends MVCApplication
                 if ( !bError )
                 {
                     // update avatar
-                    CampagneAvatarService.updateAvatar( request, user.getName( ) );
+                    CampaignAvatarService.updateAvatar( request, user.getName( ) );
                     MyInfosService.saveUserEmail( user.getName( ), user.getEmail( ) );
 
                     if ( !StringUtils.isEmpty( myAccountForm.getLogin( ) ) )
@@ -869,7 +869,7 @@ public class MyInfosXPage extends MVCApplication
                 if ( !bError )
                 {
                     // update avatar
-                    CampagneAvatarService.updateAvatar( request, user.getName( ) );
+                    CampaignAvatarService.updateAvatar( request, user.getName( ) );
                 }
 
                 // || !SecurityTokenService.getInstance().validate(request,

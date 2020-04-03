@@ -53,7 +53,7 @@ public final class Constants
     // Other constants
     public static final String AUTHORIZED_CITIES_SEPARATOR = ",";
 
-    // CampagnePhase
+    // CampaignPhase
     public static final String PRE_IDEATION = "PRE_IDEATION";
     public static final String IDEATION = "IDEATION";
     public static final String POST_IDEATION = "POST_IDEATION";

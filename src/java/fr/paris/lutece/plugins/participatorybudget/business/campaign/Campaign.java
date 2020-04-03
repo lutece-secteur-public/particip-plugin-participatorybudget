@@ -43,30 +43,30 @@ import org.hibernate.validator.constraints.NotEmpty;
 import fr.paris.lutece.portal.business.file.File;
 
 /**
- * This is the business class for the object Campagne
+ * This is the business class for the object Campaign
  */
-public class Campagne implements Serializable
+public class Campaign implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     // Variables declarations
     private int _nId;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.Code.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagne.Code.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaign.Code.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaign.Code.size}" )
     private String _strCode;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.Title.notEmpty}" )
-    @Size( max = 255, message = "#i18n{participatorybudget.validation.campagne.Title.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaign.Title.notEmpty}" )
+    @Size( max = 255, message = "#i18n{participatorybudget.validation.campaign.Title.size}" )
     private String _strTitle;
 
     private boolean _bActive;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.CodeModerationType.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagne.CodeModerationType.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaign.CodeModerationType.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaign.CodeModerationType.size}" )
     private String _strCodeModerationType;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagne.Description.notEmpty}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaign.Description.notEmpty}" )
     private String _strDescription;
 
     private int _nModerationDuration;

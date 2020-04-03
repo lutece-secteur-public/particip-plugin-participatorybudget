@@ -43,21 +43,21 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.util.sql.DAOUtil;
 
 /**
- * This class provides Data Access methods for CampagneArea objects
+ * This class provides Data Access methods for CampaignArea objects
  */
 
-public final class CampagneAreaDAO implements ICampagneAreaDAO
+public final class CampaignAreaDAO implements ICampaignAreaDAO
 {
     // Constants
-    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne_area ) FROM participatorybudget_campaign_area";
-    private static final String SQL_QUERY_SELECT = "SELECT id_campagne_area, code_campagne, title, active, type, number_votes FROM participatorybudget_campaign_area WHERE id_campagne_area = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_area ( id_campagne_area, code_campagne, title, active, type, number_votes ) VALUES ( ?, ?, ?, ?, ?, ? ) ";
-    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_area WHERE id_campagne_area = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_area SET id_campagne_area = ?, code_campagne = ?, title = ?, active = ?, type = ?, number_votes = ? WHERE id_campagne_area = ?";
-    private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_area SET code_campagne = ? WHERE code_campagne = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_area, code_campagne, title, active, type, number_votes FROM participatorybudget_campaign_area";
-    private static final String SQL_QUERY_SELECTALL_BY_CAMPAGNE = SQL_QUERY_SELECTALL + " WHERE code_campagne = ?";
-    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_area FROM participatorybudget_campaign_area";
+    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campaign_area ) FROM participatorybudget_campaign_area";
+    private static final String SQL_QUERY_SELECT = "SELECT id_campaign_area, code_campaign, title, active, type, number_votes FROM participatorybudget_campaign_area WHERE id_campaign_area = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_area ( id_campaign_area, code_campaign, title, active, type, number_votes ) VALUES ( ?, ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_area WHERE id_campaign_area = ? ";
+    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_area SET id_campaign_area = ?, code_campaign = ?, title = ?, active = ?, type = ?, number_votes = ? WHERE id_campaign_area = ?";
+    private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_area SET code_campaign = ? WHERE code_campaign = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_campaign_area, code_campaign, title, active, type, number_votes FROM participatorybudget_campaign_area";
+    private static final String SQL_QUERY_SELECTALL_BY_CAMPAIGN = SQL_QUERY_SELECTALL + " WHERE code_campaign = ?";
+    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campaign_area FROM participatorybudget_campaign_area";
 
     /**
      * Generates a new primary key
@@ -87,19 +87,19 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
      * {@inheritDoc }
      */
     @Override
-    public void insert( CampagneArea campagneArea, Plugin plugin )
+    public void insert( CampaignArea campaignArea, Plugin plugin )
     {
         int nCpt = 1;
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin );
 
-        campagneArea.setId( newPrimaryKey( plugin ) );
+        campaignArea.setId( newPrimaryKey( plugin ) );
 
-        daoUtil.setInt( nCpt++, campagneArea.getId( ) );
-        daoUtil.setString( nCpt++, campagneArea.getCodeCampagne( ) );
-        daoUtil.setString( nCpt++, campagneArea.getTitle( ) );
-        daoUtil.setBoolean( nCpt++, campagneArea.getActive( ) );
-        daoUtil.setString( nCpt++, campagneArea.getType( ) );
-        daoUtil.setInt( nCpt++, campagneArea.getNumberVotes( ) );
+        daoUtil.setInt( nCpt++, campaignArea.getId( ) );
+        daoUtil.setString( nCpt++, campaignArea.getCodeCampaign( ) );
+        daoUtil.setString( nCpt++, campaignArea.getTitle( ) );
+        daoUtil.setBoolean( nCpt++, campaignArea.getActive( ) );
+        daoUtil.setString( nCpt++, campaignArea.getType( ) );
+        daoUtil.setInt( nCpt++, campaignArea.getNumberVotes( ) );
 
         daoUtil.executeUpdate( );
         daoUtil.free( );
@@ -109,21 +109,21 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
      * {@inheritDoc }
      */
     @Override
-    public CampagneArea load( int nKey, Plugin plugin )
+    public CampaignArea load( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
         daoUtil.setInt( 1, nKey );
         daoUtil.executeQuery( );
 
-        CampagneArea campagneArea = null;
+        CampaignArea campaignArea = null;
 
         if ( daoUtil.next( ) )
         {
-            campagneArea = getRow( daoUtil );
+            campaignArea = getRow( daoUtil );
         }
 
         daoUtil.free( );
-        return campagneArea;
+        return campaignArea;
     }
 
     /**
@@ -156,19 +156,19 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
      * {@inheritDoc }
      */
     @Override
-    public void store( CampagneArea campagneArea, Plugin plugin )
+    public void store( CampaignArea campaignArea, Plugin plugin )
     {
         int nCpt = 1;
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
 
-        daoUtil.setInt( nCpt++, campagneArea.getId( ) );
-        daoUtil.setString( nCpt++, campagneArea.getCodeCampagne( ) );
-        daoUtil.setString( nCpt++, campagneArea.getTitle( ) );
-        daoUtil.setBoolean( nCpt++, campagneArea.getActive( ) );
-        daoUtil.setString( nCpt++, campagneArea.getType( ) );
-        daoUtil.setInt( nCpt++, campagneArea.getNumberVotes( ) );
+        daoUtil.setInt( nCpt++, campaignArea.getId( ) );
+        daoUtil.setString( nCpt++, campaignArea.getCodeCampaign( ) );
+        daoUtil.setString( nCpt++, campaignArea.getTitle( ) );
+        daoUtil.setBoolean( nCpt++, campaignArea.getActive( ) );
+        daoUtil.setString( nCpt++, campaignArea.getType( ) );
+        daoUtil.setInt( nCpt++, campaignArea.getNumberVotes( ) );
 
-        daoUtil.setInt( nCpt++, campagneArea.getId( ) );
+        daoUtil.setInt( nCpt++, campaignArea.getId( ) );
 
         daoUtil.executeUpdate( );
         daoUtil.free( );
@@ -178,103 +178,103 @@ public final class CampagneAreaDAO implements ICampagneAreaDAO
      * {@inheritDoc }
      */
     @Override
-    public Collection<CampagneArea> selectCampagneAreasList( Plugin plugin )
+    public Collection<CampaignArea> selectCampaignAreasList( Plugin plugin )
     {
-        Collection<CampagneArea> campagneAreaList = new ArrayList( );
+        Collection<CampaignArea> campaignAreaList = new ArrayList( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
         daoUtil.executeQuery( );
 
         while ( daoUtil.next( ) )
         {
-            CampagneArea campagneArea = getRow( daoUtil );
+            CampaignArea campaignArea = getRow( daoUtil );
 
-            campagneAreaList.add( campagneArea );
+            campaignAreaList.add( campaignArea );
         }
 
         daoUtil.free( );
-        return campagneAreaList;
+        return campaignAreaList;
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public Collection<Integer> selectIdCampagneAreasList( Plugin plugin )
+    public Collection<Integer> selectIdCampaignAreasList( Plugin plugin )
     {
-        Collection<Integer> campagneAreaList = new ArrayList<Integer>( );
+        Collection<Integer> campaignAreaList = new ArrayList<Integer>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
         daoUtil.executeQuery( );
 
         while ( daoUtil.next( ) )
         {
-            campagneAreaList.add( daoUtil.getInt( 1 ) );
+            campaignAreaList.add( daoUtil.getInt( 1 ) );
         }
 
         daoUtil.free( );
-        return campagneAreaList;
+        return campaignAreaList;
     }
 
-    private CampagneArea getRow( DAOUtil daoUtil )
+    private CampaignArea getRow( DAOUtil daoUtil )
     {
         int nCpt = 1;
-        CampagneArea campagneArea = new CampagneArea( );
+        CampaignArea campaignArea = new CampaignArea( );
 
-        campagneArea.setId( daoUtil.getInt( nCpt++ ) );
-        campagneArea.setCodeCampagne( daoUtil.getString( nCpt++ ) );
-        campagneArea.setTitle( daoUtil.getString( nCpt++ ) );
-        campagneArea.setActive( daoUtil.getBoolean( nCpt++ ) );
-        campagneArea.setType( daoUtil.getString( nCpt++ ) );
-        campagneArea.setNumberVotes( daoUtil.getInt( nCpt++ ) );
+        campaignArea.setId( daoUtil.getInt( nCpt++ ) );
+        campaignArea.setCodeCampaign( daoUtil.getString( nCpt++ ) );
+        campaignArea.setTitle( daoUtil.getString( nCpt++ ) );
+        campaignArea.setActive( daoUtil.getBoolean( nCpt++ ) );
+        campaignArea.setType( daoUtil.getString( nCpt++ ) );
+        campaignArea.setNumberVotes( daoUtil.getInt( nCpt++ ) );
 
-        return campagneArea;
+        return campaignArea;
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public Collection<CampagneArea> selectCampagneAreasListByCampagne( String campagneCode, Plugin plugin )
+    public Collection<CampaignArea> selectCampaignAreasListByCampaign( String campaignCode, Plugin plugin )
     {
-        Collection<CampagneArea> campagneAreaList = new ArrayList( );
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_BY_CAMPAGNE, plugin );
-        daoUtil.setString( 1, campagneCode );
+        Collection<CampaignArea> campaignAreaList = new ArrayList( );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_BY_CAMPAIGN, plugin );
+        daoUtil.setString( 1, campaignCode );
         daoUtil.executeQuery( );
 
         while ( daoUtil.next( ) )
         {
-            CampagneArea campagneArea = getRow( daoUtil );
+            CampaignArea campaignArea = getRow( daoUtil );
 
-            campagneAreaList.add( campagneArea );
+            campaignAreaList.add( campaignArea );
         }
 
         daoUtil.free( );
-        return campagneAreaList;
+        return campaignAreaList;
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public Map<String, List<CampagneArea>> selectCampagneAreasMapByCampagne( Plugin plugin )
+    public Map<String, List<CampaignArea>> selectCampaignAreasMapByCampaign( Plugin plugin )
     {
-        Map<String, List<CampagneArea>> campagneAreaMap = new HashMap<String, List<CampagneArea>>( );
+        Map<String, List<CampaignArea>> campaignAreaMap = new HashMap<String, List<CampaignArea>>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
         daoUtil.executeQuery( );
 
         while ( daoUtil.next( ) )
         {
-            CampagneArea campagneArea = getRow( daoUtil );
+            CampaignArea campaignArea = getRow( daoUtil );
 
-            List<CampagneArea> campagneAreaList = campagneAreaMap.get( campagneArea.getCodeCampagne( ) );
-            if ( campagneAreaList == null )
+            List<CampaignArea> campaignAreaList = campaignAreaMap.get( campaignArea.getCodeCampaign( ) );
+            if ( campaignAreaList == null )
             {
-                campagneAreaList = new ArrayList<CampagneArea>( );
-                campagneAreaMap.put( campagneArea.getCodeCampagne( ), campagneAreaList );
+                campaignAreaList = new ArrayList<CampaignArea>( );
+                campaignAreaMap.put( campaignArea.getCodeCampaign( ), campaignAreaList );
             }
-            campagneAreaList.add( campagneArea );
+            campaignAreaList.add( campaignArea );
         }
 
         daoUtil.free( );
-        return campagneAreaMap;
+        return campaignAreaMap;
     }
 }

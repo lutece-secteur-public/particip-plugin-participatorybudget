@@ -8,7 +8,7 @@
   <#assign conf_query= "conf="+conf.code>
 </#if>
 <#assign facet_theme = "tout_theme">
-<#assign facet_campagne = "toute_campagne">
+<#assign facet_campaign = "toute_campaign">
 <#setting url_escaping_charset=encoding>
 <#-- Encode facet queries -->
 <#assign allParisCity = "-localisation_text:whole_city">
@@ -108,8 +108,8 @@ ${encoded_facets_queries}
 						<#assign arr = "whole_city">
 					<#elseif facet?starts_with("thematique_text:")>
 						<#assign facet_theme = facet?split(":")?last>
-					<#elseif facet?starts_with("campagne_text:")>
-						<#assign facet_campagne = facet?split(":")?last>
+					<#elseif facet?starts_with("campaign_text:")>
+						<#assign facet_campaign = facet?split(":")?last>
 					</#if>
 				</#list>
 			</#if>

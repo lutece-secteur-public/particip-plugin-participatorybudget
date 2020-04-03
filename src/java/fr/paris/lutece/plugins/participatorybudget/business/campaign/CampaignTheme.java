@@ -42,28 +42,28 @@ import fr.paris.lutece.portal.business.file.File;
 import java.io.Serializable;
 
 /**
- * This is the business class for the object CampagneTheme
+ * This is the business class for the object CampaignTheme
  */
-public class CampagneTheme implements Serializable
+public class CampaignTheme implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     // Variables declarations
     private int _nId;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.CodeCampagne.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnetheme.CodeCampagne.size}" )
-    private String _strCodeCampagne;
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaigntheme.CodeCampaign.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaigntheme.CodeCampaign.size}" )
+    private String _strCodeCampaign;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Code.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnetheme.Code.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaigntheme.Code.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaigntheme.Code.size}" )
     private String _strCode;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Title.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnetheme.Title.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaigntheme.Title.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaigntheme.Title.size}" )
     private String _strTitle;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnetheme.Description.notEmpty}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaigntheme.Description.notEmpty}" )
     private String _strDescription;
 
     private boolean _bActive;
@@ -92,24 +92,24 @@ public class CampagneTheme implements Serializable
     }
 
     /**
-     * Returns the CodeCampagne
+     * Returns the CodeCampaign
      * 
-     * @return The CodeCampagne
+     * @return The CodeCampaign
      */
-    public String getCodeCampagne( )
+    public String getCodeCampaign( )
     {
-        return _strCodeCampagne;
+        return _strCodeCampaign;
     }
 
     /**
-     * Sets the CodeCampagne
+     * Sets the CodeCampaign
      * 
-     * @param strCodeCampagne
-     *            The CodeCampagne
+     * @param strCodeCampaign
+     *            The CodeCampaign
      */
-    public void setCodeCampagne( String strCodeCampagne )
+    public void setCodeCampaign( String strCodeCampaign )
     {
-        _strCodeCampagne = strCodeCampagne;
+        _strCodeCampaign = strCodeCampaign;
     }
 
     /**

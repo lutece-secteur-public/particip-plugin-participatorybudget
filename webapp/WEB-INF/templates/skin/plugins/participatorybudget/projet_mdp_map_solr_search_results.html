@@ -1,9 +1,9 @@
 <section  id="map-result">
 		
-	<#if campagneService?? > <#-- Class not instanciated when this page is indexed by SOLR. This test avoid a lot of message into logs. -->
+	<#if campaignService?? > <#-- Class not instanciated when this page is indexed by SOLR. This test avoid a lot of message into logs. -->
 		<#attempt>
 			
-			<#if campagneService.isBeforeBeginning( "SUBMIT" ) >
+			<#if campaignService.isBeforeBeginning( "SUBMIT" ) >
 				<div id="prop-card">
 					<div class="row">
 						<div class="col-xs-12 col-sm-offset-2 col-sm-8">
@@ -130,11 +130,11 @@ document.getElementsByTagName("head")[0].appendChild(loadresource);
         iconCreateFunction: createProjetCluster
     });
     var layergroup_arrondissements = L.layerGroup();
-    var layergroup_currentcampagne = L.layerGroup();
+    var layergroup_currentcampaign = L.layerGroup();
     var layergroup_qpvqva = L.layerGroup();
-    layergroup_currentcampagne.addLayer(markers);
-    layergroup_currentcampagne.addLayer(layergroup_arrondissements);
-    map.addLayer(layergroup_currentcampagne)
+    layergroup_currentcampaign.addLayer(markers);
+    layergroup_currentcampaign.addLayer(layergroup_arrondissements);
+    map.addLayer(layergroup_currentcampaign)
     var markers_oldprojects = new L.MarkerClusterGroup({
         iconCreateFunction: createOldProjetCluster
     });
@@ -339,9 +339,9 @@ document.getElementsByTagName("head")[0].appendChild(loadresource);
   };
 
   var overlayMaps = {
-      "Campagne actuelle" : layergroup_currentcampagne,
+      "Campaign actuelle" : layergroup_currentcampaign,
       "Quartiers populaires" : layergroup_qpvqva,
-      "Précédentes campagnes" : markers_oldprojects
+      "Précédentes campaigns" : markers_oldprojects
   };
   // paramétrage et ajout du L.control.layers à la carte
   var control =  L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(map);

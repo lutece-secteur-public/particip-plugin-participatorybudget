@@ -1,9 +1,9 @@
 <div id="psoum-list-container">
 
-	<#if campagneService?? > <#-- Class not instanciated when this page is indexed by SOLR. This test avoid a lot of message into logs. -->
+	<#if campaignService?? > <#-- Class not instanciated when this page is indexed by SOLR. This test avoid a lot of message into logs. -->
 		<#attempt>
 			
-			<#if campagneService.isBeforeBeginning( "SUBMIT" ) >
+			<#if campaignService.isBeforeBeginning( "SUBMIT" ) >
 				<div id="prop-card">
 					<div class="row">
 						<div class="col-xs-12 col-sm-offset-2 col-sm-8">
@@ -68,7 +68,7 @@
 										<#assign img_url = result.dynamicFields.image_text?split("src=\"")[1]?split("\"")[0]>
 									</#if>
 									<div class="psoum-card-img" style="background-image:url(${img_url!})">
-										<#if campagneService.isAfterBeginning( "RESULT" )>
+										<#if campaignService.isAfterBeginning( "RESULT" )>
 											<#if result.dynamicFields.status_text == "GAGNANT" || result.dynamicFields.status_text == "SUIVI" >
 												<p class="winner">Projet gagnant<br>avec ${result.dynamicFields.nombre_de_votes_long?string.number!''} votes</p>
 											<#elseif result.dynamicFields.status_text == "PERDANT">
@@ -121,19 +121,19 @@
 											</h3>
 										</div>
 					
-										<#if campagneService.isDuring("VOTE") && voteValidated= true >
+										<#if campaignService.isDuring("VOTE") && voteValidated= true >
 											<div class="psoum-card-vote">
 													<div class="vote-done">Thank for your vote !</div>
 											</div>
-										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && arrondissementVote= "notConnected" >
+										<#elseif campaignService.isDuring("VOTE") && voteValidated= false && arrondissementVote= "notConnected" >
 											<div class="psoum-card-vote">
 													@Extender[${id_document},document,vote,{show:"all"}]@
 											</div>
-										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.district_text || result.dynamicFields.district_text= "whole_city")>
+										<#elseif campaignService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.district_text || result.dynamicFields.district_text= "whole_city")>
 											<div class="psoum-card-vote">
 													@Extender[${id_document},document,vote,{show:"all"}]@
 											</div>
-										<#elseif campagneService.isDuring("VOTE") && voteValidated= false && arrondissementVote != result.dynamicFields.localisation_text>
+										<#elseif campaignService.isDuring("VOTE") && voteValidated= false && arrondissementVote != result.dynamicFields.localisation_text>
 											<div class="psoum-card-vote">
 													<div class="novote">You can vote only for district you choose for voting.</div>
 											</div>

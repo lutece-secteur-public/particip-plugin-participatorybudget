@@ -64,13 +64,13 @@ public final class VoteDAO implements IVoteDAO
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID + " GROUP BY dc.text_value, CONVERT(v.date_vote, DATE)";
     private static final String SQl_QUERY_COUNT_VOTE_BY_THEME = "SELECT v.thematique, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
-            + " JOIN participatorybudget_campaign c ON c.code_campagne = dc.text_value AND c.id_campagne = ? GROUP BY v.thematique";
+            + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.thematique";
     private static final String SQl_QUERY_COUNT_VOTE_BY_LOCATION = "SELECT v.localisation, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
-            + " JOIN participatorybudget_campaign c ON c.code_campagne = dc.text_value AND c.id_campagne = ? GROUP BY v.localisation";
+            + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.localisation";
     private static final String SQl_QUERY_COUNT_VOTE_BY_PROJECT_ID = "SELECT v.id_projet, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
-            + " JOIN participatorybudget_campaign c ON c.code_campagne = dc.text_value AND c.id_campagne = ? GROUP BY v.id_projet";
+            + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.id_projet";
     private static final String SQL_QUERY_SELECT_USER = "SELECT DISTINCT id_user FROM participatorybudget_votes";
     private static final String SQL_QUERY_VALIDATE_VOTE = "UPDATE participatorybudget_votes SET status= ? where id_user=?";
     private static final String SQL_QUERY_SELECT_VOTE_STATUS = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status FROM participatorybudget_votes where id_user= ? and status = ?";

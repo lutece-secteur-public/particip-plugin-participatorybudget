@@ -29,10 +29,10 @@
 	<em>#i18n{participatorybudget.mes_infos.mandatory.message}</em>
   </div>
   
-  <div <#if campagneService.isDuring("VOTE") >style="display:none;"</#if>>
+  <div <#if campaignService.isDuring("VOTE") >style="display:none;"</#if>>
 	  <div class="form-group">
 		<h3>#i18n{participatorybudget.mes_infos.nickname.label}</h3>
-		<input class="form-control <#if !campagneService.isDuring("VOTE") >check-nonempty</#if>" type="text" name="nickname" id="budget-nickname" value="${nickname!''}" placeholder="#i18n{participatorybudget.mes_infos.field.nickname.defaultValue} *">
+		<input class="form-control <#if !campaignService.isDuring("VOTE") >check-nonempty</#if>" type="text" name="nickname" id="budget-nickname" value="${nickname!''}" placeholder="#i18n{participatorybudget.mes_infos.field.nickname.defaultValue} *">
 	  </div>
 	  <div class="form-group mesinfos-avatar">
 		<img class="img-circle" src="${avatar_url!''}" alt="" title="">
@@ -74,7 +74,7 @@
 		<input type="radio" name="civility" id="budget-civility-npr" value="NPR" ${chk_civility_NPR}>#i18n{participatorybudget.mes_infos.field.myinfos.civilityNPR}
 	  </label>
 	</div>
-	<div <#if campagneService.isDuring("VOTE") >style="display:none;"</#if>>
+	<div <#if campaignService.isDuring("VOTE") >style="display:none;"</#if>>
 		<div class="form-group">
 		  <label class="sr-only" for="budget-firstname">#i18n{participatorybudget.mes_infos.field.myinfos.firstname}</label>
 		  <input class="form-control" type="text" name="firstname" id="budget-firstname" value="${firstname!''}" placeholder="#i18n{participatorybudget.mes_infos.field.myinfos.firstname} ">
@@ -111,7 +111,7 @@
     <input id="geojson_state" type="hidden"  -->
     
   </div>
-  <div id="arrondissement-form-group" class="form-group" <#if campagneService.isBeforeBeginning("SUBMIT") || campagneService.isAfterEnd("VOTE") >style="display: none;"</#if>>
+  <div id="arrondissement-form-group" class="form-group" <#if campaignService.isBeforeBeginning("SUBMIT") || campaignService.isAfterEnd("VOTE") >style="display: none;"</#if>>
     <h3>#i18n{participatorybudget.mes_infos.field.vote.label}</h3>
     <div class="form-group">
 		<img src="images/local/skin/i_vote_arr_green.png" class="logo" style="margin-right:5px; float:left;">
@@ -178,7 +178,7 @@
     </#if>
   </div>
 </form>
-<script type="text/javascript" src="jsp/site/plugins/asynchronousupload/GetMainUploadJs.jsp?handler=campagnebpUploadHandler"></script>
+<script type="text/javascript" src="jsp/site/plugins/asynchronousupload/GetMainUploadJs.jsp?handler=campaignbpUploadHandler"></script>
 <script type="text/javascript" src="js/proj4js-combined.js"></script>
 <script type="text/javascript" src="jsp/site/plugins/address/modules/autocomplete/SetupSuggestPOI.js.jsp"></script>
 <script type="text/javascript" src="js/plugins/address/modules/autocomplete/jQuery.suggestPOI.js"></script>

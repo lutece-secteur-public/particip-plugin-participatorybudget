@@ -39,56 +39,56 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 import java.util.Collection;
 
 /**
- * This class provides instances management methods (create, find, ...) for Campagne objects
+ * This class provides instances management methods (create, find, ...) for Campaign objects
  */
 
-public final class CampagneHome
+public final class CampaignHome
 {
     // Static variable pointed at the DAO instance
 
-    private static ICampagneDAO _dao = SpringContextService.getBean( "participatorybudget.campagneDAO" );
+    private static ICampaignDAO _dao = SpringContextService.getBean( "participatorybudget.campaignDAO" );
     private static Plugin _plugin = PluginService.getPlugin( "participatorybudget" );
 
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagneHome( )
+    private CampaignHome( )
     {
     }
 
     /**
-     * Create an instance of the campagne class
+     * Create an instance of the campaign class
      * 
-     * @param campagne
-     *            The instance of the Campagne which contains the informations to store
-     * @return The instance of campagne which has been created with its primary key.
+     * @param campaign
+     *            The instance of the Campaign which contains the informations to store
+     * @return The instance of campaign which has been created with its primary key.
      */
-    public static Campagne create( Campagne campagne )
+    public static Campaign create( Campaign campaign )
     {
-        _dao.insert( campagne, _plugin );
+        _dao.insert( campaign, _plugin );
 
-        return campagne;
+        return campaign;
     }
 
     /**
-     * Update of the campagne which is specified in parameter
+     * Update of the campaign which is specified in parameter
      * 
-     * @param campagne
-     *            The instance of the Campagne which contains the data to store
-     * @return The instance of the campagne which has been updated
+     * @param campaign
+     *            The instance of the Campaign which contains the data to store
+     * @return The instance of the campaign which has been updated
      */
-    public static Campagne update( Campagne campagne )
+    public static Campaign update( Campaign campaign )
     {
-        _dao.store( campagne, _plugin );
+        _dao.store( campaign, _plugin );
 
-        return campagne;
+        return campaign;
     }
 
     /**
-     * Remove the campagne whose identifier is specified in parameter
+     * Remove the campaign whose identifier is specified in parameter
      * 
      * @param nKey
-     *            The campagne Id
+     *            The campaign Id
      */
     public static void remove( int nKey )
     {
@@ -99,44 +99,44 @@ public final class CampagneHome
     // Finders
 
     /**
-     * Returns an instance of a campagne whose identifier is specified in parameter
+     * Returns an instance of a campaign whose identifier is specified in parameter
      * 
      * @param nKey
-     *            The campagne primary key
-     * @return an instance of Campagne
+     *            The campaign primary key
+     * @return an instance of Campaign
      */
-    public static Campagne findByPrimaryKey( int nKey )
+    public static Campaign findByPrimaryKey( int nKey )
     {
         return _dao.load( nKey, _plugin );
     }
 
     /**
-     * Returns an instance which represents the last campagne
+     * Returns an instance which represents the last campaign
      * 
-     * @return an instance of Campagne
+     * @return an instance of Campaign
      */
-    public static Campagne getLastCampagne( )
+    public static Campaign getLastCampaign( )
     {
-        return _dao.selectLastCampagne( _plugin );
+        return _dao.selectLastCampaign( _plugin );
     }
 
     /**
-     * Load the data of all the campagne objects and returns them in form of a collection
+     * Load the data of all the campaign objects and returns them in form of a collection
      * 
-     * @return the collection which contains the data of all the campagne objects
+     * @return the collection which contains the data of all the campaign objects
      */
-    public static Collection<Campagne> getCampagnesList( )
+    public static Collection<Campaign> getCampaignsList( )
     {
-        return _dao.selectCampagnesList( _plugin );
+        return _dao.selectCampaignsList( _plugin );
     }
 
     /**
-     * Load the id of all the campagne objects and returns them in form of a collection
+     * Load the id of all the campaign objects and returns them in form of a collection
      * 
-     * @return the collection which contains the id of all the campagne objects
+     * @return the collection which contains the id of all the campaign objects
      */
-    public static Collection<Integer> getIdCampagnesList( )
+    public static Collection<Integer> getIdCampaignsList( )
     {
-        return _dao.selectIdCampagnesList( _plugin );
+        return _dao.selectIdCampaignsList( _plugin );
     }
 }

@@ -3,7 +3,7 @@ INSERT INTO participatorybudget_campaign_moderation_type (id_moderation_type, co
 	(2, 'PUBLISH', 'Immediate publication'),
 	(3, 'WAIT', 'Delayed publication');
 
-INSERT INTO participatorybudget_campaign (id_campagne, code_campagne, title, description, active, code_moderation_type, moderation_duration) VALUES
+INSERT INTO participatorybudget_campaign (id_campaign, code_campaign, title, description, active, code_moderation_type, moderation_duration) VALUES
 	(1, 'A', 'Participatory Budget 2019', 'Participatory Budget 2019', 1, 'NONE', 0);
 
 INSERT INTO participatorybudget_campaign_phase_type (id_phase_type, code_phase_type, label, order_num) VALUES
@@ -19,7 +19,7 @@ INSERT INTO participatorybudget_campaign_phase_type (id_phase_type, code_phase_t
 	(10, 'PRE_RESULT', 'Before result phase', 10),
 	(11, 'RESULT', 'Announce vote results', 11);
 
-INSERT INTO participatorybudget_campaign_phase (id_campagne_phase, code_phase_type, code_campagne, start, end) VALUES
+INSERT INTO participatorybudget_campaign_phase (id_campaign_phase, code_phase_type, code_campaign, start, end) VALUES
 	(1, 'PRE_IDEATION', 'A', '2019-08-09 00:00:00', '2019-08-22 23:59:59'),
 	(2, 'IDEATION', 'A', '2019-08-23 00:00:00', '2019-12-05 23:59:59'),
 	(3, 'POST_IDEATION', 'A', '2019-09-06 00:00:00', '2019-09-19 23:59:59'),
@@ -32,7 +32,7 @@ INSERT INTO participatorybudget_campaign_phase (id_campagne_phase, code_phase_ty
 	(10, 'PRE_RESULT', 'A', '2019-12-13 00:00:00', '2019-12-26 23:59:59'),
 	(11, 'RESULT', 'A', '2019-12-27 00:00:00', '2020-01-09 23:59:59');
 
-INSERT INTO participatorybudget_campaign_theme (id_campagne_theme, code_campagne, code_theme, title, description, active, image_file) VALUES
+INSERT INTO participatorybudget_campaign_theme (id_campaign_theme, code_campaign, code_theme, title, description, active, image_file) VALUES
 	(1, 'A', 'ENVIRONMENT', 'Environment issues', 'Environment issues', 1, NULL),
 	(2, 'A', 'SOCIAL', 'Social issues', 'Social issues', 1, NULL),
 	(3, 'A', 'SPORT', 'Sport', 'Sport', 1, NULL),

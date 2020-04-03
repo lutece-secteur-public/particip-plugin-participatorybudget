@@ -46,22 +46,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * This class provides Data Access methods for CampagneTheme objects
+ * This class provides Data Access methods for CampaignTheme objects
  */
 
-public final class CampagneThemeDAO implements ICampagneThemeDAO
+public final class CampaignThemeDAO implements ICampaignThemeDAO
 {
     // Constants
-    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne_theme ) FROM participatorybudget_campaign_theme";
-    private static final String SQL_QUERY_SELECT = "SELECT id_campagne_theme, code_campagne, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme WHERE id_campagne_theme = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_theme ( id_campagne_theme, code_campagne, code_theme, title, description, active, image_file ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
-    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_theme WHERE id_campagne_theme = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_theme SET id_campagne_theme = ?, code_campagne = ?, code_theme = ?, title = ?, description = ?, active = ?, image_file = ? WHERE id_campagne_theme = ?";
-    private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_theme SET code_campagne = ? WHERE code_campagne = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_theme, code_campagne, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme";
-    private static final String SQL_QUERY_SELECTALL_BY_CAMPAGNE = SQL_QUERY_SELECTALL + " WHERE code_campagne = ?";
-    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_theme FROM participatorybudget_campaign_theme";
-    private static final String SQL_QUERY_SELECT_BY_TITLETHEME = "SELECT id_campagne_theme, code_campagne, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme WHERE code_theme = ?";
+    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campaign_theme ) FROM participatorybudget_campaign_theme";
+    private static final String SQL_QUERY_SELECT = "SELECT id_campaign_theme, code_campaign, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme WHERE id_campaign_theme = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_theme ( id_campaign_theme, code_campaign, code_theme, title, description, active, image_file ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_theme WHERE id_campaign_theme = ? ";
+    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_theme SET id_campaign_theme = ?, code_campaign = ?, code_theme = ?, title = ?, description = ?, active = ?, image_file = ? WHERE id_campaign_theme = ?";
+    private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_theme SET code_campaign = ? WHERE code_campaign = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_campaign_theme, code_campaign, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme";
+    private static final String SQL_QUERY_SELECTALL_BY_CAMPAIGN = SQL_QUERY_SELECTALL + " WHERE code_campaign = ?";
+    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campaign_theme FROM participatorybudget_campaign_theme";
+    private static final String SQL_QUERY_SELECT_BY_TITLETHEME = "SELECT id_campaign_theme, code_campaign, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme WHERE code_theme = ?";
 
     /**
      * Generates a new primary key
@@ -91,20 +91,20 @@ public final class CampagneThemeDAO implements ICampagneThemeDAO
      * {@inheritDoc }
      */
     @Override
-    public void insert( CampagneTheme campagneTheme, Plugin plugin )
+    public void insert( CampaignTheme campaignTheme, Plugin plugin )
     {
         int nCpt = 1;
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin );
 
-        campagneTheme.setId( newPrimaryKey( plugin ) );
+        campaignTheme.setId( newPrimaryKey( plugin ) );
 
-        daoUtil.setInt( nCpt++, campagneTheme.getId( ) );
-        daoUtil.setString( nCpt++, campagneTheme.getCodeCampagne( ) );
-        daoUtil.setString( nCpt++, campagneTheme.getCode( ) );
-        daoUtil.setString( nCpt++, campagneTheme.getTitle( ) );
-        daoUtil.setString( nCpt++, campagneTheme.getDescription( ) );
-        daoUtil.setBoolean( nCpt++, campagneTheme.getActive( ) );
-        File image = campagneTheme.getImage( );
+        daoUtil.setInt( nCpt++, campaignTheme.getId( ) );
+        daoUtil.setString( nCpt++, campaignTheme.getCodeCampaign( ) );
+        daoUtil.setString( nCpt++, campaignTheme.getCode( ) );
+        daoUtil.setString( nCpt++, campaignTheme.getTitle( ) );
+        daoUtil.setString( nCpt++, campaignTheme.getDescription( ) );
+        daoUtil.setBoolean( nCpt++, campaignTheme.getActive( ) );
+        File image = campaignTheme.getImage( );
         if ( image != null )
         {
             daoUtil.setInt( nCpt++, image.getIdFile( ) );
@@ -122,42 +122,42 @@ public final class CampagneThemeDAO implements ICampagneThemeDAO
      * {@inheritDoc }
      */
     @Override
-    public CampagneTheme load( int nKey, Plugin plugin )
+    public CampaignTheme load( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
         daoUtil.setInt( 1, nKey );
         daoUtil.executeQuery( );
 
-        CampagneTheme campagneTheme = null;
+        CampaignTheme campaignTheme = null;
 
         if ( daoUtil.next( ) )
         {
-            campagneTheme = getRow( daoUtil );
+            campaignTheme = getRow( daoUtil );
         }
 
         daoUtil.free( );
-        return campagneTheme;
+        return campaignTheme;
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public CampagneTheme loadByCodeTheme( String codeTheme, Plugin plugin )
+    public CampaignTheme loadByCodeTheme( String codeTheme, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_BY_TITLETHEME, plugin );
         daoUtil.setString( 1, codeTheme );
         daoUtil.executeQuery( );
 
-        CampagneTheme campagneTheme = null;
+        CampaignTheme campaignTheme = null;
 
         if ( daoUtil.next( ) )
         {
-            campagneTheme = getRow( daoUtil );
+            campaignTheme = getRow( daoUtil );
         }
 
         daoUtil.free( );
-        return campagneTheme;
+        return campaignTheme;
     }
 
     /**
@@ -190,18 +190,18 @@ public final class CampagneThemeDAO implements ICampagneThemeDAO
      * {@inheritDoc }
      */
     @Override
-    public void store( CampagneTheme campagneTheme, Plugin plugin )
+    public void store( CampaignTheme campaignTheme, Plugin plugin )
     {
         int nCpt = 1;
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
 
-        daoUtil.setInt( nCpt++, campagneTheme.getId( ) );
-        daoUtil.setString( nCpt++, campagneTheme.getCodeCampagne( ) );
-        daoUtil.setString( nCpt++, campagneTheme.getCode( ) );
-        daoUtil.setString( nCpt++, campagneTheme.getTitle( ) );
-        daoUtil.setString( nCpt++, campagneTheme.getDescription( ) );
-        daoUtil.setBoolean( nCpt++, campagneTheme.getActive( ) );
-        File image = campagneTheme.getImage( );
+        daoUtil.setInt( nCpt++, campaignTheme.getId( ) );
+        daoUtil.setString( nCpt++, campaignTheme.getCodeCampaign( ) );
+        daoUtil.setString( nCpt++, campaignTheme.getCode( ) );
+        daoUtil.setString( nCpt++, campaignTheme.getTitle( ) );
+        daoUtil.setString( nCpt++, campaignTheme.getDescription( ) );
+        daoUtil.setBoolean( nCpt++, campaignTheme.getActive( ) );
+        File image = campaignTheme.getImage( );
         if ( image != null )
         {
             daoUtil.setInt( nCpt++, image.getIdFile( ) );
@@ -210,7 +210,7 @@ public final class CampagneThemeDAO implements ICampagneThemeDAO
         {
             daoUtil.setIntNull( nCpt++ );
         }
-        daoUtil.setInt( nCpt++, campagneTheme.getId( ) );
+        daoUtil.setInt( nCpt++, campaignTheme.getId( ) );
 
         daoUtil.executeUpdate( );
         daoUtil.free( );
@@ -220,103 +220,103 @@ public final class CampagneThemeDAO implements ICampagneThemeDAO
      * {@inheritDoc }
      */
     @Override
-    public Collection<CampagneTheme> selectCampagneThemesList( Plugin plugin )
+    public Collection<CampaignTheme> selectCampaignThemesList( Plugin plugin )
     {
-        Collection<CampagneTheme> campagneThemeList = new ArrayList<CampagneTheme>( );
+        Collection<CampaignTheme> campaignThemeList = new ArrayList<CampaignTheme>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
         daoUtil.executeQuery( );
 
         while ( daoUtil.next( ) )
         {
-            CampagneTheme campagneTheme = getRow( daoUtil );
+            CampaignTheme campaignTheme = getRow( daoUtil );
 
-            campagneThemeList.add( campagneTheme );
+            campaignThemeList.add( campaignTheme );
         }
 
         daoUtil.free( );
-        return campagneThemeList;
+        return campaignThemeList;
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public Collection<Integer> selectIdCampagneThemesList( Plugin plugin )
+    public Collection<Integer> selectIdCampaignThemesList( Plugin plugin )
     {
-        Collection<Integer> campagneThemeList = new ArrayList<Integer>( );
+        Collection<Integer> campaignThemeList = new ArrayList<Integer>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
         daoUtil.executeQuery( );
 
         while ( daoUtil.next( ) )
         {
-            campagneThemeList.add( daoUtil.getInt( 1 ) );
+            campaignThemeList.add( daoUtil.getInt( 1 ) );
         }
 
         daoUtil.free( );
-        return campagneThemeList;
+        return campaignThemeList;
     }
 
-    private CampagneTheme getRow( DAOUtil daoUtil )
+    private CampaignTheme getRow( DAOUtil daoUtil )
     {
         int nCpt = 1;
-        CampagneTheme campagneTheme = new CampagneTheme( );
+        CampaignTheme campaignTheme = new CampaignTheme( );
 
-        campagneTheme.setId( daoUtil.getInt( nCpt++ ) );
-        campagneTheme.setCodeCampagne( daoUtil.getString( nCpt++ ) );
-        campagneTheme.setCode( daoUtil.getString( nCpt++ ) );
-        campagneTheme.setTitle( daoUtil.getString( nCpt++ ) );
-        campagneTheme.setDescription( daoUtil.getString( nCpt++ ) );
-        campagneTheme.setActive( daoUtil.getBoolean( nCpt++ ) );
-        campagneTheme.setImage( FileHome.findByPrimaryKey( daoUtil.getInt( nCpt++ ) ) );
-        return campagneTheme;
+        campaignTheme.setId( daoUtil.getInt( nCpt++ ) );
+        campaignTheme.setCodeCampaign( daoUtil.getString( nCpt++ ) );
+        campaignTheme.setCode( daoUtil.getString( nCpt++ ) );
+        campaignTheme.setTitle( daoUtil.getString( nCpt++ ) );
+        campaignTheme.setDescription( daoUtil.getString( nCpt++ ) );
+        campaignTheme.setActive( daoUtil.getBoolean( nCpt++ ) );
+        campaignTheme.setImage( FileHome.findByPrimaryKey( daoUtil.getInt( nCpt++ ) ) );
+        return campaignTheme;
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public Collection<CampagneTheme> selectCampagneThemesListByCampagne( String campagneCode, Plugin plugin )
+    public Collection<CampaignTheme> selectCampaignThemesListByCampaign( String campaignCode, Plugin plugin )
     {
-        Collection<CampagneTheme> campagneThemeList = new ArrayList<CampagneTheme>( );
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_BY_CAMPAGNE, plugin );
-        daoUtil.setString( 1, campagneCode );
+        Collection<CampaignTheme> campaignThemeList = new ArrayList<CampaignTheme>( );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_BY_CAMPAIGN, plugin );
+        daoUtil.setString( 1, campaignCode );
         daoUtil.executeQuery( );
 
         while ( daoUtil.next( ) )
         {
-            CampagneTheme campagneTheme = getRow( daoUtil );
+            CampaignTheme campaignTheme = getRow( daoUtil );
 
-            campagneThemeList.add( campagneTheme );
+            campaignThemeList.add( campaignTheme );
         }
 
         daoUtil.free( );
-        return campagneThemeList;
+        return campaignThemeList;
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public Map<String, List<CampagneTheme>> selectCampagneThemesMapByCampagne( Plugin plugin )
+    public Map<String, List<CampaignTheme>> selectCampaignThemesMapByCampaign( Plugin plugin )
     {
-        Map<String, List<CampagneTheme>> campagneThemeMap = new HashMap<String, List<CampagneTheme>>( );
+        Map<String, List<CampaignTheme>> campaignThemeMap = new HashMap<String, List<CampaignTheme>>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
         daoUtil.executeQuery( );
 
         while ( daoUtil.next( ) )
         {
-            CampagneTheme campagneTheme = getRow( daoUtil );
+            CampaignTheme campaignTheme = getRow( daoUtil );
 
-            List<CampagneTheme> campagneThemeList = campagneThemeMap.get( campagneTheme.getCodeCampagne( ) );
-            if ( campagneThemeList == null )
+            List<CampaignTheme> campaignThemeList = campaignThemeMap.get( campaignTheme.getCodeCampaign( ) );
+            if ( campaignThemeList == null )
             {
-                campagneThemeList = new ArrayList<CampagneTheme>( );
-                campagneThemeMap.put( campagneTheme.getCodeCampagne( ), campagneThemeList );
+                campaignThemeList = new ArrayList<CampaignTheme>( );
+                campaignThemeMap.put( campaignTheme.getCodeCampaign( ), campaignThemeList );
             }
-            campagneThemeList.add( campagneTheme );
+            campaignThemeList.add( campaignTheme );
         }
 
         daoUtil.free( );
-        return campagneThemeMap;
+        return campaignThemeMap;
     }
 }

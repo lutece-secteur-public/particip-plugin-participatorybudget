@@ -42,49 +42,49 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 import java.util.Collection;
 
 /**
- * This class provides instances management methods (create, find, ...) for CampagneArea objects
+ * This class provides instances management methods (create, find, ...) for CampaignArea objects
  */
 
-public final class CampagneAreaHome
+public final class CampaignAreaHome
 {
     // Static variable pointed at the DAO instance
 
-    private static ICampagneAreaDAO _dao = SpringContextService.getBean( "participatorybudget.campagneAreaDAO" );
+    private static ICampaignAreaDAO _dao = SpringContextService.getBean( "participatorybudget.campaignAreaDAO" );
     private static Plugin _plugin = PluginService.getPlugin( "participatorybudget" );
 
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagneAreaHome( )
+    private CampaignAreaHome( )
     {
     }
 
     /**
-     * Create an instance of the campagneArea class
+     * Create an instance of the campaignArea class
      * 
-     * @param campagneArea
-     *            The instance of the CampagneArea which contains the informations to store
-     * @return The instance of campagneArea which has been created with its primary key.
+     * @param campaignArea
+     *            The instance of the CampaignArea which contains the informations to store
+     * @return The instance of campaignArea which has been created with its primary key.
      */
-    public static CampagneArea create( CampagneArea campagneArea )
+    public static CampaignArea create( CampaignArea campaignArea )
     {
-        _dao.insert( campagneArea, _plugin );
+        _dao.insert( campaignArea, _plugin );
 
-        return campagneArea;
+        return campaignArea;
     }
 
     /**
-     * Update of the campagneAre which is specified in parameter
+     * Update of the campaignAre which is specified in parameter
      * 
-     * @param campagneArea
-     *            The instance of the CampagneArea which contains the data to store
-     * @return The instance of the campagneArea which has been updated
+     * @param campaignArea
+     *            The instance of the CampaignArea which contains the data to store
+     * @return The instance of the campaignArea which has been updated
      */
-    public static CampagneArea update( CampagneArea campagneArea )
+    public static CampaignArea update( CampaignArea campaignArea )
     {
-        _dao.store( campagneArea, _plugin );
+        _dao.store( campaignArea, _plugin );
 
-        return campagneArea;
+        return campaignArea;
     }
 
     /**
@@ -101,10 +101,10 @@ public final class CampagneAreaHome
     }
 
     /**
-     * Remove the campagneArea whose identifier is specified in parameter
+     * Remove the campaignArea whose identifier is specified in parameter
      * 
      * @param nKey
-     *            The campagneArea Id
+     *            The campaignArea Id
      */
     public static void remove( int nKey )
     {
@@ -115,54 +115,54 @@ public final class CampagneAreaHome
     // Finders
 
     /**
-     * Returns an instance of a campagneArea whose identifier is specified in parameter
+     * Returns an instance of a campaignArea whose identifier is specified in parameter
      * 
      * @param nKey
-     *            The campagneArea primary key
-     * @return an instance of CampagneArea
+     *            The campaignArea primary key
+     * @return an instance of CampaignArea
      */
-    public static CampagneArea findByPrimaryKey( int nKey )
+    public static CampaignArea findByPrimaryKey( int nKey )
     {
         return _dao.load( nKey, _plugin );
     }
 
     /**
-     * Load the data of all the campagneArea objects and returns them in form of a collection
+     * Load the data of all the campaignArea objects and returns them in form of a collection
      * 
-     * @return the collection which contains the data of all the campagneArea objects
+     * @return the collection which contains the data of all the campaignArea objects
      */
-    public static Collection<CampagneArea> getCampagneAreasList( )
+    public static Collection<CampaignArea> getCampaignAreasList( )
     {
-        return _dao.selectCampagneAreasList( _plugin );
+        return _dao.selectCampaignAreasList( _plugin );
     }
 
     /**
-     * Load the id of all the campagneArea objects and returns them in form of a collection
+     * Load the id of all the campaignArea objects and returns them in form of a collection
      * 
-     * @return the collection which contains the id of all the campagneArea objects
+     * @return the collection which contains the id of all the campaignArea objects
      */
-    public static Collection<Integer> getIdCampagneAreasList( )
+    public static Collection<Integer> getIdCampaignAreasList( )
     {
-        return _dao.selectIdCampagneAreasList( _plugin );
+        return _dao.selectIdCampaignAreasList( _plugin );
     }
 
     /**
-     * Load the data of all the campagneArea objects for a campagne and returns them in form of a collection
+     * Load the data of all the campaignArea objects for a campaign and returns them in form of a collection
      * 
-     * @return the collection which contains the data of all the campagneArea objects
+     * @return the collection which contains the data of all the campaignArea objects
      */
-    public static Collection<CampagneArea> getCampagneAreasListByCampagne( String codeCampagne )
+    public static Collection<CampaignArea> getCampaignAreasListByCampaign( String codeCampaign )
     {
-        return _dao.selectCampagneAreasListByCampagne( codeCampagne, _plugin );
+        return _dao.selectCampaignAreasListByCampaign( codeCampaign, _plugin );
     }
 
     /**
-     * Load the data of all the campagneArea objects mapped from campagne code and returns them in form of a map
+     * Load the data of all the campaignArea objects mapped from campaign code and returns them in form of a map
      * 
-     * @return the collection which contains the data of all the campagneArea objects
+     * @return the collection which contains the data of all the campaignArea objects
      */
-    public static Map<String, List<CampagneArea>> getCampagneAreasMapByCampagne( )
+    public static Map<String, List<CampaignArea>> getCampaignAreasMapByCampaign( )
     {
-        return _dao.selectCampagneAreasMapByCampagne( _plugin );
+        return _dao.selectCampaignAreasMapByCampaign( _plugin );
     }
 }

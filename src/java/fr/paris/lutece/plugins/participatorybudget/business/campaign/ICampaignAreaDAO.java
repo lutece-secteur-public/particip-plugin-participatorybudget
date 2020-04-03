@@ -40,29 +40,29 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ICampagneAreaDAO Interface
+ * ICampaignAreaDAO Interface
  */
-public interface ICampagneAreaDAO
+public interface ICampaignAreaDAO
 {
     /**
      * Insert a new record in the table.
      * 
-     * @param campagneArea
-     *            instance of the CampagneArea object to insert
+     * @param campaignArea
+     *            instance of the CampaignArea object to insert
      * @param plugin
      *            the Plugin
      */
-    void insert( CampagneArea campagneArea, Plugin plugin );
+    void insert( CampaignArea campaignArea, Plugin plugin );
 
     /**
      * Update the record in the table
      * 
-     * @param campagneArea
-     *            the reference of the CampagneArea
+     * @param campaignArea
+     *            the reference of the CampaignArea
      * @param plugin
      *            the Plugin
      */
-    void store( CampagneArea campagneArea, Plugin plugin );
+    void store( CampaignArea campaignArea, Plugin plugin );
 
     /**
      * Change a campaign code
@@ -80,7 +80,7 @@ public interface ICampagneAreaDAO
      * Delete a record from the table
      * 
      * @param nKey
-     *            The identifier of the CampagneArea to delete
+     *            The identifier of the CampaignArea to delete
      * @param plugin
      *            the Plugin
      */
@@ -93,46 +93,46 @@ public interface ICampagneAreaDAO
      * Load the data from the table
      * 
      * @param nKey
-     *            The identifier of the campagneArea
+     *            The identifier of the campaignArea
      * @param plugin
      *            the Plugin
-     * @return The instance of the campagneArea
+     * @return The instance of the campaignArea
      */
-    CampagneArea load( int nKey, Plugin plugin );
+    CampaignArea load( int nKey, Plugin plugin );
 
     /**
-     * Load the data of all the campagneArea objects and returns them as a collection
+     * Load the data of all the campaignArea objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagneArea objects
+     * @return The collection which contains the data of all the campaignArea objects
      */
-    Collection<CampagneArea> selectCampagneAreasList( Plugin plugin );
+    Collection<CampaignArea> selectCampaignAreasList( Plugin plugin );
 
     /**
-     * Load the id of all the campagneArea objects and returns them as a collection
+     * Load the id of all the campaignArea objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the id of all the campagneArea objects
+     * @return The collection which contains the id of all the campaignArea objects
      */
-    Collection<Integer> selectIdCampagneAreasList( Plugin plugin );
+    Collection<Integer> selectIdCampaignAreasList( Plugin plugin );
 
     /**
-     * Load the data of all the campagneArea objects for a campaign and returns them as a collection
+     * Load the data of all the campaignArea objects for a campaign and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagneArea objects
+     * @return The collection which contains the data of all the campaignArea objects
      */
-    Collection<CampagneArea> selectCampagneAreasListByCampagne( String campagneCode, Plugin plugin );
+    Collection<CampaignArea> selectCampaignAreasListByCampaign( String campaignCode, Plugin plugin );
 
     /**
-     * Load the data of all the campagneArea objects mapped from cmapgne and returns them as a map
+     * Load the data of all the campaignArea objects mapped from cmapgne and returns them as a map
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagneArea objects
+     * @return The collection which contains the data of all the campaignArea objects
      */
-    Map<String, List<CampagneArea>> selectCampagneAreasMapByCampagne( Plugin plugin );
+    Map<String, List<CampaignArea>> selectCampaignAreasMapByCampaign( Plugin plugin );
 }

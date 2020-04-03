@@ -4,13 +4,13 @@ plugin.description=Plugin contenant les composants sp\u00e9cifiques au site Budg
 
 # Plugin's keys
 plugin.provider=Mairie de Paris
-plugin.description=Manage campagne of budget participatif
+plugin.description=Manage campaign of budget participatif
 
 
 # Admin features keys
 
-adminFeature.ManageCampagnebp.name=ManageCampagnebp
-adminFeature.ManageCampagnebp.description=Manage Campagne
+adminFeature.ManageCampaignbp.name=ManageCampaignbp
+adminFeature.ManageCampaignbp.description=Manage Campaign
 
 
 # XPages keys
@@ -121,181 +121,181 @@ mes_infos_popup.messageAccountNotCompleted=Pour pouvoir d\u00e9poser un projet, 
 mes_infos_popup.buttonSendAccountValidation=Me renvoyer le mail de validation
 mes_infos_popup.buttonOk=OK
 
-# keys for business classes keys : Campagne
-manage_campagnes.pageTitle=Campagne
-manage_campagnes.title=Liste des Campagnes
-manage_campagnes.buttonAdd=Ajouter une Campagne vide
-manage_campagnes.columnCode=Code
-manage_campagnes.columnTitle=Title
-manage_campagnes.columnActive=Active
-manage_campagnes.columnCodeModerationType=CodeModerationType
-manage_campagnes.columnDescription=Description
-manage_campagnes.columnModerationDuration=Moderation duration
-create_campagne.pageTitle=Campagne
-create_campagne.title=Cr\u00e9ation d'un Campagne
-create_campagne.labelCode=Code
-create_campagne.labelCode.help=Code (help text)
-create_campagne.labelTitle=Title
-create_campagne.labelTitle.help=Title (help text)
-create_campagne.labelActive=Active
-create_campagne.labelActive.help=Active (help text)
-create_campagne.labelCodeModerationType=CodeModerationType
-create_campagne.labelCodeModerationType.help=CodeModerationType (help text)
-create_campagne.labelDescription=Description
-create_campagne.labelDescription.help=Description (help text)
-create_campagne.labelModerationDuration=CodeModerationType duration
-create_campagne.labelModerationDuration.help=CodeModerationType duration (help text)
-modify_campagne.pageTitle=Campagne
-modify_campagne.title=Modification d'un Campagne
-modify_campagne.labelCode=Code
-modify_campagne.labelCode.help=Code (help text)
-modify_campagne.labelTitle=Title
-modify_campagne.labelTitle.help=Title (help text)
-modify_campagne.labelActive=Active
-modify_campagne.labelActive.help=Active (help text)
-modify_campagne.labelCodeModerationType=CodeModerationType
-modify_campagne.labelCodeModerationType.help=CodeModerationType (help text)
-modify_campagne.labelDescription=Description
-modify_campagne.labelDescription.help=Description (help text)
-modify_campagne.labelModerationDuration=CodeModerationType duration
-modify_campagne.labelModerationDuration.help=CodeModerationType duration (help text)
+# keys for business classes keys : Campaign
+manage_campaigns.pageTitle=Campaign
+manage_campaigns.title=Liste des Campaigns
+manage_campaigns.buttonAdd=Ajouter une Campaign vide
+manage_campaigns.columnCode=Code
+manage_campaigns.columnTitle=Title
+manage_campaigns.columnActive=Active
+manage_campaigns.columnCodeModerationType=CodeModerationType
+manage_campaigns.columnDescription=Description
+manage_campaigns.columnModerationDuration=Moderation duration
+create_campaign.pageTitle=Campaign
+create_campaign.title=Cr\u00e9ation d'un Campaign
+create_campaign.labelCode=Code
+create_campaign.labelCode.help=Code (help text)
+create_campaign.labelTitle=Title
+create_campaign.labelTitle.help=Title (help text)
+create_campaign.labelActive=Active
+create_campaign.labelActive.help=Active (help text)
+create_campaign.labelCodeModerationType=CodeModerationType
+create_campaign.labelCodeModerationType.help=CodeModerationType (help text)
+create_campaign.labelDescription=Description
+create_campaign.labelDescription.help=Description (help text)
+create_campaign.labelModerationDuration=CodeModerationType duration
+create_campaign.labelModerationDuration.help=CodeModerationType duration (help text)
+modify_campaign.pageTitle=Campaign
+modify_campaign.title=Modification d'un Campaign
+modify_campaign.labelCode=Code
+modify_campaign.labelCode.help=Code (help text)
+modify_campaign.labelTitle=Title
+modify_campaign.labelTitle.help=Title (help text)
+modify_campaign.labelActive=Active
+modify_campaign.labelActive.help=Active (help text)
+modify_campaign.labelCodeModerationType=CodeModerationType
+modify_campaign.labelCodeModerationType.help=CodeModerationType (help text)
+modify_campaign.labelDescription=Description
+modify_campaign.labelDescription.help=Description (help text)
+modify_campaign.labelModerationDuration=CodeModerationType duration
+modify_campaign.labelModerationDuration.help=CodeModerationType duration (help text)
 
-message.confirmRemoveCampagne=Etes vous sur de vouloir supprimer ce Campagne ?
-
-# JSR 303 constraint validator messages
-validation.campagne.Code.notEmpty=Le champ Code ne doit pas \u00eatre vide. Veuillez le remplir SVP.
-validation.campagne.Code.size=Le champ Code ne doit pas contenir plus de 50 carat\u00e8res.
-validation.campagne.Title.notEmpty=Le champ Title ne doit pas \u00eatre vide. Veuillez le remplir SVP.
-validation.campagne.Title.size=Le champ Title ne doit pas contenir plus de 255 carat\u00e8res.
-validation.campagne.Active.notEmpty=Le champ Active ne doit pas \u00eatre vide. Veuillez le remplir SVP.
-validation.campagne.CodeModerationType.notEmpty=Le champ CodeModerationType ne doit pas \u00eatre vide. Veuillez le remplir SVP.
-validation.campagne.CodeModerationType.size=Le champ CodeModerationType ne doit pas contenir plus de 50 carat\u00e8res.
-validation.campagne.Description.notEmpty=Le champ Description ne doit pas \u00eatre vide. Veuillez le remplir SVP.
-
-# model attributes for validation messages
-model.entity.campagne.attribute.code=Code
-model.entity.campagne.attribute.title=Title
-model.entity.campagne.attribute.active=Active
-model.entity.campagne.attribute.moderation=CodeModerationType
-model.entity.campagne.attribute.description=Description
-model.entity.campagne.attribute.moderationDuration=CodeModerationType duration
-
-# keys for business classes keys : CampagnePhase
-manage_campagnephases.pageTitle=CampagnePhase
-manage_campagnephases.title=Liste des CampagnePhases
-manage_campagnephases.buttonAdd=Ajouter un CampagnePhase
-manage_campagnephases.columnCodePhaseType=Code Type Phase 
-manage_campagnephases.columnCodeCampagne=code campagne
-manage_campagnephases.columnStart=Start
-manage_campagnephases.columnEnd=End
-create_campagnephase.pageTitle=CampagnePhase
-create_campagnephase.title=Cr\u00e9ation d'un CampagnePhase
-create_campagnephase.labelCodePhaseType=Code phase
-create_campagnephase.labelCodePhaseType.help=Code phase (help text)
-create_campagnephase.labelCodeCampagne=code campagne
-create_campagnephase.labelCodeCampagne.help=code campagne (help text)
-create_campagnephase.labelStart=Start
-create_campagnephase.labelStart.help=Start (help text)
-create_campagnephase.labelEnd=End
-create_campagnephase.labelEnd.help=End (help text)
-modify_campagnephase.pageTitle=CampagnePhase
-modify_campagnephase.title=Modification d'un CampagnePhase
-modify_campagnephase.labelCodePhaseType=Code phase
-modify_campagnephase.labelCodePhaseType.help=Code phase (help text)
-modify_campagnephase.labelCodeCampagne=code campagne
-modify_campagnephase.labelCodeCampagne.help=code campagne (help text)
-modify_campagnephase.labelStart=Start
-modify_campagnephase.labelStart.help=Start (help text)
-modify_campagnephase.labelEnd=End
-modify_campagnephase.labelEnd.help=End (help text)
-
-message.confirmRemoveCampagnePhase=Etes vous sur de vouloir supprimer ce CampagnePhase ?
+message.confirmRemoveCampaign=Etes vous sur de vouloir supprimer ce Campaign ?
 
 # JSR 303 constraint validator messages
-validation.campagnephase.CodePhaseType.notEmpty=Le champ Code Phase de type de phase ne doit pas \u00eatre vide. Veuillez le remplir SVP.
-validation.campagnephase.CodePhaseType.size=Le champ Code Phase de type de phase ne doit pas contenir plus de 50 carat\u00e8res.
-validation.campagnephase.CodeCampagne.notEmpty=Le champ code campagne ne doit pas \u00eatre vide. Veuillez le remplir SVP.
-validation.campagnephase.CodeCampagne.size=Le champ code campagne ne doit pas contenir plus de 50 carat\u00e8res.
-validation.campagnephase.Start.notEmpty=Le champ Start ne doit pas \u00eatre vide. Veuillez le remplir SVP.
-validation.campagnephase.Start.size=Le champ Start ne doit pas contenir plus de 20 carat\u00e8res.
-validation.campagnephase.End.notEmpty=Le champ End ne doit pas \u00eatre vide. Veuillez le remplir SVP.
-validation.campagnephase.End.size=Le champ End ne doit pas contenir plus de 20 carat\u00e8res.
+validation.campaign.Code.notEmpty=Le champ Code ne doit pas \u00eatre vide. Veuillez le remplir SVP.
+validation.campaign.Code.size=Le champ Code ne doit pas contenir plus de 50 carat\u00e8res.
+validation.campaign.Title.notEmpty=Le champ Title ne doit pas \u00eatre vide. Veuillez le remplir SVP.
+validation.campaign.Title.size=Le champ Title ne doit pas contenir plus de 255 carat\u00e8res.
+validation.campaign.Active.notEmpty=Le champ Active ne doit pas \u00eatre vide. Veuillez le remplir SVP.
+validation.campaign.CodeModerationType.notEmpty=Le champ CodeModerationType ne doit pas \u00eatre vide. Veuillez le remplir SVP.
+validation.campaign.CodeModerationType.size=Le champ CodeModerationType ne doit pas contenir plus de 50 carat\u00e8res.
+validation.campaign.Description.notEmpty=Le champ Description ne doit pas \u00eatre vide. Veuillez le remplir SVP.
 
 # model attributes for validation messages
-model.entity.campagnephase.attribute.codePhaseType=Code Type Phase
-model.entity.campagnephase.attribute.CodeCampagne=code campagne
-model.entity.campagnephase.attribute.start=Start
-model.entity.campagnephase.attribute.end=End
+model.entity.campaign.attribute.code=Code
+model.entity.campaign.attribute.title=Title
+model.entity.campaign.attribute.active=Active
+model.entity.campaign.attribute.moderation=CodeModerationType
+model.entity.campaign.attribute.description=Description
+model.entity.campaign.attribute.moderationDuration=CodeModerationType duration
 
-# keys for business classes keys : CampagneImage
-manage_campagneimages.pageTitle=CampagneImage
-manage_campagneimages.title=Liste des CampagneImages
-manage_campagneimages.buttonAdd=Ajouter un CampagneImage
-manage_campagneimages.columnCodeCampagne=code campagne
-manage_campagneimages.columnFile=file
-create_campagneimage.pageTitle=CampagneImage
-create_campagneimage.title=Cr\u00e9ation d'un CampagneImage
-create_campagneimage.labelCodeCampagne=code campagne
-create_campagneimage.labelCodeCampagne.help=code campagne (help text)
-create_campagneimage.labelFile=file
-create_campagneimage.labelFile.help=file (help text)
-modify_campagneimage.pageTitle=CampagneImage
-modify_campagneimage.title=Modification d'un CampagneImage
-modify_campagneimage.labelCodeCampagne=code campagne
-modify_campagneimage.labelCodeCampagne.help=code campagne (help text)
-modify_campagneimage.labelFile=file
-modify_campagneimage.labelFile.help=file (help text)
+# keys for business classes keys : CampaignPhase
+manage_campaignphases.pageTitle=CampaignPhase
+manage_campaignphases.title=Liste des CampaignPhases
+manage_campaignphases.buttonAdd=Ajouter un CampaignPhase
+manage_campaignphases.columnCodePhaseType=Code Type Phase 
+manage_campaignphases.columnCodeCampaign=code campaign
+manage_campaignphases.columnStart=Start
+manage_campaignphases.columnEnd=End
+create_campaignphase.pageTitle=CampaignPhase
+create_campaignphase.title=Cr\u00e9ation d'un CampaignPhase
+create_campaignphase.labelCodePhaseType=Code phase
+create_campaignphase.labelCodePhaseType.help=Code phase (help text)
+create_campaignphase.labelCodeCampaign=code campaign
+create_campaignphase.labelCodeCampaign.help=code campaign (help text)
+create_campaignphase.labelStart=Start
+create_campaignphase.labelStart.help=Start (help text)
+create_campaignphase.labelEnd=End
+create_campaignphase.labelEnd.help=End (help text)
+modify_campaignphase.pageTitle=CampaignPhase
+modify_campaignphase.title=Modification d'un CampaignPhase
+modify_campaignphase.labelCodePhaseType=Code phase
+modify_campaignphase.labelCodePhaseType.help=Code phase (help text)
+modify_campaignphase.labelCodeCampaign=code campaign
+modify_campaignphase.labelCodeCampaign.help=code campaign (help text)
+modify_campaignphase.labelStart=Start
+modify_campaignphase.labelStart.help=Start (help text)
+modify_campaignphase.labelEnd=End
+modify_campaignphase.labelEnd.help=End (help text)
 
-message.confirmRemoveCampagneImage=Etes vous sur de vouloir supprimer ce CampagneImage ?
+message.confirmRemoveCampaignPhase=Etes vous sur de vouloir supprimer ce CampaignPhase ?
 
 # JSR 303 constraint validator messages
-validation.campagneimage.CodeCampagne.notEmpty=Le champ code campagne ne doit pas \u00eatre vide.
-validation.campagneimage.CodeCampagne.size=Le champ code campagne ne doit pas contenir plus de 50 carat\u00e8res.
+validation.campaignphase.CodePhaseType.notEmpty=Le champ Code Phase de type de phase ne doit pas \u00eatre vide. Veuillez le remplir SVP.
+validation.campaignphase.CodePhaseType.size=Le champ Code Phase de type de phase ne doit pas contenir plus de 50 carat\u00e8res.
+validation.campaignphase.CodeCampaign.notEmpty=Le champ code campaign ne doit pas \u00eatre vide. Veuillez le remplir SVP.
+validation.campaignphase.CodeCampaign.size=Le champ code campaign ne doit pas contenir plus de 50 carat\u00e8res.
+validation.campaignphase.Start.notEmpty=Le champ Start ne doit pas \u00eatre vide. Veuillez le remplir SVP.
+validation.campaignphase.Start.size=Le champ Start ne doit pas contenir plus de 20 carat\u00e8res.
+validation.campaignphase.End.notEmpty=Le champ End ne doit pas \u00eatre vide. Veuillez le remplir SVP.
+validation.campaignphase.End.size=Le champ End ne doit pas contenir plus de 20 carat\u00e8res.
 
 # model attributes for validation messages
-model.entity.campagneimage.attribute.CodeCampagne=code campagne
-model.entity.campagneimage.attribute.File=file
+model.entity.campaignphase.attribute.codePhaseType=Code Type Phase
+model.entity.campaignphase.attribute.CodeCampaign=code campaign
+model.entity.campaignphase.attribute.start=Start
+model.entity.campaignphase.attribute.end=End
 
-# keys for business classes keys : CampagneTheme
-manage_campagnethemes.pageTitle=Liste des th\u00e9matique
-manage_campagnethemes.title=Liste des th\u00e9matique
-manage_campagnethemes.buttonAdd=Ajouter une th\u00e9matique
-manage_campagnethemes.columnCodeCampagne=Code de la campagne
-manage_campagnethemes.columnCode=Code de la th\u00e9matique
-manage_campagnethemes.columnTitle=Titre
-manage_campagnethemes.columnDescription=Description
-manage_campagnethemes.columnActive=Active
-manage_campagnethemes.columnImage=Image
-create_campagnetheme.pageTitle=Cr\u00e9ation d'une th\u00e9matique
-create_campagnetheme.title=Cr\u00e9ation d'une th\u00e9matique
-create_campagnetheme.labelCodeCampagne=Code de la campagne
-create_campagnetheme.labelCodeCampagne.help=Code de la campagne (help text)
-create_campagnetheme.labelCode=Code de la th\u00e9matique
-create_campagnetheme.labelCode.help=Code de la th\u00e9matique (help text)
-create_campagnetheme.labelTitle=Titre
-create_campagnetheme.labelTitle.help=Titre (help text)
-create_campagnetheme.labelDescription=Description
-create_campagnetheme.labelDescription.help=Description (help text)
-create_campagnetheme.labelActive=Active
-create_campagnetheme.labelActive.help=Active (help text)
-create_campagnetheme.labelImage=Image
-create_campagnetheme.labelImage.help=Image (help text)
-modify_campagnetheme.pageTitle=Modification d'une th\u00e9matique
-modify_campagnetheme.title=Modification d'une th\u00e9matique
-modify_campagnetheme.labelCodeCampagne=Code de la campagne
-modify_campagnetheme.labelCodeCampagne.help=Code de la campagne (help text)
-modify_campagnetheme.labelCode=Code de la th\u00e9matique
-modify_campagnetheme.labelCode=Code de la th\u00e9matique (help text)
-modify_campagnetheme.labelTitle=Titre
-modify_campagnetheme.labelTitle.help=Titre(help text)
-modify_campagnetheme.labelDescription=Description
-modify_campagnetheme.labelDescription.help=Description (help text)
-modify_campagnetheme.labelActive=Active
-modify_campagnetheme.labelActive.help=Active (help text)
-modify_campagnetheme.labelImage=Image
-modify_campagnetheme.labelImage.help=Image (help text)
+# keys for business classes keys : CampaignImage
+manage_campaignimages.pageTitle=CampaignImage
+manage_campaignimages.title=Liste des CampaignImages
+manage_campaignimages.buttonAdd=Ajouter un CampaignImage
+manage_campaignimages.columnCodeCampaign=code campaign
+manage_campaignimages.columnFile=file
+create_campaignimage.pageTitle=CampaignImage
+create_campaignimage.title=Cr\u00e9ation d'un CampaignImage
+create_campaignimage.labelCodeCampaign=code campaign
+create_campaignimage.labelCodeCampaign.help=code campaign (help text)
+create_campaignimage.labelFile=file
+create_campaignimage.labelFile.help=file (help text)
+modify_campaignimage.pageTitle=CampaignImage
+modify_campaignimage.title=Modification d'un CampaignImage
+modify_campaignimage.labelCodeCampaign=code campaign
+modify_campaignimage.labelCodeCampaign.help=code campaign (help text)
+modify_campaignimage.labelFile=file
+modify_campaignimage.labelFile.help=file (help text)
 
-message.confirmRemoveCampagneTheme=Etes-vous sur de vouloir supprimer cette th\u00e9matique ?
+message.confirmRemoveCampaignImage=Etes vous sur de vouloir supprimer ce CampaignImage ?
+
+# JSR 303 constraint validator messages
+validation.campaignimage.CodeCampaign.notEmpty=Le champ code campaign ne doit pas \u00eatre vide.
+validation.campaignimage.CodeCampaign.size=Le champ code campaign ne doit pas contenir plus de 50 carat\u00e8res.
+
+# model attributes for validation messages
+model.entity.campaignimage.attribute.CodeCampaign=code campaign
+model.entity.campaignimage.attribute.File=file
+
+# keys for business classes keys : CampaignTheme
+manage_campaignthemes.pageTitle=Liste des th\u00e9matique
+manage_campaignthemes.title=Liste des th\u00e9matique
+manage_campaignthemes.buttonAdd=Ajouter une th\u00e9matique
+manage_campaignthemes.columnCodeCampaign=Code de la campaign
+manage_campaignthemes.columnCode=Code de la th\u00e9matique
+manage_campaignthemes.columnTitle=Titre
+manage_campaignthemes.columnDescription=Description
+manage_campaignthemes.columnActive=Active
+manage_campaignthemes.columnImage=Image
+create_campaigntheme.pageTitle=Cr\u00e9ation d'une th\u00e9matique
+create_campaigntheme.title=Cr\u00e9ation d'une th\u00e9matique
+create_campaigntheme.labelCodeCampaign=Code de la campaign
+create_campaigntheme.labelCodeCampaign.help=Code de la campaign (help text)
+create_campaigntheme.labelCode=Code de la th\u00e9matique
+create_campaigntheme.labelCode.help=Code de la th\u00e9matique (help text)
+create_campaigntheme.labelTitle=Titre
+create_campaigntheme.labelTitle.help=Titre (help text)
+create_campaigntheme.labelDescription=Description
+create_campaigntheme.labelDescription.help=Description (help text)
+create_campaigntheme.labelActive=Active
+create_campaigntheme.labelActive.help=Active (help text)
+create_campaigntheme.labelImage=Image
+create_campaigntheme.labelImage.help=Image (help text)
+modify_campaigntheme.pageTitle=Modification d'une th\u00e9matique
+modify_campaigntheme.title=Modification d'une th\u00e9matique
+modify_campaigntheme.labelCodeCampaign=Code de la campaign
+modify_campaigntheme.labelCodeCampaign.help=Code de la campaign (help text)
+modify_campaigntheme.labelCode=Code de la th\u00e9matique
+modify_campaigntheme.labelCode=Code de la th\u00e9matique (help text)
+modify_campaigntheme.labelTitle=Titre
+modify_campaigntheme.labelTitle.help=Titre(help text)
+modify_campaigntheme.labelDescription=Description
+modify_campaigntheme.labelDescription.help=Description (help text)
+modify_campaigntheme.labelActive=Active
+modify_campaigntheme.labelActive.help=Active (help text)
+modify_campaigntheme.labelImage=Image
+modify_campaigntheme.labelImage.help=Image (help text)
+
+message.confirmRemoveCampaignTheme=Etes-vous sur de vouloir supprimer cette th\u00e9matique ?
 
 # XPages keys
 

@@ -1,18 +1,18 @@
-<#include "managecampagnebp_tabs.html" />
-<@tabs tab="campagne" />
+<#include "managecampaignbp_tabs.html" />
+<@tabs tab="campaign" />
 
-<@rowBoxHeader i18nTitleKey="participatorybudget.modify_campagne.pageTitle">
-    <form class="form-horizontal" method="post" name="modify_campagne" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp">
+<@rowBoxHeader i18nTitleKey="participatorybudget.modify_campaign.pageTitle">
+    <form class="form-horizontal" method="post" name="modify_campaign" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp">
         <@messages errors=errors />
-        <input type="hidden" id="id" name="id" value="${campagne.id}"/>
+        <input type="hidden" id="id" name="id" value="${campaign.id}"/>
         
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagne.labelCode" inputName="code" mandatory=true value="${campagne.code}" i18nHelpBlockKey="participatorybudget.modify_campagne.labelCode.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagne.labelTitle" inputName="title" mandatory=true value="${campagne.title}" i18nHelpBlockKey="participatorybudget.modify_campagne.labelTitle.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagne.labelDescription" inputName="description" mandatory=true value="${campagne.description}" i18nHelpBlockKey="participatorybudget.modify_campagne.labelDescription.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagne.labelActive" inputName="active" mandatory=true value="${campagne.active?c}" i18nHelpBlockKey="participatory.modify_campagne.labelActive.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagne.labelCodeModerationType" inputName="code_moderation_type" mandatory=true value="${campagne.codeModerationType}" i18nHelpBlockKey="participatorybudget.modify_campagne.labelCodeModerationType.help" />
-        <@fieldInputText i18nLabelKey="participatorybudget.modify_campagne.labelModerationDuration" inputName="moderation_duration"  value="${campagne.moderationDuration}" i18nHelpBlockKey="participatorybudget.modify_campagne.labelModerationDuration.help" />
-        <@actionButtons button1Name="action_modifyCampagne" button2Name="view_manageCampagnes"/>
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaign.labelCode" inputName="code" mandatory=true value="${campaign.code}" i18nHelpBlockKey="participatorybudget.modify_campaign.labelCode.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaign.labelTitle" inputName="title" mandatory=true value="${campaign.title}" i18nHelpBlockKey="participatorybudget.modify_campaign.labelTitle.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaign.labelDescription" inputName="description" mandatory=true value="${campaign.description}" i18nHelpBlockKey="participatorybudget.modify_campaign.labelDescription.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaign.labelActive" inputName="active" mandatory=true value="${campaign.active?c}" i18nHelpBlockKey="participatory.modify_campaign.labelActive.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaign.labelCodeModerationType" inputName="code_moderation_type" mandatory=true value="${campaign.codeModerationType}" i18nHelpBlockKey="participatorybudget.modify_campaign.labelCodeModerationType.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaign.labelModerationDuration" inputName="moderation_duration"  value="${campaign.moderationDuration}" i18nHelpBlockKey="participatorybudget.modify_campaign.labelModerationDuration.help" />
+        <@actionButtons button1Name="action_modifyCampaign" button2Name="view_manageCampaigns"/>
     </form>
 </@rowBoxHeader>
 

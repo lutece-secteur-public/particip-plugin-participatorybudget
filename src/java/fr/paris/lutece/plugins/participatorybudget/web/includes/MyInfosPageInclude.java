@@ -37,7 +37,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampagneIncludeService;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignIncludeService;
 import fr.paris.lutece.portal.service.content.PageData;
 import fr.paris.lutece.portal.service.includes.PageInclude;
 
@@ -56,6 +56,6 @@ public class MyInfosPageInclude implements PageInclude
     @Override
     public void fillTemplate( Map<String, Object> rootModel, PageData data, int nMode, HttpServletRequest request )
     {
-        rootModel.put( MARK_MES_INFOS_INCLUDE, CampagneIncludeService.getMyInfos( request ) );
+        rootModel.put( MARK_MES_INFOS_INCLUDE, CampaignIncludeService.getMyInfos( request ) );
     }
 }

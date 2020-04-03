@@ -41,10 +41,10 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.util.sql.DAOUtil;
 
 /**
- * This class provides Data Access methods for CampagnePhase objects
+ * This class provides Data Access methods for CampaignPhase objects
  */
 
-public final class CampagnePhaseTypeDAO implements ICampagnePhaseTypeDAO
+public final class CampaignPhaseTypeDAO implements ICampaignPhaseTypeDAO
 {
     // Constants
     private static final String SQL_QUERY_NEW_PK = "SELECT max( id_phase_type ) FROM participatorybudget_campaign_phase_type";
@@ -79,9 +79,9 @@ public final class CampagnePhaseTypeDAO implements ICampagnePhaseTypeDAO
      * {@inheritDoc }
      */
     @Override
-    public Collection<CampagnePhaseType> selectAll( Plugin plugin )
+    public Collection<CampaignPhaseType> selectAll( Plugin plugin )
     {
-        Collection<CampagnePhaseType> list = new ArrayList<>( );
+        Collection<CampaignPhaseType> list = new ArrayList<>( );
 
         try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin ) )
         {
@@ -89,14 +89,14 @@ public final class CampagnePhaseTypeDAO implements ICampagnePhaseTypeDAO
 
             while ( daoUtil.next( ) )
             {
-                CampagnePhaseType campagnePhaseType = new CampagnePhaseType( );
+                CampaignPhaseType campaignPhaseType = new CampaignPhaseType( );
 
-                campagnePhaseType.setId( daoUtil.getInt( 1 ) );
-                campagnePhaseType.setCode( daoUtil.getString( 2 ) );
-                campagnePhaseType.setLabel( daoUtil.getString( 3 ) );
-                campagnePhaseType.setOrder( daoUtil.getInt( 4 ) );
+                campaignPhaseType.setId( daoUtil.getInt( 1 ) );
+                campaignPhaseType.setCode( daoUtil.getString( 2 ) );
+                campaignPhaseType.setLabel( daoUtil.getString( 3 ) );
+                campaignPhaseType.setOrder( daoUtil.getInt( 4 ) );
 
-                list.add( campagnePhaseType );
+                list.add( campaignPhaseType );
             }
         }
 
@@ -107,9 +107,9 @@ public final class CampagnePhaseTypeDAO implements ICampagnePhaseTypeDAO
      * {@inheritDoc }
      */
     @Override
-    public List<CampagnePhaseType> selectAllOrdered( Plugin plugin )
+    public List<CampaignPhaseType> selectAllOrdered( Plugin plugin )
     {
-        List<CampagnePhaseType> list = new ArrayList<>( );
+        List<CampaignPhaseType> list = new ArrayList<>( );
 
         try ( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ORDERED, plugin ) )
         {
@@ -117,14 +117,14 @@ public final class CampagnePhaseTypeDAO implements ICampagnePhaseTypeDAO
 
             while ( daoUtil.next( ) )
             {
-                CampagnePhaseType campagnePhaseType = new CampagnePhaseType( );
+                CampaignPhaseType campaignPhaseType = new CampaignPhaseType( );
 
-                campagnePhaseType.setId( daoUtil.getInt( 1 ) );
-                campagnePhaseType.setCode( daoUtil.getString( 2 ) );
-                campagnePhaseType.setLabel( daoUtil.getString( 3 ) );
-                campagnePhaseType.setOrder( daoUtil.getInt( 4 ) );
+                campaignPhaseType.setId( daoUtil.getInt( 1 ) );
+                campaignPhaseType.setCode( daoUtil.getString( 2 ) );
+                campaignPhaseType.setLabel( daoUtil.getString( 3 ) );
+                campaignPhaseType.setOrder( daoUtil.getInt( 4 ) );
 
-                list.add( campagnePhaseType );
+                list.add( campaignPhaseType );
             }
         }
 

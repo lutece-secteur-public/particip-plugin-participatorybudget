@@ -36,7 +36,7 @@ package fr.paris.lutece.plugins.participatorybudget.service.campaign;
 import java.sql.Timestamp;
 import java.util.List;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
 import fr.paris.lutece.util.ReferenceList;
 
 public interface ICampaignService
@@ -48,33 +48,33 @@ public interface ICampaignService
     // ***********************************************************************************
 
     // Returns the campain the code of which is the SQL 'max'.
-    // Ex : if 6 campagne with 'B0' - 'C' - 'D' - 'G0' - 'GA' - 'G', returns campagne 'GA'.
-    public Campagne getLastCampagne( );
+    // Ex : if 6 campaign with 'B0' - 'C' - 'D' - 'G0' - 'GA' - 'G', returns campaign 'GA'.
+    public Campaign getLastCampaign( );
 
     // ***********************************************************************************
     // * PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE P *
     // * PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE PHASE P *
     // ***********************************************************************************
 
-    public boolean isBeforeBeginning( String campagne, String phase ); // ......current < PHASE_BEGINNING
+    public boolean isBeforeBeginning( String campaign, String phase ); // ......current < PHASE_BEGINNING
 
-    public boolean isBeforeEnd( String campagne, String phase ); // ..................................current < PHASE_END
+    public boolean isBeforeEnd( String campaign, String phase ); // ..................................current < PHASE_END
 
-    public boolean isDuring( String campagne, String phase ); // PHASE_BEGINNING < current < PHASE_END
+    public boolean isDuring( String campaign, String phase ); // PHASE_BEGINNING < current < PHASE_END
 
-    public boolean isAfterBeginning( String campagne, String phase ); // PHASE_BEGINNING < current............................
+    public boolean isAfterBeginning( String campaign, String phase ); // PHASE_BEGINNING < current............................
 
-    public boolean isAfterEnd( String campagne, String phase ); // PHASE_END < current......
+    public boolean isAfterEnd( String campaign, String phase ); // PHASE_END < current......
 
-    public Timestamp start( String campagne, String phase );
+    public Timestamp start( String campaign, String phase );
 
-    public Timestamp end( String campagne, String phase );
+    public Timestamp end( String campaign, String phase );
 
-    public String startStr( String campagne, String phase, String format, boolean withAccents );
+    public String startStr( String campaign, String phase, String format, boolean withAccents );
 
-    public String endStr( String campagne, String phase, String format, boolean withAccents );
+    public String endStr( String campaign, String phase, String format, boolean withAccents );
 
-    // Same as precedent, for last campagne
+    // Same as precedent, for last campaign
     public boolean isBeforeBeginning( String phase );
 
     public boolean isBeforeEnd( String phase );
@@ -108,7 +108,7 @@ public interface ICampaignService
 
     public String getWholeArea( String codeCampaign );
 
-    // Same as precedent, for last campagne
+    // Same as precedent, for last campaign
     public List<String> getAllAreas( );
 
     public List<String> getLocalizedAreas( );
@@ -126,7 +126,7 @@ public interface ICampaignService
 
     public ReferenceList getThemes( String codeCampaign );
 
-    // Same as precedent, for last campagne
+    // Same as precedent, for last campaign
     public ReferenceList getThemes( );
 
     // *********************************************************************************************

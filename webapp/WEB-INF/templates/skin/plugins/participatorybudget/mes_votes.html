@@ -51,7 +51,7 @@
 			</div>
 			
 			<div class="row">
-				<#if campagneService.isDuring("VOTE") && voteValidated >
+				<#if campaignService.isDuring("VOTE") && voteValidated >
 					<div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 bordered">
 						<div class="msg">merci, votre vote est valid&eacute; !</div>
 					</div>
@@ -67,7 +67,7 @@
 
 				<div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2 bordered">
 					<h3>Projets tout&nbsp;Paris&nbsp;: ${nbVotesParis}&nbsp;/&nbsp;${maxVotes}</h3>
-					<#if campagneService.isDuring("VOTE") && !voteValidated >
+					<#if campaignService.isDuring("VOTE") && !voteValidated >
 						<p class="sub-title">
 							<#if nbVotesParis &lt; maxVotes>
 								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&query=&fq=localisation_text%3ATout+Paris">
@@ -114,7 +114,7 @@
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<#assign nbVotes = userVotes?size>
 					<h3>Projets d'arrondissement&nbsp;: ${nbVotesArrond}&nbsp;/&nbsp;${maxVotesArrdt}</h3>
-					<#if campagneService.isDuring("VOTE") && !voteValidated >
+					<#if campaignService.isDuring("VOTE") && !voteValidated >
 						<p class="sub-title">
 							<#if nbVotesArrond &lt; maxVotesArrdt>
 								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&fq=localisation_text:${user_arrondissement!}">
@@ -178,7 +178,7 @@
 		<div class="container">
 			<div class="col-xs-12 col-sm-12">
 			
-				<#if campagneService.isDuring("VOTE") && !voteValidated >
+				<#if campaignService.isDuring("VOTE") && !voteValidated >
 					<div class="valid">
 						<p>N'oubliez pas de valider votre vote !</p>
 						<button class="btn btn-18rem btn-black-on-white" onclick="valideVotes('1e arrondissement', 4, 4, false);">je valide mon vote</button>

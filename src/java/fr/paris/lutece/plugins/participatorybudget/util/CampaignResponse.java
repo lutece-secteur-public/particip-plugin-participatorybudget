@@ -40,14 +40,14 @@ import java.io.Serializable;
  * BudgetResponse
  *
  */
-public class CampagneResponse implements Serializable
+public class CampaignResponse implements Serializable
 {
 
     private static final long serialVersionUID = 5100059838966010325L;
     private String _strToken;
     private Boolean _bSuccess;
 
-    public CampagneResponse( Boolean bSuccess, String strToken )
+    public CampaignResponse( Boolean bSuccess, String strToken )
     {
 
         _strToken = strToken;

@@ -38,8 +38,8 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
 import fr.paris.lutece.plugins.participatorybudget.service.BudgetIncludeService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
@@ -70,7 +70,7 @@ public class HeaderInclude implements PageInclude
     private static final String MARK_URL_DO_LOGIN = "url_dologin";
     private static final String MARK_URL_DO_LOGOUT = "url_dologout";
     private static final String MARK_URL_MONCOMPTE = "url_moncompte";
-    private static final String MARK_CAMPAGNE_SERVICE = "campagneService";
+    private static final String MARK_CAMPAIGN_SERVICE = "campaignService";
 
     // TODO : delete following mark
     public static final String MARK_USER_ARRONDISSEMENT_VOTE = "user_arr_vote";
@@ -117,7 +117,7 @@ public class HeaderInclude implements PageInclude
 
             rootModel.put( SecurityTokenService.MARK_TOKEN, SecurityTokenService.getInstance( ).getToken( request, MyInfosXPage.TOKEN_DO_CREATE_MY_INFOS ) );
 
-            rootModel.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+            rootModel.put( BudgetUtils.MARK_CAMPAIGN_SERVICE, CampaignService.getInstance( ) );
 
             HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_CONNEXION, request.getLocale( ), rootModel );
 
@@ -125,7 +125,7 @@ public class HeaderInclude implements PageInclude
             rootModel.put( MARK_HEADER_CONNEXION, template.getHtml( ) );
             rootModel.put( MARK_RANDOM, Math.abs( _random.nextLong( ) ) );
             rootModel.put( MARK_URL_MONCOMPTE, AppPropertiesService.getProperty( PROPERTY_URL_MONCOMPTE ) );
-            rootModel.put( MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+            rootModel.put( MARK_CAMPAIGN_SERVICE, CampaignService.getInstance( ) );
         }
     }
 }

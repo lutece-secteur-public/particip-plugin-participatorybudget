@@ -103,11 +103,11 @@
     
     <admin-features>
         <admin-feature>
-            <feature-id>CAMPAGNEBP_MANAGEMENT</feature-id>
-            <feature-title>participatorybudget.adminFeature.ManageCampagnebp.name</feature-title>
-            <feature-description>participatorybudget.adminFeature.ManageCampagnebp.description</feature-description>
+            <feature-id>CAMPAIGNBP_MANAGEMENT</feature-id>
+            <feature-title>participatorybudget.adminFeature.ManageCampaignbp.name</feature-title>
+            <feature-description>participatorybudget.adminFeature.ManageCampaignbp.description</feature-description>
             <feature-level>0</feature-level>
-            <feature-url>jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp</feature-url>
+            <feature-url>jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp</feature-url>
             <feature-icon-url/>
       </admin-feature>
     </admin-features>    

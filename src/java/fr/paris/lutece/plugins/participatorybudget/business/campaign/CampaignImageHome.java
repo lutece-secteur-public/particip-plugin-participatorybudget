@@ -39,49 +39,49 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 import java.util.Collection;
 
 /**
- * This class provides instances management methods (create, find, ...) for CampagneImage objects
+ * This class provides instances management methods (create, find, ...) for CampaignImage objects
  */
 
-public final class CampagneImageHome
+public final class CampaignImageHome
 {
     // Static variable pointed at the DAO instance
 
-    private static ICampagneImageDAO _dao = SpringContextService.getBean( "participatorybudget.campagneImageDAO" );
+    private static ICampaignImageDAO _dao = SpringContextService.getBean( "participatorybudget.campaignImageDAO" );
     private static Plugin _plugin = PluginService.getPlugin( "participatorybudget" );
 
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CampagneImageHome( )
+    private CampaignImageHome( )
     {
     }
 
     /**
-     * Create an instance of the campagneImage class
+     * Create an instance of the campaignImage class
      * 
-     * @param campagneImage
-     *            The instance of the CampagneImage which contains the informations to store
-     * @return The instance of campagneImage which has been created with its primary key.
+     * @param campaignImage
+     *            The instance of the CampaignImage which contains the informations to store
+     * @return The instance of campaignImage which has been created with its primary key.
      */
-    public static CampagneImage create( CampagneImage campagneImage )
+    public static CampaignImage create( CampaignImage campaignImage )
     {
-        _dao.insert( campagneImage, _plugin );
+        _dao.insert( campaignImage, _plugin );
 
-        return campagneImage;
+        return campaignImage;
     }
 
     /**
-     * Update of the campagneImage which is specified in parameter
+     * Update of the campaignImage which is specified in parameter
      * 
-     * @param campagneImage
-     *            The instance of the CampagneImage which contains the data to store
-     * @return The instance of the campagneImage which has been updated
+     * @param campaignImage
+     *            The instance of the CampaignImage which contains the data to store
+     * @return The instance of the campaignImage which has been updated
      */
-    public static CampagneImage update( CampagneImage campagneImage )
+    public static CampaignImage update( CampaignImage campaignImage )
     {
-        _dao.store( campagneImage, _plugin );
+        _dao.store( campaignImage, _plugin );
 
-        return campagneImage;
+        return campaignImage;
     }
 
     /**
@@ -98,10 +98,10 @@ public final class CampagneImageHome
     }
 
     /**
-     * Remove the campagneImage whose identifier is specified in parameter
+     * Remove the campaignImage whose identifier is specified in parameter
      * 
      * @param nKey
-     *            The campagneImage Id
+     *            The campaignImage Id
      */
     public static void remove( int nKey )
     {
@@ -112,34 +112,34 @@ public final class CampagneImageHome
     // Finders
 
     /**
-     * Returns an instance of a campagneImage whose identifier is specified in parameter
+     * Returns an instance of a campaignImage whose identifier is specified in parameter
      * 
      * @param nKey
-     *            The campagneImage primary key
-     * @return an instance of CampagneImage
+     *            The campaignImage primary key
+     * @return an instance of CampaignImage
      */
-    public static CampagneImage findByPrimaryKey( int nKey )
+    public static CampaignImage findByPrimaryKey( int nKey )
     {
         return _dao.load( nKey, _plugin );
     }
 
     /**
-     * Load the data of all the campagneImage objects and returns them in form of a collection
+     * Load the data of all the campaignImage objects and returns them in form of a collection
      * 
-     * @return the collection which contains the data of all the campagneImage objects
+     * @return the collection which contains the data of all the campaignImage objects
      */
-    public static Collection<CampagneImage> getCampagneImagesList( )
+    public static Collection<CampaignImage> getCampaignImagesList( )
     {
-        return _dao.selectCampagneImagesList( _plugin );
+        return _dao.selectCampaignImagesList( _plugin );
     }
 
     /**
-     * Load the id of all the campagneImage objects and returns them in form of a collection
+     * Load the id of all the campaignImage objects and returns them in form of a collection
      * 
-     * @return the collection which contains the id of all the campagneImage objects
+     * @return the collection which contains the id of all the campaignImage objects
      */
-    public static Collection<Integer> getIdCampagneImagesList( )
+    public static Collection<Integer> getIdCampaignImagesList( )
     {
-        return _dao.selectIdCampagneImagesList( _plugin );
+        return _dao.selectIdCampaignImagesList( _plugin );
     }
 }

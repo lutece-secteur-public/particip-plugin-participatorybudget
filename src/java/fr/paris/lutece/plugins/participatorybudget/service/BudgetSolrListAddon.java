@@ -37,8 +37,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
@@ -81,7 +81,7 @@ public class BudgetSolrListAddon implements ISolrSearchAppAddOn
         model.put( BudgetUtils.MARK_VOTE_VALIDATED, isValidated );
         model.put( MARK_REMOVE_ARR_FILTER, request.getParameter( PARAMETER_REMOVE_ARR_FILTER ) );
 
-        model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+        model.put( BudgetUtils.MARK_CAMPAIGN_SERVICE, CampaignService.getInstance( ) );
     }
 
 }

@@ -50,7 +50,7 @@ public class BudgetUtils
     public static final String ARRONDISSEMENT_USER = "arrondUser";
 
     public static final String MARK_VOTE_VALIDATED = "voteValidated";
-    public static final String MARK_CAMPAGNE_SERVICE = "campagneService";
+    public static final String MARK_CAMPAIGN_SERVICE = "campaignService";
 
     /**
      * Get arrondissement for display

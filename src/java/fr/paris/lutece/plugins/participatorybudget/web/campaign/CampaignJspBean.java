@@ -41,12 +41,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaHome;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneImageHome;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseHome;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignAreaHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignImageHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignPhaseHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignThemeHome;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEvent;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEventListernersManager;
@@ -58,10 +58,10 @@ import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.util.url.UrlItem;
 
 /**
- * This class provides the user interface to manage Campagne features ( manage, create, modify, remove )
+ * This class provides the user interface to manage Campaign features ( manage, create, modify, remove )
  */
-@Controller( controllerJsp = "ManageCampagnebp.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAGNEBP_MANAGEMENT" )
-public class CampagneJspBean extends ManageCampagnebpJspBean
+@Controller( controllerJsp = "ManageCampaignbp.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGNBP_MANAGEMENT" )
+public class CampaignJspBean extends ManageCampaignJspBean
 {
     private static final long serialVersionUID = 7914078112474732968L;
 
@@ -72,48 +72,48 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
      * 
      */
     // templates
-    private static final String TEMPLATE_MANAGE_CAMPAGNES = "/admin/plugins/participatorybudget/campaign/manage_campagnes.html";
-    private static final String TEMPLATE_CREATE_CAMPAGNE = "/admin/plugins/participatorybudget/campaign/create_campagne.html";
-    private static final String TEMPLATE_MODIFY_CAMPAGNE = "/admin/plugins/participatorybudget/campaign/modify_campagne.html";
+    private static final String TEMPLATE_MANAGE_CAMPAIGNS = "/admin/plugins/participatorybudget/campaign/manage_campaigns.html";
+    private static final String TEMPLATE_CREATE_CAMPAIGN = "/admin/plugins/participatorybudget/campaign/create_campaign.html";
+    private static final String TEMPLATE_MODIFY_CAMPAIGN = "/admin/plugins/participatorybudget/campaign/modify_campaign.html";
 
     // Parameters
-    private static final String PARAMETER_ID_CAMPAGNE = "id";
+    private static final String PARAMETER_ID_CAMPAIGN = "id";
     private static final String PARAMETER_CAMPAIGN_CODE = "code";
 
     // Properties for page titles
-    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNES = "participatorybudget.manage_campagnes.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNE = "participatorybudget.modify_campagne.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAGNE = "participatorybudget.create_campagne.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAIGNS = "participatorybudget.manage_campaigns.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAIGN = "participatorybudget.modify_campaign.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAIGN = "participatorybudget.create_campaign.pageTitle";
 
     // Markers
-    private static final String MARK_CAMPAGNE_LIST = "campagne_list";
-    private static final String MARK_CAMPAGNE = "campagne";
+    private static final String MARK_CAMPAIGN_LIST = "campaign_list";
+    private static final String MARK_CAMPAIGN = "campaign";
 
-    private static final String JSP_MANAGE_CAMPAGNES = "jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp";
+    private static final String JSP_MANAGE_CAMPAIGNS = "jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp";
 
     // Properties
-    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNE = "participatorybudget.message.confirmRemoveCampagne";
+    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAIGN = "participatorybudget.message.confirmRemoveCampaign";
 
-    private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagne.attribute.";
+    private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campaign.attribute.";
 
     // Views
-    private static final String VIEW_MANAGE_CAMPAGNES = "manageCampagnes";
-    private static final String VIEW_CREATE_CAMPAGNE = "createCampagne";
-    private static final String VIEW_MODIFY_CAMPAGNE = "modifyCampagne";
+    private static final String VIEW_MANAGE_CAMPAIGNS = "manageCampaigns";
+    private static final String VIEW_CREATE_CAMPAIGN = "createCampaign";
+    private static final String VIEW_MODIFY_CAMPAIGN = "modifyCampaign";
 
     // Actions
-    private static final String ACTION_CREATE_CAMPAGNE = "createCampagne";
-    private static final String ACTION_MODIFY_CAMPAGNE = "modifyCampagne";
-    private static final String ACTION_REMOVE_CAMPAGNE = "removeCampagne";
-    private static final String ACTION_CONFIRM_REMOVE_CAMPAGNE = "confirmRemoveCampagne";
+    private static final String ACTION_CREATE_CAMPAIGN = "createCampaign";
+    private static final String ACTION_MODIFY_CAMPAIGN = "modifyCampaign";
+    private static final String ACTION_REMOVE_CAMPAIGN = "removeCampaign";
+    private static final String ACTION_CONFIRM_REMOVE_CAMPAIGN = "confirmRemoveCampaign";
 
     // Infos
-    private static final String INFO_CAMPAGNE_CREATED = "participatorybudget.info.campagne.created";
-    private static final String INFO_CAMPAGNE_UPDATED = "participatorybudget.info.campagne.updated";
-    private static final String INFO_CAMPAGNE_REMOVED = "participatorybudget.info.campagne.removed";
+    private static final String INFO_CAMPAIGN_CREATED = "participatorybudget.info.campaign.created";
+    private static final String INFO_CAMPAIGN_UPDATED = "participatorybudget.info.campaign.updated";
+    private static final String INFO_CAMPAIGN_REMOVED = "participatorybudget.info.campaign.removed";
 
     // Session variable to store working values
-    private Campagne _campagne;
+    private Campaign _campaign;
 
     /**
      * Build the Manage View
@@ -122,134 +122,134 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
      *            The HTTP request
      * @return The page
      */
-    @View( value = VIEW_MANAGE_CAMPAGNES, defaultView = true )
-    public String getManageCampagnes( HttpServletRequest request )
+    @View( value = VIEW_MANAGE_CAMPAIGNS, defaultView = true )
+    public String getManageCampaigns( HttpServletRequest request )
     {
-        _campagne = null;
-        List<Campagne> listCampagnes = (List<Campagne>) CampagneHome.getCampagnesList( );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_CAMPAGNE_LIST, listCampagnes, JSP_MANAGE_CAMPAGNES );
+        _campaign = null;
+        List<Campaign> listCampaigns = (List<Campaign>) CampaignHome.getCampaignsList( );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_CAMPAIGN_LIST, listCampaigns, JSP_MANAGE_CAMPAIGNS );
 
-        return getPage( PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNES, TEMPLATE_MANAGE_CAMPAGNES, model );
+        return getPage( PROPERTY_PAGE_TITLE_MANAGE_CAMPAIGNS, TEMPLATE_MANAGE_CAMPAIGNS, model );
     }
 
     /**
-     * Returns the form to create a campagne
+     * Returns the form to create a campaign
      *
      * @param request
      *            The Http request
-     * @return the html code of the campagne form
+     * @return the html code of the campaign form
      */
-    @View( VIEW_CREATE_CAMPAGNE )
-    public String getCreateCampagne( HttpServletRequest request )
+    @View( VIEW_CREATE_CAMPAIGN )
+    public String getCreateCampaign( HttpServletRequest request )
     {
-        _campagne = ( _campagne != null ) ? _campagne : new Campagne( );
+        _campaign = ( _campaign != null ) ? _campaign : new Campaign( );
 
         Map<String, Object> model = getModel( );
-        model.put( MARK_CAMPAGNE, _campagne );
+        model.put( MARK_CAMPAIGN, _campaign );
 
-        return getPage( PROPERTY_PAGE_TITLE_CREATE_CAMPAGNE, TEMPLATE_CREATE_CAMPAGNE, model );
+        return getPage( PROPERTY_PAGE_TITLE_CREATE_CAMPAIGN, TEMPLATE_CREATE_CAMPAIGN, model );
     }
 
     /**
-     * Process the data capture form of a new campagne
+     * Process the data capture form of a new campaign
      *
      * @param request
      *            The Http Request
      * @return The Jsp URL of the process result
      */
-    @Action( ACTION_CREATE_CAMPAGNE )
-    public String doCreateCampagne( HttpServletRequest request )
+    @Action( ACTION_CREATE_CAMPAIGN )
+    public String doCreateCampaign( HttpServletRequest request )
     {
-        populate( _campagne, request );
+        populate( _campaign, request );
 
         // Check constraints
-        if ( !validateBean( _campagne, VALIDATION_ATTRIBUTES_PREFIX ) )
+        if ( !validateBean( _campaign, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirectView( request, VIEW_CREATE_CAMPAGNE );
+            return redirectView( request, VIEW_CREATE_CAMPAIGN );
         }
 
-        CampagneHome.create( _campagne );
-        addInfo( INFO_CAMPAGNE_CREATED, getLocale( ) );
+        CampaignHome.create( _campaign );
+        addInfo( INFO_CAMPAIGN_CREATED, getLocale( ) );
 
         CampaignService.getInstance( ).reset( );
 
-        return redirectView( request, VIEW_MANAGE_CAMPAGNES );
+        return redirectView( request, VIEW_MANAGE_CAMPAIGNS );
     }
 
     /**
-     * Manages the removal form of a campagne whose identifier is in the http request
+     * Manages the removal form of a campaign whose identifier is in the http request
      *
      * @param request
      *            The Http request
      * @return the html code to confirm
      */
-    @Action( ACTION_CONFIRM_REMOVE_CAMPAGNE )
-    public String getConfirmRemoveCampagne( HttpServletRequest request )
+    @Action( ACTION_CONFIRM_REMOVE_CAMPAIGN )
+    public String getConfirmRemoveCampaign( HttpServletRequest request )
     {
-        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNE ) );
-        UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNE ) );
-        url.addParameter( PARAMETER_ID_CAMPAGNE, nId );
+        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAIGN ) );
+        UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAIGN ) );
+        url.addParameter( PARAMETER_ID_CAMPAIGN, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNE, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAIGN, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
 
     /**
-     * Handles the removal form of a campagne
+     * Handles the removal form of a campaign
      *
      * @param request
      *            The Http request
-     * @return the jsp URL to display the form to manage campagnes
+     * @return the jsp URL to display the form to manage campaigns
      */
-    @Action( ACTION_REMOVE_CAMPAGNE )
-    public String doRemoveCampagne( HttpServletRequest request )
+    @Action( ACTION_REMOVE_CAMPAIGN )
+    public String doRemoveCampaign( HttpServletRequest request )
     {
-        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNE ) );
-        CampagneHome.remove( nId );
-        addInfo( INFO_CAMPAGNE_REMOVED, getLocale( ) );
+        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAIGN ) );
+        CampaignHome.remove( nId );
+        addInfo( INFO_CAMPAIGN_REMOVED, getLocale( ) );
 
         CampaignService.getInstance( ).reset( );
 
-        return redirectView( request, VIEW_MANAGE_CAMPAGNES );
+        return redirectView( request, VIEW_MANAGE_CAMPAIGNS );
     }
 
     /**
-     * Returns the form to update info about a campagne
+     * Returns the form to update info about a campaign
      *
      * @param request
      *            The Http request
      * @return The HTML form to update info
      */
-    @View( VIEW_MODIFY_CAMPAGNE )
-    public String getModifyCampagne( HttpServletRequest request )
+    @View( VIEW_MODIFY_CAMPAIGN )
+    public String getModifyCampaign( HttpServletRequest request )
     {
-        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNE ) );
+        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAIGN ) );
 
-        if ( _campagne == null || ( _campagne.getId( ) != nId ) )
+        if ( _campaign == null || ( _campaign.getId( ) != nId ) )
         {
-            _campagne = CampagneHome.findByPrimaryKey( nId );
+            _campaign = CampaignHome.findByPrimaryKey( nId );
         }
 
         Map<String, Object> model = getModel( );
-        model.put( MARK_CAMPAGNE, _campagne );
+        model.put( MARK_CAMPAIGN, _campaign );
 
-        return getPage( PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNE, TEMPLATE_MODIFY_CAMPAGNE, model );
+        return getPage( PROPERTY_PAGE_TITLE_MODIFY_CAMPAIGN, TEMPLATE_MODIFY_CAMPAIGN, model );
     }
 
     /**
-     * Process the change form of a campagne
+     * Process the change form of a campaign
      *
      * @param request
      *            The Http request
      * @return The Jsp URL of the process result
      */
-    @Action( ACTION_MODIFY_CAMPAGNE )
-    public String doModifyCampagne( HttpServletRequest request )
+    @Action( ACTION_MODIFY_CAMPAIGN )
+    public String doModifyCampaign( HttpServletRequest request )
     {
         // If code modification, verify if authorized.
-        int oldCampaignId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNE ) );
-        Campagne oldCampaign = CampagneHome.findByPrimaryKey( oldCampaignId );
+        int oldCampaignId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAIGN ) );
+        Campaign oldCampaign = CampaignHome.findByPrimaryKey( oldCampaignId );
         String oldCampaignCode = oldCampaign.getCode( );
         String newCode = request.getParameter( PARAMETER_CAMPAIGN_CODE );
 
@@ -261,39 +261,39 @@ public class CampagneJspBean extends ManageCampagnebpJspBean
             {
                 // Unauthorized campaign code modification.
                 addError( "Unauthorized campaign code modification : " + StringUtils.join( results, ", " ) );
-                return redirectView( request, VIEW_MANAGE_CAMPAGNES );
+                return redirectView( request, VIEW_MANAGE_CAMPAIGNS );
             }
         }
 
         // Authorized campaign modification.
-        populate( _campagne, request );
+        populate( _campaign, request );
 
         // Check constraints
-        if ( !validateBean( _campagne, VALIDATION_ATTRIBUTES_PREFIX ) )
+        if ( !validateBean( _campaign, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_CAMPAGNE, PARAMETER_ID_CAMPAGNE, _campagne.getId( ) );
+            return redirect( request, VIEW_MODIFY_CAMPAIGN, PARAMETER_ID_CAMPAIGN, _campaign.getId( ) );
         }
 
         // Update the campaign
-        CampagneHome.update( _campagne );
-        addInfo( INFO_CAMPAGNE_UPDATED, getLocale( ) );
+        CampaignHome.update( _campaign );
+        addInfo( INFO_CAMPAIGN_UPDATED, getLocale( ) );
 
         // If code modification, inform listeners and update local data.
         if ( !oldCampaignCode.equals( newCode ) )
         {
             // Update local data
-            CampagnePhaseHome.changeCampainCode( oldCampaignCode, newCode );
-            CampagneThemeHome.changeCampainCode( oldCampaignCode, newCode );
-            CampagneAreaHome.changeCampainCode( oldCampaignCode, newCode );
-            CampagneImageHome.changeCampainCode( oldCampaignCode, newCode );
+            CampaignPhaseHome.changeCampainCode( oldCampaignCode, newCode );
+            CampaignThemeHome.changeCampainCode( oldCampaignCode, newCode );
+            CampaignAreaHome.changeCampainCode( oldCampaignCode, newCode );
+            CampaignImageHome.changeCampainCode( oldCampaignCode, newCode );
 
             // Inform listeners
-            CampaignEvent event = new CampaignEvent( oldCampaign, _campagne, CampaignEvent.CAMPAIGN_CODE_MODIFIED );
+            CampaignEvent event = new CampaignEvent( oldCampaign, _campaign, CampaignEvent.CAMPAIGN_CODE_MODIFIED );
             CampaignEventListernersManager.getInstance( ).notifyListeners( event );
         }
 
         CampaignService.getInstance( ).reset( );
 
-        return redirectView( request, VIEW_MANAGE_CAMPAGNES );
+        return redirectView( request, VIEW_MANAGE_CAMPAIGNS );
     }
 }

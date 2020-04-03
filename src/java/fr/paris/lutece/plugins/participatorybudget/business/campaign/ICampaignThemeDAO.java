@@ -40,29 +40,29 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ICampagneThemeDAO Interface
+ * ICampaignThemeDAO Interface
  */
-public interface ICampagneThemeDAO
+public interface ICampaignThemeDAO
 {
     /**
      * Insert a new record in the table.
      * 
-     * @param campagneTheme
-     *            instance of the CampagneTheme object to insert
+     * @param campaignTheme
+     *            instance of the CampaignTheme object to insert
      * @param plugin
      *            the Plugin
      */
-    void insert( CampagneTheme campagneTheme, Plugin plugin );
+    void insert( CampaignTheme campaignTheme, Plugin plugin );
 
     /**
      * Update the record in the table
      * 
-     * @param campagneTheme
-     *            the reference of the CampagneTheme
+     * @param campaignTheme
+     *            the reference of the CampaignTheme
      * @param plugin
      *            the Plugin
      */
-    void store( CampagneTheme campagneTheme, Plugin plugin );
+    void store( CampaignTheme campaignTheme, Plugin plugin );
 
     /**
      * Change a campaign code
@@ -80,7 +80,7 @@ public interface ICampagneThemeDAO
      * Delete a record from the table
      * 
      * @param nKey
-     *            The identifier of the CampagneTheme to delete
+     *            The identifier of the CampaignTheme to delete
      * @param plugin
      *            the Plugin
      */
@@ -93,57 +93,57 @@ public interface ICampagneThemeDAO
      * Load the data from the table
      * 
      * @param nKey
-     *            The identifier of the campagneTheme
+     *            The identifier of the campaignTheme
      * @param plugin
      *            the Plugin
-     * @return The instance of the campagneTheme
+     * @return The instance of the campaignTheme
      */
-    CampagneTheme load( int nKey, Plugin plugin );
+    CampaignTheme load( int nKey, Plugin plugin );
 
     /**
      * Load the data from the table
      * 
      * @param codeTheme
-     *            The identifier of the campagneTheme
+     *            The identifier of the campaignTheme
      * @param plugin
      *            the Plugin
-     * @return The instance of the campagneTheme
+     * @return The instance of the campaignTheme
      */
-    CampagneTheme loadByCodeTheme( String codeTheme, Plugin plugin );
+    CampaignTheme loadByCodeTheme( String codeTheme, Plugin plugin );
 
     /**
-     * Load the data of all the campagneTheme objects and returns them as a collection
+     * Load the data of all the campaignTheme objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagneTheme objects
+     * @return The collection which contains the data of all the campaignTheme objects
      */
-    Collection<CampagneTheme> selectCampagneThemesList( Plugin plugin );
+    Collection<CampaignTheme> selectCampaignThemesList( Plugin plugin );
 
     /**
-     * Load the id of all the campagneTheme objects and returns them as a collection
+     * Load the id of all the campaignTheme objects and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the id of all the campagneTheme objects
+     * @return The collection which contains the id of all the campaignTheme objects
      */
-    Collection<Integer> selectIdCampagneThemesList( Plugin plugin );
+    Collection<Integer> selectIdCampaignThemesList( Plugin plugin );
 
     /**
-     * Load the data of all the campagneTheme objects for a cmapgne and returns them as a collection
+     * Load the data of all the campaignTheme objects for a cmapgne and returns them as a collection
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagneTheme objects
+     * @return The collection which contains the data of all the campaignTheme objects
      */
-    Collection<CampagneTheme> selectCampagneThemesListByCampagne( String campagneCode, Plugin plugin );
+    Collection<CampaignTheme> selectCampaignThemesListByCampaign( String campaignCode, Plugin plugin );
 
     /**
-     * Load the data of all the campagneTheme objects mapped from cmapgne and returns them as a map
+     * Load the data of all the campaignTheme objects mapped from cmapgne and returns them as a map
      * 
      * @param plugin
      *            the Plugin
-     * @return The collection which contains the data of all the campagneTheme objects
+     * @return The collection which contains the data of all the campaignTheme objects
      */
-    Map<String, List<CampagneTheme>> selectCampagneThemesMapByCampagne( Plugin plugin );
+    Map<String, List<CampaignTheme>> selectCampaignThemesMapByCampaign( Plugin plugin );
 }

@@ -61,7 +61,7 @@ public class BudgetFavoriteListener implements IFavoriteListener
     {
         // if ( strExtendableResourceType.equals("document") )
         // {
-        // if ( CampagnesService.IsPhaseClosed(CampagneHome.getLastCampagne().getCode(),"SOUMISSION") )
+        // if ( CampaignsService.IsPhaseClosed(CampaignHome.getLastCampaign().getCode(),"SOUMISSION") )
         // {
         // return false;
         // }

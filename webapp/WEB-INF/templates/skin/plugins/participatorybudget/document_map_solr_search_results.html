@@ -108,16 +108,16 @@ document.getElementsByTagName("head")[0].appendChild(loadresource);
         iconCreateFunction: createProjetCluster
     });
     var layergroup_arrondissements = L.layerGroup();
-    var layergroup_currentcampagne = L.layerGroup();
+    var layergroup_currentcampaign = L.layerGroup();
     var layergroup_qpvqva = L.layerGroup();
-    layergroup_currentcampagne.addLayer(markers);
-    layergroup_currentcampagne.addLayer(layergroup_arrondissements);
+    layergroup_currentcampaign.addLayer(markers);
+    layergroup_currentcampaign.addLayer(layergroup_arrondissements);
     var markers_projectsOP = new L.MarkerClusterGroup({
         iconCreateFunction: createProjetOPCluster
     });
 
 	// Adding layers to map
-    map.addLayer(layergroup_currentcampagne)
+    map.addLayer(layergroup_currentcampaign)
 
     map.addLayer(layergroup_qpvqva); // To charge all informations 
     map.removeLayer(layergroup_qpvqva);
@@ -324,7 +324,7 @@ document.getElementsByTagName("head")[0].appendChild(loadresource);
   };
 
   var overlayMaps = {
-      "Voir les Projets laur&eacute;ats" : layergroup_currentcampagne,
+      "Voir les Projets laur&eacute;ats" : layergroup_currentcampaign,
       "Voir les Chantiers localis&eacute;s" : markers_projectsOP,
       "Quartiers Populaires" : layergroup_qpvqva
   };

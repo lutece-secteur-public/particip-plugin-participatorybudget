@@ -46,14 +46,14 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneArea;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaHome;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhase;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseHome;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneTheme;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneThemeHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignArea;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignAreaHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignPhase;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignPhaseHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignTheme;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignThemeHome;
 import fr.paris.lutece.plugins.participatorybudget.service.NoSuchPhaseException;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEvent;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEventListernersManager;
@@ -65,7 +65,7 @@ import fr.paris.lutece.util.ReferenceList;
 public class CampaignService implements ICampaignService
 {
 
-    private static final String BEAN_CAMPAGNE_SERVICE = "participatorybudget.campaignService";
+    private static final String BEAN_CAMPAIGN_SERVICE = "participatorybudget.campaignService";
 
     // Attributes
     private Map<String, Timestamp> _cache = null;
@@ -81,7 +81,7 @@ public class CampaignService implements ICampaignService
     {
         if ( _singleton == null )
         {
-            _singleton = SpringContextService.getBean( BEAN_CAMPAGNE_SERVICE );
+            _singleton = SpringContextService.getBean( BEAN_CAMPAIGN_SERVICE );
         }
         return _singleton;
     }
@@ -106,21 +106,21 @@ public class CampaignService implements ICampaignService
 
     public void reset( )
     {
-        AppLogService.debug( "CampagnePhase cache reset" );
+        AppLogService.debug( "CampaignPhase cache reset" );
 
         Map<String, Timestamp> cache = new HashMap<String, Timestamp>( );
 
-        Collection<CampagnePhase> phases = CampagnePhaseHome.getCampagnePhasesList( );
-        for ( CampagnePhase phase : phases )
+        Collection<CampaignPhase> phases = CampaignPhaseHome.getCampaignPhasesList( );
+        for ( CampaignPhase phase : phases )
         {
-            String beginningKey = getKey( phase.getCodeCampagne( ), phase.getCodePhaseType( ), Constants.BEGINNING_DATETIME );
-            String endKey = getKey( phase.getCodeCampagne( ), phase.getCodePhaseType( ), Constants.END_DATETIME );
+            String beginningKey = getKey( phase.getCodeCampaign( ), phase.getCodePhaseType( ), Constants.BEGINNING_DATETIME );
+            String endKey = getKey( phase.getCodeCampaign( ), phase.getCodePhaseType( ), Constants.END_DATETIME );
 
             cache.put( beginningKey, phase.getStart( ) );
             cache.put( endKey, phase.getEnd( ) );
 
             AppLogService.debug(
-                    "  -> Added '" + phase.getCodeCampagne( ) + "-" + phase.getCodePhaseType( ) + "' = '" + phase.getStart( ) + "/" + phase.getEnd( ) + "'." );
+                    "  -> Added '" + phase.getCodeCampaign( ) + "-" + phase.getCodePhaseType( ) + "' = '" + phase.getStart( ) + "/" + phase.getEnd( ) + "'." );
         }
 
         _cache = cache;
@@ -131,9 +131,9 @@ public class CampaignService implements ICampaignService
     // * CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN *
     // ***********************************************************************************
 
-    public Campagne getLastCampagne( )
+    public Campaign getLastCampaign( )
     {
-        return CampagneHome.getLastCampagne( );
+        return CampaignHome.getLastCampaign( );
     }
 
     // ***********************************************************************************
@@ -147,7 +147,7 @@ public class CampaignService implements ICampaignService
         Timestamp timeStamp = getCache( ).get( key );
         if ( timeStamp == null )
         {
-            String errorMsg = "Null datetime for campagne '" + campain + "' and phase '" + phase + "' and timestampType '" + timestampType + "'. ";
+            String errorMsg = "Null datetime for campaign '" + campain + "' and phase '" + phase + "' and timestampType '" + timestampType + "'. ";
             AppLogService.error( errorMsg );
             throw new NoSuchPhaseException( errorMsg );
         }
@@ -227,51 +227,51 @@ public class CampaignService implements ICampaignService
         return toSoLovelyString( formattedDate, withAccents );
     }
 
-    // Same methods than preceding, for last campagne
+    // Same methods than preceding, for last campaign
 
     public boolean isBeforeBeginning( String phase )
     {
-        return isBeforeBeginning( getLastCampagne( ).getCode( ), phase );
+        return isBeforeBeginning( getLastCampaign( ).getCode( ), phase );
     }
 
     public boolean isBeforeEnd( String phase )
     {
-        return isBeforeEnd( getLastCampagne( ).getCode( ), phase );
+        return isBeforeEnd( getLastCampaign( ).getCode( ), phase );
     }
 
     public boolean isDuring( String phase )
     {
-        return isDuring( getLastCampagne( ).getCode( ), phase );
+        return isDuring( getLastCampaign( ).getCode( ), phase );
     }
 
     public boolean isAfterBeginning( String phase )
     {
-        return isAfterBeginning( getLastCampagne( ).getCode( ), phase );
+        return isAfterBeginning( getLastCampaign( ).getCode( ), phase );
     }
 
     public boolean isAfterEnd( String phase )
     {
-        return isAfterEnd( getLastCampagne( ).getCode( ), phase );
+        return isAfterEnd( getLastCampaign( ).getCode( ), phase );
     }
 
     public Timestamp start( String phase )
     {
-        return start( getLastCampagne( ).getCode( ), phase );
+        return start( getLastCampaign( ).getCode( ), phase );
     }
 
     public Timestamp end( String phase )
     {
-        return end( getLastCampagne( ).getCode( ), phase );
+        return end( getLastCampaign( ).getCode( ), phase );
     }
 
     public String startStr( String phase, String format, boolean withAccents )
     {
-        return startStr( getLastCampagne( ).getCode( ), phase, format, withAccents );
+        return startStr( getLastCampaign( ).getCode( ), phase, format, withAccents );
     }
 
     public String endStr( String phase, String format, boolean withAccents )
     {
-        return endStr( getLastCampagne( ).getCode( ), phase, format, withAccents );
+        return endStr( getLastCampaign( ).getCode( ), phase, format, withAccents );
     }
 
     // ***********************************************************************************
@@ -281,9 +281,9 @@ public class CampaignService implements ICampaignService
 
     public List<String> getAllAreas( String codeCampaign )
     {
-        Collection<CampagneArea> result = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+        Collection<CampaignArea> result = CampaignAreaHome.getCampaignAreasListByCampaign( codeCampaign );
         List<String> areas = new ArrayList<>( );
-        for ( CampagneArea c : result )
+        for ( CampaignArea c : result )
         {
             if ( c.getActive( ) )
             {
@@ -295,9 +295,9 @@ public class CampaignService implements ICampaignService
 
     public List<String> getLocalizedAreas( String codeCampaign )
     {
-        Collection<CampagneArea> result = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
+        Collection<CampaignArea> result = CampaignAreaHome.getCampaignAreasListByCampaign( codeCampaign );
         List<String> areas = new ArrayList<>( );
-        for ( CampagneArea c : result )
+        for ( CampaignArea c : result )
         {
             if ( c.getActive( ) && c.getType( ).equals( "localized" ) )
             {
@@ -309,8 +309,8 @@ public class CampaignService implements ICampaignService
 
     public boolean hasWholeArea( String codeCampaign )
     {
-        Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
-        for ( CampagneArea a : areas )
+        Collection<CampaignArea> areas = CampaignAreaHome.getCampaignAreasListByCampaign( codeCampaign );
+        for ( CampaignArea a : areas )
         {
             if ( a.getType( ).equals( "whole" ) )
             {
@@ -322,8 +322,8 @@ public class CampaignService implements ICampaignService
 
     public boolean hasWholeArea( String codeCampaign, int idCampaign )
     {
-        Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
-        for ( CampagneArea a : areas )
+        Collection<CampaignArea> areas = CampaignAreaHome.getCampaignAreasListByCampaign( codeCampaign );
+        for ( CampaignArea a : areas )
         {
             if ( a.getType( ).equals( "whole" ) && a.getId( ) != idCampaign )
             {
@@ -335,8 +335,8 @@ public class CampaignService implements ICampaignService
 
     public String getWholeArea( String codeCampaign )
     {
-        Collection<CampagneArea> areas = CampagneAreaHome.getCampagneAreasListByCampagne( codeCampaign );
-        for ( CampagneArea a : areas )
+        Collection<CampaignArea> areas = CampaignAreaHome.getCampaignAreasListByCampaign( codeCampaign );
+        for ( CampaignArea a : areas )
         {
             if ( a.getType( ).equals( "whole" ) && a.getActive( ) )
             {
@@ -346,31 +346,31 @@ public class CampaignService implements ICampaignService
         return "";
     }
 
-    // Same methods than preceding, for last campagne
+    // Same methods than preceding, for last campaign
 
     public List<String> getAllAreas( )
     {
-        return getAllAreas( getLastCampagne( ).getCode( ) );
+        return getAllAreas( getLastCampaign( ).getCode( ) );
     }
 
     public List<String> getLocalizedAreas( )
     {
-        return getLocalizedAreas( getLastCampagne( ).getCode( ) );
+        return getLocalizedAreas( getLastCampaign( ).getCode( ) );
     }
 
     public boolean hasWholeArea( )
     {
-        return hasWholeArea( getLastCampagne( ).getCode( ) );
+        return hasWholeArea( getLastCampaign( ).getCode( ) );
     }
 
     public boolean hasWholeArea( int id )
     {
-        return hasWholeArea( getLastCampagne( ).getCode( ), id );
+        return hasWholeArea( getLastCampaign( ).getCode( ), id );
     }
 
     public String getWholeArea( )
     {
-        return getWholeArea( getLastCampagne( ).getCode( ) );
+        return getWholeArea( getLastCampaign( ).getCode( ) );
     }
 
     // ***********************************************************************************
@@ -383,8 +383,8 @@ public class CampaignService implements ICampaignService
     {
         ReferenceList items = new ReferenceList( );
 
-        Collection<CampagneTheme> list = CampagneThemeHome.getCampagneThemesListByCampagne( codeCampaign );
-        for ( CampagneTheme theme : list )
+        Collection<CampaignTheme> list = CampaignThemeHome.getCampaignThemesListByCampaign( codeCampaign );
+        for ( CampaignTheme theme : list )
         {
             items.addItem( theme.getCode( ), theme.getTitle( ) );
         }
@@ -395,7 +395,7 @@ public class CampaignService implements ICampaignService
     @Override
     public ReferenceList getThemes( )
     {
-        return getThemes( getLastCampagne( ).getCode( ) );
+        return getThemes( getLastCampaign( ).getCode( ) );
     }
 
     // *********************************************************************************************
@@ -409,31 +409,31 @@ public class CampaignService implements ICampaignService
     @Override
     public int clone( int campaignId )
     {
-        // Create new campagne ---------------------------------------------------------------------------
+        // Create new campaign ---------------------------------------------------------------------------
 
-        Campagne campaignToClone = CampagneHome.findByPrimaryKey( campaignId );
+        Campaign campaignToClone = CampaignHome.findByPrimaryKey( campaignId );
 
         // Generate new code, max 50 chars
-        String newCampagneCode = StringUtils.abbreviate( "(clone) " + campaignToClone.getCode( ), 50 );
+        String newCampaignCode = StringUtils.abbreviate( "(clone) " + campaignToClone.getCode( ), 50 );
 
-        Campagne newCampagne = new Campagne( );
-        newCampagne.setCode( newCampagneCode + "" );
-        newCampagne.setTitle( "(clone) " + campaignToClone.getTitle( ) );
-        newCampagne.setDescription( "(clone) " + campaignToClone.getDescription( ) );
-        newCampagne.setActive( false );
-        newCampagne.setCodeModerationType( campaignToClone.getCodeModerationType( ) );
-        newCampagne.setModerationDuration( campaignToClone.getModerationDuration( ) );
+        Campaign newCampaign = new Campaign( );
+        newCampaign.setCode( newCampaignCode + "" );
+        newCampaign.setTitle( "(clone) " + campaignToClone.getTitle( ) );
+        newCampaign.setDescription( "(clone) " + campaignToClone.getDescription( ) );
+        newCampaign.setActive( false );
+        newCampaign.setCodeModerationType( campaignToClone.getCodeModerationType( ) );
+        newCampaign.setModerationDuration( campaignToClone.getModerationDuration( ) );
 
-        CampagneHome.create( newCampagne );
+        CampaignHome.create( newCampaign );
 
         // Clone phases ---------------------------------------------------------------------------------
 
-        Collection<CampagnePhase> lastPhases = CampagnePhaseHome.getCampagnePhasesListByCampagne( campaignToClone.getCode( ) );
+        Collection<CampaignPhase> lastPhases = CampaignPhaseHome.getCampaignPhasesListByCampaign( campaignToClone.getCode( ) );
 
-        for ( CampagnePhase lastPhase : lastPhases )
+        for ( CampaignPhase lastPhase : lastPhases )
         {
 
-            CampagnePhase phase = new CampagnePhase( );
+            CampaignPhase phase = new CampaignPhase( );
 
             Calendar newStart = Calendar.getInstance( );
             newStart.setTime( lastPhase.getStart( ) );
@@ -443,56 +443,56 @@ public class CampaignService implements ICampaignService
             newEnd.add( Calendar.YEAR, 1 );
 
             phase.setCodePhaseType( lastPhase.getCodePhaseType( ) );
-            phase.setCodeCampagne( "" + newCampagneCode );
+            phase.setCodeCampaign( "" + newCampaignCode );
             phase.setStart( new Timestamp( newStart.getTimeInMillis( ) ) );
             phase.setEnd( new Timestamp( newEnd.getTimeInMillis( ) ) );
 
-            CampagnePhaseHome.create( phase );
+            CampaignPhaseHome.create( phase );
         }
 
         // Clone themes ---------------------------------------------------------------------------------
 
-        Collection<CampagneTheme> lastThemes = CampagneThemeHome.getCampagneThemesListByCampagne( campaignToClone.getCode( ) );
+        Collection<CampaignTheme> lastThemes = CampaignThemeHome.getCampaignThemesListByCampaign( campaignToClone.getCode( ) );
 
-        for ( CampagneTheme lastTheme : lastThemes )
+        for ( CampaignTheme lastTheme : lastThemes )
         {
 
-            CampagneTheme theme = new CampagneTheme( );
+            CampaignTheme theme = new CampaignTheme( );
 
             theme.setCode( lastTheme.getCode( ) );
-            theme.setCodeCampagne( "" + newCampagneCode );
+            theme.setCodeCampaign( "" + newCampaignCode );
             theme.setTitle( lastTheme.getTitle( ) );
             theme.setDescription( lastTheme.getDescription( ) );
             theme.setActive( true );
 
-            CampagneThemeHome.create( theme );
+            CampaignThemeHome.create( theme );
         }
 
         // Clone areas -----------------------------------------------------------------------------
 
-        Collection<CampagneArea> lastAreas = CampagneAreaHome.getCampagneAreasListByCampagne( campaignToClone.getCode( ) );
+        Collection<CampaignArea> lastAreas = CampaignAreaHome.getCampaignAreasListByCampaign( campaignToClone.getCode( ) );
 
-        for ( CampagneArea lastArea : lastAreas )
+        for ( CampaignArea lastArea : lastAreas )
         {
 
-            CampagneArea area = new CampagneArea( );
+            CampaignArea area = new CampaignArea( );
 
             area.setActive( lastArea.getActive( ) );
-            area.setCodeCampagne( "" + newCampagneCode );
+            area.setCodeCampaign( "" + newCampaignCode );
             area.setNumberVotes( lastArea.getNumberVotes( ) );
             area.setTitle( lastArea.getTitle( ) );
             area.setType( lastArea.getType( ) );
 
-            CampagneAreaHome.create( area );
+            CampaignAreaHome.create( area );
         }
 
-        CampaignEventListernersManager.getInstance( ).notifyListeners( new CampaignEvent( newCampagne, campaignToClone, CampaignEvent.CAMPAIGN_CLONED ) );
+        CampaignEventListernersManager.getInstance( ).notifyListeners( new CampaignEvent( newCampaign, campaignToClone, CampaignEvent.CAMPAIGN_CLONED ) );
 
         // Reseting cache
 
         CampaignService.getInstance( ).reset( );
 
-        return newCampagne.getId( );
+        return newCampaign.getId( );
     }
 
     // ***********************************************************************************

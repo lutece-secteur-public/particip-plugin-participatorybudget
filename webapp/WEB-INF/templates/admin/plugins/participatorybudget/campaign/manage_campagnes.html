@@ -1,14 +1,14 @@
-<#include "managecampagnebp_tabs.html" />
-<@tabs tab="campagne" />
+<#include "managecampaignbp_tabs.html" />
+<@tabs tab="campaign" />
 
 <@rowBox>
-    <@boxHeader i18nTitleKey="participatorybudget.manage_campagnes.tableLabel">
+    <@boxHeader i18nTitleKey="participatorybudget.manage_campaigns.tableLabel">
         <@headerButtons>
 
         
-        <form class="form-inline pull-right" method="post" name="manage_campagnes" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp">
+        <form class="form-inline pull-right" method="post" name="manage_campaigns" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp">
             <!-- Add pull-right to class1 -->
-            <@actionButtons button1Name="view_createCampagne" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campagnes.buttonAdd" />
+            <@actionButtons button1Name="view_createCampaign" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campaigns.buttonAdd" />
         </form>
         
     </@headerButtons>
@@ -20,48 +20,48 @@
     <@table>
         <tr>
             <input type="hidden" id="id" name="id"/>
-            <th>#i18n{participatorybudget.manage_campagnes.columnCode}</th>
-            <th>#i18n{participatorybudget.manage_campagnes.columnTitle}</th>
-            <th>#i18n{participatorybudget.manage_campagnes.columnDescription}</th>
-            <th>#i18n{participatorybudget.manage_campagnes.columnActive}</th>
-            <th>#i18n{participatorybudget.manage_campagnes.columnCodeModerationType}</th>
-            <th>#i18n{participatorybudget.manage_campagnes.columnModerationDuration}</th>
+            <th>#i18n{participatorybudget.manage_campaigns.columnCode}</th>
+            <th>#i18n{participatorybudget.manage_campaigns.columnTitle}</th>
+            <th>#i18n{participatorybudget.manage_campaigns.columnDescription}</th>
+            <th>#i18n{participatorybudget.manage_campaigns.columnActive}</th>
+            <th>#i18n{participatorybudget.manage_campaigns.columnCodeModerationType}</th>
+            <th>#i18n{participatorybudget.manage_campaigns.columnModerationDuration}</th>
             <th>#i18n{portal.util.labelActions}</th>
         </tr>
         <@tableHeadBodySeparator />
-            <#list campagne_list as campagne >
+            <#list campaign_list as campaign >
         <tr>
             <input type="hidden" id="id" name="id"/>
             <td>
-                ${campagne.code}
+                ${campaign.code}
             </td>
             <td>
-                ${campagne.title}
+                ${campaign.title}
             </td>
             <td>
-                ${campagne.description}
+                ${campaign.description}
             </td>
             <td>
-                ${campagne.active?c}
+                ${campaign.active?c}
             </td>
             <td>
-                ${campagne.codeModerationType}
+                ${campaign.codeModerationType}
             </td>
             <td>
-                ${campagne.moderationDuration}
+                ${campaign.moderationDuration}
             </td>
         <td>
-            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp?view=modifyCampagne&id=${campagne.id}"
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp?view=modifyCampaign&id=${campaign.id}"
                class="btn btn-primary btn-small" title="#i18n{portal.util.labelModify}">
                 <i class="fa fa-pencil"></i>
             </a>
 
-            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp?action=cloneCampaignChrono&campaign_id=${campagne.id!'?'}"
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignChrono.jsp?action=cloneCampaignChrono&campaign_id=${campaign.id!'?'}"
                class="btn btn-primary btn-small" title="#i18n{participatorybudget.manage_campaignchrono.buttonClone}" >
                 <i class="fa fa-clone"></i>
             </a>
 
-            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp?action=confirmRemoveCampagne&id=${campagne.id}"
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp?action=confirmRemoveCampaign&id=${campaign.id}"
                class="btn btn-danger btn-small" title="#i18n{portal.util.labelDelete}" >
                 <i class="fa fa-trash"></i>
             </a>

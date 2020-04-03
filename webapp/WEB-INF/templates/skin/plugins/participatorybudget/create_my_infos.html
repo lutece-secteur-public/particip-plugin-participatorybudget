@@ -1,5 +1,5 @@
 <#include "/skin/plugins/asynchronousupload/upload_commons.html" />
-<script type="text/javascript" src="jsp/site/plugins/asynchronousupload/GetMainUploadJs.jsp?handler=campagnebpUploadHandler"></script>
+<script type="text/javascript" src="jsp/site/plugins/asynchronousupload/GetMainUploadJs.jsp?handler=campaignbpUploadHandler"></script>
 <section class="bg-color6">
 	<div class="container">
 		<div class="row">
@@ -14,7 +14,7 @@
 							<@messages errors=errors />
 							<@messages infos=infos />
 						</div>
-						<div <#if campagneService.isDuring("VOTE") >style="display:none;"</#if>>
+						<div <#if campaignService.isDuring("VOTE") >style="display:none;"</#if>>
 							<div class="form-group">
 								<h3 class="form-control-static">Votre pseudo et votre avatar</h3>
 								<em>Les champs marqu&eacute;s d'un ast&eacute;risque sont obligatoires.</em>
@@ -70,7 +70,7 @@
 								<input type="radio" name="civility" id="budget-civility3" value="NPR" ${chk_civility_NPR}>#i18n{participatorybudget.mes_infos.civilityNPR}
 							</label>
 						</div>
-						<div <#if campagneService.isDuring("VOTE") >style="display:none;"</#if>>
+						<div <#if campaignService.isDuring("VOTE") >style="display:none;"</#if>>
 							<div class="form-group">
 								<label class="sr-only" for="budget-lastname">#i18n{participatorybudget.mes_infos.lastname} </label>
 								<input class="form-control" type="text" name="lastname" id="budget-lastname" value="${lastname!''}" placeholder="#i18n{participatorybudget.mes_infos.lastname} ">
@@ -95,7 +95,7 @@
 							<input id="geojson" type="hidden" name="geojson" value="${(geoJson?html)!''}">
 							<input id="geojson_state" type="hidden">
 						</div>
-						<div class="form-group" <#if campagneService.isBeforeBeginning("SUBMIT") || campagneService.isAfterEnd("VOTE") >style="display: none;"</#if>>
+						<div class="form-group" <#if campaignService.isBeforeBeginning("SUBMIT") || campaignService.isAfterEnd("VOTE") >style="display: none;"</#if>>
 							<h3>Vos informations de vote</h3>
 							<div class="form-group">
 								<img src="images/local/skin/i_vote_arr_green.png" class="logo" style="margin-right:5px; float:left;">

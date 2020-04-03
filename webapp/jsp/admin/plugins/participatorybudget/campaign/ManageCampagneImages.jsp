@@ -1,5 +1,5 @@
-<jsp:useBean id="manageideationCampagneImage" scope="session" class="fr.paris.lutece.plugins.participatorybudget.web.campaign.CampagneImageJspBean" />
-<% String strContent = manageideationCampagneImage.processController ( request , response ); %>
+<jsp:useBean id="manageideationCampaignImage" scope="session" class="fr.paris.lutece.plugins.participatorybudget.web.campaign.CampaignImageJspBean" />
+<% String strContent = manageideationCampaignImage.processController ( request , response ); %>
 
 <%@ page errorPage="../../../ErrorPage.jsp" %>
 <jsp:include page="../../../AdminHeader.jsp" />

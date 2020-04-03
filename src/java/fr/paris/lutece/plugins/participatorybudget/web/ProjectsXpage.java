@@ -135,7 +135,7 @@ public class ProjectsXpage extends MVCApplication
         // - User connected
         // - User do not clicked on "remove arrdt filter" case
         // - User do not use "localisation" SOLR facet
-        // - Campagne is in SUBMIT / VOTE phase.
+        // - Campaign is in SUBMIT / VOTE phase.
         // - SOLR page is "projects_mdp"
         // - User has a vote arrdt
         LuteceUser user = SecurityService.getInstance( ).getRegisteredUser( request );

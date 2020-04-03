@@ -12,12 +12,12 @@ INSERT INTO core_datastore VALUES ('participatorybudget.site_property.error_code
 --
 -- Data for table core_admin_right
 --
-DELETE FROM core_admin_right WHERE id_right = 'CAMPAGNEBP_MANAGEMENT';
+DELETE FROM core_admin_right WHERE id_right = 'CAMPAIGNBP_MANAGEMENT';
 INSERT INTO core_admin_right (id_right,name,level_right,admin_url,description,is_updatable,plugin_name,id_feature_group,icon_url,documentation_url, id_order ) VALUES 
-('CAMPAGNEBP_MANAGEMENT','participatorybudget.adminFeature.ManageCampagnebp.name',1,'jsp/admin/plugins/participatorybudget/campaign/ManageCampagnebp.jsp','participatorybudget.adminFeature.ManageCampagnebp.description',0,'participatorybudget',NULL,NULL,NULL,4);
+('CAMPAIGNBP_MANAGEMENT','participatorybudget.adminFeature.ManageCampaignbp.name',1,'jsp/admin/plugins/participatorybudget/campaign/ManageCampaignbp.jsp','participatorybudget.adminFeature.ManageCampaignbp.description',0,'participatorybudget',NULL,NULL,NULL,4);
 
 --
 -- Data for table core_user_right
 --
-DELETE FROM core_user_right WHERE id_right = 'CAMPAGNEBP_MANAGEMENT';
-INSERT INTO core_user_right (id_right,id_user) VALUES ('CAMPAGNEBP_MANAGEMENT',1);
+DELETE FROM core_user_right WHERE id_right = 'CAMPAIGNBP_MANAGEMENT';
+INSERT INTO core_user_right (id_right,id_user) VALUES ('CAMPAIGNBP_MANAGEMENT',1);

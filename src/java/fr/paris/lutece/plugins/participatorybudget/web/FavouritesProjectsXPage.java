@@ -111,7 +111,7 @@ public class FavouritesProjectsXPage extends MVCApplication
         model.put( MARK_PROJECTS_FOLLOWERS, listFollowers );
         model.put( BudgetUtils.MARK_VOTE_VALIDATED, isValidated );
 
-        model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+        model.put( BudgetUtils.MARK_CAMPAIGN_SERVICE, CampaignService.getInstance( ) );
 
         return getXPage( TEMPLATE_VIEW_FAVOURITE_PROJECT, request.getLocale( ), model );
     }

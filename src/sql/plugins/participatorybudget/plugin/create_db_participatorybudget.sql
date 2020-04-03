@@ -37,25 +37,25 @@ CREATE TABLE IF NOT EXISTS participatorybudget_campaign_moderation_type (
 ALTER TABLE participatorybudget_campaign_moderation_type ADD CONSTRAINT uc_code_moderation_type UNIQUE (code_moderation_type);
 
 CREATE TABLE IF NOT EXISTS participatorybudget_campaign (
-  id_campagne int NOT NULL,
-  code_campagne varchar(50) NOT NULL,
+  id_campaign int NOT NULL,
+  code_campaign varchar(50) NOT NULL,
   title varchar(255) NOT NULL,
   description varchar(1000) NOT NULL,
   active smallint NOT NULL,
   code_moderation_type varchar(50) NOT NULL,
   moderation_duration int DEFAULT NULL,
-  PRIMARY KEY (id_campagne)
+  PRIMARY KEY (id_campaign)
 );
-ALTER TABLE participatorybudget_campaign ADD CONSTRAINT uc_code_campagne UNIQUE (code_campagne);
+ALTER TABLE participatorybudget_campaign ADD CONSTRAINT uc_code_campaign UNIQUE (code_campaign);
 ALTER TABLE participatorybudget_campaign ADD CONSTRAINT fk_participatorybudget_campaign_moderation  FOREIGN KEY (code_moderation_type) REFERENCES participatorybudget_campaign_moderation_type (code_moderation_type);
 
 CREATE TABLE IF NOT EXISTS participatorybudget_campaign_image (
-  id_campagne_image int NOT NULL,
-  code_campagne varchar(50) NOT NULL,
+  id_campaign_image int NOT NULL,
+  code_campaign varchar(50) NOT NULL,
   id_file int NOT NULL,
-  PRIMARY KEY (id_campagne_image)
+  PRIMARY KEY (id_campaign_image)
 );
-ALTER TABLE participatorybudget_campaign_image ADD CONSTRAINT fk_participatorybudget_campaign_images_campagne  FOREIGN KEY (code_campagne) REFERENCES participatorybudget_campaign (code_campagne);
+ALTER TABLE participatorybudget_campaign_image ADD CONSTRAINT fk_participatorybudget_campaign_images_campaign  FOREIGN KEY (code_campaign) REFERENCES participatorybudget_campaign (code_campaign);
 ALTER TABLE participatorybudget_campaign_image ADD CONSTRAINT fk_participatorybudget_campaign_images_file  FOREIGN KEY (id_file) REFERENCES core_file (id_file);
 
 CREATE TABLE IF NOT EXISTS participatorybudget_campaign_phase_type (
@@ -68,28 +68,28 @@ CREATE TABLE IF NOT EXISTS participatorybudget_campaign_phase_type (
 ALTER TABLE participatorybudget_campaign_phase_type ADD CONSTRAINT uc_code_phase_type UNIQUE (code_phase_type);
 
 CREATE TABLE IF NOT EXISTS participatorybudget_campaign_phase (
-  id_campagne_phase int NOT NULL,
+  id_campaign_phase int NOT NULL,
   code_phase_type varchar(50) NOT NULL,
-  code_campagne varchar(50) NOT NULL,
+  code_campaign varchar(50) NOT NULL,
   start datetime NOT NULL,
   end datetime NOT NULL,
-  PRIMARY KEY (id_campagne_phase)
+  PRIMARY KEY (id_campaign_phase)
 );
-ALTER TABLE participatorybudget_campaign_phase ADD CONSTRAINT fk_participatorybudget_campaign_phases_campagne  FOREIGN KEY (code_campagne) REFERENCES participatorybudget_campaign (code_campagne);
+ALTER TABLE participatorybudget_campaign_phase ADD CONSTRAINT fk_participatorybudget_campaign_phases_campaign  FOREIGN KEY (code_campaign) REFERENCES participatorybudget_campaign (code_campaign);
 ALTER TABLE participatorybudget_campaign_phase ADD CONSTRAINT fk_participatorybudget_campaign_phases_phase  FOREIGN KEY (code_phase_type) REFERENCES participatorybudget_campaign_phase_type (code_phase_type);
 
 CREATE TABLE IF NOT EXISTS participatorybudget_campaign_theme (
-  id_campagne_theme int NOT NULL,
-  code_campagne varchar(50) NOT NULL,
+  id_campaign_theme int NOT NULL,
+  code_campaign varchar(50) NOT NULL,
   code_theme varchar(50) NOT NULL,
   title varchar(255) NOT NULL,
   description varchar(1000) NOT NULL,
   active smallint NOT NULL,
   image_file int DEFAULT NULL,
-  PRIMARY KEY (id_campagne_theme)
+  PRIMARY KEY (id_campaign_theme)
 );
-ALTER TABLE participatorybudget_campaign_theme ADD CONSTRAINT uc_code_theme UNIQUE (code_campagne,code_theme);
-ALTER TABLE participatorybudget_campaign_theme ADD CONSTRAINT fk_participatorybudget_campaign_themes_campagne  FOREIGN KEY (code_campagne) REFERENCES participatorybudget_campaign (code_campagne);
+ALTER TABLE participatorybudget_campaign_theme ADD CONSTRAINT uc_code_theme UNIQUE (code_campaign,code_theme);
+ALTER TABLE participatorybudget_campaign_theme ADD CONSTRAINT fk_participatorybudget_campaign_themes_campaign  FOREIGN KEY (code_campaign) REFERENCES participatorybudget_campaign (code_campaign);
 
 CREATE TABLE IF NOT EXISTS participatorybudget_rgpd_treatment_log (
   id_treatment_log int NOT NULL AUTO_INCREMENT,
@@ -152,15 +152,15 @@ CREATE TABLE IF NOT EXISTS participatorybudget_votes_per_location (
 );
 
 CREATE TABLE participatorybudget_campaign_area (
-  id_campagne_area int NOT NULL,
-  code_campagne varchar(50) NOT NULL,
+  id_campaign_area int NOT NULL,
+  code_campaign varchar(50) NOT NULL,
   title varchar(255) NOT NULL,
   active smallint NOT NULL,
   type varchar(50) NOT NULL,
   number_votes int NOT NULL,
-  PRIMARY KEY (id_campagne_area)
+  PRIMARY KEY (id_campaign_area)
 );
-ALTER TABLE participatorybudget_campaign_area ADD CONSTRAINT fk_participatorybudget_campaign_areas_campagne  FOREIGN KEY (code_campagne) REFERENCES participatorybudget_campaign (code_campagne) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE participatorybudget_campaign_area ADD CONSTRAINT fk_participatorybudget_campaign_areas_campaign  FOREIGN KEY (code_campaign) REFERENCES participatorybudget_campaign (code_campaign) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 CREATE TABLE IF NOT EXISTS task_notify_documentbp_cf (

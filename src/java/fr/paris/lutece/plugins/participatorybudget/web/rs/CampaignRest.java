@@ -76,7 +76,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
 import fr.paris.lutece.plugins.participatorybudget.service.NoSuchPhaseException;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.rest.service.RestConstants;
@@ -111,7 +111,7 @@ public class CampaignRest extends AbstractServiceRest
         }
         try
         {
-            return formatJson( "OK", CampagneHome.getCampagnesList( ) );
+            return formatJson( "OK", CampaignHome.getCampaignsList( ) );
         }
         catch( NoSuchPhaseException e )
         {

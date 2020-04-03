@@ -40,20 +40,20 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.util.sql.DAOUtil;
 
 /**
- * This class provides Data Access methods for CampagneImage objects
+ * This class provides Data Access methods for CampaignImage objects
  */
 
-public final class CampagneImageDAO implements ICampagneImageDAO
+public final class CampaignImageDAO implements ICampaignImageDAO
 {
     // Constants
-    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campagne_image ) FROM participatorybudget_campaign_image";
-    private static final String SQL_QUERY_SELECT = "SELECT id_campagne_image, code_campagne, id_file FROM participatorybudget_campaign_image WHERE id_campagne_image = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_image ( id_campagne_image, code_campagne, id_file ) VALUES ( ?, ?, ? ) ";
-    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_image WHERE id_campagne_image = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_image SET id_campagne_image = ?, code_campagne = ?, id_file = ? WHERE id_campagne_image = ?";
-    private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_image SET code_campagne = ? WHERE code_campagne = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_campagne_image, code_campagne, id_file FROM participatorybudget_campaign_image";
-    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campagne_image FROM participatorybudget_campaign_image";
+    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campaign_image ) FROM participatorybudget_campaign_image";
+    private static final String SQL_QUERY_SELECT = "SELECT id_campaign_image, code_campaign, id_file FROM participatorybudget_campaign_image WHERE id_campaign_image = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_image ( id_campaign_image, code_campaign, id_file ) VALUES ( ?, ?, ? ) ";
+    private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_image WHERE id_campaign_image = ? ";
+    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_image SET id_campaign_image = ?, code_campaign = ?, id_file = ? WHERE id_campaign_image = ?";
+    private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_image SET code_campaign = ? WHERE code_campaign = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_campaign_image, code_campaign, id_file FROM participatorybudget_campaign_image";
+    private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campaign_image FROM participatorybudget_campaign_image";
 
     /**
      * Generates a new primary key
@@ -83,15 +83,15 @@ public final class CampagneImageDAO implements ICampagneImageDAO
      * {@inheritDoc }
      */
     @Override
-    public void insert( CampagneImage campagneImage, Plugin plugin )
+    public void insert( CampaignImage campaignImage, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin );
 
-        campagneImage.setId( newPrimaryKey( plugin ) );
+        campaignImage.setId( newPrimaryKey( plugin ) );
 
-        daoUtil.setInt( 1, campagneImage.getId( ) );
-        daoUtil.setString( 2, campagneImage.getCodeCampagne( ) );
-        daoUtil.setInt( 3, campagneImage.getFile( ) );
+        daoUtil.setInt( 1, campaignImage.getId( ) );
+        daoUtil.setString( 2, campaignImage.getCodeCampaign( ) );
+        daoUtil.setInt( 3, campaignImage.getFile( ) );
 
         daoUtil.executeUpdate( );
         daoUtil.free( );
@@ -101,24 +101,24 @@ public final class CampagneImageDAO implements ICampagneImageDAO
      * {@inheritDoc }
      */
     @Override
-    public CampagneImage load( int nKey, Plugin plugin )
+    public CampaignImage load( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
         daoUtil.setInt( 1, nKey );
         daoUtil.executeQuery( );
 
-        CampagneImage campagneImage = null;
+        CampaignImage campaignImage = null;
 
         if ( daoUtil.next( ) )
         {
-            campagneImage = new CampagneImage( );
-            campagneImage.setId( daoUtil.getInt( 1 ) );
-            campagneImage.setCodeCampagne( daoUtil.getString( 2 ) );
-            campagneImage.setFile( daoUtil.getInt( 3 ) );
+            campaignImage = new CampaignImage( );
+            campaignImage.setId( daoUtil.getInt( 1 ) );
+            campaignImage.setCodeCampaign( daoUtil.getString( 2 ) );
+            campaignImage.setFile( daoUtil.getInt( 3 ) );
         }
 
         daoUtil.free( );
-        return campagneImage;
+        return campaignImage;
     }
 
     /**
@@ -151,14 +151,14 @@ public final class CampagneImageDAO implements ICampagneImageDAO
      * {@inheritDoc }
      */
     @Override
-    public void store( CampagneImage campagneImage, Plugin plugin )
+    public void store( CampaignImage campaignImage, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
 
-        daoUtil.setInt( 1, campagneImage.getId( ) );
-        daoUtil.setString( 2, campagneImage.getCodeCampagne( ) );
-        daoUtil.setInt( 3, campagneImage.getFile( ) );
-        daoUtil.setInt( 4, campagneImage.getId( ) );
+        daoUtil.setInt( 1, campaignImage.getId( ) );
+        daoUtil.setString( 2, campaignImage.getCodeCampaign( ) );
+        daoUtil.setInt( 3, campaignImage.getFile( ) );
+        daoUtil.setInt( 4, campaignImage.getId( ) );
 
         daoUtil.executeUpdate( );
         daoUtil.free( );
@@ -168,43 +168,43 @@ public final class CampagneImageDAO implements ICampagneImageDAO
      * {@inheritDoc }
      */
     @Override
-    public Collection<CampagneImage> selectCampagneImagesList( Plugin plugin )
+    public Collection<CampaignImage> selectCampaignImagesList( Plugin plugin )
     {
-        Collection<CampagneImage> campagneImageList = new ArrayList<CampagneImage>( );
+        Collection<CampaignImage> campaignImageList = new ArrayList<CampaignImage>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
         daoUtil.executeQuery( );
 
         while ( daoUtil.next( ) )
         {
-            CampagneImage campagneImage = new CampagneImage( );
+            CampaignImage campaignImage = new CampaignImage( );
 
-            campagneImage.setId( daoUtil.getInt( 1 ) );
-            campagneImage.setCodeCampagne( daoUtil.getString( 2 ) );
-            campagneImage.setFile( daoUtil.getInt( 3 ) );
+            campaignImage.setId( daoUtil.getInt( 1 ) );
+            campaignImage.setCodeCampaign( daoUtil.getString( 2 ) );
+            campaignImage.setFile( daoUtil.getInt( 3 ) );
 
-            campagneImageList.add( campagneImage );
+            campaignImageList.add( campaignImage );
         }
 
         daoUtil.free( );
-        return campagneImageList;
+        return campaignImageList;
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public Collection<Integer> selectIdCampagneImagesList( Plugin plugin )
+    public Collection<Integer> selectIdCampaignImagesList( Plugin plugin )
     {
-        Collection<Integer> campagneImageList = new ArrayList<Integer>( );
+        Collection<Integer> campaignImageList = new ArrayList<Integer>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
         daoUtil.executeQuery( );
 
         while ( daoUtil.next( ) )
         {
-            campagneImageList.add( daoUtil.getInt( 1 ) );
+            campaignImageList.add( daoUtil.getInt( 1 ) );
         }
 
         daoUtil.free( );
-        return campagneImageList;
+        return campaignImageList;
     }
 }

@@ -40,24 +40,24 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * This is the business class for the object CampagnePhaseType
+ * This is the business class for the object CampaignPhaseType
  */
-public class CampagnePhaseType implements Serializable
+public class CampaignPhaseType implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     // Variables declarations
     private int _nId;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnephasetype.Code.notEmpty}" )
-    @Size( max = 50, message = "#i18n{participatorybudget.validation.campagnephasetype.Code.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaignphasetype.Code.notEmpty}" )
+    @Size( max = 50, message = "#i18n{participatorybudget.validation.campaignphasetype.Code.size}" )
     private String _strCode;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnephasetype.Label.notEmpty}" )
-    @Size( max = 255, message = "#i18n{participatorybudget.validation.campagnephasetype.Label.size}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaignphasetype.Label.notEmpty}" )
+    @Size( max = 255, message = "#i18n{participatorybudget.validation.campaignphasetype.Label.size}" )
     private String _strLabel;
 
-    @NotEmpty( message = "#i18n{participatorybudget.validation.campagnephasetype.Order.notEmpty}" )
+    @NotEmpty( message = "#i18n{participatorybudget.validation.campaignphasetype.Order.notEmpty}" )
     private int _nOrder;
 
     // *********************************************************************************************

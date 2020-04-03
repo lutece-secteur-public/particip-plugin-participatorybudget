@@ -38,10 +38,10 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhase;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagnePhaseHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignPhase;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignPhaseHome;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;

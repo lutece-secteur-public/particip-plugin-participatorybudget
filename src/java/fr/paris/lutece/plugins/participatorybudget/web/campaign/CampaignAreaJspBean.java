@@ -33,8 +33,13 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneArea;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneAreaHome;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignArea;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignAreaHome;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
@@ -43,64 +48,59 @@ import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.util.url.UrlItem;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 /**
- * This class provides the user interface to manage CampagneArea features ( manage, create, modify, remove )
+ * This class provides the user interface to manage CampaignArea features ( manage, create, modify, remove )
  */
-@Controller( controllerJsp = "ManageCampagneAreas.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAGNEBP_MANAGEMENT" )
-public class CampagneAreaJspBean extends ManageCampagnebpJspBean
+@Controller( controllerJsp = "ManageCampaignAreas.jsp", controllerPath = "jsp/admin/plugins/participatorybudget/campaign/", right = "CAMPAIGNBP_MANAGEMENT" )
+public class CampaignAreaJspBean extends ManageCampaignJspBean
 {
+
+    private static final long serialVersionUID = -1820764320140603066L;
 
     // //////////////////////////////////////////////////////////////////////////
     // Constants
-
     // templates
-    private static final String TEMPLATE_MANAGE_CAMPAGNEAREAS = "/admin/plugins/participatorybudget/campaign/manage_campagneareas.html";
-    private static final String TEMPLATE_CREATE_CAMPAGNEAREA = "/admin/plugins/participatorybudget/campaign/create_campagnearea.html";
-    private static final String TEMPLATE_MODIFY_CAMPAGNEAREA = "/admin/plugins/participatorybudget/campaign/modify_campagnearea.html";
+    private static final String TEMPLATE_MANAGE_CAMPAIGNAREAS = "/admin/plugins/participatorybudget/campaign/manage_campaignareas.html";
+    private static final String TEMPLATE_CREATE_CAMPAIGNAREA = "/admin/plugins/participatorybudget/campaign/create_campaignarea.html";
+    private static final String TEMPLATE_MODIFY_CAMPAIGNAREA = "/admin/plugins/participatorybudget/campaign/modify_campaignarea.html";
 
     // Parameters
-    private static final String PARAMETER_ID_CAMPAGNEAREA = "id";
+    private static final String PARAMETER_ID_CAMPAIGNAREA = "id";
 
     // Properties for page titles
-    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNEAREAS = "participatorybudget.manage_campagnethemes.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNEAREA = "participatorybudget.modify_campagnetheme.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAGNEAREA = "participatorybudget.create_campagnetheme.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MANAGE_CAMPAIGNAREAS = "participatorybudget.manage_campaignthemes.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MODIFY_CAMPAIGNAREA = "participatorybudget.modify_campaigntheme.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_CREATE_CAMPAIGNAREA = "participatorybudget.create_campaigntheme.pageTitle";
 
     // Markers
-    private static final String MARK_CAMPAGNEAREA_LIST = "campagnearea_list";
-    private static final String MARK_CAMPAGNEAREA = "campagnearea";
+    private static final String MARK_CAMPAIGNAREA_LIST = "campaignarea_list";
+    private static final String MARK_CAMPAIGNAREA = "campaignarea";
 
-    private static final String JSP_MANAGE_CAMPAGNEAREAS = "jsp/admin/plugins/participatorybudget/campaign/ManageCampagneAreas.jsp";
+    private static final String JSP_MANAGE_CAMPAIGNAREAS = "jsp/admin/plugins/participatorybudget/campaign/ManageCampaignAreas.jsp";
 
     // Properties
-    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAGNEAREA = "participatorybudget.message.confirmRemoveCampagneTheme";
-    private static final String PROPERTY_DEFAULT_LIST_CAMPAGNEAREA_PER_PAGE = "participatorybudget.listCampagneThemes.itemsPerPage";
+    private static final String MESSAGE_CONFIRM_REMOVE_CAMPAIGNAREA = "participatorybudget.message.confirmRemoveCampaignTheme";
 
-    private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campagnetheme.attribute.";
+    private static final String VALIDATION_ATTRIBUTES_PREFIX = "participatorybudget.model.entity.campaigntheme.attribute.";
 
     // Views
-    private static final String VIEW_MANAGE_CAMPAGNEAREAS = "manageCampagneAreas";
-    private static final String VIEW_CREATE_CAMPAGNEAREA = "createCampagneArea";
-    private static final String VIEW_MODIFY_CAMPAGNEAREA = "modifyCampagneArea";
+    private static final String VIEW_MANAGE_CAMPAIGNAREAS = "manageCampaignAreas";
+    private static final String VIEW_CREATE_CAMPAIGNAREA = "createCampaignArea";
+    private static final String VIEW_MODIFY_CAMPAIGNAREA = "modifyCampaignArea";
 
     // Actions
-    private static final String ACTION_CREATE_CAMPAGNEAREA = "createCampagneArea";
-    private static final String ACTION_MODIFY_CAMPAGNEAREA = "modifyCampagneArea";
-    private static final String ACTION_REMOVE_CAMPAGNEAREA = "removeCampagneArea";
-    private static final String ACTION_CONFIRM_REMOVE_CAMPAGNEAREA = "confirmRemoveCampagneArea";
+    private static final String ACTION_CREATE_CAMPAIGNAREA = "createCampaignArea";
+    private static final String ACTION_MODIFY_CAMPAIGNAREA = "modifyCampaignArea";
+    private static final String ACTION_REMOVE_CAMPAIGNAREA = "removeCampaignArea";
+    private static final String ACTION_CONFIRM_REMOVE_CAMPAIGNAREA = "confirmRemoveCampaignArea";
 
     // Infos
-    private static final String INFO_CAMPAGNEAREA_CREATED = "participatorybudget.info.campagnetheme.created";
-    private static final String INFO_CAMPAGNEAREA_UPDATED = "participatorybudget.info.campagnetheme.updated";
-    private static final String INFO_CAMPAGNEAREA_REMOVED = "participatorybudget.info.campagnetheme.removed";
+    private static final String INFO_CAMPAIGNAREA_CREATED = "participatorybudget.info.campaigntheme.created";
+    private static final String INFO_CAMPAIGNAREA_UPDATED = "participatorybudget.info.campaigntheme.updated";
+    private static final String INFO_CAMPAIGNAREA_REMOVED = "participatorybudget.info.campaigntheme.removed";
 
     // Session variable to store working values
-    private CampagneArea _campagnearea;
+    private CampaignArea _campaignarea;
 
     /**
      * Build the Manage View
@@ -109,149 +109,149 @@ public class CampagneAreaJspBean extends ManageCampagnebpJspBean
      *            The HTTP request
      * @return The page
      */
-    @View( value = VIEW_MANAGE_CAMPAGNEAREAS, defaultView = true )
-    public String getManageCampagneAreas( HttpServletRequest request )
+    @View( value = VIEW_MANAGE_CAMPAIGNAREAS, defaultView = true )
+    public String getManageCampaignAreas( HttpServletRequest request )
     {
-        _campagnearea = null;
-        List<CampagneArea> listCampagneAreas = (List<CampagneArea>) CampagneAreaHome.getCampagneAreasList( );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_CAMPAGNEAREA_LIST, listCampagneAreas, JSP_MANAGE_CAMPAGNEAREAS );
+        _campaignarea = null;
+        List<CampaignArea> listCampaignAreas = (List<CampaignArea>) CampaignAreaHome.getCampaignAreasList( );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_CAMPAIGNAREA_LIST, listCampaignAreas, JSP_MANAGE_CAMPAIGNAREAS );
 
-        return getPage( PROPERTY_PAGE_TITLE_MANAGE_CAMPAGNEAREAS, TEMPLATE_MANAGE_CAMPAGNEAREAS, model );
+        return getPage( PROPERTY_PAGE_TITLE_MANAGE_CAMPAIGNAREAS, TEMPLATE_MANAGE_CAMPAIGNAREAS, model );
     }
 
     /**
-     * Returns the form to create a campagnearea
+     * Returns the form to create a campaignarea
      *
      * @param request
      *            The Http request
-     * @return the html code of the campagnearea form
+     * @return the html code of the campaignarea form
      */
-    @View( VIEW_CREATE_CAMPAGNEAREA )
-    public String getCreateCampagneArea( HttpServletRequest request )
+    @View( VIEW_CREATE_CAMPAIGNAREA )
+    public String getCreateCampaignArea( HttpServletRequest request )
     {
-        _campagnearea = ( _campagnearea != null ) ? _campagnearea : new CampagneArea( );
+        _campaignarea = ( _campaignarea != null ) ? _campaignarea : new CampaignArea( );
 
         Map<String, Object> model = getModel( );
-        model.put( MARK_CAMPAGNEAREA, _campagnearea );
+        model.put( MARK_CAMPAIGNAREA, _campaignarea );
 
-        return getPage( PROPERTY_PAGE_TITLE_CREATE_CAMPAGNEAREA, TEMPLATE_CREATE_CAMPAGNEAREA, model );
+        return getPage( PROPERTY_PAGE_TITLE_CREATE_CAMPAIGNAREA, TEMPLATE_CREATE_CAMPAIGNAREA, model );
     }
 
     /**
-     * Process the data capture form of a new campagnearea
+     * Process the data capture form of a new campaignarea
      *
      * @param request
      *            The Http Request
      * @return The Jsp URL of the process result
      */
-    @Action( ACTION_CREATE_CAMPAGNEAREA )
-    public String doCreateCampagneArea( HttpServletRequest request )
+    @Action( ACTION_CREATE_CAMPAIGNAREA )
+    public String doCreateCampaignArea( HttpServletRequest request )
     {
-        populate( _campagnearea, request );
+        populate( _campaignarea, request );
 
         // Check constraints
-        if ( !validateBean( _campagnearea, VALIDATION_ATTRIBUTES_PREFIX ) )
+        if ( !validateBean( _campaignarea, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirectView( request, VIEW_CREATE_CAMPAGNEAREA );
+            return redirectView( request, VIEW_CREATE_CAMPAIGNAREA );
         }
-        if ( _campagnearea.getType( ).equals( "whole" ) && CampaignService.getInstance( ).hasWholeArea( _campagnearea.getCodeCampagne( ) ) )
+        if ( _campaignarea.getType( ).equals( "whole" ) && CampaignService.getInstance( ).hasWholeArea( _campaignarea.getCodeCampaign( ) ) )
         {
-            addError( "#i18n{participatorybudget.validation.campagnearea.Type.alreadyWhole}" );
-            return redirectView( request, VIEW_CREATE_CAMPAGNEAREA );
+            addError( "#i18n{participatorybudget.validation.campaignarea.Type.alreadyWhole}" );
+            return redirectView( request, VIEW_CREATE_CAMPAIGNAREA );
         }
 
-        CampagneAreaHome.create( _campagnearea );
-        addInfo( INFO_CAMPAGNEAREA_CREATED, getLocale( ) );
+        CampaignAreaHome.create( _campaignarea );
+        addInfo( INFO_CAMPAIGNAREA_CREATED, getLocale( ) );
 
-        return redirectView( request, VIEW_MANAGE_CAMPAGNEAREAS );
+        return redirectView( request, VIEW_MANAGE_CAMPAIGNAREAS );
     }
 
     /**
-     * Manages the removal form of a campagnearea whose identifier is in the http request
+     * Manages the removal form of a campaignarea whose identifier is in the http request
      *
      * @param request
      *            The Http request
      * @return the html code to confirm
      */
-    @Action( ACTION_CONFIRM_REMOVE_CAMPAGNEAREA )
-    public String getConfirmRemoveCampagneArea( HttpServletRequest request )
+    @Action( ACTION_CONFIRM_REMOVE_CAMPAIGNAREA )
+    public String getConfirmRemoveCampaignArea( HttpServletRequest request )
     {
-        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNEAREA ) );
-        UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAGNEAREA ) );
-        url.addParameter( PARAMETER_ID_CAMPAGNEAREA, nId );
+        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAIGNAREA ) );
+        UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CAMPAIGNAREA ) );
+        url.addParameter( PARAMETER_ID_CAMPAIGNAREA, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAGNEAREA, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CAMPAIGNAREA, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
 
     /**
-     * Handles the removal form of a campagnearea
+     * Handles the removal form of a campaignarea
      *
      * @param request
      *            The Http request
-     * @return the jsp URL to display the form to manage campagneareas
+     * @return the jsp URL to display the form to manage campaignareas
      */
-    @Action( ACTION_REMOVE_CAMPAGNEAREA )
-    public String doRemoveCampagneArea( HttpServletRequest request )
+    @Action( ACTION_REMOVE_CAMPAIGNAREA )
+    public String doRemoveCampaignArea( HttpServletRequest request )
     {
-        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNEAREA ) );
-        CampagneAreaHome.remove( nId );
-        addInfo( INFO_CAMPAGNEAREA_REMOVED, getLocale( ) );
+        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAIGNAREA ) );
+        CampaignAreaHome.remove( nId );
+        addInfo( INFO_CAMPAIGNAREA_REMOVED, getLocale( ) );
 
-        return redirectView( request, VIEW_MANAGE_CAMPAGNEAREAS );
+        return redirectView( request, VIEW_MANAGE_CAMPAIGNAREAS );
     }
 
     /**
-     * Returns the form to update info about a campagnearea
+     * Returns the form to update info about a campaignarea
      *
      * @param request
      *            The Http request
      * @return The HTML form to update info
      */
-    @View( VIEW_MODIFY_CAMPAGNEAREA )
-    public String getModifyCampagneArea( HttpServletRequest request )
+    @View( VIEW_MODIFY_CAMPAIGNAREA )
+    public String getModifyCampaignArea( HttpServletRequest request )
     {
-        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAGNEAREA ) );
+        int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_CAMPAIGNAREA ) );
 
-        if ( _campagnearea == null || ( _campagnearea.getId( ) != nId ) )
+        if ( _campaignarea == null || ( _campaignarea.getId( ) != nId ) )
         {
-            _campagnearea = CampagneAreaHome.findByPrimaryKey( nId );
+            _campaignarea = CampaignAreaHome.findByPrimaryKey( nId );
         }
 
         Map<String, Object> model = getModel( );
-        model.put( MARK_CAMPAGNEAREA, _campagnearea );
+        model.put( MARK_CAMPAIGNAREA, _campaignarea );
 
-        return getPage( PROPERTY_PAGE_TITLE_MODIFY_CAMPAGNEAREA, TEMPLATE_MODIFY_CAMPAGNEAREA, model );
+        return getPage( PROPERTY_PAGE_TITLE_MODIFY_CAMPAIGNAREA, TEMPLATE_MODIFY_CAMPAIGNAREA, model );
     }
 
     /**
-     * Process the change form of a campagnearea
+     * Process the change form of a campaignarea
      *
      * @param request
      *            The Http request
      * @return The Jsp URL of the process result
      */
-    @Action( ACTION_MODIFY_CAMPAGNEAREA )
-    public String doModifyCampagneArea( HttpServletRequest request )
+    @Action( ACTION_MODIFY_CAMPAIGNAREA )
+    public String doModifyCampaignArea( HttpServletRequest request )
     {
-        populate( _campagnearea, request );
+        populate( _campaignarea, request );
 
         // Check constraints
-        if ( !validateBean( _campagnearea, VALIDATION_ATTRIBUTES_PREFIX ) )
+        if ( !validateBean( _campaignarea, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_CAMPAGNEAREA, PARAMETER_ID_CAMPAGNEAREA, _campagnearea.getId( ) );
+            return redirect( request, VIEW_MODIFY_CAMPAIGNAREA, PARAMETER_ID_CAMPAIGNAREA, _campaignarea.getId( ) );
         }
-        if ( _campagnearea.getType( ).equals( "whole" )
-                && CampaignService.getInstance( ).hasWholeArea( _campagnearea.getCodeCampagne( ), _campagnearea.getId( ) ) )
+        if ( _campaignarea.getType( ).equals( "whole" )
+                && CampaignService.getInstance( ).hasWholeArea( _campaignarea.getCodeCampaign( ), _campaignarea.getId( ) ) )
         {
-            addError( "#i18n{participatorybudget.validation.campagnearea.Type.alreadyWhole}" );
-            return redirectView( request, VIEW_CREATE_CAMPAGNEAREA );
+            addError( "#i18n{participatorybudget.validation.campaignarea.Type.alreadyWhole}" );
+            return redirectView( request, VIEW_CREATE_CAMPAIGNAREA );
         }
 
-        CampagneAreaHome.update( _campagnearea );
-        addInfo( INFO_CAMPAGNEAREA_UPDATED, getLocale( ) );
+        CampaignAreaHome.update( _campaignarea );
+        addInfo( INFO_CAMPAIGNAREA_UPDATED, getLocale( ) );
 
-        return redirectView( request, VIEW_MANAGE_CAMPAGNEAREAS );
+        return redirectView( request, VIEW_MANAGE_CAMPAIGNAREAS );
     }
 }

@@ -52,11 +52,11 @@ import fr.paris.lutece.portal.service.util.AppException;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.util.filesystem.UploadUtil;
 
-public class CampagneUploadHandler extends AbstractAsynchronousUploadHandler
+public class CampaignUploadHandler extends AbstractAsynchronousUploadHandler
 {
-    public static final String BEAN_NAME = "participatorybudget.campagnebpUploadHandler";
+    public static final String BEAN_NAME = "participatorybudget.campaignbpUploadHandler";
     private static final int DEFAULT_MAX_FILE_SIZE = 2097152;
-    private static final String HANDLER_NAME = "campagnebpUploadHandler";
+    private static final String HANDLER_NAME = "campaignbpUploadHandler";
 
     // Error messages
     private static final String ERROR_MESSAGE_MULTIPLE_UPLOAD = "participatorybudget.upload.message.multipleUpload";

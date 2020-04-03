@@ -37,8 +37,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campagne;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampagneHome;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
+import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.VoteStatService;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.security.UserNotSignedException;
@@ -58,7 +58,7 @@ public class VoteDashboardJspBean extends MVCAdminJspBean
 {
     private static final long serialVersionUID = 1L;
 
-    private Campagne campaign = CampagneHome.getLastCampagne( );
+    private Campaign campaign = CampaignHome.getLastCampaign( );
 
     // RIGHTS
     public static final String RIGHT_MANAGE_VOTE = "VOTE_DASHBOARD";
@@ -115,7 +115,7 @@ public class VoteDashboardJspBean extends MVCAdminJspBean
 
         // Add list of campaigns
         ReferenceList campaignList = new ReferenceList( );
-        for ( Campagne campaign : CampagneHome.getCampagnesList( ) )
+        for ( Campaign campaign : CampaignHome.getCampaignsList( ) )
         {
             campaignList.addItem( "" + campaign.getId( ), campaign.getCode( ) );
         }
@@ -141,7 +141,7 @@ public class VoteDashboardJspBean extends MVCAdminJspBean
     {
         int campaignId = Integer.parseInt( request.getParameter( PARAMETER_CAMPAIGN_ID ) );
 
-        campaign = CampagneHome.findByPrimaryKey( campaignId );
+        campaign = CampaignHome.findByPrimaryKey( campaignId );
 
         addInfo( I18nService.getLocalizedString( MESSAGE_CURRENT_CAMPAIGN_MODIFIED, new String [ ] {
                 campaign.getCode( )

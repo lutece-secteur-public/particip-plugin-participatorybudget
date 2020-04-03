@@ -266,7 +266,7 @@ public class MyVoteXPage extends MVCApplication
 
         model.put( BudgetUtils.MARK_VOTE_VALIDATED, isValidated );
 
-        model.put( BudgetUtils.MARK_CAMPAGNE_SERVICE, CampaignService.getInstance( ) );
+        model.put( BudgetUtils.MARK_CAMPAIGN_SERVICE, CampaignService.getInstance( ) );
 
         XPage page = getXPage( TEMPLATE_MY_VOTES, getLocale( request ), model );
         page.setTitle( I18nService.getLocalizedString( PROPERTY_MY_VOTES_PAGE_TITLE, Locale.FRENCH ) );
@@ -757,9 +757,9 @@ public class MyVoteXPage extends MVCApplication
      * // }else // //
      * 
      * if (StringUtils.isNotEmpty(strMessage) && ParisConnectService.getInstance().sendAvisMessage(strMail, strMessage, strBackUrl)) { jsonResponse = new
-     * JsonResponse(new CampagneResponse(Boolean.TRUE, SecurityTokenService.getInstance().getToken(request, TOKEN_DO_SEND_AVIS)));
+     * JsonResponse(new CampaignResponse(Boolean.TRUE, SecurityTokenService.getInstance().getToken(request, TOKEN_DO_SEND_AVIS)));
      * 
-     * } else { jsonResponse = new CampagneErrorJsonResponse( JSON_ERROR_DURING_SEND_AVIS, SecurityTokenService .getInstance() .getToken(request,
+     * } else { jsonResponse = new CampaignErrorJsonResponse( JSON_ERROR_DURING_SEND_AVIS, SecurityTokenService .getInstance() .getToken(request,
      * TOKEN_DO_SEND_AVIS)); }
      * 
      * return JsonUtil.buildJsonResponse(jsonResponse); }
