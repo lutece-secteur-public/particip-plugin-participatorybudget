@@ -1,23 +1,17 @@
 var dialog, idResourceToVote, resourceTypeToVote,voteValue,baseUrl,arrondissement,title,thematique,arrondUser;
-//displayLoginPagePopup
-//function displayLoginBp(backUrl) {
-//	var wH=800;
-//	if($(window).innerWidth() < 768)
-//	{
-//	    window.location.href= baseUrl +'jsp/site/Portal.jsp?page=mylutece&action=login&auth_provider=mylutece-database&back_url='+ backUrl;
-//	}
-//	else
-//	{
-//	var wW=800;
-//	var modalAuth=window.open(  baseUrl+'jsp/site/Portal.jsp?page=mylutece&action=login&auth_provider=mylutece-database&back_url='+ backUrl,'Mon Paris', 'width='+ wW + ',height=' + wH +',scrollbars=yes,status=yes,resizable=yes,toolbar=0,menubar=0,location=0,screenx=0,screeny=0');
-//	
-//	window.addEventListener("unload", function(event) { modalAuth.close() });
-//	}
-//}
 
-function displayLoginBp(backUrl) {
-	    window.location.href= baseUrl +'jsp/site/Portal.jsp?page=mylutece&action=login&auth_provider=mylutece-database&back_url='+ backUrl;
-	}
+
+function displayLoginBp( encodedBackUrl ) {
+	
+	// Lutece XSS security check seems to need a double-encoded backUrl to avoid an alert due to character '&'.
+	//	var url = baseUrl +'jsp/site/Portal.jsp?page=mylutece&action=login&auth_provider=mylutece-database&back_url='+ encodeURIComponent( encodedBackUrl );
+
+	// MyLutece do not need a backUrl.
+	var url = baseUrl +'jsp/site/Portal.jsp?page=mylutece&action=login&auth_provider=mylutece-database';
+	
+	window.location.href= url;
+}
+
 
 
 function displayModalPopup(callBackFunction)
