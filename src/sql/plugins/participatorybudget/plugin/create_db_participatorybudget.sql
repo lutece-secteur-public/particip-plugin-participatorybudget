@@ -109,8 +109,8 @@ CREATE TABLE IF NOT EXISTS participatorybudget_votes (
   birth_date varchar(255) DEFAULT NULL,
   ip_address varchar(100) DEFAULT '' NOT NULL,
   title varchar(255) DEFAULT '' NOT NULL,
-  localisation int NOT NULL,
-  thematique varchar(255) DEFAULT '' NOT NULL,
+  location int NOT NULL,
+  theme varchar(255) DEFAULT '' NOT NULL,
   status int DEFAULT '0' NOT NULL,
   mobile_phone varchar(50) DEFAULT NULL,
   email varchar(500) DEFAULT NULL,
@@ -126,8 +126,8 @@ CREATE TABLE IF NOT EXISTS participatorybudget_votes_history (
   birth_date varchar(255) DEFAULT NULL,
   ip_address varchar(100) DEFAULT '' NOT NULL,
   title varchar(255) DEFAULT '' NOT NULL,
-  localisation int NOT NULL,
-  thematique varchar(255) DEFAULT '' NOT NULL,
+  location int NOT NULL,
+  theme varchar(255) DEFAULT '' NOT NULL,
   status int NOT NULL,
   id int NOT NULL,
   status_export_stats int DEFAULT '0' NOT NULL,
@@ -137,7 +137,7 @@ CREATE INDEX participatorybudget_votes_history_index_id_user ON participatorybud
 
 CREATE TABLE IF NOT EXISTS participatorybudget_votes_per_location (
   id int NOT NULL,
-  localisation_ardt varchar(50) NOT NULL,
+  location_ardt varchar(50) NOT NULL,
   nb_votes int NOT NULL,
   PRIMARY KEY (id)
 );

@@ -132,7 +132,7 @@ public class VoteStatService
             Map<String, String> values = new HashMap<>( );
             values.put( "ref", "" + project.getId( ) );
             values.put( "title", project.getTitle( ) );
-            values.put( "location", project.getAttribute( "district" ).getTextValue( ) );
+            values.put( "location", project.getAttribute( "location" ).getTextValue( ) );
             values.put( "theme", project.getAttribute( "theme" ).getTextValue( ) );
             values.put( "nb_votes", "" + votes.get( documentId ) );
 

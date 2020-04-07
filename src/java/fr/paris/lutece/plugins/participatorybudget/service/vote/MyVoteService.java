@@ -66,7 +66,7 @@ import fr.paris.lutece.plugins.participatorybudget.business.vote.VoteHome;
 import fr.paris.lutece.plugins.participatorybudget.service.NbProjetArrCacheService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.rating.BudgetRatingService;
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.plugins.participatorybudget.util.ParticipatoryBudgetConstants;
 import fr.paris.lutece.portal.service.cache.AbstractCacheableService;
 import fr.paris.lutece.portal.service.message.SiteMessage;
 import fr.paris.lutece.portal.service.message.SiteMessageException;
@@ -164,7 +164,7 @@ public class MyVoteService
     public MyVote getUserVote( String idUser )
     {
         MyVote myVote = new MyVote( );
-        int nbrVoteArrdt = VoteHome.getVoteUserNotLocalisation( idUser, 75000 );
+        int nbrVoteArrdt = VoteHome.getVoteUserNotLocation( idUser, 75000 );
         int nbrVoteParis = VoteHome.getVoteUserArrondissement( idUser, 75000 );
         List<Vote> listvote = VoteHome.getVoteUser( idUser );
         for ( Vote vote : listvote )
@@ -295,11 +295,11 @@ public class MyVoteService
         {
             // cancel all vote for stat export, and after recreate vote TP
             _ratingService.doCancelVote( user, String.valueOf( vote.getProjetId( ) ), strExtendableResourceType );
-            if ( vote.getLocalisation( ) == "whole_city" )
+            if ( vote.getLocation( ) == "whole_city" )
             {
-                request.setAttribute( Constants.PROJECT_THEME, vote.getThematique( ) );
-                request.setAttribute( Constants.PROJECT_TITLE, vote.getTitle( ) );
-                request.setAttribute( Constants.PROJECT_LOCATION, Constants.LOCAIION_WHOLE_CITY );
+                request.setAttribute( ParticipatoryBudgetConstants.PROJECT_THEME, vote.getTheme( ) );
+                request.setAttribute( ParticipatoryBudgetConstants.PROJECT_TITLE, vote.getTitle( ) );
+                request.setAttribute( ParticipatoryBudgetConstants.PROJECT_LOCATION, ParticipatoryBudgetConstants.LOCATION_WHOLE_CITY );
                 _ratingService.doVote( String.valueOf( vote.getProjetId( ) ), strExtendableResourceType, BudgetRatingService.VOTE_VALUE, request );
             }
         }

@@ -69,8 +69,8 @@ public class VoteBusinessTest extends LuteceTestCase
         vote.setAge( AGE1 );
         vote.setIpAddress( IPADDRESS );
         vote.setTitle( TITLE );
-        vote.setLocalisation( LOCATION );
-        vote.setThematique( THEME );
+        vote.setLocation( LOCATION );
+        vote.setTheme( THEME );
 
         // Create test
         VoteHome.create( vote );

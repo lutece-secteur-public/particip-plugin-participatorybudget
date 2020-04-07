@@ -13,7 +13,7 @@ ${encoded_facets_queries}</#macro>
 <#macro EncodeFQArrondissement list_fq>
     <#assign encoded_facets_queries = ""> 
     <#list list_fq as facet>
-	<#if facet?starts_with("localisation_text") || facet?starts_with("type")>
+	<#if facet?starts_with("location_text") || facet?starts_with("type")>
         	<#assign encoded_facets_queries = encoded_facets_queries+"&fq="+facet?url>
 	</#if>
     </#list>
@@ -54,12 +54,12 @@ PROJETS :
 			<div class="form-group">
 				<input type="hidden" name="type_search" id="type_search" />
 				<input type="hidden" name="page" value="search-solr" />
-				<input type="hidden" id="thematique" name="thematique" value="" />
+				<input type="hidden" id="theme" name="theme" value="" />
 				<input type="hidden" id="budget" name="budget" value="" />
 				<#if facets_list??>
 					<#list facets_list as facet>
 						<input type="hidden" name="fq" value="${facet}" />
-						<#if facet?starts_with("localisation_text:") >
+						<#if facet?starts_with("location_text:") >
 							<#assign arr = facet?split(":")?last>
 						</#if>
 					</#list>
@@ -230,38 +230,38 @@ PROJETS :
                 <div id="right-item" class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="padding:10px;">
 				<div class="row projectlist_project">
                     <div class="project_category col-xs-12 col-sm-12 col-md-12 col-lg-12 
-						<#if result.dynamicFields?? && result.dynamicFields.thematique_text??>
-						<#if result.dynamicFields.thematique_text = "Cadre de vie">
-							cadre_vie"><img src="images/local/skin/i_cadre_vie.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Culture">
-							culture"><img src="images/local/skin/i_culture.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Economie et emploi">
-							economie_emploi"><img src="images/local/skin/i_economie_emploi.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Education et jeunesse">
-							education"><img src="images/local/skin/i_education.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Environnement">
-							environnement"><img src="images/local/skin/i_environnement.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Logement et habitat">
-							logement"><img src="images/local/skin/i_logement.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Participation citoyenne">
-							participation"><img src="images/local/skin/i_participation_citoyenne.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Prévention et sécurité">
-							prevention"><img src="images/local/skin/i_prevention_securite.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Propreté">
-							proprete"><img src="images/local/skin/i_proprete.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Solidarité">
-							solidarite"><img src="images/local/skin/i_solidarite.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Sport">
-							sport"><img src="images/local/skin/i_sport.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Transport et mobilité">
-							transport"><img src="images/local/skin/i_transport.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Ville intelligente et numérique">
-							ville_numerique"><img src="images/local/skin/i_ville_numerique.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
-						<#elseif result.dynamicFields.thematique_text = "Autre">
-							ville_numerique"><img src="images/local/skin/i_autre.png" alt="${result.dynamicFields.thematique_text}" title="${result.dynamicFields.thematique_text}">
+						<#if result.dynamicFields?? && result.dynamicFields.theme_text??>
+						<#if result.dynamicFields.theme_text = "Cadre de vie">
+							cadre_vie"><img src="images/local/skin/i_cadre_vie.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Culture">
+							culture"><img src="images/local/skin/i_culture.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Economie et emploi">
+							economie_emploi"><img src="images/local/skin/i_economie_emploi.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Education et jeunesse">
+							education"><img src="images/local/skin/i_education.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Environnement">
+							environnement"><img src="images/local/skin/i_environnement.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Logement et habitat">
+							logement"><img src="images/local/skin/i_logement.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Participation citoyenne">
+							participation"><img src="images/local/skin/i_participation_citoyenne.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Prévention et sécurité">
+							prevention"><img src="images/local/skin/i_prevention_securite.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Propreté">
+							proprete"><img src="images/local/skin/i_proprete.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Solidarité">
+							solidarite"><img src="images/local/skin/i_solidarite.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Sport">
+							sport"><img src="images/local/skin/i_sport.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Transport et mobilité">
+							transport"><img src="images/local/skin/i_transport.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Ville intelligente et numérique">
+							ville_numerique"><img src="images/local/skin/i_ville_numerique.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
+						<#elseif result.dynamicFields.theme_text = "Autre">
+							ville_numerique"><img src="images/local/skin/i_autre.png" alt="${result.dynamicFields.theme_text}" title="${result.dynamicFields.theme_text}">
 						</#if>
 						
-						<#if result.dynamicFields.thematique_text?length &gt; 16>${result.dynamicFields.thematique_text?substring(0,16)}...<#else>${result.dynamicFields.thematique_text}</#if>
+						<#if result.dynamicFields.theme_text?length &gt; 16>${result.dynamicFields.theme_text?substring(0,16)}...<#else>${result.dynamicFields.theme_text}</#if>
 						</#if>
 					</div>
                     <div class="project_title col-xs-12 hidden-sm hidden-md hidden-lg">
@@ -276,11 +276,11 @@ PROJETS :
 					</div>
 					<div>
 						<span class="project_location">
-						<img src="images/local/skin/i_localisation.png" alt="Localisation" title="Localisation">
-						<#if result.dynamicFields?? && result.dynamicFields.localisation_text??>
-							<#if result.dynamicFields.localisation_text = "whole_city">
-								${result.dynamicFields.localisation_text}
-							<#elseif result.dynamicFields.localisation_text?length &gt; 3>${result.dynamicFields.localisation_text?substring(0,3)}<#else>${result.dynamicFields.localisation_text}</#if>
+						<img src="images/local/skin/i_location.png" alt="Location" title="Location">
+						<#if result.dynamicFields?? && result.dynamicFields.location_text??>
+							<#if result.dynamicFields.location_text = "whole_city">
+								${result.dynamicFields.location_text}
+							<#elseif result.dynamicFields.location_text?length &gt; 3>${result.dynamicFields.location_text?substring(0,3)}<#else>${result.dynamicFields.location_text}</#if>
 						</#if>
 						</span>
 						<span class="project_budget">
@@ -356,7 +356,7 @@ PROJETS :
         <#assign offsetPrev = nbLinkPages - offsetNext />
     </#if>
     <#if arr !="">
-	<#assign monTri="&fq=localisation_text:"+arr />
+	<#assign monTri="&fq=location_text:"+arr />
     </#if>
  	<#assign monTri="&sort_name="+monTri />
     <#if (paginator.pagesCount > 1) >
@@ -427,7 +427,7 @@ $( document ).ready( function(  ) {
     var type_search = getParameterByName("type_search");
     var order = getParameterByName("sort_name");
     
-    if (type_search == '' || type_search == 'simple' || type_search == 'thematique') {
+    if (type_search == '' || type_search == 'simple' || type_search == 'theme') {
         $("#type_search").val("simple");
        // initSearch("false");
     } else {
@@ -440,9 +440,9 @@ $( document ).ready( function(  ) {
 //  $("#arrondissement option[value='"+arrond+"']").attr("selected", "selected");  
 } );
 
-function searchThematique (link) {
-	    $("#type_search").val("thematique");
-	    $("#thematique").val(link);
+function searchTheme (link) {
+	    $("#type_search").val("theme");
+	    $("#theme").val(link);
 	    $("#searchForm").submit();
 }
 function fillByBudget()

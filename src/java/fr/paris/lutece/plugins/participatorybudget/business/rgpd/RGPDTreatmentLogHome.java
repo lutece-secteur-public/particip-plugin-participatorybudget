@@ -33,7 +33,7 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.rgpd;
 
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.plugins.participatorybudget.util.ParticipatoryBudgetConstants;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
@@ -46,7 +46,7 @@ public final class RGPDTreatmentLogHome
 {
     // Static variable pointed at the DAO instance
     private static IRGPDTreatmentLogDAO _dao = SpringContextService.getBean( "participatorybudget.rgpdTreatmentLogDAO" );
-    private static Plugin _plugin = PluginService.getPlugin( Constants.PLUGIN_NAME );
+    private static Plugin _plugin = PluginService.getPlugin( ParticipatoryBudgetConstants.PLUGIN_NAME );
 
     private RGPDTreatmentLogHome( )
     {

@@ -91,20 +91,20 @@ public interface IVoteHistoryDAO
     /**
      * 
      * @param nUserId
-     * @param strLocalisation
+     * @param strLocation
      * @param plugin
      * @return
      */
-    public int countNbVotesUserArrondissement( String strUserId, int nLocalisation, Plugin plugin );
+    public int countNbVotesUserArrondissement( String strUserId, int nLocation, Plugin plugin );
 
     /**
      * 
      * @param nUserId
-     * @param strLocalisation
+     * @param strLocation
      * @param plugin
      * @return
      */
-    public int countNbVotesUser( String strUserId, int nLocalisation, Plugin plugin );
+    public int countNbVotesUser( String strUserId, int nLocation, Plugin plugin );
 
     /**
      * 

@@ -96,11 +96,11 @@
 											<#if result.dynamicFields.address_text?has_content>
 												${result.dynamicFields.address_text!''}
 											<#else>
-												${(result.dynamicFields.district_text!'')}
+												${(result.dynamicFields.location_text!'')}
 											</#if>
 										</div>
 			
-										<div class="for-screen">${result.dynamicFields.district_text!''}
+										<div class="for-screen">${result.dynamicFields.location_text!''}
 											
 											<div class="psoum-card-loc-prec">
 												<#if result.dynamicFields?? && result.dynamicFields.address_text??>
@@ -127,13 +127,13 @@
 										<div class="psoum-card-vote">
 												@Extender[${id_document},document,vote,{show:"all"}]@
 										</div>
-									<#elseif campaignService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.district_text || result.dynamicFields.district_text= "whole_city")>
+									<#elseif campaignService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.location_text || result.dynamicFields.location_text= "whole_city")>
 										<div class="psoum-card-vote">
 												@Extender[${id_document},document,vote,{show:"all"}]@
 										</div>
-									<#elseif campaignService.isDuring("VOTE") && voteValidated= false && arrondissementVote != result.dynamicFields.district_text>
+									<#elseif campaignService.isDuring("VOTE") && voteValidated= false && arrondissementVote != result.dynamicFields.location_text>
 										<div class="psoum-card-vote">
-												<div class="novote">You can vote only for district you choose for voting.</div>
+												<div class="novote">You can vote only for location you choose for voting.</div>
 										</div>
 									<#else>
 										<div class="psoum-card-link">
@@ -167,9 +167,9 @@
 									<div class="psoum-card-description">${result.dynamicFields.description_text!""}</div>
 									
 									<#-- Champs transmis en Ajax lors du vote. Encore utilise au 05/05/2017 ? -->
-									<input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${result.dynamicFields.district_text!}">
+									<input type="hidden" name="location_${id_document}" id="location_${id_document}" value="${result.dynamicFields.location_text!}">
 									<input type="hidden" name="title_${id_document}" id="title_${id_document}" value="${result.title}">
-									<input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${result.dynamicFields.theme_text}">
+									<input type="hidden" name="theme_${id_document}" id="theme_${id_document}" value="${result.dynamicFields.theme_text}">
 									<input type="hidden" name="arrondUser" id="arrondUser" value="${arrondissementVote!}">
 				
 								</div>

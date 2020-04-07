@@ -57,7 +57,7 @@ import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignThe
 import fr.paris.lutece.plugins.participatorybudget.service.NoSuchPhaseException;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEvent;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.event.CampaignEventListernersManager;
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.plugins.participatorybudget.util.ParticipatoryBudgetConstants;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.util.ReferenceList;
@@ -113,8 +113,8 @@ public class CampaignService implements ICampaignService
         Collection<CampaignPhase> phases = CampaignPhaseHome.getCampaignPhasesList( );
         for ( CampaignPhase phase : phases )
         {
-            String beginningKey = getKey( phase.getCodeCampaign( ), phase.getCodePhaseType( ), Constants.BEGINNING_DATETIME );
-            String endKey = getKey( phase.getCodeCampaign( ), phase.getCodePhaseType( ), Constants.END_DATETIME );
+            String beginningKey = getKey( phase.getCodeCampaign( ), phase.getCodePhaseType( ), ParticipatoryBudgetConstants.BEGINNING_DATETIME );
+            String endKey = getKey( phase.getCodeCampaign( ), phase.getCodePhaseType( ), ParticipatoryBudgetConstants.END_DATETIME );
 
             cache.put( beginningKey, phase.getStart( ) );
             cache.put( endKey, phase.getEnd( ) );
@@ -156,7 +156,7 @@ public class CampaignService implements ICampaignService
 
     public boolean isBeforeBeginning( String campain, String phase )
     {
-        Timestamp timeStamp = getTimestamp( campain, phase, Constants.BEGINNING_DATETIME );
+        Timestamp timeStamp = getTimestamp( campain, phase, ParticipatoryBudgetConstants.BEGINNING_DATETIME );
         Date date = new Date( );
         boolean result = date.before( timeStamp );
         return result;
@@ -164,7 +164,7 @@ public class CampaignService implements ICampaignService
 
     public boolean isBeforeEnd( String campain, String phase )
     {
-        Timestamp timeStamp = getTimestamp( campain, phase, Constants.END_DATETIME );
+        Timestamp timeStamp = getTimestamp( campain, phase, ParticipatoryBudgetConstants.END_DATETIME );
         Date date = new Date( );
         boolean result = date.before( timeStamp );
         return result;
@@ -172,8 +172,8 @@ public class CampaignService implements ICampaignService
 
     public boolean isDuring( String campain, String phase )
     {
-        Timestamp beginningTimeStamp = getTimestamp( campain, phase, Constants.BEGINNING_DATETIME );
-        Timestamp endTimeStamp = getTimestamp( campain, phase, Constants.END_DATETIME );
+        Timestamp beginningTimeStamp = getTimestamp( campain, phase, ParticipatoryBudgetConstants.BEGINNING_DATETIME );
+        Timestamp endTimeStamp = getTimestamp( campain, phase, ParticipatoryBudgetConstants.END_DATETIME );
 
         Date date = new Date( );
 
@@ -183,7 +183,7 @@ public class CampaignService implements ICampaignService
 
     public boolean isAfterBeginning( String campain, String phase )
     {
-        Timestamp timeStamp = getTimestamp( campain, phase, Constants.BEGINNING_DATETIME );
+        Timestamp timeStamp = getTimestamp( campain, phase, ParticipatoryBudgetConstants.BEGINNING_DATETIME );
         Date date = new Date( );
         boolean result = date.after( timeStamp );
         return result;
@@ -191,7 +191,7 @@ public class CampaignService implements ICampaignService
 
     public boolean isAfterEnd( String campain, String phase )
     {
-        Timestamp timeStamp = getTimestamp( campain, phase, Constants.END_DATETIME );
+        Timestamp timeStamp = getTimestamp( campain, phase, ParticipatoryBudgetConstants.END_DATETIME );
         Date date = new Date( );
         boolean result = date.after( timeStamp );
         return result;
@@ -199,13 +199,13 @@ public class CampaignService implements ICampaignService
 
     public Timestamp start( String campain, String phase )
     {
-        Timestamp timeStamp = getTimestamp( campain, phase, Constants.BEGINNING_DATETIME );
+        Timestamp timeStamp = getTimestamp( campain, phase, ParticipatoryBudgetConstants.BEGINNING_DATETIME );
         return timeStamp;
     }
 
     public Timestamp end( String campain, String phase )
     {
-        Timestamp timeStamp = getTimestamp( campain, phase, Constants.END_DATETIME );
+        Timestamp timeStamp = getTimestamp( campain, phase, ParticipatoryBudgetConstants.END_DATETIME );
         return timeStamp;
     }
 

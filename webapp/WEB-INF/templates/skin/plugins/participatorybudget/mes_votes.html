@@ -12,12 +12,12 @@
 
 	<#list vote.document.attributes as attribute>
 
-		<#if attribute.code = 'localisation'>
-			<#assign  localisation_projet= attribute.textValue>
+		<#if attribute.code = 'location'>
+			<#assign  location_projet= attribute.textValue>
 		</#if>
 	</#list>
 
-	<#if localisation_projet?? && localisation_projet!='whole_city'>
+	<#if location_projet?? && location_projet!='whole_city'>
 		<#assign nbVotesArrond = nbVotesArrond + 1>
 		<#list vote.document.attributes as attribute>
 			<#if attribute.code = 'budget'>
@@ -26,7 +26,7 @@
 			</#if>
 		</#list>
 		
-	<#elseif localisation_projet?? && localisation_projet=='whole_city'>
+	<#elseif location_projet?? && location_projet=='whole_city'>
 		<#assign nbVotesParis = nbVotesParis + 1>
 		<#list vote.document.attributes as attribute>
 			<#if attribute.code = 'budget'>
@@ -70,7 +70,7 @@
 					<#if campaignService.isDuring("VOTE") && !voteValidated >
 						<p class="sub-title">
 							<#if nbVotesParis &lt; maxVotes>
-								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&query=&fq=localisation_text%3ATout+Paris">
+								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&query=&fq=location_text%3ATout+Paris">
 									Vous pouvez effectuer encore ${maxVotes - nbVotesParis}&nbsp;vote(s).
 								</a>
 							<#else>
@@ -83,14 +83,14 @@
 						<#list userVotes as vote>
 							<#list vote.document.attributes as attribute>
 								<#if     attribute.code = 'budget'      > <#assign budget_projet       = attribute.textValue?number>
-								<#elseif attribute.code = 'thematique'  > <#assign thematique_projet   = attribute.textValue       >
-								<#elseif attribute.code = 'localisation'> <#assign localisation_projet = attribute.textValue       >
+								<#elseif attribute.code = 'theme'  > <#assign theme_projet   = attribute.textValue       >
+								<#elseif attribute.code = 'location'> <#assign location_projet = attribute.textValue       >
 								<#elseif attribute.code = 'code_projet' > <#assign numero_projet       = attribute.textValue       >
 								<#elseif attribute.code = 'url'         > <#assign url_projet          = attribute.textValue       >
 								</#if>
 							</#list>
 							
-							<#if localisation_projet == 'Tout Paris'>
+							<#if location_projet == 'Tout Paris'>
 								<div class="vote">
 									<div class="vote-body">
 										<p>
@@ -117,7 +117,7 @@
 					<#if campaignService.isDuring("VOTE") && !voteValidated >
 						<p class="sub-title">
 							<#if nbVotesArrond &lt; maxVotesArrdt>
-								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&fq=localisation_text:${user_arrondissement!}">
+								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&fq=location_text:${user_arrondissement!}">
 									Vous pouvez effectuer encore ${maxVotesArrdt - nbVotesArrond}&nbsp;vote(s).
 								</a>
 							<#else>
@@ -130,14 +130,14 @@
 						<#list userVotes as vote>
 							<#list vote.document.attributes as attribute>
 								<#if     attribute.code = 'budget'      > <#assign budget_projet       = attribute.textValue?number>
-								<#elseif attribute.code = 'thematique'  > <#assign thematique_projet   = attribute.textValue       >
-								<#elseif attribute.code = 'localisation'> <#assign localisation_projet = attribute.textValue       >
+								<#elseif attribute.code = 'theme'  > <#assign theme_projet   = attribute.textValue       >
+								<#elseif attribute.code = 'location'> <#assign location_projet = attribute.textValue       >
 								<#elseif attribute.code = 'code_projet' > <#assign numero_projet       = attribute.textValue       >
 								<#elseif attribute.code = 'url'         > <#assign url_projet          = attribute.textValue       >
 								</#if>
 							</#list>
 							
-							<#if localisation_projet != 'whole_city'>
+							<#if location_projet != 'whole_city'>
 								<div class="vote">
 									<div class="vote-body">
 										<p>

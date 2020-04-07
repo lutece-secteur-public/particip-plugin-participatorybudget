@@ -47,10 +47,10 @@ import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosListenerService;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.plugins.participatorybudget.service.avatar.CampaignAvatarService;
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignUploadHandler;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignUploadHandler;
 import fr.paris.lutece.plugins.participatorybudget.util.ModelUtils;
+import fr.paris.lutece.plugins.participatorybudget.util.ParticipatoryBudgetConstants;
 import fr.paris.lutece.portal.service.message.SiteMessage;
 import fr.paris.lutece.portal.service.message.SiteMessageException;
 import fr.paris.lutece.portal.service.message.SiteMessageService;
@@ -321,7 +321,7 @@ public class MyInfosXPage extends MVCApplication
 
         bError = !bCapchaVerified || !validateBean( formMyAccount, getLocale( request ) ) || !validateBean( form, getLocale( request ) );
 
-        if ( !CampaignService.getInstance( ).isDuring( Constants.VOTE ) && StringUtils.isBlank( form.getNickname( ) ) )
+        if ( !CampaignService.getInstance( ).isDuring( ParticipatoryBudgetConstants.VOTE ) && StringUtils.isBlank( form.getNickname( ) ) )
         {
             bError = true;
             addError( MESSAGE_ERROR_NICKNAME_MISSING, getLocale( request ) );
@@ -538,7 +538,7 @@ public class MyInfosXPage extends MVCApplication
                 // Check constraints
                 bError = !bCapchaVerified || !validateBean( form, getLocale( request ) );
 
-                if ( !CampaignService.getInstance( ).isDuring( Constants.VOTE ) && StringUtils.isBlank( form.getNickname( ) ) )
+                if ( !CampaignService.getInstance( ).isDuring( ParticipatoryBudgetConstants.VOTE ) && StringUtils.isBlank( form.getNickname( ) ) )
                 {
                     bError = true;
                     addError( MESSAGE_ERROR_NICKNAME_MISSING, getLocale( request ) );
@@ -845,7 +845,7 @@ public class MyInfosXPage extends MVCApplication
                 // Check constraints
                 bError = !bCapchaVerified || !validateBean( form, getLocale( request ) );
 
-                if ( !CampaignService.getInstance( ).isDuring( Constants.VOTE ) && StringUtils.isBlank( form.getNickname( ) ) )
+                if ( !CampaignService.getInstance( ).isDuring( ParticipatoryBudgetConstants.VOTE ) && StringUtils.isBlank( form.getNickname( ) ) )
                 {
                     bError = true;
                     addError( MESSAGE_ERROR_NICKNAME_MISSING, getLocale( request ) );

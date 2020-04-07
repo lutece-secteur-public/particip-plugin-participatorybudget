@@ -209,8 +209,8 @@ public class VoteDashboardJspBean extends MVCAdminJspBean
     		Document document = documents.get( RandomUtils.nextInt( 0, documents.size()) );
     		vote.setProjetId( document.getId() );
     		vote.setTitle( document.getTitle() );
-    		vote.setLocalisation( "" + document.getAttribute( "district" ).getId() );
-    		vote.setThematique( document.getAttribute( "theme" ).getTextValue() );
+    		vote.setLocation( "" + document.getAttribute( "location" ).getId() );
+    		vote.setTheme( document.getAttribute( "theme" ).getTextValue() );
 
     		// Vote date
     		Campaign campaign = campaigns.get( RandomUtils.nextInt( 0, campaigns.size()) );

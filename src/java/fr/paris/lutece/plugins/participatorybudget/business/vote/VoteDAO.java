@@ -50,30 +50,30 @@ public final class VoteDAO implements IVoteDAO
     private static final int CAMPAIGN_CODE_DOCUMENT_ATTR_ID = 165;
 
     // Constants
-    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_votes ( id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_votes ( id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, location, theme, status) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_votes WHERE id_user = ? AND id_projet = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status FROM participatorybudget_votes";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, location, theme, status FROM participatorybudget_votes";
     private static final String SQL_QUERY_DELETE_ALL = "DELETE FROM participatorybudget_votes WHERE id_user = ?";
     private static final String SQl_QUERY_SELECT = SQL_QUERY_SELECTALL + " where id_user= ?";
     private static final String SQL_QUERY_SELECT_VOTE = SQl_QUERY_SELECT + " and id_projet= ?";
-    private static final String SQl_QUERY_COUNT_VOTE_ARR = "SELECT COUNT(*) FROM participatorybudget_votes where id_user= ? and localisation = ?";
-    private static final String SQl_QUERY_COUNT_VOTE = "SELECT COUNT(*) FROM participatorybudget_votes where id_user= ? and localisation <> ?";
+    private static final String SQl_QUERY_COUNT_VOTE_ARR = "SELECT COUNT(*) FROM participatorybudget_votes where id_user= ? and location = ?";
+    private static final String SQl_QUERY_COUNT_VOTE = "SELECT COUNT(*) FROM participatorybudget_votes where id_user= ? and location <> ?";
     private static final String SQl_QUERY_COUNT_VOTE_BY_CAMPAIGN = "SELECT dc.text_value, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID + " GROUP BY dc.text_value";
     private static final String SQl_QUERY_COUNT_VOTE_BY_DATE_BY_CAMPAIGN = "SELECT dc.text_value, CONVERT(v.date_vote, DATE), COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID + " GROUP BY dc.text_value, CONVERT(v.date_vote, DATE)";
-    private static final String SQl_QUERY_COUNT_VOTE_BY_THEME = "SELECT v.thematique, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
+    private static final String SQl_QUERY_COUNT_VOTE_BY_THEME = "SELECT v.theme, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
-            + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.thematique";
-    private static final String SQl_QUERY_COUNT_VOTE_BY_LOCATION = "SELECT v.localisation, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
+            + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.theme";
+    private static final String SQl_QUERY_COUNT_VOTE_BY_LOCATION = "SELECT v.location, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
-            + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.localisation";
+            + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.location";
     private static final String SQl_QUERY_COUNT_VOTE_BY_PROJECT_ID = "SELECT v.id_projet, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
             + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.id_projet";
     private static final String SQL_QUERY_SELECT_USER = "SELECT DISTINCT id_user FROM participatorybudget_votes";
     private static final String SQL_QUERY_VALIDATE_VOTE = "UPDATE participatorybudget_votes SET status= ? where id_user=?";
-    private static final String SQL_QUERY_SELECT_VOTE_STATUS = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status FROM participatorybudget_votes where id_user= ? and status = ?";
+    private static final String SQL_QUERY_SELECT_VOTE_STATUS = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, location, theme, status FROM participatorybudget_votes where id_user= ? and status = ?";
 
     private final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd" );
 
@@ -98,8 +98,8 @@ public final class VoteDAO implements IVoteDAO
             daoUtil.setString( 6, vote.getBirthDate( ) );
             daoUtil.setString( 7, vote.getIpAddress( ) );
             daoUtil.setString( 8, vote.getTitle( ) );
-            daoUtil.setString( 9, vote.getLocalisation( ) );
-            daoUtil.setString( 10, vote.getThematique( ) );
+            daoUtil.setString( 9, vote.getLocation( ) );
+            daoUtil.setString( 10, vote.getTheme( ) );
             daoUtil.setInt( 11, vote.geStatus( ) );
 
             daoUtil.executeUpdate( );
@@ -155,8 +155,8 @@ public final class VoteDAO implements IVoteDAO
                 vote.setBirthDate( daoUtil.getString( 6 ) );
                 vote.setIpAddress( daoUtil.getString( 7 ) );
                 vote.setTitle( daoUtil.getString( 8 ) );
-                vote.setLocalisation( daoUtil.getString( 9 ) );
-                vote.setThematique( daoUtil.getString( 10 ) );
+                vote.setLocation( daoUtil.getString( 9 ) );
+                vote.setTheme( daoUtil.getString( 10 ) );
                 vote.setStatus( daoUtil.getInt( 11 ) );
 
                 voteList.add( vote );
@@ -210,8 +210,8 @@ public final class VoteDAO implements IVoteDAO
                 vote.setBirthDate( daoUtil.getString( 6 ) );
                 vote.setIpAddress( daoUtil.getString( 7 ) );
                 vote.setTitle( daoUtil.getString( 8 ) );
-                vote.setLocalisation( daoUtil.getString( 9 ) );
-                vote.setThematique( daoUtil.getString( 10 ) );
+                vote.setLocation( daoUtil.getString( 9 ) );
+                vote.setTheme( daoUtil.getString( 10 ) );
                 vote.setStatus( daoUtil.getInt( 11 ) );
 
                 voteList.add( vote );
@@ -224,19 +224,19 @@ public final class VoteDAO implements IVoteDAO
     /**
      * 
      * @param nUserId
-     * @param strLocalisation
+     * @param strLocation
      * @param plugin
      * @return
      */
     @Override
-    public int countNbVotesUserArrondissement( String strUserId, int nLocalisation, Plugin plugin )
+    public int countNbVotesUserArrondissement( String strUserId, int nLocation, Plugin plugin )
     {
         int nbrVotes = 0;
 
         try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_ARR, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
-            daoUtil.setInt( 2, nLocalisation );
+            daoUtil.setInt( 2, nLocation );
 
             daoUtil.executeQuery( );
 
@@ -252,19 +252,19 @@ public final class VoteDAO implements IVoteDAO
     /**
      * 
      * @param nUserId
-     * @param strLocalisation
+     * @param strLocation
      * @param plugin
      * @return
      */
     @Override
-    public int countNbVotesUser( String strUserId, int nLocalisation, Plugin plugin )
+    public int countNbVotesUser( String strUserId, int nLocation, Plugin plugin )
     {
         int nbrVotes = 0;
 
         try ( DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE, plugin ) )
         {
             daoUtil.setString( 1, strUserId );
-            daoUtil.setInt( 2, nLocalisation );
+            daoUtil.setInt( 2, nLocation );
 
             daoUtil.executeQuery( );
 
@@ -408,8 +408,8 @@ public final class VoteDAO implements IVoteDAO
                 vote.setBirthDate( daoUtil.getString( 6 ) );
                 vote.setIpAddress( daoUtil.getString( 7 ) );
                 vote.setTitle( daoUtil.getString( 8 ) );
-                vote.setLocalisation( daoUtil.getString( 9 ) );
-                vote.setThematique( daoUtil.getString( 10 ) );
+                vote.setLocation( daoUtil.getString( 9 ) );
+                vote.setTheme( daoUtil.getString( 10 ) );
                 vote.setStatus( daoUtil.getInt( 11 ) );
             }
         }
@@ -476,8 +476,8 @@ public final class VoteDAO implements IVoteDAO
                 vote.setBirthDate( daoUtil.getString( 6 ) );
                 vote.setIpAddress( daoUtil.getString( 7 ) );
                 vote.setTitle( daoUtil.getString( 8 ) );
-                vote.setLocalisation( daoUtil.getString( 9 ) );
-                vote.setThematique( daoUtil.getString( 10 ) );
+                vote.setLocation( daoUtil.getString( 9 ) );
+                vote.setTheme( daoUtil.getString( 10 ) );
                 vote.setStatus( daoUtil.getInt( 11 ) );
 
                 voteList.add( vote );

@@ -51,7 +51,7 @@ import fr.paris.lutece.plugins.participatorybudget.business.vote.Vote;
 import fr.paris.lutece.plugins.participatorybudget.business.vote.VoteHistoryHome;
 import fr.paris.lutece.plugins.participatorybudget.business.vote.VoteHome;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.plugins.participatorybudget.util.ParticipatoryBudgetConstants;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.util.AppLogService;
@@ -116,29 +116,26 @@ public class BudgetRatingService extends RatingService
         vote.setProjetId( Integer.parseInt( strProjectId ) );
         vote.setIpAddress( request.getRemoteAddr( ) );
 
-        String strThematique = request.getParameter( Constants.PROJECT_THEME );
-        if ( strThematique == null )
+        String strTheme = request.getParameter( ParticipatoryBudgetConstants.PROJECT_THEME );
+        if ( strTheme == null )
         {
-            strThematique = (String) request.getAttribute( Constants.PROJECT_THEME );
+            strTheme = (String) request.getAttribute( ParticipatoryBudgetConstants.PROJECT_THEME );
         }
-        vote.setThematique( strThematique );
+        vote.setTheme( strTheme );
 
-        String strTitle = request.getParameter( Constants.PROJECT_TITLE );
+        String strTitle = request.getParameter( ParticipatoryBudgetConstants.PROJECT_TITLE );
         if ( strTitle == null )
         {
-            strTitle = (String) request.getAttribute( Constants.PROJECT_TITLE );
+            strTitle = (String) request.getAttribute( ParticipatoryBudgetConstants.PROJECT_TITLE );
         }
         vote.setTitle( strTitle );
 
-        String strLocalisation = request.getParameter( Constants.PROJECT_LOCATION );
-        if ( strLocalisation == null )
+        String strLocation = request.getParameter( ParticipatoryBudgetConstants.PROJECT_LOCATION );
+        if ( strLocation == null )
         {
-            strLocalisation = (String) request.getAttribute( Constants.PROJECT_LOCATION );
+            strLocation = (String) request.getAttribute( ParticipatoryBudgetConstants.PROJECT_LOCATION );
         }
-        vote.setLocalisation( strLocalisation );
-
-        // TODO [JPO 2019-12-23] This method shoud get the area id from vote http request
-        vote.setLocalisation( "75000" );
+        vote.setLocation( strLocation );
 
         MyInfosForm myInfos = MyInfosService.loadUserInfos( user );
         String strBirthDate = null;
@@ -187,12 +184,10 @@ public class BudgetRatingService extends RatingService
      */
     private void doCancelVote( LuteceUser user, String strProjetId )
     {
-
         int nProjetId = 0;
 
         try
         {
-
             nProjetId = Integer.parseInt( strProjetId );
             VoteHome.remove( user.getName( ), nProjetId );
         }
@@ -220,29 +215,26 @@ public class BudgetRatingService extends RatingService
         vote.setProjetId( Integer.parseInt( strProjectId ) );
         vote.setIpAddress( request.getRemoteAddr( ) );
 
-        String strThematique = request.getParameter( Constants.PROJECT_THEME );
-        if ( strThematique == null )
+        String strTheme = request.getParameter( ParticipatoryBudgetConstants.PROJECT_THEME );
+        if ( strTheme == null )
         {
-            strThematique = (String) request.getAttribute( Constants.PROJECT_THEME );
+            strTheme = (String) request.getAttribute( ParticipatoryBudgetConstants.PROJECT_THEME );
         }
-        vote.setThematique( strThematique );
+        vote.setTheme( strTheme );
 
-        String strTitle = request.getParameter( Constants.PROJECT_TITLE );
+        String strTitle = request.getParameter( ParticipatoryBudgetConstants.PROJECT_TITLE );
         if ( strTitle == null )
         {
-            strTitle = (String) request.getAttribute( Constants.PROJECT_TITLE );
+            strTitle = (String) request.getAttribute( ParticipatoryBudgetConstants.PROJECT_TITLE );
         }
         vote.setTitle( strTitle );
 
-        String strLocalisation = request.getParameter( Constants.PROJECT_LOCATION );
-        if ( strLocalisation == null )
+        String strLocation = request.getParameter( ParticipatoryBudgetConstants.PROJECT_LOCATION );
+        if ( strLocation == null )
         {
-            strLocalisation = (String) request.getAttribute( Constants.PROJECT_LOCATION );
+            strLocation = (String) request.getAttribute( ParticipatoryBudgetConstants.PROJECT_LOCATION );
         }
-        vote.setLocalisation( strLocalisation );
-
-        // TODO [JPO 2019-12-23] This method shoud get the area id from vote http request
-        vote.setLocalisation( "75000" );
+        vote.setLocation( strLocation );
 
         vote.setStatus( status );
 

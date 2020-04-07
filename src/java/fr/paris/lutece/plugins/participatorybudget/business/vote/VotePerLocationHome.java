@@ -35,7 +35,7 @@ package fr.paris.lutece.plugins.participatorybudget.business.vote;
 
 import java.util.List;
 
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.plugins.participatorybudget.util.ParticipatoryBudgetConstants;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
@@ -47,7 +47,7 @@ public final class VotePerLocationHome
 {
     // Static variable pointed at the DAO instance
     private static IVotePerLocationDAO _dao = (IVotePerLocationDAO) SpringContextService.getBean( "participatorybudget.votePerLocationDAO" );
-    private static Plugin _plugin = PluginService.getPlugin( Constants.PLUGIN_NAME );
+    private static Plugin _plugin = PluginService.getPlugin( ParticipatoryBudgetConstants.PLUGIN_NAME );
 
     /**
      * Private constructor - this class need not be instantiated
@@ -59,7 +59,7 @@ public final class VotePerLocationHome
     /**
      * 
      * @param nUserId
-     * @param nLocalisation
+     * @param nLocation
      * @return
      */
     public static void updateVotesPerLocation( VotePerLocation vote )

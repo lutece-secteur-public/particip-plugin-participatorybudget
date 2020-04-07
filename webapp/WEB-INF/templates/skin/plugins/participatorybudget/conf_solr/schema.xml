@@ -91,11 +91,11 @@ censed to the Apache Software Foundation (ASF) under one or
 	   <field name="metadata" type="string" indexed="true" stored="true"/>
 	   <field name="document_portlet_id" type="string" indexed="true" stored="true"/>
 	   <field name="text" type="text" indexed="true" stored="true"/> 
-	   <field name="thematique" type="text" indexed="true" stored="true"/>
+	   <field name="theme" type="text" indexed="true" stored="true"/>
 	  
 	<field name="full" type="string" indexed="true" stored="true"/>
 
- 	<field name="localisation" type="string" indexed="true" stored="true"/>
+ 	<field name="location" type="string" indexed="true" stored="true"/>
 	
 	   
 	   <dynamicField name="*_string" type="string" indexed="true" stored="true"/>

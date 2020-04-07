@@ -57,8 +57,8 @@ public class DocumentPageService implements IResourceDisplayManager
 {
     private static final String MARK_ARRONDISSEMENT_VOTE_USER = "arrondissementVote";
     private static final String MARK_ID_DOCUMENT = "id_document";
-    private static final String MARK_LOCALISATION = "localisation_text";
-    private static final String MARK_THEMATIQUE = "thematique_text";
+    private static final String MARK_LOCATION = "location_text";
+    private static final String MARK_THEME = "theme_text";
     private static final String MARK_TITLE = "title_text";
     private static final String MARK_STATUS = "status_document";
     private static final String MARK_CAMPAIGN = "campaign_text_document";
@@ -99,19 +99,19 @@ public class DocumentPageService implements IResourceDisplayManager
 
         }
         Document doc = DocumentHome.findByPrimaryKey( nIdResource );
-        // recup localisation
-        DocumentAttribute attr = doc.getAttribute( "localisation" );
-        String strLocalisationDoc = StringUtils.EMPTY;
+        // recup location
+        DocumentAttribute attr = doc.getAttribute( "location" );
+        String strLocationDoc = StringUtils.EMPTY;
         if ( attr != null && StringUtils.isNotEmpty( attr.getTextValue( ) ) )
         {
-            strLocalisationDoc = attr.getTextValue( );
+            strLocationDoc = attr.getTextValue( );
         }
-        // recup thematique
-        attr = doc.getAttribute( "thematique" );
-        String strThematiqueDoc = StringUtils.EMPTY;
+        // recup theme
+        attr = doc.getAttribute( "theme" );
+        String strThemeDoc = StringUtils.EMPTY;
         if ( attr != null && StringUtils.isNotEmpty( attr.getTextValue( ) ) )
         {
-            strThematiqueDoc = attr.getTextValue( );
+            strThemeDoc = attr.getTextValue( );
         }
         // recup title
         attr = doc.getAttribute( "title_idea" );
@@ -136,8 +136,8 @@ public class DocumentPageService implements IResourceDisplayManager
         }
 
         model.put( MARK_ID_DOCUMENT, nIdResource );
-        model.put( MARK_LOCALISATION, strLocalisationDoc );
-        model.put( MARK_THEMATIQUE, strThematiqueDoc );
+        model.put( MARK_LOCATION, strLocationDoc );
+        model.put( MARK_THEME, strThemeDoc );
         model.put( MARK_TITLE, strTitleDoc );
         model.put( MARK_STATUS, strStatusDoc );
         model.put( MARK_CAMPAIGN, strCampaignDoc );

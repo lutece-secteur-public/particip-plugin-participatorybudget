@@ -38,7 +38,7 @@ INSERT INTO participatorybudget_campaign_theme (id_campaign_theme, code_campaign
 	(3, 'A', 'SPORT', 'Sport', 'Sport', 1, NULL),
 	(4, 'A', 'GENERAL', 'General', 'General', 1, NULL);
 
-INSERT INTO participatorybudget_votes_per_location (id, localisation_ardt, nb_votes) VALUES
+INSERT INTO participatorybudget_votes_per_location (id, location_ardt, nb_votes) VALUES
 	(1, 'whole_city', 2),
 	(2, 'area_1', 3),
 	(3, 'area_2', 0),

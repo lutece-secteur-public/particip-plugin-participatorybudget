@@ -55,7 +55,7 @@ public class ProjectLaureatAddOn implements ISolrSearchAppAddOn
     private static final String PARAMETER_CONF_ELECTED_PROJECT = "elected_projects";
     private static final String PROPERTY_PROJECTS_FQ = "participatorybudget.projects.laureat.fq";
     private static final String [ ] SOLR_FQ_PROJECTS_TOUT_PARIS = {
-            AppPropertiesService.getProperty( PROPERTY_PROJECTS_FQ, "(statut_project_text:GAGNANT') AND localisation_text:'whole_city' AND type:'PB Project" )
+            AppPropertiesService.getProperty( PROPERTY_PROJECTS_FQ, "(statut_project_text:GAGNANT') AND location_text:'whole_city' AND type:'PB Project" )
     };
 
     private static final String PROPERTY_SOLR_RESPONSE_MAX = "solr.reponse.max";

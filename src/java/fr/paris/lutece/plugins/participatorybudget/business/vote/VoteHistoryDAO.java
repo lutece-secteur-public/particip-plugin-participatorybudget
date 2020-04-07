@@ -46,15 +46,15 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
 {
     // Constants
     private static final String SQL_QUERY_NEW_PK = "SELECT max( id ) FROM participatorybudget_votes_history";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_votes_history ( id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status, id, status_export_stats) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_votes_history ( id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, location, theme, status, id, status_export_stats) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_votes_history WHERE id_user = ? AND id_projet = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status, id, status_export_stats FROM participatorybudget_votes_history";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, location, theme, status, id, status_export_stats FROM participatorybudget_votes_history";
     private static final String SQL_QUERY_DELETE_ALL = "DELETE FROM participatorybudget_votes_history WHERE id_user = ?";
     private static final String SQL_QUERY_UPDATE_TAG = "UPDATE participatorybudget_votes_history SET status_export_stats= ?, date_vote= ? where id = ?";
     private static final String SQl_QUERY_SELECT = SQL_QUERY_SELECTALL + " where id_user= ?";
-    private static final String SQl_QUERY_SELECT_By_PORJECT = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, localisation, thematique, status, status_export_stats FROM participatorybudget_votes_history where id_user = ?  and id_projet= ?";
-    private static final String SQl_QUERY_COUNT_VOTE_ARR = "SELECT COUNT(*) FROM participatorybudget_votes_history where id_user= ? and localisation = ?";
-    private static final String SQl_QUERY_COUNT_VOTE = "SELECT COUNT(*) FROM participatorybudget_votes_history where id_user= ? and localisation <> ?";
+    private static final String SQl_QUERY_SELECT_By_PORJECT = "SELECT id_user, id_projet, date_vote, arrondissement, age,birth_date,ip_address, title, location, theme, status, status_export_stats FROM participatorybudget_votes_history where id_user = ?  and id_projet= ?";
+    private static final String SQl_QUERY_COUNT_VOTE_ARR = "SELECT COUNT(*) FROM participatorybudget_votes_history where id_user= ? and location = ?";
+    private static final String SQl_QUERY_COUNT_VOTE = "SELECT COUNT(*) FROM participatorybudget_votes_history where id_user= ? and location <> ?";
     private static final String SQl_BY_EXPORTED_STATUS = " WHERE status_export_stats = ?";
 
     /**
@@ -104,8 +104,8 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
         daoUtil.setString( 6, vote.getBirthDate( ) );
         daoUtil.setString( 7, vote.getIpAddress( ) );
         daoUtil.setString( 8, vote.getTitle( ) );
-        daoUtil.setString( 9, vote.getLocalisation( ) );
-        daoUtil.setString( 10, vote.getThematique( ) );
+        daoUtil.setString( 9, vote.getLocation( ) );
+        daoUtil.setString( 10, vote.getTheme( ) );
         daoUtil.setInt( 11, vote.geStatus( ) );
         daoUtil.setInt( 12, vote.getId( ) );
         daoUtil.setInt( 13, vote.getStatusExportStats( ) );
@@ -175,8 +175,8 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
             vote.setBirthDate( daoUtil.getString( 6 ) );
             vote.setIpAddress( daoUtil.getString( 7 ) );
             vote.setTitle( daoUtil.getString( 8 ) );
-            vote.setLocalisation( daoUtil.getString( 9 ) );
-            vote.setThematique( daoUtil.getString( 10 ) );
+            vote.setLocation( daoUtil.getString( 9 ) );
+            vote.setTheme( daoUtil.getString( 10 ) );
             vote.setStatus( daoUtil.getInt( 11 ) );
             vote.setId( daoUtil.getInt( 12 ) );
             vote.setStatusExportStats( daoUtil.getInt( 13 ) );
@@ -216,8 +216,8 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
             vote.setBirthDate( daoUtil.getString( 6 ) );
             vote.setIpAddress( daoUtil.getString( 7 ) );
             vote.setTitle( daoUtil.getString( 8 ) );
-            vote.setLocalisation( daoUtil.getString( 9 ) );
-            vote.setThematique( daoUtil.getString( 10 ) );
+            vote.setLocation( daoUtil.getString( 9 ) );
+            vote.setTheme( daoUtil.getString( 10 ) );
             vote.setStatus( daoUtil.getInt( 11 ) );
             vote.setId( daoUtil.getInt( 12 ) );
             vote.setStatusExportStats( daoUtil.getInt( 13 ) );
@@ -271,8 +271,8 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
             vote.setBirthDate( daoUtil.getString( 6 ) );
             vote.setIpAddress( daoUtil.getString( 7 ) );
             vote.setTitle( daoUtil.getString( 8 ) );
-            vote.setLocalisation( daoUtil.getString( 9 ) );
-            vote.setThematique( daoUtil.getString( 10 ) );
+            vote.setLocation( daoUtil.getString( 9 ) );
+            vote.setTheme( daoUtil.getString( 10 ) );
             vote.setStatus( daoUtil.getInt( 11 ) );
             vote.setStatusExportStats( daoUtil.getInt( 12 ) );
 
@@ -287,17 +287,17 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
     /**
      * 
      * @param nUserId
-     * @param strLocalisation
+     * @param strLocation
      * @param plugin
      * @return
      */
     @Override
-    public int countNbVotesUserArrondissement( String strUserId, int nLocalisation, Plugin plugin )
+    public int countNbVotesUserArrondissement( String strUserId, int nLocation, Plugin plugin )
     {
         int nbrVotes = 0;
         DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE_ARR, plugin );
         daoUtil.setString( 1, strUserId );
-        daoUtil.setInt( 2, nLocalisation );
+        daoUtil.setInt( 2, nLocation );
         daoUtil.executeQuery( );
 
         if ( daoUtil.next( ) )
@@ -313,17 +313,17 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
     /**
      * 
      * @param nUserId
-     * @param strLocalisation
+     * @param strLocation
      * @param plugin
      * @return
      */
     @Override
-    public int countNbVotesUser( String strUserId, int nLocalisation, Plugin plugin )
+    public int countNbVotesUser( String strUserId, int nLocation, Plugin plugin )
     {
         int nbrVotes = 0;
         DAOUtil daoUtil = new DAOUtil( SQl_QUERY_COUNT_VOTE, plugin );
         daoUtil.setString( 1, strUserId );
-        daoUtil.setInt( 2, nLocalisation );
+        daoUtil.setInt( 2, nLocation );
         daoUtil.executeQuery( );
 
         if ( daoUtil.next( ) )
@@ -357,8 +357,8 @@ public final class VoteHistoryDAO implements IVoteHistoryDAO
             vote.setBirthDate( daoUtil.getString( 6 ) );
             vote.setIpAddress( daoUtil.getString( 7 ) );
             vote.setTitle( daoUtil.getString( 8 ) );
-            vote.setLocalisation( daoUtil.getString( 9 ) );
-            vote.setThematique( daoUtil.getString( 10 ) );
+            vote.setLocation( daoUtil.getString( 9 ) );
+            vote.setTheme( daoUtil.getString( 10 ) );
             vote.setStatus( daoUtil.getInt( 11 ) );
             vote.setStatusExportStats( daoUtil.getInt( 12 ) );
 

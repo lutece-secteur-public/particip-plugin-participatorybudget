@@ -102,7 +102,7 @@ public class BudgetIncludeService
             model.put( MARK_HEADER_COLOR, CLASS_CSS_IN );
             model.put( MARK_NUMBER_FAVOURITES_PROJECT, _myFavouriteService.getFavorisListResourceExtender( user ).size( ) );
 
-            model.put( MARK_USER_VOTES_ARRDT, VoteHome.getVoteUserNotLocalisation( user.getName( ), 75000 ) );
+            model.put( MARK_USER_VOTES_ARRDT, VoteHome.getVoteUserNotLocation( user.getName( ), 75000 ) );
             model.put( MARK_USER_VOTES_PARIS, VoteHome.getVoteUserArrondissement( user.getName( ), 75000 ) );
 
             MyInfosForm myInfos = MyInfosService.loadUserInfos( user );

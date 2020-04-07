@@ -75,7 +75,7 @@
 								<span>${result.dynamicFields.theme_text!"No theme"}</span>
 							</div>
 	
-							<#-- Localisation -->
+							<#-- Location -->
 							<div class="psoum-card-loc">
 	
 								<#if abandonne>
@@ -85,10 +85,10 @@
 								</#if>
 	
 								<div>
-									${result.dynamicFields.localisation_text!''}
+									${result.dynamicFields.location_text!''}
 									
 									<div class="psoum-card-loc-prec">
-										<#if result.dynamicFields?? && result.dynamicFields.address_geoloc_text?? && (result.dynamicFields.district_text != 'whole_city') >
+										<#if result.dynamicFields?? && result.dynamicFields.address_geoloc_text?? && (result.dynamicFields.location_text != 'whole_city') >
 											${result.dynamicFields.address_geoloc_text}
 										<#else>
 											&nbsp;
@@ -170,9 +170,9 @@
 							</div>
 									
 							<#-- Champs transmis en Ajax lors du vote. Encore utilisé au 05/05/2017 ? -->
-							<input type="hidden" name="localisation_${id_document}" id="localisation_${id_document}" value="${result.dynamicFields.district_text!}">
+							<input type="hidden" name="location_${id_document}" id="location_${id_document}" value="${result.dynamicFields.location_text!}">
 							<input type="hidden" name="title_${id_document}" id="title_${id_document}" value="${result.title}">
-							<input type="hidden" name="thematique_${id_document}" id="thematique_${id_document}" value="${result.dynamicFields.theme_text}">
+							<input type="hidden" name="theme_${id_document}" id="theme_${id_document}" value="${result.dynamicFields.theme_text}">
 							<input type="hidden" name="arrondUser" id="arrondUser" value="${arrondissementVote!}">
 	
 						</div>

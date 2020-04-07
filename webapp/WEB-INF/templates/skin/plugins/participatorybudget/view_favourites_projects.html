@@ -82,7 +82,7 @@
 							<th class="         col-sm-6 col-md-7 ellip hidden-xs "><span>Titre</span></th>
 							<th class="         col-sm-6 col-md-7 ellip visible-xs"><span>Titre</span></th>
 							<#if edition == 'all'><th class="         col-sm-2          ellip hidden-xs "><span>Année</span></th></#if>
-							<th class="         col-sm-2          ellip hidden-xs "><span>Localisation</span></th>
+							<th class="         col-sm-2          ellip hidden-xs "><span>Location</span></th>
 							<th class="col-xs-1 col-sm-2 col-xs-1 ellip           "><span class="hidden-xs">Supprimer</span></th>
 						</tr>
 					</thead>
@@ -93,28 +93,28 @@
 						
 							<#-- Récupération de quelques attributs du document -->
 							<#list document.attributes as attribute>
-								<#if     attribute.code = 'localisation'><#assign  localisation_projet = attribute.textValue>
-								<#elseif attribute.code = 'thematique'>  <#assign  thematique_projet   = attribute.textValue>
+								<#if     attribute.code = 'location'><#assign  location_projet = attribute.textValue>
+								<#elseif attribute.code = 'theme'>  <#assign  theme_projet   = attribute.textValue>
 								<#elseif attribute.code = 'campaign'>    <#assign  campaign_projet     = (attribute.textValue)?remove_beginning("Budget Participatif ")>
 								</#if>
 							</#list>
 
 							<#--								
 								<#assign code_theme = "autre">
-								<#if thematique_projet??>
-									<#if thematique_projet = "Cadre de vie"><#assign code_theme = "cadre_vie">
-									<#elseif thematique_projet = "Culture" || thematique_projet = "Culture et patrimoine"><#assign code_theme = "culture">
-									<#elseif thematique_projet = "Economie et emploi"><#assign code_theme = "economie_emploi">
-									<#elseif thematique_projet = "Education et jeunesse"><#assign code_theme = "education">
-									<#elseif thematique_projet = "Environnement" || thematique_projet = "Nature en ville"><#assign code_theme = "environnement">
-									<#elseif thematique_projet = "Logement et habitat"><#assign code_theme = "logement">
-									<#elseif thematique_projet = "Participation citoyenne"><#assign code_theme = "participation_citoyenne">
-									<#elseif thematique_projet = "Prévention et sécurité"><#assign code_theme = "prevention_securite">
-									<#elseif thematique_projet = "Propreté"><#assign code_theme = "proprete">
-									<#elseif thematique_projet = "Solidarité" || thematique_projet = "Vivre ensemble" || thematique_projet = "Solidarité et cohésion sociale"><#assign code_theme = "solidarite">
-									<#elseif thematique_projet = "Sport"><#assign code_theme = "sport">
-									<#elseif thematique_projet = "Transport et mobilité"><#assign code_theme = "transport">
-									<#elseif thematique_projet = "Ville intelligente et numérique"><#assign code_theme = "ville_numerique">
+								<#if theme_projet??>
+									<#if theme_projet = "Cadre de vie"><#assign code_theme = "cadre_vie">
+									<#elseif theme_projet = "Culture" || theme_projet = "Culture et patrimoine"><#assign code_theme = "culture">
+									<#elseif theme_projet = "Economie et emploi"><#assign code_theme = "economie_emploi">
+									<#elseif theme_projet = "Education et jeunesse"><#assign code_theme = "education">
+									<#elseif theme_projet = "Environnement" || theme_projet = "Nature en ville"><#assign code_theme = "environnement">
+									<#elseif theme_projet = "Logement et habitat"><#assign code_theme = "logement">
+									<#elseif theme_projet = "Participation citoyenne"><#assign code_theme = "participation_citoyenne">
+									<#elseif theme_projet = "Prévention et sécurité"><#assign code_theme = "prevention_securite">
+									<#elseif theme_projet = "Propreté"><#assign code_theme = "proprete">
+									<#elseif theme_projet = "Solidarité" || theme_projet = "Vivre ensemble" || theme_projet = "Solidarité et cohésion sociale"><#assign code_theme = "solidarite">
+									<#elseif theme_projet = "Sport"><#assign code_theme = "sport">
+									<#elseif theme_projet = "Transport et mobilité"><#assign code_theme = "transport">
+									<#elseif theme_projet = "Ville intelligente et numérique"><#assign code_theme = "ville_numerique">
 									</#if>
 								</#if>
 							-->
@@ -125,7 +125,7 @@
 									<td class="ellip hidden-xs "><a class="project-link" href="jsp/site/Portal.jsp?document_id=${document.id}&portlet_id=158">${document.title}</a></td>
 									<td class="ellip visible-xs">BP ${campaign_projet!"?"} - <a class="project-link" href="jsp/site/Portal.jsp?document_id=${document.id}&portlet_id=158">${document.title}</a></td>
 									<#if edition == 'all'><td class="ellip hidden-xs "><span>${campaign_projet!'?'}</span></td></#if>
-									<td class="ellip hidden-xs "><span>${localisation_projet?replace(" arrondissement", "")}</span></td>
+									<td class="ellip hidden-xs "><span>${location_projet?replace(" arrondissement", "")}</span></td>
 									<td class="ellip           ">@Extender[${document.id},document,${extend},{show:"tinylink"}]@</td>
 								</tr>
 							</#if>	

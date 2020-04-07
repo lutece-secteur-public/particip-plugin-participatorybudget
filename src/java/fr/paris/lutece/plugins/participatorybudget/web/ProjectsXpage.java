@@ -71,7 +71,7 @@ public class ProjectsXpage extends MVCApplication
 
     // Properties
     public static final String PROJECT = AppPropertiesService.getProperty( "participatorybudget.type.project" );
-    public static final String LOCALISATION = AppPropertiesService.getProperty( "participatorybudget.name.localisation_text" );
+    public static final String LOCATION = AppPropertiesService.getProperty( "participatorybudget.name.location_text" );
 
     // Views
     public static final String PAGE_SOLR_PROJECT_SEARCH = "solrProjectSearch";
@@ -115,7 +115,7 @@ public class ProjectsXpage extends MVCApplication
             {
                 if ( !locationFilterActivated )
                 {
-                    locationFilterActivated = ( StringUtils.isNotBlank( strFacet ) && strFacet.contains( LOCALISATION ) ) ? true : false;
+                    locationFilterActivated = ( StringUtils.isNotBlank( strFacet ) && strFacet.contains( LOCATION ) ) ? true : false;
                 }
                 sbReq.append( strAmpSymbol + "fq" + strEqualSymbol + strFacet );
             }
@@ -134,7 +134,7 @@ public class ProjectsXpage extends MVCApplication
         // Filtering projects only :
         // - User connected
         // - User do not clicked on "remove arrdt filter" case
-        // - User do not use "localisation" SOLR facet
+        // - User do not use "location" SOLR facet
         // - Campaign is in SUBMIT / VOTE phase.
         // - SOLR page is "projects_mdp"
         // - User has a vote arrdt
@@ -145,7 +145,7 @@ public class ProjectsXpage extends MVCApplication
             String strArrt = getArrondissement( user );
             if ( StringUtils.isNotBlank( strArrt ) )
             {
-                sbReq.append( "&fq=" + LOCALISATION + strDoublePointSymbol + strArrt + "\" " + "OR" + " " + LOCALISATION + strDoublePointSymbol + "\""
+                sbReq.append( "&fq=" + LOCATION + strDoublePointSymbol + strArrt + "\" " + "OR" + " " + LOCATION + strDoublePointSymbol + "\""
                         + "Whole city" );
             }
 

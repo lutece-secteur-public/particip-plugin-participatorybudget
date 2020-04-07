@@ -59,7 +59,7 @@ public class ProjectSolrSearch extends HttpServlet
 {
 
     private static final long serialVersionUID = -806886865678792152L;
-    private static final String MARK_THEMATIQUE = "thematique";
+    private static final String MARK_THEME = "theme";
     private static final String MARK_ARRONDISSEMENT = "arrondissement";
     private static final String MARK_ARROND_USER = "user_arrondissement";
     private static final String MARK_CATEGORY = "categorie";
@@ -72,14 +72,14 @@ public class ProjectSolrSearch extends HttpServlet
     private static final String MARK_TYPE_SEARCH = "type_search";
     private static final String SEARCH_SIMPLE = "simple";
     private static final String SEARCH_AVANCEE = "avancee";
-    private static final String SEARCH_THEMATIQUE = "thematique";
+    private static final String SEARCH_THEME = "theme";
     private static final String SEARCH_ARRONDISSEMENT = "arrondissement";
 
     private static final Logger LOGGER = Logger.getLogger( ProjectSolrSearch.class );
 
     public static final String PROJECT = AppPropertiesService.getProperty( "participatorybudget.type.project" );
-    public static final String THEMATIQUE = AppPropertiesService.getProperty( "participatorybudget.name.thematique" );
-    public static final String LOCALISATION = AppPropertiesService.getProperty( "participatorybudget.name.localisation_text" );
+    public static final String THEME = AppPropertiesService.getProperty( "participatorybudget.name.theme" );
+    public static final String LOCATION = AppPropertiesService.getProperty( "participatorybudget.name.location_text" );
     public static final String BUDGET = AppPropertiesService.getProperty( "participatorybudget.name.budget" );
 
     /**
@@ -132,7 +132,7 @@ public class ProjectSolrSearch extends HttpServlet
         } // By Arrondissement
         if ( StringUtils.isNotEmpty( getArrondissement( request, user ) ) && !request.getParameter( MARK_ARRONDISSEMENT ).isEmpty( ) )
         {
-            sbReq.append( "&fq=" + LOCALISATION + ":" + getArrondissement( request, user ) );
+            sbReq.append( "&fq=" + LOCATION + ":" + getArrondissement( request, user ) );
             if ( !byProject )
             {
                 byProject = true;
@@ -145,7 +145,7 @@ public class ProjectSolrSearch extends HttpServlet
             if ( !byProject )
                 sbReq.append( "&query=*:*&fq=type:" + PROJECT );
         }
-        // By THEMATIQUE
+        // By THEME
 
         LOGGER.debug( "Requête SOLR de date, redirection vers " + sbReq.toString( ) );
 
@@ -206,14 +206,14 @@ public class ProjectSolrSearch extends HttpServlet
 
         }
         else
-            if ( SEARCH_THEMATIQUE.equals( sTypeSearch ) && user == null )
+            if ( SEARCH_THEME.equals( sTypeSearch ) && user == null )
             {
 
-                String sThematique = request.getParameter( MARK_THEMATIQUE );
-                if ( StringUtils.isNotEmpty( sThematique ) )
+                String sTheme = request.getParameter( MARK_THEME );
+                if ( StringUtils.isNotEmpty( sTheme ) )
                 {
                     // sbReq.append( "&query=*:*" );
-                    sbFilter.append( "&fq=" + THEMATIQUE + ":" + sThematique );
+                    sbFilter.append( "&fq=" + THEME + ":" + sTheme );
                 }
                 sbFilter.append( "&fq=type:" + PROJECT );
             }
@@ -221,22 +221,22 @@ public class ProjectSolrSearch extends HttpServlet
                 if ( SEARCH_ARRONDISSEMENT.equals( sTypeSearch ) )
                 {
 
-                    sbFilter.append( "&fq=" + LOCALISATION + ":" + getArrondissement( request, user ) );
+                    sbFilter.append( "&fq=" + LOCATION + ":" + getArrondissement( request, user ) );
                     sbFilter.append( "&fq=type:" + PROJECT );
                 }
                 else
                     if ( SEARCH_AVANCEE.equals( sTypeSearch ) )
                     {
                         SimpleDateFormat sdfXml = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss'Z'" );
-                        String sThematique = request.getParameter( MARK_THEMATIQUE );
+                        String sTheme = request.getParameter( MARK_THEME );
                         String [ ] categories = request.getParameterValues( MARK_CATEGORY );
 
                         String sShowDateStart = request.getParameter( "show_date_start" );
                         String sShowDateEnd = request.getParameter( "show_date_end" );
 
-                        if ( StringUtils.isNotEmpty( sThematique ) )
+                        if ( StringUtils.isNotEmpty( sTheme ) )
                         {
-                            sbReq.append( "&query=" + THEMATIQUE + ":" + sQuery );
+                            sbReq.append( "&query=" + THEME + ":" + sQuery );
                         }
                         sbFilter.append( "&fq=type:" + PROJECT );
 

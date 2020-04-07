@@ -51,8 +51,8 @@ public class Vote
     private int _nProjetId;
     private String _strIpAddress;
     private String _strTitle;
-    private String _strLocalisation;
-    private String _strThematique;
+    private String _strLocation;
+    private String _strTheme;
     private int _nStatus;
     private int _nStatusExportStats;
 
@@ -258,43 +258,43 @@ public class Vote
     }
 
     /**
-     * Returns the project localisation
+     * Returns the project location
      * 
-     * @return The project localisation
+     * @return The project location
      */
-    public String getLocalisation( )
+    public String getLocation( )
     {
-        return _strLocalisation;
+        return _strLocation;
     }
 
     /**
-     * Sets the nLocalisation
+     * Sets the nLocation
      * 
-     * @param nLocalisation
-     *            The project localisation
+     * @param nLocation
+     *            The project location
      */
-    public void setLocalisation( String nLocalisation )
+    public void setLocation( String nLocation )
     {
-        _strLocalisation = nLocalisation;
-    }
-
-    /**
-     * 
-     * @param strThematique
-     *            the uproject thematique
-     */
-    public void setThematique( String strThematique )
-    {
-        this._strThematique = strThematique;
+        _strLocation = nLocation;
     }
 
     /**
      * 
-     * @return the project thematique
+     * @param strTheme
+     *            the uproject theme
      */
-    public String getThematique( )
+    public void setTheme( String strTheme )
     {
-        return _strThematique;
+        this._strTheme = strTheme;
+    }
+
+    /**
+     * 
+     * @return the project theme
+     */
+    public String getTheme( )
+    {
+        return _strTheme;
     }
 
     /**
@@ -310,7 +310,7 @@ public class Vote
     /**
      * Sets the Status
      * 
-     * @param nLocalisation
+     * @param nLocation
      *            The project Status
      */
     public void setStatus( int nStatus )

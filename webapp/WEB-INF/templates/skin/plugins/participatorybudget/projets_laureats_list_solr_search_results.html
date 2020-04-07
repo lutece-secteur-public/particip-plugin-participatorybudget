@@ -11,8 +11,8 @@
 <#assign facet_campaign = "toute_campaign">
 <#setting url_escaping_charset=encoding>
 <#-- Encode facet queries -->
-<#assign allParisCity = "-localisation_text:whole_city">
-<#assign allArrParisCity = "localisation_text:">
+<#assign allParisCity = "-location_text:whole_city">
+<#assign allArrParisCity = "location_text:">
 <#macro EncodeFQ list_fq  optionalParam1="" optionalParam2="">
   <#assign bCheck = false>
     <#assign encoded_facets_queries = "">
@@ -35,7 +35,7 @@ ${encoded_facets_queries}</#macro>
 <#macro EncodeFQArrondissement list_fq >
     <#assign encoded_facets_queries = "">
     <#list list_fq as facet>
-  <#if facet?starts_with("localisation_text") || facet?starts_with("type") || facet?starts_with("-localisation_text")>
+  <#if facet?starts_with("location_text") || facet?starts_with("type") || facet?starts_with("-location_text")>
           <#assign encoded_facets_queries = encoded_facets_queries+"&fq="+facet?url>
   </#if>
     </#list>
@@ -100,13 +100,13 @@ ${encoded_facets_queries}
 			
 			<#if facets_list??>
 				<#list facets_list as facet>
-					<#if facet?starts_with("localisation_text:")>
+					<#if facet?starts_with("location_text:")>
 						<#assign arr = facet?split(":")?last>
-					<#elseif facet?starts_with("-localisation_text:whole_city")>
+					<#elseif facet?starts_with("-location_text:whole_city")>
 						<#assign arr = "all_arr">
-					<#elseif facet?starts_with("localisation_text:whole_city")>
+					<#elseif facet?starts_with("location_text:whole_city")>
 						<#assign arr = "whole_city">
-					<#elseif facet?starts_with("thematique_text:")>
+					<#elseif facet?starts_with("theme_text:")>
 						<#assign facet_theme = facet?split(":")?last>
 					<#elseif facet?starts_with("campaign_text:")>
 						<#assign facet_campaign = facet?split(":")?last>
@@ -137,21 +137,21 @@ ${encoded_facets_queries}
 						<label class="select" for="arrondissement">
 							<select name="fq" id="arrondissement" class="form-control">
 								<#if arr=="Tout arrd">
-									<option id="toutArrdt" value='-localisation_text:whole_city' selected="selected">Tous les arrondissements</option>
+									<option id="toutArrdt" value='-location_text:whole_city' selected="selected">Tous les arrondissements</option>
 								<#else>
-									<option id="toutArrdt" value='-localisation_text:whole_city'>Tous les arrondissements</option>
+									<option id="toutArrdt" value='-location_text:whole_city'>Tous les arrondissements</option>
 								</#if>
 								<#if arr=="1e arrondissement">
-									<option id="1erArrond" value="localisation_text:1e arrondissement" selected="selected">1er arrondissement</option>
+									<option id="1erArrond" value="location_text:1e arrondissement" selected="selected">1er arrondissement</option>
 								<#else>
-									<option id="1erArrond" value="localisation_text:1e arrondissement">1er arrondissement</option>
+									<option id="1erArrond" value="location_text:1e arrondissement">1er arrondissement</option>
 								</#if>
 								<#assign nbArr=20>
 								<#list 2..nbArr as i>
 									<#if arr==i+"e arrondissement">
-										<option value="localisation_text:${i!}e arrondissement" selected="selected" >${i!}e arrondissement</option>
+										<option value="location_text:${i!}e arrondissement" selected="selected" >${i!}e arrondissement</option>
 									<#else>
-										<option value="localisation_text:${i!}e arrondissement">${i!}e arrondissement</option>
+										<option value="location_text:${i!}e arrondissement">${i!}e arrondissement</option>
 									</#if>
 								</#list>
 							</select>
@@ -161,7 +161,7 @@ ${encoded_facets_queries}
 					<#assign theme_class = "autre">
 					<div class="row">
 						<#list results_list as result>
-							<#if result.dynamicFields?? && result.dynamicFields.localisation_text?? && result.dynamicFields.localisation_text != "whole_city" >
+							<#if result.dynamicFields?? && result.dynamicFields.location_text?? && result.dynamicFields.location_text != "whole_city" >
 								<#include "document_laureats_sous_list_solr_search_results.html">
 							</#if>
 						</#list>
@@ -324,7 +324,7 @@ $(function(){
   if ( arrond ){
    var numberArrond = arrond.substr(3,4);
    var x = location.search;
-      if ( !x.match("localisation_text") ){
+      if ( !x.match("location_text") ){
         $("#arrondissement option").eq( numberArrond ).attr('selected','selected');
 	$("#searchForm").get(0).setAttribute('action', 'jsp/site/Portal.jsp');
         searchTri();

@@ -61,7 +61,7 @@ import fr.paris.lutece.plugins.extend.business.extender.history.ResourceExtender
 import fr.paris.lutece.plugins.extend.business.extender.history.ResourceExtenderHistoryFilter;
 import fr.paris.lutece.plugins.extend.modules.follow.service.extender.FollowResourceExtender;
 import fr.paris.lutece.plugins.extend.service.extender.history.IResourceExtenderHistoryService;
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.plugins.participatorybudget.util.ParticipatoryBudgetConstants;
 import fr.paris.lutece.portal.business.portlet.Portlet;
 import fr.paris.lutece.portal.business.portlet.PortletHome;
 import fr.paris.lutece.portal.business.user.AdminUser;
@@ -104,18 +104,18 @@ public class ProjectService implements IProjectService
     public int createproject( String title, String summary, Timestamp validityBegin, int portletId, Map<String, String> docFields ) throws DocumentException
     {
         // Get the document space where to store the document. Create it if necessary.
-        int idSpace = getOrCreateIdSpace( docFields.get( Constants.DOCUMENT_ATTRIBUTE_CAMPAIGN ) );
+        int idSpace = getOrCreateIdSpace( docFields.get( ParticipatoryBudgetConstants.DOCUMENT_ATTRIBUTE_CAMPAIGN ) );
 
         // Construct then store the document.
         Document doc = new Document( );
-        doc.setCodeDocumentType( Constants.DOCUMENT_TYPE_PROJECT );
+        doc.setCodeDocumentType( ParticipatoryBudgetConstants.DOCUMENT_TYPE_PROJECT );
         doc.setSpaceId( idSpace );
         doc.setStateId( 1 );
         doc.setPageTemplateDocumentId( 1 );
         doc.setSkipPortlet( true );
         doc.setSkipCategories( true );
 
-        DocumentType documentType = DocumentTypeHome.findByPrimaryKey( Constants.DOCUMENT_TYPE_PROJECT );
+        DocumentType documentType = DocumentTypeHome.findByPrimaryKey( ParticipatoryBudgetConstants.DOCUMENT_TYPE_PROJECT );
         List<DocumentAttribute> attributes = documentType.getAttributes( );
         doc.setAttributes( attributes );
 
@@ -181,7 +181,7 @@ public class ProjectService implements IProjectService
     private int getOrCreateIdSpace( String nameSpaceChild )
     {
         // Search for child space.
-        List<DocumentSpace> docSpace = DocumentSpaceHome.findChilds( Constants.DOCUMENT_PROJECT_PARENT_SPACE_ID );
+        List<DocumentSpace> docSpace = DocumentSpaceHome.findChilds( ParticipatoryBudgetConstants.DOCUMENT_PROJECT_PARENT_SPACE_ID );
         for ( DocumentSpace item : docSpace )
         {
             if ( nameSpaceChild.equals( item.getName( ) ) )
@@ -192,7 +192,7 @@ public class ProjectService implements IProjectService
 
         // Child not found, so create it.
         DocumentSpace childSpace = new DocumentSpace( );
-        childSpace.setIdParent( Constants.DOCUMENT_PROJECT_PARENT_SPACE_ID );
+        childSpace.setIdParent( ParticipatoryBudgetConstants.DOCUMENT_PROJECT_PARENT_SPACE_ID );
         childSpace.setName( nameSpaceChild );
         childSpace.setDescription( nameSpaceChild );
         childSpace.setViewType( "detail" );
@@ -200,7 +200,7 @@ public class ProjectService implements IProjectService
         childSpace.resetAllowedDocumentTypesList( );
         childSpace.setDocumentCreationAllowed( true );
         childSpace.setWorkgroup( "all" );
-        childSpace.addAllowedDocumentType( Constants.DOCUMENT_TYPE_PROJECT );
+        childSpace.addAllowedDocumentType( ParticipatoryBudgetConstants.DOCUMENT_TYPE_PROJECT );
         DocumentSpaceHome.create( childSpace );
 
         return childSpace.getId( );

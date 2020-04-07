@@ -47,7 +47,7 @@ import fr.paris.lutece.plugins.participatorybudget.service.vote.IVoteParArrandis
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.VoteParArrandissementService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.plugins.participatorybudget.util.ParticipatoryBudgetConstants;
 import fr.paris.lutece.plugins.participatorybudget.web.MyInfosXPage;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
@@ -102,7 +102,7 @@ public class RatingValidationService implements IRatingValidationService
 
         // This is duplicated in MyVoteXPage.java because there it want to return json
         // instead of redirecting to an url or throwing a SiteMessageException
-        int nbrVoteUserArrond = VoteHome.getVoteUserNotLocalisation( strUserId, 75000 );
+        int nbrVoteUserArrond = VoteHome.getVoteUserNotLocation( strUserId, 75000 );
         int nbrVoteUserParis = VoteHome.getVoteUserArrondissement( strUserId, 75000 );
         int maxDcmtArrondissement = 0;
         int maxDcmtToutParis = 0;
@@ -116,7 +116,7 @@ public class RatingValidationService implements IRatingValidationService
         {
             maxDcmtToutParis = voteLoc.getNbVotes( );
         }
-        String localisationProjet = request.getParameter( Constants.PROJECT_LOCATION );
+        String locationProjet = request.getParameter( ParticipatoryBudgetConstants.PROJECT_LOCATION );
 
         if ( nbrVoteUserParis >= maxDcmtToutParis && nbrVoteUserArrond >= maxDcmtArrondissement )
         {
@@ -124,20 +124,20 @@ public class RatingValidationService implements IRatingValidationService
             return strDefaultErrorUrl;
         }
         if ( nbrVoteUserParis >= maxDcmtToutParis && maxDcmtToutParis > 0
-                && request.getParameter( Constants.PROJECT_LOCATION ).equals( Constants.LOCAIION_WHOLE_CITY ) )
+                && request.getParameter( ParticipatoryBudgetConstants.PROJECT_LOCATION ).equals( ParticipatoryBudgetConstants.LOCATION_WHOLE_CITY ) )
         {
 
             return strDefaultErrorUrl;
         }
         if ( nbrVoteUserArrond >= maxDcmtArrondissement && maxDcmtArrondissement > 0
-                && !request.getParameter( Constants.PROJECT_LOCATION ).equals( Constants.LOCAIION_WHOLE_CITY ) )
+                && !request.getParameter( ParticipatoryBudgetConstants.PROJECT_LOCATION ).equals( ParticipatoryBudgetConstants.LOCATION_WHOLE_CITY ) )
         {
 
             return strDefaultErrorUrl;
 
         }
-        if ( localisationProjet != null && !localisationProjet.equals( BudgetUtils.getArrondissementDisplay( user ) )
-                && !localisationProjet.equals( Constants.LOCAIION_WHOLE_CITY ) )
+        if ( locationProjet != null && !locationProjet.equals( BudgetUtils.getArrondissementDisplay( user ) )
+                && !locationProjet.equals( ParticipatoryBudgetConstants.LOCATION_WHOLE_CITY ) )
         {
 
             return strDefaultErrorUrl;

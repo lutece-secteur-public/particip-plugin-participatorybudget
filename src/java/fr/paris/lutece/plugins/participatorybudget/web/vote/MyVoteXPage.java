@@ -73,7 +73,7 @@ import fr.paris.lutece.plugins.participatorybudget.service.vote.IVoteParArrandis
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.VoteParArrandissementService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.plugins.participatorybudget.util.ParticipatoryBudgetConstants;
 import fr.paris.lutece.plugins.subscribe.business.Subscription;
 import fr.paris.lutece.plugins.subscribe.business.SubscriptionFilter;
 import fr.paris.lutece.plugins.subscribe.service.SubscriptionService;
@@ -195,8 +195,8 @@ public class MyVoteXPage extends MVCApplication
     private static final String KEY_VALIDATION_VOTE_EMAIL_TEMPLATE = "participatorybudget.site_property.vote_confirmation.template.htmlblock";
 
     // Constant
-    private static final String LOCALISATION_LABEL = "district";
-    private static final String LOCALISATION_VALUE = "whole_city";
+    private static final String LOCATION_LABEL = "location";
+    private static final String LOCATION_VALUE = "whole_city";
     private static final String SEPARATOR = "||";
 
     private MyVoteService _myVoteService = SpringContextService.getBean( MyVoteService.BEAN_NAME );
@@ -319,7 +319,7 @@ public class MyVoteXPage extends MVCApplication
 
         for ( MyVote vote : listMyVoteFull )
         {
-            if ( LOCALISATION_VALUE.equals( vote.getDocument( ).getAttribute( LOCALISATION_LABEL ).getTextValue( ) ) )
+            if ( LOCATION_VALUE.equals( vote.getDocument( ).getAttribute( LOCATION_LABEL ).getTextValue( ) ) )
             {
                 listMyVoteParis.add( vote );
             }
@@ -388,7 +388,7 @@ public class MyVoteXPage extends MVCApplication
         {
             maxDcmtToutParis = voteLoc.getNbVotes( );
         }
-        String localisationProjet = request.getParameter( Constants.PROJECT_LOCATION );
+        String locationProjet = request.getParameter( ParticipatoryBudgetConstants.PROJECT_LOCATION );
 
         try
         {
@@ -441,7 +441,7 @@ public class MyVoteXPage extends MVCApplication
         // This is duplicated in RatingValidationService.java because here we
         // want to return json
         // instead of redirecting to an url or throwing a SiteMessageException
-        int nbrVoteUserArrond = VoteHome.getVoteUserNotLocalisation( strUserId, 75000 );
+        int nbrVoteUserArrond = VoteHome.getVoteUserNotLocation( strUserId, 75000 );
         int nbrVoteUserParis = VoteHome.getVoteUserArrondissement( strUserId, 75000 );
 
         if ( nbrVoteUserParis >= maxDcmtToutParis && nbrVoteUserArrond >= maxDcmtArrondissement )
@@ -451,22 +451,22 @@ public class MyVoteXPage extends MVCApplication
                     new ErrorJsonResponse( JSON_ERROR_CODE_USER__VOTED_MAX, DatastoreService.getDataValue( KEY_ERROR_CODE_USER__VOTED_MAX, "" ) ) );
         }
         if ( nbrVoteUserParis >= maxDcmtToutParis && maxDcmtToutParis > 0
-                && request.getParameter( Constants.PROJECT_LOCATION ).equals( Constants.LOCAIION_WHOLE_CITY ) )
+                && request.getParameter( ParticipatoryBudgetConstants.PROJECT_LOCATION ).equals( ParticipatoryBudgetConstants.LOCATION_WHOLE_CITY ) )
         {
 
             return JsonUtil.buildJsonResponse(
                     new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_TOUT_PARIS, DatastoreService.getDataValue( KEY_ERROR_ALREADY_VOTED_TOUT_PARIS, "" ) ) );
         }
         if ( nbrVoteUserArrond >= maxDcmtArrondissement && maxDcmtArrondissement > 0
-                && !request.getParameter( Constants.PROJECT_LOCATION ).equals( Constants.LOCAIION_WHOLE_CITY ) )
+                && !request.getParameter( ParticipatoryBudgetConstants.PROJECT_LOCATION ).equals( ParticipatoryBudgetConstants.LOCATION_WHOLE_CITY ) )
         {
 
             return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_ARRONDISSEMENT,
                     DatastoreService.getDataValue( KEY_ERROR_ALREADY_VOTED_ARRONDISSEMENT, "" ) ) );
 
         }
-        if ( localisationProjet != null && !localisationProjet.equals( BudgetUtils.getArrondissementDisplay( user ) )
-                && !localisationProjet.equals( Constants.LOCAIION_WHOLE_CITY ) )
+        if ( locationProjet != null && !locationProjet.equals( BudgetUtils.getArrondissementDisplay( user ) )
+                && !locationProjet.equals( ParticipatoryBudgetConstants.LOCATION_WHOLE_CITY ) )
         {
 
             return JsonUtil
@@ -590,7 +590,7 @@ public class MyVoteXPage extends MVCApplication
 
         LuteceUser user = SecurityService.getInstance( ).getRegisteredUser( request );
 
-        int nbrVoteArrdt = VoteHome.getVoteUserNotLocalisation( user.getName( ), 75000 );
+        int nbrVoteArrdt = VoteHome.getVoteUserNotLocation( user.getName( ), 75000 );
         int nbrVoteParis = VoteHome.getVoteUserArrondissement( user.getName( ), 75000 );
         int nbrVoteTotal = nbrVoteArrdt + nbrVoteParis;
 
@@ -787,7 +787,7 @@ public class MyVoteXPage extends MVCApplication
         String arrondissement = request.getParameter( PARAMETER_ARRONDISSEMENT );
         String codePostal = BudgetUtils.getArrondissementDisplay( user ).trim( );
 
-        if ( !arrondissement.equals( codePostal ) && !arrondissement.equals( Constants.LOCAIION_WHOLE_CITY ) )
+        if ( !arrondissement.equals( codePostal ) && !arrondissement.equals( ParticipatoryBudgetConstants.LOCATION_WHOLE_CITY ) )
         {
 
             jsonResponse = new ErrorJsonResponse( JSON_ERROR_CHECKED_ARRONDISSEMENT, DatastoreService.getDataValue( KEY_ERROR_CHECKED_ARRONDISSEMENT, "" ) );

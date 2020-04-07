@@ -47,8 +47,8 @@ public final class VotePerLocationDAO implements IVotePerLocationDAO
 
     // Constants
     private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_votes_per_location SET nb_votes = ?  where id = ? ";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id, localisation_ardt, nb_votes FROM  participatorybudget_votes_per_location";
-    private static final String SQL_QUERY_BY_ARR = " WHERE localisation_ardt = ? ";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id, location_ardt, nb_votes FROM  participatorybudget_votes_per_location";
+    private static final String SQL_QUERY_BY_ARR = " WHERE location_ardt = ? ";
     private static final String SQL_QUERY_SELECT_BY_ARR = SQL_QUERY_SELECTALL + SQL_QUERY_BY_ARR;
 
     @Override

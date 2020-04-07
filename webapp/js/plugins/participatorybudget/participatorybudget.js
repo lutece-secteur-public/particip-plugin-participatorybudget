@@ -1,4 +1,4 @@
-var dialog, idResourceToVote, resourceTypeToVote,voteValue,baseUrl,arrondissement,title,thematique,arrondUser;
+var dialog, idResourceToVote, resourceTypeToVote,voteValue,baseUrl,arrondissement,title,theme,arrondUser;
 
 
 function displayLoginBp( encodedBackUrl ) {
@@ -120,7 +120,7 @@ function doSaveUserInfos(callBackFunction)
 function doVote( idResource )
 {
 	$.ajax({
-		url : baseUrl + "jsp/site/plugins/participatorybudget/DoVote.jsp?idExtendableResource=" + encodeURIComponent(idResourceToVote) + "&extendableResourceType=" + encodeURIComponent(resourceTypeToVote) + "&thematique=" + encodeURIComponent(thematique) + "&localisation=" +encodeURIComponent(arrondissement) + "&title=" + encodeURIComponent(title),
+		url : baseUrl + "jsp/site/plugins/participatorybudget/DoVote.jsp?idExtendableResource=" + encodeURIComponent(idResourceToVote) + "&extendableResourceType=" + encodeURIComponent(resourceTypeToVote) + "&theme=" + encodeURIComponent(theme) + "&location=" +encodeURIComponent(arrondissement) + "&title=" + encodeURIComponent(title),
 		type: 'GET',
 		dataType: "json",
 		data: {},
@@ -156,13 +156,13 @@ function doVote( idResource )
 	    	else if(data.errorCode =='JSON_ERROR_ALREADY_VOTED_ARRONDISSEMENT')
         {
 					$('.modal-title').append('Vous avez atteint le nombre maximal de votes possibles pour des projets d\'arrondissement. Vous avez encore la possibilité de voter pour des projets "Tout Paris"');
-			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=localisation_text:whole_city" class="btn btn-std" onClick="voteArrond();">Voter pour des projets "Tout Paris"</a></p>');
+			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=location_text:whole_city" class="btn btn-std" onClick="voteArrond();">Voter pour des projets "Tout Paris"</a></p>');
 			 		$('#myModal').modal('toggle');
         }
 		    else if(data.errorCode =='JSON_ERROR_ALREADY_VOTED_TOUT_PARIS')
         {
 					$('.modal-title').append('Vous avez atteint le nombre maximal de votes possibles pour des projets "Tout Paris". Vous avez encore la possibilité de voter pour des projets d\'arrondissement.');
-			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=localisation_text:' +arrondUser+ '">Voter pour des projets d\'arrondissement</a></p>');
+			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=location_text:' +arrondUser+ '">Voter pour des projets d\'arrondissement</a></p>');
 			 		$('#myModal').modal('toggle');
         }
 		   	else if(data.errorCode == "JSON_ERROR_VOTE_USER_ARROND")
@@ -197,7 +197,7 @@ function doCancelVote( idResource, resourceType )
 {
 	idResourceToVote = idResource;
 	resourceTypeToVote = resourceType;
-	arrondissement= $('#localisation_'+idResource).val();
+	arrondissement= $('#location_'+idResource).val();
 	$.ajax({
 		url : baseUrl + "jsp/site/plugins/participatorybudget/DoCancelVote.jsp?idExtendableResource=" + idResourceToVote + "&extendableResourceType=" + resourceTypeToVote,
 
@@ -271,9 +271,9 @@ function checkIfUserIsValid(idResource, resourceType, vote)
 	idResourceToVote = idResource;
 	resourceTypeToVote = resourceType;
 	voteValue = vote;
-	arrondissement= $('#localisation_'+idResource).val();
+	arrondissement= $('#location_'+idResource).val();
 	title= $('#title_'+idResource).val(),
-	thematique= $('#thematique_'+idResource).val(),
+	theme= $('#theme_'+idResource).val(),
 	arrondUser= $("#arrondUser").val(),
 	displayLogin=false;
 	isUserIsValid( function(){doVote(  );},function(){displayModalPopup( function(){checkIfUserIsValid(idResource, resourceType, vote);})}, function() { displayLogin=true; })
@@ -423,13 +423,13 @@ function valideVotes(user_arrondissement, maxVotesArrdt, maxVotesParis, validate
 			
 			 } else if( data.result.totVotesArrondissement == maxVotesArrdt && data.result.totVotesToutParis < maxVotesParis ){
 					$('#modalConfirmVoteContent').append("<p class='main'>Vous avez vot&eacute; pour " + data.result.totVotesToutParis + " projet(s) tout Paris,<br>et "+ data.result.totVotesArrondissement + " projet(s) pour votre arrondissement.</p><p>Il vous est encore possible de voter pour des projets Tout Paris supplémentaires. Lorsque vous aurez validé vos votes, il ne vous sera plus possible de les modifier ou d'en ajouter.</p>");
-					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=localisation_text:whole_city'>Je vote pour tout paris</a>").css("text-align","center");
+					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=location_text:whole_city'>Je vote pour tout paris</a>").css("text-align","center");
 	 				$('#modalConfirmVoteButtonValid').append("<span class='btn btn-18rem btn-black-on-white' onclick='confirmValidateVote();'>Je valide mes votes</span>").css("text-align","center");
 	 				$('#modalConfirmVote').modal('toggle');
 			
 			 } else if( data.result.totVotesToutParis == maxVotesParis && data.result.totVotesArrondissement < maxVotesArrdt ){
 					$('#modalConfirmVoteContent').append("<p class='main'>Vous avez vot&eacute; pour " + data.result.totVotesToutParis + " projet(s) tout Paris,<br>et "+ data.result.totVotesArrondissement + " projet(s) pour votre arrondissement.</p><p>Il vous est encore possible de voter pour des projets supplémentaires dans votre arrondissement de vote. Lorsque vous aurez validé vos votes, il ne vous sera plus possible de les modifier ou d'en ajouter.</p>");
-					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_mdp&sort_name=1440769236633_random&sort_order=random&fq=localisation_text:"+user_arrondissement+"'>Je vote pour mon arrondissement</a>").css("text-align","center");
+					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_mdp&sort_name=1440769236633_random&sort_order=random&fq=location_text:"+user_arrondissement+"'>Je vote pour mon arrondissement</a>").css("text-align","center");
 	 				$('#modalConfirmVoteButtonValid').append("<span class='btn btn-18rem btn-black-on-white' onclick='confirmValidateVote();'>Je valide mes votes</span>").css("text-align","center");
 	 				$('#modalConfirmVote').modal('toggle');
 			
@@ -468,7 +468,7 @@ function doCancelMyvote( idResource, resourceType )
 {
 	idResourceToVote = idResource;
 	resourceTypeToVote = resourceType;
-	arrondissement= $('#localisation_'+idResource).val();
+	arrondissement= $('#location_'+idResource).val();
 	$.ajax({
 		url : baseUrl + "jsp/site/plugins/participatorybudget/DoCancelVote.jsp?idExtendableResource=" + idResourceToVote + "&extendableResourceType=" + resourceTypeToVote,
 		type: 'GET',

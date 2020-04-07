@@ -35,7 +35,7 @@ package fr.paris.lutece.plugins.participatorybudget.business.vote;
 
 import java.util.List;
 
-import fr.paris.lutece.plugins.participatorybudget.util.Constants;
+import fr.paris.lutece.plugins.participatorybudget.util.ParticipatoryBudgetConstants;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
@@ -47,7 +47,7 @@ public final class VoteHistoryHome
 {
     // Static variable pointed at the DAO instance
     private static IVoteHistoryDAO _dao = (IVoteHistoryDAO) SpringContextService.getBean( "participatorybudget.voteHistoryDAO" );
-    private static Plugin _plugin = PluginService.getPlugin( Constants.PLUGIN_NAME );
+    private static Plugin _plugin = PluginService.getPlugin( ParticipatoryBudgetConstants.PLUGIN_NAME );
 
     /**
      * Private constructor - this class need not be instantiated
@@ -116,23 +116,23 @@ public final class VoteHistoryHome
     /**
      * 
      * @param nUserId
-     * @param nLocalisation
+     * @param nLocation
      * @return
      */
-    public static int getVoteUserArrondissement( String strUserId, int nLocalisation )
+    public static int getVoteUserArrondissement( String strUserId, int nLocation )
     {
-        return _dao.countNbVotesUserArrondissement( strUserId, nLocalisation, _plugin );
+        return _dao.countNbVotesUserArrondissement( strUserId, nLocation, _plugin );
     }
 
     /**
      * 
      * @param nUserId
-     * @param nLocalisation
+     * @param nLocation
      * @return
      */
-    public static int getVoteUserNotLocalisation( String strUserId, int nLocalisation )
+    public static int getVoteUserNotLocation( String strUserId, int nLocation )
     {
-        return _dao.countNbVotesUser( strUserId, nLocalisation, _plugin );
+        return _dao.countNbVotesUser( strUserId, nLocation, _plugin );
     }
 
     /**

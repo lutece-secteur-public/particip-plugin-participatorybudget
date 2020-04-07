@@ -39,13 +39,16 @@ import org.apache.commons.lang.NotImplementedException;
  * This class provides constants
  *
  */
-public final class Constants
+public final class ParticipatoryBudgetConstants
 {
     public static final String PLUGIN_NAME = "participatorybudget";
     public static final String PROJECT_TITLE = "title";
-    public static final String PROJECT_LOCATION = "localisation";
-    public static final String PROJECT_THEME = "thematique";
-    public static final String LOCAIION_WHOLE_CITY = "whole_city";
+    public static final String PROJECT_LOCATION = "location";
+    public static final String PROJECT_THEME = "theme";
+    
+    public static final String LOCATION_WHOLE_CITY = "whole_city";
+    
+    public static final String NOT_POPULAR_AREA_VALUE = "no";
 
     // Properties
     public static final String PROPERTY_AUTHORIZED_CITIES = "participatorybudget.authorized.cities";
@@ -82,7 +85,7 @@ public final class Constants
     public static final String DOCUMENT_ATTRIBUTE_CONTENT = "content";
     public static final String DOCUMENT_ATTRIBUTE_DEPARTMENT = "department";
     public static final String DOCUMENT_ATTRIBUTE_DESCRIPTION = "description";
-    public static final String DOCUMENT_ATTRIBUTE_DISTRICT = "district";
+    public static final String DOCUMENT_ATTRIBUTE_LOCATION = "location";
     public static final String DOCUMENT_ATTRIBUTE_IMAGE = "image";
 
     public static final String DOCUMENT_ATTRIBUTE_PHASE_1_START_DATE = "phase1_start_date";
@@ -108,11 +111,12 @@ public final class Constants
     public static final String DOCUMENT_ATTRIBUTE_THEME = "theme";
     public static final String DOCUMENT_ATTRIBUTE_TOTAL_VOTES = "total_votes";
     public static final String DOCUMENT_ATTRIBUTE_VALUE = "value";
+    public static final String DOCUMENT_ATTRIBUTE_POPULAR_AREA = "popular_area";
 
     /**
      * Private constructor
      */
-    private Constants( )
+    private ParticipatoryBudgetConstants( )
     {
         throw new NotImplementedException( "This class should not be instantiated !" );
     }

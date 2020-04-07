@@ -149,15 +149,15 @@
 				<div id="psoum-desc" class="col-xs-12 col-sm-8 bg-color0">
 				
 					<!-- Location -->
-					<div class="psoum-desc-localisation">
+					<div class="psoum-desc-location">
 					
 						<img alt="Location" title="Location">
 							<xsl:attribute name="src">images/local/skin/marker-<xsl:value-of select="$theme"/>.png</xsl:attribute>
 						</img>
 					
-						<div class="psoum-desc-localisation-addr">
+						<div class="psoum-desc-location-addr">
 							<xsl:if test="not(string(pb_project-address)='')"><xsl:value-of select="pb_project-address" /><br /></xsl:if>
-							<xsl:value-of select="pb_project-district" />
+							<xsl:value-of select="pb_project-location" />
 						</div>
 					</div>
 					
@@ -210,10 +210,10 @@
 					<!-- Project Mapping -->
 					<!-- 
 					<xsl:choose>
-						<xsl:when test="pb_project-localisation_precise/geoloc/address != ''">
+						<xsl:when test="pb_project-location_precise/geoloc/address != ''">
 							<script type='text/javascript'>
-								var x = <xsl:value-of select="pb_project-localisation_precise/geoloc/lat"/>;
-								var y = <xsl:value-of select="pb_project-localisation_precise/geoloc/lon"/>;
+								var x = <xsl:value-of select="pb_project-location_precise/geoloc/lat"/>;
+								var y = <xsl:value-of select="pb_project-location_precise/geoloc/lon"/>;
 							</script>
 							<div id="carto" class="psoum-desc-carto">&#160;</div>
 						</xsl:when>

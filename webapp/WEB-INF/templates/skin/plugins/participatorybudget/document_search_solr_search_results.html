@@ -41,7 +41,7 @@
     <#assign encoded_facets_queries = "">
 
     <#list list_fq as facet>
-		<#if facet?starts_with("localisation_text") || facet?starts_with("type") || facet?starts_with("-localisation_text")>
+		<#if facet?starts_with("location_text") || facet?starts_with("type") || facet?starts_with("-location_text")>
         	<#assign encoded_facets_queries = encoded_facets_queries+"&fq="+facet?url>
 		</#if>
     </#list>
@@ -87,7 +87,7 @@
 <#if facets_list??>
 	<#list facets_list as facet>
 		<!-- <input type="hidden" name="fq" value="${facet}" /> -->
-		<#if     facet?starts_with("district_text:")>	 <#assign arr = facet?split(":")?last>
+		<#if     facet?starts_with("location_text:")>	 <#assign arr = facet?split(":")?last>
 		<#elseif facet?starts_with("theme_text:")>		 <#assign facet_theme = facet?split(":")?last>
 		<#elseif facet?starts_with("popular_area_text:")><#assign facet_qpop = facet?split(":")?last>
 		<#elseif facet?starts_with("handicap_text:")>	 <#assign facet_handicap = facet?split(":")?last>
@@ -153,13 +153,13 @@
 									
 									<#if facets??>
 										<#list facets as facet>
-											<#if facet.name == "district_text">
+											<#if facet.name == "location_text">
 												<#list facet.values?sort as value>
 													<#if value.count != 0>
 														<#if arr == value.name>
-															<option value="district_text:${(value.name)!''}" selected="selected" >${(value.name)!''} (${(value.count)!''})</option>
+															<option value="location_text:${(value.name)!''}" selected="selected" >${(value.name)!''} (${(value.count)!''})</option>
 														<#else>
-															<option value="district_text:${(value.name)!''}" >${(value.name)!''} (${(value.count)!''})</option>
+															<option value="location_text:${(value.name)!''}" >${(value.name)!''} (${(value.count)!''})</option>
 														</#if>
 													</#if>
 												</#list>
