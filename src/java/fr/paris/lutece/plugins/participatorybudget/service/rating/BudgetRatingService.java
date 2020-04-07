@@ -116,10 +116,10 @@ public class BudgetRatingService extends RatingService
         vote.setProjetId( Integer.parseInt( strProjectId ) );
         vote.setIpAddress( request.getRemoteAddr( ) );
 
-        String strThematique = request.getParameter( Constants.PROJECT_THEMATIQUE );
+        String strThematique = request.getParameter( Constants.PROJECT_THEME );
         if ( strThematique == null )
         {
-            strThematique = (String) request.getAttribute( Constants.PROJECT_THEMATIQUE );
+            strThematique = (String) request.getAttribute( Constants.PROJECT_THEME );
         }
         vote.setThematique( strThematique );
 
@@ -130,10 +130,10 @@ public class BudgetRatingService extends RatingService
         }
         vote.setTitle( strTitle );
 
-        String strLocalisation = request.getParameter( Constants.PROJECT_LOCALISATION );
+        String strLocalisation = request.getParameter( Constants.PROJECT_LOCATION );
         if ( strLocalisation == null )
         {
-            strLocalisation = (String) request.getAttribute( Constants.PROJECT_LOCALISATION );
+            strLocalisation = (String) request.getAttribute( Constants.PROJECT_LOCATION );
         }
         vote.setLocalisation( strLocalisation );
 
@@ -220,10 +220,10 @@ public class BudgetRatingService extends RatingService
         vote.setProjetId( Integer.parseInt( strProjectId ) );
         vote.setIpAddress( request.getRemoteAddr( ) );
 
-        String strThematique = request.getParameter( Constants.PROJECT_THEMATIQUE );
+        String strThematique = request.getParameter( Constants.PROJECT_THEME );
         if ( strThematique == null )
         {
-            strThematique = (String) request.getAttribute( Constants.PROJECT_THEMATIQUE );
+            strThematique = (String) request.getAttribute( Constants.PROJECT_THEME );
         }
         vote.setThematique( strThematique );
 
@@ -234,10 +234,10 @@ public class BudgetRatingService extends RatingService
         }
         vote.setTitle( strTitle );
 
-        String strLocalisation = request.getParameter( Constants.PROJECT_LOCALISATION );
+        String strLocalisation = request.getParameter( Constants.PROJECT_LOCATION );
         if ( strLocalisation == null )
         {
-            strLocalisation = (String) request.getAttribute( Constants.PROJECT_LOCALISATION );
+            strLocalisation = (String) request.getAttribute( Constants.PROJECT_LOCATION );
         }
         vote.setLocalisation( strLocalisation );
 

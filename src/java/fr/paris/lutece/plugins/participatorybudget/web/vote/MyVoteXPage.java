@@ -388,7 +388,7 @@ public class MyVoteXPage extends MVCApplication
         {
             maxDcmtToutParis = voteLoc.getNbVotes( );
         }
-        String localisationProjet = request.getParameter( Constants.PROJECT_LOCALISATION );
+        String localisationProjet = request.getParameter( Constants.PROJECT_LOCATION );
 
         try
         {
@@ -451,14 +451,14 @@ public class MyVoteXPage extends MVCApplication
                     new ErrorJsonResponse( JSON_ERROR_CODE_USER__VOTED_MAX, DatastoreService.getDataValue( KEY_ERROR_CODE_USER__VOTED_MAX, "" ) ) );
         }
         if ( nbrVoteUserParis >= maxDcmtToutParis && maxDcmtToutParis > 0
-                && request.getParameter( Constants.PROJECT_LOCALISATION ).equals( Constants.LOCALISATION_PARIS ) )
+                && request.getParameter( Constants.PROJECT_LOCATION ).equals( Constants.LOCAIION_WHOLE_CITY ) )
         {
 
             return JsonUtil.buildJsonResponse(
                     new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_TOUT_PARIS, DatastoreService.getDataValue( KEY_ERROR_ALREADY_VOTED_TOUT_PARIS, "" ) ) );
         }
         if ( nbrVoteUserArrond >= maxDcmtArrondissement && maxDcmtArrondissement > 0
-                && !request.getParameter( Constants.PROJECT_LOCALISATION ).equals( Constants.LOCALISATION_PARIS ) )
+                && !request.getParameter( Constants.PROJECT_LOCATION ).equals( Constants.LOCAIION_WHOLE_CITY ) )
         {
 
             return JsonUtil.buildJsonResponse( new ErrorJsonResponse( JSON_ERROR_ALREADY_VOTED_ARRONDISSEMENT,
@@ -466,7 +466,7 @@ public class MyVoteXPage extends MVCApplication
 
         }
         if ( localisationProjet != null && !localisationProjet.equals( BudgetUtils.getArrondissementDisplay( user ) )
-                && !localisationProjet.equals( Constants.LOCALISATION_PARIS ) )
+                && !localisationProjet.equals( Constants.LOCAIION_WHOLE_CITY ) )
         {
 
             return JsonUtil
@@ -787,7 +787,7 @@ public class MyVoteXPage extends MVCApplication
         String arrondissement = request.getParameter( PARAMETER_ARRONDISSEMENT );
         String codePostal = BudgetUtils.getArrondissementDisplay( user ).trim( );
 
-        if ( !arrondissement.equals( codePostal ) && !arrondissement.equals( Constants.LOCALISATION_PARIS ) )
+        if ( !arrondissement.equals( codePostal ) && !arrondissement.equals( Constants.LOCAIION_WHOLE_CITY ) )
         {
 
             jsonResponse = new ErrorJsonResponse( JSON_ERROR_CHECKED_ARRONDISSEMENT, DatastoreService.getDataValue( KEY_ERROR_CHECKED_ARRONDISSEMENT, "" ) );

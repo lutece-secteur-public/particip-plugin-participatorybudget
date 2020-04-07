@@ -297,9 +297,9 @@ public class MyVoteService
             _ratingService.doCancelVote( user, String.valueOf( vote.getProjetId( ) ), strExtendableResourceType );
             if ( vote.getLocalisation( ) == "whole_city" )
             {
-                request.setAttribute( Constants.PROJECT_THEMATIQUE, vote.getThematique( ) );
+                request.setAttribute( Constants.PROJECT_THEME, vote.getThematique( ) );
                 request.setAttribute( Constants.PROJECT_TITLE, vote.getTitle( ) );
-                request.setAttribute( Constants.PROJECT_LOCALISATION, Constants.LOCALISATION_PARIS );
+                request.setAttribute( Constants.PROJECT_LOCATION, Constants.LOCAIION_WHOLE_CITY );
                 _ratingService.doVote( String.valueOf( vote.getProjetId( ) ), strExtendableResourceType, BudgetRatingService.VOTE_VALUE, request );
             }
         }

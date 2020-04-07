@@ -43,9 +43,9 @@ public final class Constants
 {
     public static final String PLUGIN_NAME = "participatorybudget";
     public static final String PROJECT_TITLE = "title";
-    public static final String PROJECT_LOCALISATION = "localisation";
-    public static final String PROJECT_THEMATIQUE = "thematique";
-    public static final String LOCALISATION_PARIS = "whole_city";
+    public static final String PROJECT_LOCATION = "localisation";
+    public static final String PROJECT_THEME = "thematique";
+    public static final String LOCAIION_WHOLE_CITY = "whole_city";
 
     // Properties
     public static final String PROPERTY_AUTHORIZED_CITIES = "participatorybudget.authorized.cities";

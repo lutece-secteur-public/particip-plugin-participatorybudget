@@ -116,7 +116,7 @@ public class RatingValidationService implements IRatingValidationService
         {
             maxDcmtToutParis = voteLoc.getNbVotes( );
         }
-        String localisationProjet = request.getParameter( Constants.PROJECT_LOCALISATION );
+        String localisationProjet = request.getParameter( Constants.PROJECT_LOCATION );
 
         if ( nbrVoteUserParis >= maxDcmtToutParis && nbrVoteUserArrond >= maxDcmtArrondissement )
         {
@@ -124,20 +124,20 @@ public class RatingValidationService implements IRatingValidationService
             return strDefaultErrorUrl;
         }
         if ( nbrVoteUserParis >= maxDcmtToutParis && maxDcmtToutParis > 0
-                && request.getParameter( Constants.PROJECT_LOCALISATION ).equals( Constants.LOCALISATION_PARIS ) )
+                && request.getParameter( Constants.PROJECT_LOCATION ).equals( Constants.LOCAIION_WHOLE_CITY ) )
         {
 
             return strDefaultErrorUrl;
         }
         if ( nbrVoteUserArrond >= maxDcmtArrondissement && maxDcmtArrondissement > 0
-                && !request.getParameter( Constants.PROJECT_LOCALISATION ).equals( Constants.LOCALISATION_PARIS ) )
+                && !request.getParameter( Constants.PROJECT_LOCATION ).equals( Constants.LOCAIION_WHOLE_CITY ) )
         {
 
             return strDefaultErrorUrl;
 
         }
         if ( localisationProjet != null && !localisationProjet.equals( BudgetUtils.getArrondissementDisplay( user ) )
-                && !localisationProjet.equals( Constants.LOCALISATION_PARIS ) )
+                && !localisationProjet.equals( Constants.LOCAIION_WHOLE_CITY ) )
         {
 
             return strDefaultErrorUrl;
