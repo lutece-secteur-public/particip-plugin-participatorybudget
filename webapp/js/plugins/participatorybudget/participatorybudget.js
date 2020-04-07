@@ -4,10 +4,10 @@ var dialog, idResourceToVote, resourceTypeToVote,voteValue,baseUrl,arrondissemen
 function displayLoginBp( encodedBackUrl ) {
 	
 	// Lutece XSS security check seems to need a double-encoded backUrl to avoid an alert due to character '&'.
-	//	var url = baseUrl +'jsp/site/Portal.jsp?page=mylutece&action=login&auth_provider=mylutece-database&back_url='+ encodeURIComponent( encodedBackUrl );
+	//	var url = baseUrl +'jsp/site/Portal.jsp?page=mylutece&action=login&back_url='+ encodeURIComponent( encodedBackUrl );
 
 	// MyLutece do not need a backUrl.
-	var url = baseUrl +'jsp/site/Portal.jsp?page=mylutece&action=login&auth_provider=mylutece-database';
+	var url = baseUrl +'jsp/site/Portal.jsp?page=mylutece&action=login';
 	
 	window.location.href= url;
 }
