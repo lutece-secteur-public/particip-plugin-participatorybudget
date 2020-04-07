@@ -195,7 +195,7 @@ public class MyVoteXPage extends MVCApplication
     private static final String KEY_VALIDATION_VOTE_EMAIL_TEMPLATE = "participatorybudget.site_property.vote_confirmation.template.htmlblock";
 
     // Constant
-    private static final String LOCALISATION_LABEL = "localisation";
+    private static final String LOCALISATION_LABEL = "district";
     private static final String LOCALISATION_VALUE = "whole_city";
     private static final String SEPARATOR = "||";
 
