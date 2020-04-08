@@ -4,7 +4,7 @@
 	
 	<div class="container">
 		<div class="map-msg">
-			Seuls les projets localisés à une adresse précise sont affichés sur cette carte. Pour consulter la liste complète des ${paginator.itemsCount!} projets, cliquez sur le bouton "Liste" situé en haut à droite de ce message.
+			#i18n{participatorybudget.search.map.legendProjectsWithoutAddress}
 		</div>
 
 		<div id="map" class="clearfix" ></div>
@@ -101,7 +101,7 @@ document.getElementsByTagName("head")[0].appendChild(loadresource);
         map.setView(arrondissements[parseInt(arrondissemnt)]["pos"], 14);
     }
 
-    // pour la première couche de fond on l'ajoute à la carte :
+    // Adding first basemap to map
     var esri_streets = L.esri.basemapLayer('Streets').addTo(map);
 
     var markers = new L.MarkerClusterGroup({
@@ -264,7 +264,7 @@ document.getElementsByTagName("head")[0].appendChild(loadresource);
         var strProjet = "projet" + ((arrondissements[i]["geoloc_cnt"] + arrondissements[i]["cnt"]) != 1 ? "s" : "");
         var strArdtTitle = (i==0) ? "whole_city" : (i+ "e arrondissement");
         var strArdtDescription = (i==0) ? "pour Paris" : "dans cet arrondissement";
-        var strPopup = "<p><strong>" + strArdtTitle + " :</strong></p><p>Il y a " +(arrondissements[i]["cnt"] + arrondissements[i]["geoloc_cnt"]) + " " + strProjet + " " + strArdtDescription + ", dont " + arrondissements[i]["cnt"] + " sans adresse précise.</p><p><button type=\"button\" class=\"btn btn-default\" onclick=\"onClickArdtPopup("+i+");\">Voir ces projets</button></p>";
+        var strPopup = "<p><strong>" + strArdtTitle + " :</strong></p><p>Il y a " +(arrondissements[i]["cnt"] + arrondissements[i]["geoloc_cnt"]) + " " + strProjet + " " + strArdtDescription + ", dont " + arrondissements[i]["cnt"] + " sans adresse precise.</p><p><button type=\"button\" class=\"btn btn-default\" onclick=\"onClickArdtPopup("+i+");\">Voir ces projets</button></p>";
         circleLabel.bindPopup(strPopup);
         }
     }
@@ -328,7 +328,8 @@ document.getElementsByTagName("head")[0].appendChild(loadresource);
       "Voir les Chantiers localis&eacute;s" : markers_projectsOP,
       "Quartiers Populaires" : layergroup_qpvqva
   };
-  // paramétrage et ajout du L.control.layers à la carte
+  
+  // parametrage et ajout du L.control.layers a la carte
   var control =  L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(map);
 
 	// Leaflet Legend
@@ -336,7 +337,7 @@ document.getElementsByTagName("head")[0].appendChild(loadresource);
 	legend.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'map-legend leaflet-control-layers leaflet-control-layers-expanded');
 		div.innerHTML += '<div class="map-legend-line"><div class="marker"><img src="' +  (L.Icon.Default.imagePath + '/marker-icon.png')       + '"></div>Projet gagnant</div>';
-		div.innerHTML += '<div class="map-legend-line"><div class="marker"><img src="' +  (L.Icon.Default.imagePath + '/marker-icon-brown.png') + '"></div>Chantier localisé</div>';
+		div.innerHTML += '<div class="map-legend-line"><div class="marker"><img src="' +  (L.Icon.Default.imagePath + '/marker-icon-brown.png') + '"></div>Chantier localise</div>';
 		return div;
 	};
 	legend.addTo(map);

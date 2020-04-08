@@ -148,24 +148,24 @@ public class CampaignChronoJspBean extends ManageCampaignJspBean
         } ) );
         model.put( MARK_THEME_MAP, themeMap );
 
-        // Adding depositaries in model, sorted by code in ascending order
-        // Map<String, List<Depositary>> depositaryMap = new HashMap<String, List<Depositary>>();
-        // List<Depositary> depositaries = new ArrayList<Depositary>( DepositaryHome.getDepositariesList() );
-        // for (Depositary depositary : depositaries) {
-        // if ( depositaryMap.get(depositary.getCodeCampaign()) == null )
-        // depositaryMap.put(depositary.getCodeCampaign(), new ArrayList<Depositary>());
-        // depositaryMap.get(depositary.getCodeCampaign()).add(depositary);
+        // Adding submitters in model, sorted by code in ascending order
+        // Map<String, List<Submitter>> submitterMap = new HashMap<String, List<Submitter>>();
+        // List<Submitter> submitters = new ArrayList<Submitter>( SubmitterHome.getSubmittersList() );
+        // for (Submitter submitter : submitters) {
+        // if ( submitterMap.get(submitter.getCodeCampaign()) == null )
+        // submitterMap.put(submitter.getCodeCampaign(), new ArrayList<Submitter>());
+        // submitterMap.get(submitter.getCodeCampaign()).add(submitter);
         // }
-        // depositaryMap.forEach((k,v) ->
-        // Collections.sort(v, new Comparator<Depositary>() {
+        // submitterMap.forEach((k,v) ->
+        // Collections.sort(v, new Comparator<Submitter>() {
         // @Override
-        // public int compare(Depositary depositary1, Depositary depositary2)
+        // public int compare(Submitter submitter1, Submitter submitter2)
         // {
-        // return ( depositary1.getCodeDepositaryType().compareTo(depositary2.getCodeDepositaryType() ));
+        // return ( submitter1.getCodeSubmitterType().compareTo(submitter2.getCodeSubmitterType() ));
         // }
         // })
         // );
-        // model.put( MARK_DEPOSITARY_MAP, depositaryMap);
+        // model.put( MARK_SUBMITTER_MAP, submitterMap);
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_IDEATIONCAMPAIGNS, TEMPLATE_MANAGE_IDEATIONCAMPAIGNS, model );
     }

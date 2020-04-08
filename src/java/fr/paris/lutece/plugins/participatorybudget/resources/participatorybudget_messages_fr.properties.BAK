@@ -116,7 +116,7 @@ upload.message.multipleUpload=Vous ne pouvez-pas uploader plus d'un fichier
 upload.message.avatarMaxSize=La taille de l'image upload\u00e9e ne doit pas d\u00e9passer 2 MO
 upload.message.avatarMimeTypeAutorized=L'image upload\u00e9e doit etre de type jpeg ou png 
 
-mes_infos_popup.messageAccountNotVerified=Pour pouvoir d\u00e9poser un projet, votre compte doit \u00eatre valid\u00e9
+mes_infos_popup.messageAccountNotVerified=Pour pouvoir d\u00e9poser un projet, votre compte doit \u00eatre valu00e9
 mes_infos_popup.messageAccountNotCompleted=Pour pouvoir d\u00e9poser un projet, compl\u00e9tez ce formulaire :
 mes_infos_popup.buttonSendAccountValidation=Me renvoyer le mail de validation
 mes_infos_popup.buttonOk=OK
@@ -336,7 +336,7 @@ mes_infos.civilityNPR=Non pr\u00e9cis\u00e9
 
 
 
-mes_infos_popup.messageAccountNotVerified=Pour pouvoir d\u00e9poser un projet, votre compte doit \u00eatre valid\u00e9
+mes_infos_popup.messageAccountNotVerified=Pour pouvoir d\u00e9poser un projet, votre compte doit \u00eatre valu00e9
 mes_infos_popup.messageAccountNotCompleted=Pour pouvoir d\u00e9poser un projet, compl\u00e9tez ce formulaire :
 mes_infos_popup.buttonSendAccountValidation=Me renvoyer le mail de validation
 mes_infos_popup.buttonOk=OK
