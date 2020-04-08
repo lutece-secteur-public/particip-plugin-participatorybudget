@@ -66,6 +66,8 @@ public class CampaignTheme implements Serializable
     @NotEmpty( message = "#i18n{participatorybudget.validation.campaigntheme.Description.notEmpty}" )
     private String _strDescription;
 
+    private String _strFrontRgb;
+
     private boolean _bActive;
 
     private File _fileImage;
@@ -208,4 +210,21 @@ public class CampaignTheme implements Serializable
     {
         this._fileImage = _fileImage;
     }
+
+    /**
+     * @return the front color as rgb
+     */
+    public String getFrontRgb( )
+    {
+        return _strFrontRgb;
+    }
+
+    /**
+     * @param Code the front color as rgb (ex : #fe5213 )
+     */
+    public void setFrontRgb( String strFrontRgb )
+    {
+        this._strFrontRgb = strFrontRgb;
+    }
+
 }

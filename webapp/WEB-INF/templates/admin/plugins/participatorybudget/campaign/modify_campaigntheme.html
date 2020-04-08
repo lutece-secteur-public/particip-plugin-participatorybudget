@@ -12,6 +12,15 @@
         <@fieldInputText i18nLabelKey="participatorybudget.modify_campaigntheme.labelDescription" inputName="description" mandatory=true value="${campaigntheme.description}" i18nHelpBlockKey="participatorybudget.modify_campaigntheme.labelDescription.help" />
         <@fieldInputText i18nLabelKey="participatorybudget.modify_campaigntheme.labelActive" inputName="active" mandatory=true value="${campaigntheme.active?c}" i18nHelpBlockKey="participatorybudget.modify_campaigntheme.labelActive.help" />
         <@fieldInputText i18nLabelKey="participatorybudget.modify_campaigntheme.labelImage" inputName="imageId"  value="${(campaigntheme.image.idImage)!''}" i18nHelpBlockKey="participatorybudget.modify_campaigntheme.labelImage.help" />
+
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label" for="front_rgb">Front color&nbsp;*&nbsp;:</label>
+			<div class="col-xs-12 col-sm-9 col-md-6 col-lg-6">
+				<input class="form-control" id="front_rgb" name="front_rgb" type="color" value="${(campaigntheme.frontRgb)!'#808080'}"  />
+				<p class="help-block">Front color (help text)</p>
+			</div>
+		</div>
+
         <@actionButtons button1Name="action_modifyCampaignTheme" button2Name="view_manageCampaignThemes"/>
     </form>
 </@rowBoxHeader>

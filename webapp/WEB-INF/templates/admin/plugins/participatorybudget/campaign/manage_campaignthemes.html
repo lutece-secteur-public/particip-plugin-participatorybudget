@@ -26,6 +26,7 @@
             <th>#i18n{participatorybudget.manage_campaignthemes.columnDescription}</th>
             <th>#i18n{participatorybudget.manage_campaignthemes.columnActive}</th>
             <th>#i18n{participatorybudget.manage_campaignthemes.columnImage}</th>
+            <th>#i18n{participatorybudget.manage_campaignthemes.frontRgb}</th>
             <th>#i18n{portal.util.labelActions}</th>
         </tr>
         <@tableHeadBodySeparator />
@@ -49,6 +50,12 @@
             </td>
             <td>
                 ${(campaigntheme.image.idImage)!''}
+            </td>
+            <td>
+                ${(campaigntheme.image.idImage)!''}
+            </td>
+            <td>
+                <div style="background-color:${(campaigntheme.frontRgb)!'#808080'}">&nbsp;</div>
             </td>
         <td>
             <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignThemes.jsp?view=modifyCampaignTheme&id=${campaigntheme.id}"

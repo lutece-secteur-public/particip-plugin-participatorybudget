@@ -53,15 +53,15 @@ public final class CampaignThemeDAO implements ICampaignThemeDAO
 {
     // Constants
     private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campaign_theme ) FROM participatorybudget_campaign_theme";
-    private static final String SQL_QUERY_SELECT = "SELECT id_campaign_theme, code_campaign, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme WHERE id_campaign_theme = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_theme ( id_campaign_theme, code_campaign, code_theme, title, description, active, image_file ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_SELECT = "SELECT id_campaign_theme, code_campaign, code_theme, title, description, active, image_file, front_rgb FROM participatorybudget_campaign_theme WHERE id_campaign_theme = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_theme ( id_campaign_theme, code_campaign, code_theme, title, description, active, image_file, front_rgb ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_theme WHERE id_campaign_theme = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_theme SET id_campaign_theme = ?, code_campaign = ?, code_theme = ?, title = ?, description = ?, active = ?, image_file = ? WHERE id_campaign_theme = ?";
+    private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_theme SET id_campaign_theme = ?, code_campaign = ?, code_theme = ?, title = ?, description = ?, active = ?, image_file = ?, front_rgb = ?  WHERE id_campaign_theme = ?";
     private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_theme SET code_campaign = ? WHERE code_campaign = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_campaign_theme, code_campaign, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_campaign_theme, code_campaign, code_theme, title, description, active, image_file, front_rgb FROM participatorybudget_campaign_theme";
     private static final String SQL_QUERY_SELECTALL_BY_CAMPAIGN = SQL_QUERY_SELECTALL + " WHERE code_campaign = ?";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_campaign_theme FROM participatorybudget_campaign_theme";
-    private static final String SQL_QUERY_SELECT_BY_TITLETHEME = "SELECT id_campaign_theme, code_campaign, code_theme, title, description, active, image_file FROM participatorybudget_campaign_theme WHERE code_theme = ?";
+    private static final String SQL_QUERY_SELECT_BY_TITLETHEME = "SELECT id_campaign_theme, code_campaign, code_theme, title, description, active, image_file, front_rgb FROM participatorybudget_campaign_theme WHERE code_theme = ?";
 
     /**
      * Generates a new primary key
@@ -113,6 +113,7 @@ public final class CampaignThemeDAO implements ICampaignThemeDAO
         {
             daoUtil.setIntNull( nCpt++ );
         }
+        daoUtil.setString( nCpt++, campaignTheme.getFrontRgb( ) );
 
         daoUtil.executeUpdate( );
         daoUtil.free( );
@@ -210,6 +211,7 @@ public final class CampaignThemeDAO implements ICampaignThemeDAO
         {
             daoUtil.setIntNull( nCpt++ );
         }
+        daoUtil.setString( nCpt++, campaignTheme.getFrontRgb( ) );
         daoUtil.setInt( nCpt++, campaignTheme.getId( ) );
 
         daoUtil.executeUpdate( );
@@ -268,6 +270,8 @@ public final class CampaignThemeDAO implements ICampaignThemeDAO
         campaignTheme.setDescription( daoUtil.getString( nCpt++ ) );
         campaignTheme.setActive( daoUtil.getBoolean( nCpt++ ) );
         campaignTheme.setImage( FileHome.findByPrimaryKey( daoUtil.getInt( nCpt++ ) ) );
+        campaignTheme.setFrontRgb( daoUtil.getString( nCpt++ ) );
+
         return campaignTheme;
     }
 
