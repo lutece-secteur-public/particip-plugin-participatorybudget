@@ -220,7 +220,8 @@ public class CampaignTheme implements Serializable
     }
 
     /**
-     * @param Code the front color as rgb (ex : #fe5213 )
+     * @param Code
+     *            the front color as rgb (ex : #fe5213 )
      */
     public void setFrontRgb( String strFrontRgb )
     {

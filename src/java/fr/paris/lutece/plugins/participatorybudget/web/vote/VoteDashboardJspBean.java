@@ -107,7 +107,7 @@ public class VoteDashboardJspBean extends MVCAdminJspBean
     private static final String ACTION_DO_CHANGE_CAMPAIGN = "changeCampaign";
     private static final String ACTION_CONFIRM_GENERATE_RANDOM_VOTE_DATA = "confirmGenerateRandomVoteData";
     private static final String ACTION_GENERATE_RANDOM_VOTE_DATA = "generateRandomVoteData";
-    
+
     // Messages
     private static final String MESSAGE_CURRENT_CAMPAIGN_MODIFIED = "participatorybudget.vote_dashboard.message.currentCampaignModified";
     private static final String MESSAGE_CONFIRM_GENERATE_RANDOM_VOTE_DATA = "participatorybudget.vote_dashboard.message.confirmGenerateRandomDataVote";
@@ -191,44 +191,45 @@ public class VoteDashboardJspBean extends MVCAdminJspBean
     @Action( ACTION_GENERATE_RANDOM_VOTE_DATA )
     public String getGenerateRandomVoteData( HttpServletRequest request ) throws UserNotSignedException
     {
-    	DocumentFilter documentFilter = new DocumentFilter();
-    	documentFilter.setCodeDocumentType( "pb_project" );
-    	List<Document> documents = new ArrayList<Document>( DocumentHome.findByFilter( documentFilter, request.getLocale() ) );
+        DocumentFilter documentFilter = new DocumentFilter( );
+        documentFilter.setCodeDocumentType( "pb_project" );
+        List<Document> documents = new ArrayList<Document>( DocumentHome.findByFilter( documentFilter, request.getLocale( ) ) );
 
-    	List<Campaign> campaigns = new ArrayList<Campaign>( CampaignHome.getCampaignsList() );
-    	
-    	// Add 10 votes
-    	for (int i = 0; i < 10; i++) {
-			
-    		Vote vote = new Vote();
-			
-    		// User id
-    		vote.setUserId( UUID.randomUUID().toString() );
-			
-    		// Project data
-    		Document document = documents.get( RandomUtils.nextInt( 0, documents.size()) );
-    		vote.setProjetId( document.getId() );
-    		vote.setTitle( document.getTitle() );
-    		vote.setLocation( "" + document.getAttribute( "location" ).getId() );
-    		vote.setTheme( document.getAttribute( "theme" ).getTextValue() );
+        List<Campaign> campaigns = new ArrayList<Campaign>( CampaignHome.getCampaignsList( ) );
 
-    		// Vote date
-    		Campaign campaign = campaigns.get( RandomUtils.nextInt( 0, campaigns.size()) );
-    		Collection<CampaignPhase> phases = CampaignPhaseHome.getCampaignPhasesListByCampaign( campaign.getCode() );
-    		CampaignPhase votePhase = phases.stream().filter( p -> "VOTE".contentEquals( p.getCodePhaseType() ) ).findFirst().get();
-    		
-    		int voteNbDays = Math.round( ( votePhase.getEnd().getTime() - votePhase.getStart().getTime() ) / (1000  * 60 * 60 * 24) );
-    		Calendar cal = Calendar.getInstance();
-    		cal.setTime( votePhase.getStart() );
-    		cal.add(Calendar.DAY_OF_WEEK, RandomUtils.nextInt(0, voteNbDays ));
-    		vote.setDateVote( new Timestamp(cal.getTime().getTime()) );
+        // Add 10 votes
+        for ( int i = 0; i < 10; i++ )
+        {
 
-    		// Empty fields
-    		vote.setIpAddress( "127.0.0.1" );
-    		
-        	VoteHome.create( vote );
-		}
-    	
+            Vote vote = new Vote( );
+
+            // User id
+            vote.setUserId( UUID.randomUUID( ).toString( ) );
+
+            // Project data
+            Document document = documents.get( RandomUtils.nextInt( 0, documents.size( ) ) );
+            vote.setProjetId( document.getId( ) );
+            vote.setTitle( document.getTitle( ) );
+            vote.setLocation( "" + document.getAttribute( "location" ).getId( ) );
+            vote.setTheme( document.getAttribute( "theme" ).getTextValue( ) );
+
+            // Vote date
+            Campaign campaign = campaigns.get( RandomUtils.nextInt( 0, campaigns.size( ) ) );
+            Collection<CampaignPhase> phases = CampaignPhaseHome.getCampaignPhasesListByCampaign( campaign.getCode( ) );
+            CampaignPhase votePhase = phases.stream( ).filter( p -> "VOTE".contentEquals( p.getCodePhaseType( ) ) ).findFirst( ).get( );
+
+            int voteNbDays = Math.round( ( votePhase.getEnd( ).getTime( ) - votePhase.getStart( ).getTime( ) ) / ( 1000 * 60 * 60 * 24 ) );
+            Calendar cal = Calendar.getInstance( );
+            cal.setTime( votePhase.getStart( ) );
+            cal.add( Calendar.DAY_OF_WEEK, RandomUtils.nextInt( 0, voteNbDays ) );
+            vote.setDateVote( new Timestamp( cal.getTime( ).getTime( ) ) );
+
+            // Empty fields
+            vote.setIpAddress( "127.0.0.1" );
+
+            VoteHome.create( vote );
+        }
+
         return getManageVoteDashboard( request );
     }
 }

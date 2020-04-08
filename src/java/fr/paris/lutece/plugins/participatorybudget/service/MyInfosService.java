@@ -102,8 +102,8 @@ public final class MyInfosService
     private static final String TYPE_VALIDATE_ACCOUNT = "validate_account";
     private static volatile ReferenceList _listArrondissements;
     private static volatile ReferenceList _listPostalCode;
-    private static List<String> _listAuthorizedCities = Arrays
-            .asList( AppPropertiesService.getProperty( ParticipatoryBudgetConstants.PROPERTY_AUTHORIZED_CITIES ).split( ParticipatoryBudgetConstants.AUTHORIZED_CITIES_SEPARATOR ) );
+    private static List<String> _listAuthorizedCities = Arrays.asList( AppPropertiesService
+            .getProperty( ParticipatoryBudgetConstants.PROPERTY_AUTHORIZED_CITIES ).split( ParticipatoryBudgetConstants.AUTHORIZED_CITIES_SEPARATOR ) );
 
     /** Private constructor */
     private MyInfosService( )
@@ -634,7 +634,8 @@ public final class MyInfosService
     {
         String strArrondissement = userPreferenceService.get( user.getName( ), PREF_KEY_ARRONDISSEMENT_VOTE, StringUtils.EMPTY );
 
-        if ( CampaignService.getInstance( ).isAfterBeginning( ParticipatoryBudgetConstants.SUBMIT ) && CampaignService.getInstance( ).isBeforeEnd( ParticipatoryBudgetConstants.VOTE )
+        if ( CampaignService.getInstance( ).isAfterBeginning( ParticipatoryBudgetConstants.SUBMIT )
+                && CampaignService.getInstance( ).isBeforeEnd( ParticipatoryBudgetConstants.VOTE )
                 && ( StringUtils.isBlank( strArrondissement ) || UNDEFINED_POSTALCODE_KEY.equals( strArrondissement ) ) )
         {
             myInfos.setIsValid( false );

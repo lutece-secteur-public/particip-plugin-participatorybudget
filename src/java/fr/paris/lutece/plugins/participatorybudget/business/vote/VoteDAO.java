@@ -63,8 +63,7 @@ public final class VoteDAO implements IVoteDAO
     private static final String SQl_QUERY_COUNT_VOTE_BY_DATE_BY_CAMPAIGN = "SELECT dc.text_value, CONVERT(v.date_vote, DATE), COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID + " GROUP BY dc.text_value, CONVERT(v.date_vote, DATE)";
     private static final String SQl_QUERY_COUNT_VOTE_BY_THEME = "SELECT v.theme, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
-            + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
-            + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.theme";
+            + CAMPAIGN_CODE_DOCUMENT_ATTR_ID + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.theme";
     private static final String SQl_QUERY_COUNT_VOTE_BY_LOCATION = "SELECT v.location, COUNT(*) FROM participatorybudget_votes v JOIN document_content dc ON dc.id_document = v.id_projet AND dc.id_document_attr = "
             + CAMPAIGN_CODE_DOCUMENT_ATTR_ID
             + " JOIN participatorybudget_campaign c ON c.code_campaign = dc.text_value AND c.id_campaign = ? GROUP BY v.location";

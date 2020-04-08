@@ -45,9 +45,9 @@ public final class ParticipatoryBudgetConstants
     public static final String PROJECT_TITLE = "title";
     public static final String PROJECT_LOCATION = "location";
     public static final String PROJECT_THEME = "theme";
-    
+
     public static final String LOCATION_WHOLE_CITY = "whole_city";
-    
+
     public static final String NOT_POPULAR_AREA_VALUE = "no";
 
     // Properties

@@ -86,8 +86,8 @@ public class BizStatService
     /**
      * Returns the number of notifiable users when updating and notifying realization.
      * 
-     * Column ¤1 : Id Doc Lutece of winner project Column ¤2 : nb of submitters of initial ideas Column ¤3 : nb of followers of initial ideas Column ¤4 : nb
-     * of followers of winner project
+     * Column ¤1 : Id Doc Lutece of winner project Column ¤2 : nb of submitters of initial ideas Column ¤3 : nb of followers of initial ideas Column ¤4 : nb of
+     * followers of winner project
      */
     @BizStatDescription( value = "SUIVI DE PROJET - Nombre d'usagers ciblés lors d'une notification" )
     public List<String [ ]> export_NumberOfNotifiableUsersWhenNotifyingOnRealization( ) throws Exception

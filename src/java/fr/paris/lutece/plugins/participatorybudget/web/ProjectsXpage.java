@@ -145,8 +145,7 @@ public class ProjectsXpage extends MVCApplication
             String strArrt = getArrondissement( user );
             if ( StringUtils.isNotBlank( strArrt ) )
             {
-                sbReq.append( "&fq=" + LOCATION + strDoublePointSymbol + strArrt + "\" " + "OR" + " " + LOCATION + strDoublePointSymbol + "\""
-                        + "Whole city" );
+                sbReq.append( "&fq=" + LOCATION + strDoublePointSymbol + strArrt + "\" " + "OR" + " " + LOCATION + strDoublePointSymbol + "\"" + "Whole city" );
             }
 
         }
