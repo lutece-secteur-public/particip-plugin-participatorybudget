@@ -398,6 +398,20 @@ public class CampaignService implements ICampaignService
         return getThemes( getLastCampaign( ).getCode( ) );
     }
 
+    @Override
+    public ReferenceList getThemesFrontRgb( String codeCampaign )
+    {
+        ReferenceList items = new ReferenceList( );
+
+        Collection<CampaignTheme> list = CampaignThemeHome.getCampaignThemesListByCampaign( codeCampaign );
+        for ( CampaignTheme theme : list )
+        {
+            items.addItem( theme.getCode( ), theme.getFrontRgb( ) );
+        }
+
+        return items;
+    }
+
     // *********************************************************************************************
     // * CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE *
     // * CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE *

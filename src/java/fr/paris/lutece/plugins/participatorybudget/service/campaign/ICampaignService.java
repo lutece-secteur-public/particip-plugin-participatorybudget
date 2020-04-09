@@ -124,10 +124,14 @@ public interface ICampaignService
     // * THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES THEMES TH *
     // ***********************************************************************************
 
+    // Return themes of a campaign
     public ReferenceList getThemes( String codeCampaign );
 
-    // Same as precedent, for last campaign
+    // Return themes of last campaign
     public ReferenceList getThemes( );
+
+    // Return themes front rgb of a campaign
+    public ReferenceList getThemesFrontRgb( String codeCampaign );
 
     // *********************************************************************************************
     // * CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE CLONE *

@@ -641,4 +641,31 @@ public class CampaignRest extends AbstractServiceRest
         }
     }
 
+    /**
+     * get themes front rgb of a campaign
+     *
+     * @return the response of the request getThemes for a campaign
+     * @throws ServletException
+     */
+    @GET
+    @Path( "{campaign}/themes-front-rgb" )
+    @Produces( MediaType.APPLICATION_JSON )
+    public String getCampaignThemesFrontRgb( @Context HttpServletRequest request, @PathParam( "campaign" ) String campaign ) throws ServletException
+    {
+        if ( !isRequestAuthenticated( request ) )
+        {
+            AppLogService.error( LOG_UNAUTHENTICATED_REQUEST );
+            throw new ServletException( LOG_UNAUTHENTICATED_REQUEST );
+        }
+        try
+        {
+            return formatJson( "OK", CampaignService.getInstance( ).getThemesFrontRgb( campaign ) );
+        }
+        catch( NoSuchPhaseException e )
+        {
+            AppLogService.error( e );
+            return formatJson( "KO", false );
+        }
+    }
+
 }
