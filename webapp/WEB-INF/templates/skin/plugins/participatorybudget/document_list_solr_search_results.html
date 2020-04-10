@@ -62,7 +62,7 @@
 					<a id="title-${id_document}" href="${result.url}" alt="${result.title}" title="${result.title}">
 					
 						<#-- Image -->
-						<#assign img_url = "images/local/skin/theme_${theme_class}.png">
+						<#assign img_url = "images/local/skin/plugins/plugin-participatorybudget/generic_thumb_picture.png">
 						<#if result.dynamicFields.image_text?has_content>
 							<#assign img_url = result.dynamicFields.image_text?split("src=\"")[1]?split("\"")[0]>
 						</#if>
