@@ -22,11 +22,23 @@
 				<h2 class="visuallyhidden">Liste des résultats de la recherche</h2>
 				<div id="psoum-list" class="row">
 		
-					<#-- On boucle sur les projets à afficher -->
+					<#-- Loop on projects to display -->
 					<#list results_list as result>
-					
-						<#assign theme_class = "other">
-					
+
+						<#-- Get campaign data -->
+						<#if result.dynamicFields?? && result.dynamicFields.campaign_text??>
+							<#assign campaign = i18n('participatoryideation.view.list.card.campaign', result.dynamicFields.campaign_text)>
+							<#assign campaign_data = global_static[result.dynamicFields.campaign_text]>
+						</#if>
+			
+						<#-- Get campaign data -->
+						<#assign theme_front_color = '#3c67ff' >
+						
+						<#if (result.dynamicFields.theme_text)??>
+							<#assign theme_libelle = (campaign_data['theme_list']?filter( i -> i.code = result.dynamicFields.theme_text )[0].name)!result.dynamicFields.theme_text >
+							<#assign theme_front_color = (campaign_data['theme_front_rgb_list']?filter( i -> i.code = result.dynamicFields.theme_text )[0].name)!'#3c67ff' >
+						</#if>
+
 						<#assign id_document = "${(result.id?split('Lutece_')?last)?split('_')?first}">
 						<#assign result_detail_idx = ((paginator.pageCurrent-1)*paginator.itemsPerPage)+1+result_index>
 		
@@ -35,25 +47,6 @@
 							<#assign theme_class_bis = "perdant">
 						<#else>
 							<#assign theme_class_bis = "undefined">
-						</#if>
-						
-						<#if result.dynamicFields?? && result.dynamicFields.theme_text??>
-							<#if     result.dynamicFields.theme_text = "Cadre de vie"><#assign theme_class = "cadre_vie">
-							<#elseif result.dynamicFields.theme_text = "Culture" || result.dynamicFields.theme_text = "Culture et patrimoine"><#assign theme_class = "culture">
-							<#elseif result.dynamicFields.theme_text = "Economie et emploi"><#assign theme_class = "economie_emploi">
-							<#elseif result.dynamicFields.theme_text = "Économie, emploi et attractivité"><#assign theme_class = "economie_emploi">
-							<#elseif result.dynamicFields.theme_text = "Education et jeunesse"><#assign theme_class = "education">
-							<#elseif result.dynamicFields.theme_text = "Environnement" || result.dynamicFields.theme_text = "Nature en ville"><#assign theme_class = "environnement">
-							<#elseif result.dynamicFields.theme_text = "Logement et habitat"><#assign theme_class = "logement">
-							<#elseif result.dynamicFields.theme_text = "Participation citoyenne"><#assign theme_class = "participation_citoyenne">
-							<#elseif result.dynamicFields.theme_text = "Prévention et sécurité"><#assign theme_class = "prevention_securite">
-							<#elseif result.dynamicFields.theme_text = "Propreté"><#assign theme_class = "proprete">
-							<#elseif result.dynamicFields.theme_text = "Santé"><#assign theme_class = "sante">
-							<#elseif result.dynamicFields.theme_text = "Solidarité" || result.dynamicFields.theme_text = "Vivre ensemble" || result.dynamicFields.theme_text = "Solidarité et cohésion sociale " || result.dynamicFields.theme_text = "Solidarité et cohésion sociale"><#assign theme_class = "solidarite">
-							<#elseif result.dynamicFields.theme_text = "Sport"><#assign theme_class = "sport">
-							<#elseif result.dynamicFields.theme_text = "Transport et mobilité"><#assign theme_class = "transport">
-							<#elseif result.dynamicFields.theme_text = "Ville intelligente et numérique"><#assign theme_class = "ville_numerique">
-							</#if>
 						</#if>
 						
 						<div class="col-xs-12 col-sm-6 col-md-4 psoum-panel <#if theme_class_bis = 'perdant'>psoum-perdant</#if>">
@@ -66,7 +59,7 @@
 									<#assign img_url = result.dynamicFields.image_text?split("src=\"")[1]?split("\"")[0]>
 								</#if>
 		
-								<div class="psoum-card-img" style="background-image:url(${img_url!})">
+								<div class="psoum-card-img" style="background-image:url(${img_url!}); <#if !result.dynamicFields.image_text?has_content>box-shadow: inset 0 0 0 2000px ${theme_front_color}80;</#if>">
 									<#if campaignService.isAfterBeginning( "RESULT" )>
 										<#if result.dynamicFields.status_text == "GAGNANT" || result.dynamicFields.status_text == "SUIVI" >
 											<p class="winner">Projet gagnant<br>avec ${result.dynamicFields.nombre_de_votes_long?string.number!''} votes</p>
@@ -76,22 +69,17 @@
 									</#if>
 								</div>
 			
-								<#-- La classe 'print-theme-${theme_class}' utilisee lors de l'impression -->
-								<div class="psoum-card print-theme-${theme_class} bordered-4px-theme-${theme_class}">
+								<div class="psoum-card" style="border: 4px solid ${theme_front_color}">
 				
 									<#-- Theme -->
-									<div class="psoum-card-theme bgcolor-theme-${theme_class} bgcolor-theme-${theme_class_bis}">
-										<span>${result.dynamicFields.theme_text!"No theme"}</span>
+									<div class="psoum-card-theme bgcolor-theme-${theme_class_bis}" style="background-color: ${theme_front_color}">
+										<span>${theme_libelle!''}</span>
 									</div>
 				
 									<#-- Location -->
 									<div class="psoum-card-loc">
 			
-										<#if result.dynamicFields.status_text?? && result.dynamicFields.status_text = "PERDANT">
-											<img src="images/local/skin/marker.png" class="img-responsive pull-left" alt="" title="">
-										<#else>
-											<img src="images/local/skin/marker-${theme_class}.png" class="img-responsive pull-left" alt="" title="">
-										</#if>
+										<img src="images/local/skin/marker.png" class="img-responsive pull-left" alt="" title="">
 			
 										<div class="for-print">
 											<#if result.dynamicFields.address_text?has_content>
@@ -147,7 +135,7 @@
 									<#-- Pastilles et coût -->
 									<div class="psoum-card-footer">
 										<div class="budget pull-right">
-											<img src="images/local/skin/money-${theme_class}.png" width="25px" height="25px" alt="" title="">
+											<img src="images/local/skin/money.png" width="25px" height="25px" alt="" title="">
 											<#if result.dynamicFields??>
 												<#if result.dynamicFields.value_long?? && result.dynamicFields.value_long &gt; 0>
 													<#setting locale="fr_FR">

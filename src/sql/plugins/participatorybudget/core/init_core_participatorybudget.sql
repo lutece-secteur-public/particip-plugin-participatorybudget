@@ -9,6 +9,26 @@ INSERT INTO core_datastore VALUES ('participatorybudget.site_property.error_code
 INSERT INTO core_datastore VALUES ('participatorybudget.site_property.error_checked_arrondissement'            , '');
 INSERT INTO core_datastore VALUES ('participatorybudget.site_property.error_code_user_not_signed'              , '');
 
+INSERT INTO core_datastore VALUES ('solr.app.conf.list_projects.addonBeans.0', 'participatorybudget.ProjectsRealisationSolrListAddon');
+INSERT INTO core_datastore VALUES ('solr.app.conf.list_projects.fq', '(status_text:SUIVI" OR status_text:"suivi") AND type:"PB Project');
+INSERT INTO core_datastore VALUES ('solr.app.conf.list_projects.mapping', 'false');
+INSERT INTO core_datastore VALUES ('solr.app.conf.list_projects.template', 'skin/plugins/participatorybudget/document_list_solr_search_results.html');
+INSERT INTO core_datastore VALUES ('solr.app.conf.map_projects.fq', '(status_text:SUIVI" OR status_text:"suivi") AND type:"PB Project');
+INSERT INTO core_datastore VALUES ('solr.app.conf.map_projects.mapping', 'true');
+INSERT INTO core_datastore VALUES ('solr.app.conf.map_projects.template', 'skin/plugins/participatorybudget/document_map_solr_search_results.html');
+INSERT INTO core_datastore VALUES ('solr.app.conf.map_projets.addonBeans.0', 'participatorybudget.BudgetSolrAddon');
+INSERT INTO core_datastore VALUES ('solr.app.conf.map_projets.fq', '(status_text:SOUMIS" OR status_text:"GAGNANT" OR status_text:"PERDANT") AND type:"PB Project');
+INSERT INTO core_datastore VALUES ('solr.app.conf.map_projets.mapping', 'true');
+INSERT INTO core_datastore VALUES ('solr.app.conf.map_projets.template', 'skin/plugins/participatorybudget/projet_mdp_map_solr_search_results.html');
+INSERT INTO core_datastore VALUES ('solr.app.conf.projects_mdp_detail.addonBeans.0', 'participatorybudget.VotesSolrAddon');
+INSERT INTO core_datastore VALUES ('solr.app.conf.projects_mdp_detail.fq', '(status_text:SOUMIS" OR status_text:"GAGNANT" OR status_text:"PERDANT") AND type:"PB Project');
+INSERT INTO core_datastore VALUES ('solr.app.conf.projects_mdp_detail.mapping', 'false');
+INSERT INTO core_datastore VALUES ('solr.app.conf.projects_mdp_detail.template', 'skin/plugins/participatorybudget/projet_mdp_details_solr_search_results.html');
+INSERT INTO core_datastore VALUES ('solr.app.conf.projects_mdp.addonBeans.0', 'participatorybudget.BudgetSolrListAddon');
+INSERT INTO core_datastore VALUES ('solr.app.conf.projects_mdp.fq', '(status_text:SOUMIS" OR status_text:"GAGNANT" OR status_text:"PERDANT") AND type:"PB Project');
+INSERT INTO core_datastore VALUES ('solr.app.conf.projects_mdp.mapping', 'false');
+INSERT INTO core_datastore VALUES ('solr.app.conf.projects_mdp.template', 'skin/plugins/participatorybudget/projet_mdp_list_solr_search_results.html');
+
 --
 -- Data for table core_admin_right
 --

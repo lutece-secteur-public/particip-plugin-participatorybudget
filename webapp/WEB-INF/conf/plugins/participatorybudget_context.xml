@@ -52,6 +52,7 @@
 	<bean id="participatorybudget.rgpdTreatmentLogDAO" class="fr.paris.lutece.plugins.participatorybudget.business.rgpd.RGPDTreatmentLogDAO" />
 
     <!-- Services -->
+	<bean id="participatorybudget.budgetStaticService"    				 class="fr.paris.lutece.plugins.participatorybudget.service.BudgetStaticService" />
     <bean id="participatorybudget.ratingValidationService"               class="fr.paris.lutece.plugins.participatorybudget.service.rating.RatingValidationService" />
     <bean id="participatorybudget.myVoteService"                         class="fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService" />
     <bean id="participatorybudget.budgetparticipatifSitePropertiesGroup" class="fr.paris.lutece.plugins.participatorybudget.service.BudgetparticipatifSitePropertiesGroup" />
@@ -76,6 +77,7 @@
     <bean id="participatorybudget.BudgetSolrAddon" class="fr.paris.lutece.plugins.participatorybudget.service.BudgetSolrAddon" />
     <bean id="participatorybudget.BudgetSolrListAddon" class="fr.paris.lutece.plugins.participatorybudget.service.BudgetSolrListAddon" />
     <bean id="participatorybudget.ProjectLaureatAddOn" class="fr.paris.lutece.plugins.participatorybudget.service.ProjectLaureatAddOn" />
+    <bean id="participatorybudget.ProjectsRealisationSolrListAddon" class="fr.paris.lutece.plugins.participatorybudget.service.ProjectsRealisationSolrListAddon" />
     
 
 	<bean id="participatorybudget.VotesSolrAddon" class="fr.paris.lutece.plugins.participatorybudget.service.vote.VotesSolrAddon" />

@@ -34,6 +34,7 @@
 package fr.paris.lutece.plugins.participatorybudget.service.campaign;
 
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.List;
 
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
@@ -46,6 +47,9 @@ public interface ICampaignService
     // * CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN *
     // * CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN *
     // ***********************************************************************************
+
+    // Returns all campaigns in a collection
+    public Collection<Campaign> getCampaigns( );
 
     // Returns the campain the code of which is the SQL 'max'.
     // Ex : if 6 campaign with 'B0' - 'C' - 'D' - 'G0' - 'GA' - 'G', returns campaign 'GA'.

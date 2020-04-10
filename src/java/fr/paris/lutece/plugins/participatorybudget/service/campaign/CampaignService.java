@@ -131,6 +131,13 @@ public class CampaignService implements ICampaignService
     // * CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN CAMPAIN *
     // ***********************************************************************************
 
+    @Override
+    public Collection<Campaign> getCampaigns( )
+    {
+        return CampaignHome.getCampaignsList( );
+    }
+
+    @Override
     public Campaign getLastCampaign( )
     {
         return CampaignHome.getLastCampaign( );
