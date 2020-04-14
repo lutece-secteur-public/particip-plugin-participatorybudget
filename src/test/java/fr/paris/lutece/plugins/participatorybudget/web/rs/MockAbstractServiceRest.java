@@ -67,8 +67,6 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.web.rs;
 
-import fr.paris.lutece.plugins.participatorybudget.web.rs.AbstractServiceRest;
-
 public class MockAbstractServiceRest extends AbstractServiceRest
 {
 

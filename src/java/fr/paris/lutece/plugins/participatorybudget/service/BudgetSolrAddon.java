@@ -43,8 +43,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.paris.lutece.plugins.leaflet.business.GeolocItem;
 import fr.paris.lutece.plugins.leaflet.service.IconService;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
@@ -52,11 +50,11 @@ import fr.paris.lutece.plugins.search.solr.business.SolrSearchEngine;
 import fr.paris.lutece.plugins.search.solr.business.SolrSearchResult;
 import fr.paris.lutece.plugins.search.solr.indexer.SolrItem;
 import fr.paris.lutece.plugins.search.solr.service.ISolrSearchAppAddOn;
-import fr.paris.lutece.portal.service.util.AppLogService;
-import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
+import fr.paris.lutece.portal.service.util.AppLogService;
+import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
 public class BudgetSolrAddon implements ISolrSearchAppAddOn
 {

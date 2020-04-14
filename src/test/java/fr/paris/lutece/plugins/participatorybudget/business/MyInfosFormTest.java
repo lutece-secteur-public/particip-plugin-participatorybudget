@@ -33,16 +33,16 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business;
 
-import fr.paris.lutece.portal.service.i18n.I18nService;
-import fr.paris.lutece.test.LuteceTestCase;
-import fr.paris.lutece.util.beanvalidation.BeanValidationUtil;
-
 import java.util.Locale;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
 import org.junit.Test;
+
+import fr.paris.lutece.portal.service.i18n.I18nService;
+import fr.paris.lutece.test.LuteceTestCase;
+import fr.paris.lutece.util.beanvalidation.BeanValidationUtil;
 
 /**
  * MyInfosFormTest

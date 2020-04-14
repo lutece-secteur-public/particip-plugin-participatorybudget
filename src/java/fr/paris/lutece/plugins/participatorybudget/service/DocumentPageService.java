@@ -33,6 +33,12 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
+
 import fr.paris.lutece.plugins.document.business.Document;
 import fr.paris.lutece.plugins.document.business.DocumentHome;
 import fr.paris.lutece.plugins.document.business.attributes.DocumentAttribute;
@@ -43,12 +49,6 @@ import fr.paris.lutece.portal.business.resourceenhancer.IResourceDisplayManager;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
-
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Manager for add on display TODO : move this class into a document specific class !

@@ -38,8 +38,6 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
 import fr.paris.lutece.plugins.participatorybudget.service.BudgetIncludeService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;

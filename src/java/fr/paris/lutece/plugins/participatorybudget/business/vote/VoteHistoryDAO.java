@@ -33,11 +33,11 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.vote;
 
-import fr.paris.lutece.portal.service.plugin.Plugin;
-import fr.paris.lutece.util.sql.DAOUtil;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.paris.lutece.portal.service.plugin.Plugin;
+import fr.paris.lutece.util.sql.DAOUtil;
 
 /**
  * This class provides Data Access methods for Vote objects

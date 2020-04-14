@@ -33,18 +33,10 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service;
 
-import java.util.Collection;
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.Campaign;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignHome;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignPhase;
-import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignPhaseHome;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
-import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 

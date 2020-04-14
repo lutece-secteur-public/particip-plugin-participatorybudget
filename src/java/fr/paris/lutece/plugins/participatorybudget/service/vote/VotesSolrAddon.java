@@ -39,8 +39,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import fr.paris.lutece.plugins.participatorybudget.service.IDocumentBodyService;
 import fr.paris.lutece.plugins.participatorybudget.service.DocumentBodyService;
+import fr.paris.lutece.plugins.participatorybudget.service.IDocumentBodyService;
 import fr.paris.lutece.plugins.search.solr.business.SolrSearchResult;
 import fr.paris.lutece.plugins.search.solr.service.ISolrSearchAppAddOn;
 import fr.paris.lutece.portal.service.message.SiteMessageException;

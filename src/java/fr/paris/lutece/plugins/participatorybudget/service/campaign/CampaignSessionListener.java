@@ -36,7 +36,6 @@ package fr.paris.lutece.plugins.participatorybudget.service.campaign;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignUploadHandler;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 /**

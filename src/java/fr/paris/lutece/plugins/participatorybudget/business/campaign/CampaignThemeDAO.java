@@ -33,6 +33,8 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +43,6 @@ import fr.paris.lutece.portal.business.file.File;
 import fr.paris.lutece.portal.business.file.FileHome;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.util.sql.DAOUtil;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * This class provides Data Access methods for CampaignTheme objects

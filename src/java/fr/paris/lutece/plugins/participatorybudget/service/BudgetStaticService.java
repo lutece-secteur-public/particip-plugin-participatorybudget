@@ -46,7 +46,7 @@ public class BudgetStaticService extends AbstractCacheableService
 {
 
     private static BudgetStaticService _singleton;
-    
+
     private static final String BEAN_BUDGET_STATIC_SERVICE = "participatorybudget.budgetStaticService";
 
     private static final String SERVICE_NAME = "Budget Static Cache";
@@ -56,10 +56,10 @@ public class BudgetStaticService extends AbstractCacheableService
 
     private static final String MARK_CAMPAIGN_LIST = "campaign_list";
     private static final String MARK_CAMPAIGN = "campaign";
-    
+
     private static final String MARK_THEME_LIST = "theme_list";
     private static final String MARK_THEME_FRONT_RGB_LIST = "theme_front_rgb_list";
-    
+
     public static final String CACHE_KEY = "[budgetStatic]";
 
     // *********************************************************************************************
@@ -97,7 +97,7 @@ public class BudgetStaticService extends AbstractCacheableService
     public void fillCampaignStaticContent( Map<String, Object> model, String strCampaignCode )
     {
         // Add list of campaigns
-        model.put( MARK_CAMPAIGN_LIST, CampaignService.getInstance().getCampaigns( ) );
+        model.put( MARK_CAMPAIGN_LIST, CampaignService.getInstance( ).getCampaigns( ) );
 
         // Add static data of the specified campaign
         @SuppressWarnings( "unchecked" )
@@ -114,17 +114,17 @@ public class BudgetStaticService extends AbstractCacheableService
      */
     public void fillAllCampaignsStaticContent( Map<String, Object> model )
     {
-      // Add list of campaigns
-      model.put( MARK_CAMPAIGN_LIST, CampaignService.getInstance().getCampaigns( ) );
+        // Add list of campaigns
+        model.put( MARK_CAMPAIGN_LIST, CampaignService.getInstance( ).getCampaigns( ) );
 
-      // Add static data of all campaigns
-      @SuppressWarnings( "unchecked" )
-      Map<String, Object> cached = (Map<String, Object>) getFromCache( CACHE_KEY );
-      if ( cached == null )
-      {
-          cached = putAllStaticContentInCache( );
-      }
-      model.put( MARK_GLOBAL_STATIC, cached );
+        // Add static data of all campaigns
+        @SuppressWarnings( "unchecked" )
+        Map<String, Object> cached = (Map<String, Object>) getFromCache( CACHE_KEY );
+        if ( cached == null )
+        {
+            cached = putAllStaticContentInCache( );
+        }
+        model.put( MARK_GLOBAL_STATIC, cached );
 
     }
 
@@ -136,15 +136,14 @@ public class BudgetStaticService extends AbstractCacheableService
     /**
      * Returns a map with data of all campaigns :
      * 
-     * - content.Key = campaign code
-     * - content.Value = a map with data of the campaign : - campaignContent.key = data name (campaign, themes, areas, submitter types, submitter types values)
-     * - campaignContent.value = data values
+     * - content.Key = campaign code - content.Value = a map with data of the campaign : - campaignContent.key = data name (campaign, themes, areas, submitter
+     * types, submitter types values) - campaignContent.value = data values
      */
     private Map<String, Object> putAllStaticContentInCache( )
     {
         Map<String, Object> content = new HashMap<String, Object>( );
 
-        Collection<Campaign> campaigns = CampaignService.getInstance().getCampaigns( );
+        Collection<Campaign> campaigns = CampaignService.getInstance( ).getCampaigns( );
         for ( Campaign campaign : campaigns )
         {
             Map<String, Object> campaignContent = new HashMap<String, Object>( );

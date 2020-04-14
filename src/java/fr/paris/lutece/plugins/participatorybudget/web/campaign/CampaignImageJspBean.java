@@ -33,6 +33,11 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignImage;
 import fr.paris.lutece.plugins.participatorybudget.business.campaign.CampaignImageHome;
 import fr.paris.lutece.portal.service.message.AdminMessage;
@@ -41,11 +46,6 @@ import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.util.url.UrlItem;
-
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This class provides the user interface to manage CampaignImage features ( manage, create, modify, remove )

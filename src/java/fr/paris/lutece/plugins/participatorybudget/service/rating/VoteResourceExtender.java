@@ -33,18 +33,16 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service.rating;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
+
 import fr.paris.lutece.plugins.extend.business.extender.ResourceExtenderDTO;
 import fr.paris.lutece.plugins.extend.modules.rating.service.security.IRatingSecurityService;
 import fr.paris.lutece.plugins.extend.service.extender.AbstractResourceExtender;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.portal.service.datastore.DatastoreService;
-import fr.paris.lutece.portal.service.security.UserNotSignedException;
-import fr.paris.lutece.portal.service.spring.SpringContextService;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringUtils;
 
 /**
  * VoteResourceExtender

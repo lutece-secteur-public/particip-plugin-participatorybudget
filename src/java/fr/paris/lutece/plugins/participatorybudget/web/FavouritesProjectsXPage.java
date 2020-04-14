@@ -35,15 +35,11 @@ package fr.paris.lutece.plugins.participatorybudget.web;
 
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
 import fr.paris.lutece.plugins.document.business.Document;
-import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
 import fr.paris.lutece.plugins.participatorybudget.service.MyFavouritesProjects;
-import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
 import fr.paris.lutece.plugins.participatorybudget.service.vote.MyVoteService;
 import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;

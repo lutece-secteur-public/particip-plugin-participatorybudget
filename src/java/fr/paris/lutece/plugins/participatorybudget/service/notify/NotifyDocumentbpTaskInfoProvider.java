@@ -33,9 +33,9 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service.notify;
 
-import fr.paris.lutece.plugins.workflow.service.taskinfo.AbstractTaskInfoProvider;
-
 import javax.servlet.http.HttpServletRequest;
+
+import fr.paris.lutece.plugins.workflow.service.taskinfo.AbstractTaskInfoProvider;
 
 /**
  *

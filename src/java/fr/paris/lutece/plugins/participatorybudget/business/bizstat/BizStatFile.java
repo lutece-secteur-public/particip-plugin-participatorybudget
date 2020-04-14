@@ -36,8 +36,6 @@ package fr.paris.lutece.plugins.participatorybudget.business.bizstat;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import fr.paris.lutece.portal.business.user.AdminUser;
-
 /**
  *
  * class PhysicalFile

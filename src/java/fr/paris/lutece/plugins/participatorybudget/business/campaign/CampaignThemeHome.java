@@ -33,13 +33,13 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
-import java.util.Collection;
 
 /**
  * This class provides instances management methods (create, find, ...) for CampaignTheme objects

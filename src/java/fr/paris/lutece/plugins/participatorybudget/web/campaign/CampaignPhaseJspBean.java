@@ -35,8 +35,6 @@ package fr.paris.lutece.plugins.participatorybudget.web.campaign;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 

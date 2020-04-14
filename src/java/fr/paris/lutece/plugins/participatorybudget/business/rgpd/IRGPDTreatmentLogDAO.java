@@ -36,8 +36,6 @@ package fr.paris.lutece.plugins.participatorybudget.business.rgpd;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 
-import java.util.List;
-
 /**
  * IVoteDAO Interface
  */

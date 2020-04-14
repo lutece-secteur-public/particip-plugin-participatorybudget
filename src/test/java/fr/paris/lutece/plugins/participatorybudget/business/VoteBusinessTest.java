@@ -33,13 +33,11 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business;
 
+import java.sql.Timestamp;
+
 import fr.paris.lutece.plugins.participatorybudget.business.vote.Vote;
 import fr.paris.lutece.plugins.participatorybudget.business.vote.VoteHome;
-import fr.paris.lutece.portal.service.plugin.Plugin;
-import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.test.LuteceTestCase;
-
-import java.sql.Timestamp;
 
 public class VoteBusinessTest extends LuteceTestCase
 {

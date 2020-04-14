@@ -51,11 +51,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import net.sf.ehcache.CacheException;
-import net.sf.ehcache.Ehcache;
-import net.sf.ehcache.Element;
-import net.sf.ehcache.event.CacheEventListener;
-
 import org.apache.commons.lang.StringUtils;
 
 import fr.paris.lutece.plugins.document.business.Document;
@@ -94,11 +89,14 @@ import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.web.PortalJspBean;
-import fr.paris.lutece.portal.web.constants.Parameters;
 import fr.paris.lutece.util.ReferenceList;
 import fr.paris.lutece.util.date.DateUtil;
 import fr.paris.lutece.util.html.HtmlTemplate;
 import fr.paris.lutece.util.xml.XmlUtil;
+import net.sf.ehcache.CacheException;
+import net.sf.ehcache.Ehcache;
+import net.sf.ehcache.Element;
+import net.sf.ehcache.event.CacheEventListener;
 
 /**
  *

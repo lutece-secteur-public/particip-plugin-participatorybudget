@@ -33,9 +33,6 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.util;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.portal.service.prefs.IPortalUserPreferencesService;

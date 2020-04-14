@@ -302,6 +302,7 @@ public class CampaignService implements ICampaignService
 
     public List<String> getLocalizedAreas( String codeCampaign )
     {
+        // TODO : can be optimized by a suitable SQL request
         Collection<CampaignArea> result = CampaignAreaHome.getCampaignAreasListByCampaign( codeCampaign );
         List<String> areas = new ArrayList<>( );
         for ( CampaignArea c : result )
@@ -316,6 +317,7 @@ public class CampaignService implements ICampaignService
 
     public boolean hasWholeArea( String codeCampaign )
     {
+        // TODO : can be optimized by a suitable SQL request
         Collection<CampaignArea> areas = CampaignAreaHome.getCampaignAreasListByCampaign( codeCampaign );
         for ( CampaignArea a : areas )
         {
@@ -329,6 +331,7 @@ public class CampaignService implements ICampaignService
 
     public boolean hasWholeArea( String codeCampaign, int idCampaign )
     {
+        // TODO : can be optimized by a suitable SQL request
         Collection<CampaignArea> areas = CampaignAreaHome.getCampaignAreasListByCampaign( codeCampaign );
         for ( CampaignArea a : areas )
         {
@@ -342,6 +345,7 @@ public class CampaignService implements ICampaignService
 
     public String getWholeArea( String codeCampaign )
     {
+        // TODO : can be optimized by a suitable SQL request
         Collection<CampaignArea> areas = CampaignAreaHome.getCampaignAreasListByCampaign( codeCampaign );
         for ( CampaignArea a : areas )
         {

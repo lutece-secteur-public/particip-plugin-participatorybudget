@@ -33,18 +33,6 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.web.vote;
 
-import fr.paris.lutece.plugins.participatorybudget.business.vote.UserAccessVote;
-import fr.paris.lutece.plugins.participatorybudget.business.vote.UserAccessVoteHome;
-import fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocation;
-import fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocationHome;
-import fr.paris.lutece.portal.service.security.LuteceUser;
-import fr.paris.lutece.portal.service.security.SecurityService;
-import fr.paris.lutece.portal.service.security.UserNotSignedException;
-import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
-import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
-import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
-import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +40,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocation;
+import fr.paris.lutece.plugins.participatorybudget.business.vote.VotePerLocationHome;
+import fr.paris.lutece.portal.service.security.UserNotSignedException;
+import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
+import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
+import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
+import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 
 /**
  * This class provides the user interface to manage the launching of the indexing of the site pages

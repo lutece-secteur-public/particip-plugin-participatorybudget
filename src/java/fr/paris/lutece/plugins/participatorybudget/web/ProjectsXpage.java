@@ -49,7 +49,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import fr.paris.lutece.plugins.participatorybudget.business.MyInfosForm;
 import fr.paris.lutece.plugins.participatorybudget.service.MyInfosService;
 import fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService;
-import fr.paris.lutece.plugins.participatorybudget.util.BudgetUtils;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;

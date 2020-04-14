@@ -33,9 +33,9 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.vote;
 
-import fr.paris.lutece.plugins.document.business.Document;
-
 import java.util.Date;
+
+import fr.paris.lutece.plugins.document.business.Document;
 
 /**
  * Class that represents the rating of a document from a user

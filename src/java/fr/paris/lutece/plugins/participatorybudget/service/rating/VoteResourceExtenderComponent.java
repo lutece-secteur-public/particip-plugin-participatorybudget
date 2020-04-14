@@ -33,12 +33,14 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.service.rating;
 
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+
 import fr.paris.lutece.plugins.extend.business.extender.ResourceExtenderDTO;
 import fr.paris.lutece.plugins.extend.business.extender.config.IExtenderConfig;
 import fr.paris.lutece.plugins.extend.util.ExtendErrorException;
 import fr.paris.lutece.plugins.extend.web.component.AbstractResourceExtenderComponent;
-import java.util.Locale;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * VoteResourceExtenderComponent : Fake ExtenderComponent not used by the Extender

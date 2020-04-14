@@ -33,13 +33,13 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
-import javax.validation.constraints.*;
+import java.io.Serializable;
 
-import org.hibernate.validator.constraints.*;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import fr.paris.lutece.portal.business.file.File;
-
-import java.io.Serializable;
 
 /**
  * This is the business class for the object CampaignTheme

@@ -33,11 +33,13 @@
  */
 package fr.paris.lutece.plugins.participatorybudget.business.campaign;
 
-import javax.validation.constraints.*;
-
-import org.hibernate.validator.constraints.*;
-
 import java.io.Serializable;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * This is the business class for the object CampaignArea
