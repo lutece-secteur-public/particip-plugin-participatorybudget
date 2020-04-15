@@ -87,6 +87,10 @@
 	<bean id="participatorybudget.documentAddon" class="fr.paris.lutece.plugins.participatorybudget.service.DocumentPageService" />
 	<bean id="participatorybudget.documentProjectsOPAddon" class="fr.paris.lutece.plugins.participatorybudget.service.DocumentPageProjectOPService" />
 
+	<!-- Components -->
+	
+	<bean id="participatorybudget.followAddon" class="fr.paris.lutece.plugins.participatorybudget.service.FollowAddService" />
+
 
 
 
