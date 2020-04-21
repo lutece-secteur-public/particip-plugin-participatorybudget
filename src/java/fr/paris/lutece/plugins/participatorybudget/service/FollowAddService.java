@@ -75,41 +75,41 @@ public class FollowAddService implements IResourceDisplayManager
             Document doc = DocumentHome.findByPrimaryKey( nIdResource );
             DocumentAttribute attr = doc.getAttribute( "num_idea" );
             int nCountFollowers = 0;
-            
+
             // TODO : to refactor using module-participatoryideation-participatorybudget
-            
-//        List<Proposal> listChilds = null;
-//        List<Proposal> listChildsDB = new ArrayList<Proposal>( );
-//        if ( attr != null && StringUtils.isNotEmpty( attr.getTextValue( ) ) )
-//        {
-//            Proposal proposalParent = ProposalHome.findByPrimaryKey( Integer.parseInt( attr.getTextValue( ) ) );
-//            if ( proposalParent != null )
-//            {
-//                Follow follow = _followService.findByResource( String.valueOf( proposalParent.getId( ) ), Proposal.PROPERTY_RESOURCE_TYPE );
-//
-//                listChilds = proposalParent.getChildProposals( );
-//                if ( follow != null )
-//                {
-//                    nCountFollowers = follow.getFollowCount( );
-//                }
-//                for ( Proposal proposalChild : listChilds )
-//                {
-//                    follow = _followService.findByResource( String.valueOf( proposalChild.getId( ) ), Proposal.PROPERTY_RESOURCE_TYPE );
-//                    if ( follow != null )
-//                    {
-//                        nCountFollowers += follow.getFollowCount( );
-//                    }
-//                    listChildsDB.add( ProposalHome.findByPrimaryKey( proposalChild.getId( ) ) );
-//                }
-//                model.put( MARK_IDEA, proposalParent );
-//            }
-//        }
-//          model.put( MARK_NB_ASSOCIES, nCountFollowers );
-//          model.put( MARK_LIST_CHILDS, listChildsDB );
+
+            // List<Proposal> listChilds = null;
+            // List<Proposal> listChildsDB = new ArrayList<Proposal>( );
+            // if ( attr != null && StringUtils.isNotEmpty( attr.getTextValue( ) ) )
+            // {
+            // Proposal proposalParent = ProposalHome.findByPrimaryKey( Integer.parseInt( attr.getTextValue( ) ) );
+            // if ( proposalParent != null )
+            // {
+            // Follow follow = _followService.findByResource( String.valueOf( proposalParent.getId( ) ), Proposal.PROPERTY_RESOURCE_TYPE );
+            //
+            // listChilds = proposalParent.getChildProposals( );
+            // if ( follow != null )
+            // {
+            // nCountFollowers = follow.getFollowCount( );
+            // }
+            // for ( Proposal proposalChild : listChilds )
+            // {
+            // follow = _followService.findByResource( String.valueOf( proposalChild.getId( ) ), Proposal.PROPERTY_RESOURCE_TYPE );
+            // if ( follow != null )
+            // {
+            // nCountFollowers += follow.getFollowCount( );
+            // }
+            // listChildsDB.add( ProposalHome.findByPrimaryKey( proposalChild.getId( ) ) );
+            // }
+            // model.put( MARK_IDEA, proposalParent );
+            // }
+            // }
+            // model.put( MARK_NB_ASSOCIES, nCountFollowers );
+            // model.put( MARK_LIST_CHILDS, listChildsDB );
 
             model.put( MARK_IDEA, null );
             model.put( MARK_NB_ASSOCIES, nCountFollowers );
-            model.put( MARK_LIST_CHILDS, new ArrayList<>() );
+            model.put( MARK_LIST_CHILDS, new ArrayList<>( ) );
         }
 
     }
