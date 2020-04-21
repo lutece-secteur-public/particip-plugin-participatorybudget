@@ -1,4 +1,4 @@
-<#include "/skin/plugins/participatorybudget/modal_info.html">
+<#include "/skin/plugins/participatorybudget/modal_info.ftl">
 <#assign numb_random="${.now?long?string}"?number />
 <#assign maxVotes = nbrProjetParis>
 <#assign maxVotesArrdt = nbrProjetArrond>

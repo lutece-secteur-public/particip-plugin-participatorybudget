@@ -64,7 +64,7 @@ public class FavouritesProjectsXPage extends MVCApplication
      */
     private static final long serialVersionUID = 2703580251118435168L;
 
-    private static final String TEMPLATE_VIEW_FAVOURITE_PROJECT = "/skin/plugins/participatorybudget/view_favourites_projects.html";
+    private static final String TEMPLATE_VIEW_FAVOURITE_PROJECT = "/skin/plugins/participatorybudget/view_favourites_projects.ftl";
 
     // Markers
 

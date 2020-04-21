@@ -15,7 +15,7 @@
 			</div>			
 		<#else>
 			<h2 class="visuallyhidden">Barre de recherche</h2>
-			<#include "projet_search_solr_search_results.html">
+			<#include "projet_search_solr_search_results.ftl">
 		
 			<div class="container">
 		

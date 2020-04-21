@@ -17,7 +17,7 @@
 				</div>			
 			<#else>
 
-				<#include "projet_search_solr_search_results.html">
+				<#include "projet_search_solr_search_results.ftl">
 					
 				<div class="container">
 					<div class="map-msg">

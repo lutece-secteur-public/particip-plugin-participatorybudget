@@ -66,7 +66,7 @@ public class VoteParArrandJspBean extends MVCAdminJspBean
      * Right to manage indexation
      */
     public static final String RIGHT_INDEXER = "/";
-    private static final String TEMPLATE_MANAGE_VOTES_PAR_ARRAND = "admin/plugins/participatorybudget/vote_par_arrandissement.html";
+    private static final String TEMPLATE_MANAGE_VOTES_PAR_ARRAND = "admin/plugins/participatorybudget/vote_par_arrandissement.ftl";
 
     // Properties for page titles
     private static final String PROPERTY_PAGE_TITLE_VOTE_PAR_ARRAND = "participatorybudget.vote_par_arrd.pageTitle";

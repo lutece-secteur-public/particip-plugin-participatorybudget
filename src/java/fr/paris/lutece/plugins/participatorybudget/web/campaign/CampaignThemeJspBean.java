@@ -58,9 +58,9 @@ public class CampaignThemeJspBean extends ManageCampaignJspBean
     // Constants
 
     // templates
-    private static final String TEMPLATE_MANAGE_CAMPAIGNTHEMES = "/admin/plugins/participatorybudget/campaign/manage_campaignthemes.html";
-    private static final String TEMPLATE_CREATE_CAMPAIGNTHEME = "/admin/plugins/participatorybudget/campaign/create_campaigntheme.html";
-    private static final String TEMPLATE_MODIFY_CAMPAIGNTHEME = "/admin/plugins/participatorybudget/campaign/modify_campaigntheme.html";
+    private static final String TEMPLATE_MANAGE_CAMPAIGNTHEMES = "/admin/plugins/participatorybudget/campaign/manage_campaignthemes.ftl";
+    private static final String TEMPLATE_CREATE_CAMPAIGNTHEME = "/admin/plugins/participatorybudget/campaign/create_campaigntheme.ftl";
+    private static final String TEMPLATE_MODIFY_CAMPAIGNTHEME = "/admin/plugins/participatorybudget/campaign/modify_campaigntheme.ftl";
 
     // Parameters
     private static final String PARAMETER_ID_CAMPAIGNTHEME = "id";

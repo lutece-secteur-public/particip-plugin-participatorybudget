@@ -124,7 +124,7 @@ ${encoded_facets_queries}
 					<#if projectLaureatToutParis??>
 						<div class="row">
 							<#list projectLaureatToutParis as result>
-								<#include "document_laureats_sous_list_solr_search_results.html">
+								<#include "document_laureats_sous_list_solr_search_results.ftl">
 							</#list>
 						</div>
 					</#if>
@@ -162,7 +162,7 @@ ${encoded_facets_queries}
 					<div class="row">
 						<#list results_list as result>
 							<#if result.dynamicFields?? && result.dynamicFields.location_text?? && result.dynamicFields.location_text != "whole_city" >
-								<#include "document_laureats_sous_list_solr_search_results.html">
+								<#include "document_laureats_sous_list_solr_search_results.ftl">
 							</#if>
 						</#list>
 					</div>

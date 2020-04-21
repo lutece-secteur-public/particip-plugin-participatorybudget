@@ -1,4 +1,4 @@
-<#include "manage_campaign_tabs.html" />
+<#include "manage_campaign_tabs.ftl" />
 <@tabs tab="campaignimage" />
 
 <@rowBoxHeader i18nTitleKey="participatorybudget.modify_campaignimage.pageTitle">

@@ -13,7 +13,7 @@
 			<button id="send_validation_mail"class="btn-block btn-include" aria-hidden="true" data-dismiss="modal">#i18n{participatorybudget.mes_infos_popup.buttonSendAccountValidation}</button>
 		 <#else>
 		 	<h1 class="title2">#i18n{participatorybudget.mes_infos_popup.messageAccountNotCompleted}</h1>
-			<#include "mes_infos_form.html">
+			<#include "mes_infos_form.ftl">
 		</#if>	
 	</div>
 </div>

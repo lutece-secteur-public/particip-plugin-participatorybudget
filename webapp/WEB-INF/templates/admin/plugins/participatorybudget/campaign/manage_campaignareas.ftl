@@ -1,4 +1,4 @@
-<#include "manage_campaign_tabs.html" />
+<#include "manage_campaign_tabs.ftl" />
 <@tabs tab="campaignarea" />
 
 <@rowBox>

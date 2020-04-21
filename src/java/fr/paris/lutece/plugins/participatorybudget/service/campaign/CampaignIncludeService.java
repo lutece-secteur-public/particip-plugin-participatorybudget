@@ -51,7 +51,7 @@ public class CampaignIncludeService
 {
 
     // Template
-    private static final String TEMPLATE_MES_INFOS_INCLUDE = "skin/plugins/participatorybudget/mes_infos_include.html";
+    private static final String TEMPLATE_MES_INFOS_INCLUDE = "skin/plugins/participatorybudget/mes_infos_include.ftl";
 
     // Properties
 

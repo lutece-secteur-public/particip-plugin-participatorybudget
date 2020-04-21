@@ -1,4 +1,4 @@
-<#include "/skin/plugins/asynchronousupload/upload_commons.html" />
+<#include "/skin/plugins/asynchronousupload/upload_commons.ftl" />
 
 <#assign form_profile="participatorybudget-profile-form" />
 <#assign form_js_error="message_error_js">

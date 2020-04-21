@@ -1,7 +1,7 @@
 <section class="bg-color6 mtop15">
   <div class="hidden">
     <#-- included with display:none to have the parsing of the query without the search interface -->
-    <#include "projet_search_solr_search_results.html">
+    <#include "projet_search_solr_search_results.ftl">
   </div>
   <div class="container">
   <div class="row">

@@ -1,4 +1,4 @@
-<#include "/skin/plugins/asynchronousupload/upload_commons.html" />
+<#include "/skin/plugins/asynchronousupload/upload_commons.ftl" />
 <script type="text/javascript" src="jsp/site/plugins/asynchronousupload/GetMainUploadJs.jsp?handler=campaignUploadHandler"></script>
 <section class="bg-color6">
 	<div class="container">

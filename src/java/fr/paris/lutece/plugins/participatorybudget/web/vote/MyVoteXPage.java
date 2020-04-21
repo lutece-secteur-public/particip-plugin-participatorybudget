@@ -121,11 +121,11 @@ public class MyVoteXPage extends MVCApplication
     private static final long serialVersionUID = -4316691400124512414L;
     private static final String JCAPTCHA_PLUGIN = "jcaptcha";
     // Templates
-    private static final String TEMPLATE_MY_VOTES = "/skin/plugins/participatorybudget/mes_votes.html";
-    private static final String TEMPLATE_BUTTON_CANCEL_VOTE = "/skin/plugins/participatorybudget/button_cancel_vote_html.html";
-    private static final String TEMPLATE_NAVBAR_PROJECT = "/skin/plugins/participatorybudget/navbar_project.html";
-    private static final String TEMPLATE_BUTTON_DO_VOTE = "/skin/plugins/participatorybudget/button_do_vote_html.html";
-    private static final String TEMPLATE_BUTTON_VALID_VOTE = "/skin/plugins/participatorybudget/button_valid_vote.html";
+    private static final String TEMPLATE_MY_VOTES = "/skin/plugins/participatorybudget/mes_votes.ftl";
+    private static final String TEMPLATE_BUTTON_CANCEL_VOTE = "/skin/plugins/participatorybudget/button_cancel_vote_html.ftl";
+    private static final String TEMPLATE_NAVBAR_PROJECT = "/skin/plugins/participatorybudget/navbar_project.ftl";
+    private static final String TEMPLATE_BUTTON_DO_VOTE = "/skin/plugins/participatorybudget/button_do_vote_html.ftl";
+    private static final String TEMPLATE_BUTTON_VALID_VOTE = "/skin/plugins/participatorybudget/button_valid_vote.ftl";
 
     public static final String SUBSCRIPTION_UPDATE_ON_REALIZATION = "updateOnRealization";
 

@@ -68,7 +68,7 @@ public class CampaignChronoJspBean extends ManageCampaignJspBean
     // Constants
 
     // templates
-    private static final String TEMPLATE_MANAGE_IDEATIONCAMPAIGNS = "/admin/plugins/participatorybudget/campaign/manage_campaignchrono.html";
+    private static final String TEMPLATE_MANAGE_IDEATIONCAMPAIGNS = "/admin/plugins/participatorybudget/campaign/manage_campaignchrono.ftl";
 
     // Properties for page titles
     private static final String PROPERTY_PAGE_TITLE_MANAGE_IDEATIONCAMPAIGNS = "participatorybudget.manage_campaignchrono.pageTitle";

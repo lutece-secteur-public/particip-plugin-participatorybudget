@@ -70,7 +70,7 @@ public class BizStatJspBean extends MVCAdminJspBean
     public static final String RIGHT_MANAGE_BIZ_STAT = "BIZ_STAT";
 
     // TEMPLATES
-    private static final String TEMPLATE_MANAGE_BIZ_STAT = "admin/plugins/participatorybudget/bizstat/biz_stat.html";
+    private static final String TEMPLATE_MANAGE_BIZ_STAT = "admin/plugins/participatorybudget/bizstat/biz_stat.ftl";
 
     // PROPERTIES
     private static final String PROPERTY_PAGE_TITLE_BIZ_STAT = "participatorybudget.bizStat.pageTitle";

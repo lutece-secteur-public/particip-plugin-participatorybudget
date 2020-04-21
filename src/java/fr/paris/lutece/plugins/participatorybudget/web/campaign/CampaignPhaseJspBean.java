@@ -61,9 +61,9 @@ public class CampaignPhaseJspBean extends ManageCampaignJspBean
     // Constants
 
     // templates
-    private static final String TEMPLATE_MANAGE_CAMPAIGNPHASES = "/admin/plugins/participatorybudget/campaign/manage_campaignphases.html";
-    private static final String TEMPLATE_CREATE_CAMPAIGNPHASE = "/admin/plugins/participatorybudget/campaign/create_campaignphase.html";
-    private static final String TEMPLATE_MODIFY_CAMPAIGNPHASE = "/admin/plugins/participatorybudget/campaign/modify_campaignphase.html";
+    private static final String TEMPLATE_MANAGE_CAMPAIGNPHASES = "/admin/plugins/participatorybudget/campaign/manage_campaignphases.ftl";
+    private static final String TEMPLATE_CREATE_CAMPAIGNPHASE = "/admin/plugins/participatorybudget/campaign/create_campaignphase.ftl";
+    private static final String TEMPLATE_MODIFY_CAMPAIGNPHASE = "/admin/plugins/participatorybudget/campaign/modify_campaignphase.ftl";
 
     // Parameters
     private static final String PARAMETER_ID_CAMPAIGNPHASE = "id";
