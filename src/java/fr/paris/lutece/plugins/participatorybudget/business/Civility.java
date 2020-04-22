@@ -45,7 +45,9 @@ import org.apache.commons.lang.StringUtils;
  */
 public enum Civility
 {
-    DEFAULT( "0", "NPR" ), MRS( "2", "M" ), MS( "1", "MME" );
+    DEFAULT( "0", "NPR" ),
+    MRS( "2", "M" ),
+    MS( "1", "MME" );
 
     private static Map<String, Civility> _mapNumericCivility = new HashMap<>( );
     private static Map<String, Civility> _mapLabelCivility = new HashMap<>( );
