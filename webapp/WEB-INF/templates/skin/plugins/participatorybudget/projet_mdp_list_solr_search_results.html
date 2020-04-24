@@ -1,0 +1,262 @@
+<div id="psoum-list-container">
+
+	<#if campaignService?? > <#-- Class not instanciated when this page is indexed by SOLR. This test avoid a lot of message into logs. -->
+		<#if campaignService.isBeforeBeginning( "SUBMIT" ) >
+			<div id="prop-card">
+				<div class="row">
+					<div class="col-xs-12 col-sm-offset-2 col-sm-8">
+						<br>
+						<div class="alert alert-warning">
+							<h3 class="text-center text-warning"> <i class="fa fa-warning"></i> Attention !</h3>
+							<p class="text-center">La page des projets soumis au vote n'est pas ouverte.</p>
+						</div>
+					</div>
+				</div>			
+			</div>			
+		<#else>
+			<h2 class="visuallyhidden">Barre de recherche</h2>
+			<#include "projet_search_solr_search_results.html">
+		
+			<div class="container">
+		
+				<h2 class="visuallyhidden">Liste des résultats de la recherche</h2>
+				<div id="psoum-list" class="row">
+		
+					<#-- Loop on projects to display -->
+					<#list results_list as result>
+
+						<#-- Get campaign data -->
+						<#if result.dynamicFields?? && result.dynamicFields.campaign_text??>
+							<#assign campaign = i18n('participatoryideation.view.list.card.campaign', result.dynamicFields.campaign_text)>
+							<#assign campaign_data = global_static[result.dynamicFields.campaign_text]>
+						</#if>
+			
+						<#-- Get campaign data -->
+						<#assign theme_front_color = '#3c67ff' >
+						
+						<#if (result.dynamicFields.theme_text)??>
+							<#assign theme_libelle = (campaign_data['theme_list']?filter( i -> i.code = result.dynamicFields.theme_text )[0].name)!result.dynamicFields.theme_text >
+							<#assign theme_front_color = (campaign_data['theme_front_rgb_list']?filter( i -> i.code = result.dynamicFields.theme_text )[0].name)!'#3c67ff' >
+						</#if>
+
+						<#assign id_document = "${(result.id?split('Lutece_')?last)?split('_')?first}">
+						<#assign result_detail_idx = ((paginator.pageCurrent-1)*paginator.itemsPerPage)+1+result_index>
+		
+						<#-- on identifie la classe CSS relative au thème du projet en cours -->
+						<#if result.dynamicFields.status_text?? && result.dynamicFields.status_text = "PERDANT">
+							<#assign theme_class_bis = "perdant">
+						<#else>
+							<#assign theme_class_bis = "undefined">
+						</#if>
+						
+						<div class="col-xs-12 col-sm-6 col-md-4 psoum-panel <#if theme_class_bis = 'perdant'>psoum-perdant</#if>">
+						
+							<a id="title-${id_document}" href="${result.url}" alt="${result.title}" title="${result.title}">
+		
+								<#-- Image et éventuel résultat du vote -->
+								<#assign img_url = "images/local/skin/plugins/plugin-participatorybudget/generic_thumb_picture.png">
+								<#if result.dynamicFields.image_text?has_content>
+									<#assign img_url = result.dynamicFields.image_text?split("src=\"")[1]?split("\"")[0]>
+								</#if>
+		
+								<div class="psoum-card-img" style="background-image:url(${img_url!}); <#if !result.dynamicFields.image_text?has_content>box-shadow: inset 0 0 0 2000px ${theme_front_color}80;</#if>">
+									<#if campaignService.isAfterBeginning( "RESULT" )>
+										<#if result.dynamicFields.status_text == "GAGNANT" || result.dynamicFields.status_text == "SUIVI" >
+											<p class="winner">Projet gagnant<br>avec ${result.dynamicFields.nombre_de_votes_long?string.number!''} votes</p>
+										<#elseif result.dynamicFields.status_text == "PERDANT">
+											<p class="looser">${result.dynamicFields.total_votes_long?string.number!''} votes</p>
+										</#if>
+									</#if>
+								</div>
+			
+								<div class="psoum-card" style="border: 4px solid ${theme_front_color}">
+				
+									<#-- Theme -->
+									<div class="psoum-card-theme bgcolor-theme-${theme_class_bis}" style="background-color: ${theme_front_color}">
+										<span>${theme_libelle!''}</span>
+									</div>
+				
+									<#-- Location -->
+									<div class="psoum-card-loc">
+			
+										<img src="images/local/skin/marker.png" class="img-responsive pull-left" alt="" title="">
+			
+										<div class="for-print">
+											<#if result.dynamicFields.address_text?has_content>
+												${result.dynamicFields.address_text!''}
+											<#else>
+												${(result.dynamicFields.location_text!'')}
+											</#if>
+										</div>
+			
+										<div class="for-screen">${result.dynamicFields.location_text!''}
+											
+											<div class="psoum-card-loc-prec">
+												<#if result.dynamicFields?? && result.dynamicFields.address_text??>
+													${result.dynamicFields.address_text!''}
+												<#else>
+													&nbsp;
+												</#if>
+											</div>
+										</div>
+									</div>
+				
+									<#-- Titre -->
+									<div class="psoum-card-titre">
+										<h3>
+											<span class="color-theme-${theme_class_bis}">${result.title}</span>
+										</h3>
+									</div>
+				
+									<#if campaignService.isDuring("VOTE") && voteValidated= true >
+										<div class="psoum-card-vote">
+												<div class="vote-done">Thank for your vote !</div>
+										</div>
+									<#elseif campaignService.isDuring("VOTE") && voteValidated= false && arrondissementVote= "notConnected" >
+										<div class="psoum-card-vote">
+												@Extender[${id_document},document,vote,{show:"all"}]@
+										</div>
+									<#elseif campaignService.isDuring("VOTE") && voteValidated= false && (arrondissementVote == result.dynamicFields.location_text || result.dynamicFields.location_text= "whole_city")>
+										<div class="psoum-card-vote">
+												@Extender[${id_document},document,vote,{show:"all"}]@
+										</div>
+									<#elseif campaignService.isDuring("VOTE") && voteValidated= false && arrondissementVote != result.dynamicFields.location_text>
+										<div class="psoum-card-vote">
+												<div class="novote">You can vote only for location you choose for voting.</div>
+										</div>
+									<#else>
+										<div class="psoum-card-link">
+											<span class="btn btn-14rem btn-black-on-white">
+												discover project
+											</span>
+										</div>
+									</#if>
+				
+									<#-- Pastilles et coût -->
+									<div class="psoum-card-footer">
+										<div class="budget pull-right">
+											<img src="images/local/skin/money.png" width="25px" height="25px" alt="" title="">
+											<#if result.dynamicFields??>
+												<#if result.dynamicFields.value_long?? && result.dynamicFields.value_long &gt; 0>
+													<#setting locale="fr_FR">
+													${result.dynamicFields.value_long?string("#,###")} &#8364;
+												<#else>
+													${result.dynamicFields.value_text!""}
+												</#if>
+											<#else>
+												-
+											</#if>
+										</div>
+										
+									</div>
+									
+									<#-- Champs cachés pouvant être utilisés pour l'impression -->
+									<div class="psoum-card-origin">${result.dynamicFields.proposal_nicknames_text!''}</div>
+									
+									<div class="psoum-card-description">${result.dynamicFields.description_text!""}</div>
+									
+									<#-- Champs transmis en Ajax lors du vote. Encore utilise au 05/05/2017 ? -->
+									<input type="hidden" name="location_${id_document}" id="location_${id_document}" value="${result.dynamicFields.location_text!}">
+									<input type="hidden" name="title_${id_document}" id="title_${id_document}" value="${result.title}">
+									<input type="hidden" name="theme_${id_document}" id="theme_${id_document}" value="${result.dynamicFields.theme_text}">
+									<input type="hidden" name="arrondUser" id="arrondUser" value="${arrondissementVote!}">
+				
+								</div>
+								
+								<#--
+								@Extender[${id_document},document,follow,{show:"favtag"}]@
+								-->
+								
+							</a>
+									
+						</div>
+								
+					</#list>
+				
+				</div>
+				
+				<div id="paginator" class="solr-paginator">
+					<@paginationSolr paginator=paginator />
+				</div>
+			</div>
+
+		</#if>
+	</#if>
+
+</div>
+
+<#-- Freemarker macros -->
+
+<#function min a b>
+	<#if a gt b>
+		<#return b />
+	<#else>
+		<#return a />
+	</#if>
+</#function>
+
+<#function max a b>
+	<#if a gt b>
+		<#return a />
+	<#else>
+		<#return b />
+	</#if>
+</#function>
+
+<#-- Number of items per page selector - Combo Box implementation -->
+<#macro NbItemsPerPageSelectorCombo nb_items_per_page>
+    <select name="items_per_page">
+        <#list [ "10" , "20" , "50" , "100" ] as nb>
+            <#if nb_items_per_page = nb >
+                <option selected="selected" value="${nb}">${nb}</option>
+            <#else>
+                <option value="${nb}">${nb}</option>
+            </#if>
+        </#list>
+    </select>
+</#macro>
+
+<#-- Number of items per page selector - Radio List implementation -->
+<#macro NbItemsPerPageSelectorRadioList nb_items_per_page>
+    <#list [ 5 , 10 , 20 , 50 ] as nb>
+		<#if nb = nb_items_per_page >
+			<input value="${nb}" id="items_per_page${nb}" name="items_per_page" class="radio" type="radio" checked /><label for="items_per_page${nb}">${nb}</label>
+		<#else>
+			<input value="${nb}" id="items_per_page${nb}" name="items_per_page" class="radio" type="radio" /><label for="items_per_page${nb}">${nb}</label>
+		</#if>
+    </#list>
+</#macro>
+
+<#macro paginationSolr paginator >
+
+	<#assign nbLinkPages = 5 />
+	<#assign offsetPrev = 2 />
+	<#assign offsetNext = 2 />
+  
+	<#if (paginator.pagesCount > 1) >
+	
+		<#if paginator.pageCurrent &gt; nbLinkPages-offsetPrev >
+			<a class="paginator-navi-page" href="${paginator.firstPageLink?xhtml}${monTri}" alt="Premi&egrave;re page" title="Premi&egrave;re page">
+				<span class="show-xs"></span><i class="fa fa-angle-double-left"></i>
+			</a>
+		</#if>
+		
+		<#list paginator.pagesLinks as link>
+			<#if ( link.index == paginator.pageCurrent )>
+				<span class="paginator-current-page">${link.name}</span> <!-- <span class="paginator-sep-page">|</span> -->
+			<#else>
+				<#if (( link.index >= paginator.pageCurrent - offsetPrev ) && ( link.index <= paginator.pageCurrent + offsetNext )) >
+					<a class="paginator-num-page" href="${link.url?xhtml}${monTri}" title="Aller à la page ${link.name}">${link.name}</a> <!-- <span class="paginator-sep-page">|</span> -->
+				</#if>
+			</#if>
+		</#list>
+		
+		<#if paginator.pageCurrent &lt; paginator.pagesCount - (nbLinkPages-offsetNext) + 1>
+			<a class="paginator-navi-page" href="${paginator.lastPageLink?xhtml}${monTri}" title="Derni&egrave;re page">
+				<span class="show-xs"></span><i class="fa fa-angle-double-right"></i>
+			</a>
+		</#if>
+		
+	</#if>
+	
+</#macro>

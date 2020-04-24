@@ -60,9 +60,9 @@ public class CampaignAreaJspBean extends ManageCampaignJspBean
     // //////////////////////////////////////////////////////////////////////////
     // Constants
     // templates
-    private static final String TEMPLATE_MANAGE_CAMPAIGNAREAS = "/admin/plugins/participatorybudget/campaign/manage_campaignareas.ftl";
-    private static final String TEMPLATE_CREATE_CAMPAIGNAREA = "/admin/plugins/participatorybudget/campaign/create_campaignarea.ftl";
-    private static final String TEMPLATE_MODIFY_CAMPAIGNAREA = "/admin/plugins/participatorybudget/campaign/modify_campaignarea.ftl";
+    private static final String TEMPLATE_MANAGE_CAMPAIGNAREAS = "/admin/plugins/participatorybudget/campaign/manage_campaignareas.html";
+    private static final String TEMPLATE_CREATE_CAMPAIGNAREA = "/admin/plugins/participatorybudget/campaign/create_campaignarea.html";
+    private static final String TEMPLATE_MODIFY_CAMPAIGNAREA = "/admin/plugins/participatorybudget/campaign/modify_campaignarea.html";
 
     // Parameters
     private static final String PARAMETER_ID_CAMPAIGNAREA = "id";

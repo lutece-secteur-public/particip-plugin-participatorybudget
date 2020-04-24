@@ -1,0 +1,210 @@
+<#include "/skin/plugins/participatorybudget/modal_info.html">
+<#assign numb_random="${.now?long?string}"?number />
+<#assign maxVotes = nbrProjetParis>
+<#assign maxVotesArrdt = nbrProjetArrond>
+<#assign nbVotesParis = 0>
+<#assign nbVotesArrond = 0>
+<#assign  cout_total_arrond= 0>
+<#assign  cout_total_tout_paris= 0>
+<#assign budget_projet=0 />
+
+<#list userVotes as vote>
+
+	<#list vote.document.attributes as attribute>
+
+		<#if attribute.code = 'location'>
+			<#assign  location_projet= attribute.textValue>
+		</#if>
+	</#list>
+
+	<#if location_projet?? && location_projet!='whole_city'>
+		<#assign nbVotesArrond = nbVotesArrond + 1>
+		<#list vote.document.attributes as attribute>
+			<#if attribute.code = 'budget'>
+				<#assign budget_projet= attribute.textValue>
+					<#assign cout_total_arrond = cout_total_arrond?number + budget_projet?number >
+			</#if>
+		</#list>
+		
+	<#elseif location_projet?? && location_projet=='whole_city'>
+		<#assign nbVotesParis = nbVotesParis + 1>
+		<#list vote.document.attributes as attribute>
+			<#if attribute.code = 'budget'>
+				<#assign budget_projet= attribute.textValue>
+				<#assign cout_total_tout_paris = cout_total_tout_paris?number + budget_projet?number >
+			</#if>
+		</#list>
+	</#if>
+</#list>
+
+<div class="container-fluid " id="myvotes">
+	<div class="row">
+		<div id="search-form">
+			<h1>mon vote</h1>
+		</div>
+		<div class="container">
+		
+			<div class="row">
+   				<div class="col-xs-12 col-sm-12">
+					<@messages errors=errors />
+				</div>
+			</div>
+			
+			<div class="row">
+				<#if campaignService.isDuring("VOTE") && voteValidated >
+					<div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 bordered">
+						<div class="msg">merci, votre vote est valid&eacute; !</div>
+					</div>
+				</#if>
+			</div>
+
+			<div class="row">
+
+				<#-- ********************************************************************************************* -->			
+				<#-- * TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP * -->			
+				<#-- * TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP TP * -->			
+				<#-- ********************************************************************************************* -->			
+
+				<div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2 bordered">
+					<h3>Projets tout&nbsp;Paris&nbsp;: ${nbVotesParis}&nbsp;/&nbsp;${maxVotes}</h3>
+					<#if campaignService.isDuring("VOTE") && !voteValidated >
+						<p class="sub-title">
+							<#if nbVotesParis &lt; maxVotes>
+								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&query=&fq=location_text%3ATout+Paris">
+									Vous pouvez effectuer encore ${maxVotes - nbVotesParis}&nbsp;vote(s).
+								</a>
+							<#else>
+								Vous avez atteint votre maximum de ${maxVotes!''}&nbsp;votes.
+							</#if>
+						</p>
+					</#if>
+
+					<div class="votes">
+						<#list userVotes as vote>
+							<#list vote.document.attributes as attribute>
+								<#if     attribute.code = 'budget'      > <#assign budget_projet       = attribute.textValue?number>
+								<#elseif attribute.code = 'theme'  > <#assign theme_projet   = attribute.textValue       >
+								<#elseif attribute.code = 'location'> <#assign location_projet = attribute.textValue       >
+								<#elseif attribute.code = 'code_projet' > <#assign numero_projet       = attribute.textValue       >
+								<#elseif attribute.code = 'url'         > <#assign url_projet          = attribute.textValue       >
+								</#if>
+							</#list>
+							
+							<#if location_projet == 'Tout Paris'>
+								<div class="vote">
+									<div class="vote-body">
+										<p>
+											<a href="jsp/site/Portal.jsp?document_id=${vote.document.id}&portlet_id=158" alt="Accéder à la fiche du projet" title="Accéder à la fiche du projet" target="_blank">
+												${vote.document.title}
+											</a>
+										</p>
+										<p class="cost">${budget_projet?string.number} &#8364;</p>
+									</div>
+								</div>
+							</#if>
+						</#list>
+					</div>
+				</div>
+				
+				<#-- ********************************************************************************************* -->			
+				<#-- * AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR * -->			
+				<#-- * AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR AR * -->			
+				<#-- ********************************************************************************************* -->			
+
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<#assign nbVotes = userVotes?size>
+					<h3>Projets d'arrondissement&nbsp;: ${nbVotesArrond}&nbsp;/&nbsp;${maxVotesArrdt}</h3>
+					<#if campaignService.isDuring("VOTE") && !voteValidated >
+						<p class="sub-title">
+							<#if nbVotesArrond &lt; maxVotesArrdt>
+								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&fq=location_text:${user_arrondissement!}">
+									Vous pouvez effectuer encore ${maxVotesArrdt - nbVotesArrond}&nbsp;vote(s).
+								</a>
+							<#else>
+								Vous avez atteint votre maximum de ${maxVotesArrdt!''}&nbsp;votes.
+							</#if>
+						</p>
+					</#if>
+
+					<div class="votes">
+						<#list userVotes as vote>
+							<#list vote.document.attributes as attribute>
+								<#if     attribute.code = 'budget'      > <#assign budget_projet       = attribute.textValue?number>
+								<#elseif attribute.code = 'theme'  > <#assign theme_projet   = attribute.textValue       >
+								<#elseif attribute.code = 'location'> <#assign location_projet = attribute.textValue       >
+								<#elseif attribute.code = 'code_projet' > <#assign numero_projet       = attribute.textValue       >
+								<#elseif attribute.code = 'url'         > <#assign url_projet          = attribute.textValue       >
+								</#if>
+							</#list>
+							
+							<#if location_projet != 'whole_city'>
+								<div class="vote">
+									<div class="vote-body">
+										<p>
+											<a href="jsp/site/Portal.jsp?document_id=${vote.document.id}&portlet_id=158" alt="Accéder à la fiche du projet" title="Accéder à la fiche du projet" target="_blank">
+												${vote.document.title}
+											</a>
+										</p>	
+										<p class="cost">${budget_projet?string.number} &#8364;</p>
+									</div>
+								</div>
+							</#if>
+						</#list>
+					</div>
+				</div>
+			</div>
+
+			<#-- ********************************************************************************************* -->			
+			<#-- * COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT * -->			
+			<#-- * COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT COUT * -->			
+			<#-- ********************************************************************************************* -->			
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 votes-amount">
+					<p>Vos votes repr&eacute;sentent un co&ucirc;t total de : <strong>${(cout_total_arrond + cout_total_tout_paris)?string.number} &#8364;<strong></p> 
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+
+	<#-- ********************************************************************************************* -->			
+	<#-- * RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS * -->			
+	<#-- * RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS RS * -->			
+	<#-- ********************************************************************************************* -->			
+
+	<div id="myVotesRS" class="row">
+		<div class="container">
+			<div class="col-xs-12 col-sm-12">
+			
+				<#if campaignService.isDuring("VOTE") && !voteValidated >
+					<div class="valid">
+						<p>N'oubliez pas de valider votre vote !</p>
+						<button class="btn btn-18rem btn-black-on-white" onclick="valideVotes('1e arrondissement', 4, 4, false);">je valide mon vote</button>
+					</div>
+				<#else>
+				
+					<div class="rs">
+						<p>Aidez les&nbsp;projets pour&nbsp;lesquels vous avez vot&eacute; &agrave;&nbsp;gagner&nbsp;:</p>
+						<p class="strong">faites&nbsp;voter votre&nbsp;entourage&nbsp;!</p>
+						<ul>
+							<li class="fb">
+								<a href="#" onclick="shareClickAjax('${idExtendableResource!}','facebook-project-vote',event);" class="share" data-action="facebook-vote" title="Partager sur Facebook">
+									<img title="Partager sur Facebook" alt="Partager sur Facebook" src="images/local/skin/pastille-fb.png" width="90px" height="90px" >
+								</a>
+							</li>
+							<li class="tw">
+						    	<a href="#" onclick="shareClickAjax('${idExtendableResource!}','twitter-project-vote',event);" class="share" data-action="twitter-vote" title="Partager sur Twitter">
+									<img title="Partager sur Facebook" alt="Partager sur Facebook" src="images/local/skin/pastille-tw.png" width="90px" height="90px" >
+								</a>
+						    </li>
+						</ul>
+					</div>
+				</#if>
+			
+			</div>
+		</div>
+	</div>
+
+</div>

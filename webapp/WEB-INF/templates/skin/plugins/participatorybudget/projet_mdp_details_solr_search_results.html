@@ -1,0 +1,50 @@
+<section class="bg-color6 mtop15">
+  <div class="hidden">
+    <#-- included with display:none to have the parsing of the query without the search interface -->
+    <#include "projet_search_solr_search_results.html">
+  </div>
+  <div class="container">
+  <div class="row">
+    <div class="col-xs-3 col-sm-6 col-md-8">
+      <#if (paginator.pageCurrent > 1) >
+        <#assign prev_disabled="">
+        <#assign prev_href="href=\"${paginator.previousPageLink?xhtml}&prev_items_per_page=${prev_items_per_page}${monTri}\"">
+      <#else>
+        <#assign prev_disabled="disabled">
+        <#assign prev_href="">
+      </#if>
+      <a class="hidden-xs btn btn-proposal-nav btn-left ${prev_disabled}" ${prev_href} alt="Projet pr&eacute;c&eacute;dent" title="Projet pr&eacute;c&eacute;dent">
+        <span class="hidden-xs">Projet Pr&eacute;c&eacute;dent</span>
+      </a>
+    </div>
+    <div class="col-xs-9 col-sm-6 col-md-4">
+      <a class="show-xs hidden-sm hidden-md hidden-lg btn btn-proposal-nav btn-left ${prev_disabled}" ${prev_href} alt="Projet pr&eacute;c&eacute;dent" title="Projet pr&eacute;c&eacute;dent">
+        <span class="hidden-xs">Projet Pr&eacute;c&eacute;dent</span>
+      </a>
+      <#assign prev_items_per_page = (prev_items_per_page?number)!21>
+      <#assign prev_page_index=((paginator.pageCurrent-1)/prev_items_per_page)?int + 1 >
+      <#assign list_url = paginator.firstPageLink?replace("conf=projects_mdp_detail","conf=projects_mdp")
+        ?replace("&items_per_page=1", "&items_per_page=${prev_items_per_page}")
+        ?replace("&page_index=[0-9]*","&page_index=${prev_page_index}", 'r')>
+      <a class="btn btn btn-proposal-nav btn-liste" href="${list_url}${monTri}" alt="Page suivante" title="Page suivante">
+        <span class="hidden-xs">Liste</span>
+      </a>
+      <#if (paginator.pageCurrent < paginator.pagesCount) >
+        <#assign next_disabled="">
+        <#assign next_href="href=\"${paginator.nextPageLink?xhtml}&prev_items_per_page=${prev_items_per_page}${monTri}\"">
+      <#else>
+        <#assign next_disabled="disabled">
+        <#assign next_href="">
+      </#if>
+      <a class="btn btn btn-proposal-nav btn-right ${next_disabled}" ${next_href} alt="Page suivante" title="Page suivante">
+        <span class="hidden-xs">Projet Suivant</span>
+      </a>
+    </div>
+  </div>
+  <div id="project-content-new">
+      <#list results_proposal_map?keys as key>
+        ${results_proposal_map[key]}
+      </#list>
+  </div>
+</div>
+</section>

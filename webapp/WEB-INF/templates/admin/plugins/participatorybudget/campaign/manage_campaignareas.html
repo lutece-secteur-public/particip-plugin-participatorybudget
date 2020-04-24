@@ -1,0 +1,68 @@
+<#include "manage_campaign_tabs.html" />
+<@tabs tab="campaignarea" />
+
+<@rowBox>
+    <@boxHeader i18nTitleKey="TEST">
+        <@headerButtons>
+
+        
+        <form class="form-inline pull-right" method="post" name="manage_campaignareas" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignAreas.jsp">
+            <!-- Add pull-right to class1 -->
+            <@actionButtons button1Name="view_createCampaignArea" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campaignareas.buttonAdd" />
+        </form>
+        
+    </@headerButtons>
+    </@boxHeader>
+    <@boxBody>    
+    <@messages infos=infos />
+    <@paginationAdmin paginator=paginator combo=1 />
+    
+    <@table>
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <th>#i18n{participatorybudget.manage_campaignareas.columnCodeCampaign}</th>
+            <th>#i18n{participatorybudget.manage_campaignareas.columnTitle}</th>
+            <th>#i18n{participatorybudget.manage_campaignareas.columnActive}</th>
+            <th>#i18n{participatorybudget.manage_campaignareas.columnType}</th>
+            <th>#i18n{participatorybudget.manage_campaignareas.columnNumberVotes}</th>            
+            <th>#i18n{portal.util.labelActions}</th>
+        </tr>
+        <@tableHeadBodySeparator />
+            <#list campaignarea_list as campaignarea >
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <td>
+                ${campaignarea.codeCampaign}
+            </td>
+            <td>
+                ${campaignarea.title}
+            </td>
+            <td>
+                ${campaignarea.active?c}
+            </td>
+            <td>
+                ${campaignarea.type}
+            </td>
+            <td>
+                ${campaignarea.numberVotes}
+            </td>
+        <td>
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignAreas.jsp?view=modifyCampaignArea&id=${campaignarea.id}"
+               class="btn btn-primary btn-small" title="#i18n{portal.util.labelModify}">
+                <i class="fa fa-pencil"></i>
+            </a>
+
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignAreas.jsp?action=confirmRemoveCampaignArea&id=${campaignarea.id}"
+               class="btn btn-danger btn-small" title="#i18n{portal.util.labelDelete}" >
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+        </tr>
+        </#list>
+    </@table>
+
+    <@paginationAdmin paginator=paginator />
+
+  </@boxBody>
+</@rowBox>
+

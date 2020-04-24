@@ -58,9 +58,9 @@ public class CampaignImageJspBean extends ManageCampaignJspBean
     // Constants
 
     // templates
-    private static final String TEMPLATE_MANAGE_CAMPAIGNIMAGES = "/admin/plugins/participatorybudget/campaign/manage_campaignimages.ftl";
-    private static final String TEMPLATE_CREATE_CAMPAIGNIMAGE = "/admin/plugins/participatorybudget/campaign/create_campaignimage.ftl";
-    private static final String TEMPLATE_MODIFY_CAMPAIGNIMAGE = "/admin/plugins/participatorybudget/campaign/modify_campaignimage.ftl";
+    private static final String TEMPLATE_MANAGE_CAMPAIGNIMAGES = "/admin/plugins/participatorybudget/campaign/manage_campaignimages.html";
+    private static final String TEMPLATE_CREATE_CAMPAIGNIMAGE = "/admin/plugins/participatorybudget/campaign/create_campaignimage.html";
+    private static final String TEMPLATE_MODIFY_CAMPAIGNIMAGE = "/admin/plugins/participatorybudget/campaign/modify_campaignimage.html";
 
     // Parameters
     private static final String PARAMETER_ID_CAMPAIGNIMAGE = "id";

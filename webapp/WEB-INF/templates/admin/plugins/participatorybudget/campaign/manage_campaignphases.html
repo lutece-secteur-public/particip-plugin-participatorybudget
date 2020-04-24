@@ -1,0 +1,71 @@
+<#setting datetime_format="yyyy-MM-dd HH:mm:ss">
+<#include "manage_campaign_tabs.html" />
+<@tabs tab="campaignphase" />
+
+<@rowBox>
+    <@boxHeader i18nTitleKey="participatorybudget.manage_campaignphases.tableLabel">
+        <@headerButtons>
+
+        
+        <form class="form-inline pull-right" method="post" name="manage_campaignphases" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignPhases.jsp">
+            <!-- Add pull-right to class1 -->
+            <@actionButtons button1Name="view_createCampaignPhase" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campaignphases.buttonAdd" />
+        </form>
+        
+    </@headerButtons>
+    </@boxHeader>
+    <@boxBody>    
+    <@messages infos=infos />
+    <@paginationAdmin paginator=paginator combo=1 />
+    
+    <@table>
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <th>#i18n{participatorybudget.manage_campaignphases.columnCodePhaseType}</th>
+            <th>#i18n{participatorybudget.manage_campaignphases.columnCodeCampaign}</th>
+            <th>#i18n{participatorybudget.manage_campaignphases.columnStart}</th>
+            <th>#i18n{participatorybudget.manage_campaignphases.columnEnd}</th>
+            <th>#i18n{portal.util.labelActions}</th>
+        </tr>
+        <@tableHeadBodySeparator />
+            <#list campaignphase_list as campaignphase >
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <td>
+                <i class="fa <#if (campaignphase.end<.now) >fa-check<#elseif (campaignphase.start>.now)>fa-play<#else>fa-spinner</#if>"></i>
+                &ensp;<span style="color:<#if (campaignphase.end<.now) >#a0a0a0<#elseif (campaignphase.start>.now)>blue<#else>black</#if>!important;<#if (campaignphase.start<.now) && (.now<campaignphase.end)>font-weight:bold;background-color:#ffc871</#if>">${campaignphase.codePhaseType}</span>
+            </td>
+            <td>
+                ${campaignphase.codeCampaign + "&emsp;(" + (2014 + "ABCDEFGHIJKLMNOPQRSTUVWXYZ"?index_of(campaignphase.codeCampaign)) + ")"}
+            </td>
+            <td>
+                ${campaignphase.start}
+            </td>
+            <td>
+                ${campaignphase.end}
+            </td>
+        <td>
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignPhases.jsp?view=modifyCampaignPhase&id=${campaignphase.id}"
+               class="btn btn-primary btn-small" title="#i18n{portal.util.labelModify}">
+                <i class="fa fa-pencil"></i>
+            </a>
+
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignPhases.jsp?action=confirmTargetCampaignPhase&id=${campaignphase.id}"
+               class="btn btn-warning btn-small" title="#i18n{participatorybudget.target_campaignphase.labelTarget}">
+                <i class="fa fa-compress"></i>
+            </a>
+
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignPhases.jsp?action=confirmRemoveCampaignPhase&id=${campaignphase.id}"
+               class="btn btn-danger btn-small" title="#i18n{portal.util.labelDelete}" >
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+        </tr>
+        </#list>
+    </@table>
+
+    <@paginationAdmin paginator=paginator />
+
+  </@boxBody>
+</@rowBox>
+

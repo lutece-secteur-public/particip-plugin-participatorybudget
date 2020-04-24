@@ -82,7 +82,7 @@ public class VoteDashboardJspBean extends MVCAdminJspBean
     public static final String RIGHT_MANAGE_VOTE = "VOTE_DASHBOARD";
 
     // TEMPLATES
-    private static final String TEMPLATE_MANAGE_VOTE_DASHBOARD = "admin/plugins/participatorybudget/vote/vote_dashboard.ftl";
+    private static final String TEMPLATE_MANAGE_VOTE_DASHBOARD = "admin/plugins/participatorybudget/vote/vote_dashboard.html";
 
     // PROPERTIES
     private static final String PROPERTY_PAGE_TITLE_VOTE_DASHBOARD = "participatorybudget.voteDashboard.pageTitle";

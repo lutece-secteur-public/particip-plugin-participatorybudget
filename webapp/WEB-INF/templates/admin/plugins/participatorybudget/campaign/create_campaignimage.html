@@ -1,0 +1,14 @@
+<#include "manage_campaign_tabs.html" />
+<@tabs tab="campaignimage" />
+
+<@rowBoxHeader i18nTitleKey="participatorybudget.create_campaignimage.pageTitle">
+    <form class="form-horizontal" method="post" name="create_campaignimage" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignImages.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id"/>
+        
+        <@fieldInputText i18nLabelKey="participatorybudget.create_campaignimage.labelCodeCampaign" inputName="code_campaign" mandatory=true value="${campaignimage.codeCampaign!''}" i18nHelpBlockKey="participatorybudget.create_campaignimage.labelCodeCampaign.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.create_campaignimage.labelFile" inputName="file" mandatory=true value="${(campaignimage.file)!''}" i18nHelpBlockKey="participatorybudget.create_campaignimage.labelFile.help" />
+        <@actionButtons button1Name="action_createCampaignImage" button2Name="view_manageCampaignImages"/>
+    </form>
+</@rowBoxHeader>
+

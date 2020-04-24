@@ -59,7 +59,7 @@ public class BudgetIncludeService
 {
 
     // Template
-    private static final String TEMPLATE_HEADER_INCLUDE = "skin/plugins/participatorybudget/header_include.ftl";
+    private static final String TEMPLATE_HEADER_INCLUDE = "skin/plugins/participatorybudget/header_include.html";
 
     // Properties
 

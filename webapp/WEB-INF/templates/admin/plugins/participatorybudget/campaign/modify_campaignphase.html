@@ -1,0 +1,17 @@
+<#setting datetime_format="yyyy-MM-dd HH:mm:ss">
+<#include "manage_campaign_tabs.html" />
+<@tabs tab="campaignphase" />
+
+<@rowBoxHeader i18nTitleKey="participatorybudget.modify_campaignphase.pageTitle">
+    <form class="form-horizontal" method="post" name="modify_campaignphase" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignPhases.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id" value="${campaignphase.id}"/>
+        
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaignphase.labelCodePhaseType" inputName="code_phase_type" mandatory=true value="${campaignphase.codePhaseType}" i18nHelpBlockKey="participatorybudget.modify_campaignphase.labelCodePhaseType.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaignphase.labelCodeCampaign" inputName="code_campaign" mandatory=true value="${campaignphase.codeCampaign}" i18nHelpBlockKey="participatorybudget.modify_campaignphase.labelCodeCampaign.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaignphase.labelStart" inputName="start" mandatory=true value="${campaignphase.start}" i18nHelpBlockKey="participatorybudget.modify_campaignphase.labelStart.help" />
+        <@fieldInputText i18nLabelKey="participatorybudget.modify_campaignphase.labelEnd" inputName="end" mandatory=true value="${campaignphase.end}" i18nHelpBlockKey="participatorybudget.modify_campaignphase.labelEnd.help" />
+        <@actionButtons button1Name="action_modifyCampaignPhase" button2Name="view_manageCampaignPhases"/>
+    </form>
+</@rowBoxHeader>
+

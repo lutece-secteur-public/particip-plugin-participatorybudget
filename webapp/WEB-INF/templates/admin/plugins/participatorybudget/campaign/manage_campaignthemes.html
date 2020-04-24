@@ -1,0 +1,79 @@
+<#include "manage_campaign_tabs.html" />
+<@tabs tab="campaigntheme" />
+
+<@rowBox>
+    <@boxHeader i18nTitleKey="participatoryideation.manage_campaignthemes.tableLabel">
+        <@headerButtons>
+
+        
+        <form class="form-inline pull-right" method="post" name="manage_campaignthemes" action="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignThemes.jsp">
+            <!-- Add pull-right to class1 -->
+            <@actionButtons button1Name="view_createCampaignTheme" icon1="icon-plus icon-white" i18nValue1Key="participatorybudget.manage_campaignthemes.buttonAdd" />
+        </form>
+        
+    </@headerButtons>
+    </@boxHeader>
+    <@boxBody>    
+    <@messages infos=infos />
+    <@paginationAdmin paginator=paginator combo=1 />
+    
+    <@table>
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <th>#i18n{participatorybudget.manage_campaignthemes.columnCodeCampaign}</th>
+            <th>#i18n{participatorybudget.manage_campaignthemes.columnCode}</th>
+            <th>#i18n{participatorybudget.manage_campaignthemes.columnTitle}</th>
+            <th>#i18n{participatorybudget.manage_campaignthemes.columnDescription}</th>
+            <th>#i18n{participatorybudget.manage_campaignthemes.columnActive}</th>
+            <th>#i18n{participatorybudget.manage_campaignthemes.columnImage}</th>
+            <th>#i18n{participatorybudget.manage_campaignthemes.frontRgb}</th>
+            <th>#i18n{portal.util.labelActions}</th>
+        </tr>
+        <@tableHeadBodySeparator />
+            <#list campaigntheme_list as campaigntheme >
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <td>
+                ${campaigntheme.codeCampaign}
+            </td>
+            <td>
+                ${campaigntheme.code}
+            </td>
+            <td>
+                ${campaigntheme.title}
+            </td>
+            <td>
+                ${campaigntheme.description}
+            </td>
+            <td>
+                ${campaigntheme.active?c}
+            </td>
+            <td>
+                ${(campaigntheme.image.idImage)!''}
+            </td>
+            <td>
+                ${(campaigntheme.image.idImage)!''}
+            </td>
+            <td>
+                <div style="background-color:${(campaigntheme.frontRgb)!'#808080'}">&nbsp;</div>
+            </td>
+        <td>
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignThemes.jsp?view=modifyCampaignTheme&id=${campaigntheme.id}"
+               class="btn btn-primary btn-small" title="#i18n{portal.util.labelModify}">
+                <i class="fa fa-pencil"></i>
+            </a>
+
+            <a href="jsp/admin/plugins/participatorybudget/campaign/ManageCampaignThemes.jsp?action=confirmRemoveCampaignTheme&id=${campaigntheme.id}"
+               class="btn btn-danger btn-small" title="#i18n{portal.util.labelDelete}" >
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+        </tr>
+        </#list>
+    </@table>
+
+    <@paginationAdmin paginator=paginator />
+
+  </@boxBody>
+</@rowBox>
+

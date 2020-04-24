@@ -86,7 +86,7 @@ public class NotifyDocumentbpTaskComponent extends NoFormTaskComponent
     private static final String MARK_FALSE = "false";
 
     // TEMPLATES
-    private static final String TEMPLATE_TASK_NOTIFY_DIRECTORY_CONFIG = "admin/plugins/workflow/modules/notifydocumentbp/task_notifydocumentbp_config.ftl";
+    private static final String TEMPLATE_TASK_NOTIFY_DIRECTORY_CONFIG = "admin/plugins/workflow/modules/notifydocumentbp/task_notifydocumentbp_config.html";
 
     // SERVICES
     @Inject

@@ -92,10 +92,10 @@ public class MyInfosXPage extends MVCApplication
     public static final String PAGE_MY_INFOS = "mesInfos";
     private static final long serialVersionUID = -4316691400124512414L;
     // Templates
-    private static final String TEMPLATE_MES_INFOS = "/skin/plugins/participatorybudget/mes_infos.ftl";
-    private static final String TEMPLATE_CREATE_MY_INFOS = "/skin/plugins/participatorybudget/create_my_infos.ftl";
-    private static final String TEMPLATE_MES_INFOS_POPUP = "/skin/plugins/participatorybudget/mes_infos_popup.ftl";
-    private static final String TEMPLATE_CHECKED_MY_INFOS_AFTER_LOGIN = "/skin/plugins/participatorybudget/checked_my_infos_after_login.ftl";
+    private static final String TEMPLATE_MES_INFOS = "/skin/plugins/participatorybudget/mes_infos.html";
+    private static final String TEMPLATE_CREATE_MY_INFOS = "/skin/plugins/participatorybudget/create_my_infos.html";
+    private static final String TEMPLATE_MES_INFOS_POPUP = "/skin/plugins/participatorybudget/mes_infos_popup.html";
+    private static final String TEMPLATE_CHECKED_MY_INFOS_AFTER_LOGIN = "/skin/plugins/participatorybudget/checked_my_infos_after_login.html";
 
     // Views
     private static final String VIEW_MY_INFOS = "mesinfos";

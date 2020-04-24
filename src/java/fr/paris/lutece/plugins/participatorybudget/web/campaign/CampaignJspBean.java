@@ -72,9 +72,9 @@ public class CampaignJspBean extends ManageCampaignJspBean
      * 
      */
     // templates
-    private static final String TEMPLATE_MANAGE_CAMPAIGNS = "/admin/plugins/participatorybudget/campaign/manage_campaigns.ftl";
-    private static final String TEMPLATE_CREATE_CAMPAIGN = "/admin/plugins/participatorybudget/campaign/create_campaign.ftl";
-    private static final String TEMPLATE_MODIFY_CAMPAIGN = "/admin/plugins/participatorybudget/campaign/modify_campaign.ftl";
+    private static final String TEMPLATE_MANAGE_CAMPAIGNS = "/admin/plugins/participatorybudget/campaign/manage_campaigns.html";
+    private static final String TEMPLATE_CREATE_CAMPAIGN = "/admin/plugins/participatorybudget/campaign/create_campaign.html";
+    private static final String TEMPLATE_MODIFY_CAMPAIGN = "/admin/plugins/participatorybudget/campaign/modify_campaign.html";
 
     // Parameters
     private static final String PARAMETER_ID_CAMPAIGN = "id";
