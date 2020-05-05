@@ -76,7 +76,7 @@
 <#assign arr= "">
 <#assign facet_theme = "">
 <#assign facet_campaign = "">
-<#assign facet_handicap = "">
+<#assign facet_field4 = "">
 <#assign facet_qpop = "">
 <#assign step= "">
 <#assign cadre_de_vie= 'false'>
@@ -90,7 +90,7 @@
 		<#if     facet?starts_with("location_text:")>	 <#assign arr = facet?split(":")?last>
 		<#elseif facet?starts_with("theme_text:")>		 <#assign facet_theme = facet?split(":")?last>
 		<#elseif facet?starts_with("popular_area_text:")><#assign facet_qpop = facet?split(":")?last>
-		<#elseif facet?starts_with("handicap_text:")>	 <#assign facet_handicap = facet?split(":")?last>
+		<#elseif facet?starts_with("field4_text:")>	 <#assign facet_field4 = facet?split(":")?last>
 		<#elseif facet?starts_with("campaign_text:")>	 <#assign facet_campaign = facet?split(":")?last>
 		<#elseif facet?starts_with("step")>				 <#assign step = facet>
 		<#elseif facet?starts_with("status_text:")>      <#assign step = facet>
@@ -319,7 +319,7 @@
 			
 				<#-- Champs de tri -->
 				<div id="sub-search-left-panel" class="col-xs-6 col-sm-6 col-md-6">
-					<#if conf_user_query = "list_projects">
+					<#if conf_user_query = "projects_real_list">
 						<div id="sub-search-sorts">
 							<#if !(sort_name??) ><#assign sort_name="" ></#if>
 							<#if !(sort_order??)><#assign sort_order=""></#if>
@@ -366,7 +366,7 @@
 				
 				<#--Nombre d'items et icônes liste/carto -->
 				<div id="sub-search-right-panel" class="col-xs-6 col-sm-6 col-md-6">
-					<#if conf_user_query = "list_projects">
+					<#if conf_user_query = "projects_real_list">
 						<div id="sub-search-nbitems" class="">
 							${i18n('participatorybudget.search.form.result.number', paginator.itemsCount)}
 						</div>
@@ -395,11 +395,11 @@
 <script type="text/javascript">
 
 	$("#button_map_list").click( function(){
-		$("#form_conf_hidden").attr('value',"map_projects");
+		$("#form_conf_hidden").attr('value',"projects_real_map");
 	});
 	
 	$("#button_list").click( function(){
-		$("#form_conf_hidden").attr('value',"list_projects");
+		$("#form_conf_hidden").attr('value',"projects_real_list");
 	});
 	
 	function validateForm(form) {

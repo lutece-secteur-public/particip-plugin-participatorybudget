@@ -135,10 +135,10 @@ public class ProjectsXpage extends MVCApplication
         // - User do not clicked on "remove arrdt filter" case
         // - User do not use "location" SOLR facet
         // - Campaign is in SUBMIT / VOTE phase.
-        // - SOLR page is "projects_mdp"
+        // - SOLR page is "projects_submitted_list"
         // - User has a vote arrdt
         LuteceUser user = SecurityService.getInstance( ).getRegisteredUser( request );
-        if ( user != null && !removeUserArrFilterSelected && !locationFilterActivated && "projects_mdp".equals( strConf )
+        if ( user != null && !removeUserArrFilterSelected && !locationFilterActivated && "projects_submitted_list".equals( strConf )
                 && CampaignService.getInstance( ).isAfterBeginning( "SUBMIT" ) && CampaignService.getInstance( ).isBeforeEnd( "VOTE" ) )
         {
             String strArrt = getArrondissement( user );

@@ -80,7 +80,7 @@
     <bean id="participatorybudget.ProjectsRealisationSolrListAddon" class="fr.paris.lutece.plugins.participatorybudget.service.ProjectsRealisationSolrListAddon" />
     
 
-	<bean id="participatorybudget.VotesSolrAddon" class="fr.paris.lutece.plugins.participatorybudget.service.vote.VotesSolrAddon" />
+	<!-- bean id="participatorybudget.VotesSolrAddon" class="fr.paris.lutece.plugins.participatorybudget.service.vote.VotesSolrAddon" / -->
 	<bean id="participatorybudget.DocumentBodyService" class="fr.paris.lutece.plugins.participatorybudget.service.DocumentBodyService" />
 	<bean id="participatorybudget.myFavouritesProjects" class="fr.paris.lutece.plugins.participatorybudget.service.MyFavouritesProjects" />
 	

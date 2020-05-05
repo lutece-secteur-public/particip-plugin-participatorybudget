@@ -57,7 +57,7 @@ public class BudgetStaticService extends AbstractCacheableService
     private static final String MARK_CAMPAIGN_LIST = "campaign_list";
     private static final String MARK_CAMPAIGN = "campaign";
 
-    private static final String MARK_THEME_LIST = "theme_list";
+    private static final String MARK_THEME_LABEL_LIST = "theme_label_list";
     private static final String MARK_THEME_FRONT_RGB_LIST = "theme_front_rgb_list";
 
     public static final String CACHE_KEY = "[budgetStatic]";
@@ -152,7 +152,7 @@ public class BudgetStaticService extends AbstractCacheableService
             campaignContent.put( MARK_CAMPAIGN, campaign );
 
             // Add themes of the campaign
-            campaignContent.put( MARK_THEME_LIST, CampaignService.getInstance( ).getThemes( campaign.getCode( ) ) );
+            campaignContent.put( MARK_THEME_LABEL_LIST, CampaignService.getInstance( ).getThemes( campaign.getCode( ) ) );
             campaignContent.put( MARK_THEME_FRONT_RGB_LIST, CampaignService.getInstance( ).getThemesFrontRgb( campaign.getCode( ) ) );
 
             content.put( campaign.getCode( ), campaignContent );

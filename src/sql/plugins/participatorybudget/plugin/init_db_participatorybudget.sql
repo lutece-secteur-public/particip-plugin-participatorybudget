@@ -32,11 +32,11 @@ INSERT INTO participatorybudget_campaign_phase (id_campaign_phase, code_phase_ty
 	(10, 'PRE_RESULT', 'A', '2019-12-13 00:00:00', '2019-12-26 23:59:59'),
 	(11, 'RESULT', 'A', '2019-12-27 00:00:00', '2020-01-09 23:59:59');
 
-INSERT INTO participatorybudget_campaign_theme (id_campaign_theme, code_campaign, code_theme, title, description, active, image_file) VALUES
-	(1, 'A', 'ENVIRONMENT', 'Environment issues', 'Environment issues', 1, NULL),
-	(2, 'A', 'SOCIAL', 'Social issues', 'Social issues', 1, NULL),
-	(3, 'A', 'SPORT', 'Sport', 'Sport', 1, NULL),
-	(4, 'A', 'GENERAL', 'General', 'General', 1, NULL);
+INSERT INTO participatorybudget_campaign_theme (id_campaign_theme, code_campaign, code_theme, title, description, active, image_file, front_rgb) VALUES
+	(1, 'A', 'ENVIRONMENT', 'Environment issues', 'Environment issues', 1, NULL, '#800000'),
+	(2, 'A', 'SOCIAL', 'Social issues', 'Social issues', 1, NULL, '#008000'),
+	(3, 'A', 'SPORT', 'Sport', 'Sport', 1, NULL, '#000080'),
+	(4, 'A', 'GENERAL', 'General', 'General', 1, NULL, '#808000');
 
 INSERT INTO participatorybudget_votes_per_location (id, location_ardt, nb_votes) VALUES
 	(1, 'whole_city', 2),

@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS participatorybudget_campaign_theme (
   description varchar(1000) NOT NULL,
   active smallint NOT NULL,
   image_file int DEFAULT NULL,
+  front_rgb varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (id_campaign_theme)
 );
 

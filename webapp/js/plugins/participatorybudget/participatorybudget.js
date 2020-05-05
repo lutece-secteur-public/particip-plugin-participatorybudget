@@ -156,13 +156,13 @@ function doVote( idResource )
 	    	else if(data.errorCode =='JSON_ERROR_ALREADY_VOTED_ARRONDISSEMENT')
         {
 					$('.modal-title').append('Vous avez atteint le nombre maximal de votes possibles pour des projets d\'arrondissement. Vous avez encore la possibilité de voter pour des projets "Tout Paris"');
-			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=location_text:whole_city" class="btn btn-std" onClick="voteArrond();">Voter pour des projets "Tout Paris"</a></p>');
+			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_submitted_list&sort_name=code_projet_long&sort_order=asc&fq=location_text:whole_city" class="btn btn-std" onClick="voteArrond();">Voter pour des projets "Tout Paris"</a></p>');
 			 		$('#myModal').modal('toggle');
         }
 		    else if(data.errorCode =='JSON_ERROR_ALREADY_VOTED_TOUT_PARIS')
         {
 					$('.modal-title').append('Vous avez atteint le nombre maximal de votes possibles pour des projets "Tout Paris". Vous avez encore la possibilité de voter pour des projets d\'arrondissement.');
-			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=location_text:' +arrondUser+ '">Voter pour des projets d\'arrondissement</a></p>');
+			 		$('.modal-footer').append('<p class="text-center"><a class="btn btn-proposal" href="jsp/site/Portal.jsp?page=search-solr&conf=projects_submitted_list&sort_name=code_projet_long&sort_order=asc&fq=location_text:' +arrondUser+ '">Voter pour des projets d\'arrondissement</a></p>');
 			 		$('#myModal').modal('toggle');
         }
 		   	else if(data.errorCode == "JSON_ERROR_VOTE_USER_ARROND")
@@ -413,7 +413,7 @@ function valideVotes(user_arrondissement, maxVotesArrdt, maxVotesParis, validate
 			 if( data.result.nbTotVotes == 0 ){
 				 	$('#vote_follow_form').hide();
 					$('#modalConfirmVoteContent').append('<p class="main">Vous devez avoir effectué au moins un vote, sur un projet tout&nbsp;Paris ou de votre arrondissement de vote, pour valider vos votes</p>');
-					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc' onClick='voteArrond();'>J'ajoute des votes à ma sélection</a>").css("text-align","center");
+					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_submitted_list&sort_name=code_projet_long&sort_order=asc' onClick='voteArrond();'>J'ajoute des votes à ma sélection</a>").css("text-align","center");
 					$('#modalConfirmVote').modal('toggle');
 			
 			 } else if( data.result.totVotesArrondissement == maxVotesArrdt && data.result.totVotesToutParis == maxVotesParis ){
@@ -423,19 +423,19 @@ function valideVotes(user_arrondissement, maxVotesArrdt, maxVotesParis, validate
 			
 			 } else if( data.result.totVotesArrondissement == maxVotesArrdt && data.result.totVotesToutParis < maxVotesParis ){
 					$('#modalConfirmVoteContent').append("<p class='main'>Vous avez vot&eacute; pour " + data.result.totVotesToutParis + " projet(s) tout Paris,<br>et "+ data.result.totVotesArrondissement + " projet(s) pour votre arrondissement.</p><p>Il vous est encore possible de voter pour des projets Tout Paris supplémentaires. Lorsque vous aurez validé vos votes, il ne vous sera plus possible de les modifier ou d'en ajouter.</p>");
-					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc&fq=location_text:whole_city'>Je vote pour tout paris</a>").css("text-align","center");
+					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_submitted_list&sort_name=code_projet_long&sort_order=asc&fq=location_text:whole_city'>Je vote pour tout paris</a>").css("text-align","center");
 	 				$('#modalConfirmVoteButtonValid').append("<span class='btn btn-18rem btn-black-on-white' onclick='confirmValidateVote();'>Je valide mes votes</span>").css("text-align","center");
 	 				$('#modalConfirmVote').modal('toggle');
 			
 			 } else if( data.result.totVotesToutParis == maxVotesParis && data.result.totVotesArrondissement < maxVotesArrdt ){
 					$('#modalConfirmVoteContent').append("<p class='main'>Vous avez vot&eacute; pour " + data.result.totVotesToutParis + " projet(s) tout Paris,<br>et "+ data.result.totVotesArrondissement + " projet(s) pour votre arrondissement.</p><p>Il vous est encore possible de voter pour des projets supplémentaires dans votre arrondissement de vote. Lorsque vous aurez validé vos votes, il ne vous sera plus possible de les modifier ou d'en ajouter.</p>");
-					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_mdp&sort_name=1440769236633_random&sort_order=random&fq=location_text:"+user_arrondissement+"'>Je vote pour mon arrondissement</a>").css("text-align","center");
+					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_submitted_list&sort_name=1440769236633_random&sort_order=random&fq=location_text:"+user_arrondissement+"'>Je vote pour mon arrondissement</a>").css("text-align","center");
 	 				$('#modalConfirmVoteButtonValid').append("<span class='btn btn-18rem btn-black-on-white' onclick='confirmValidateVote();'>Je valide mes votes</span>").css("text-align","center");
 	 				$('#modalConfirmVote').modal('toggle');
 			
 			 } else {
 					$('#modalConfirmVoteContent').append("<p class='main'>Vous avez vot&eacute; pour " + data.result.totVotesToutParis + " projet(s) tout Paris,<br>et "+ data.result.totVotesArrondissement + " projet(s) pour votre arrondissement.</p><p>Il vous est encore possible d'ajouter des votes, n'hésitez pas à utiliser le maximum de votes autorisés ! Lorsque vous aurez validé vos votes, il ne vous sera plus possible de les modifier ou d'en ajouter.</p></span></div>");
-					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_mdp&sort_name=code_projet_long&sort_order=asc'>J’ajoute des votes à ma sélection</a>").css("text-align","center");
+					$('#modalConfirmVoteButtonAdd').append("<a class='btn btn-12rem btn-white-on-green' href='jsp/site/Portal.jsp?page=solrProjectSearch&conf=projects_submitted_list&sort_name=code_projet_long&sort_order=asc'>J’ajoute des votes à ma sélection</a>").css("text-align","center");
 	 				$('#modalConfirmVoteButtonValid').append("<span class='btn btn-18rem btn-black-on-white' onclick='confirmValidateVote();'>Je valide mes votes</span>").css("text-align","center");
 	 				$('#modalConfirmVote').modal('toggle');
 			}

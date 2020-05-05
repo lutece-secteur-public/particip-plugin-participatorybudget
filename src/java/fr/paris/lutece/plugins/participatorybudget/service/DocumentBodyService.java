@@ -282,11 +282,20 @@ public final class DocumentBodyService extends AbstractCacheableService implemen
         try
         {
             nPortletId = Integer.parseInt( strPortletId );
+        }
+        catch( NumberFormatException nfe )
+        {
+            AppLogService.error( "Error parsing strPortletId '" + strPortletId + "' ", nfe );
+            return "";
+        }
+
+        try
+        {
             nDocumentId = Integer.parseInt( strDocumentId );
         }
         catch( NumberFormatException nfe )
         {
-            AppLogService.error( "participatorybudget, VotesSolrSaddon, Error parsing DocPortletId ", nfe );
+            AppLogService.error( "Error parsing strDocumentId '" + strDocumentId + "' ", nfe );
             return "";
         }
 

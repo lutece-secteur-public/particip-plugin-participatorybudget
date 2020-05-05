@@ -35,7 +35,7 @@
 						<#assign theme_front_color = '#3c67ff' >
 						
 						<#if (result.dynamicFields.theme_text)??>
-							<#assign theme_libelle = (campaign_data['theme_list']?filter( i -> i.code = result.dynamicFields.theme_text )[0].name)!result.dynamicFields.theme_text >
+							<#assign theme_libelle = (campaign_data['theme_label_list']?filter( i -> i.code = result.dynamicFields.theme_text )[0].name)!result.dynamicFields.theme_text >
 							<#assign theme_front_color = (campaign_data['theme_front_rgb_list']?filter( i -> i.code = result.dynamicFields.theme_text )[0].name)!'#3c67ff' >
 						</#if>
 

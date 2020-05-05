@@ -52,7 +52,7 @@ public class ProjectLaureatAddOn implements ISolrSearchAppAddOn
     private static final String PARAMETER_SORT_ORDER = "sort_order";
     private static final String SOLRSEARCHAPP_PARAMETER_CONF = "conf";
     private static final String MARK_PROJECTS_TOUT_PARIS = "projectLaureatToutParis";
-    private static final String PARAMETER_CONF_ELECTED_PROJECT = "elected_projects";
+    private static final String PARAMETER_CONF_ELECTED_PROJECT = "projects_win";
     private static final String PROPERTY_PROJECTS_FQ = "participatorybudget.projects.laureat.fq";
     private static final String [ ] SOLR_FQ_PROJECTS_TOUT_PARIS = {
             AppPropertiesService.getProperty( PROPERTY_PROJECTS_FQ, "(statut_project_text:GAGNANT') AND location_text:'whole_city' AND type:'PB Project" )

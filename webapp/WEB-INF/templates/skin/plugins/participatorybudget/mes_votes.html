@@ -70,7 +70,7 @@
 					<#if campaignService.isDuring("VOTE") && !voteValidated >
 						<p class="sub-title">
 							<#if nbVotesParis &lt; maxVotes>
-								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&query=&fq=location_text%3ATout+Paris">
+								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_submitted_list&query=&fq=location_text%3ATout+Paris">
 									Vous pouvez effectuer encore ${maxVotes - nbVotesParis}&nbsp;vote(s).
 								</a>
 							<#else>
@@ -117,7 +117,7 @@
 					<#if campaignService.isDuring("VOTE") && !voteValidated >
 						<p class="sub-title">
 							<#if nbVotesArrond &lt; maxVotesArrdt>
-								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_mdp&fq=location_text:${user_arrondissement!}">
+								<a href="jsp/site/Portal.jsp?page=search-solr&conf=projects_submitted_list&fq=location_text:${user_arrondissement!}">
 									Vous pouvez effectuer encore ${maxVotesArrdt - nbVotesArrond}&nbsp;vote(s).
 								</a>
 							<#else>

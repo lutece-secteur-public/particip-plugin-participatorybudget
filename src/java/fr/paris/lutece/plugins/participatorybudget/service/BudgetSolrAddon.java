@@ -69,7 +69,7 @@ public class BudgetSolrAddon implements ISolrSearchAppAddOn
     private static final int SOLRSEARCHAPP_SOLR_RESPONSE_MAX = Integer
             .parseInt( AppPropertiesService.getProperty( SOLRSEARCHAPP_PROPERTY_SOLR_RESPONSE_MAX, "50" ) );
 
-    private static final String PARAMETER_CONF_MAP_PROJETS = "map_projets"; // Vue des projets soumis au vote
+    private static final String PARAMETER_CONF_MAP_PROJETS = "projects_submitted_map"; // Vue des projets soumis au vote
 
     private static final String SOLR_QUERY_ALL = "*:*";
     private static final String PROPERTY_OLDPROJECTS_FQ = "participatorybudget.oldprojects.fq";

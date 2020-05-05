@@ -78,7 +78,7 @@
 <#assign arr= "">
 <#assign facet_theme= "">
 
-<#assign facet_handicap= "">
+<#assign facet_field4= "">
 <#assign facet_qpop= "">
 
 
@@ -93,7 +93,7 @@
 		<#if     facet?starts_with("location_text:")>				    <#assign arr = facet?split(":")?last>
 		<#elseif facet?starts_with("theme_text:")>					<#assign facet_theme = facet?split(":")?last>
 		<#elseif facet?starts_with("popular_area_text:")>				<#assign facet_qpop = facet?split(":")?last>
-		<#elseif facet?starts_with("handicap_text:")>		     		<#assign facet_handicap = facet?split(":")?last>
+		<#elseif facet?starts_with("field4_text:")>		     		<#assign facet_field4 = facet?split(":")?last>
 		</#if>
 	</#list>
 </#if>
@@ -276,7 +276,7 @@
 						
 				<#-- Champs de tri -->
 				<div id="sub-search-left-panel" class="col-xs-6 col-sm-6 col-md-6">
-					<#if conf_user_query = "projects_mdp">
+					<#if conf_user_query = "projects_submitted_list">
 						<div id="sub-search-sorts">
 
 							<#-- if sort_list?? -->
@@ -321,7 +321,7 @@
 				
 				<#--Nombre d'items et icônes liste/carto -->
 				<div id="sub-search-right-panel" class="col-xs-6 col-sm-6 col-md-6">
-					<#if conf_user_query = "projects_mdp">
+					<#if conf_user_query = "projects_submitted_list">
 						<div id="sub-search-nbitems" class="">
 							${i18n('participatorybudget.participatorybudget.form.result.number', paginator.itemsCount)}
 						</div>
@@ -353,11 +353,11 @@
 	});
 	
 	$("#button_map_list").click( function(){
-		$("#form_conf_hidden").attr('value',"map_projets");
+		$("#form_conf_hidden").attr('value',"projects_submitted_map");
 	});
 	
 	$("#button_list").click( function(){
-		$("#form_conf_hidden").attr('value',"projects_mdp");
+		$("#form_conf_hidden").attr('value',"projects_submitted_list");
 	});
 
 	function validateForm(form) {
