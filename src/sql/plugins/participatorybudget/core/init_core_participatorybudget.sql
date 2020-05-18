@@ -42,3 +42,16 @@ INSERT INTO core_admin_right (id_right,name,level_right,admin_url,description,is
 --
 DELETE FROM core_user_right WHERE id_right = 'CAMPAIGN_MANAGEMENT';
 INSERT INTO core_user_right (id_right,id_user) VALUES ('CAMPAIGN_MANAGEMENT',1);
+
+
+
+-- Page portlet for PB Project to be published in
+INSERT INTO `core_stylesheet` VALUES (100, 'Rubrique Document - Rubrique Défaut', 'portlet_document_actualite.xsl', '<?xml version="1.0"?>\r\n<xsl:stylesheet version="1.0"\r\n	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">\r\n\r\n	<xsl:param name="site-path" select="site-path" />\r\n	<xsl:variable name="portlet-id" select="portlet/portlet-id" />\r\n\r\n	<xsl:template match="portlet">\r\n		<xsl:variable name="device_class">\r\n		<xsl:choose>\r\n			<xsl:when test="string(display-on-small-device)=\'0\'">hidden-phone</xsl:when>\r\n			<xsl:when test="string(display-on-normal-device)=\'0\'">hidden-tablet</xsl:when>\r\n			<xsl:when test="string(display-on-large-device)=\'0\'">hidden-desktop</xsl:when>\r\n			<xsl:otherwise></xsl:otherwise>\r\n		</xsl:choose>\r\n		</xsl:variable>\r\n		<div class="portlet-actualites {$device_class}">\r\n			<xsl:if test="not(string(display-title)=\'1\')">\r\n				<div class="title2">\r\n					<xsl:value-of disable-output-escapDing="yes" select="portlet-name" />\r\n				</div>\r\n			</xsl:if>\r\n			<xsl:apply-templates select="document-portlet/document" />\r\n			<xsl:if test="string(document-portlet/document)=\'\'">\r\n				<xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>\r\n			</xsl:if>\r\n		</div>\r\n	</xsl:template>\r\n\r\n	<xsl:template match="document">\r\n		<xsl:output method="html" indent="yes" />\r\n		<xsl:if test="not(string(document-xml-content)=\'null\')">\r\n\r\n		</xsl:if>\r\n	</xsl:template>\r\n\r\n</xsl:stylesheet>\r\n\r\n');
+INSERT INTO `core_style` VALUES (100, 'Defaut', 'DOCUMENT_PORTLET', 0);
+INSERT INTO `core_style_mode_stylesheet` VALUES (100, 0, 100);
+
+INSERT INTO `core_page` VALUES (100, 1, 'Document', 'Document', '2016-01-08 15:08:25', 0, 4, 1, '2016-01-08 15:08:25', 'none', 'default', 1, NULL, 'application/octet-stream', NULL, NULL, 1, 0, 0);
+INSERT INTO `core_page` VALUES (101, 100, 'PB project publish', 'PB project publish', '2016-01-14 09:41:46', 0, 1, 1, '2016-01-14 09:41:46', 'none', 'default', 1, NULL, 'application/octet-stream', NULL, NULL, 1, 0, 0);
+	
+INSERT INTO `core_portlet` VALUES (158, 'DOCUMENT_LIST_PORTLET', 101, 'PB Project document list', '2016-01-14 09:41:54', 0, 1, 1, 100, 0, '2015-12-15 17:08:13', 1, 'none', 4369);
+ 
