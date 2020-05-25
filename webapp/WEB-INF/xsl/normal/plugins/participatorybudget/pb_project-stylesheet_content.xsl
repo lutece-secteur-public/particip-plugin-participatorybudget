@@ -12,9 +12,12 @@
 		<!-- Visualisation du contenu XML source -->
 		<!-- pre><xsl:copy-of select="."/></pre -->
 	
-		<xsl:choose>
-			<xsl:when test="(string(pb_project/pb_project-statut_project)!='SUIVI') and (java:isBeforeBeginning(java:fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService.getInstance(), 'SUBMIT'))" >
-				<div id="prop-card">
+		<div id="prop-card">
+		
+			<xsl:choose>
+				
+				<!-- To view a submitted project before the "submit" phase is forbidden -->								
+				<xsl:when test="(string(pb_project/pb_project-statut_project)!='SUIVI') and (java:isBeforeBeginning(java:fr.paris.lutece.plugins.participatorybudget.service.campaign.CampaignService.getInstance(), 'SUBMIT'))" >
 					<div class="row">
 						<div class="col-xs-12 col-sm-offset-2 col-sm-8">
 							<br/>
@@ -24,12 +27,16 @@
 							</div>
 						</div>
 					</div>			
-				</div>			
-			</xsl:when> 
-			<xsl:otherwise>
-				<xsl:apply-templates select="pb_project"/>
-			</xsl:otherwise>
-		</xsl:choose>
+				</xsl:when> 
+
+				<!-- User can view the project -->		
+				<xsl:otherwise>
+					<xsl:apply-templates select="pb_project"/>
+				</xsl:otherwise>
+				
+			</xsl:choose>
+			
+		</div>			
 
 	</xsl:template>
 
@@ -140,13 +147,13 @@
 			</div>
 			
 			<div id="psoum-body">
-				<xsl:attribute name="class">row bg-color0 bordered-4px-theme-<xsl:value-of select="$theme"/></xsl:attribute>
+				<xsl:attribute name="class">row bordered-4px-theme-<xsl:value-of select="$theme"/></xsl:attribute>
 			
 				<!-- *********************************************************************************** -->
 				<!-- * DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC * -->
 				<!-- * DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC DESC * -->
 				<!-- *********************************************************************************** -->
-				<div id="psoum-desc" class="col-xs-12 col-sm-8 bg-color0">
+				<div id="psoum-desc" class="col-xs-12 col-sm-8">
 				
 					<!-- Location -->
 					<div class="psoum-desc-location">
