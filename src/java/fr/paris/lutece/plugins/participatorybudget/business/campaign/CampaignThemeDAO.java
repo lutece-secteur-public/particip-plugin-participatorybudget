@@ -53,7 +53,7 @@ public final class CampaignThemeDAO implements ICampaignThemeDAO
     // Constants
     private static final String SQL_QUERY_NEW_PK = "SELECT max( id_campaign_theme ) FROM participatorybudget_campaign_theme";
     private static final String SQL_QUERY_SELECT = "SELECT id_campaign_theme, code_campaign, code_theme, title, description, active, image_file, front_rgb FROM participatorybudget_campaign_theme WHERE id_campaign_theme = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_theme ( id_campaign_theme, code_campaign, code_theme, title, description, active, image_file, front_rgb ) VALUES ( ?, ?, ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO participatorybudget_campaign_theme ( id_campaign_theme, code_campaign, code_theme, title, description, active, image_file, front_rgb ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM participatorybudget_campaign_theme WHERE id_campaign_theme = ? ";
     private static final String SQL_QUERY_UPDATE = "UPDATE participatorybudget_campaign_theme SET id_campaign_theme = ?, code_campaign = ?, code_theme = ?, title = ?, description = ?, active = ?, image_file = ?, front_rgb = ?  WHERE id_campaign_theme = ?";
     private static final String SQL_QUERY_CHANGEALL_CAMPAIGN_CODE = "UPDATE participatorybudget_campaign_theme SET code_campaign = ? WHERE code_campaign = ?";
