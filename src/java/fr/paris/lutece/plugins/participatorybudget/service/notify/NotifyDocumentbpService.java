@@ -87,6 +87,7 @@ public class NotifyDocumentbpService implements INotifyDocumentbpService
 
         IActionService actionService = SpringContextService.getBean( ActionService.BEAN_SERVICE );
         ActionFilter filter = new ActionFilter( );
+        filter.setAutomaticReflexiveAction( false );
         filter.setIdWorkflow( nIdWorkflow );
 
         List<Action> listActions = actionService.getListActionByFilter( filter );
@@ -129,6 +130,7 @@ public class NotifyDocumentbpService implements INotifyDocumentbpService
 
             IActionService actionService = SpringContextService.getBean( ActionService.BEAN_SERVICE );
             ActionFilter filter = new ActionFilter( );
+            filter.setAutomaticReflexiveAction( false );
             filter.setIdWorkflow( workflow.getId( ) );
 
             List<Action> listActions = actionService.getListActionByFilter( filter );
